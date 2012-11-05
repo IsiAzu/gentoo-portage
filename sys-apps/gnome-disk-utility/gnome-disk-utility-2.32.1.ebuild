@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gnome-disk-utility/gnome-disk-utility-2.32.1.ebuild,v 1.12 2011/10/01 20:44:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gnome-disk-utility/gnome-disk-utility-2.32.1.ebuild,v 1.15 2012/05/04 09:17:26 jdhore Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
 
 inherit autotools eutils gnome2
 
-DESCRIPTION="Disk Utility for GNOME using devicekit-disks"
+DESCRIPTION="Disk Utility for GNOME using udisks"
 HOMEPAGE="http://git.gnome.org/browse/gnome-disk-utility"
 
 LICENSE="LGPL-2.1"
@@ -20,7 +20,7 @@ CDEPEND="
 	>=dev-libs/dbus-glib-0.74
 	>=dev-libs/libunique-1:1
 	>=x11-libs/gtk+-2.20:2
-	=sys-fs/udisks-1.0*[remote-access?]
+	=sys-fs/udisks-1.0*:0[remote-access?]
 	>=dev-libs/libatasmart-0.14
 	>=x11-libs/libnotify-0.6.1
 	avahi? ( >=net-dns/avahi-0.6.25[gtk] )
@@ -37,7 +37,7 @@ DEPEND="${CDEPEND}
 	app-text/rarian
 	app-text/gnome-doc-utils
 
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	>=dev-util/intltool-0.35
 	>=dev-util/gtk-doc-am-1.13
 

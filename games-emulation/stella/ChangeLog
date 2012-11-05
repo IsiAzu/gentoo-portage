@@ -1,6 +1,31 @@
 # ChangeLog for games-emulation/stella
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/stella/ChangeLog,v 1.64 2011/11/10 16:39:06 mr_bones_ Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/stella/ChangeLog,v 1.71 2012/10/24 23:09:30 blueness Exp $
+
+  24 Oct 2012; Anthony G. Basile <blueness@gentoo.org> stella-3.7.2.ebuild:
+  stable ppc, bug #436826
+
+  17 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> stella-3.7.2.ebuild:
+  x86 stable wrt bug #436826
+
+  03 Oct 2012; Agostino Sarubbo <ago@gentoo.org> stella-3.7.2.ebuild:
+  Stable for amd64, wrt bug #436826
+
+*stella-3.7.2 (11 Aug 2012)
+
+  11 Aug 2012; Michael Sterrett <mr_bones_@gentoo.org> +stella-3.7.2.ebuild:
+  version bump with patch from Julian Ospald (bug #430922)
+
+  30 Jan 2012; Michael Sterrett <mr_bones_@gentoo.org> stella-3.5.ebuild:
+  build with newer zlib (bug #401471)
+
+  10 Jan 2012; Brent Baude <ranger@gentoo.org> stella-3.4.ebuild:
+  Marking stella-3.4 ppc for bug 375493
+
+*stella-3.5 (04 Jan 2012)
+
+  04 Jan 2012; Michael Sterrett <mr_bones_@gentoo.org> +stella-3.5.ebuild:
+  version bump (bug #397551)
 
   10 Nov 2011; Michael Sterrett <mr_bones_@gentoo.org> stella-3.4.ebuild:
   build with newer zlib (bug #390093)

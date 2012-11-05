@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/abrt/abrt-2.0.6.ebuild,v 1.1 2011/11/16 07:44:24 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/abrt/abrt-2.0.6.ebuild,v 1.8 2012/05/31 02:21:27 zmedico Exp $
 
-PYTHON_DEPEND="2:2.6"
 EAPI="4"
+PYTHON_DEPEND="2:2.6"
 
 # Need gnome2-utils for gnome2_icon_cache_update
-inherit autotools eutils gnome2-utils python systemd
+inherit autotools eutils gnome2-utils python systemd user
 
 DESCRIPTION="Automatic bug detection and reporting tool"
 HOMEPAGE="https://fedorahosted.org/abrt/"
@@ -14,7 +14,7 @@ SRC_URI="https://fedorahosted.org/released/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="debug"
 
 COMMON_DEPEND="dev-libs/btparser
@@ -34,7 +34,7 @@ DEPEND="${COMMON_DEPEND}
 	app-text/asciidoc
 	app-text/xmlto
 	>=dev-util/intltool-0.35.0
-	>=dev-util/pkgconfig-0.9.0
+	virtual/pkgconfig
 	>=sys-devel/gettext-0.17"
 
 pkg_setup() {
@@ -65,7 +65,7 @@ src_prepare() {
 	mkdir m4
 	eautoreconf
 
-	ln -sfn $(type -P true) py-compile
+	echo '#!/bin/sh' > py-compile
 	python_convert_shebangs -r 2 src
 }
 

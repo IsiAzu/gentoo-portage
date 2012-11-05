@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/v8/v8-9999.ebuild,v 1.24 2011/11/23 22:47:56 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/v8/v8-9999.ebuild,v 1.32 2012/08/29 17:13:26 phajdan.jr Exp $
 
 EAPI="4"
 
@@ -17,15 +17,6 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-pkg_pretend() {
-	local gccver=$(gcc-fullversion)
-	if [[ ${gccver} = 4.5.2 ]]; then
-		eerror "The currently selected version of gcc is known to segfault when building this"
-		eerror "version of V8. Please use at least gcc-4.5.3."
-		die "gcc-${gccver} detected."
-	fi
-}
-
 pkg_setup() {
 	python_set_active_version 2
 	python_pkg_setup
@@ -39,7 +30,9 @@ src_unpack() {
 
 src_compile() {
 	tc-export AR CC CXX RANLIB
-	export LINK="${CXX}"
+	export LINK=${CXX}
+
+	local hardfp=off
 
 	# Use target arch detection logic from bug #354601.
 	case ${CHOST} in
@@ -50,6 +43,9 @@ src_compile() {
 			else
 				myarch=x64
 			fi ;;
+		arm*-hardfloat-*)
+			hardfp=on
+			myarch=arm ;;
 		arm*-*) myarch=arm ;;
 		*) die "Unrecognized CHOST: ${CHOST}"
 	esac
@@ -69,13 +65,23 @@ src_compile() {
 		werror=no \
 		soname_version=${soname_version} \
 		snapshot=${snapshot} \
+		hardfp=${hardfp} \
 		${mytarget} || die
 
 	pax-mark m out/${mytarget}/{cctest,d8,shell} || die
 }
 
 src_test() {
+	local arg testjobs
+	for arg in ${MAKEOPTS}; do
+		case ${arg} in
+			-j*) testjobs=${arg#-j} ;;
+			--jobs=*) testjobs=${arg#--jobs=} ;;
+		esac
+	done
+
 	tools/test-wrapper-gypbuild.py \
+		-j${testjobs:-1} \
 		--arch-and-mode=${mytarget} \
 		--no-presubmit \
 		--progress=dots || die
@@ -85,16 +91,26 @@ src_install() {
 	insinto /usr
 	doins -r include || die
 
-	dobin out/${mytarget}/d8 || die
-
 	if [[ ${CHOST} == *-darwin* ]] ; then
+		# buildsystem is too horrific to get this built correctly
+		mkdir -p out/${mytarget}/lib.target
+		mv out/${mytarget}/libv8.so.${soname_version} \
+			out/${mytarget}/lib.target/libv8$(get_libname ${soname_version}) || die
 		install_name_tool \
-			-id "${EPREFIX}"/usr/$(get_libdir)/libv8$(get_libname).${soname_version} \
-			out/${mytarget}/lib.target/libv8$(get_libname).${soname_version} || die
+			-id "${EPREFIX}"/usr/$(get_libdir)/libv8$(get_libname) \
+			out/${mytarget}/lib.target/libv8$(get_libname ${soname_version}) \
+			|| die
+		install_name_tool \
+			-change \
+			"${S}"/out/${mytarget}/libv8.so.${soname_version} \
+			"${EPREFIX}"/usr/$(get_libdir)/libv8$(get_libname) \
+			out/${mytarget}/d8 || die
 	fi
 
-	dolib out/${mytarget}/lib.target/libv8$(get_libname).${soname_version} || die
-	dosym libv8$(get_libname).${soname_version} /usr/$(get_libdir)/libv8$(get_libname) || die
+	dobin out/${mytarget}/d8 || die
+
+	dolib out/${mytarget}/lib.target/libv8$(get_libname ${soname_version}) || die
+	dosym libv8$(get_libname ${soname_version}) /usr/$(get_libdir)/libv8$(get_libname) || die
 
 	dodoc AUTHORS ChangeLog || die
 }
@@ -105,8 +121,7 @@ pkg_preinst() {
 
 	eshopts_push -s nullglob
 
-	for candidate in "${EROOT}usr/$(get_libdir)"/libv8-*$(get_libname) \
-		"${EROOT}usr/$(get_libdir)"/libv8$(get_libname).*; do
+	for candidate in "${EROOT}usr/$(get_libdir)"/libv8$(get_libname).*; do
 		baselib=${candidate##*/}
 		if [[ ! -e "${ED}usr/$(get_libdir)/${baselib}" ]]; then
 			preserved_libs+=( "${EPREFIX}/usr/$(get_libdir)/${baselib}" )

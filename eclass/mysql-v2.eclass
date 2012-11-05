@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql-v2.eclass,v 1.10 2011/11/17 16:04:02 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql-v2.eclass,v 1.21 2012/11/01 23:57:50 robbat2 Exp $
 
 # @ECLASS: mysql-v2.eclass
 # @MAINTAINER:
@@ -15,7 +15,7 @@
 # This eclass uses the mysql-autotools and mysql-cmake eclasses for the
 # specific bits related to the build system.
 # It provides the src_unpack, src_prepare, src_configure, src_compile,
-# scr_install, pkg_preinst, pkg_postinst, pkg_config and pkg_postrm
+# src_install, pkg_preinst, pkg_postinst, pkg_config and pkg_postrm
 # phase hooks.
 
 # @ECLASS-VARIABLE: BUILD
@@ -53,7 +53,7 @@ inherit eutils flag-o-matic gnuconfig ${MYSQL_EXTRAS} ${BUILD_INHERIT} mysql_fx 
 #
 
 case "${EAPI:-0}" in
-	2|3|4) ;;
+	3|4|5) ;;
 	*) die "Unsupported EAPI: ${EAPI}" ;;
 esac
 
@@ -80,14 +80,6 @@ fi
 # mysql_upgrade.
 MYSQL_PV_MAJOR="$(get_version_component_range 1-2 ${PV})"
 
-# Cluster is a special case...
-if [[ "${PN}" == "mysql-cluster" ]]; then
-	case $PV in
-		6.1*|7.0*|7.1*) MYSQL_PV_MAJOR=5.1 ;;
-	esac
-fi
-
-
 # @ECLASS-VARIABLE: MYSQL_VERSION_ID
 # @DESCRIPTION:
 # MYSQL_VERSION_ID will be:
@@ -110,23 +102,6 @@ MYSQL_VERSION_ID=${MYSQL_VERSION_ID##"0"}
 # This eclass should only be used with at least mysql-5.1.50
 mysql_version_is_at_least "5.1.50" || die "This eclass should only be used with >=mysql-5.1.50"
 
-# @ECLASS-VARIABLE: MYSQL_COMMUNITY_FEATURES
-# @DESCRIPTION:
-# Specifiy if community features are available. Possible values are 1 (yes)
-# and 0 (no).
-# Community features are available in mysql-community
-# AND in the re-merged mysql-5.0.82 and newer
-if [ "${PN}" == "mysql-community" -o "${PN}" == "mariadb" ]; then
-	MYSQL_COMMUNITY_FEATURES=1
-elif [ "${MYSQL_PV_MAJOR}" == "5.1" ]; then
-	MYSQL_COMMUNITY_FEATURES=1
-elif mysql_version_is_at_least "5.4.0"; then
-	MYSQL_COMMUNITY_FEATURES=1
-else
-	MYSQL_COMMUNITY_FEATURES=0
-fi
-
-
 # @ECLASS-VARIABLE: XTRADB_VER
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -141,7 +116,7 @@ fi
 if [ -z "${SERVER_URI}" ]; then
 	[ -z "${MY_PV}" ] && MY_PV="${PV//_/-}"
 	if [ "${PN}" == "mariadb" ]; then
-		MARIA_FULL_PV="$(replace_version_separator 3 '-' ${PV})"
+		MARIA_FULL_PV="$(replace_version_separator 3 '-' ${MY_PV})"
 		MARIA_FULL_P="${PN}-${MARIA_FULL_PV}"
 		SERVER_URI="
 		http://ftp.osuosl.org/pub/mariadb/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
@@ -151,23 +126,14 @@ if [ -z "${SERVER_URI}" ]; then
 		http://mirrors.fe.up.pt/pub/${PN}/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
 		http://ftp-stud.hs-esslingen.de/pub/Mirrors/${PN}/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
 		"
-	# The community and cluster builds are on the mirrors
-	elif [[ "${MYSQL_COMMUNITY_FEATURES}" == "1" || ${PN} == "mysql-cluster" ]] ; then
-		if [[ "${PN}" == "mysql-cluster" ]] ; then
-			URI_DIR="MySQL-Cluster"
-			URI_FILE="mysql-cluster-gpl"
-		else
-			URI_DIR="MySQL"
-			URI_FILE="mysql"
-		fi
+	else
+		URI_DIR="MySQL"
+		URI_FILE="mysql"
 		URI_A="${URI_FILE}-${MY_PV}.tar.gz"
 		MIRROR_PV=$(get_version_component_range 1-2 ${PV})
 		# Recently upstream switched to an archive site, and not on mirrors
 		SERVER_URI="http://downloads.mysql.com/archives/${URI_FILE}-${MIRROR_PV}/${URI_A}
 					mirror://mysql/Downloads/${URI_DIR}-${PV%.*}/${URI_A}"
-	# The (old) enterprise source is on the primary site only
-	elif [ "${PN}" == "mysql" ]; then
-		SERVER_URI="ftp://ftp.mysql.com/pub/mysql/src/mysql-${MY_PV}.tar.gz"
 	fi
 fi
 
@@ -188,9 +154,6 @@ if [[ "${PN}" == "mariadb" ]]; then
 	HOMEPAGE="http://mariadb.org/"
 	DESCRIPTION="MariaDB is a MySQL fork with 3rd-party patches and additional storage engines merged."
 fi
-if [[ "${PN}" == "mysql-community" ]]; then
-	DESCRIPTION="${DESCRIPTION} (obsolete, move to dev-db/mysql)"
-fi
 LICENSE="GPL-2"
 SLOT="0"
 
@@ -206,17 +169,14 @@ esac
 IUSE="${IUSE} latin1"
 
 IUSE="${IUSE} extraengine"
-if [[ ${PN} != "mysql-cluster" ]] ; then
-	IUSE="${IUSE} cluster"
-fi
+IUSE="${IUSE} cluster"
 
 IUSE="${IUSE} max-idx-128"
 IUSE="${IUSE} berkdb"
-
-[[ ${MYSQL_COMMUNITY_FEATURES} == 1 ]] \
-&& IUSE="${IUSE} +community profiling"
+IUSE="${IUSE} +community profiling"
 
 [[ ${PN} == "mariadb" ]] \
+&& mysql_check_version_range "5.1.38 to 5.3.99" \
 && IUSE="${IUSE} libevent"
 
 [[ ${PN} == "mariadb" ]] \
@@ -227,6 +187,13 @@ IUSE="${IUSE} berkdb"
 && mysql_version_is_at_least "5.2.5" \
 && IUSE="${IUSE} sphinx"
 
+if mysql_version_is_at_least "5.5"; then
+	REQUIRED_USE="tcmalloc? ( !jemalloc ) jemalloc? ( !tcmalloc )"
+	IUSE="${IUSE} jemalloc tcmalloc"
+fi
+
+mysql_version_is_at_least "5.5.7" \
+&& IUSE="${IUSE} systemtap"
 
 #
 # DEPENDENCIES:
@@ -244,10 +211,11 @@ DEPEND="
 "
 
 [[ ${PN} == mariadb ]] \
+&& mysql_check_version_range "5.1.38 to 5.3.99" \
 && DEPEND="${DEPEND} libevent? ( >=dev-libs/libevent-1.4 )"
 
 # Having different flavours at the same time is not a good idea
-for i in "mysql" "mysql-community" "mysql-cluster" "mariadb" ; do
+for i in "mysql" "mariadb" ; do
 	[[ ${i} == ${PN} ]] ||
 	DEPEND="${DEPEND} !dev-db/${i}"
 done
@@ -262,7 +230,7 @@ DEPEND="${DEPEND}
 	virtual/yacc
 "
 
-DEPEND="${DEPEND} static? ( || ( sys-libs/ncurses[static-libs] <=sys-libs/ncurses-5.7-r3 ) )"
+DEPEND="${DEPEND} static? ( sys-libs/ncurses[static-libs] )"
 
 # compile-time-only
 DEPEND="${DEPEND} >=dev-util/cmake-2.4.3"
@@ -279,12 +247,21 @@ mysql_version_is_at_least "5.5.8" \
 && mysql_version_is_at_least "5.2.5" \
 && DEPEND="${DEPEND} sphinx? ( app-misc/sphinx )"
 
+mysql_version_is_at_least "5.5.7" \
+&& DEPEND="${DEPEND} systemtap? ( >=dev-util/systemtap-1.3 )" \
+&& DEPEND="${DEPEND} kernel_linux? ( dev-libs/libaio )"
+
+mysql_version_is_at_least "5.5" \
+&& DEPEND="${DEPEND} jemalloc? ( dev-libs/jemalloc )"
+
+mysql_version_is_at_least "5.5" \
+&& DEPEND="${DEPEND} tcmalloc? ( dev-util/google-perftools )"
+
 # dev-perl/DBD-mysql is needed by some scripts installed by MySQL
 PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
 
 # For other stuff to bring us in
 PDEPEND="${PDEPEND} =virtual/mysql-${MYSQL_PV_MAJOR}"
-
 
 #
 # External patches
@@ -321,13 +298,14 @@ if pbxt_patch_available; then
 	PBXT_SRC_URI="http://www.primebase.org/download/${PBXT_P}.tar.gz mirror://sourceforge/pbxt/${PBXT_P}.tar.gz"
 	SRC_URI="${SRC_URI} pbxt? ( ${PBXT_SRC_URI} )"
 
-	# PBXT_NEWSTYLE means pbxt is in storage/ and gets enabled as other plugins
-	# vs. built outside the dir
-	if pbxt_available; then
+fi
 
-		IUSE="${IUSE} pbxt"
-		PBXT_NEWSTYLE=1
-	fi
+# PBXT_NEWSTYLE means pbxt is in storage/ and gets enabled as other plugins
+# vs. built outside the dir
+if pbxt_available; then
+
+	IUSE="${IUSE} pbxt"
+	PBXT_NEWSTYLE=1
 fi
 
 if xtradb_patch_available; then
@@ -382,7 +360,7 @@ mysql-v2_pkg_setup() {
 
 	if has test ${FEATURES} ; then
 		if ! use minimal ; then
-			if [[ $UID -eq 0 ]]; then
+			if ! has userpriv ${FEATURES} ; then
 				eerror "Testing with FEATURES=-userpriv is no longer supported by upstream. Tests MUST be run as non-root."
 			fi
 		fi
@@ -420,14 +398,10 @@ mysql-v2_pkg_setup() {
 	enewgroup mysql 60 || die "problem adding 'mysql' group"
 	enewuser mysql 60 -1 /dev/null mysql || die "problem adding 'mysql' user"
 
-	if [ "${PN}" != "mysql-cluster" ] && use cluster; then
+	if use cluster; then
 		ewarn "Upstream has noted that the NDB cluster support in the 5.0 and"
 		ewarn "5.1 series should NOT be put into production. In the near"
 		ewarn "future, it will be disabled from building."
-		ewarn ""
-		ewarn "If you need NDB support, you should instead move to the new"
-		ewarn "mysql-cluster package that represents that upstream NDB"
-		ewarn "development."
 	fi
 }
 
@@ -496,7 +470,7 @@ mysql-v2_pkg_postinst() {
 	mysql_init_vars
 
 	# Check FEATURES="collision-protect" before removing this
-	[[ -d "${ROOT}/var/log/mysql" ]] || install -d -m0750 -o mysql -g mysql "${ROOT}${MY_LOGDIR}"
+	[[ -d "${ROOT}${MY_LOGDIR}" ]] || install -d -m0750 -o mysql -g mysql "${ROOT}${MY_LOGDIR}"
 
 	# Secure the logfiles
 	touch "${ROOT}${MY_LOGDIR}"/mysql.{log,err}
@@ -535,10 +509,10 @@ mysql-v2_pkg_postinst() {
 	fi
 
 	if pbxt_available && use pbxt ; then
-		# TODO: explain it better
-		elog "    mysql> INSTALL PLUGIN pbxt SONAME 'libpbxt.so';"
-		elog "    mysql> CREATE TABLE t1 (c1 int, c2 text) ENGINE=pbxt;"
-		elog "if, after that, you cannot start the MySQL server,"
+		elog "Note: PBXT is now statically built when enabled."
+		elog ""
+		elog "If, you previously installed as a plugin and "
+		elog "you cannot start the MySQL server,"
 		elog "remove the ${MY_DATADIR}/mysql/plugin.* files, then"
 		elog "use the MySQL upgrade script to restore the table"
 		elog "or execute the following SQL command:"
@@ -554,12 +528,35 @@ mysql-v2_pkg_postinst() {
 	&& elog "Berkeley DB support is deprecated and will be removed in future versions!"
 }
 
+# @FUNCTION: mysql-v2_getopt
+# @DESCRIPTION:
+# Use my_print_defaults to extract specific config options
+mysql-v2_getopt() {
+	local mypd="${EROOT}"/usr/bin/my_print_defaults
+	section="$1"
+	flag="--${2}="
+	"${mypd}" $section | sed -n "/^${flag}/p"
+}
+
+# @FUNCTION: mysql-v2_getoptval
+# @DESCRIPTION:
+# Use my_print_defaults to extract specific config options
+mysql-v2_getoptval() {
+	local mypd="${EROOT}"/usr/bin/my_print_defaults
+	section="$1"
+	flag="--${2}="
+	"${mypd}" $section | sed -n "/^${flag}/s,${flag},,gp"
+}
+
 # @FUNCTION: mysql-v2_pkg_config
 # @DESCRIPTION:
 # Configure mysql environment.
 mysql-v2_pkg_config() {
 
 	local old_MY_DATADIR="${MY_DATADIR}"
+	local old_HOME="${HOME}"
+	# my_print_defaults needs to read stuff in $HOME/.my.cnf
+	export HOME=/root
 
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
@@ -571,10 +568,12 @@ mysql-v2_pkg_config() {
 	fi
 
 	if [[ ( -n "${MY_DATADIR}" ) && ( "${MY_DATADIR}" != "${old_MY_DATADIR}" ) ]]; then
-		local MY_DATADIR_s="$(strip_duplicate_slashes ${ROOT}/${MY_DATADIR})"
-		local old_MY_DATADIR_s="$(strip_duplicate_slashes ${ROOT}/${old_MY_DATADIR})"
+		local MY_DATADIR_s="${ROOT}/${MY_DATADIR}"
+		MY_DATADIR_s="${MY_DATADIR_s%%/}"
+		local old_MY_DATADIR_s="${ROOT}/${old_MY_DATADIR}"
+		old_MY_DATADIR_s="${old_MY_DATADIR_s%%/}"
 
-		if [[ -d "${old_MY_DATADIR_s}" ]]; then
+		if [[ -d "${old_MY_DATADIR_s}" ]] && [[ "${old_MY_DATADIR_s}" != / ]]; then
 			if [[ -d "${MY_DATADIR_s}" ]]; then
 				ewarn "Both ${old_MY_DATADIR_s} and ${MY_DATADIR_s} exist"
 				ewarn "Attempting to use ${MY_DATADIR_s} and preserving ${old_MY_DATADIR_s}"
@@ -598,8 +597,27 @@ mysql-v2_pkg_config() {
 	local pwd2="b"
 	local maxtry=15
 
-	if [ -z "${MYSQL_ROOT_PASSWORD}" -a -f "${ROOT}/root/.my.cnf" ]; then
-		MYSQL_ROOT_PASSWORD="$(sed -n -e '/^password=/s,^password=,,gp' "${ROOT}/root/.my.cnf")"
+	if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
+		MYSQL_ROOT_PASSWORD="$(mysql-v2_getoptval 'client mysql' password)"
+	fi
+	MYSQL_TMPDIR="$(mysql-v2_getoptval mysqld tmpdir)"
+	# These are dir+prefix
+	MYSQL_RELAY_LOG="$(mysql-v2_getoptval mysqld relay-log)"
+	MYSQL_RELAY_LOG=${MYSQL_RELAY_LOG%/*}
+	MYSQL_LOG_BIN="$(mysql-v2_getoptval mysqld log-bin)"
+	MYSQL_LOG_BIN=${MYSQL_LOG_BIN%/*}
+
+	if [[ ! -d "${EROOT}"/$MYSQL_TMPDIR ]]; then
+		einfo "Creating MySQL tmpdir $MYSQL_TMPDIR"
+		install -d -m 770 -o mysql -g mysql "${EROOT}"/$MYSQL_TMPDIR
+	fi
+	if [[ ! -d "${EROOT}"/$MYSQL_LOG_BIN ]]; then
+		einfo "Creating MySQL log-bin directory $MYSQL_LOG_BIN"
+		install -d -m 770 -o mysql -g mysql "${EROOT}"/$MYSQL_LOG_BIN
+	fi
+	if [[ ! -d "${EROOT}"/$MYSQL_RELAY_LOG ]]; then
+		einfo "Creating MySQL relay-log directory $MYSQL_RELAY_LOG"
+		install -d -m 770 -o mysql -g mysql "${EROOT}"/$MYSQL_RELAY_LOG
 	fi
 
 	if [[ -d "${ROOT}/${MY_DATADIR}/mysql" ]] ; then
@@ -630,7 +648,7 @@ mysql-v2_pkg_config() {
 		unset pwd1 pwd2
 	fi
 
-	local options=""
+	local options="--log-warnings=0"
 	local sqltmp="$(emktemp)"
 
 	local help_tables="${ROOT}${MY_SHAREDSTATEDIR}/fill_help_tables.sql"
@@ -638,12 +656,34 @@ mysql-v2_pkg_config() {
 	&& cp "${help_tables}" "${TMPDIR}/fill_help_tables.sql" \
 	|| touch "${TMPDIR}/fill_help_tables.sql"
 	help_tables="${TMPDIR}/fill_help_tables.sql"
+	
+	# Figure out which options we need to disable to do the setup
+	helpfile="${TMPDIR}/mysqld-help"
+	${EROOT}/usr/sbin/mysqld --verbose --help >"${helpfile}" 2>/dev/null
+	for opt in grant-tables host-cache name-resolve networking slave-start bdb \
+		federated innodb ssl log-bin relay-log slow-query-log external-locking \
+		ndbcluster log-slave-updates \
+		; do
+		optexp="--(skip-)?${opt}" optfull="--loose-skip-${opt}"
+		egrep -sq -- "${optexp}" "${helpfile}" && options="${options} ${optfull}"
+	done
+	# But some options changed names
+	egrep -sq external-locking "${helpfile}" && \
+	options="${options/skip-locking/skip-external-locking}"
+
+	use prefix || options="${options} --user=mysql"
 
 	pushd "${TMPDIR}" &>/dev/null
-	"${ROOT}/usr/bin/mysql_install_db" --basedir=/usr >"${TMPDIR}"/mysql_install_db.log 2>&1
+	#cmd="'${EROOT}/usr/share/mysql/scripts/mysql_install_db' '--basedir=${EPREFIX}/usr' ${options}"
+	cmd=${EROOT}usr/share/mysql/scripts/mysql_install_db
+	[ -f ${cmd} ] || cmd=${EROOT}usr/bin/mysql_install_db
+	cmd="'$cmd' '--basedir=${EPREFIX}/usr' ${options}"
+	einfo "Command: $cmd"
+	eval $cmd \
+		>"${TMPDIR}"/mysql_install_db.log 2>&1
 	if [ $? -ne 0 ]; then
 		grep -B5 -A999 -i "ERROR" "${TMPDIR}"/mysql_install_db.log 1>&2
-		die "Failed to run mysql_install_db. Please review /var/log/mysql/mysqld.err AND ${TMPDIR}/mysql_install_db.log"
+		die "Failed to run mysql_install_db. Please review ${EPREFIX}/var/log/mysql/mysqld.err AND ${TMPDIR}/mysql_install_db.log"
 	fi
 	popd &>/dev/null
 	[[ -f "${ROOT}/${MY_DATADIR}/mysql/user.frm" ]] \
@@ -651,23 +691,9 @@ mysql-v2_pkg_config() {
 	chown -R mysql:mysql "${ROOT}/${MY_DATADIR}" 2>/dev/null
 	chmod 0750 "${ROOT}/${MY_DATADIR}" 2>/dev/null
 
-	# Figure out which options we need to disable to do the setup
-	helpfile="${TMPDIR}/mysqld-help"
-	${ROOT}/usr/sbin/mysqld --verbose --help >"${helpfile}" 2>/dev/null
-	for opt in grant-tables host-cache name-resolve networking slave-start bdb \
-		federated innodb ssl log-bin relay-log slow-query-log external-locking \
-		ndbcluster \
-		; do
-		optexp="--(skip-)?${opt}" optfull="--skip-${opt}"
-		egrep -sq -- "${optexp}" "${helpfile}" && options="${options} ${optfull}"
-	done
-	# But some options changed names
-	egrep -sq external-locking "${helpfile}" && \
-	options="${options/skip-locking/skip-external-locking}"
-
 	# Filling timezones, see
 	# http://dev.mysql.com/doc/mysql/en/time-zone-support.html
-	"${ROOT}/usr/bin/mysql_tzinfo_to_sql" "${ROOT}/usr/share/zoneinfo" > "${sqltmp}" 2>/dev/null
+	"${EROOT}/usr/bin/mysql_tzinfo_to_sql" "${EROOT}/usr/share/zoneinfo" > "${sqltmp}" 2>/dev/null
 
 	if [[ -r "${help_tables}" ]] ; then
 		cat "${help_tables}" >> "${sqltmp}"
@@ -676,12 +702,13 @@ mysql-v2_pkg_config() {
 	einfo "Creating the mysql database and setting proper"
 	einfo "permissions on it ..."
 
-	local socket="${ROOT}/var/run/mysqld/mysqld${RANDOM}.sock"
-	local pidfile="${ROOT}/var/run/mysqld/mysqld${RANDOM}.pid"
-	local mysqld="${ROOT}/usr/sbin/mysqld \
+	local socket="${EROOT}/var/run/mysqld/mysqld${RANDOM}.sock"
+	local pidfile="${EROOT}/var/run/mysqld/mysqld${RANDOM}.pid"
+	local mysqld="${EROOT}/usr/sbin/mysqld \
 		${options} \
 		--user=mysql \
-		--basedir=${ROOT}/usr \
+		--log-warnings=0 \
+		--basedir=${EROOT}/usr \
 		--datadir=${ROOT}/${MY_DATADIR} \
 		--max_allowed_packet=8M \
 		--net_buffer_length=16K \
@@ -690,6 +717,7 @@ mysql-v2_pkg_config() {
 		--pid-file=${pidfile}"
 	#einfo "About to start mysqld: ${mysqld}"
 	ebegin "Starting mysqld"
+	einfo "Command ${mysqld}"
 	${mysqld} &
 	rc=$?
 	while ! [[ -S "${socket}" || "${maxtry}" -lt 1 ]] ; do
@@ -706,18 +734,18 @@ mysql-v2_pkg_config() {
 	ebegin "Setting root password"
 	# Do this from memory, as we don't want clear text passwords in temp files
 	local sql="UPDATE mysql.user SET Password = PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE USER='root'"
-	"${ROOT}/usr/bin/mysql" \
+	"${EROOT}/usr/bin/mysql" \
 		--socket=${socket} \
 		-hlocalhost \
 		-e "${sql}"
 	eend $?
 
 	ebegin "Loading \"zoneinfo\", this step may require a few seconds ..."
-	"${ROOT}/usr/bin/mysql" \
+	"${EROOT}/usr/bin/mysql" \
 		--socket=${socket} \
 		-hlocalhost \
 		-uroot \
-		-p"${MYSQL_ROOT_PASSWORD}" \
+		--password="${MYSQL_ROOT_PASSWORD}" \
 		mysql < "${sqltmp}"
 	rc=$?
 	eend $?
@@ -736,5 +764,5 @@ mysql-v2_pkg_config() {
 # Remove mysql symlinks.
 mysql-v2_pkg_postrm() {
 
-	: # mysql_lib_symlinks "${D}"
+	: # mysql_lib_symlinks "${ED}"
 }

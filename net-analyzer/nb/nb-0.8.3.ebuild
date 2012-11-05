@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nb/nb-0.8.3.ebuild,v 1.4 2011/11/18 16:18:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nb/nb-0.8.3.ebuild,v 1.7 2012/05/04 06:08:09 jdhore Exp $
 
 EAPI="3"
 
-inherit autotools autotools-utils eutils
+inherit autotools eutils
 
 DESCRIPTION="Nodebrain is a tool to monitor and do event correlation."
 HOMEPAGE="http://nodebrain.sourceforge.net/"
@@ -17,7 +17,7 @@ IUSE="static-libs"
 
 DEPEND="
 	dev-lang/perl
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-apps/texinfo
 "
 RDEPEND="
@@ -47,7 +47,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-	use static-libs || remove_libtool_files
+	use static-libs || find "${D}" -name '*.la' -delete
 	dodoc AUTHORS NEWS README THANKS sample/*
 	dohtml html/*
 }

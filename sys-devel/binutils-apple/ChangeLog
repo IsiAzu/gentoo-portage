@@ -1,6 +1,50 @@
 # ChangeLog for sys-devel/binutils-apple
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.26 2011/11/08 14:02:59 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.34 2012/08/12 18:58:06 grobian Exp $
+
+  12 Aug 2012; Fabian Groffen <grobian@gentoo.org> binutils-apple-3.2.ebuild,
+  binutils-apple-4.3.ebuild:
+  Serialise cctools building, the makefiles are completely not capable of doing
+  parallelism, it seems
+
+*binutils-apple-3.2 (10 Aug 2012)
+
+  10 Aug 2012; Fabian Groffen <grobian@gentoo.org> +binutils-apple-3.2.ebuild,
+  +files/binutils-apple-3.2-armv7-defines.patch:
+  Restore version that's necessary to bootstrap on Mac OS X 10.5
+
+  12 Jun 2012; Fabian Groffen <grobian@gentoo.org> -binutils-apple-3.1.1.ebuild,
+  -binutils-apple-3.2-r1.ebuild, -binutils-apple-3.2.2.ebuild,
+  -binutils-apple-3.2.3-r1.ebuild, -binutils-apple-3.2.3-r2.ebuild,
+  -binutils-apple-3.2.ebuild, -binutils-apple-4.1.ebuild,
+  -files/binutils-apple-3.2-armv7-defines.patch,
+  -files/binutils-apple-3.2-ld64-Makefile,
+  -files/binutils-apple-3.2.3-as-dir.patch:
+  Cleanup old versions
+
+  05 Mar 2012; Fabian Groffen <grobian@gentoo.org> binutils-apple-4.3.ebuild:
+  Remove PowerPC tweaks, Apple removed entire PowerPC support from ld in
+  ld64-128.2.  Removed ppc-macos keyword, 4.2 will be the last release for
+  PowerPC users.
+
+*binutils-apple-4.3 (04 Mar 2012)
+
+  04 Mar 2012; Fabian Groffen <grobian@gentoo.org> +binutils-apple-4.3.ebuild,
+  +files/ld64-128.2-Makefile:
+  Bump to version from Developer Tools 4.3
+
+  04 Mar 2012; Fabian Groffen <grobian@gentoo.org> binutils-apple-4.2.ebuild:
+  Avoid the need for vers_string program that seems no longer to be installed
+  with recent Xcode on Lion
+
+  19 Feb 2012; Fabian Groffen <grobian@gentoo.org> binutils-apple-4.2.ebuild:
+  Use append-cppflags instead of too generic append-flags to avoid F77 and FC
+  rejected warnings
+
+  06 Feb 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/ld64-127.2-ppc-range-warning.patch, binutils-apple-4.2.ebuild:
+  Add patch to treat 32-bits 4GB overflow problem as warning on PowerPC next to
+  ARM and i386.
 
   08 Nov 2011; Fabian Groffen <grobian@gentoo.org> binutils-apple-4.2.ebuild:
   Fix Darwin8 patch version in name
@@ -207,4 +251,3 @@
   +binutils-apple-20080922.ebuild:
   Initial import of binutils-apple, Apple's linker tools, based on the work by
   Elias Pipping in bug #238601.  Not ready for public consumption.
-

@@ -1,6 +1,105 @@
 # ChangeLog for Gentoo/ARM profile directory
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.144 2011/11/25 08:00:01 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.176 2012/10/31 16:12:32 mgorny Exp $
+
+  31 Oct 2012; Michał Górny <mgorny@gentoo.org> use.mask:
+  Add a PYTHON_TARGETS mask based on keywords.
+
+  21 Oct 2012; Raúl Porcel <armin76@gentoo.org> package.use.mask:
+  Remove sys-apps/portage python3 p.use.mask now that python3 is stable
+
+  17 Oct 2012; Markus Meier <maekke@gentoo.org> package.use.mask:
+  package.use.mask net-libs/libproxy/libproxy-0.4.10[spidermonkey]
+
+  17 Oct 2012; Markus Meier <maekke@gentoo.org> use.mask:
+  use.mask csharp
+
+  17 Oct 2012; Markus Meier <maekke@gentoo.org> use.mask:
+  use.mask ace
+
+  07 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Restore USE="systemd" mask to sys-auth/polkit for stabilization.
+
+  01 Oct 2012; Michał Górny <mgorny@gentoo.org> package.use.mask:
+  Remove systemd[http] mask, libmicrohttpd keyworded now.
+
+  30 Sep 2012; Michał Górny <mgorny@gentoo.org> package.use.mask:
+  Mask systemd[http] due to non-keyworded dep.
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org> package.use.mask:
+  Drop old alsa/webm masks #433930.
+
+  16 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> use.mask:
+  Revert part of last commit, better wait for package.use.stable.mask
+
+  16 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> use.mask:
+  Unmask java, bug #305773.
+
+  05 Aug 2012; Raúl Porcel <armin76@gentoo.org> make.defaults, use.mask:
+  Unmask video_cards_omap and add exynos and omap to VIDEO_CARDS
+
+  25 Jul 2012; Markus Meier <maekke@gentoo.org> package.use.mask:
+  package.use.mask vlc for media-libs/phonon, bug #401313
+
+  24 Jul 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> use.mask:
+  Mask video_cards_radeonsi flag
+
+  23 Jul 2012; Markus Meier <maekke@gentoo.org> use.mask:
+  use.mask anthy, bug #424329
+
+  17 Jul 2012; Anthony G. Basile <blueness@gentoo.org> package.use.mask:
+  Mask net-libs/cyassl[aes-ni] on arm
+
+  04 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Remove obsolete entries to net-libs/xulrunner and www-client/icecat wrt
+  #424617
+
+  27 Jun 2012; Markus Meier <maekke@gentoo.org> use.mask:
+  use.mask devil and gts, bug #419621
+
+  14 Jun 2012; Davide Pesavento <pesa@gentoo.org> package.use.mask:
+  Consolidate USE=jit masking/unmasking for qt-script and qt-webkit.
+
+  02 Jun 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Mask udis86 flag for llvm, which is of limited use outside x86/amd64.
+
+  15 May 2012; Benda Xu <heroxbd@gentoo.org> use.mask:
+  unmask ocamlopt on arm, as per bug 340607. Thanks to Josh Parsons
+
+  12 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Temporary mask-in-base, unmask-in-arch for dev-python/mako keywording for
+  gobject-introspection[doctool], bug #411761.
+
+  08 Apr 2012; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask aacplus
+
+  10 Feb 2012; Matt Turner <mattst88@gentoo.org> use.mask:
+  Mask wayland USE flag.
+
+  10 Feb 2012; Matt Turner <mattst88@gentoo.org> use.mask:
+  Mask d3d USE flag.
+
+  10 Feb 2012; Matt Turner <mattst88@gentoo.org> use.mask:
+  Add new video_cards_* to use.mask. Also remove dead radeonhd mask.
+
+  05 Feb 2012; Markus Meier <maekke@gentoo.org> use.mask:
+  remove ruby19 mask, bug #332593
+
+  05 Feb 2012; Markus Meier <maekke@gentoo.org> package.use.mask:
+  update x11-misc/colord gusb use-mask to match only stable version
+
+  05 Feb 2012; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask bluray, libtar, zvbi, bug #397891
+
+  09 Jan 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Unmask USE="jit" for webkit-gtk (bug #396313).
+
+  29 Nov 2011; Davide Pesavento <pesa@gentoo.org> package.use.mask:
+  Unmask USE="jit" for qt-webkit.
+
+  27 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  package.use.masked colord[gusb], needs libgusb keyworded (bug #392057).
 
   25 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
   Mask USE flags on gnome-3.2 packages due to missing keywords on deps; bug

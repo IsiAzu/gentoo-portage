@@ -1,21 +1,21 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/gnome-bluetooth/gnome-bluetooth-2.32.0-r1.ebuild,v 1.1 2011/10/17 20:14:48 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/gnome-bluetooth/gnome-bluetooth-2.32.0-r1.ebuild,v 1.6 2012/09/27 20:19:00 tetromino Exp $
 
 EAPI="4"
 GNOME2_LA_PUNT="yes"
 GCONF_DEBUG="yes"
 GNOME_TARBALL_SUFFIX="bz2"
 
-inherit eutils gnome2 multilib autotools
+inherit eutils gnome2 multilib user autotools
 
 DESCRIPTION="Fork of bluez-gnome focused on integration with GNOME"
 HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
 SRC_URI="${SRC_URI} mirror://gentoo/introspection.m4.bz2"
 
-LICENSE="GPL-2 LGPL-2.1"
+LICENSE="GPL-2+ LGPL-2.1+ FDL-1.1+"
 SLOT="2"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ppc x86"
 IUSE="doc +introspection nautilus test"
 
 COMMON_DEPEND=">=dev-libs/glib-2.26.1-r1:2
@@ -35,9 +35,9 @@ DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/gnome-doc-utils
 	app-text/scrollkeeper
-	dev-libs/libxml2
+	dev-libs/libxml2:2
 	dev-util/intltool
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext
 	x11-libs/libX11
 	x11-libs/libXi

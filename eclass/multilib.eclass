@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.95 2011/10/27 05:50:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.101 2012/10/17 19:13:18 vapier Exp $
 
 # @ECLASS: multilib.eclass
 # @MAINTAINER:
@@ -10,8 +10,10 @@
 # @DESCRIPTION:
 # This eclass is for all functions pertaining to handling multilib configurations.
 
-___ECLASS_RECUR_MULTILIB="yes"
-[[ -z ${___ECLASS_RECUR_TOOLCHAIN_FUNCS} ]] && inherit toolchain-funcs
+if [[ ${___ECLASS_ONCE_MULTILIB} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_MULTILIB="recur -_+^+_- spank"
+
+inherit toolchain-funcs
 
 # Defaults:
 export MULTILIB_ABIS=${MULTILIB_ABIS:-"default"}
@@ -119,7 +121,7 @@ get_abi_LIBDIR() { get_abi_var LIBDIR "$@"; }
 # Return a list of the ABIs we want to install for with
 # the last one in the list being the default.
 get_install_abis() {
-	local order=""
+	local x order=""
 
 	if [[ -z ${MULTILIB_ABIS} ]] ; then
 		echo "default"
@@ -160,19 +162,26 @@ get_install_abis() {
 # Return a list of the ABIs supported by this profile.
 # the last one in the list being the default.
 get_all_abis() {
-	local order=""
+	local x order="" mvar dvar
 
-	if [[ -z ${MULTILIB_ABIS} ]] ; then
+	mvar="MULTILIB_ABIS"
+	dvar="DEFAULT_ABI"
+	if [[ -n $1 ]] ; then
+		mvar="$1_${mvar}"
+		dvar="$1_${dvar}"
+	fi
+
+	if [[ -z ${!mvar} ]] ; then
 		echo "default"
 		return 0
 	fi
 
-	for x in ${MULTILIB_ABIS}; do
-		if [[ ${x} != ${DEFAULT_ABI} ]] ; then
+	for x in ${!mvar}; do
+		if [[ ${x} != ${!dvar} ]] ; then
 			order="${order:+${order} }${x}"
 		fi
 	done
-	order="${order:+${order} }${DEFAULT_ABI}"
+	order="${order:+${order} }${!dvar}"
 
 	echo ${order}
 	return 0
@@ -184,9 +193,7 @@ get_all_abis() {
 # those that might not be touched by the current ebuild and always includes
 # "lib".
 get_all_libdirs() {
-	local libdirs
-	local abi
-	local dir
+	local libdirs abi
 
 	for abi in ${MULTILIB_ABIS}; do
 		libdirs+=" $(get_abi_LIBDIR ${abi})"
@@ -278,6 +285,7 @@ multilib_env() {
 		x86_64*)
 			export CFLAGS_x86=${CFLAGS_x86--m32}
 			export CHOST_x86=${CTARGET/x86_64/i686}
+			CHOST_x86=${CHOST_x86/%-gnux32/-gnu}
 			export CTARGET_x86=${CHOST_x86}
 			if [[ ${SYMLINK_LIB} == "yes" ]] ; then
 				export LIBDIR_x86="lib32"
@@ -286,17 +294,25 @@ multilib_env() {
 			fi
 
 			export CFLAGS_amd64=${CFLAGS_amd64--m64}
-			export CHOST_amd64=${CTARGET}
+			export CHOST_amd64=${CTARGET/%-gnux32/-gnu}
 			export CTARGET_amd64=${CHOST_amd64}
 			export LIBDIR_amd64="lib64"
 
 			export CFLAGS_x32=${CFLAGS_x32--mx32}
-			export CHOST_x32=${CTARGET}
+			export CHOST_x32=${CTARGET/%-gnu/-gnux32}
 			export CTARGET_x32=${CHOST_x32}
 			export LIBDIR_x32="libx32"
 
-			: ${MULTILIB_ABIS=amd64 x86}
-			: ${DEFAULT_ABI=amd64}
+			case ${CTARGET} in
+			*-gnux32)
+				: ${MULTILIB_ABIS=x32 amd64 x86}
+				: ${DEFAULT_ABI=x32}
+				;;
+			*)
+				: ${MULTILIB_ABIS=amd64 x86}
+				: ${DEFAULT_ABI=amd64}
+				;;
+			esac
 		;;
 		mips64*)
 			export CFLAGS_o32=${CFLAGS_o32--mabi=32}
@@ -345,8 +361,8 @@ multilib_env() {
 			: ${MULTILIB_ABIS=s390x s390}
 			: ${DEFAULT_ABI=s390x}
 		;;
-		sparc*)
-			export CFLAGS_sparc32=${CFLAGS_sparc32}
+		sparc64*)
+			export CFLAGS_sparc32=${CFLAGS_sparc32--m32}
 			export CHOST_sparc32=${CTARGET/sparc64/sparc}
 			export CTARGET_sparc32=${CHOST_sparc32}
 			export LIBDIR_sparc32="lib"
@@ -406,3 +422,5 @@ multilib_toolchain_setup() {
 		export CBUILD=$(get_abi_CHOST $1)
 	fi
 }
+
+fi

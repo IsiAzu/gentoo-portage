@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/metasploit/metasploit-9999.ebuild,v 1.1 2011/08/03 05:56:15 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/metasploit/metasploit-9999.ebuild,v 1.4 2012/10/16 20:05:36 zerochaos Exp $
 
 EAPI="3"
 inherit eutils subversion
@@ -19,10 +19,11 @@ IUSE="gui mysql postgres"
 # such solution, bug #247787
 RDEPEND="dev-lang/ruby
 	dev-ruby/rubygems
+	dev-ruby/kissfft
 	gui? ( virtual/jre )
 	mysql? ( dev-ruby/mysql-ruby
 		dev-ruby/activerecord[mysql] )
-	postgres? ( dev-ruby/ruby-postgres
+	postgres? ( dev-ruby/postgres
 		dev-ruby/activerecord[postgres] )"
 DEPEND=""
 
@@ -75,7 +76,7 @@ src_install() {
 			"Metasploit Framework" \
 			metasploit \
 			'GNOME;System;Network;' &&
-		doicon "${FILESDIR}"/metasploit.xpm
+		doicon "${FILESDIR}"/metasploit.icon
 }
 
 pkg_postinst() {

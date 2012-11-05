@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jre-bin/ibm-jre-bin-1.6.0.9_p2-r1.ebuild,v 1.1 2011/11/23 19:00:00 sera Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jre-bin/ibm-jre-bin-1.6.0.9_p2-r1.ebuild,v 1.3 2012/10/05 15:21:01 ranger Exp $
 
 EAPI="4"
 
@@ -39,7 +39,7 @@ SRC_URI="x86? ( ${X86_JRE_DIST} )
 
 LICENSE="IBM-J1.6"
 SLOT="1.6"
-KEYWORDS="-* ~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="-* ~amd64 ppc ~ppc64 ~x86"
 RESTRICT="fetch"
 IUSE="X alsa nsplugin odbc"
 
@@ -171,8 +171,8 @@ src_install() {
 	cp -pR jre/* "${ED}"/opt/${P} || die
 
 	if use x86 || use ppc; then
+		local plugin="/opt/${P}/plugin/$(get_system_arch)/ns7/libjavaplugin_oji.so"
 		if use nsplugin; then
-			local plugin="/opt/${P}/plugin/$(get_system_arch)/ns7/libjavaplugin_oji.so"
 			install_mozilla_plugin "${plugin}"
 		else
 			rm "${ED}"/${plugin} || die

@@ -1,6 +1,43 @@
 # ChangeLog for games-rpg/eternal-lands
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-rpg/eternal-lands/ChangeLog,v 1.58 2011/10/01 13:27:34 rich0 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-rpg/eternal-lands/ChangeLog,v 1.65 2012/06/24 16:17:30 rich0 Exp $
+
+  24 Jun 2012; Richard Freeman <rich0@gentoo.org>
+  eternal-lands-1.9.3-r2.ebuild:
+  Now fixing bug introduced during cosmetic change. I hate cosmetic changes...
+
+  24 Jun 2012; Richard Freeman <rich0@gentoo.org>
+  eternal-lands-1.9.3-r2.ebuild:
+  Minor cosmetic fix - thanks ssuominen.
+
+*eternal-lands-1.9.3-r2 (24 Jun 2012)
+
+  24 Jun 2012; Richard Freeman <rich0@gentoo.org>
+  +eternal-lands-1.9.3-r2.ebuild, +files/eternal-lands-1.9.3-build.patch:
+  Makefile cleanup, respects LDFLAGS, other changes - 423319 - thanks hasufell.
+
+  24 Jun 2012; Richard Freeman <rich0@gentoo.org>
+  eternal-lands-1.9.3-r1.ebuild:
+  Fixes for gnome icon cache - thanks hasufell.
+
+  24 Jun 2012; Richard Freeman <rich0@gentoo.org>
+  eternal-lands-1.9.3-r1.ebuild:
+  Fix doicon misuse - 423299.
+
+*eternal-lands-1.9.3-r1 (02 Mar 2012)
+
+  02 Mar 2012; Richard Freeman <rich0@gentoo.org>
+  +eternal-lands-1.9.3-r1.ebuild:
+  Fix data dependency issue.
+
+  02 Mar 2012; Richard Freeman <rich0@gentoo.org> -eternal-lands-1.9.0.ebuild,
+  -eternal-lands-1.9.0_p20100717.ebuild, -eternal-lands-1.9.1.ebuild:
+  Remove obsolete versions.
+
+*eternal-lands-1.9.3 (14 Feb 2012)
+
+  14 Feb 2012; Mike Doty <kingtaco@gentoo.org> +eternal-lands-1.9.3.ebuild:
+  version bump to 1.9.3, snapshot from git. With Rich0's blessing.
 
 *eternal-lands-1.9.2-r1 (01 Oct 2011)
 

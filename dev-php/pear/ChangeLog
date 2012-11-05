@@ -1,6 +1,28 @@
 # ChangeLog for dev-php/pear
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/pear/ChangeLog,v 1.31 2011/11/02 13:18:08 olemarkus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-php/pear/ChangeLog,v 1.38 2012/09/09 16:04:28 armin76 Exp $
+
+  09 Sep 2012; Raúl Porcel <armin76@gentoo.org> pear-1.9.4.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #430152
+
+  21 Aug 2012; Johannes Huber <johu@gentoo.org> pear-1.9.4.ebuild:
+  Stable for x86, wrt bug #430152
+
+  14 Aug 2012; Anthony G. Basile <blueness@gentoo.org> pear-1.9.4.ebuild:
+  Stable ppc ppc64, bug #430152
+
+  12 Aug 2012; Markus Meier <maekke@gentoo.org> pear-1.9.4.ebuild:
+  arm stable, bug #430152
+
+  09 Aug 2012; Jeroen Roovers <jer@gentoo.org> pear-1.9.4.ebuild:
+  Stable for HPPA (bug #430152).
+
+  07 Aug 2012; Agostino Sarubbo <ago@gentoo.org> pear-1.9.4.ebuild:
+  Stable for amd64, wrt bug #430152
+
+  11 Jun 2012; Matti Bickel <mabi@gentoo.org> pear-1.9.3.ebuild,
+  pear-1.9.4.ebuild:
+  remove superfluous depend.php
 
 *pear-1.9.4 (02 Nov 2011)
 

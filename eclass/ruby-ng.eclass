@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.43 2011/10/24 18:20:05 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.51 2012/09/27 16:35:41 axs Exp $
 
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -69,7 +69,7 @@
 # (e.g. selenium's firefox driver extension). When set this argument is
 # passed to "grep -E" to remove reporting of these shared objects.
 
-inherit eutils java-utils-2 toolchain-funcs
+inherit eutils java-utils-2 multilib toolchain-funcs
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_test src_install pkg_setup
 
@@ -77,7 +77,7 @@ case ${EAPI} in
 	0|1)
 		die "Unsupported EAPI=${EAPI} (too old) for ruby-ng.eclass" ;;
 	2|3) ;;
-	4)
+	4|5)
 		# S is no longer automatically assigned when it doesn't exist.
 		S="${WORKDIR}"
 		;;
@@ -283,10 +283,6 @@ ruby_get_use_targets() {
 	echo $t
 }
 
-if [[ ${EAPI:-0} -ge 4 && ${RUBY_OPTIONAL} != "yes" ]]; then
-	REQUIRED_USE=" || ( $(ruby_get_use_targets) )"
-fi
-
 # @FUNCTION: ruby_implementations_depend
 # @RETURN: Dependencies suitable for injection into DEPEND and RDEPEND.
 # @DESCRIPTION:
@@ -311,20 +307,24 @@ ruby_implementations_depend() {
 	echo "${depend}"
 }
 
-for _ruby_implementation in ${USE_RUBY}; do
-	IUSE="${IUSE} ruby_targets_${_ruby_implementation}"
-done
+IUSE+=" $(ruby_get_use_targets)"
 # If you specify RUBY_OPTIONAL you also need to take care of
 # ruby useflag and dependency.
 if [[ ${RUBY_OPTIONAL} != yes ]]; then
 	DEPEND="${DEPEND} $(ruby_implementations_depend)"
 	RDEPEND="${RDEPEND} $(ruby_implementations_depend)"
+
+	case ${EAPI:-0} in
+		4|5)
+			REQUIRED_USE+=" || ( $(ruby_get_use_targets) )"
+			;;
+	esac
 fi
 
 _ruby_invoke_environment() {
 	old_S=${S}
 	case ${EAPI} in
-		4)
+		4|5)
 			if [ -z ${RUBY_S} ]; then
 				sub_S=${P}
 			else
@@ -388,7 +388,14 @@ _ruby_each_implementation() {
 		unset RUBY
 	done
 
-	[[ ${invoked} == "no" ]] && die "You need to select at least one Ruby implementation by setting RUBY_TARGETS in /etc/make.conf."
+	if [[ ${invoked} == "no" ]]; then
+		eerror "You need to select at least one compatible Ruby installation target via RUBY_TARGETS in make.conf."
+		eerror "Compatible targets for this package are: ${USE_RUBY}"
+		eerror
+		eerror "See http://www.gentoo.org/proj/en/prog_lang/ruby/index.xml#doc_chap3 for more information."
+		eerror
+		die "No compatible Ruby target selected."
+	fi
 }
 
 # @FUNCTION: ruby-ng_pkg_setup
@@ -623,4 +630,105 @@ ruby_get_implementation() {
 			echo "mri"
 			;;
 	esac
+}
+
+# @FUNCTION: ruby-ng_rspec
+# @DESCRIPTION:
+# This is simply a wrapper around the rspec command (executed by $RUBY})
+# which also respects TEST_VERBOSE and NOCOLOR environment variables.
+ruby-ng_rspec() {
+	if [[ ${DEPEND} != *"dev-ruby/rspec"* ]]; then
+		ewarn "Missing dev-ruby/rspec in \${DEPEND}"
+	fi
+
+	local rspec_params=
+	case ${NOCOLOR} in
+		1|yes|true)
+			rspec_params+=" --no-color"
+			;;
+		*)
+			rspec_params+=" --color"
+			;;
+	esac
+
+	case ${TEST_VERBOSE} in
+		1|yes|true)
+			rspec_params+=" --format documentation"
+			;;
+		*)
+			rspec_params+=" --format progress"
+			;;
+	esac
+
+	${RUBY} -S rspec ${rspec_params} "$@" || die "rspec failed"
+}
+
+# @FUNCTION: ruby-ng_cucumber
+# @DESCRIPTION:
+# This is simply a wrapper around the cucumber command (executed by $RUBY})
+# which also respects TEST_VERBOSE and NOCOLOR environment variables.
+ruby-ng_cucumber() {
+	if [[ ${DEPEND} != *"dev-util/cucumber"* ]]; then
+		ewarn "Missing dev-util/cucumber in \${DEPEND}"
+	fi
+
+	local cucumber_params=
+	case ${NOCOLOR} in
+		1|yes|true)
+			cucumber_params+=" --no-color"
+			;;
+		*)
+			cucumber_params+=" --color"
+			;;
+	esac
+
+	case ${TEST_VERBOSE} in
+		1|yes|true)
+			cucumber_params+=" --format pretty"
+			;;
+		*)
+			cucumber_params+=" --format progress"
+			;;
+	esac
+
+	if [[ ${RUBY} == *jruby ]]; then
+		ewarn "Skipping cucumber tests on JRuby (unsupported)."
+		return 0
+	fi
+
+	${RUBY} -S cucumber ${cucumber_params} "$@" || die "cucumber failed"
+}
+
+# @FUNCTION: ruby-ng_testrb-2
+# @DESCRIPTION:
+# This is simply a replacement for the testrb command that load the test
+# files and execute them, with test-unit 2.x. This actually requires
+# either an old test-unit-2 version or 2.5.1-r1 or later, as they remove
+# their script and we installed a broken wrapper for a while.
+# This also respects TEST_VERBOSE and NOCOLOR environment variables.
+ruby-ng_testrb-2() {
+	if [[ ${DEPEND} != *"dev-ruby/test-unit"* ]]; then
+		ewarn "Missing dev-ruby/test-unit in \${DEPEND}"
+	fi
+
+	local testrb_params=
+	case ${NOCOLOR} in
+		1|yes|true)
+			testrb_params+=" --no-use-color"
+			;;
+		*)
+			testrb_params+=" --use-color=auto"
+			;;
+	esac
+
+	case ${TEST_VERBOSE} in
+		1|yes|true)
+			testrb_params+=" --verbose=verbose"
+			;;
+		*)
+			testrb_params+=" --verbose=normal"
+			;;
+	esac
+
+	${RUBY} -S testrb-2 ${testrb_params} "$@" || die "testrb-2 failed"
 }

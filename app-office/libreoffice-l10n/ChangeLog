@@ -1,6 +1,209 @@
 # ChangeLog for app-office/libreoffice-l10n
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-l10n/ChangeLog,v 1.20 2011/11/14 07:44:35 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-l10n/ChangeLog,v 1.60 2012/11/02 12:46:44 scarabeus Exp $
+
+*libreoffice-l10n-3.6.3.2 (02 Nov 2012)
+
+  02 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.6.3.2.ebuild, -libreoffice-l10n-3.6.1.2.ebuild:
+  Version bump to latest.
+
+*libreoffice-l10n-3.5.7 (24 Oct 2012)
+
+  24 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.7.ebuild, -libreoffice-l10n-3.5.6.ebuild:
+  Bump the l10n to 3.5.7.
+
+*libreoffice-l10n-3.6.1.2 (31 Aug 2012)
+
+  31 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.6.1.2.ebuild, -libreoffice-l10n-3.5.5.ebuild,
+  -libreoffice-l10n-3.6.0.4.ebuild, libreoffice-l10n-3.5.6.ebuild:
+  Version bump langs to 3.6.1. Stabilise 3.5.6. Drop older.
+
+*libreoffice-l10n-3.5.6 (21 Aug 2012)
+
+  21 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.6.ebuild:
+  Bump to 3.5.6
+
+  10 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.6.0.ebuild, libreoffice-l10n-3.6.0.4.ebuild:
+  Change the dep to block older versions to get more meaningfull block message.
+  Wrt bug#430464.
+
+*libreoffice-l10n-3.6.0.4 (09 Aug 2012)
+
+  09 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.6.0.4.ebuild:
+  Switch to equal versioning scheme with libreoffice itself as internally now
+  there is this version used.
+
+  08 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  libreoffice-l10n-3.6.0.ebuild:
+  Fix the RC suffix it changed schema.
+
+*libreoffice-l10n-3.6.0 (08 Aug 2012)
+
+  08 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.6.0.ebuild, files/lo_gen_langs.sh:
+  Version bump to 3.6 release.
+
+  31 Jul 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.5.4.ebuild, libreoffice-l10n-3.5.5.ebuild:
+  Stable on amd64 and ppc wrt bug#427098. Remove older.
+
+  27 Jul 2012; Andreas Schuerch <nativemad@gentoo.org>
+  libreoffice-l10n-3.5.5.ebuild:
+  x86 stable, see bug 427098. Thanks Mikle and Dennis
+
+*libreoffice-l10n-3.5.5 (18 Jul 2012)
+
+  18 Jul 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.5.ebuild:
+  Version bump to latest translations.
+
+  02 Jun 2012; Zac Medico <zmedico@gentoo.org> libreoffice-l10n-3.5.4.ebuild:
+  inherit multilib for get_libdir
+
+  01 Jun 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  libreoffice-l10n-3.5.4.ebuild:
+  Fix command-not-found msgs. Thanks to Nikoli.
+
+  31 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
+  Silence repoman wrt local desc in metadata.
+
+  31 May 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.5.2.ebuild, libreoffice-l10n-3.5.4.ebuild:
+  As this is just files copy stable the latest and remove older.
+
+  31 May 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  libreoffice-l10n-3.5.4.ebuild:
+  Drop the templates from here and move them to app-officeext/sun-templates.
+
+*libreoffice-l10n-3.5.4 (31 May 2012)
+
+  31 May 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.4.ebuild, -libreoffice-l10n-3.4.5-r1.ebuild,
+  -libreoffice-l10n-3.5.3.ebuild:
+  Version bump to 3.5.4 and drop older.
+
+*libreoffice-l10n-3.5.3 (04 May 2012)
+
+  04 May 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.3.ebuild:
+  Add new 3.5.3 l10n version.
+
+  26 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.4.3-r3.ebuild, libreoffice-l10n-3.5.2.ebuild:
+  Stable on ppc wrt bug#411449.
+
+  23 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  libreoffice-l10n-3.5.2.ebuild:
+  Quotes
+
+  23 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  libreoffice-l10n-3.5.2.ebuild:
+  Punt dictionaries and other extensions from l10n.
+
+  22 Apr 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libreoffice-l10n-3.5.2.ebuild:
+  x86 stable wrt bug #411449
+
+  20 Apr 2012; Tony Vroon <chainsaw@gentoo.org> libreoffice-l10n-3.5.2.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani & Maurizio "k01" Camisaschi in bug #411449.
+
+*libreoffice-l10n-3.5.2 (05 Apr 2012)
+
+  05 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.2.ebuild, -libreoffice-l10n-3.5.1-r1.ebuild:
+  Version bump translations to 3.5.2, drop older.
+
+  18 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  libreoffice-l10n-3.5.1-r1.ebuild:
+  Add tatar lang.
+
+*libreoffice-l10n-3.5.1-r1 (17 Mar 2012)
+
+  17 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.1-r1.ebuild, -libreoffice-l10n-3.5.1.ebuild,
+  files/lo_gen_langs.sh:
+  Revbump with translations from 3.5.1. (anyone knows what tt lingua is for?)
+
+*libreoffice-l10n-3.5.1 (09 Mar 2012)
+
+  09 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.1.ebuild, -libreoffice-l10n-3.5.0-r4.ebuild:
+  Bump for 3.5.1.
+
+  15 Feb 2012; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
+  Not m-n package
+
+*libreoffice-l10n-3.5.0-r4 (14 Feb 2012)
+
+  14 Feb 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.5.0-r3.ebuild, +libreoffice-l10n-3.5.0-r4.ebuild:
+  Revbump as I missed that the dir is not acutally propagated.
+
+*libreoffice-l10n-3.5.0-r3 (14 Feb 2012)
+
+  14 Feb 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.5.0-r2.ebuild, +libreoffice-l10n-3.5.0-r3.ebuild:
+  Bump 3.5 translations to release.
+
+  03 Feb 2012; Andreas K. Huettel <dilfridge@gentoo.org> metadata.xml:
+  Assign to maintainer-needed
+
+  16 Jan 2012; Agostino Sarubbo <ago@gentoo.org>
+  libreoffice-l10n-3.4.5-r1.ebuild:
+  Stable for amd64, wrt bug #398521
+
+  11 Jan 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  libreoffice-l10n-3.4.5-r1.ebuild:
+  Fix unpack phase
+
+*libreoffice-l10n-3.5.0-r2 (11 Jan 2012)
+*libreoffice-l10n-3.4.5-r1 (11 Jan 2012)
+
+  11 Jan 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.4.5.ebuild, +libreoffice-l10n-3.4.5-r1.ebuild,
+  -libreoffice-l10n-3.5.0-r1.ebuild, +libreoffice-l10n-3.5.0-r2.ebuild,
+  files/lo_gen_langs.sh:
+  Revsion bump to use updated rpms.
+
+*libreoffice-l10n-3.4.5 (03 Jan 2012)
+
+  03 Jan 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.4.4.ebuild, -libreoffice-l10n-3.4.4-r1.ebuild,
+  +libreoffice-l10n-3.4.5.ebuild:
+  Version bump to 3.4.5 (using 3.4.4 before the new rpms are done by suse).
+  Remove old.
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org>
+  libreoffice-l10n-3.4.3-r3.ebuild:
+  Stable for ppc; bug #387187
+
+  11 Dec 2011; Markus Meier <maekke@gentoo.org>
+  libreoffice-l10n-3.4.3-r3.ebuild:
+  x86 stable, bug #387187
+
+*libreoffice-l10n-3.5.0-r1 (09 Dec 2011)
+
+  09 Dec 2011; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-3.5.0.ebuild, +libreoffice-l10n-3.5.0-r1.ebuild:
+  Revision bump with real 3.5 translations.
+
+  06 Dec 2011; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libreoffice-l10n-9999-r1.ebuild:
+  Starting with 3.5 branch it uses uniform location so no need for live version
+  when we can use 3.5.0 and later
+
+*libreoffice-l10n-3.5.0 (30 Nov 2011)
+
+  30 Nov 2011; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libreoffice-l10n-3.5.0.ebuild, libreoffice-l10n-9999-r1.ebuild:
+  Add "3.5.0" translations from 3.4.4 for now.
 
   14 Nov 2011; Tomáš Chvátal <scarabeus@gentoo.org>
   libreoffice-l10n-3.4.4-r1.ebuild:
@@ -97,4 +300,3 @@
   +libreoffice-l10n-3.4.3.ebuild, +metadata.xml:
   Add new package to contain split languages and helppack for libreoffice.
   Fixes bug #381155.
-

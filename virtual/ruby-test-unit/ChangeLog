@@ -1,6 +1,47 @@
 # ChangeLog for virtual/ruby-test-unit
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/ruby-test-unit/ChangeLog,v 1.21 2011/10/12 18:12:15 graaff Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/ruby-test-unit/ChangeLog,v 1.34 2012/10/27 17:57:08 armin76 Exp $
+
+  27 Oct 2012; Raúl Porcel <armin76@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  sh stable wrt #411507
+
+  21 Oct 2012; Raúl Porcel <armin76@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  alpha/ia64/s390/sparc stable wrt #411507
+
+  25 Jul 2012; Anthony G. Basile <blueness@gentoo.org>
+  ruby-test-unit-0-r4.ebuild:
+  Stable ppc64, bug #411507
+
+  22 Jul 2012; <nixnut@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  ppc stable #411507
+
+  25 Jun 2012; Andreas Schuerch <nativemad@gentoo.org>
+  ruby-test-unit-0-r4.ebuild:
+  x86 stable, see bug 411507
+
+  27 May 2012; Markus Meier <maekke@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  arm stable, bug #411507
+
+  20 May 2012; Agostino Sarubbo <ago@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  Stable for amd64, wrt bug #411507
+
+  06 May 2012; Hans de Graaff <graaff@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  Add arm keyword given that underlying implementation is also keyworded.
+
+  01 Mar 2012; Naohiro Aota <naota@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  Add ~x86-fbsd
+
+  31 Dec 2011; Fabian Groffen <grobian@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  Add Prefix keywords, bug #396547
+
+  29 Dec 2011; Jeroen Roovers <jer@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  Marked ~hppa (bug #332593).
+
+  29 Dec 2011; Hans de Graaff <graaff@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  Add alpha keyword now that the underlying ruby:1.9 is keyworded again.
+
+  28 Dec 2011; Hans de Graaff <graaff@gentoo.org> ruby-test-unit-0-r4.ebuild:
+  Add keywords similar to the underlying implementation, most notable ruby 1.9.
 
 *ruby-test-unit-0-r4 (12 Oct 2011)
 

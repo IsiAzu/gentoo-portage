@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/mew/mew-6.4-r1.ebuild,v 1.1 2011/11/24 08:44:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/mew/mew-6.4-r1.ebuild,v 1.6 2012/03/18 17:46:12 armin76 Exp $
 
 EAPI=4
 
@@ -12,11 +12,13 @@ SRC_URI="http://www.mew.org/Release/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ppc ~sparc ~x86"
+KEYWORDS="amd64 ppc x86"
 IUSE="ssl linguas_ja"
 RESTRICT="test"
 
-RDEPEND="ssl? ( net-misc/stunnel )"
+DEPEND="sys-libs/zlib"
+RDEPEND="${DEPEND}
+	ssl? ( net-misc/stunnel )"
 
 SITEFILE="50${PN}-gentoo.el"
 

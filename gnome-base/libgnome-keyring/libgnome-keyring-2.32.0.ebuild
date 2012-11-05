@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome-keyring/libgnome-keyring-2.32.0.ebuild,v 1.13 2011/09/12 08:41:50 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome-keyring/libgnome-keyring-2.32.0.ebuild,v 1.16 2012/05/05 05:38:09 jdhore Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -17,13 +17,12 @@ KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd ~amd64-lin
 IUSE="debug doc test"
 
 RDEPEND=">=sys-apps/dbus-1.0
-	gnome-base/gconf
 	>=gnome-base/gnome-keyring-2.29[test?]
 	!<gnome-base/gnome-keyring-2.29"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	>=dev-util/intltool-0.35
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.9 )"
 
 pkg_setup() {
@@ -34,8 +33,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
-
 	# Remove unneeded test file.
 	epatch "${FILESDIR}/${P}-drop-test.patch"
 
@@ -55,6 +52,7 @@ src_prepare() {
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
+	gnome2_src_prepare
 }
 
 src_test() {

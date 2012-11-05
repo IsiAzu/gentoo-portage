@@ -1,6 +1,21 @@
 # ChangeLog for net-voip/linphone
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-voip/linphone/ChangeLog,v 1.63 2011/11/06 12:47:49 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-voip/linphone/ChangeLog,v 1.67 2012/05/03 07:27:47 jdhore Exp $
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> linphone-3.1.1.ebuild,
+  linphone-3.2.1-r2.ebuild, linphone-3.3.2.ebuild, linphone-3.4.3.ebuild,
+  linphone-3.4.3-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  24 Apr 2012; Michał Górny <mgorny@gentoo.org> linphone-3.3.2.ebuild,
+  linphone-3.4.3.ebuild, linphone-3.4.3-r1.ebuild:
+  Update to use mirror://.
+
+  25 Mar 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Set herd as primary maintainer as talked with volkmar.
+
+  06 Jan 2012; Brent Baude <ranger@gentoo.org> linphone-3.4.3.ebuild:
+  Marking linphone-3.4.3 ppc stable for bug 363311
 
   06 Nov 2011; Fabian Groffen <grobian@gentoo.org> linphone-3.4.3-r1.ebuild,
   linphone-3.4.3.ebuild, linphone-3.3.2.ebuild:

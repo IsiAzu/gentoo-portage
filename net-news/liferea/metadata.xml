@@ -14,14 +14,8 @@
 	based on gnome and xulrunner/webkit.
 	</longdescription>
 	<use>
-		<flag name='ayatana'>
-			Build in support for Ayatana notification using the libindicate plugin.
-		</flag>
 		<flag name='libnotify'>
 			Enable popup notifications
-		</flag>
-		<flag name='lua'>
-			Enable lua scripting
 		</flag>
 	</use>
 </pkgmetadata>

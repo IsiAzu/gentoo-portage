@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xorg-2.eclass,v 1.51 2011/11/01 13:51:05 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xorg-2.eclass,v 1.59 2012/09/27 16:35:42 axs Exp $
 
 # @ECLASS: xorg-2.eclass
 # @MAINTAINER:
@@ -37,12 +37,13 @@ if [[ ${PN} == font* \
 	FONT_ECLASS="font"
 fi
 
-inherit autotools-utils eutils libtool multilib toolchain-funcs flag-o-matic autotools \
-	${FONT_ECLASS} ${GIT_ECLASS}
+# we need to inherit autotools first to get the deps
+inherit autotools autotools-utils eutils libtool multilib toolchain-funcs \
+	flag-o-matic ${FONT_ECLASS} ${GIT_ECLASS}
 
 EXPORTED_FUNCTIONS="src_unpack src_compile src_install pkg_postinst pkg_postrm"
 case "${EAPI:-0}" in
-	3|4) EXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS} src_prepare src_configure" ;;
+	3|4|5) EXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS} src_prepare src_configure" ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
@@ -90,7 +91,7 @@ fi
 : ${XORG_PACKAGE_NAME:=${PN}}
 
 if [[ -n ${GIT_ECLASS} ]]; then
-	: ${EGIT_REPO_URI:="git://anongit.freedesktop.org/git/xorg/${XORG_MODULE}${XORG_PACKAGE_NAME} http://anongit.freedesktop.org/git/xorg/${XORG_MODULE}${XORG_PACKAGE_NAME}"}
+	: ${EGIT_REPO_URI:="git://anongit.freedesktop.org/xorg/${XORG_MODULE}${XORG_PACKAGE_NAME} http://anongit.freedesktop.org/git/xorg/${XORG_MODULE}${XORG_PACKAGE_NAME}"}
 elif [[ -n ${XORG_BASE_INDIVIDUAL_URI} ]]; then
 	SRC_URI="${XORG_BASE_INDIVIDUAL_URI}/${XORG_MODULE}${P}.tar.bz2"
 fi
@@ -109,7 +110,7 @@ EAUTORECONF_DEPEND+="
 	>=sys-devel/libtool-2.2.6a
 	sys-devel/m4"
 if [[ ${PN} != util-macros ]] ; then
-	EAUTORECONF_DEPEND+=" >=x11-misc/util-macros-1.15.0"
+	EAUTORECONF_DEPEND+=" >=x11-misc/util-macros-1.17"
 	# Required even by xorg-server
 	[[ ${PN} == "font-util" ]] || EAUTORECONF_DEPEND+=" >=media-fonts/font-util-1.2.0"
 fi
@@ -175,7 +176,7 @@ if [[ ${XORG_STATIC} == yes \
 	IUSE+=" static-libs"
 fi
 
-DEPEND+=" >=dev-util/pkgconfig-0.23"
+DEPEND+=" virtual/pkgconfig"
 
 # @ECLASS-VARIABLE: XORG_DRI
 # @DESCRIPTION:
@@ -313,7 +314,6 @@ xorg-2_patch_source() {
 	EPATCH_SUFFIX=${EPATCH_SUFFIX:=patch}
 
 	[[ -d "${EPATCH_SOURCE}" ]] && epatch
-	autotools-utils_src_prepare "$@"
 }
 
 # @FUNCTION: xorg-2_reconf_source
@@ -325,11 +325,13 @@ xorg-2_reconf_source() {
 	case ${CHOST} in
 		*-interix* | *-aix* | *-winnt*)
 			# some hosts need full eautoreconf
-			[[ -e "./configure.ac" || -e "./configure.in" ]] && eautoreconf || ewarn "Unable to autoreconf the configure script. Things may fail."
+			[[ -e "./configure.ac" || -e "./configure.in" ]] \
+				&& AUTOTOOLS_AUTORECONF=1
 			;;
 		*)
 			# elibtoolize required for BSD
-			[[ ${XORG_EAUTORECONF} != no && ( -e "./configure.ac" || -e "./configure.in" ) ]] && eautoreconf || elibtoolize
+			[[ ${XORG_EAUTORECONF} != no && ( -e "./configure.ac" || -e "./configure.in" ) ]] \
+				&& AUTOTOOLS_AUTORECONF=1
 			;;
 	esac
 }
@@ -342,6 +344,7 @@ xorg-2_src_prepare() {
 
 	xorg-2_patch_source
 	xorg-2_reconf_source
+	autotools-utils_src_prepare "$@"
 }
 
 # @FUNCTION: xorg-2_font_configure
@@ -415,14 +418,22 @@ xorg-2_src_configure() {
 			eqawarn "to preserve namespace."
 		fi
 
-		local xorgconfadd=(${CONFIGURE_OPTIONS})
+		local xorgconfadd=(${CONFIGURE_OPTIONS} ${XORG_CONFIGURE_OPTIONS})
 	else
 		local xorgconfadd=("${XORG_CONFIGURE_OPTIONS[@]}")
 	fi
 
 	[[ -n "${FONT}" ]] && xorg-2_font_configure
+
+	# Check if package supports disabling of dep tracking
+	# Fixes warnings like:
+	#    WARNING: unrecognized options: --disable-dependency-tracking
+	if grep -q -s "disable-depencency-tracking" ${ECONF_SOURCE:-.}/configure; then
+		local dep_track="--disable-dependency-tracking"
+	fi
+
 	local myeconfargs=(
-		--disable-dependency-tracking
+		${dep_track}
 		${FONT_OPTIONS}
 		"${xorgconfadd[@]}"
 	)
@@ -465,8 +476,8 @@ xorg-2_src_install() {
 		dodoc "${S}"/ChangeLog || die "dodoc failed"
 	fi
 
-	# Don't install libtool archives (even with static-libs)
-	remove_libtool_files all
+	# Don't install libtool archives (even for modules)
+	prune_libtool_files --all
 
 	[[ -n ${FONT} ]] && remove_font_metadata
 }

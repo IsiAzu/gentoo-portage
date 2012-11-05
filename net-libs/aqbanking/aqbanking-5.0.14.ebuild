@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/aqbanking/aqbanking-5.0.14.ebuild,v 1.1 2011/08/21 20:02:18 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/aqbanking/aqbanking-5.0.14.ebuild,v 1.6 2012/09/11 09:53:11 armin76 Exp $
 
 EAPI=2
 
@@ -10,7 +10,7 @@ SRC_URI="http://www.aquamaniac.de/sites/download/download.php?package=03&release
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="amd64 ppc ~ppc64 x86"
 IUSE="+chipcard debug doc examples gtk ofx"
 
 RDEPEND=">=app-misc/ktoblzcheck-1.33
@@ -20,7 +20,7 @@ RDEPEND=">=app-misc/ktoblzcheck-1.33
 	ofx? ( >=dev-libs/libofx-0.9.1 )
 	chipcard? ( >=sys-libs/libchipcard-5.0.2 )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext
 	doc? ( app-doc/doxygen )"
 

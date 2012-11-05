@@ -1,6 +1,42 @@
 # ChangeLog for dev-perl/File-chdir
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/ChangeLog,v 1.25 2011/11/05 10:07:18 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/ChangeLog,v 1.35 2012/10/07 16:11:50 tove Exp $
+
+*File-chdir-0.100.700 (07 Oct 2012)
+
+  07 Oct 2012; Torsten Veller <tove@gentoo.org> +File-chdir-0.100.700.ebuild:
+  Version bump
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  21 Apr 2012; Torsten Veller <tove@gentoo.org> -File-chdir-0.100.200.ebuild,
+  -File-chdir-0.100.300.ebuild:
+  Cleanup
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> File-chdir-0.100.600.ebuild:
+  Marking File-chdir-0.100.600 ppc for bug 404671
+
+  04 Apr 2012; Jeff Horelick <jdhore@gentoo.org> File-chdir-0.100.600.ebuild:
+  marked x86 per bug 404671
+
+  28 Mar 2012; Agostino Sarubbo <ago@gentoo.org> File-chdir-0.100.600.ebuild:
+  Stable for amd64, wrt bug #404671
+
+  02 Feb 2012; Brent Baude <ranger@gentoo.org> File-chdir-0.100.300.ebuild:
+  Marking File-chdir-0.100.300 ppc for bug 391519
+
+  04 Dec 2011; Raúl Porcel <armin76@gentoo.org> File-chdir-0.100.200.ebuild,
+  File-chdir-0.100.300.ebuild, File-chdir-0.100.600.ebuild:
+  Drop ia64/sparc keywords
+
+  04 Dec 2011; Markos Chandras <hwoarang@gentoo.org>
+  File-chdir-0.100.300.ebuild:
+  Stable on amd64 wrt bug #391519
+
+  01 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  File-chdir-0.100.300.ebuild:
+  x86 stable wrt bug #391519
 
 *File-chdir-0.100.600 (05 Nov 2011)
 
@@ -102,4 +138,3 @@
   17 Jul 2005; Michael Cummings <mcummings@gentoo.org>
   +File-chdir-0.06.ebuild:
   new dep for svn-mirror
-

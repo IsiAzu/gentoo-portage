@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/arb/arb-5.2.ebuild,v 1.3 2011/08/11 21:36:06 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/arb/arb-5.2.ebuild,v 1.6 2012/10/24 19:28:55 ulm Exp $
 
 EAPI=4
 
@@ -23,11 +23,13 @@ CDEPEND="app-text/sablotron
 	www-client/lynx
 	x11-libs/libXaw
 	x11-libs/libXpm
-	x11-libs/openmotif:0
+	x11-libs/motif:0
 	opengl? (
 		media-libs/glew
 		media-libs/freeglut
-		media-libs/mesa[motif] )"
+		|| (
+			media-libs/mesa[motif]
+			( media-libs/mesa x11-libs/libGLw ) ) )"
 DEPEND="${CDEPEND}
 	sys-process/time"
 RDEPEND="${CDEPEND}
@@ -44,12 +46,15 @@ src_prepare() {
 		"${WORKDIR}"/${P}-linker.patch \
 		"${FILESDIR}"/5.1-libs.patch \
 		"${FILESDIR}"/5.1-bfr-overflow.patch \
-		"${FILESDIR}"/${PV}-libpng15.patch
-	sed -i \
+		"${FILESDIR}"/${PV}-libpng15.patch \
+		"${FILESDIR}"/${P}-gcc-47.patch
+	sed \
 		-e 's/all: checks/all:/' \
 		-e "s/GCC:=.*/GCC=$(tc-getCC) ${CFLAGS}/" \
 		-e "s/GPP:=.*/GPP=$(tc-getCXX) ${CXXFLAGS}/" \
-		"${S}/Makefile" || die
+		-e 's:-O4::g' \
+		-e 's:-pipe::g' \
+		-i "${S}/Makefile" || die
 	cp config.makefile.template config.makefile
 	sed -i -e '/^[ \t]*read/ d' -e 's/SHELL_ANS=0/SHELL_ANS=1/' "${S}/arb_install.sh" || die
 	use amd64 && sed -i -e 's/ARB_64 := 0/ARB_64 := 1/' config.makefile

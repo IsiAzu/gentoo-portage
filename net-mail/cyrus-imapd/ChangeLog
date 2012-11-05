@@ -1,6 +1,46 @@
 # ChangeLog for net-mail/cyrus-imapd
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/cyrus-imapd/ChangeLog,v 1.190 2011/10/24 14:12:40 eras Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/cyrus-imapd/ChangeLog,v 1.201 2012/08/06 18:12:23 eras Exp $
+
+  06 Aug 2012; Eray Aslan <eras@gentoo.org> -cyrus-imapd-2.4.12.ebuild,
+  -cyrus-imapd-2.4.13.ebuild, -cyrus-imapd-2.4.14.ebuild:
+  Remove old
+
+  05 Aug 2012; Raúl Porcel <armin76@gentoo.org> cyrus-imapd-2.4.16.ebuild:
+  sparc stable wrt #419329
+
+  04 Jul 2012; Jeroen Roovers <jer@gentoo.org> cyrus-imapd-2.4.16.ebuild:
+  Fix bug number in ChangeLog entry. Inherit user.
+
+  04 Jul 2012; Jeroen Roovers <jer@gentoo.org> cyrus-imapd-2.4.16.ebuild:
+  Stable for HPPA (bug #419329).
+
+  22 Jun 2012; Brent Baude <ranger@gentoo.org> cyrus-imapd-2.4.16.ebuild:
+  Marking cyrus-imapd-2.4.16 ppc64 for bug 
+
+  15 Jun 2012; Jeff Horelick <jdhore@gentoo.org> cyrus-imapd-2.4.16.ebuild:
+  marked x86 per bug 419329
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> cyrus-imapd-2.4.16.ebuild:
+  Marking cyrus-imapd-2.4.16 ppc for bug 419329
+
+  02 Jun 2012; Agostino Sarubbo <ago@gentoo.org> cyrus-imapd-2.4.16.ebuild:
+  Stable for amd64, wrt bug #419329
+
+*cyrus-imapd-2.4.16 (19 Apr 2012)
+
+  19 Apr 2012; Eray Aslan <eras@gentoo.org> +cyrus-imapd-2.4.16.ebuild:
+  version bump
+
+*cyrus-imapd-2.4.14 (12 Mar 2012)
+
+  12 Mar 2012; Eray Aslan <eras@gentoo.org> +cyrus-imapd-2.4.14.ebuild:
+  version bump
+
+*cyrus-imapd-2.4.13 (04 Jan 2012)
+
+  04 Jan 2012; Eray Aslan <eras@gentoo.org> +cyrus-imapd-2.4.13.ebuild:
+  version bump
 
   24 Oct 2011; Eray Aslan <eras@gentoo.org> -cyrus-imapd-2.4.8.ebuild,
   -cyrus-imapd-2.4.9.ebuild, -cyrus-imapd-2.4.10.ebuild,
@@ -920,4 +960,3 @@
   Ebuild and friends created by Alexander Holler.  Thank you!
   Created diff so program will compile with current version of
   e2fsprogs.
-

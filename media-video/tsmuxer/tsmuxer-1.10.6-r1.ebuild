@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/tsmuxer/tsmuxer-1.10.6-r1.ebuild,v 1.5 2011/10/25 15:44:22 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/tsmuxer/tsmuxer-1.10.6-r1.ebuild,v 1.7 2012/09/24 00:45:45 vapier Exp $
 
 EAPI="4"
 
-inherit base qt4-r2
+inherit eutils base qt4-r2
 
 DESCRIPTION="Utility to create and demux TS and M2TS files"
 HOMEPAGE="http://www.smlabs.net/en/products/tsmuxer/"
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="qt4 linguas_ru"
 
-QA_DT_HASH="opt/${PN}/bin/tsMuxeR opt/${PN}/bin/tsMuxerGUI"
+QA_FLAGS_IGNORED="opt/${PN}/bin/tsMuxeR opt/${PN}/bin/tsMuxerGUI"
 
 DEPEND="|| (
 	>=app-arch/upx-ucl-3.01

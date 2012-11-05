@@ -1,6 +1,13 @@
 # ChangeLog for dev-perl/URI-Find
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI-Find/ChangeLog,v 1.10 2011/11/05 09:07:52 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI-Find/ChangeLog,v 1.12 2012/06/24 12:59:41 tove Exp $
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  18 Feb 2012; Torsten Veller <tove@gentoo.org> -URI-Find-20100505.0.0.ebuild,
+  -URI-Find-20111020.0.0.ebuild:
+  Cleanup
 
 *URI-Find-20111103.0.0 (05 Nov 2011)
 
@@ -44,4 +51,3 @@
   30 Jun 2009; Torsten Veller <tove@gentoo.org> +URI-Find-20090319.ebuild,
   +metadata.xml:
   Import from perl-experimental (#275933)
-

@@ -1,6 +1,31 @@
 # ChangeLog for dev-ruby/ascii85
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ascii85/ChangeLog,v 1.8 2011/11/13 20:36:54 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ascii85/ChangeLog,v 1.16 2012/10/28 17:46:31 armin76 Exp $
+
+  28 Oct 2012; Raúl Porcel <armin76@gentoo.org> ascii85-1.0.1.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #431384
+
+  14 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org> ascii85-1.0.1.ebuild:
+  Port to rspec helper for testing.
+
+  29 Jul 2012; Hans de Graaff <graaff@gentoo.org> -ascii85-1.0.0-r1.ebuild:
+  Cleanup.
+
+  01 May 2012; Raúl Porcel <armin76@gentoo.org> ascii85-1.0.1.ebuild:
+  Drop ia64/sparc keywords
+
+  12 Apr 2012; Hans de Graaff <graaff@gentoo.org> ascii85-1.0.1.ebuild:
+  Add ppc64 keyword since pdf-reader is keyworded as well, and hopefully this
+  keyword just didn't get committed.
+
+  02 Mar 2012; Naohiro Aota <naota@gentoo.org> ascii85-1.0.1.ebuild:
+  Add ~x86-fbsd
+
+  06 Feb 2012; Brent Baude <ranger@gentoo.org> ascii85-1.0.1.ebuild:
+  Marking ascii85-1.0.1 ~ppc for bug 388357
+
+  03 Dec 2011; Raúl Porcel <armin76@gentoo.org> ascii85-1.0.1.ebuild:
+  Add ~ia64/~sparc wrt #388357
 
   13 Nov 2011; Markus Meier <maekke@gentoo.org> ascii85-1.0.1.ebuild:
   add ~x86, bug #388357
@@ -33,4 +58,3 @@
   28 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
   +ascii85-1.0.0.ebuild, +metadata.xml:
   Initial import of ascii85, dependency of newer pdf-reader.
-

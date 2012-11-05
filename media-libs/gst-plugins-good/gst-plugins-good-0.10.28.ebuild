@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.28.ebuild,v 1.8 2011/07/25 18:09:50 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.28.ebuild,v 1.10 2012/10/23 07:55:22 tetromino Exp $
 
 EAPI=1
 
@@ -8,10 +8,10 @@ EAPI=1
 inherit gst-plugins-good gst-plugins10 gnome2 eutils flag-o-matic libtool
 
 DESCRIPTION="Basepack of plugins for gstreamer"
-HOMEPAGE="http://gstreamer.net/"
+HOMEPAGE="http://gstreamer.freedesktop.org/"
 SRC_URI="http://gstreamer.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
-LICENSE="LGPL-2.1"
+LICENSE="LGPL-2.1+"
 KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd"
 IUSE="+orc"
 
@@ -22,7 +22,7 @@ RDEPEND=">=media-libs/gst-plugins-base-0.10.32
 	app-arch/bzip2"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11.5
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	!<media-libs/gst-plugins-bad-0.10.19"
 
 # Always enable optional bz2 support for matroska

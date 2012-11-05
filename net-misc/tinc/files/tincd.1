@@ -1,9 +1,9 @@
 #!/sbin/runscript
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/files/tincd.1,v 1.1 2011/09/26 03:23:06 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/files/tincd.1,v 1.4 2012/02/02 20:29:33 blueness Exp $
 
-extra_commands="reload"
+extra_started_commands="reload"
 
 NETS="/etc/conf.d/tinc.networks"
 DAEMON="/usr/sbin/tincd"
@@ -37,7 +37,7 @@ start() {
 			else
 				LOG="--logfile=/var/log/tinc.${NETNAME}.log"
 			fi
-			start-stop-daemon --start --exec "${DAEMON}" -- --net="${NETNAME}" "${LOG}" --pidfile "${PIDFILE}"
+			start-stop-daemon --start --exec "${DAEMON}" --pidfile "${PIDFILE}" -- --net="${NETNAME}" "${LOG}" --pidfile "${PIDFILE}"
 			eend $?
 		fi
 	done

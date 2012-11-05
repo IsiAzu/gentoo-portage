@@ -1,6 +1,28 @@
 # ChangeLog for media-gfx/xsane
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.90 2011/09/24 16:40:26 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.96 2012/08/22 02:24:10 ottxor Exp $
+
+  22 Aug 2012; Christoph Junghans <ottxor@gentoo.org> xsane-0.998-r1.ebuild:
+  added prefix keywords
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> xsane-0.998.ebuild,
+  xsane-0.998-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*xsane-0.998-r1 (15 Jan 2012)
+
+  15 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org> -xsane-0.996.ebuild,
+  +xsane-0.998-r1.ebuild:
+  Fix working directory handling, bug 396127; drop old
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> xsane-0.998.ebuild:
+  Stable for ppc64; bug #380917
+
+  12 Dec 2011; Pacho Ramos <pacho@gentoo.org> -xsane-0.997.ebuild:
+  Drop old.
+
+  27 Nov 2011; nixnut <nixnut@gentoo.org> xsane-0.998.ebuild:
+  ppc stable #380917
 
   24 Sep 2011; Raúl Porcel <armin76@gentoo.org> xsane-0.998.ebuild:
   alpha/sparc stable wrt #380917

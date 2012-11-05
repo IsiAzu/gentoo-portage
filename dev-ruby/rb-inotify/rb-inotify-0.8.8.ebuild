@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rb-inotify/rb-inotify-0.8.8.ebuild,v 1.2 2011/11/13 16:13:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rb-inotify/rb-inotify-0.8.8.ebuild,v 1.8 2012/09/29 15:18:12 grobian Exp $
 
 EAPI=4
 
-USE_RUBY="ruby18 ree18 jruby"
+USE_RUBY="ruby18 ruby19 ree18 jruby"
 
 RUBY_FAKEGEM_TASK_TEST=""
 
@@ -23,12 +23,20 @@ HOMEPAGE="https://github.com/nex3/rb-inotify"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x64-macos"
 IUSE=""
 
 ruby_add_rdepend "virtual/ruby-ffi"
 
 ruby_add_bdepend "doc? ( dev-ruby/yard )"
+
+all_ruby_prepare() {
+	# Avoid unneeded dependency on jeweler.
+	sed -i -e '/:build/ s:^:#:' -e '/module Jeweler/,/^end/ s:^:#:' -e '/class Jeweler/,/^end/ s:^:#:' Rakefile || die
+
+	# Remove mandatory markup processor from yard options, bug 436112.
+	sed -i -e '/maruku/d' .yardopts || die
+}
 
 each_ruby_prepare() {
 	case ${RUBY} in

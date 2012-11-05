@@ -1,6 +1,27 @@
 # ChangeLog for sys-libs/readline
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.175 2011/10/23 09:10:54 nixnut Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.181 2012/04/30 01:36:43 vapier Exp $
+
+  30 Apr 2012; Mike Frysinger <vapier@gentoo.org> readline-6.2_p1-r1.ebuild:
+  Create a config.cache with first configure and re-use it with the rlfe subdir
+  for a slight speedup.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> readline-6.2_p1-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  14 Apr 2012; Zac Medico <zmedico@gentoo.org> readline-6.2_p1-r1.ebuild:
+  Add ~amd64-linux and ~x86-linux keywords.
+
+  28 Mar 2012; Mike Frysinger <vapier@gentoo.org> readline-6.2_p1.ebuild:
+  Drop ancient bash depend in stable ebuild too.
+
+*readline-6.2_p1-r1 (10 Mar 2012)
+
+  10 Mar 2012; Mike Frysinger <vapier@gentoo.org> +readline-6.2_p1-r1.ebuild:
+  Add USE=static-libs support #378299 by Agostino Sarubbo.
+
+  06 Jan 2012; Mark Loeser <halcy0n@gentoo.org> readline-6.2_p1.ebuild:
+  Stable for ppc64; bug #384463
 
   23 Oct 2011; nixnut <nixnut@gentoo.org> readline-6.2_p1.ebuild:
   ppc stable #384463

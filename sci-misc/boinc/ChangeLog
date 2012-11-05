@@ -1,6 +1,24 @@
 # ChangeLog for sci-misc/boinc
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-misc/boinc/ChangeLog,v 1.106 2011/11/04 19:22:44 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-misc/boinc/ChangeLog,v 1.110 2012/08/17 09:45:54 scarabeus Exp $
+
+  17 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org> -boinc-6.12.42.ebuild,
+  -files/6.12.26-fix_subdirs.patch:
+  Drop older to keep just one release.
+
+*boinc-7.0.29 (18 Jul 2012)
+
+  18 Jul 2012; Alexey Shvetsov <alexxy@gentoo.org> +boinc-7.0.29.ebuild,
+  +files/7.0.2-fix_subdirs.patch:
+  [sci-misc/boinc] Version bump per bug #411463
+
+  26 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> boinc-6.12.42.ebuild:
+  inherit user for enewgroup and enewuser
+
+  26 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> boinc-6.12.42.ebuild:
+  Fix building with dev-libs/glib >= 2.32 wrt #413675. Fix building with
+  sys-devel/automake >= 1.12 wrt #423081. Convert to the new CURL_SSL flags wrt
+  #412437.
 
   04 Nov 2011; Tomáš Chvátal <scarabeus@gentoo.org>
   -files/6.12.26-libnotify-0.7.patch, boinc-6.12.42.ebuild:
@@ -499,4 +517,3 @@
   to Robert Moss <robmoss@gentoo.org> and Tony Murray <tonymurray@fastmail.fm>
   for the ebuilds and maintenance performed by Tony, as well as all the other
   contributors who helped with this ebuild. This closes bug 54962.
-

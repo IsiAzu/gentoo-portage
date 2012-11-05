@@ -1,6 +1,712 @@
 # ChangeLog for sys-kernel/gentoo-sources
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/gentoo-sources/ChangeLog,v 1.900 2011/11/19 21:17:32 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/gentoo-sources/ChangeLog,v 1.1033 2012/11/01 15:04:04 mpagano Exp $
+
+*gentoo-sources-3.6.5 (01 Nov 2012)
+
+  01 Nov 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.6.5.ebuild:
+  Linux patch 3.6.5
+
+  01 Nov 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.0.35.ebuild:
+  Stable for HPPA (bug #412947).
+
+  29 Oct 2012; Michael Pagano <mpagano@gentoo.org> gentoo-sources-3.5.7.ebuild:
+  Put back stable keywords. Ext4 corruption not widespread.
+
+*gentoo-sources-3.0.49 (29 Oct 2012)
+
+  29 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.49.ebuild:
+  Linux patches 3.0.47, 3.0.48 and 3.0.49. Removal of redundant patch
+
+*gentoo-sources-3.6.4 (29 Oct 2012)
+
+  29 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.6.4.ebuild:
+  Linux patch versions 3.6.3 and 3.6.4
+
+  24 Oct 2012; Michael Pagano <mpagano@gentoo.org> gentoo-sources-3.5.7.ebuild:
+  Dropping stable keywords for 3.5.7 due to ext4 data corruption. See bug
+  #439502
+
+  22 Oct 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.5.7.ebuild:
+  Stable for HPPA (bug #438798).
+
+  22 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.5.7.ebuild:
+  Stable for X86, wrt bug #432426
+
+  20 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.5.7.ebuild:
+  Stable for amd64, wrt bug #438798
+
+  15 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.39.ebuild, -gentoo-sources-3.0.43.ebuild,
+  -gentoo-sources-3.4.8.ebuild, -gentoo-sources-3.6.0.ebuild:
+  Remove old versions
+
+  14 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.5.2.ebuild, -gentoo-sources-3.5.3.ebuild,
+  -gentoo-sources-3.5.4.ebuild:
+  Cleanup old kernels
+
+*gentoo-sources-3.5.7 (13 Oct 2012)
+
+  13 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.7.ebuild:
+  Linux patch 3.5.7
+
+*gentoo-sources-3.0.46 (13 Oct 2012)
+
+  13 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.46.ebuild:
+  5906 device short DMA fragment workaround. Linux patch 3.0.46
+
+*gentoo-sources-3.6.2 (13 Oct 2012)
+
+  13 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.6.2.ebuild:
+  Linux patch 3.6.2
+
+*gentoo-sources-3.0.45 (08 Oct 2012)
+
+  08 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.45.ebuild:
+  Linux patches 3.0.44 and 3.0.45
+
+*gentoo-sources-3.6.1 (07 Oct 2012)
+
+  07 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.6.1.ebuild:
+  Linux patch 3.6.1
+
+*gentoo-sources-3.5.6 (07 Oct 2012)
+
+  07 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.6.ebuild:
+  Linux patches 3.5.5 and 3.5.6
+
+*gentoo-sources-3.6.0 (02 Oct 2012)
+
+  02 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.6.0.ebuild:
+  Linux 3.6.0. kcopy patch. fbcondecor patchset
+
+  02 Oct 2012; Markus Meier <maekke@gentoo.org> gentoo-sources-3.4.9.ebuild:
+  arm stable, bug #432426
+
+*gentoo-sources-3.5.4 (17 Sep 2012)
+
+  17 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.4.ebuild:
+  Linux patch 3.5.4
+
+*gentoo-sources-3.4.11 (17 Sep 2012)
+
+  17 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.11.ebuild:
+  Linux patch 3.4.11
+
+*gentoo-sources-3.0.43 (17 Sep 2012)
+
+  17 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.43.ebuild:
+  Linux patches 3.0.42 and 3.0.43
+
+  12 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.36.ebuild, -gentoo-sources-3.2.1-r2.ebuild,
+  -gentoo-sources-3.2.12.ebuild, -gentoo-sources-3.2.21.ebuild,
+  -gentoo-sources-3.5.0.ebuild, -gentoo-sources-3.5.1.ebuild:
+  Remove old, and unsupported versions
+
+  09 Sep 2012; Joseph Jezak <josejx@gentoo.org> gentoo-sources-3.0.35.ebuild,
+  gentoo-sources-3.2.21.ebuild, gentoo-sources-3.3.8.ebuild,
+  gentoo-sources-3.4.9.ebuild:
+  Marked ppc/ppc64 stable.
+
+  08 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.33.ebuild:
+  Remove old version
+
+  29 Aug 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.4.9.ebuild:
+  Stable for HPPA (bug #432426).
+
+*gentoo-sources-3.4.10 (29 Aug 2012)
+
+  29 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.10.ebuild:
+  Linux patch 3.4.10. Fix build warnings for lpfc when debugfs is not defined.
+  Bug #432604
+
+*gentoo-sources-3.5.3 (26 Aug 2012)
+
+  26 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.3.ebuild:
+  Linux version 3.5.3
+
+  24 Aug 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.4.9.ebuild:
+  Stable for amd64, wrt bug #432426
+
+  23 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.1.10-r1.ebuild, -gentoo-sources-3.2.14.ebuild,
+  -gentoo-sources-3.2.16.ebuild, -gentoo-sources-3.3.7.ebuild,
+  -gentoo-sources-3.4.0.ebuild, -gentoo-sources-3.4.2.ebuild,
+  -gentoo-sources-3.4.2-r1.ebuild, -gentoo-sources-3.4.3.ebuild,
+  -gentoo-sources-3.4.4.ebuild, -gentoo-sources-3.4.5.ebuild,
+  -gentoo-sources-3.4.6.ebuild, -gentoo-sources-3.4.7.ebuild:
+  Remove old, unsupported versions
+
+*gentoo-sources-3.4.9 (18 Aug 2012)
+
+  18 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.9.ebuild:
+  Linux patch 3.4.9
+
+*gentoo-sources-3.5.2 (15 Aug 2012)
+
+  15 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.2.ebuild:
+  Linux patch 3.5.2
+
+*gentoo-sources-3.4.8 (13 Aug 2012)
+
+  13 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.8.ebuild:
+  Linux patch 3.4.8
+
+*gentoo-sources-3.5.1 (11 Aug 2012)
+
+  11 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.1.ebuild:
+  Linux patch 3.5.1
+
+*gentoo-sources-3.0.39 (02 Aug 2012)
+
+  02 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.39.ebuild:
+  Linux patches 3.0.37, 3.0.38 and 3.0.39
+
+*gentoo-sources-3.4.7 (30 Jul 2012)
+
+  30 Jul 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.7.ebuild:
+  Linux patch 3.4.7
+
+*gentoo-sources-3.4.6 (26 Jul 2012)
+
+  26 Jul 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.6.ebuild:
+  Linux patch 3.4.6
+
+*gentoo-sources-3.5.0 (24 Jul 2012)
+
+  24 Jul 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.0.ebuild:
+  Zero copy for infiniband psm userspace driver. Fbcondecor bootsplash patch
+
+*gentoo-sources-3.4.5 (17 Jul 2012)
+
+  17 Jul 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.5.ebuild:
+  Check VBIOS value for determining LVDS dual channel mode. Correct firmware
+  version for bnx2 on mips. Bug #424609. Linux patch 3.4.5. Removal of
+  redundant patch.
+
+  16 Jul 2012; Jeff Horelick <jdhore@gentoo.org> gentoo-sources-3.3.8.ebuild:
+  marked x86 per bug 422715
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org> gentoo-sources-3.0.35.ebuild,
+  gentoo-sources-3.2.21.ebuild, gentoo-sources-3.3.8.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #422715 #422713 #412947
+
+  06 Jul 2012; Jeff Horelick <jdhore@gentoo.org> gentoo-sources-3.0.35.ebuild:
+  marked x86 per bug 412947
+
+  06 Jul 2012; Jeff Horelick <jdhore@gentoo.org> gentoo-sources-3.2.21.ebuild:
+  marked x86 per bug 422713
+
+  29 Jun 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.3.8.ebuild:
+  Stable for HPPA (bug #422715).
+
+*gentoo-sources-3.0.36 (23 Jun 2012)
+
+  23 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.36.ebuild:
+  Linux patch 3.0.36
+
+*gentoo-sources-3.4.4 (23 Jun 2012)
+
+  23 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.4.ebuild:
+  Linux patch 3.4.4
+
+*gentoo-sources-3.3.8-r1 (21 Jun 2012)
+
+  21 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.8-r1.ebuild:
+  Fix for bnx2 to load proper firmware version. Thanks to Kerin Millar. Bug
+  #411899
+
+  21 Jun 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.3.8.ebuild:
+  Stable for amd64, wrt bug #422715
+
+  21 Jun 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.2.21.ebuild:
+  Stable for amd64, wrt bug #422713
+
+  21 Jun 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.0.35.ebuild:
+  Stable for amd64, wrt bug #412947
+
+*gentoo-sources-3.2.21 (20 Jun 2012)
+
+  20 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.21.ebuild:
+  Linux patches up to and including 3.2.21.
+
+*gentoo-sources-3.0.35 (19 Jun 2012)
+
+  19 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.35.ebuild:
+  Linux patches 3.0.34 and 3.0.35
+
+*gentoo-sources-3.4.3 (18 Jun 2012)
+
+  18 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.3.ebuild:
+  Linux patch 3.4.3. Removal of redundant patches
+
+  15 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.3.0.ebuild, -gentoo-sources-3.3.1.ebuild,
+  -gentoo-sources-3.3.2.ebuild, -gentoo-sources-3.3.3.ebuild,
+  -gentoo-sources-3.3.4.ebuild, -gentoo-sources-3.3.5.ebuild:
+  Cleanup old, unsupported versions
+
+  15 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.26.ebuild, -gentoo-sources-3.0.29.ebuild:
+  Cleanup old, unsupported versions
+
+*gentoo-sources-3.4.2-r1 (13 Jun 2012)
+
+  13 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.2-r1.ebuild:
+  iwlwifi fix for hardware reset, cifs fix for parsing mount options.
+
+*gentoo-sources-3.4.2 (12 Jun 2012)
+
+  12 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.2.ebuild:
+  Linux patches 3.4.1 and 3.4.2
+
+*gentoo-sources-3.3.8 (06 Jun 2012)
+
+  06 Jun 2012; Michael Pagano <mpagano@gentoo.org> +gentoo-sources-3.3.8.ebuild:
+  Linux patch 3.3.8
+
+*gentoo-sources-3.0.33 (04 Jun 2012)
+
+  04 Jun 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.33.ebuild:
+  Linux patches 3.0.30, 3.0.31, 3.0.32 and 3.0.33
+
+*gentoo-sources-3.3.7 (26 May 2012)
+
+  26 May 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.7.ebuild:
+  Linux patches 3.3.6 and 3.3.7. Patch to include module.h to fix modpost on
+  Tsunami
+
+*gentoo-sources-3.4.0 (21 May 2012)
+
+  21 May 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.0.ebuild:
+  Linux patch 3.4.0. Zero copy for infiniband psm userspace driver. fbcondecor
+  patchset.
+
+  13 May 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-2.6.32-r29.ebuild, -gentoo-sources-2.6.32-r39.ebuild,
+  -gentoo-sources-2.6.32-r40.ebuild, -gentoo-sources-2.6.32-r41.ebuild:
+  Remove old unsupported versions
+
+  11 May 2012; Michael Pagano <mpagano@gentoo.org>
+  gentoo-sources-2.6.32-r29.ebuild, gentoo-sources-2.6.32-r39.ebuild,
+  gentoo-sources-2.6.32-r40.ebuild:
+  Fix copyright in headers
+
+*gentoo-sources-3.3.5 (11 May 2012)
+
+  11 May 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.5.ebuild:
+  Linux patch 3.3.5 and removal of a redundant patch
+
+*gentoo-sources-3.3.4 (28 Apr 2012)
+
+  28 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.4.ebuild:
+  Linux patch 3.3.4
+
+  24 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.20.ebuild, -gentoo-sources-3.0.22.ebuild,
+  -gentoo-sources-3.0.24.ebuild:
+  Clean up old versions
+
+  24 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.2.2.ebuild, -gentoo-sources-3.2.5.ebuild,
+  -gentoo-sources-3.2.6.ebuild, -gentoo-sources-3.2.9.ebuild,
+  -gentoo-sources-3.2.11.ebuild:
+  Cleanup old versions
+
+*gentoo-sources-3.0.29 (23 Apr 2012)
+
+  23 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.29.ebuild:
+  Linux patches 3.0.27, 3.0.28 and 3.0.29
+
+*gentoo-sources-3.2.16 (23 Apr 2012)
+
+  23 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.16.ebuild:
+  Linux patches 3.2.15 and 3.2.16
+
+*gentoo-sources-3.3.3 (23 Apr 2012)
+
+  23 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.3.ebuild:
+  Linux patch 3.3.3 and removal of redunddant patch
+
+*gentoo-sources-3.3.2 (16 Apr 2012)
+
+  16 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.2.ebuild:
+  Linux patch 3.3. Patch to set srq_type to IB_SRQT_BASIC (Infiniband). Nohz
+  load accounting fix.
+
+  15 Apr 2012; Jeff Horelick <jdhore@gentoo.org> gentoo-sources-3.2.12.ebuild:
+  marked x86 per bug 409381
+
+  06 Apr 2012; Markus Meier <maekke@gentoo.org> gentoo-sources-3.2.12.ebuild:
+  arm stable, bug #409381
+
+  04 Apr 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.2.12.ebuild:
+  Stable for HPPA (bug #409381).
+
+*gentoo-sources-3.2.14 (04 Apr 2012)
+
+  04 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.14.ebuild:
+  Linux patches 3.2.13 and 3.2.14
+
+*gentoo-sources-3.3.1 (04 Apr 2012)
+
+  04 Apr 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.1.ebuild:
+  Version bump. Linux patch 3.3.1
+
+  24 Mar 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.2.12.ebuild:
+  Stable for amd64, wrt bug #409381
+
+*gentoo-sources-3.0.26 (24 Mar 2012)
+
+  24 Mar 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.26.ebuild:
+  Linux patches 3.0.24, 3.0.25 and 3.0.26
+
+*gentoo-sources-3.2.12 (20 Mar 2012)
+
+  20 Mar 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.12.ebuild:
+  Linux patch 3.2.12
+
+*gentoo-sources-3.3.0 (19 Mar 2012)
+
+  19 Mar 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.3.0.ebuild:
+  Linux patch 3.3.0. Zero copy for infiniband psm userspace driver. fbcondecor
+  patchset.
+
+*gentoo-sources-3.2.11 (13 Mar 2012)
+
+  13 Mar 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.11.ebuild:
+  Linux patches 3.2.10 and 3.2.11
+
+*gentoo-sources-3.0.24 (13 Mar 2012)
+
+  13 Mar 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.24.ebuild:
+  Linux patches 3.0.23 and 3.0.24
+
+*gentoo-sources-3.2.9 (01 Mar 2012)
+
+  01 Mar 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.9.ebuild:
+  Linux patches: 3.2.7, 3.2.8 and 3.2.9. Patch to add a per-pci-device
+  subdirectory in sysfs. Gentoo bug #405357
+
+*gentoo-sources-3.0.22 (21 Feb 2012)
+
+  21 Feb 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.22.ebuild:
+  Linux patches 3.0.21 and 3.0.22
+
+  18 Feb 2012; Raúl Porcel <armin76@gentoo.org>
+  gentoo-sources-3.2.1-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #400671
+
+  14 Feb 2012; Jeff Horelick <jdhore@gentoo.org>
+  gentoo-sources-3.2.1-r2.ebuild:
+  x86 stable per bug 400671
+
+  14 Feb 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.2.1-r2.ebuild,
+  gentoo-sources-3.2.2.ebuild, gentoo-sources-3.2.5.ebuild,
+  gentoo-sources-3.2.6.ebuild:
+  Stable for HPPA (bug #400671).
+
+*gentoo-sources-3.2.6 (13 Feb 2012)
+
+  13 Feb 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.6.ebuild:
+  Linuxpatch 3.2.6
+
+  13 Feb 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.1.10-r1.ebuild:
+  Stable for HPPA too.
+
+  10 Feb 2012; Markus Meier <maekke@gentoo.org> gentoo-sources-3.2.1-r2.ebuild:
+  arm stable, bug #400671
+
+*gentoo-sources-3.0.20 (07 Feb 2012)
+
+  07 Feb 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.20.ebuild:
+  Linux patches 3.0.18, 3.0.19 and 3.0.20
+
+*gentoo-sources-3.2.5 (07 Feb 2012)
+
+  07 Feb 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.5.ebuild:
+  Linux patches 3.2.3, 3.2.4 and 3.2.5
+
+  02 Feb 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.1.10-r1.ebuild:
+  Marked -hppa (bug #400671).
+
+*gentoo-sources-3.2.2 (02 Feb 2012)
+
+  02 Feb 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.2.ebuild:
+  Linux 3.2.2. Zero copy for infiniband psm userspace driver
+
+  30 Jan 2012; Joseph Jezak <josejx@gentoo.org> gentoo-sources-3.2.1-r2.ebuild:
+  Marked ppc/ppc64 stable for bug #400671.
+
+  29 Jan 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.2.1-r2.ebuild:
+  Marked -hppa (bug #400671).
+
+  25 Jan 2012; Markos Chandras <hwoarang@gentoo.org>
+  gentoo-sources-3.2.1-r2.ebuild:
+  Stable on amd64 wrt bug #400671
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-2.6.39-r3.ebuild, -gentoo-sources-2.6.39-r4.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.2.0.ebuild, -gentoo-sources-3.2.0-r1.ebuild,
+  -gentoo-sources-3.2.1.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.6.ebuild, -gentoo-sources-3.0.13.ebuild,
+  -gentoo-sources-3.0.14.ebuild, -gentoo-sources-3.0.15.ebuild,
+  -gentoo-sources-3.0.17.ebuild, -gentoo-sources-3.1.6.ebuild,
+  -gentoo-sources-3.1.7.ebuild, -gentoo-sources-3.1.9.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.6.ebuild, -gentoo-sources-3.0.13.ebuild,
+  -gentoo-sources-3.0.14.ebuild, -gentoo-sources-3.0.15.ebuild,
+  -gentoo-sources-3.0.17.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  gentoo-sources-3.0.17-r2.ebuild:
+  Security stablization for root exploit. CVE-2012-0056. bug #399243
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  gentoo-sources-3.1.10-r1.ebuild:
+  Security stablization for root exploit. CVE-2012-0056. bug #399243
+
+*gentoo-sources-3.0.17-r2 (24 Jan 2012)
+
+  24 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.17-r1.ebuild, +gentoo-sources-3.0.17-r2.ebuild:
+  Replace bad copy of proc mem handling patch. Remove kernel with incorrect
+  priviledge escalation fix.
+
+*gentoo-sources-3.1.10-r1 (24 Jan 2012)
+
+  24 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.1.10.ebuild, +gentoo-sources-3.1.10-r1.ebuild:
+  Replace bad copy of proc mem handling patch. Remove kernel with incorrect
+  priviledge escalation fix.
+
+  24 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.2.1-r1.ebuild:
+  Remove kernel with incorrect priviledge escalation fix
+
+*gentoo-sources-3.2.1-r2 (24 Jan 2012)
+
+  24 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.1-r2.ebuild:
+  Replace bad copy of proc mem handling patch
+
+  23 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  gentoo-sources-3.1.10.ebuild:
+  Linux patch 3.1.10. Clean up and fix /proc/<pid>/mem handling, prevent local
+  privilege escalation
+
+*gentoo-sources-3.0.17-r1 (23 Jan 2012)
+
+  23 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.17-r1.ebuild:
+  Clean up and fix /proc/<pid>/mem handling, prevent local privilege escalation
+
+*gentoo-sources-3.2.1-r1 (23 Jan 2012)
+*gentoo-sources-3.1.10 (23 Jan 2012)
+
+  23 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.1.10.ebuild, +gentoo-sources-3.2.1-r1.ebuild:
+  Clean up and fix /proc/<pid>/mem handling, prevent local privilege escalation
+
+  18 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.1.4.ebuild, -gentoo-sources-3.1.5.ebuild:
+  Drop old versions
+
+*gentoo-sources-3.0.17 (17 Jan 2012)
+
+  17 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.17.ebuild:
+  Linux patch 3.0.16 and 3.0.17
+
+  15 Jan 2012; Raúl Porcel <armin76@gentoo.org> gentoo-sources-3.1.6.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #396469
+
+*gentoo-sources-3.1.9 (14 Jan 2012)
+
+  14 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.1.9.ebuild:
+  Linux patches 3.1.8 and 3.1.9
+
+*gentoo-sources-3.2.1 (13 Jan 2012)
+
+  13 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.1.ebuild:
+  Linux patch 3.2.1
+
+  13 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gentoo-sources-3.1.6.ebuild:
+  x86 stable wrt bug #396469
+
+  10 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  gentoo-sources-3.2.0-r1.ebuild:
+  Add deblob support
+
+*gentoo-sources-3.2.0-r1 (06 Jan 2012)
+
+  06 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.0-r1.ebuild:
+  ALPS Input mouse patch. Thanks to iamben
+
+  05 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-2.6.38-r6.ebuild, -gentoo-sources-2.6.38-r7.ebuild:
+  Remove unsupported version
+
+*gentoo-sources-3.2.0 (05 Jan 2012)
+
+  05 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.2.0.ebuild:
+  Linux 3.2.0 and the fbcondecor patchset
+
+*gentoo-sources-3.1.7 (03 Jan 2012)
+*gentoo-sources-3.0.15 (03 Jan 2012)
+*gentoo-sources-2.6.32-r41 (03 Jan 2012)
+
+  03 Jan 2012; Stratos Psomadakis <psomas@gentoo.org>
+  +gentoo-sources-2.6.32-r41.ebuild, +gentoo-sources-3.0.15.ebuild,
+  +gentoo-sources-3.1.7.ebuild:
+  Version bump (fixes #396709)
+
+  03 Jan 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.1.6.ebuild:
+  Stable for HPPA (bug #396469).
+
+  02 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.1.0.ebuild, -gentoo-sources-3.1.0-r1.ebuild,
+  -gentoo-sources-3.1.1.ebuild, -gentoo-sources-3.1.2.ebuild,
+  -gentoo-sources-3.1.3.ebuild:
+  Drop old.
+
+  01 Jan 2012; Raúl Porcel <armin76@gentoo.org>
+  gentoo-sources-2.6.38-r7.ebuild:
+  alpha/arm/ia64/sh/sparc/x86 stable wrt #394929
+
+  30 Dec 2011; Markos Chandras <hwoarang@gentoo.org>
+  gentoo-sources-3.1.6.ebuild:
+  Stable on amd64 wrt bug #396469
+
+  30 Dec 2011; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.7.ebuild, -gentoo-sources-3.0.9.ebuild,
+  -gentoo-sources-3.0.11.ebuild:
+  Old version cleanup
+
+*gentoo-sources-3.1.6 (28 Dec 2011)
+*gentoo-sources-3.0.14 (28 Dec 2011)
+*gentoo-sources-2.6.32-r40 (28 Dec 2011)
+
+  28 Dec 2011; Stratos Psomadakis <psomas@gentoo.org>
+  +gentoo-sources-2.6.32-r40.ebuild, +gentoo-sources-3.0.14.ebuild,
+  +gentoo-sources-3.1.6.ebuild:
+  Version bumps
+
+  23 Dec 2011; Agostino Sarubbo <ago@gentoo.org>
+  gentoo-sources-2.6.38-r7.ebuild:
+  Stable for AMD64, wrt bug #394929
+
+  22 Dec 2011; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-2.6.32-r36.ebuild, -gentoo-sources-2.6.32-r37.ebuild,
+  -gentoo-sources-2.6.32-r38.ebuild:
+  Drop old
+
+*gentoo-sources-3.1.5 (10 Dec 2011)
+*gentoo-sources-3.0.13 (10 Dec 2011)
+*gentoo-sources-2.6.32-r39 (10 Dec 2011)
+
+  10 Dec 2011; Stratos Psomadakis <psomas@gentoo.org>
+  +gentoo-sources-2.6.32-r39.ebuild, +gentoo-sources-3.0.13.ebuild,
+  +gentoo-sources-3.1.5.ebuild:
+  Version bump
+
+*gentoo-sources-3.1.4 (30 Nov 2011)
+
+  30 Nov 2011; Stratos Psomadakis <psomas@gentoo.org>
+  +gentoo-sources-3.1.4.ebuild:
+  Version bump (fixes USB regression in 3.1.3)
+
+*gentoo-sources-3.1.3 (27 Nov 2011)
+*gentoo-sources-3.0.11 (27 Nov 2011)
+*gentoo-sources-2.6.32-r38 (27 Nov 2011)
+
+  27 Nov 2011; Stratos Psomadakis <psomas@gentoo.org>
+  +gentoo-sources-2.6.32-r38.ebuild, +gentoo-sources-3.0.11.ebuild,
+  +gentoo-sources-3.1.3.ebuild:
+  Version bump
+
+*gentoo-sources-3.1.2 (26 Nov 2011)
+
+  26 Nov 2011; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.1.2.ebuild:
+  Linux patch 3.1.2
+
+  25 Nov 2011; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.0.ebuild, -gentoo-sources-3.0.1.ebuild,
+  -gentoo-sources-3.0.3.ebuild, -gentoo-sources-3.0.4.ebuild,
+  -gentoo-sources-3.0.4-r1.ebuild, -gentoo-sources-3.0.4-r2.ebuild:
+  Old version cleanup
 
   19 Nov 2011; Mike Frysinger <vapier@gentoo.org> gentoo-sources-3.0.6.ebuild,
   gentoo-sources-3.0.7.ebuild, gentoo-sources-3.0.9.ebuild,
@@ -889,4 +1595,3 @@
   26 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
   gentoo-sources-2.6.34-r6.ebuild, gentoo-sources-2.6.35-r4.ebuild:
   stable x86, bugs 334341 and 334343
-

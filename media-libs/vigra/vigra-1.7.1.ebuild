@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.7.1.ebuild,v 1.10 2011/10/15 12:55:31 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.7.1.ebuild,v 1.12 2012/02/19 22:46:18 dilfridge Exp $
 
 EAPI=4
 
@@ -17,7 +17,7 @@ KEYWORDS="amd64 ppc ppc64 ~sparc x86"
 IUSE="doc +fftw +hdf5 +jpeg +png +python test +tiff"
 
 RDEPEND="
-	dev-libs/boost
+	dev-libs/boost[python?]
 	fftw? ( >=sci-libs/fftw-3 )
 	hdf5? ( sci-libs/hdf5 )
 	jpeg? ( virtual/jpeg )
@@ -95,3 +95,6 @@ src_install() {
 	# drop useless cmake files from libdir
 	rm -rf "${ED}"/usr/$(get_libdir)/${PN}/
 }
+
+src_test() { : ; }
+# bug 390447

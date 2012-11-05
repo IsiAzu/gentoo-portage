@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/hunspell-1.3.2-r3.ebuild,v 1.1 2011/09/17 04:08:53 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/hunspell-1.3.2-r3.ebuild,v 1.15 2012/07/25 10:33:04 scarabeus Exp $
 
 EAPI=4
 inherit eutils multilib autotools flag-o-matic versionator
@@ -14,18 +14,17 @@ HOMEPAGE="http://hunspell.sourceforge.net/"
 SLOT="0"
 LICENSE="MPL-1.1 GPL-2 LGPL-2.1"
 IUSE="ncurses nls readline static-libs"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
-DEPEND="
-	sys-devel/gettext
+RDEPEND="
 	ncurses? ( sys-libs/ncurses )
-	readline? ( sys-libs/readline )
-"
-RDEPEND="${DEPEND}"
+	readline? ( sys-libs/readline )"
+DEPEND="${RDEPEND}
+	sys-devel/gettext"
 
-# TODO: Add proper desc for mi
-LANGS="af bg ca cs cy da de el en eo es et fo fr ga gl he hr hu ia id it ku lt
-lv mk ms nb nl nn pl pt ro ru sk sl sv sw tn uk zu"
+# describe properly mi
+LANGS="af bg ca cs cy da de el en eo es et fo fr ga gl he hr hu ia id is it km
+ku lt lv mk ms nb nl nn pl pt pt_BR ro ru sk sl sq sv sw tn uk zu"
 
 DICT_DEP="app-dicts/myspell-en"
 for lang in ${LANGS}; do
@@ -84,10 +83,4 @@ src_install() {
 	pushd "${ED}"/usr/$(get_libdir)/ >/dev/null
 	ln -s lib${PN}{-$(get_major_version).$(get_version_component_range 2).so.0.0.0,.so}
 	popd >/dev/null
-}
-
-pkg_postinst() {
-	elog "To use this package you will also need a dictionary."
-	elog "Hunspell uses myspell format dictionaries; find them"
-	elog "in the app-dicts category as myspell-<LANG>."
 }

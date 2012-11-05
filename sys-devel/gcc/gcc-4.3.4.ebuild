@@ -1,11 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.4.ebuild,v 1.19 2011/11/09 19:22:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.4.ebuild,v 1.21 2011/12/03 02:36:35 vapier Exp $
 
-GENTOO_PATCH_EXCLUDE="69_all_gcc43-pr39013.patch \
-02_all_gcc-4.3-alpha-PR42113.patch" #262567 #309279
-
-PATCH_VER="1.3"
+PATCH_VER="1.4"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
@@ -17,10 +14,6 @@ PIE_GLIBC_STABLE="x86 amd64 ~ppc ~ppc64 ~arm ~sparc"
 PIE_UCLIBC_STABLE="x86 arm"
 #SSP_STABLE="amd64 x86 ppc ppc64 ~arm ~sparc"
 #SSP_UCLIBC_STABLE=""
-
-# whether we should split out specs files for multiple {PIE,SSP}-by-default
-# and vanilla configurations.
-SPLIT_SPECS=no #${SPLIT_SPECS-true} hard disable until #106690 is fixed
 
 inherit toolchain
 

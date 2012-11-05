@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.29.4.ebuild,v 1.1 2011/10/19 01:59:34 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.29.4.ebuild,v 1.17 2012/10/17 11:18:22 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -13,9 +13,9 @@ HOMEPAGE="http://www.pango.org/"
 
 LICENSE="LGPL-2 FTL"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
-IUSE="X doc +introspection test"
+IUSE="X +introspection"
 
 # Use glib-2.29.5 for g_atomic_int_add
 RDEPEND=">=dev-libs/glib-2.29.5:2
@@ -27,17 +27,9 @@ RDEPEND=">=dev-libs/glib-2.29.5:2
 		x11-libs/libX11
 		>=x11-libs/libXft-2.0.0 )"
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	>=dev-util/gtk-doc-am-1.13
-	doc? (
-		>=dev-util/gtk-doc-1.13
-		~app-text/docbook-xml-dtd-4.1.2
-		x11-libs/libXft )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )
-	test? (
-		>=dev-util/gtk-doc-1.13
-		~app-text/docbook-xml-dtd-4.1.2
-		x11-libs/libXft )
 	X? ( x11-proto/xproto )
 	!<=sys-devel/autoconf-2.63:2.5"
 
@@ -56,8 +48,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
-
 	# make config file location host specific so that a 32bit and 64bit pango
 	# wont fight with each other on a multilib system.  Fix building for
 	# emul-linux-x86-gtklibs
@@ -66,7 +56,7 @@ src_prepare() {
 		eautoreconf
 	fi
 
-	elibtoolize # for Darwin bundles
+	gnome2_src_prepare
 }
 
 pkg_postinst() {
@@ -76,7 +66,17 @@ pkg_postinst() {
 	multilib_enabled && PANGO_CONFDIR+="/${CHOST}"
 
 	mkdir -p "${PANGO_CONFDIR}"
-	pango-querymodules \
+	local pango_conf="${PANGO_CONFDIR}/pango.modules"
+	local tmp_file=$(mktemp -t tmp_pango_ebuild.XXXXXXXXXX)
+
+	# be atomic!
+	if pango-querymodules \
 		"${EROOT}"usr/$(get_libdir)/pango/1.6.0/modules/*.so \
-		> "${PANGO_CONFDIR}"/pango.modules
+			> "${tmp_file}"; then
+		cat "${tmp_file}" > "${pango_conf}" || {
+			rm "${tmp_file}"; die; }
+	else
+		ewarn "Cannot update pango.modules, file generation failed"
+	fi
+	rm "${tmp_file}"
 }

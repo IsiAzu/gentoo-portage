@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gwenhywfar/gwenhywfar-4.2.1.ebuild,v 1.1 2011/08/21 19:57:08 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gwenhywfar/gwenhywfar-4.2.1.ebuild,v 1.6 2012/05/04 07:33:11 jdhore Exp $
 
 EAPI=2
 
@@ -10,7 +10,7 @@ SRC_URI="http://www.aquamaniac.de/sites/download/download.php?package=01&release
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="amd64 hppa ppc ~ppc64 ~sparc x86"
 IUSE="debug doc fox gtk qt4"
 
 RDEPEND="dev-libs/libgpg-error
@@ -23,7 +23,7 @@ RDEPEND="dev-libs/libgpg-error
 	gtk? ( >=x11-libs/gtk+-2.17.5:2 )
 	qt4? ( x11-libs/qt-gui:4 )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext
 	doc? ( app-doc/doxygen )"
 

@@ -1,6 +1,56 @@
 # ChangeLog for app-misc/gnote
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gnote/ChangeLog,v 1.13 2011/10/27 08:02:25 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gnote/ChangeLog,v 1.24 2012/09/18 11:07:37 tetromino Exp $
+
+*gnote-0.8.4 (18 Sep 2012)
+
+  18 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> gnote-0.7.4.ebuild,
+  gnote-0.8.2.ebuild, -gnote-0.8.2-r10.ebuild, gnote-0.8.3.ebuild,
+  +gnote-0.8.4.ebuild:
+  Version bump. Make license more precise. Drop old.
+
+  02 Jul 2012; Alexandre Rostovtsev <tetromino@gentoo.org> gnote-0.8.2.ebuild,
+  gnote-0.8.2-r10.ebuild, +files/gnote-0.8.2-signal_idle-header.patch:
+  Fix build failure with gcc-4.7 due to missing include (bug #424317, thanks to
+  Diego Elio Pettenò)
+
+  22 May 2012; Agostino Sarubbo <ago@gentoo.org> gnote-0.8.2.ebuild:
+  Stable for amd64, wrt bug #414983
+
+  22 May 2012; Agostino Sarubbo <ago@gentoo.org> gnote-0.7.4.ebuild:
+  Stable for amd64, wrt bug #414983
+
+  22 May 2012; Jeff Horelick <jdhore@gentoo.org> gnote-0.7.4.ebuild,
+  gnote-0.8.2.ebuild:
+  marked x86 per bug 414983
+
+  20 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org> gnote-0.8.2.ebuild,
+  gnote-0.8.2-r10.ebuild, gnote-0.8.3.ebuild:
+  Add missing gsettings-desktop-schemas dependency (bug #416793, thanks to
+  theodor).
+
+*gnote-0.8.2-r10 (10 May 2012)
+
+  10 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +gnote-0.8.2-r10.ebuild:
+  Zero-change revbump to mask applet USE flag on gnote-0.8.2 to allow
+  stabilization (bug #414983).
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> gnote-0.7.4.ebuild,
+  gnote-0.8.2.ebuild, gnote-0.8.3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*gnote-0.8.3 (15 Apr 2012)
+
+  15 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> -gnote-0.8.1.ebuild,
+  +gnote-0.8.3.ebuild:
+  Version bump, fixes application quit with glib-2.32. Drop old.
+
+*gnote-0.8.2 (15 Jan 2012)
+
+  15 Jan 2012; Alexandre Rostovtsev <tetromino@gentoo.org> -gnote-0.7.3.ebuild,
+  +gnote-0.8.2.ebuild:
+  Bump, improves toolbar for template notes, fixes various bugs. Drop old.
 
 *gnote-0.8.1 (27 Oct 2011)
 

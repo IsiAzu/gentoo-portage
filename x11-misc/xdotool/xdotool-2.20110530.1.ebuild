@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdotool/xdotool-2.20110530.1.ebuild,v 1.1 2011/07/03 12:00:22 joker Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdotool/xdotool-2.20110530.1.ebuild,v 1.4 2012/04/04 21:24:51 jdhore Exp $
 
 EAPI=2
 
@@ -12,13 +12,14 @@ SRC_URI="http://semicomplete.googlecode.com/files/${P}.tar.gz"
 LICENSE="as-is"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="examples"
 
-DEPEND="x11-libs/libXtst
-	x11-libs/libX11"
+RDEPEND="x11-libs/libXtst
+	x11-libs/libX11
+	x11-libs/libXinerama"
 
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}"
 
 # The test wants to manualy start Xvfb, wont use VirtualX and it tries
 # to run a full gnome-session. For such a tiny application i consider

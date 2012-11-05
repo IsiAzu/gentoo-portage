@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools-utils.eclass,v 1.25 2011/10/14 20:28:29 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools-utils.eclass,v 1.57 2012/09/27 16:35:41 axs Exp $
 
 # @ECLASS: autotools-utils.eclass
 # @MAINTAINER:
@@ -11,7 +11,11 @@
 # autotools-utils.eclass is autotools.eclass(5) and base.eclass(5) wrapper
 # providing all inherited features along with econf arguments as Bash array,
 # out of source build with overridable build dir location, static archives
-# handling, libtool files removal, enable/disable debug handling.
+# handling, libtool files removal.
+#
+# Please note that autotools-utils does not support mixing of its phase
+# functions with regular econf/emake calls. If necessary, please call
+# autotools-utils_src_compile instead of the latter.
 #
 # @EXAMPLE:
 # Typical ebuild using autotools-utils.eclass:
@@ -85,28 +89,52 @@
 # Keep variable names synced with cmake-utils and the other way around!
 
 case ${EAPI:-0} in
-	2|3|4) ;;
+	2|3|4|5) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
-inherit autotools base eutils libtool
+# @ECLASS-VARIABLE: AUTOTOOLS_AUTORECONF
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set to a non-empty value in order to enable running autoreconf
+# in src_prepare() and adding autotools dependencies.
+#
+# This is usually necessary when using live sources or applying patches
+# modifying configure.ac or Makefile.am files. Note that in the latter case
+# setting this variable is obligatory even though the eclass will work without
+# it (to add the necessary dependencies).
+#
+# The eclass will try to determine the correct autotools to run including a few
+# external tools: gettext, glib-gettext, intltool, gtk-doc, gnome-doc-prepare.
+# If your tool is not supported, please open a bug and we'll add support for it.
+#
+# Note that dependencies are added for autoconf, automake and libtool only.
+# If your package needs one of the external tools listed above, you need to add
+# appropriate packages to DEPEND yourself.
+[[ ${AUTOTOOLS_AUTORECONF} ]] || : ${AUTOTOOLS_AUTO_DEPEND:=no}
+
+inherit autotools eutils libtool
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install src_test
 
 # @ECLASS-VARIABLE: AUTOTOOLS_BUILD_DIR
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # Build directory, location where all autotools generated files should be
 # placed. For out of source builds it defaults to ${WORKDIR}/${P}_build.
 
 # @ECLASS-VARIABLE: AUTOTOOLS_IN_SOURCE_BUILD
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # Set to enable in-source build.
 
 # @ECLASS-VARIABLE: ECONF_SOURCE
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # Specify location of autotools' configure script. By default it uses ${S}.
 
 # @ECLASS-VARIABLE: myeconfargs
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # Optional econf arguments as Bash array. Should be defined before calling src_configure.
 # @CODE
@@ -119,6 +147,36 @@ EXPORT_FUNCTIONS src_prepare src_configure src_compile src_install src_test
 # 	)
 # 	autotools-utils_src_configure
 # }
+# @CODE
+
+# @ECLASS-VARIABLE: DOCS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Array containing documents passed to dodoc command.
+#
+# Example:
+# @CODE
+# DOCS=( NEWS README )
+# @CODE
+
+# @ECLASS-VARIABLE: HTML_DOCS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Array containing documents passed to dohtml command.
+#
+# Example:
+# @CODE
+# HTML_DOCS=( doc/html/ )
+# @CODE
+
+# @ECLASS-VARIABLE: PATCHES
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# PATCHES array variable containing all various patches to be applied.
+#
+# Example:
+# @CODE
+# PATCHES=( "${FILESDIR}"/${P}-mypatch.patch )
 # @CODE
 
 # Determine using IN or OUT source build
@@ -146,6 +204,10 @@ _check_build_dir() {
 remove_libtool_files() {
 	debug-print-function ${FUNCNAME} "$@"
 	local removing_all
+
+	eqawarn "The remove_libtool_files() function was deprecated."
+	eqawarn "Please use prune_libtool_files() from eutils eclass instead."
+
 	[[ ${#} -le 1 ]] || die "Invalid number of args to ${FUNCNAME}()"
 	if [[ ${#} -eq 1 ]]; then
 		case "${1}" in
@@ -203,6 +265,84 @@ remove_libtool_files() {
 	done
 }
 
+# @FUNCTION: autotools-utils_autoreconf
+# @DESCRIPTION:
+# Reconfigure the sources (like gnome-autogen.sh or eautoreconf).
+autotools-utils_autoreconf() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	eqawarn "The autotools-utils_autoreconf() function was deprecated."
+	eqawarn "Please call autotools-utils_src_prepare()"
+	eqawarn "with AUTOTOOLS_AUTORECONF set instead."
+
+	# Override this func to not require unnecessary eaclocal calls.
+	autotools_check_macro() {
+		local x
+
+		# Add a few additional variants as we don't get expansions.
+		[[ ${1} = AC_CONFIG_HEADERS ]] && set -- "${@}" \
+			AC_CONFIG_HEADER AM_CONFIG_HEADER
+
+		for x; do
+			grep -h "^${x}" configure.{ac,in} 2>/dev/null
+		done
+	}
+
+	einfo "Autoreconfiguring '${PWD}' ..."
+
+	local auxdir=$(sed -n -e 's/^AC_CONFIG_AUX_DIR(\(.*\))$/\1/p' \
+			configure.{ac,in} 2>/dev/null)
+	if [[ ${auxdir} ]]; then
+		auxdir=${auxdir%%]}
+		mkdir -p ${auxdir##[}
+	fi
+
+	# Support running additional tools like gnome-autogen.sh.
+	# Note: you need to add additional depends to the ebuild.
+
+	# gettext
+	if [[ $(autotools_check_macro AM_GLIB_GNU_GETTEXT) ]]; then
+		echo 'no' | autotools_run_tool glib-gettextize --copy --force
+	elif [[ $(autotools_check_macro AM_GNU_GETTEXT) ]]; then
+		eautopoint --force
+	fi
+
+	# intltool
+	if [[ $(autotools_check_macro AC_PROG_INTLTOOL IT_PROG_INTLTOOL) ]]
+	then
+		autotools_run_tool intltoolize --copy --automake --force
+	fi
+
+	# gtk-doc
+	if [[ $(autotools_check_macro GTK_DOC_CHECK) ]]; then
+		autotools_run_tool gtkdocize --copy
+	fi
+
+	# gnome-doc
+	if [[ $(autotools_check_macro GNOME_DOC_INIT) ]]; then
+		autotools_run_tool gnome-doc-prepare --copy --force
+	fi
+
+	if [[ $(autotools_check_macro AC_PROG_LIBTOOL AM_PROG_LIBTOOL LT_INIT) ]]
+	then
+		_elibtoolize --copy --force --install
+	fi
+
+	eaclocal
+	eautoconf
+	eautoheader
+	FROM_EAUTORECONF=sure eautomake
+
+	local x
+	for x in $(autotools_check_macro_val AC_CONFIG_SUBDIRS); do
+		if [[ -d ${x} ]] ; then
+			pushd "${x}" >/dev/null || die
+			autotools-utils_autoreconf
+			popd >/dev/null || die
+		fi
+	done
+}
+
 # @FUNCTION: autotools-utils_src_prepare
 # @DESCRIPTION:
 # The src_prepare function.
@@ -211,7 +351,27 @@ remove_libtool_files() {
 autotools-utils_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	base_src_prepare
+	local want_autoreconf=${AUTOTOOLS_AUTORECONF}
+
+	[[ ${PATCHES} ]] && epatch "${PATCHES[@]}"
+
+	at_checksum() {
+		find '(' -name 'Makefile.am' \
+			-o -name 'configure.ac' \
+			-o -name 'configure.in' ')' \
+			-exec cksum {} + | sort -k2
+	}
+
+	[[ ! ${want_autoreconf} ]] && local checksum=$(at_checksum)
+	epatch_user
+	if [[ ! ${want_autoreconf} ]]; then
+		if [[ ${checksum} != $(at_checksum) ]]; then
+			einfo 'Will autoreconfigure due to user patches applied.'
+			want_autoreconf=yep
+		fi
+	fi
+
+	[[ ${want_autoreconf} ]] && eautoreconf
 	elibtoolize --patch-only
 }
 
@@ -230,17 +390,16 @@ autotools-utils_src_configure() {
 	[[ -z ${myeconfargs+1} || $(declare -p myeconfargs) == 'declare -a'* ]] \
 		|| die 'autotools-utils.eclass: myeconfargs has to be an array.'
 
+	[[ ${EAPI} == 2 ]] && ! use prefix && EPREFIX=
+
 	# Common args
 	local econfargs=()
 
-	# Handle debug found in IUSE
-	if in_iuse debug; then
-		local debugarg=$(use_enable debug)
-		if ! has "${debugarg}" "${myeconfargs[@]}"; then
-			eqawarn 'Implicit $(use_enable debug) for IUSE="debug" is no longer supported.'
-			eqawarn 'Please add the necessary arg to myeconfargs if requested.'
-			eqawarn 'The autotools-utils eclass will stop warning about it on Oct 15th.'
-		fi
+	_check_build_dir
+	if "${ECONF_SOURCE}"/configure --help 2>&1 | grep -q '^ *--docdir='; then
+		econfargs+=(
+			--docdir="${EPREFIX}"/usr/share/doc/${PF}
+		)
 	fi
 
 	# Handle static-libs found in IUSE, disable them by default
@@ -254,11 +413,10 @@ autotools-utils_src_configure() {
 	# Append user args
 	econfargs+=("${myeconfargs[@]}")
 
-	_check_build_dir
 	mkdir -p "${AUTOTOOLS_BUILD_DIR}" || die "mkdir '${AUTOTOOLS_BUILD_DIR}' failed"
-	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null
-	base_src_configure "${econfargs[@]}" "$@"
-	popd > /dev/null
+	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null || die
+	econf "${econfargs[@]}" "$@"
+	popd > /dev/null || die
 }
 
 # @FUNCTION: autotools-utils_src_compile
@@ -268,9 +426,9 @@ autotools-utils_src_compile() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	_check_build_dir
-	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null
-	base_src_compile "$@"
-	popd > /dev/null
+	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null || die
+	emake "$@" || die 'emake failed'
+	popd > /dev/null || die
 }
 
 # @FUNCTION: autotools-utils_src_install
@@ -285,12 +443,44 @@ autotools-utils_src_install() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	_check_build_dir
-	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null
-	base_src_install "$@"
-	popd > /dev/null
+	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null || die
+	emake DESTDIR="${D}" "$@" install || die "emake install failed"
+	popd > /dev/null || die
+
+	# Move docs installed by autotools (in EAPI < 4).
+	if [[ ${EAPI} == [23] ]] \
+			&& path_exists "${D}${EPREFIX}"/usr/share/doc/${PF}/*; then
+		if [[ $(find "${D}${EPREFIX}"/usr/share/doc/${PF}/* -type d) ]]; then
+			eqawarn "autotools-utils: directories in docdir require at least EAPI 4"
+		else
+			mkdir "${T}"/temp-docdir
+			mv "${D}${EPREFIX}"/usr/share/doc/${PF}/* "${T}"/temp-docdir/ \
+				|| die "moving docs to tempdir failed"
+
+			dodoc "${T}"/temp-docdir/* || die "docdir dodoc failed"
+			rm -r "${T}"/temp-docdir || die
+		fi
+	fi
+
+	# XXX: support installing them from builddir as well?
+	if [[ ${DOCS} ]]; then
+		dodoc "${DOCS[@]}" || die "dodoc failed"
+	else
+		local f
+		# same list as in PMS
+		for f in README* ChangeLog AUTHORS NEWS TODO CHANGES \
+				THANKS BUGS FAQ CREDITS CHANGELOG; do
+			if [[ -s ${f} ]]; then
+				dodoc "${f}" || die "(default) dodoc ${f} failed"
+			fi
+		done
+	fi
+	if [[ ${HTML_DOCS} ]]; then
+		dohtml -r "${HTML_DOCS[@]}" || die "dohtml failed"
+	fi
 
 	# Remove libtool files and unnecessary static libs
-	remove_libtool_files
+	prune_libtool_files
 }
 
 # @FUNCTION: autotools-utils_src_test
@@ -300,8 +490,8 @@ autotools-utils_src_test() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	_check_build_dir
-	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null
+	pushd "${AUTOTOOLS_BUILD_DIR}" > /dev/null || die
 	# Run default src_test as defined in ebuild.sh
 	default_src_test
-	popd > /dev/null
+	popd > /dev/null || die
 }

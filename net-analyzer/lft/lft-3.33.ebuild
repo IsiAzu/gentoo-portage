@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/lft-3.33.ebuild,v 1.1 2011/11/24 18:59:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/lft-3.33.ebuild,v 1.6 2012/02/01 17:37:40 jer Exp $
 
 EAPI="4"
 
@@ -10,18 +10,14 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="VOSTROM"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="amd64 ppc x86 ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="net-libs/libpcap"
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-cp -av Makefile.in{,.org}
-	sed -i Makefile.in -e '/[Ss]trip/d' || die
-}
+DOCS=( CHANGELOG README TODO )
 
-src_install() {
-	default
-	dodoc CHANGELOG README TODO
+src_prepare() {
+	sed -i Makefile.in -e '/[Ss]trip/d' || die
 }

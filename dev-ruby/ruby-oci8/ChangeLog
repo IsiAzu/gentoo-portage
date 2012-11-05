@@ -1,6 +1,22 @@
 # ChangeLog for dev-ruby/ruby-oci8
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-oci8/ChangeLog,v 1.19 2011/11/06 10:25:30 graaff Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-oci8/ChangeLog,v 1.23 2012/09/16 08:53:43 graaff Exp $
+
+  16 Sep 2012; Hans de Graaff <graaff@gentoo.org> -ruby-oci8-1.0.7-r1.ebuild,
+  -ruby-oci8-2.0.3.ebuild:
+  Cleanup.
+
+  25 Jan 2012; Thomas Kahle <tomka@gentoo.org> ruby-oci8-2.0.6.ebuild:
+  x86 stable per bug 389711
+
+  22 Jan 2012; Agostino Sarubbo <ago@gentoo.org> ruby-oci8-2.0.6.ebuild:
+  Stable for AMD64, wrt bug #389711
+
+*ruby-oci8-2.0.6-r1 (22 Jan 2012)
+
+  22 Jan 2012; Hans de Graaff <graaff@gentoo.org> ruby-oci8-2.0.6.ebuild,
+  +ruby-oci8-2.0.6-r1.ebuild:
+  Revision bump to create stable candidate.
 
 *ruby-oci8-2.0.6 (06 Nov 2011)
 

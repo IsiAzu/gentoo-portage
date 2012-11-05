@@ -1,9 +1,9 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/scsh.eclass,v 1.7 2006/09/09 15:17:01 christel Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/scsh.eclass,v 1.9 2012/06/02 19:16:31 zmedico Exp $
 #
 
-inherit eutils
+inherit eutils multilib
 
 LICENSE="as-is BSD"
 SLOT="0"

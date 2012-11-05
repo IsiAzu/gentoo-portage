@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git-2.eclass,v 1.26 2011/09/23 14:10:47 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git-2.eclass,v 1.29 2012/04/03 10:32:09 pacho Exp $
 
 # @ECLASS: git-2.eclass
 # @MAINTAINER:
-# Donnie Berkholz <dberkholz@gentoo.org>
 # Michał Górny <mgorny@gentoo.org>
+# Donnie Berkholz <dberkholz@gentoo.org>
 # @BLURB: Eclass for fetching and unpacking git repositories.
 # @DESCRIPTION:
 # Eclass for easing maitenance of live ebuilds using git as remote repository.
@@ -248,7 +248,7 @@ git-2_prepare_storedir() {
 	if [[ ! -d ${EGIT_STORE_DIR} ]]; then
 		debug-print "${FUNCNAME}: Creating git main storage directory"
 		addwrite /
-		mkdir -p "${EGIT_STORE_DIR}" \
+		mkdir -m 775 -p "${EGIT_STORE_DIR}" \
 			|| die "${FUNCNAME}: can't mkdir \"${EGIT_STORE_DIR}\""
 	fi
 
@@ -278,7 +278,8 @@ git-2_prepare_storedir() {
 		if [[ ${EGIT_PROJECT} ]]; then
 			clone_dir=${EGIT_PROJECT}
 		else
-			clone_dir=${EGIT_REPO_URI##*/}
+			local strippeduri=${EGIT_REPO_URI%/.git}
+			clone_dir=${strippeduri##*/}
 		fi
 		EGIT_DIR=${EGIT_STORE_DIR}/${clone_dir}
 

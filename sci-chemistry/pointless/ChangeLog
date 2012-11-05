@@ -1,6 +1,31 @@
 # ChangeLog for sci-chemistry/pointless
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/pointless/ChangeLog,v 1.29 2011/10/16 12:28:46 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/pointless/ChangeLog,v 1.34 2012/10/19 15:19:34 jlec Exp $
+
+  19 Oct 2012; Justin Lecher <jlec@gentoo.org> +pointless-1.6.14.ebuild,
+  -pointless-1.6.15.ebuild:
+  Drop broken version
+
+*pointless-1.6.15 (19 Oct 2012)
+
+  19 Oct 2012; Justin Lecher <jlec@gentoo.org> pointless-1.6.2.ebuild,
+  -pointless-1.6.4.ebuild, -pointless-1.6.5.ebuild, -pointless-1.6.11.ebuild,
+  -pointless-1.6.14.ebuild, +pointless-1.6.15.ebuild:
+  Remove virtual/fortran and always call fortran-2_pkg_setup as intend by the
+  updated fortran-2.eclass
+
+  14 Apr 2012; Andreas Schuerch <nativemad@gentoo.org> pointless-1.6.2.ebuild:
+  x86 stable, see bug 375917, thanks all.
+
+*pointless-1.6.14 (28 Feb 2012)
+
+  28 Feb 2012; Justin Lecher <jlec@gentoo.org> +pointless-1.6.14.ebuild:
+  Version Bump
+
+*pointless-1.6.11 (27 Dec 2011)
+
+  27 Dec 2011; Justin Lecher <jlec@gentoo.org> +pointless-1.6.11.ebuild:
+  Version Bump
 
   16 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> pointless-1.6.2.ebuild:
   amd64 restable

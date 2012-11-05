@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/dvtm/dvtm-0.7.ebuild,v 1.1 2011/10/27 01:10:54 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/dvtm/dvtm-0.7.ebuild,v 1.4 2012/01/15 15:55:06 phajdan.jr Exp $
 
 EAPI=3
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.brain-dump.org/projects/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="unicode"
 
 DEPEND="sys-libs/ncurses[unicode?]"
@@ -34,7 +34,7 @@ src_prepare() {
 		-e '/strip/d' \
 		Makefile || die "sed Makefile failed"
 
-	use savedconfig && restore_config config.h
+	restore_config config.h
 }
 
 src_compile() {

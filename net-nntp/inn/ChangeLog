@@ -1,6 +1,23 @@
 # ChangeLog for net-nntp/inn
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/inn/ChangeLog,v 1.40 2011/08/06 03:51:55 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/inn/ChangeLog,v 1.45 2012/08/30 08:42:17 phajdan.jr Exp $
+
+  30 Aug 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> inn-2.5.3.ebuild:
+  x86 stable wrt bug #432002
+
+  22 Aug 2012; Agostino Sarubbo <ago@gentoo.org> inn-2.5.3.ebuild:
+  Stable for amd64, wrt bug #432002
+
+  22 Aug 2012; Jeroen Roovers <jer@gentoo.org> inn-2.5.3.ebuild:
+  Use fowners instead of chown (bug #432256).
+
+*inn-2.5.3 (20 Aug 2012)
+
+  20 Aug 2012; Jeroen Roovers <jer@gentoo.org> +inn-2.5.3.ebuild, files/innd:
+  Version bump (bug #432002).
+
+  08 Feb 2012; Sergei Trofimovich <slyfox@gentoo.org> files/innd:
+  Converted /etc/init.d/innd to use --user instead of --chuid.
 
   06 Aug 2011; Jeroen Roovers <jer@gentoo.org> inn-2.5.2-r1.ebuild:
   Replace piped sed calls with single combined sed scripts.

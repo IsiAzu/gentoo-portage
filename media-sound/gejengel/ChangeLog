@@ -1,6 +1,18 @@
 # ChangeLog for media-sound/gejengel
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gejengel/ChangeLog,v 1.20 2011/11/11 20:26:09 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gejengel/ChangeLog,v 1.23 2012/11/04 10:47:21 hwoarang Exp $
+
+  04 Nov 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  s/sound/proxy-maintainers/
+
+*gejengel-0.1.4-r1 (27 Aug 2012)
+
+  27 Aug 2012; Markos Chandras <hwoarang@gentoo.org> +gejengel-0.1.4-r1.ebuild:
+  Respect CXXFLAGS. Bug #429950. Fix deprecation warnings for the desktop file.
+
+  21 Dec 2011; Alexis Ballier <aballier@gentoo.org> gejengel-0.1.4.ebuild,
+  +files/gejengel-0.1.4-ffmpeg.patch:
+  fix build with latest ffmpeg, bug #377991
 
   11 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> gejengel-0.1.4.ebuild:
   Remove libsexymm from dependencies wrt #381205
@@ -77,4 +89,3 @@
   Vanden
   Boer ( upstream developer )<dirk.vdb@gmail.com> for the initial ebuild. He
   will be proxy maintainer.
-

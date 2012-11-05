@@ -1,6 +1,63 @@
 # ChangeLog for media-video/minitube
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/minitube/ChangeLog,v 1.61 2011/11/02 14:45:46 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/minitube/ChangeLog,v 1.75 2012/09/27 20:03:17 hwoarang Exp $
+
+*minitube-1.9 (27 Sep 2012)
+
+  27 Sep 2012; Markos Chandras <hwoarang@gentoo.org>
+  +files/minitube-1.9-gcc47.patch, +minitube-1.9.ebuild:
+  Version bump
+
+  27 Aug 2012; Johannes Huber <johu@gentoo.org> -minitube-1.7.1.ebuild:
+  Remove old.
+
+  27 Aug 2012; Johannes Huber <johu@gentoo.org> minitube-1.8.ebuild:
+  Stable for x86, wrt bug #432778
+
+  26 Aug 2012; Agostino Sarubbo <ago@gentoo.org> minitube-1.8.ebuild:
+  Stable for amd64, wrt bug #432778
+
+  27 Jul 2012; Ben de Groot <yngwin@gentoo.org> minitube-1.7.1.ebuild,
+  minitube-1.8.ebuild:
+  Add fix for l10n usage, bug #428206
+
+  26 Jul 2012; Ben de Groot <yngwin@gentoo.org> minitube-1.7.1.ebuild,
+  minitube-1.8.ebuild:
+  Use l10n.eclass for handling locales.
+
+  02 Jul 2012; Markos Chandras <hwoarang@gentoo.org>
+  +files/minitube-1.8-gcc4.7.patch, minitube-1.8.ebuild:
+  Update linguas. Fix compilation with gcc-4.7. Bug #422977
+
+*minitube-1.8 (02 Jul 2012)
+
+  02 Jul 2012; Markos Chandras <hwoarang@gentoo.org> +minitube-1.8.ebuild:
+  Version bump
+
+  06 Apr 2012; Davide Pesavento <pesa@gentoo.org> -minitube-1.6.ebuild,
+  -minitube-1.7.ebuild:
+  Remove old.
+
+  06 Apr 2012; Agostino Sarubbo <ago@gentoo.org> minitube-1.7.1.ebuild:
+  Stable for amd64, wrt bug #410893
+
+  05 Apr 2012; Jeff Horelick <jdhore@gentoo.org> minitube-1.7.1.ebuild:
+  marked x86 per bug 410893
+
+*minitube-1.7.1 (03 Mar 2012)
+
+  03 Mar 2012; Markos Chandras <hwoarang@gentoo.org> +minitube-1.7.1.ebuild:
+  Version bump
+
+  16 Feb 2012; Davide Pesavento <pesa@gentoo.org>
+  -files/minitube-1.5-use-correct-env-variable.patch, -minitube-1.5-r1.ebuild,
+  minitube-1.7.ebuild:
+  Cleanup 1.7 ebuild; remove old and unused 1.5-r1.
+
+*minitube-1.7 (06 Jan 2012)
+
+  06 Jan 2012; Markos Chandras <hwoarang@gentoo.org> +minitube-1.7.ebuild:
+  Version bump. Bug #397783
 
   02 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> minitube-1.6.ebuild:
   x86 stable wrt bug #388867
@@ -264,4 +321,3 @@
   09 Jun 2009; Markos Chandras <hwoarang@gentoo.org> +minitube-0.2.1.ebuild,
   +files/kde_phonon.patch, +metadata.xml:
   Initial commit of minitube application
-

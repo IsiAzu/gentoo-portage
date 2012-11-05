@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libva-intel-driver/libva-intel-driver-1.0.15.ebuild,v 1.1 2011/11/04 12:56:03 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libva-intel-driver/libva-intel-driver-1.0.15.ebuild,v 1.4 2012/05/05 03:52:27 jdhore Exp $
 
 EAPI="3"
 
@@ -27,7 +27,7 @@ fi
 LICENSE="MIT"
 SLOT="0"
 if [ "${PV%9999}" = "${PV}" ] ; then
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 else
 	KEYWORDS=""
 fi
@@ -38,7 +38,7 @@ RDEPEND=">=x11-libs/libva-1.0.14
 	>=x11-libs/libdrm-2.4.23[video_cards_intel]"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_prepare() {
 	eautoreconf

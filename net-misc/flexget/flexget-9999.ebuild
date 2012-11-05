@@ -1,31 +1,37 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/flexget/flexget-9999.ebuild,v 1.3 2011/10/18 03:24:39 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/flexget/flexget-9999.ebuild,v 1.27 2012/11/02 23:05:30 mr_bones_ Exp $
 
 EAPI=4
 
-PYTHON_DEPEND="2:2.5"
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="2.4 3.*"
-DISTUTILS_SRC_TEST="setup.py"
+PYTHON_COMPAT=( python2_{6,7} )
 
-inherit distutils eutils subversion
+inherit distutils-r1 eutils
 
-DESCRIPTION="Multipurpose automation tool for content like torrents, nzbs, podcasts, comics, etc"
+if [[ ${PV} != 9999 ]]; then
+	MY_P="FlexGet-${PV/_beta/r}"
+	SRC_URI="http://download.flexget.com/unstable/${MY_P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+else
+	inherit subversion
+	SRC_URI=""
+	ESVN_REPO_URI="http://svn.flexget.com/trunk"
+	KEYWORDS=""
+fi
+
+DESCRIPTION="Multipurpose automation tool for content like torrents, nzbs, podcasts, comics"
 HOMEPAGE="http://flexget.com/"
-SRC_URI=""
-ESVN_REPO_URI="http://svn.flexget.com/trunk"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
-IUSE="deluge test transmission"
+IUSE="test"
 
-RDEPEND="
-	dev-python/feedparser
+DEPEND="
+	>=dev-python/feedparser-5.1.2
 	>=dev-python/sqlalchemy-0.7
 	dev-python/pyyaml
-	dev-python/beautifulsoup
+	dev-python/beautifulsoup:python-2
+	dev-python/beautifulsoup:4
 	dev-python/html5lib
 	dev-python/jinja
 	dev-python/PyRSS2Gen
@@ -33,25 +39,36 @@ RDEPEND="
 	dev-python/progressbar
 	dev-python/flask
 	dev-python/cherrypy
-"
-DEPEND="
+	dev-python/python-dateutil
+	=dev-python/requests-0.14*
 	dev-python/setuptools
-	dev-python/paver
-	test? ( ${RDEPEND} dev-python/nose )
+	virtual/python-argparse[${PYTHON_USEDEP}]
 "
-RDEPEND+="
-	dev-python/setuptools
-	deluge? ( net-p2p/deluge )
-	transmission? ( dev-python/transmissionrpc )
-"
+RDEPEND="${DEPEND}"
+DEPEND+=" test? ( dev-python/nose )"
 
-src_prepare() {
+if [[ ${PV} == 9999 ]]; then
+	DEPEND+=" dev-python/paver"
+else
+	S="${WORKDIR}/${MY_P}"
+fi
+
+python_prepare_all() {
 	# Prevent setup from grabbing nose from pypi
-	sed -e /setup_requires/d -i pavement.py || die
+	sed -e /setup_requires/d \
+		-e '/SQLAlchemy/s/, <0.8//' \
+		-e '/BeautifulSoup/s/, <3.3//' \
+		-e '/beautifulsoup4/s/, <4.2//' \
+		-i pavement.py || die
 
-	# Generate setup.py
-	paver generate_setup || die
+	if [[ ${PV} == 9999 ]]; then
+		# Generate setup.py
+		paver generate_setup || die
+	fi
 
-	epatch_user
-	distutils_src_prepare
+	distutils-r1_python_prepare_all
+}
+
+python_test() {
+	esetup.py test
 }

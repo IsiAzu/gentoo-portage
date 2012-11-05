@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xemacs/xemacs-21.5.31.ebuild,v 1.6 2011/10/10 19:11:29 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xemacs/xemacs-21.5.31.ebuild,v 1.12 2012/10/24 18:58:39 ulm Exp $
 
 # Note: xemacs currently does not work with a hardened profile. If you
 # want to use xemacs on a hardened profile then compile with the
@@ -18,8 +18,8 @@ SRC_URI="http://ftp.xemacs.org/xemacs-21.5/${P}.tar.gz
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
-IUSE="alsa debug eolconv esd gif gpm pop postgres ldap xface nas dnd X jpeg tiff png mule motif freewnn canna xft xim athena neXt Xaw3d gdbm berkdb"
+KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+IUSE="alsa debug eolconv gif gpm pop postgres ldap xface nas dnd X jpeg tiff png mule motif freewnn canna xft xim athena neXt Xaw3d gdbm berkdb"
 
 X_DEPEND="x11-libs/libXt x11-libs/libXmu x11-libs/libXext x11-misc/xbitmaps"
 
@@ -33,14 +33,13 @@ RDEPEND="
 	postgres? ( dev-db/postgresql-base )
 	ldap? ( net-nds/openldap )
 	alsa? ( media-libs/alsa-lib )
-	esd? ( media-sound/esound )
 	nas? ( media-libs/nas )
 	X? ( $X_DEPEND !Xaw3d? ( !neXt? ( x11-libs/libXaw ) ) )
 	dnd? ( x11-libs/dnd )
-	motif? ( >=x11-libs/openmotif-2.3:0[xft=] )
+	motif? ( >=x11-libs/motif-2.3:0[xft=] )
 	athena? ( x11-libs/libXaw )
 	Xaw3d? ( x11-libs/libXaw3d )
-	xft? ( media-libs/freetype x11-libs/libXft x11-libs/libXrender >=media-libs/fontconfig-2.5.0 )
+	xft? ( media-libs/freetype:2 x11-libs/libXft x11-libs/libXrender >=media-libs/fontconfig-2.5.0 )
 	neXt? ( x11-libs/neXtaw )
 	xface? ( media-libs/compface )
 	tiff? ( media-libs/tiff )
@@ -140,7 +139,6 @@ src_configure() {
 
 	# This determines how these sounds should be played
 	use nas	&& soundconf="${soundconf},nas"
-	use esd && soundconf="${soundconf},esd"
 	use alsa && soundconf="${soundconf},alsa"
 
 	myconf="${myconf} --with-sound=${soundconf}"
@@ -215,11 +213,9 @@ src_install() {
 	cd "${S}"
 	dodoc CHANGES-* ChangeLog INSTALL Installation PROBLEMS README*
 
-	insinto /usr/share/pixmaps
-	newins "${S}"/etc/${PN}-icon.xpm ${PN}.xpm
+	newicon "${S}"/etc/${PN}-icon.xpm ${PN}.xpm
 
-	insinto /usr/share/applications
-	doins "${FILESDIR}"/${PN}.desktop
+	domenu "${FILESDIR}"/${PN}.desktop
 }
 
 pkg_postinst() {

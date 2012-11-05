@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/unrealircd/unrealircd-3.2.9.ebuild,v 1.2 2011/11/09 18:13:51 binki Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/unrealircd/unrealircd-3.2.9.ebuild,v 1.7 2012/05/03 06:27:13 jdhore Exp $
 
 EAPI=4
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.unrealircd.com/downloads/${MY_P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd ~amd64-linux"
+KEYWORDS="amd64 ppc x86 ~x86-fbsd ~amd64-linux"
 IUSE="curl ipv6 +extban-stacking +operoverride +spoof operoverride-verify +prefixaq
 	showlistmodes shunnotices ssl topicisnuhost +usermod zlib"
 
@@ -25,7 +25,7 @@ RDEPEND="ssl? ( dev-libs/openssl )
 	>=net-dns/c-ares-1.7"
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
-	>=dev-util/pkgconfig-0.25"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/Unreal$(get_version_component_range 1-2)
 

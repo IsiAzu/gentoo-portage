@@ -1,21 +1,21 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/yap/yap-6.2.2.ebuild,v 1.2 2011/10/23 20:01:16 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/yap/yap-6.2.2.ebuild,v 1.9 2012/06/06 03:17:38 zmedico Exp $
 
 EAPI=2
 
-inherit eutils flag-o-matic java-pkg-opt-2
+inherit eutils flag-o-matic java-pkg-opt-2 multilib
 
-PATCHSET_VER="1"
+PATCHSET_VER="2"
 
 DESCRIPTION="YAP is a high-performance Prolog compiler."
-HOMEPAGE="http://www.ncc.up.pt/~vsc/Yap/"
-SRC_URI="http://www.ncc.up.pt/~vsc/Yap/${P}.tar.gz
+HOMEPAGE="http://www.dcc.fc.up.pt/~vsc/Yap/"
+SRC_URI="http://www.dcc.fc.up.pt/~vsc/Yap/${P}.tar.gz
 	mirror://gentoo/${P}-gentoo-patchset-${PATCHSET_VER}.tar.gz"
 
 LICENSE="Artistic LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ppc x86"
 IUSE="debug doc examples gmp java mpi mysql odbc readline static threads"
 
 RDEPEND="sys-libs/zlib
@@ -24,7 +24,7 @@ RDEPEND="sys-libs/zlib
 	mpi? ( virtual/mpi )
 	mysql? ( virtual/mysql )
 	odbc? ( dev-db/unixODBC )
-	readline? ( sys-libs/readline )"
+	readline? ( sys-libs/readline sys-libs/ncurses )"
 
 DEPEND="${RDEPEND}
 	doc? ( app-text/texi2html )"

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8_p11.ebuild,v 1.5 2011/11/13 21:09:29 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8_p11.ebuild,v 1.9 2012/02/01 10:28:56 ssuominen Exp $
 
 EAPI="2"
 
@@ -16,7 +16,7 @@ SRC_URI="http://procps.sourceforge.net/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc x86"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
 IUSE="unicode"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2[unicode?]"
@@ -41,6 +41,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.2.3-noproc.patch
 	epatch "${FILESDIR}"/${PN}-3.2.8-toprc-fixup.patch
 	epatch "${FILESDIR}"/${PN}-3.2.8-r1-forest-prefix.patch
+	epatch "${FILESDIR}"/${PN}-3.2.8-time_t.patch
 
 	# Clean up the makefile
 	#  - we do stripping ourselves

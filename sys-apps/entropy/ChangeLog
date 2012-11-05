@@ -1,6 +1,64 @@
 # ChangeLog for sys-apps/entropy
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/entropy/ChangeLog,v 1.17 2011/11/23 21:50:07 lxnay Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/entropy/ChangeLog,v 1.30 2012/09/27 10:58:55 lxnay Exp $
+
+*entropy-144 (27 Sep 2012)
+
+  27 Sep 2012; Fabio Erculiani <lxnay@gentoo.org> +entropy-144.ebuild:
+  version bump
+
+  24 Aug 2012; Fabio Erculiani <lxnay@gentoo.org> -entropy-1.0_rc38.ebuild,
+  -entropy-1.0_rc43.ebuild, -entropy-1.0_rc53.ebuild, -entropy-1.0_rc59.ebuild,
+  -entropy-1.0_rc76.ebuild, -entropy-1.0_rc77.ebuild, -entropy-1.0_rc80.ebuild,
+  -entropy-1.0_rc87.ebuild, -entropy-1.0_rc90.ebuild,
+  -entropy-1.0_rc124.ebuild:
+  drop older versions
+
+*entropy-136 (24 Aug 2012)
+
+  24 Aug 2012; Fabio Erculiani <lxnay@gentoo.org> +entropy-136.ebuild:
+  version bump
+
+  11 Jul 2012; Fabio Erculiani <lxnay@gentoo.org> entropy-1.0_rc124.ebuild:
+  inherit user...
+
+*entropy-1.0_rc124 (11 Jul 2012)
+
+  11 Jul 2012; Fabio Erculiani <lxnay@gentoo.org> +entropy-1.0_rc124.ebuild:
+  version bump
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> entropy-1.0_rc38.ebuild,
+  entropy-1.0_rc43.ebuild, entropy-1.0_rc53.ebuild, entropy-1.0_rc59.ebuild,
+  entropy-1.0_rc76.ebuild, entropy-1.0_rc77.ebuild, entropy-1.0_rc80.ebuild,
+  entropy-1.0_rc87.ebuild, entropy-1.0_rc90.ebuild:
+  Inherit user for enewuser/etc...
+
+*entropy-1.0_rc90 (23 Mar 2012)
+
+  23 Mar 2012; Fabio Erculiani <lxnay@gentoo.org> +entropy-1.0_rc90.ebuild:
+  version bump
+
+  12 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> entropy-1.0_rc87.ebuild:
+  Revert back to ~ppc64 because this is not ready to be stabilized.
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> entropy-1.0_rc87.ebuild:
+  Marking entropy-1.0_rc87 ppc64 stable for bug 407643
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> entropy-1.0_rc87.ebuild:
+  Marking entropy-1.0_rc87 ~ppc64 for bug 387959
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> entropy-1.0_rc87.ebuild:
+  Marking entropy-1.0_rc87 ~ppc for bug 387959
+
+*entropy-1.0_rc87 (12 Feb 2012)
+
+  12 Feb 2012; Fabio Erculiani <lxnay@gentoo.org> +entropy-1.0_rc87.ebuild:
+  version bump
+
+*entropy-1.0_rc80 (22 Dec 2011)
+
+  22 Dec 2011; Fabio Erculiani <lxnay@gentoo.org> +entropy-1.0_rc80.ebuild:
+  version bump
 
 *entropy-1.0_rc77 (23 Nov 2011)
 

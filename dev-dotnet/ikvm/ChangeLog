@@ -1,6 +1,37 @@
 # ChangeLog for dev-dotnet/ikvm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/ikvm/ChangeLog,v 1.29 2011/11/10 19:16:47 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/ikvm/ChangeLog,v 1.36 2012/07/21 16:16:24 pacho Exp $
+
+  21 Jul 2012; Pacho Ramos <pacho@gentoo.org> ikvm-0.46.0.2.ebuild,
+  ikvm-7.1.4532.2.ebuild:
+  Use proper jdk slots to build, bug #422603 by Ralph Sennhauser.
+
+*ikvm-7.1.4532.2 (21 Jul 2012)
+
+  21 Jul 2012; Pacho Ramos <pacho@gentoo.org> +files/ikvm-7.1.4532.2-key.patch,
+  +ikvm-7.1.4532.2.ebuild:
+  Version bump.
+
+  22 May 2012; Agostino Sarubbo <ago@gentoo.org> ikvm-0.46.0.2.ebuild:
+  Stable for amd64, wrt bug #407701
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> ikvm-0.46.0.1.ebuild,
+  ikvm-0.46.0.2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  09 Apr 2012; Markus Meier <maekke@gentoo.org> ikvm-0.46.0.2.ebuild:
+  x86 stable, bug #407701
+
+  28 Feb 2012; Pacho Ramos <pacho@gentoo.org>
+  +files/ikvm-0.46.0.2-unmappable-character.patch, ikvm-0.46.0.2.ebuild:
+  Fix unmappable character for encoding ASCII, bug #399729 by Dennis Schridde;
+  restrict to jdk:1.6, bug #405933
+
+*ikvm-0.46.0.2 (21 Jan 2012)
+
+  21 Jan 2012; Pacho Ramos <pacho@gentoo.org> +ikvm-0.46.0.2.ebuild,
+  -files/ikvm-0.44.0.5-key.patch, -ikvm-0.44.0.6.ebuild:
+  Version bump, drop old.
 
   10 Nov 2011; Kacper Kowalik <xarthisius@gentoo.org> ikvm-0.46.0.1.ebuild:
   ppc stable wrt #389181
@@ -152,4 +183,3 @@
   30 Jun 2004; Peter Johanson <latexer@gentoo.org> +metadata.xml,
   +ikvm-0.8.0.0.ebuild:
   Initial commit. Version that goess with mono-1.0
-

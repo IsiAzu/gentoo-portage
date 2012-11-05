@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/preload
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.21 2011/02/27 20:48:25 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.23 2012/09/14 19:15:00 pacho Exp $
+
+*preload-0.6.4-r3 (14 Sep 2012)
+
+  14 Sep 2012; Pacho Ramos <pacho@gentoo.org> +files/preload-0.6.4.init.in-r2,
+  +preload-0.6.4-r3.ebuild:
+  Execute ionice properly, bug #430988 by Krzysztof Magusiak.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> preload-0.6.4-r2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   27 Feb 2011; Markos Chandras <hwoarang@gentoo.org> preload-0.6.4-r2.ebuild:
   Stable on amd64 wrt bug #356309
@@ -131,4 +140,3 @@
   Initial import, ebuild based off the work by robert.zhangle in the Gentoo
   China overlay. preload is an adaptive readahead deamon that is very non
   resource intensive and a very 'smart' app.
-

@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/murmur/murmur-1.2.3.ebuild,v 1.2 2011/06/14 20:09:31 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/murmur/murmur-1.2.3.ebuild,v 1.4 2012/06/09 23:13:11 zmedico Exp $
 
 EAPI="2"
 
-inherit eutils qt4-r2
+inherit eutils qt4-r2 user
 
 MY_P="${PN/murmur/mumble}-${PV/_/~}"
 
@@ -30,7 +30,7 @@ RDEPEND=">=dev-libs/openssl-1.0.0b
 
 DEPEND="${RDEPEND}
 	>=dev-libs/boost-1.41.0
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S="${WORKDIR}/${MY_P}"
 

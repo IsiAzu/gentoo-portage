@@ -1,6 +1,19 @@
 # ChangeLog for dev-perl/MRO-Compat
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/MRO-Compat/ChangeLog,v 1.18 2011/09/24 13:14:32 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/MRO-Compat/ChangeLog,v 1.22 2012/09/01 11:39:02 grobian Exp $
+
+  01 Sep 2012; Fabian Groffen <grobian@gentoo.org> MRO-Compat-0.110.0.ebuild:
+  Marked ~ppc-aix, bug #432288
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> MRO-Compat-0.110.0.ebuild:
+  Marking MRO-Compat-0.110.0 ppc64 for bug 400097
+
+  25 Feb 2012; Tobias Klausmann <klausman@gentoo.org>
+  MRO-Compat-0.110.0.ebuild:
+  Stable on alpha, bug #400095
 
   24 Sep 2011; Fabian Groffen <grobian@gentoo.org> MRO-Compat-0.110.0.ebuild:
   Marked ~x64-macos
@@ -65,4 +78,3 @@
   14 Jan 2009; Torsten Veller <tove@gentoo.org> +metadata.xml,
   +MRO-Compat-0.09.ebuild:
   Initial commit. From the perl overlay
-

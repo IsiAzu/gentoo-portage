@@ -2,7 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>qt</herd>
-	<longdescription lang="en">
-	</longdescription>
+	<upstream>
+		<remote-id type="sourceforge">kst</remote-id>
+		<bugs-to>http://bugs.kde.org/</bugs-to>
+	</upstream>
 </pkgmetadata>
-

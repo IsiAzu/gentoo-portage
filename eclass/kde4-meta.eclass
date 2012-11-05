@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.58 2011/10/29 15:07:16 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.68 2012/09/04 14:08:24 johu Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -37,28 +37,6 @@ case ${KMNAME} in
 			COMMONDEPEND+=" $(add_kdebase_dep libkdegames)"
 		fi
 		;;
-	koffice)
-		[[ ${PN} != koffice-data ]] && IUSE+=" debug"
-		RDEPEND+="
-			!app-office/${PN}:0
-			!app-office/koffice:0
-			!app-office/koffice-meta:0
-		"
-		if has openexr ${IUSE//+}; then
-			COMMONDEPEND+=" media-gfx/imagemagick[openexr?]"
-		else
-			COMMONDEPEND+=" media-gfx/imagemagick"
-		fi
-
-		COMMONDEPEND+="
-			dev-cpp/eigen:2
-			media-libs/fontconfig
-			media-libs/freetype:2
-		"
-		if [[ ${PN} != koffice-libs && ${PN} != koffice-data ]]; then
-			COMMONDEPEND+=" >=app-office/koffice-libs-${PV}:${SLOT}"
-		fi
-		;;
 esac
 
 DEPEND+=" ${COMMONDEPEND}"
@@ -69,7 +47,7 @@ debug-print "line ${LINENO} ${ECLASS}: DEPEND ${DEPEND} - after metapackage-spec
 debug-print "line ${LINENO} ${ECLASS}: RDEPEND ${RDEPEND} - after metapackage-specific dependencies"
 
 # Useful to build kde4-meta style stuff from extragear/playground (plasmoids etc)
-case ${BUILD_TYPE} in
+case ${KDE_BUILD_TYPE} in
 	live)
 		if [[ ${KDE_SCM} == svn ]]; then
 			case ${KMNAME} in
@@ -147,7 +125,7 @@ kde4-meta_pkg_setup() {
 kde4-meta_src_unpack() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ ${BUILD_TYPE} = live ]]; then
+	if [[ ${KDE_BUILD_TYPE} = live ]]; then
 		case "${KDE_SCM}" in
 			svn)
 				migrate_store_dir
@@ -173,7 +151,7 @@ kde4-meta_src_unpack() {
 kde4-meta_src_extract() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ ${BUILD_TYPE} = live ]]; then
+	if [[ ${KDE_BUILD_TYPE} = live ]]; then
 		# Export working copy to ${S}
 		einfo "Exporting parts of working copy to ${S}"
 		kde4-meta_create_extractlists
@@ -210,8 +188,13 @@ kde4-meta_src_extract() {
 	else
 		local abort tarball tarfile f extractlist postfix
 
-		KMTARPARAMS+=" --bzip2"
-		postfix="bz2"
+		if [[ ${PV} =~ 4.[47].[12345] ]]; then
+			postfix="bz2"
+			KMTARPARAMS+=" --bzip2"
+		else
+			postfix="xz"
+			KMTARPARAMS+=" --xz"
+		fi
 
 		case ${KMNAME} in
 			kdebase-apps)
@@ -248,12 +231,7 @@ kde4-meta_src_extract() {
 		# Print out all issues found executing tar / kmextract files
 		# Set on if you want to find issues in kde-base ebuild unpack sequences
 		[[ -n ${KDE4_STRICTER} ]] && echo 'tar -xpf "${tarfile}" ${KMTARPARAMS} ${extractlist}'
-		if [[ ${I_KNOW_WHAT_I_AM_DOING} ]]; then
-			# to make the devs happy - bug 338397
-			tar -xpf "${tarfile}" ${KMTARPARAMS} ${extractlist} || ewarn "tar extract command failed at least partially - continuing anyway"
-		else
-			tar -xpf "${tarfile}" ${KMTARPARAMS} ${extractlist} 2> /dev/null || echo "tar extract command failed at least partially - continuing anyway"
-		fi
+		tar -xpf "${tarfile}" ${KMTARPARAMS} ${extractlist} 2> /dev/null || echo "tar extract command failed at least partially - continuing anyway"
 
 		# Default $S is based on $P; rename the extracted directory to match $S if necessary
 		if [[ ${KMNAME} != ${PN} ]]; then
@@ -312,6 +290,7 @@ kde4-meta_create_extractlists() {
 			;;
 		kdebase-runtime | kde-runtime)
 			KMEXTRACTONLY+="
+				CTestConfig.cmake
 				config-runtime.h.cmake"
 			;;
 		kdebase-workspace | kde-workspace)
@@ -355,20 +334,6 @@ kde4-meta_create_extractlists() {
 			KMEXTRACTONLY+="
 				kdeutils-version.h"
 			;;
-		koffice)
-			KMEXTRACTONLY+="
-				filters/config-filters.h.cmake
-			"
-			case ${PV} in
-				2.[12].*)
-					KMEXTRACTONLY+="
-						config-endian.h.cmake
-						config-openexr.h.cmake
-						config-opengl.h.cmake
-						config-prefix.h.cmake"
-				;;
-			esac
-			;;
 	esac
 	# Don't install cmake modules for split ebuilds, to avoid collisions.
 	# note: kdegraphics >= 4.6.2 does not even have code to do that, so we
@@ -377,19 +342,12 @@ kde4-meta_create_extractlists() {
 	#   it may be possible to formulate this shorter, but it should also
 	#   still be understandable...
 	if [[ ${KMNAME} != kdegraphics || ( ( $(get_kde_version) != 4.6 || ${PV} < 4.6.2 ) && $(get_kde_version) < 4.7 ) ]] \
-		&& ! [[ ${KMNAME} == kdeedu && ( ${PV} == 4.6.4 || ${PV} == 4.6.5 ) ]]; then
+		&& ! [[ ${KMNAME} == kdeedu && ( ${PV} == 4.6.4 || ${PV} == 4.6.5 ) ]] \
+		&& ! [[ ${KMNAME} == kdegames && ${PV} > 4.9.0 ]]; then
 		case ${KMNAME} in
 			kdebase-runtime|kde-runtime|kdebase-workspace|kde-workspace|kdeedu|kdegames|kdegraphics)
-				case ${PN} in
-					libkdegames|libkdeedu|libkworkspace)
-						KMEXTRA+="
-							cmake/modules/"
-						;;
-					*)
-						KMCOMPILEONLY+="
-							cmake/modules/"
-						;;
-				esac
+				KMEXTRACTONLY+="
+					cmake/modules/"
 			;;
 		esac
 	fi
@@ -495,6 +453,13 @@ kde4-meta_change_cmakelists() {
 			-i CMakeLists.txt || die "${LINENO}: cmake sed died"
 	fi
 
+	# Restore "add_subdirectory( ${ ..." (this is done in kdesdk)
+	if [[ -f CMakeLists.txt ]]; then
+		sed -e '/add_subdirectory[[:space:]]*([[:space:]]*\${/s/^#DONOTCOMPILE //' \
+			-e '/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*\${/s/^#DONOTCOMPILE //' \
+			-i CMakeLists.txt || die "${LINENO}: cmake sed died"
+	fi
+
 	if [[ -z ${KMNOMODULE} ]]; then
 		# Restore "add_subdirectory" in $KMMODULE subdirectories
 		find "${S}"/${KMMODULE} -name CMakeLists.txt -print0 | \
@@ -556,6 +521,9 @@ kde4-meta_change_cmakelists() {
 				sed -e '/startkde/s/^/#DONOTINSTALL /' \
 					-i CMakeLists.txt || die "${LINENO}: sed died in the kdebase-startkde collision prevention section"
 			fi
+			# Remove workspace target prefix in order to get direct linking to workspace libs
+			sed -e '/set(KDE4WORKSPACE_TARGET_PREFIX/s/^/#OVERRIDE /' \
+				-i CMakeLists.txt || die "${LINENO}: sed died in KDE4WORKSPACE_TARGET_PREFIX removal section"
 			# Strip EXPORT feature section from workspace for KDE4 versions > 4.1.82
 			if [[ ${PN} != libkworkspace ]]; then
 				sed -e '/install(FILES ${CMAKE_CURRENT_BINARY_DIR}\/KDE4WorkspaceConfig.cmake/,/^[[:space:]]*FILE KDE4WorkspaceLibraryTargets.cmake )[[:space:]]*^/d' \
@@ -564,6 +532,10 @@ kde4-meta_change_cmakelists() {
 			if [[ ${PN} != plasma-workspace ]]; then
 				sed -e '/KActivities/s/REQUIRED//' \
 					-i CMakeLists.txt || die "${LINENO}: sed died in kde-workspace dep reduction section"
+			fi
+			if [[ "${PN}" != "kwin" ]]; then
+				sed -i -e "/^    macro_log_feature(OPENGL_OR_ES_FOUND/s/TRUE/FALSE/" \
+					"${S}"/CMakeLists.txt || die "${LINENO}: sed died removing kde-workspace opengl dependency"
 			fi
 			;;
 		kdebase-runtime | kde-runtime)
@@ -612,14 +584,6 @@ kde4-meta_change_cmakelists() {
 				-e 's/find_package(Boost REQUIRED)/macro_optional_find_package(Boost)/' \
 				-i CMakeLists.txt || die "failed to disable hardcoded checks"
 			;;
-		koffice)
-			# Prevent collisions
-			if [[ ${PN} != koffice-data ]]; then
-				sed -e '/install(.*FindKOfficeLibs.cmake/,/)/ d' \
-					-i cmake/modules/CMakeLists.txt || die "${LINENO}: sed died in collision prevention section"
-				sed -e '/install(.\+config-openexr\.h.\+)/d' \
-					-i CMakeLists.txt || die "${LINENO}: sed died in collision prevention section"
-			fi
 	esac
 
 	popd > /dev/null

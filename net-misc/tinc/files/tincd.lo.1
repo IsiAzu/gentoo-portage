@@ -1,20 +1,18 @@
 #!/sbin/runscript
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/files/tincd.lo.1,v 1.1 2011/09/26 03:23:06 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/files/tincd.lo.1,v 1.5 2012/03/11 14:08:26 blueness Exp $
 
-extra_commands="reload"
+extra_started_commands="reload"
 
 DAEMON="/usr/sbin/tincd"
 
-depend()
-{
+depend() {
 	use logger dns
 	need net
 }
 
-start()
-{
+start() {
 	NETNAME="${RC_SVCNAME#*.}"
 	CONFIG="/etc/tinc/${NETNAME}/tinc.conf"
 	PIDFILE="/var/run/tinc.${NETNAME}.pid"
@@ -28,13 +26,12 @@ start()
 		else
 			LOG="--logfile=/var/log/tinc.${NETNAME}.log"
 		fi
-		start-stop-daemon --start --exec "${DAEMON}" -- --net="${NETNAME}" "${LOG}" --pidfile "${PIDFILE}"
+		start-stop-daemon --start --exec "${DAEMON}" --pidfile "${PIDFILE}" -- --net="${NETNAME}" "${LOG}" --pidfile "${PIDFILE}"
 		eend $?
 	fi
 }
 
-stop()
-{
+stop() {
 	NETNAME="${RC_SVCNAME#*.}"
 	CONFIG="/etc/tinc/${NETNAME}/tinc.conf"
 	PIDFILE="/var/run/tinc.${NETNAME}.pid"
@@ -45,8 +42,7 @@ stop()
 	fi
 }
 
-reload()
-{
+reload() {
 	NETNAME=${RC_SVCNAME#*.}
 	CONFIG="/etc/tinc/${NETNAME}/tinc.conf"
 	PIDFILE="/var/run/tinc.${NETNAME}.pid"

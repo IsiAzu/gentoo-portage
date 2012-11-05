@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.8.1.ebuild,v 1.3 2011/08/26 15:18:08 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.8.1.ebuild,v 1.13 2012/09/09 15:20:18 armin76 Exp $
 
 EAPI=3
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnupg/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="gtk ncurses qt4 caps static"
 
 RDEPEND="app-admin/eselect-pinentry
@@ -20,14 +20,14 @@ RDEPEND="app-admin/eselect-pinentry
 	!static? (
 		gtk? ( x11-libs/gtk+:2 )
 		ncurses? ( sys-libs/ncurses )
-		qt4? ( >=x11-libs/qt-gui-4.4.1 )
+		qt4? ( >=x11-libs/qt-gui-4.4.1:4 )
 		!gtk? ( !qt4? ( !ncurses? ( sys-libs/ncurses ) ) )
 	)
 	caps? ( sys-libs/libcap )"
 DEPEND="${RDEPEND}
 	!static? (
-		gtk? ( dev-util/pkgconfig )
-		qt4? ( dev-util/pkgconfig )
+		gtk? ( virtual/pkgconfig )
+		qt4? ( virtual/pkgconfig )
 	)"
 
 pkg_setup() {
@@ -80,7 +80,7 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO
-	rm -f "${D}"/usr/bin/pinentry || die
+	rm -f "${ED}"/usr/bin/pinentry || die
 }
 
 pkg_postinst() {

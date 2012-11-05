@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.10.1.ebuild,v 1.15 2011/11/21 16:22:52 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.10.1.ebuild,v 1.18 2012/10/07 13:35:21 jlec Exp $
 
 EAPI=2
 
-inherit bash-completion-r1 eutils flag-o-matic fortran-2 versionator
+inherit bash-completion-r1 eutils flag-o-matic fortran-2 multilib versionator
 
 DESCRIPTION="Language and environment for statistical computing and graphics"
 HOMEPAGE="http://www.r-project.org/"
@@ -24,7 +24,6 @@ CDEPEND="
 	app-text/ghostscript-gpl
 	dev-libs/libpcre
 	virtual/blas
-	virtual/fortran
 	cairo? (
 		x11-libs/cairo[X]
 		>=x11-libs/pango-1.20[X] )
@@ -37,7 +36,7 @@ CDEPEND="
 	X? ( x11-libs/libXmu x11-misc/xdg-utils )"
 
 DEPEND="${CDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? (
 			virtual/latex-base
 			dev-texlive/texlive-fontsrecommended

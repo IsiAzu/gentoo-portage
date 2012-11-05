@@ -1,11 +1,31 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/use.mask,v 1.28 2011/10/21 07:03:29 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/use.mask,v 1.35 2012/09/30 06:59:27 flameeyes Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -amd64
 
 # SECTION: Unmask
+
+# Diego Elio Pettenò <flameeyes@gentoo.org> (21 Aug 2012)
+# IPMI is only implemented for x86, amd64 and ia64
+-ipmi
+
+# Ralph Sennhauser <sera@gentoo.org> (31 Jul 2012)
+# Keywored on amd64
+-python_targets_jython2_5
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (05. Mar 2012)
+# Unmask, works with v4l2, #350211
+-dxr3
+
+# Justin Lecher <jlec@gentoo.org> (04. Feb 2012)
+# Unmask because deps are keyworded
+-zeitgeist
+
+# 2011/12/22 - Alexis Ballier <aballier@gentoo.org>
+# Unmask vdpau as its supported here
+-vdpau
 
 # 2011/07/11 - Samuli Suominen <ssuominen@gentoo.org>
 # Unmask amd64/x86 only opencl support for nvidia-cuda-toolkit
@@ -44,6 +64,7 @@
 # 2007/08/19 - Christoph Mende <angelos@gentoo.org>
 # Unmask support for dev-db/oracle-instantclient-basic
 -oci8-instant-client
+-oracle
 
 # 2007/03/10 - Mike Frysinger <vapier@gentoo.org>
 # NVRAM works on x86/amd64 hosts
@@ -117,10 +138,9 @@ gamess
 alsa_cards_cs5535audio
 
 # 2006/06/07 - Danny van Dyk <kugelfang@gentoo.org>
-# Profile cleanup: No info about these
-asm
+# FIXME. Unknown mask reason. Has effect on qpopper
+# and tpop3d.
 drac
-vidix
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures on which they aren't available

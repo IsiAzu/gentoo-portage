@@ -1,6 +1,28 @@
 # ChangeLog for games-server/cyphesis
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-server/cyphesis/ChangeLog,v 1.20 2011/01/15 15:23:25 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-server/cyphesis/ChangeLog,v 1.26 2012/08/04 10:51:53 ago Exp $
+
+  04 Aug 2012; Agostino Sarubbo <ago@gentoo.org> cyphesis-0.5.26.ebuild:
+  Stable for amd64, wrt bug #427868
+
+  24 Jul 2012; Jeff Horelick <jdhore@gentoo.org> cyphesis-0.5.26.ebuild:
+  marked x86 per bug 427868
+
+  24 Jul 2012; Tupone Alfredo <tupone@gentoo.org> cyphesis-0.5.25.ebuild:
+  Use old version of mercator. Bug #424950 by flameeyes@gentoo.org
+
+  02 May 2012; Jeff Horelick <jdhore@gentoo.org> cyphesis-0.5.25.ebuild,
+  cyphesis-0.5.26.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  27 Feb 2012; Tupone Alfredo <tupone@gentoo.org> cyphesis-0.5.26.ebuild:
+  Require newer skstream
+
+*cyphesis-0.5.26 (28 Jan 2012)
+
+  28 Jan 2012; Tupone Alfredo <tupone@gentoo.org> +cyphesis-0.5.26.ebuild,
+  +files/cyphesis-0.5.26-gentoo.patch:
+  Version bump to 0.5.26. Bug #383415 by Mr. Anderson
 
   15 Jan 2011; Markus Meier <maekke@gentoo.org> cyphesis-0.5.25.ebuild:
   x86 stable, bug #350780

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-7.0.4.ebuild,v 1.3 2011/08/23 18:08:05 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-7.0.4.ebuild,v 1.7 2012/05/03 19:51:57 grobian Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -43,8 +43,8 @@ arch_binaries="$arch_binaries alpha? ( http://code.haskell.org/~slyfox/ghc-alpha
 arch_binaries="$arch_binaries arm? ( http://code.haskell.org/~slyfox/ghc-arm/ghc-bin-${PV}-arm.tbz2 )"
 arch_binaries="$arch_binaries amd64? ( http://code.haskell.org/~slyfox/ghc-amd64/ghc-bin-${PV}-amd64.tbz2 )"
 #arch_binaries="$arch_binaries ia64?  ( http://code.haskell.org/~slyfox/ghc-ia64/ghc-bin-${PV}-ia64-fixed-fiw.tbz2 )"
-#arch_binaries="$arch_binaries ppc? ( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )"
-#arch_binaries="$arch_binaries ppc64? ( mirror://gentoo/ghc-bin-${PV}-ppc64.tbz2 )"
+arch_binaries="$arch_binaries ppc? ( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )"
+arch_binaries="$arch_binaries ppc64? ( http://code.haskell.org/~slyfox/ghc-ppc64/ghc-bin-${PV}-ppc64.tbz2 )"
 arch_binaries="$arch_binaries sparc? ( http://code.haskell.org/~slyfox/ghc-sparc/ghc-bin-${PV}-sparc.tbz2 )"
 arch_binaries="$arch_binaries x86? ( http://code.haskell.org/~slyfox/ghc-x86/ghc-bin-${PV}-x86.tbz2 )"
 
@@ -64,10 +64,16 @@ yet_binary() {
 		amd64)
 			return 0
 			;;
+		ppc64)
+			return 0
+			;;
 		sparc)
 			return 0
 			;;
 		x86)
+			return 0
+			;;
+		ppc)
 			return 0
 			;;
 		*)
@@ -81,12 +87,11 @@ SRC_URI="!binary? ( http://www.haskell.org/ghc/dist/${PV}/${P}-src.tar.bz2 )"
 LICENSE="BSD"
 SLOT="0"
 # ghc on ia64 needs gcc to support -mcmodel=medium (or some dark hackery) to avoid TOC overflow
-KEYWORDS="~alpha ~amd64 -ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 -ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="doc ghcbootstrap llvm"
 IUSE+=" binary" # don't forget about me later!
 
 RDEPEND="
-	!dev-lang/ghc-bin
 	!kernel_Darwin? ( >=sys-devel/gcc-2.95.3 )
 	kernel_linux? ( >=sys-devel/binutils-2.17 )
 	kernel_SunOS? ( >=sys-devel/binutils-2.17 )
@@ -190,7 +195,7 @@ relocate_path() {
 	for file in "$@"
 	do
 		sed -i -e "s|$from|$to|g" \
-		    "$file" || die "path relocation failed for '$file'"
+			"$file" || die "path relocation failed for '$file'"
 	done
 }
 
@@ -364,6 +369,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-7.0.4-darwin8.patch
 		epatch "${FILESDIR}"/${PN}-6.12.3-mach-o-relocation-limit.patch
 		epatch "${FILESDIR}"/${PN}-7.0.4-nxstack.patch
+		epatch "${FILESDIR}/ghc-7.0.4-fix-ppc-linker.patch"
 
 		if use prefix; then
 			# Make configure find docbook-xsl-stylesheets from Prefix

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.7.1-r1.ebuild,v 1.8 2011/11/23 11:45:23 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.7.1-r1.ebuild,v 1.13 2012/07/04 09:05:57 jdhore Exp $
 
 EAPI=4
 
@@ -18,11 +18,11 @@ SRC_URI="http://hci.iwr.uni-heidelberg.de/vigra/${MY_P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="amd64 ppc ppc64 ~sparc x86 ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc +fftw +hdf5 +jpeg +png +python test +tiff"
 
 RDEPEND="
-	dev-libs/boost
+	dev-libs/boost[python?]
 	fftw? ( >=sci-libs/fftw-3 )
 	hdf5? ( sci-libs/hdf5 )
 	jpeg? ( virtual/jpeg )
@@ -58,10 +58,6 @@ REQUIRED_USE="
 CMAKE_IN_SOURCE_BUILD=1
 
 DOCS=(README.txt)
-
-# test tend to fail here and there
-# highly unreliable
-RESTRICT="test"
 
 pkg_setup() {
 	python_set_active_version 2
@@ -114,6 +110,9 @@ src_install() {
 	# drop useless cmake files from libdir
 	rm -rf "${ED}"/usr/$(get_libdir)/${PN}/
 }
+
+src_test() { : ; }
+# bug 390447
 
 pkg_postinst() {
 	use python && python_mod_optimize vigra

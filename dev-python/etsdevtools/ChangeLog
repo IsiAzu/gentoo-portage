@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/etsdevtools
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/etsdevtools/ChangeLog,v 1.18 2011/08/03 23:53:21 bicatali Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/etsdevtools/ChangeLog,v 1.20 2012/02/23 04:53:07 patrick Exp $
+
+  23 Feb 2012; Patrick Lauer <patrick@gentoo.org> etsdevtools-3.1.1.ebuild,
+  etsdevtools-4.0.0.ebuild:
+  Restricting pypy
+
+  17 Jan 2012; Sébastien Fabbro <bicatali@gentoo.org>
+  etsdevtools-4.0.0.ebuild:
+  Ebuild clean and EAPI bump
 
 *etsdevtools-4.0.0 (03 Aug 2011)
 

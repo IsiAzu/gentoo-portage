@@ -1,6 +1,24 @@
 # ChangeLog for media-sound/nted
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/nted/ChangeLog,v 1.24 2011/11/02 14:55:54 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/nted/ChangeLog,v 1.28 2012/07/12 19:08:53 hwoarang Exp $
+
+  12 Jul 2012; Markos Chandras <hwoarang@gentoo.org>
+  +files/nted-1.10.18-gcc47.patch, nted-1.10.18.ebuild:
+  Add gcc-4.7 patch. Bug #424291
+
+  21 May 2012; Samuli Suominen <ssuominen@gentoo.org> nted-1.10.18.ebuild:
+  Remove || ( ) from LICENSE field because they are all required. Missing glib,
+  freetype, gdk-pixbuf, libX11, pango and gettext dependencies. Punt
+  unnecessary doman from src_install() and whole function as a result. Missing
+  debug in IUSE. Trick ./configure to believe gnome-extra/yelp is installed so
+  we can avoid pulling in vulnerable copy of net-libs/xulrunner wrt #416843.
+
+  21 May 2012; Samuli Suominen <ssuominen@gentoo.org> -nted-1.10.7-r1.ebuild:
+  old
+
+  05 May 2012; Michał Górny <mgorny@gentoo.org> nted-1.10.7-r1.ebuild,
+  nted-1.10.18.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   02 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> nted-1.10.18.ebuild:
   x86 stable wrt bug #388815
@@ -126,4 +144,3 @@
   Vill
   <gentoo@cconstruct.de> as proxy maintainer. Thanks to Dominik Kozaczko
   <dominik@kozaczko.info> for the initial ebuild.
-

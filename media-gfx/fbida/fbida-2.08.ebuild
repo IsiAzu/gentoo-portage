@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fbida/fbida-2.08.ebuild,v 1.7 2011/11/05 21:18:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fbida/fbida-2.08.ebuild,v 1.11 2012/10/24 19:10:30 ulm Exp $
 
 EAPI=2
 
@@ -9,10 +9,10 @@ inherit eutils toolchain-funcs
 DESCRIPTION="Image viewers for the framebuffer console (fbi) and X11 (ida)."
 HOMEPAGE="http://linux.bytesex.org/fbida/"
 SRC_URI="http://dl.bytesex.org/releases/${PN}/${P}.tar.gz
-	http://dev.gentoo.org/~ssuominen/ida.png.bz2" #370901
+	mirror://gentoo/ida.png.bz2" #370901
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm hppa ~ppc ~ppc64 ~sh ~sparc x86"
+KEYWORDS="alpha amd64 arm hppa ppc ppc64 sh sparc x86"
 IUSE="curl fbcon gif imagemagick lirc pdf png scanner tiff X"
 
 RDEPEND="png? ( media-libs/libpng )
@@ -27,7 +27,7 @@ RDEPEND="png? ( media-libs/libpng )
 	X? ( x11-libs/libX11
 		x11-libs/libXt
 		x11-libs/libXpm
-		>=x11-libs/openmotif-2.3:0
+		>=x11-libs/motif-2.3:0
 	)
 	!media-gfx/fbi
 	virtual/jpeg

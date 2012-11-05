@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/cryptsetup/cryptsetup-1.4.1.ebuild,v 1.2 2011/11/13 16:32:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/cryptsetup/cryptsetup-1.4.1.ebuild,v 1.11 2012/10/21 13:37:06 ssuominen Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="http://cryptsetup.googlecode.com/files/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86"
 IUSE="nls selinux +static"
 
 S=${WORKDIR}/${MY_P}
@@ -37,6 +37,7 @@ DEPEND="${RDEPEND}
 		|| ( >=sys-apps/util-linux-2.20[static-libs] <sys-apps/util-linux-2.20 )
 		dev-libs/libgcrypt[static-libs]
 		|| ( >=sys-fs/lvm2-2.02.88[static-libs] <sys-fs/lvm2-2.02.88 )
+		|| ( >=sys-fs/udev-182[static-libs] <=sys-fs/udev-171-r8 =sys-fs/udev-171* )
 	)"
 
 pkg_setup() {
@@ -75,7 +76,7 @@ src_install() {
 	dodoc TODO ChangeLog README NEWS
 
 	newconfd "${FILESDIR}"/1.0.6-dmcrypt.confd dmcrypt || die
-	newinitd "${FILESDIR}"/dmcrypt.rc dmcrypt || die
+	newinitd "${FILESDIR}"/1.4.1-dmcrypt.rc dmcrypt || die
 }
 
 pkg_postinst() {

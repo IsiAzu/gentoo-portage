@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/sane-backends-1.0.22-r2.ebuild,v 1.2 2011/11/17 07:59:03 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/sane-backends-1.0.22-r2.ebuild,v 1.7 2012/08/22 02:09:10 ottxor Exp $
 
 EAPI="4"
 
-inherit eutils flag-o-matic multilib
+inherit eutils flag-o-matic multilib user
 
 # gphoto and v4l are handled by their usual USE flags.
 # The pint backend was disabled because I could not get it to compile.
@@ -128,7 +128,8 @@ DEPEND="${RDEPEND}
 		virtual/latex-base
 		dev-texlive/texlive-latexextra
 	)
-	>=sys-apps/sed-4"
+	>=sys-apps/sed-4
+	virtual/pkgconfig"
 
 # We now use new syntax construct (SUBSYSTEMS!="usb|usb_device)
 RDEPEND="${RDEPEND}
@@ -138,7 +139,7 @@ SRC_URI="ftp://ftp.sane-project.org/pub/sane/${P}/${P}.tar.gz
 	ftp://ftp.sane-project.org/pub/sane/old-versions/${P}/${P}.tar.gz"
 SLOT="0"
 LICENSE="GPL-2 public-domain"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 
 pkg_setup() {
 	enewgroup scanner
@@ -190,6 +191,15 @@ src_configure() {
 	if ! ( use sane_backends_canon_pp || use sane_backends_hpsj5s || use sane_backends_mustek_pp ); then
 		myconf="${myconf} sane_cv_use_libieee1284=no"
 	fi
+	# if LINGUAS is set, just use the listed and supported localizations.
+	if [ "${LINGUAS-NoLocalesSet}" != NoLocalesSet ]; then
+		echo > po/LINGUAS
+		for lang in ${LINGUAS}; do
+			if [ -a po/${lang}.po ]; then
+				echo ${lang} >> po/LINGUAS
+			fi
+		done
+	fi
 	SANEI_JPEG="sanei_jpeg.o" SANEI_JPEG_LO="sanei_jpeg.lo" \
 	BACKENDS="${BACKENDS}" econf \
 		$(use_with gphoto2) \
@@ -210,7 +220,7 @@ src_compile() {
 
 src_install () {
 	emake INSTALL_LOCKPATH="" DESTDIR="${D}" install \
-		docdir=/usr/share/doc/${PF} || die
+		docdir="${EPREFIX}"/usr/share/doc/${PF} || die
 	keepdir /var/lib/lock/sane
 	fowners root:scanner /var/lib/lock/sane
 	fperms g+w /var/lib/lock/sane
@@ -221,12 +231,12 @@ src_install () {
 		doins tools/hotplug/libsane.usermap
 		doexe tools/hotplug/libusbscanner
 		newdoc tools/hotplug/README README.hotplug
-		echo >> "${D}"/etc/env.d/30sane "USB_DEVFS_PATH=/dev/bus/usb"
+		echo >> "${ED}"/etc/env.d/30sane "USB_DEVFS_PATH=/dev/bus/usb"
 	fi
 	insinto /lib/udev/rules.d
 	newins tools/udev/libsane.rules 41-libsane.rules
 
 	dodoc NEWS AUTHORS ChangeLog* README README.linux
-	echo "SANE_CONFIG_DIR=/etc/sane.d" >> "${D}"/etc/env.d/30sane
-	find "${D}" -name "*.la" | while read file; do rm "${file}"; done
+	echo "SANE_CONFIG_DIR=${EPREFIX}/etc/sane.d" >> "${ED}"/etc/env.d/30sane
+	find "${ED}" -name "*.la" | while read file; do rm "${file}"; done
 }

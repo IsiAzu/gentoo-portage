@@ -1,6 +1,33 @@
 # ChangeLog for dev-cpp/gstreamermm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gstreamermm/ChangeLog,v 1.20 2011/11/20 17:18:02 eva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gstreamermm/ChangeLog,v 1.27 2012/10/30 22:04:07 eva Exp $
+
+*gstreamermm-0.10.11 (30 Oct 2012)
+
+  30 Oct 2012; Gilles Dartiguelongue <eva@gentoo.org>
+  +gstreamermm-0.10.11.ebuild:
+  Version bump.
+
+  22 Sep 2012; Pacho Ramos <pacho@gentoo.org> -gstreamermm-0.10.9.1.ebuild:
+  Drop old.
+
+  08 Jul 2012; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml:
+  Drop myself out of metadata.
+
+  26 May 2012; Jeff Horelick <jdhore@gentoo.org> gstreamermm-0.10.10.1.ebuild:
+  marked x86 per bug 412317
+
+  25 May 2012; Agostino Sarubbo <ago@gentoo.org> gstreamermm-0.10.10.1.ebuild:
+  Stable for amd64, wrt bug #412317
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> gstreamermm-0.10.9.1.ebuild,
+  gstreamermm-0.10.10.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*gstreamermm-0.10.10.1 (17 Apr 2012)
+
+  17 Apr 2012; Pacho Ramos <pacho@gentoo.org> +gstreamermm-0.10.10.1.ebuild:
+  Version bump.
 
   20 Nov 2011; Gilles Dartiguelongue <eva@gentoo.org>
   -files/gstreamermm-0.10.7-gcc45.patch, -gstreamermm-0.10.7.3.ebuild,
@@ -97,4 +124,3 @@
   +gstreamermm-0.10.6.ebuild, +metadata.xml:
   Initial import of the C++ bindings for gstreamer. Thanks to the guys who
   contributed the ebuilds in bug #211417.
-

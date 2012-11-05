@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/proftpd/proftpd-1.3.4a.ebuild,v 1.1 2011/11/14 11:54:57 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/proftpd/proftpd-1.3.4a.ebuild,v 1.3 2012/05/13 10:49:47 swift Exp $
 
 EAPI=4
 inherit eutils autotools
@@ -50,7 +50,7 @@ DEPEND="${CDEPEND}
 	test? ( dev-libs/check )"
 RDEPEND="${CDEPEND}
 	net-ftp/ftpbase
-	selinux? ( sec-policy/selinux-ftpd )"
+	selinux? ( sec-policy/selinux-ftp )"
 
 S="${WORKDIR}/${P/_/}"
 
@@ -70,6 +70,12 @@ src_prepare() {
 	use vroot && __prepare_module mod_vroot
 
 	sed -i -e "s/utils install-conf install/utils install/g" Makefile.in
+
+	# Fixes Gentoo Bug #354295 / ProFTPD Bug #3682
+	epatch "${FILESDIR}"/${P}-ubug-3682.patch
+
+	# Fixes Gentoo Bug #393189 / ProFTPD Bug #3728
+	epatch "${FILESDIR}"/${P}-ubug-3728.patch
 
 	# Support new versions of mit-krb5 (Gentoo Bugs #284853, #324903)
 	if use kerberos ; then

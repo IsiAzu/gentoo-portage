@@ -1,6 +1,23 @@
 # ChangeLog for games-strategy/warmux
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/warmux/ChangeLog,v 1.9 2011/09/19 19:45:57 mr_bones_ Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/warmux/ChangeLog,v 1.13 2012/10/22 05:43:15 mr_bones_ Exp $
+
+  22 Oct 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  -files/warmux-11.01-gentoo.patch, -warmux-11.01.ebuild:
+  old
+
+  13 Jul 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/warmux-11.04.1-gcc47.patch, warmux-11.04.1.ebuild:
+  add gcc47 patch from Peter Alfredsen (bug #424669)
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> warmux-11.01.ebuild,
+  warmux-11.04.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  02 May 2012; Michael Sterrett <mr_bones_@gentoo.org> warmux-11.04.1.ebuild,
+  +files/warmux-11.04.1-action.patch:
+  Add compile patch from Martin Jansa (bug #409871); silly sdl-gfx dep update
+  (bug #414211)
 
   19 Sep 2011; Michael Sterrett <mr_bones_@gentoo.org> warmux-11.04.1.ebuild,
   +files/warmux-11.04.1-zlib.patch:

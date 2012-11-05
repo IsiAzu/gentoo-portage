@@ -1,6 +1,68 @@
 # ChangeLog for www-apps/otrs
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/otrs/ChangeLog,v 1.49 2011/11/02 21:52:16 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-apps/otrs/ChangeLog,v 1.60 2012/10/29 06:34:45 patrick Exp $
+
+*otrs-3.1.11 (29 Oct 2012)
+
+  29 Oct 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.11.ebuild:
+  Bump
+
+*otrs-3.1.10 (03 Sep 2012)
+
+  03 Sep 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.10.ebuild,
+  -otrs-3.1.8.ebuild, -otrs-3.1.9.ebuild:
+  Bump for #433770
+
+*otrs-3.1.9 (23 Aug 2012)
+
+  23 Aug 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.9.ebuild,
+  -otrs-3.1.7.ebuild:
+  Bump
+
+*otrs-3.1.8 (17 Aug 2012)
+
+  17 Aug 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.8.ebuild,
+  -otrs-3.1.6.ebuild:
+  Bump
+
+*otrs-3.1.7 (28 Jun 2012)
+
+  28 Jun 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.7.ebuild,
+  -otrs-3.1.5.ebuild:
+  Bump
+
+*otrs-3.1.6 (18 Jun 2012)
+
+  18 Jun 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.6.ebuild,
+  -otrs-3.1.4.ebuild:
+  Bump
+
+*otrs-3.1.5 (07 Jun 2012)
+
+  07 Jun 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.5.ebuild,
+  -otrs-3.1.2.ebuild, -otrs-3.1.3.ebuild:
+  Bump
+
+*otrs-3.1.4 (09 May 2012)
+
+  09 May 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.4.ebuild:
+  Bump
+
+*otrs-3.1.3 (04 Apr 2012)
+
+  04 Apr 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.3.ebuild,
+  -otrs-3.0.10.ebuild, -otrs-3.0.11.ebuild:
+  Bump
+
+*otrs-3.1.2 (16 Mar 2012)
+
+  16 Mar 2012; Patrick Lauer <patrick@gentoo.org> +otrs-3.1.2.ebuild:
+  Bump
+
+*otrs-3.0.11 (27 Dec 2011)
+
+  27 Dec 2011; Patrick Lauer <patrick@gentoo.org> +otrs-3.0.11.ebuild:
+  Bump
 
   02 Nov 2011; Mike Frysinger <vapier@gentoo.org> otrs-3.0.10.ebuild:
   Drop superfluous -c usage.
@@ -224,4 +286,3 @@
   26 Aug 2004; Renat Lumpau <rl03@gentoo.org> +metadata.xml,
   +files/postinstall-en.txt, +files/reconfig, +otrs-1.2.4.ebuild:
   Initial ebuild. Closes bug #56452.
-

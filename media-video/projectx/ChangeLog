@@ -1,6 +1,44 @@
 # ChangeLog for media-video/projectx
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/projectx/ChangeLog,v 1.51 2011/11/20 10:28:20 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/projectx/ChangeLog,v 1.61 2012/10/01 16:31:11 billie Exp $
+
+*projectx-0.91.0.04 (01 Oct 2012)
+
+  01 Oct 2012; Daniel Pielmeier <billie@gentoo.org> +projectx-0.91.0.04.ebuild:
+  Version bump.
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  projectx-0.91.0.03.ebuild:
+  x86 stable wrt bug #429146
+
+  03 Aug 2012; Agostino Sarubbo <ago@gentoo.org> projectx-0.91.0.03.ebuild:
+  Stable for amd64, wrt bug #429146
+
+*projectx-0.91.0.03 (16 Jun 2012)
+
+  16 Jun 2012; Daniel Pielmeier <billie@gentoo.org> +projectx-0.91.0.03.ebuild:
+  Version bump.
+
+  06 May 2012; Daniel Pielmeier <billie@gentoo.org>
+  -projectx-0.90.4.00_p33-r1.ebuild:
+  Remove old.
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> projectx-0.91.0.02.ebuild:
+  Marking projectx-0.91.0.02 ppc64 for bug 400417
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> projectx-0.91.0.02.ebuild:
+  Marking projectx-0.91.0.02 ppc for bug 400417
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  projectx-0.91.0.02.ebuild:
+  x86 stable wrt bug #400417
+
+  27 Jan 2012; Agostino Sarubbo <ago@gentoo.org> projectx-0.91.0.02.ebuild:
+  Stable for amd64, wrt bug #400417
+
+  25 Jan 2012; Daniel Pielmeier <billie@gentoo.org>
+  -projectx-0.90.4.00_p33.ebuild:
+  Remove old.
 
   20 Nov 2011; Kacper Kowalik <xarthisius@gentoo.org>
   projectx-0.90.4.00_p33-r1.ebuild:

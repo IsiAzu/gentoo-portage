@@ -1,6 +1,42 @@
 # ChangeLog for dev-embedded/openocd
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-embedded/openocd/ChangeLog,v 1.23 2011/11/15 21:12:38 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-embedded/openocd/ChangeLog,v 1.33 2012/08/29 17:51:45 hwoarang Exp $
+
+*openocd-0.6.0_rc2 (29 Aug 2012)
+
+  29 Aug 2012; Markos Chandras <hwoarang@gentoo.org> +openocd-0.6.0_rc2.ebuild,
+  -openocd-0.6.0_rc1.ebuild, openocd-9999.ebuild:
+  Version bump. Fix jimtcl dependency on live ebuild
+
+  22 Aug 2012; Markos Chandras <hwoarang@gentoo.org> openocd-0.5.0.ebuild:
+  Fix dependency for jimtcl
+
+*openocd-0.6.0_rc1 (17 Aug 2012)
+
+  17 Aug 2012; Markos Chandras <hwoarang@gentoo.org> +openocd-0.6.0_rc1.ebuild,
+  openocd-0.4.0.ebuild, openocd-0.5.0.ebuild:
+  Bump to 0.6.0_rc1
+
+  01 Jun 2012; Zac Medico <zmedico@gentoo.org> openocd-0.3.1-r1.ebuild,
+  openocd-0.4.0.ebuild, openocd-0.5.0.ebuild, openocd-9999.ebuild:
+  inherit multilib for get_libdir
+
+  25 May 2012; Samuli Suominen <ssuominen@gentoo.org> openocd-0.3.1-r1.ebuild,
+  openocd-0.4.0.ebuild, openocd-0.5.0.ebuild, openocd-9999.ebuild:
+  Restrict virtual/libusb to SLOT="0" because libusb-1 is not supported yet.
+
+  22 May 2012; Samuli Suominen <ssuominen@gentoo.org> openocd-0.3.1-r1.ebuild,
+  openocd-0.4.0.ebuild, openocd-0.5.0.ebuild, openocd-9999.ebuild:
+  Use virtual/libusb instead of dev-libs/libusb.
+
+  31 Mar 2012; Sven Wegener <swegener@gentoo.org> openocd-9999.ebuild:
+  Also apply the USB Blaster configure changes to live git version.
+
+  11 Mar 2012; Sven Wegener <swegener@gentoo.org> openocd-0.5.0.ebuild:
+  Fix configure options for USB Blaster FTDI devices.
+
+  15 Feb 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  remove myself from metadata
 
   15 Nov 2011; Mike Frysinger <vapier@gentoo.org> openocd-0.5.0.ebuild,
   openocd-9999.ebuild:

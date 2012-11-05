@@ -1,6 +1,47 @@
 # ChangeLog for dev-util/geany
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/geany/ChangeLog,v 1.47 2011/11/24 05:14:59 zmedico Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/geany/ChangeLog,v 1.58 2012/09/27 00:08:59 blueness Exp $
+
+  27 Sep 2012; Anthony G. Basile <blueness@gentoo.org> geany-1.22.ebuild:
+  stable ppc, bug #429056
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> geany-1.22.ebuild:
+  x86 stable wrt bug #429056
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> geany-1.22.ebuild:
+  Stable for amd64, wrt bug #429056
+
+  19 Jun 2012; Lars Wendler <polynomial-c@gentoo.org> geany-1.22.ebuild:
+  Completed list of translations.
+
+*geany-1.22 (19 Jun 2012)
+
+  19 Jun 2012; Lars Wendler <polynomial-c@gentoo.org> -geany-0.19.2.ebuild,
+  +geany-1.22.ebuild:
+  Version bump. Removed old.
+
+  14 Jun 2012; Michael Weber <xmw@gentoo.org> geany-0.21-r1.ebuild:
+  ppc stable (bug 404537)
+
+*geany-0.21-r1 (06 Jun 2012)
+
+  06 Jun 2012; Lars Wendler <polynomial-c@gentoo.org> -geany-0.20.ebuild,
+  -geany-0.21.ebuild, +geany-0.21-r1.ebuild:
+  Simple docdir fix (bug #419745). Bumped straight to stable. Removed old
+  versions.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> geany-0.19.2.ebuild,
+  geany-0.20.ebuild, geany-0.21.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  14 Apr 2012; Zac Medico <zmedico@gentoo.org> geany-0.21.ebuild:
+  Add ~amd64-linux keyword.
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> geany-0.21.ebuild:
+  x86 stable wrt bug #404537
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> geany-0.21.ebuild:
+  Stable for amd64, wrt bug #404537
 
   24 Nov 2011; Zac Medico <zmedico@gentoo.org> geany-0.21.ebuild:
   Fix for prefix and add ~x86-linux keyword.
@@ -179,4 +220,3 @@
   19 Jun 2007; Samuli Suominen <ssuominen@gentoo.org> +geany-0.11.ebuild:
   Initial commit for bug 114815. Thanks to Mathieu Bonnet, Paul Bredbury, Yura
   Semashko, Lucas Chiesa, Steev Klimaszewski, Pacho Ramos and many others.
-

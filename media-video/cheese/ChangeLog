@@ -1,6 +1,40 @@
 # ChangeLog for media-video/cheese
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/cheese/ChangeLog,v 1.54 2011/11/16 22:11:17 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/cheese/ChangeLog,v 1.62 2012/10/25 20:48:15 eva Exp $
+
+  25 Oct 2012; Gilles Dartiguelongue <eva@gentoo.org> cheese-3.2.2.ebuild,
+  -cheese-3.4.1.ebuild, cheese-3.4.2.ebuild:
+  Pin gstreamer dependencies to slot 0.10. Drop old revision.
+
+  23 Sep 2012; Anthony G. Basile <blueness@gentoo.org> cheese-3.4.2.ebuild:
+  keyword ~ppc, bug #379651
+
+  23 Sep 2012; Anthony G. Basile <blueness@gentoo.org> cheese-3.4.2.ebuild:
+  keyword ~ppc64, bug #379649
+
+  09 Jul 2012; Brent Baude <ranger@gentoo.org> cheese-3.2.2.ebuild:
+  Marking cheese-3.2.2 ~ppc for bug 379649
+
+*cheese-3.4.2 (24 May 2012)
+
+  24 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +cheese-3.4.2.ebuild:
+  Version bump, translation updates only.
+
+*cheese-3.4.1 (13 May 2012)
+
+  13 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -cheese-3.2.1.ebuild, +cheese-3.4.1.ebuild, metadata.xml:
+  Version bump for gnome-3.4, now with nautilus-sendto support. Forced to drop
+  alpha keyword due to gst-plugins-vp8 and nautilus-sendto; bug will be filed
+  later. Drop old.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> cheese-2.32.0.ebuild,
+  cheese-3.2.1.ebuild, cheese-3.2.2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  19 Feb 2012; Tobias Klausmann <klausman@gentoo.org> cheese-3.2.2.ebuild:
+  Keyworded on alpha, bug #379649
 
 *cheese-3.2.2 (16 Nov 2011)
 
@@ -233,4 +267,3 @@
   Initial ebuild for cheese. Thanks to Mikel Olasagasti for ebuild
   submission and guys on bug #184115.
   Include fixes from bug #213221.
-

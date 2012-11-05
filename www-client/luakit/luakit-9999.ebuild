@@ -1,9 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/luakit/luakit-9999.ebuild,v 1.18 2011/09/21 07:47:32 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/luakit/luakit-9999.ebuild,v 1.20 2012/06/30 13:05:47 radhermit Exp $
 
-EAPI=3
+EAPI=4
 
+inherit toolchain-funcs
 IUSE="luajit vim-syntax"
 
 if [[ ${PV} == *9999* ]]; then
@@ -14,7 +15,7 @@ if [[ ${PV} == *9999* ]]; then
 	KEYWORDS=""
 	SRC_URI=""
 else
-	inherit base
+	inherit vcs-snapshot
 	MY_PV="${PV/_p/-r}"
 	KEYWORDS="~amd64 ~x86"
 	SRC_URI="https://github.com/mason-larobina/${PN}/tarball/${MY_PV} -> ${P}.tar.gz"
@@ -38,7 +39,7 @@ COMMON_DEPEND="
 "
 
 DEPEND="
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-apps/help2man
 	${COMMON_DEPEND}
 "
@@ -49,13 +50,8 @@ RDEPEND="
 	vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )
 "
 
-src_unpack() {
-	if [[ ${PV} == *9999* ]]; then
-		git-2_src_unpack
-	else
-		base_src_unpack
-		mv mason-larobina-luakit-* "${S}"
-	fi
+src_prepare() {
+	sed -i -e "/^CFLAGS/s/-ggdb//" config.mk || die
 }
 
 src_compile() {
@@ -66,19 +62,18 @@ src_compile() {
 		myconf+=" VERSION=${PV}"
 	fi
 
-	emake ${myconf} || die "emake failed"
+	tc-export CC
+	emake ${myconf}
 }
 
 src_install() {
-	emake PREFIX="/usr" DESTDIR="${D}" DOCDIR="${D}/usr/share/doc/${PF}" install ||
-		die "Installation failed"
+	emake PREFIX="/usr" DESTDIR="${D}" DOCDIR="${D}/usr/share/doc/${PF}" install
 
 	if use vim-syntax; then
 		local t
 		for t in $(ls "${S}"/extras/vim/); do
 			insinto /usr/share/vim/vimfiles/"${t}"
-			doins "${S}"/extras/vim/"${t}"/luakit.vim ||
-				die "vim-${t} doins failed"
+			doins "${S}"/extras/vim/"${t}"/luakit.vim
 		done
 	fi
 }

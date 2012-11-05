@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-plugins/google-talkplugin/google-talkplugin-9999.ebuild,v 1.1 2011/11/16 03:12:59 ottxor Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-plugins/google-talkplugin/google-talkplugin-9999.ebuild,v 1.9 2012/09/24 00:49:11 vapier Exp $
 
 EAPI=4
 
-inherit nsplugins
+inherit eutils nsplugins unpacker
 
 if [ "${PV}" != "9999" ]; then
 	DEB_PATCH="1"
@@ -22,7 +22,7 @@ fi
 DESCRIPTION="Video chat browser plug-in for Google Talk"
 
 HOMEPAGE="http://www.google.com/chat/video"
-IUSE="libnotify +system-libCg"
+IUSE="libnotify +system-libCg video_cards_fglrx video_cards_radeon"
 SLOT="0"
 
 KEYWORDS="-* ~amd64 ~x86"
@@ -30,13 +30,13 @@ KEYWORDS="-* ~amd64 ~x86"
 LICENSE="google-talkplugin openssl"
 RESTRICT="strip mirror"
 
-NATIVE_DEPS="|| ( media-sound/pulseaudio media-libs/alsa-lib )
+RDEPEND="|| ( media-sound/pulseaudio media-libs/alsa-lib )
 	dev-libs/glib:2
 	system-libCg? ( media-gfx/nvidia-cg-toolkit )
 	media-libs/fontconfig
 	media-libs/freetype:2
 	media-libs/libpng:1.2
-	>=sys-libs/glibc-2.4
+	sys-libs/glibc
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf
 	x11-libs/gtk+:2
@@ -46,20 +46,12 @@ NATIVE_DEPS="|| ( media-sound/pulseaudio media-libs/alsa-lib )
 	x11-libs/libXrandr
 	x11-libs/libXrender
 	x11-libs/libXt
+	x11-libs/pango
 	sys-apps/lsb-release
 	virtual/opengl
 	libnotify? ( x11-libs/libnotify )"
 
 DEPEND=""
-
-EMUL_DEPS=">=app-emulation/emul-linux-x86-baselibs-20100220
-	app-emulation/emul-linux-x86-gtklibs
-	app-emulation/emul-linux-x86-soundlibs
-	app-emulation/emul-linux-x86-xlibs"
-
-#amd64 needs EMUL_DEPS as GoogleTalkPlugin is a 32-bit binary
-RDEPEND="x86? ( ${NATIVE_DEPS} )
-	amd64? ( ${NATIVE_DEPS} ${EMUL_DEPS} )"
 
 INSTALL_BASE="opt/google/talkplugin"
 
@@ -67,10 +59,19 @@ QA_EXECSTACK="${INSTALL_BASE}/GoogleTalkPlugin"
 
 QA_TEXTRELS="${INSTALL_BASE}/libnpg*.so"
 
-QA_DT_HASH="${INSTALL_BASE}/libnpg.*so
+QA_FLAGS_IGNORED="${INSTALL_BASE}/libnpg.*so
+	${INSTALL_BASE}/lib/libCg.*so
 	${INSTALL_BASE}/GoogleTalkPlugin"
 
 S="${WORKDIR}"
+
+LANGS="ar cs en et fr hu lt ms pl ru sv tl vi bg da fa gu id ja lv nl
+sk ta tr bn de es fi hi is kn ml no sl te uk ca el fil hr it ko mr or
+ro sr th ur"
+
+for X in ${LANGS} ; do
+	IUSE="${IUSE} linguas_${X}"
+done
 
 # nofetch means upstream bumped and thus needs version bump
 pkg_nofetch() {
@@ -80,24 +81,18 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	if [ "${PV}" != "9999" ]; then
-		unpack ${A}
-	else
-		local pkg="${MY_PKG}"
+	local pkg="${A:=${MY_PKG}}"
+	if [ "${PV}" = "9999" ]; then
 		use amd64 && pkg="${pkg/i386/amd64}"
 		einfo "Fetching ${pkg}"
 		wget "${MY_URL}/${pkg}" || die
-		unpack ./"${pkg}"
 	fi
-	unpack ./data.tar.gz
+	unpacker ${pkg}
 }
 
 src_install() {
-	#workaround for bug #376741
-	cd usr/share/doc/google-talkplugin || die
-	unpack ./changelog.Debian.gz
+	unpacker usr/share/doc/google-talkplugin/changelog.Debian.gz
 	dodoc changelog.Debian
-	cd -
 
 	exeinto "/${INSTALL_BASE}"
 	doexe "${INSTALL_BASE}"/GoogleTalkPlugin
@@ -106,9 +101,30 @@ src_install() {
 		inst_plugin "/${i}"
 	done
 
+	#install screen-sharing stuff - bug #397463
+	insinto "/${INSTALL_BASE}"
+	doins "${INSTALL_BASE}"/windowpicker.glade
+
+	strip-linguas ${LANGS}
+	for l in ${LINGUAS}; do
+		insinto "/${INSTALL_BASE}"/locale/$l/LC_MESSAGES/
+		doins "${INSTALL_BASE}"/locale/$l/LC_MESSAGES/windowpicker.mo
+	done
+
 	#install bundled libCg
-	if ! use system-libCg; then
+	if use video_cards_radeon || use video_cards_fglrx; then
+		#hack from #402401
 		exeinto "/${INSTALL_BASE}"/lib
-		doexe "${INSTALL_BASE}"/lib/*.so
+		doexe "${INSTALL_BASE}"/lib/libCg*.so
+		if use system-libCg; then
+			ewarn "There seems to be a problem with ati cards and USE='-system-libCG,"
+			ewarn "so we install the bundled version of libCG anyway. (bug #402401)"
+		fi
+		echo "O3D_OVERRIDE_RENDER_MODE=2D" > "${ED}/opt/google/talkplugin/envvars"
+		ewarn "We have set O3D_OVERRIDE_RENDER_MODE=2D in ${EROOT}opt/google/talkplugin/envvars"
+		ewarn "please report your experience, good or bad, with this workaround on bug #402401"
+	elif ! use system-libCg; then
+		exeinto "/${INSTALL_BASE}"/lib
+		doexe "${INSTALL_BASE}"/lib/libCg*.so
 	fi
 }

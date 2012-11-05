@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-games/openscenegraph/openscenegraph-3.0.1.ebuild,v 1.2 2011/11/17 18:57:24 reavertm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-games/openscenegraph/openscenegraph-3.0.1.ebuild,v 1.8 2012/07/10 04:51:17 xmw Exp $
 
 EAPI=3
 
-inherit eutils cmake-utils wxwidgets
+inherit eutils cmake-utils flag-o-matic wxwidgets
 
 MY_PN="OpenSceneGraph"
 MY_P=${MY_PN}-${PV}
@@ -15,7 +15,7 @@ SRC_URI="http://www.openscenegraph.org/downloads/stable_releases/${MY_P}/source/
 
 LICENSE="wxWinLL-3 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ppc x86"
 IUSE="curl debug doc examples ffmpeg fltk fox gdal gif glut gtk itk jpeg jpeg2k
 openexr openinventor osgapps pdf png qt4 sdl static-libs svg tiff truetype vnc
 wxwidgets xine xrandr zlib"
@@ -72,7 +72,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	app-arch/unzip
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	x11-proto/xextproto
 	doc? ( app-doc/doxygen )
 	xrandr? ( x11-proto/randrproto )
@@ -83,8 +83,9 @@ S=${WORKDIR}/${MY_P}
 DOCS=(AUTHORS.txt ChangeLog NEWS.txt)
 
 PATCHES=(
-	"${FILESDIR}/${P}-cmake.patch"
-	"${FILESDIR}/${PN}-3.0.1-libav-0.7.patch"
+	"${FILESDIR}"/${PN}-3.0.1-cmake.patch
+	"${FILESDIR}"/${PN}-3.0.1-libav-0.7.patch
+	"${FILESDIR}"/${PN}-3.0.1-xinelib12x.patch
 )
 
 src_configure() {

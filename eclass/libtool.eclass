@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.96 2011/11/18 17:32:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.102 2012/09/15 16:16:53 zmedico Exp $
 
 # @ECLASS: libtool.eclass
 # @MAINTAINER:
@@ -14,6 +14,9 @@
 # generated libtool files.  We do not run the libtoolize program because that
 # requires a regeneration of the main autotool files in order to work properly.
 
+if [[ ${___ECLASS_ONCE_LIBTOOL} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_LIBTOOL="recur -_+^+_- spank"
+
 # If an overlay has eclass overrides, but doesn't actually override the
 # libtool.eclass, we'll have ECLASSDIR pointing to the active overlay's
 # eclass/ dir, but libtool.eclass is still in the main Gentoo tree.  So
@@ -26,8 +29,6 @@ elt_patch_dir() {
 	fi
 	echo "${d}"
 }
-
-DESCRIPTION="Based on the ${ECLASS} eclass"
 
 inherit multilib toolchain-funcs
 
@@ -179,6 +180,7 @@ elibtoolize() {
 	case ${CHOST} in
 		*-aix*)     elt_patches+=" hardcode aixrtl aix-noundef" ;; #213277
 		*-darwin*)  elt_patches+=" darwin-ltconf darwin-ltmain darwin-conf" ;;
+		*-solaris*) elt_patches+=" sol2-conf sol2-ltmain" ;;
 		*-freebsd*) elt_patches+=" fbsd-conf fbsd-ltconf" ;;
 		*-hpux*)    elt_patches+=" hpux-conf deplibs hc-flag-ld hardcode hardcode-relink relink-prog no-lc" ;;
 		*-irix*)    elt_patches+=" irix-ltmain" ;;
@@ -205,8 +207,10 @@ elibtoolize() {
 			${force} || continue
 		fi
 
-		einfo "Running elibtoolize in: ${d#${WORKDIR}/}/"
-		if [[ -f ${d}/.elibtoolized ]] ; then
+		local outfunc="einfo"
+		[[ -f ${d}/.elibtoolized ]] && outfunc="ewarn"
+		${outfunc} "Running elibtoolize in: ${d#${WORKDIR}/}/"
+		if [[ ${outfunc} == "ewarn" ]] ; then
 			ewarn "  We've already been run in this tree; you should"
 			ewarn "  avoid this if possible (perhaps by filing a bug)"
 		fi
@@ -327,7 +331,7 @@ elibtoolize() {
 						fi
 					done
 					;;
-				mint-conf|gold-conf)
+				mint-conf|gold-conf|sol2-conf)
 					ret=1
 					local subret=1
 					if [[ -e ${d}/configure ]]; then
@@ -497,3 +501,5 @@ VER_to_int() {
 	echo 1
 	return 1
 }
+
+fi

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install-mask>
 	<location id="systemd">
-		<path>/lib/systemd/system</path>
-		<path>/usr/lib/tmpfiles.d</path>
+		<path>/usr/lib/systemd/system</path>
 		<description>
 			systemd unit and auxiliary files.
 		</description>
@@ -17,5 +16,9 @@
 		<description>
 			All localizations.
 		</description>
+	</location>
+
+	<location id="logrotate">
+		<path>/etc/logrotate.d</path>
 	</location>
 </install-mask>

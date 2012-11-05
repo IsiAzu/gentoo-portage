@@ -1,6 +1,18 @@
 # ChangeLog for app-text/cedilla
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/cedilla/ChangeLog,v 1.9 2011/10/20 13:05:13 titanofold Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/cedilla/ChangeLog,v 1.13 2012/02/20 04:21:06 floppym Exp $
+
+  20 Feb 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Drop no-herd.
+
+  18 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org> -cedilla-0.3.ebuild:
+  Remove old
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> cedilla-0.6.ebuild:
+  x86 stable wrt bug #391265
+
+  26 Nov 2011; Markos Chandras <hwoarang@gentoo.org> cedilla-0.6.ebuild:
+  Stable on amd64 wrt bug #391265
 
 *cedilla-0.6 (20 Oct 2011)
 

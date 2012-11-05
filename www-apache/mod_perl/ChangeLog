@@ -1,6 +1,39 @@
 # ChangeLog for www-apache/mod_perl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apache/mod_perl/ChangeLog,v 1.94 2011/11/19 00:27:52 idl0r Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-apache/mod_perl/ChangeLog,v 1.103 2012/10/30 20:25:29 idl0r Exp $
+
+  30 Oct 2012; Christian Ruppert <idl0r@gentoo.org> -mod_perl-2.0.4-r1.ebuild,
+  -mod_perl-2.0.5.ebuild, -files/mod_perl-2.0.5-bundled-Apache-Test.patch,
+  -files/CVE-2009-0796.patch:
+  Cleanup
+
+  10 Oct 2012; Brent Baude <ranger@gentoo.org> mod_perl-2.0.7.ebuild:
+  Marking mod_perl-2.0.7 ppc for bug 432610
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> mod_perl-2.0.7.ebuild:
+  Stable for HPPA (bug #432610).
+
+  11 Sep 2012; Raúl Porcel <armin76@gentoo.org> mod_perl-2.0.7.ebuild:
+  alpha/ia64/sparc stable wrt #432610
+
+  27 Aug 2012; Johannes Huber <johu@gentoo.org> mod_perl-2.0.7.ebuild:
+  Stable for x86, wrt bug #432610
+
+  25 Aug 2012; Agostino Sarubbo <ago@gentoo.org> mod_perl-2.0.7.ebuild:
+  Stable for amd64, wrt bug #432610
+
+  07 Jun 2012; Christian Ruppert <idl0r@gentoo.org> mod_perl-2.0.7.ebuild:
+  2.0.7 is still not apache 2.4 ready
+
+*mod_perl-2.0.7 (06 Jun 2012)
+
+  06 Jun 2012; Christian Ruppert <idl0r@gentoo.org> +mod_perl-2.0.7.ebuild,
+  +files/mod_perl-2.0.7-bundled-Apache-Test.patch:
+  Version bump, bug 419839
+
+  03 Apr 2012; Christian Ruppert <idl0r@gentoo.org> mod_perl-2.0.4-r1.ebuild,
+  mod_perl-2.0.5.ebuild:
+  Depend on apache <2.4*
 
   19 Nov 2011; Christian Ruppert <idl0r@gentoo.org> mod_perl-2.0.5.ebuild:
   Add debug useflag to enable/disable MP_TRACE and MP_DEBUG.

@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-backup/spideroak-bin/spideroak-bin-4.1.9860.ebuild,v 1.1 2011/11/01 07:03:34 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-backup/spideroak-bin/spideroak-bin-4.1.9860.ebuild,v 1.4 2011/12/14 18:18:10 ago Exp $
 
 EAPI=4
 
@@ -9,7 +9,7 @@ inherit eutils versionator
 REV=$(get_version_component_range 3)
 SRC_URI_BASE="https://spideroak.com/directdownload?platform=ubuntulucid"
 
-DESCRIPTION="An easy, secure and consolidated free online backup, storage, access and sharing sytem."
+DESCRIPTION="An easy, secure and consolidated free online backup, storage, access and sharing system."
 HOMEPAGE="https://spideroak.com"
 SRC_URI="x86? ( ${SRC_URI_BASE}&arch=i386&revision=${REV} -> ${P}_x86.deb )
 	amd64? ( ${SRC_URI_BASE}&arch=x86_64&revision=${REV} -> ${P}_amd64.deb )"
@@ -17,7 +17,7 @@ RESTRICT="mirror strip"
 
 LICENSE="spideroak"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="dbus headless qt-bundled"
 
 RDEPEND=">=dev-libs/glib-2.12.0

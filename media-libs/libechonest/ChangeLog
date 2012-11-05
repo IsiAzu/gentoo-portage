@@ -1,6 +1,31 @@
 # ChangeLog for media-libs/libechonest
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libechonest/ChangeLog,v 1.8 2011/10/11 00:59:38 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libechonest/ChangeLog,v 1.14 2012/07/29 16:50:58 ssuominen Exp $
+
+*libechonest-2.0.1 (29 Jul 2012)
+
+  29 Jul 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +libechonest-2.0.1.ebuild:
+  Version bump wrt #427858 by Johannes Huber
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libechonest-1.2.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  22 Dec 2011; Samuli Suominen <ssuominen@gentoo.org>
+  -libechonest-1.1.4.ebuild, -libechonest-1.2.0.ebuild:
+  old
+
+  22 Dec 2011; Markus Meier <maekke@gentoo.org> libechonest-1.2.1.ebuild:
+  x86 stable, bug #392425
+
+  16 Dec 2011; Agostino Sarubbo <ago@gentoo.org> libechonest-1.2.1.ebuild:
+  Stable for AMD64, wrt bug #392425
+
+*libechonest-1.2.1 (29 Nov 2011)
+
+  29 Nov 2011; Samuli Suominen <ssuominen@gentoo.org>
+  +libechonest-1.2.1.ebuild:
+  Version bump.
 
   11 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
   -libechonest-1.1.5.ebuild, -libechonest-1.1.9.ebuild,

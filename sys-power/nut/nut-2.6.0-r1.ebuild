@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/nut/nut-2.6.0-r1.ebuild,v 1.4 2011/04/27 19:05:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/nut/nut-2.6.0-r1.ebuild,v 1.7 2012/06/09 19:08:02 armin76 Exp $
 
 EAPI=2
-inherit autotools bash-completion eutils fixheadtails multilib
+inherit autotools bash-completion eutils fixheadtails multilib user
 
 MY_P=${P/_/-}
 
@@ -15,7 +15,7 @@ SRC_URI="http://random.networkupstools.org/source/${PV%.*}/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 ppc ppc64 sparc x86 ~x86-fbsd"
+KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
 IUSE="cgi snmp usb ssl tcpd xml"
 
 RDEPEND="cgi? ( >=media-libs/gd-2[png] )
@@ -27,7 +27,7 @@ RDEPEND="cgi? ( >=media-libs/gd-2[png] )
 	>=sys-fs/udev-114"
 DEPEND="$RDEPEND
 	>=sys-apps/sed-4
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/${MY_P}
 

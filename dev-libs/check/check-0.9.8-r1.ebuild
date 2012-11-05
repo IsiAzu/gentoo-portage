@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.8-r1.ebuild,v 1.1 2011/09/29 12:39:53 binki Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.8-r1.ebuild,v 1.12 2012/08/20 03:12:20 ottxor Exp $
 
 EAPI=4
 inherit autotools autotools-utils eutils
@@ -11,8 +11,11 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="static-libs subunit"
+
+DEPEND="subunit? ( dev-python/subunit )"
+RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch \
@@ -25,6 +28,9 @@ src_prepare() {
 	# example breaks USE=subunit.
 	rm src/check.h || die
 
+	# Fix automake warnings being treated as errors, bug #420373
+	sed -i -e s/-Werror// configure.ac || die
+
 	eautoreconf
 }
 
@@ -32,7 +38,7 @@ src_configure() {
 	local myeconfargs=(
 		--disable-dependency-tracking
 		$(use_enable subunit)
-		--docdir=/usr/share/doc/${PF}
+		--docdir="${EPREFIX}"/usr/share/doc/${PF}
 	)
 	autotools-utils_src_configure
 }
@@ -41,6 +47,6 @@ src_install() {
 	autotools-utils_src_install
 	dodoc AUTHORS *ChangeLog* NEWS README THANKS TODO
 
-	rm -f "${D}"/usr/share/doc/${PF}/COPYING* || die
-	find "${D}" -name '*.la' -exec rm -f {} + || die
+	rm -f "${ED}"/usr/share/doc/${PF}/COPYING* || die
+	find "${ED}" -name '*.la' -exec rm -f {} + || die
 }

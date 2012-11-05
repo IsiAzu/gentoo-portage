@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/kbuild/kbuild-0.1.9998_pre20110817.ebuild,v 1.3 2011/11/01 11:01:17 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/kbuild/kbuild-0.1.9998_pre20110817.ebuild,v 1.6 2012/06/04 13:12:20 jlec Exp $
 
 EAPI=2
 
@@ -16,7 +16,7 @@ SRC_URI="http://dev.gentoo.org/~polynomial-c/${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="sys-devel/flex
@@ -33,14 +33,15 @@ src_prepare() {
 		"${FILESDIR}/${PN}-glibc-2.10.patch" \
 		"${FILESDIR}/${PN}-0.1.5-gentoo-docdir.patch" \
 		"${FILESDIR}/${PN}-0.1.5_p2-qa.patch" \
-		"${FILESDIR}/${P}-kash-link-pthread.patch"
+		"${FILESDIR}/${P}-kash-link-pthread.patch" \
+		"${FILESDIR}/${P}-gold.patch"
 
 	cd "${S}/src/kmk"
 	eautoreconf
 	cd "${S}/src/sed"
 	eautoreconf
 
-	sed -e "s/_LDFLAGS\.${ARCH}*.*=/& ${LDFLAGS}/g" \
+	sed -e "s@_LDFLAGS\.${ARCH}*.*=@& ${LDFLAGS}@g" \
 		-i "${S}"/Config.kmk || die #332225
 }
 

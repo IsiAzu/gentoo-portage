@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/zeromq/zeromq-2.1.10.ebuild,v 1.1 2011/10/03 14:55:01 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/zeromq/zeromq-2.1.10.ebuild,v 1.4 2012/05/05 02:54:24 jdhore Exp $
 
 # NOTES:
 # 1- use flag 'pgm' (OpenPGM support) must be masked by profiles for ARM archs;
@@ -15,12 +15,12 @@ SRC_URI="http://download.zeromq.org/${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="pgm test static-libs"
 
 RDEPEND=""
 DEPEND="pgm? (
-		dev-util/pkgconfig
+		virtual/pkgconfig
 		=net-libs/openpgm-5.1.116
 	)
 	sys-apps/util-linux"

@@ -1,6 +1,59 @@
 # ChangeLog for dev-util/anjuta
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/anjuta/ChangeLog,v 1.137 2011/11/16 02:14:50 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/anjuta/ChangeLog,v 1.150 2012/10/28 15:47:42 armin76 Exp $
+
+  28 Oct 2012; Raúl Porcel <armin76@gentoo.org> anjuta-3.4.3.ebuild:
+  sparc stable wrt #427544
+
+  16 Oct 2012; Anthony G. Basile <blueness@gentoo.org> anjuta-3.4.3.ebuild:
+  stable ppc, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> anjuta-3.4.3.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> anjuta-3.4.3.ebuild:
+  x86 stable wrt bug #427544
+
+*anjuta-3.4.4 (09 Aug 2012)
+
+  09 Aug 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -anjuta-3.4.1.ebuild, +anjuta-3.4.4.ebuild:
+  Version bump with bugfixes. Drop old.
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org> anjuta-3.2.2.ebuild:
+  sparc stable wrt #410611
+
+  24 May 2012; Samuli Suominen <ssuominen@gentoo.org> anjuta-3.2.2.ebuild:
+  ppc stable wrt #410611
+
+*anjuta-3.4.3 (22 May 2012)
+
+  22 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +anjuta-3.4.3.ebuild:
+  Version bump, newly created .ui files are now for gtk3 by default.
+
+*anjuta-3.4.1 (07 May 2012)
+
+  07 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -anjuta-3.2.1.ebuild, +anjuta-3.4.1.ebuild:
+  Version bump with assorted UI improvements, better autotools support, and
+  vala-0.16 support. Drop old.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> anjuta-2.32.1.1.ebuild,
+  anjuta-3.2.1.ebuild, anjuta-3.2.2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> anjuta-3.2.2.ebuild:
+  x86 stable, bug #410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> anjuta-3.2.2.ebuild:
+  Stable for amd64, wrt bug #410611
+
+*anjuta-3.2.2 (26 Nov 2011)
+
+  26 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +anjuta-3.2.2.ebuild:
+  Bump. Notable changes: improved search.
 
 *anjuta-3.2.1 (16 Nov 2011)
 

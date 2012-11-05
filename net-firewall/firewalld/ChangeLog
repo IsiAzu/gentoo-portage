@@ -1,0 +1,13 @@
+# ChangeLog for net-firewall/firewalld
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-firewall/firewalld/ChangeLog,v 1.2 2012/11/04 01:19:24 cardoe Exp $
+
+  04 Nov 2012; Doug Goldstein <cardoe@gentoo.org> firewalld-0.2.9.ebuild:
+  Keyword for ~x86
+
+*firewalld-0.2.9 (02 Nov 2012)
+
+  02 Nov 2012; Doug Goldstein <cardoe@gentoo.org> +firewalld-0.2.9.ebuild,
+  +files/firewalld.init, +metadata.xml:
+  Initial version of firewalld. Let's see how this works out.
+

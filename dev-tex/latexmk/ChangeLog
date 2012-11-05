@@ -1,6 +1,52 @@
 # ChangeLog for dev-tex/latexmk
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latexmk/ChangeLog,v 1.40 2011/11/02 15:33:18 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latexmk/ChangeLog,v 1.53 2012/08/31 17:26:37 radhermit Exp $
+
+*latexmk-433c (31 Aug 2012)
+
+  31 Aug 2012; Tim Harder <radhermit@gentoo.org> +latexmk-433c.ebuild:
+  Version bump.
+
+*latexmk-431 (10 May 2012)
+
+  10 May 2012; Tim Harder <radhermit@gentoo.org> +latexmk-431.ebuild:
+  Version bump.
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> latexmk-430a.ebuild:
+  keyword ~amd64-fbsd
+
+  22 Apr 2012; Fabian Groffen <grobian@gentoo.org> latexmk-430a.ebuild:
+  Marked ~amd64-linux, bug #411657
+
+  31 Mar 2012; Tim Harder <radhermit@gentoo.org> -latexmk-423a.ebuild,
+  -latexmk-425.ebuild, -latexmk-426.ebuild:
+  Remove old.
+
+  31 Mar 2012; Raúl Porcel <armin76@gentoo.org> latexmk-427a.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #404727
+
+  12 Mar 2012; Markus Meier <maekke@gentoo.org> latexmk-427a.ebuild:
+  arm stable, bug #404727
+
+  09 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> latexmk-427a.ebuild:
+  x86 stable wrt bug #404727
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> latexmk-427a.ebuild:
+  Marking latexmk-427a ppc64 for bug 404727
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> latexmk-427a.ebuild:
+  Marking latexmk-427a ppc for bug 404727
+
+  24 Feb 2012; Agostino Sarubbo <ago@gentoo.org> latexmk-427a.ebuild:
+  Stable for amd64, wrt bug #404727
+
+  23 Feb 2012; Jeroen Roovers <jer@gentoo.org> latexmk-427a.ebuild:
+  Stable for HPPA (bug #404727).
+
+*latexmk-430a (23 Feb 2012)
+
+  23 Feb 2012; Tim Harder <radhermit@gentoo.org> +latexmk-430a.ebuild:
+  Version bump.
 
   02 Nov 2011; Alexis Ballier <aballier@gentoo.org> latexmk-427a.ebuild:
   keyword ~x86-fbsd

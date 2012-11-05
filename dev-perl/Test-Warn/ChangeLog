@@ -1,6 +1,39 @@
 # ChangeLog for dev-perl/Test-Warn
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Warn/ChangeLog,v 1.36 2011/11/18 15:35:12 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Warn/ChangeLog,v 1.46 2012/09/22 13:22:57 blueness Exp $
+
+  22 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  Test-Warn-0.240.0.ebuild:
+  keyword ~ppc64, bug #384677
+
+  08 Aug 2012; Naohiro Aota <naota@gentoo.org> Test-Warn-0.240.0.ebuild:
+  Add ~x86-fbsd wrt bug #428248
+
+  06 Aug 2012; Alexis Ballier <aballier@gentoo.org> Test-Warn-0.240.0.ebuild:
+  keyword ~amd64-fbsd
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> Test-Warn-0.230.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #412985
+
+*Test-Warn-0.240.0 (07 Jun 2012)
+
+  07 Jun 2012; Torsten Veller <tove@gentoo.org> +Test-Warn-0.240.0.ebuild:
+  Version bump. It should work with Carp 1.17 from perl-5.12.4.
+
+  25 Apr 2012; Markus Meier <maekke@gentoo.org> Test-Warn-0.230.0.ebuild:
+  arm stable, bug #412985
+
+  14 Apr 2012; Markus Meier <maekke@gentoo.org> Test-Warn-0.230.0.ebuild:
+  x86 stable, bug #408579
+
+  20 Mar 2012; Jeroen Roovers <jer@gentoo.org> Test-Warn-0.230.0.ebuild:
+  Stable for HPPA (bug #408579).
+
+  20 Mar 2012; Agostino Sarubbo <ago@gentoo.org> Test-Warn-0.230.0.ebuild:
+  Stable for amd64, wrt bug #408581
 
   18 Nov 2011; Fabian Groffen <grobian@gentoo.org> Test-Warn-0.230.0.ebuild:
   Marked ~x86-solaris
@@ -135,4 +168,3 @@
   19 Mar 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
   +Test-Warn-0.08.ebuild:
   Testing dep for WWW-Mechanize
-

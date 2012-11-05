@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/ganeti/ganeti-2.4.5.ebuild,v 1.1 2011/10/27 16:57:55 ramereth Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/ganeti/ganeti-2.4.5.ebuild,v 1.3 2012/10/09 20:45:44 cardoe Exp $
 
 EAPI=2
 
@@ -15,13 +15,13 @@ SRC_URI="http://ganeti.googlecode.com/files/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="kvm xen drbd +filestorage syslog ipv6"
 
 S="${WORKDIR}/${MY_P}"
 
 DEPEND="xen? ( >=app-emulation/xen-3.0 )
-	kvm? ( app-emulation/qemu-kvm )
+	kvm? ( app-emulation/qemu )
 	drbd? ( >=sys-cluster/drbd-8.3 )
 	ipv6? ( net-misc/ndisc6 )
 	dev-libs/openssl

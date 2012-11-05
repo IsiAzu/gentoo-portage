@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goocanvas/goocanvas-2.0.1.ebuild,v 1.1 2011/11/20 19:59:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goocanvas/goocanvas-2.0.1.ebuild,v 1.10 2012/05/28 14:03:35 armin76 Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -9,14 +9,14 @@ PYTHON_DEPEND="python? 2:2.6"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="2.[45] 3.* *-jython"
 
-inherit gnome2 python
+inherit eutils gnome2 python
 
 DESCRIPTION="Canvas widget for GTK+ using the cairo 2D library for drawing"
 HOMEPAGE="http://live.gnome.org/GooCanvas"
 
 LICENSE="GPL-2"
 SLOT="2.0"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 ia64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="doc examples +introspection python"
 
 # python only enables python specific binding override
@@ -27,7 +27,7 @@ RDEPEND=">=x11-libs/gtk+-3.0.0:3
 	python? ( >=dev-python/pygobject-2.28 )
 "
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.8 )"
 
 pkg_setup() {
@@ -44,6 +44,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-gold.patch
 	# Do not build demos
 	sed -e 's/^\(SUBDIRS =.*\)demo\(.*\)$/\1\2/' \
 		-i Makefile.am Makefile.in || die "sed failed"
@@ -52,8 +53,7 @@ src_prepare() {
 	sed -e "/SUBDIRS = python/d" -i bindings/Makefile.am bindings/Makefile.in
 
 	# disable pyc compiling
-	mv py-compile py-compile.orig
-	ln -s $(type -P true) py-compile
+	>py-compile
 
 	gnome2_src_prepare
 }

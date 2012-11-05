@@ -1,22 +1,22 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/h5py/h5py-2.0.1.ebuild,v 1.1 2011/10/05 19:57:29 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/h5py/h5py-2.0.1.ebuild,v 1.4 2012/10/17 09:30:09 patrick Exp $
 
 EAPI="3"
 PYTHON_DEPEND="*"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="*-jython"
+RESTRICT_PYTHON_ABIS="2.5 *-jython 2.7-pypy-* 3.3"
 DISTUTILS_SRC_TEST="setup.py"
 
 inherit distutils
 
 DESCRIPTION="A simple Python interface to HDF5 files."
 HOMEPAGE="http://h5py.alfven.org/ http://code.google.com/p/h5py/ http://pypi.python.org/pypi/h5py"
-SRC_URI="http://h5py.googlecode.com/files/${P}.tar.gz"
+SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="test"
 
 RDEPEND="sci-libs/hdf5

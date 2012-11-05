@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/mp-5.2.1.ebuild,v 1.1 2011/11/12 00:47:44 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/mp-5.2.1.ebuild,v 1.8 2012/07/20 08:24:58 jlec Exp $
 
-EAPI="3"
+EAPI=4
 
 inherit eutils toolchain-funcs
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.triptico.com/download/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-interix ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 ia64 ppc ppc64 sparc x86 ~x86-interix ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="gtk iconv kde ncurses nls pcre qt4"
 
 RDEPEND="
@@ -25,7 +25,7 @@ RDEPEND="
 	app-text/grutatxt"
 DEPEND="${RDEPEND}
 	app-text/grutatxt
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	dev-lang/perl"
 
 src_prepare() {
@@ -65,16 +65,5 @@ src_configure() {
 src_install() {
 	dodir /usr/bin
 	sh config.sh --prefix="${EPREFIX}/usr"
-	emake -j1 DESTDIR="${D}" install || die "Install Failed"
-#	use gtk && dosym mp-5 /usr/bin/gmp
-}
-
-pkg_postinst() {
-	if use gtk ; then
-		einfo
-		einfo "mp-5 is symlinked to gmp! Use"
-		einfo "$ DISPLAY=\"\" mp-5"
-		einfo "to use text mode!"
-		einfo
-	fi
+	emake DESTDIR="${D}" install
 }

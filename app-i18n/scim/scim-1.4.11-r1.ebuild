@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/scim/scim-1.4.11-r1.ebuild,v 1.1 2011/11/17 09:06:46 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/scim/scim-1.4.11-r1.ebuild,v 1.10 2012/08/05 18:03:20 armin76 Exp $
 
 EAPI="3"
-inherit autotools eutils flag-o-matic multilib
+inherit eutils flag-o-matic multilib gnome2-utils
 
 DESCRIPTION="Smart Common Input Method (SCIM) is an Input Method (IM) development platform"
 HOMEPAGE="http://www.scim-im.org/"
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/scim/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 hppa ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="doc"
 
 RDEPEND="x11-libs/libX11
@@ -24,22 +24,9 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen
 		>=app-text/docbook-xsl-stylesheets-1.73.1 )
 	dev-lang/perl
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	>=dev-util/intltool-0.33
 	sys-devel/libtool"
-
-update_gtk_immodules() {
-	local GTK2_CONFDIR="/etc/gtk-2.0"
-	# bug #366889
-	if has_version '>=x11-libs/gtk+-2.22.1-r1:2' || has_multilib_profile ; then
-		GTK2_CONFDIR="${GTK2_CONFDIR}/$(get_abi_CHOST)"
-	fi
-	mkdir -p "${EPREFIX}${GTK2_CONFDIR}"
-
-	if [ -x "${EPREFIX}/usr/bin/gtk-query-immodules-2.0" ] ; then
-		"${EPREFIX}/usr/bin/gtk-query-immodules-2.0" > "${EPREFIX}${GTK2_CONFDIR}/gtk.immodules"
-	fi
-}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-type-module-use.patch
@@ -90,13 +77,16 @@ pkg_postinst() {
 	elog "To use various input methods (more than 30 languages):"
 	elog "	# emerge app-i18n/scim-m17n"
 	elog
+	elog "Please modify ${EPREFIX}/etc/scim/global and add your UTF-8 locale to"
+	elog "/SupportedUnicodeLocales entry."
+	elog
 	ewarn
 	ewarn "If you upgraded from scim-1.2.x or scim-1.0.x, you should remerge all SCIM modules."
 	ewarn
 
-	update_gtk_immodules
+	gnome2_query_immodules_gtk2
 }
 
 pkg_postrm() {
-	update_gtk_immodules
+	gnome2_query_immodules_gtk2
 }

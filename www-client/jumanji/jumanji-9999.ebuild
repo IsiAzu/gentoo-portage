@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/jumanji/jumanji-9999.ebuild,v 1.4 2011/09/21 07:38:46 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/jumanji/jumanji-9999.ebuild,v 1.6 2012/08/19 14:07:25 blueness Exp $
 
 EAPI=2
 
@@ -13,7 +13,7 @@ EGIT_REPO_URI="git://pwmt.org/jumanji.git"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~ppc"
 IUSE=""
 
 RDEPEND=">=dev-libs/glib-2.22.4:2
@@ -22,7 +22,7 @@ RDEPEND=">=dev-libs/glib-2.22.4:2
 	>=net-libs/webkit-gtk-1.2.1:2
 	>=x11-libs/gtk+-2.18.6:2"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_prepare() {
 	# respect CFLAGS

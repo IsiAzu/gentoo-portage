@@ -1,6 +1,36 @@
 # ChangeLog for net-irc/quassel
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.135 2011/11/11 11:25:59 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.142 2012/09/02 18:16:13 chithanh Exp $
+
+  02 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  quassel-0.8.0.ebuild:
+  Keyword ~arm, tested by me.
+
+  29 Jul 2012; Michael Palimaka <kensington@gentoo.org> quassel-0.8.0.ebuild,
+  quassel-9999.ebuild:
+  Add missing slot dependencies on Qt.
+
+  01 Jun 2012; Zac Medico <zmedico@gentoo.org> quassel-0.8.0.ebuild,
+  quassel-9999.ebuild:
+  tweak inherits so repoman can parse them, and inherit user for enewgroup and
+  enewuser
+
+  24 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> -quassel-0.7.3.ebuild:
+  Remove older version. Why the heck stabling on amd64 and x86 was not
+  changeloged last time (repoman bug?)...
+
+  31 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> quassel-0.8.0.ebuild,
+  quassel-9999.ebuild:
+  Add support for syslog switching and add oident elog information.
+
+*quassel-0.8.0 (21 Mar 2012)
+
+  21 Mar 2012; Patrick Lauer <patrick@gentoo.org> +quassel-0.8.0.ebuild:
+  Bump for #403721
+
+  14 Feb 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  ayatana is now global per http://archives.gentoo.org/gentoo-
+  dev/msg_f2eb26947d0c86020625a9aeca6f25e4.xml
 
   11 Nov 2011; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
   Drop me from maint.
@@ -624,4 +654,3 @@
   26 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
   +quassel-0.2.0_alpha1.ebuild:
   Initial import of Quassel, with a flag to enable/disable build of GUI client.
-

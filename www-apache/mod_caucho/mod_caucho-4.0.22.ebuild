@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apache/mod_caucho/mod_caucho-4.0.22.ebuild,v 1.1 2011/09/06 16:42:52 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apache/mod_caucho/mod_caucho-4.0.22.ebuild,v 1.6 2012/10/12 09:25:37 patrick Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.caucho.com/download/resin-${PV}-src.zip
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="amd64 ~ppc ~ppc64 x86"
 IUSE=""
 
 DEPEND="${DEPEND}
@@ -27,12 +27,20 @@ APACHE2_MOD_CONF="88_${PN}"
 APACHE2_MOD_DEFINE="CAUCHO"
 APACHE2_MOD_FILE="${S}/modules/c/src/apache2/.libs/${PN}.so"
 
-need_apache2
+need_apache2_2
 
 src_prepare() {
 	for i in "${WORKDIR}"/${PV}/mod_caucho-*; do
 		epatch "${i}"
 	done
+
+	sed -i \
+		-e 's,-m32,,g; s,-m64,,g;' \
+		-e '/.*Java 1.6 required.*/d' \
+		configure.ac || die "sed for configure.ac failed"
+	sed -i \
+		-e 's,\$(LIBS_SHLIB),$(LDFLAGS) $(LIBS_SHLIB),g' \
+		modules/c/src/apache2/Makefile.in || die "sed for Makefile.in failed"
 
 	mkdir m4
 	eautoreconf
@@ -40,7 +48,7 @@ src_prepare() {
 }
 
 src_configure() {
-	econf --with-apxs=${APXS} || die "econf failed"
+	econf --with-apxs=${APXS} --with-java-home=/usr || die "econf failed"
 }
 
 src_compile() {

@@ -1,6 +1,45 @@
 # ChangeLog for app-misc/gramps
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gramps/ChangeLog,v 1.149 2011/10/23 17:14:31 fauli Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gramps/ChangeLog,v 1.158 2012/11/04 16:41:19 fauli Exp $
+
+*gramps-3.4.2 (04 Nov 2012)
+
+  04 Nov 2012; Christian Faulhammer <fauli@gentoo.org> +gramps-3.4.2.ebuild:
+  version bump
+
+  18 Oct 2012; Christian Faulhammer <fauli@gentoo.org>
+  -files/gramps-3.2.4-use_bsddb3.patch, -gramps-3.2.5.ebuild,
+  -gramps-3.2.6.ebuild, -files/gramps-3.3.0-use_bsddb3.patch,
+  -gramps-3.3.1.ebuild:
+  clean up
+
+  17 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gramps-3.4.0.ebuild:
+  x86 stable wrt bug #435486
+
+*gramps-3.4.1 (03 Oct 2012)
+
+  03 Oct 2012; Christian Faulhammer <fauli@gentoo.org> +gramps-3.4.1.ebuild:
+  version bump
+
+  30 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gramps-3.4.0.ebuild:
+  stable ppc, bug #435486
+
+  23 Sep 2012; Agostino Sarubbo <ago@gentoo.org> gramps-3.4.0.ebuild:
+  Stable for amd64, wrt bug #435486
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org> gramps-3.2.5.ebuild,
+  gramps-3.2.6.ebuild, gramps-3.3.1.ebuild, gramps-3.4.0.ebuild:
+  Drop sparc keywords
+
+*gramps-3.4.0 (30 Jun 2012)
+
+  30 Jun 2012; Christian Faulhammer <fauli@gentoo.org> +gramps-3.4.0.ebuild,
+  +files/gramps-3.4.0-use_bsddb3.patch:
+  version bump for bug 423315, with help from Yaron Tausky
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> gramps-3.2.5.ebuild,
+  gramps-3.2.6.ebuild, gramps-3.3.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
 *gramps-3.3.1 (23 Oct 2011)
 

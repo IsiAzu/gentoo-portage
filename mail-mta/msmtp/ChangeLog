@@ -1,6 +1,81 @@
 # ChangeLog for mail-mta/msmtp
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/msmtp/ChangeLog,v 1.116 2011/11/08 00:43:29 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/msmtp/ChangeLog,v 1.137 2012/10/22 09:46:04 radhermit Exp $
+
+  22 Oct 2012; Tim Harder <radhermit@gentoo.org> -msmtp-1.4.29.ebuild:
+  Remove old.
+
+*msmtp-1.4.30 (22 Oct 2012)
+
+  22 Oct 2012; Tim Harder <radhermit@gentoo.org> +msmtp-1.4.30.ebuild:
+  Version bump.
+
+  04 Sep 2012; Tim Harder <radhermit@gentoo.org> -msmtp-1.4.27.ebuild:
+  Remove old.
+
+*msmtp-1.4.29 (04 Sep 2012)
+
+  04 Sep 2012; Tim Harder <radhermit@gentoo.org> +msmtp-1.4.29.ebuild:
+  Version bump.
+
+  19 Aug 2012; Raúl Porcel <armin76@gentoo.org> msmtp-1.4.28.ebuild:
+  alpha/ia64/sparc stable wrt #423891
+
+  10 Jul 2012; Brent Baude <ranger@gentoo.org> msmtp-1.4.28.ebuild:
+  Marking msmtp-1.4.28 ppc64 for bug 423891
+
+  03 Jul 2012; Brent Baude <ranger@gentoo.org> msmtp-1.4.28.ebuild:
+  Marking msmtp-1.4.28 ppc for bug 423891
+
+  28 Jun 2012; Agostino Sarubbo <ago@gentoo.org> msmtp-1.4.28.ebuild:
+  Stable for amd64, wrt bug #423891
+
+  28 Jun 2012; Jeff Horelick <jdhore@gentoo.org> msmtp-1.4.28.ebuild:
+  marked x86 per bug 423891
+
+  27 Jun 2012; Tim Harder <radhermit@gentoo.org> msmtp-1.4.28.ebuild:
+  Die on sed failure.
+
+  02 May 2012; Jeff Horelick <jdhore@gentoo.org> msmtp-1.4.27.ebuild,
+  msmtp-1.4.28.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*msmtp-1.4.28 (02 May 2012)
+
+  02 May 2012; Tim Harder <radhermit@gentoo.org> +msmtp-1.4.28.ebuild:
+  Version bump.
+
+  27 Mar 2012; Tim Harder <radhermit@gentoo.org> -msmtp-1.4.24.ebuild:
+  Remove old.
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org> msmtp-1.4.27.ebuild:
+  alpha/ia64/sparc stable wrt #402637
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> msmtp-1.4.27.ebuild:
+  Marking msmtp-1.4.27 ppc64 for bug 402637
+
+  16 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> msmtp-1.4.27.ebuild:
+  x86 stable wrt bug #402637
+
+  15 Feb 2012; Brent Baude <ranger@gentoo.org> msmtp-1.4.27.ebuild:
+  Marking msmtp-1.4.27 ppc for bug 402637
+
+  08 Feb 2012; Agostino Sarubbo <ago@gentoo.org> msmtp-1.4.27.ebuild:
+  Stable for amd64, wrt bug #403637
+
+  08 Feb 2012; Tim Harder <radhermit@gentoo.org> -msmtp-1.4.24-r1.ebuild,
+  -msmtp-1.4.25.ebuild, -msmtp-1.4.26.ebuild:
+  Remove old.
+
+*msmtp-1.4.27 (08 Jan 2012)
+
+  08 Jan 2012; Tim Harder <radhermit@gentoo.org> +msmtp-1.4.27.ebuild:
+  Version bump.
+
+*msmtp-1.4.26 (28 Nov 2011)
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> +msmtp-1.4.26.ebuild:
+  Version bump.
 
   08 Nov 2011; Tim Harder <radhermit@gentoo.org> msmtp-1.4.25.ebuild:
   Add rdep on net-mail/mailbase (bug #389797 by Tiziano Müller).

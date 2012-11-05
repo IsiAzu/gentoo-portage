@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/nautilus-dropbox/nautilus-dropbox-0.6.9.ebuild,v 1.1 2011/09/13 14:25:41 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/nautilus-dropbox/nautilus-dropbox-0.6.9.ebuild,v 1.4 2012/06/07 22:22:02 zmedico Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
-inherit autotools eutils python linux-info gnome2
+inherit autotools eutils python linux-info gnome2 user
 
 DESCRIPTION="Store, Sync and Share Files Online"
 HOMEPAGE="http://www.dropbox.com/"
@@ -24,7 +24,7 @@ RDEPEND="gnome-base/nautilus
 	x11-libs/libXinerama"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	dev-python/docutils"
 
 DOCS="AUTHORS ChangeLog NEWS README"
@@ -51,7 +51,7 @@ src_prepare() {
 		-e 's|\(DROPBOXD_PATH = \).*|\1"/opt/dropbox/dropboxd"|' \
 			-i dropbox.in || die
 
-	eautoreconf
+	AT_NOELIBTOOLIZE=yes eautoreconf
 }
 
 src_install () {

@@ -1,6 +1,57 @@
 # ChangeLog for sys-devel/autoconf-archive
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-archive/ChangeLog,v 1.41 2011/11/21 15:37:49 jlec Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-archive/ChangeLog,v 1.52 2012/09/24 02:14:38 binki Exp $
+
+*autoconf-archive-2012.09.08 (24 Sep 2012)
+
+  24 Sep 2012; Nathan Phillip Brink <binki@gentoo.org>
+  +autoconf-archive-2012.09.08.ebuild:
+  Bump to autoconf-archive-2012.09.08.
+
+  02 Sep 2012; Raúl Porcel <armin76@gentoo.org>
+  autoconf-archive-2012.04.07.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #422201
+
+  11 Aug 2012; Markus Meier <maekke@gentoo.org>
+  autoconf-archive-2012.04.07.ebuild:
+  arm stable, bug #422201
+
+  08 Aug 2012; Brent Baude <ranger@gentoo.org>
+  autoconf-archive-2012.04.07.ebuild:
+  Marking autoconf-archive-2012.04.07 ppc for bug 422201
+
+  06 Aug 2012; Brent Baude <ranger@gentoo.org>
+  autoconf-archive-2012.04.07.ebuild:
+  Marking autoconf-archive-2012.04.07 ppc64 for bug 422201
+
+  03 Aug 2012; Agostino Sarubbo <ago@gentoo.org>
+  autoconf-archive-2012.04.07.ebuild:
+  Stable for amd64, wrt bug #422201
+
+  01 Aug 2012; Jeroen Roovers <jer@gentoo.org>
+  autoconf-archive-2012.04.07.ebuild:
+  Stable for HPPA (bug #422201).
+
+  01 Aug 2012; Jeff Horelick <jdhore@gentoo.org>
+  autoconf-archive-2012.04.07.ebuild:
+  marked x86 per bug 422201
+
+*autoconf-archive-2012.04.07 (17 Apr 2012)
+
+  17 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +autoconf-archive-2012.04.07.ebuild:
+  Version bump to latest.
+
+  12 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -autoconf-archive-2011.07.17.ebuild, -autoconf-archive-2011.09.17.ebuild,
+  autoconf-archive-2011.12.21.ebuild:
+  Stabilise 2011.12.21 on all archs. Remove older.
+
+*autoconf-archive-2011.12.21 (22 Dec 2011)
+
+  22 Dec 2011; Nathan Phillip Brink <binki@gentoo.org>
+  +autoconf-archive-2011.12.21.ebuild:
+  Bump to autoconf-archive-2011.12.21.
 
   21 Nov 2011; Justin Lecher <jlec@gentoo.org>
   autoconf-archive-2011.09.17.ebuild:

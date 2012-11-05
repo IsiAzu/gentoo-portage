@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/blobby/blobby-0.9c.ebuild,v 1.1 2011/11/18 16:05:15 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/blobby/blobby-0.9c.ebuild,v 1.6 2012/06/21 07:47:03 tupone Exp $
 
 EAPI=2
 inherit cmake-utils eutils games
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}2-linux-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND=">=dev-games/physfs-2[zip]
@@ -19,7 +19,8 @@ RDEPEND=">=dev-games/physfs-2[zip]
 	virtual/opengl"
 DEPEND="${RDEPEND}
 	dev-libs/boost
-	dev-util/pkgconfig"
+	virtual/pkgconfig
+	app-arch/zip" #406667
 
 S=${WORKDIR}/${PN}-beta-${PV}
 
@@ -27,6 +28,7 @@ src_prepare() {
 	sed -i -e "s:share/${PN}:${GAMES_DATADIR}/${PN}:" data/CMakeLists.txt || die
 	sed -i -e "s:share/${PN}:${GAMES_DATADIR/\/usr\/}/${PN}:" src/main.cpp || die
 	sed -i -e "/DESTINATION/s:bin:${GAMES_BINDIR}:" src/CMakeLists.txt || die
+	epatch "${FILESDIR}"/${P}-gcc47.patch
 }
 
 src_configure() {

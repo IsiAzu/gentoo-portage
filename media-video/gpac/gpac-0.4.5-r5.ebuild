@@ -1,20 +1,18 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/gpac/gpac-0.4.5-r5.ebuild,v 1.1 2011/11/22 14:17:57 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/gpac/gpac-0.4.5-r5.ebuild,v 1.6 2012/10/09 01:08:21 blueness Exp $
 
 inherit eutils wxwidgets flag-o-matic multilib toolchain-funcs
 
 DESCRIPTION="GPAC is an implementation of the MPEG-4 Systems standard developed from scratch in ANSI C."
 HOMEPAGE="http://gpac.sourceforge.net/"
-NBV="610"
-WBV="600"
-PATCHLEVEL="8"
+PATCHLEVEL="9"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
 	mirror://gentoo/${P}-patches-${PATCHLEVEL}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="a52 aac alsa debug ffmpeg ipv6 jack jpeg jpeg2k mad opengl oss png pulseaudio sdl ssl theora truetype vorbis wxwidgets xml xvid"
 
 S=${WORKDIR}/${PN}
@@ -115,6 +113,7 @@ src_compile() {
 		--enable-svg \
 		--enable-pic \
 		--disable-amr \
+		--use-js=no \
 		$(use_enable debug) \
 		$(use_enable opengl) \
 		$(use_enable oss oss-audio) \

@@ -1,17 +1,14 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/weechat/weechat-9999.ebuild,v 1.11 2011/10/22 10:09:13 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/weechat/weechat-9999.ebuild,v 1.22 2012/10/05 19:41:29 scarabeus Exp $
 
-EAPI=3
+EAPI=4
 
-USE_RUBY="ruby18 ruby19"
-RUBY_OPTIONAL="yes"
-
-PYTHON_DEPEND="python? 2"
+PYTHON_DEPEND="python? 2" # it can use only ONE python, so stick with two for now
 
 EGIT_REPO_URI="git://git.sv.gnu.org/weechat.git"
 [[ ${PV} == "9999" ]] && GIT_ECLASS="git-2"
-inherit python multilib ruby-ng cmake-utils ${GIT_ECLASS}
+inherit python multilib cmake-utils ${GIT_ECLASS}
 
 DESCRIPTION="Portable and multi-interface IRC client."
 HOMEPAGE="http://weechat.org/"
@@ -28,15 +25,17 @@ fi
 NETWORKS="+irc"
 PLUGINS="+alias +charset +fifo +logger +relay +rmodifier +scripts +spell +xfer"
 #INTERFACES="+ncurses gtk"
-SCRIPT_LANGS="lua +perl +python ruby tcl"
+SCRIPT_LANGS="guile lua +perl +python ruby tcl"
 IUSE="${SCRIPT_LANGS} ${PLUGINS} ${INTERFACES} ${NETWORKS} +crypt doc nls +ssl"
 
 RDEPEND="
+	net-misc/curl[ssl]
 	sys-libs/ncurses
 	charset? ( virtual/libiconv )
+	guile? ( dev-scheme/guile )
 	lua? ( dev-lang/lua[deprecated] )
 	perl? ( dev-lang/perl )
-	ruby? ( $(ruby_implementations_depend) )
+	ruby? ( >=dev-lang/ruby-1.9 )
 	ssl? ( net-libs/gnutls )
 	spell? ( app-text/aspell )
 	tcl? ( >=dev-lang/tcl-8.4.15 )
@@ -51,26 +50,42 @@ DOCS="AUTHORS ChangeLog NEWS README"
 
 #REQUIRED_USE=" || ( ncurses gtk )"
 
-pkg_setup() {
-	python_set_active_version 2
-	python_pkg_setup
+LANGS=( cs de es fr hu it ja pl pt_BR ru )
+for X in "${LANGS[@]}" ; do
+	IUSE="${IUSE} linguas_${X}"
+done
 
-	ruby-ng_pkg_setup
+pkg_setup() {
+	if use python; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
 }
 
 src_prepare() {
+	local i
+
 	# fix libdir placement
 	sed -i \
 		-e "s:lib/:$(get_libdir)/:g" \
 		-e "s:lib\":$(get_libdir)\":g" \
 		CMakeLists.txt || die "sed failed"
+
+	# install only required translations
+	for i in "${LANGS[@]}" ; do
+		if ! use linguas_${i} ; then
+			sed -i \
+				-e "/${i}.po/d" \
+				po/CMakeLists.txt || die
+		fi
+	done
 }
 
 # alias, rmodifier, xfer
 src_configure() {
 	# $(cmake-utils_use_enable gtk)
 	# $(cmake-utils_use_enable ncurses)
-	mycmakeargs=(
+	local mycmakeargs=(
 		"-DENABLE_NCURSES=ON"
 		"-DENABLE_LARGEFILE=ON"
 		"-DENABLE_DEMO=OFF"
@@ -84,21 +99,15 @@ src_configure() {
 		$(cmake-utils_use_enable logger)
 		$(cmake-utils_use_enable relay)
 		$(cmake-utils_use_enable scripts)
+		$(cmake-utils_use_enable scripts script)
 		$(cmake-utils_use_enable perl)
 		$(cmake-utils_use_enable python)
 		$(cmake-utils_use_enable ruby)
 		$(cmake-utils_use_enable lua)
 		$(cmake-utils_use_enable tcl)
+		$(cmake-utils_use_enable guile)
 		$(cmake-utils_use_enable doc)
 	)
 
 	cmake-utils_src_configure
-}
-
-pkg_postinst() {
-	if use scripts && use python; then
-		elog "You can use handy script from upstream to manage your scripts:"
-		elog "    http://www.weechat.org/scripts/source/stable/weeget.py/"
-		elog "This thing downloads and updates all other scripts for you."
-	fi
 }

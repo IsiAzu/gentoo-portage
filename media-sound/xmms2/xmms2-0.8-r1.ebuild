@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/xmms2/xmms2-0.8-r1.ebuild,v 1.1 2011/10/22 09:23:51 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/xmms2/xmms2-0.8-r1.ebuild,v 1.8 2012/10/28 14:19:51 slyfox Exp $
 
 EAPI=3
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2.1"
 
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ppc ~x86"
+KEYWORDS="alpha amd64 ppc x86"
 
 IUSE="aac airplay +alsa ao asf avahi cdda curl cxx ffmpeg flac gvfs ices
 jack mac mlib-update mms +mad modplug mp3 mp4 musepack ofa oss
@@ -44,7 +44,7 @@ RDEPEND="server? (
 		mms? ( virtual/ffmpeg
 			>=media-libs/libmms-0.3 )
 		modplug? ( media-libs/libmodplug )
-		mad? ( media-sound/madplay )
+		mad? ( media-libs/libmad )
 		mp3? ( >=media-sound/mpg123-1.5.1 )
 		musepack? ( media-sound/musepack-tools )
 		ofa? ( media-libs/libofa )
@@ -71,7 +71,7 @@ DEPEND="${RDEPEND}
 	dev-lang/python
 	python? ( dev-python/pyrex )
 	perl? ( virtual/perl-Module-Build )
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	test? ( dev-util/cunit )
 	"
 
@@ -232,8 +232,14 @@ src_configure() {
 }
 
 src_compile() {
-	# also runs tests if 'use test' in enabled (see tests option)
-	./waf build || die "waf build failed"
+	# waf is very keen to run tests in build phase (bug #424377) but
+	# it does not bother running tests twice, so the hack below works:
+	./waf build || ./waf build || die "waf build failed"
+}
+
+src_test() {
+	# rerun tests
+	./waf --alltests || die "waf --alltests failed"
 }
 
 src_install() {

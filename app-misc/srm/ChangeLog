@@ -1,6 +1,28 @@
 # ChangeLog for app-misc/srm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/srm/ChangeLog,v 1.23 2011/11/06 17:47:33 titanofold Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/srm/ChangeLog,v 1.30 2012/03/09 15:06:19 ranger Exp $
+
+  09 Mar 2012; Brent Baude <ranger@gentoo.org> srm-1.2.11-r2.ebuild:
+  Marking srm-1.2.11-r2 ~ppc64 for bug 388957
+
+  07 Mar 2012; Aaron W. Swenson <titanofold@gentoo.org> -srm-1.2.8-r1.ebuild,
+  -srm-1.2.10.ebuild, -srm-1.2.11.ebuild, -srm-1.2.11-r1.ebuild:
+  Removing old versions.
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> srm-1.2.11-r2.ebuild:
+  Marking srm-1.2.11-r2 ppc for bug 404365
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> srm-1.2.11-r2.ebuild:
+  x86 stable wrt bug #404365
+
+  19 Feb 2012; Agostino Sarubbo <ago@gentoo.org> srm-1.2.11-r2.ebuild:
+  Stable for amd64, wrt bug #404365
+
+  19 Feb 2012; Agostino Sarubbo <ago@gentoo.org> metadata.xml:
+  Remove no-herd from metadata.xml
+
+  03 Feb 2012; Brent Baude <ranger@gentoo.org> srm-1.2.11-r1.ebuild:
+  Marking srm-1.2.11-r1 ppc for bug 388955
 
   06 Nov 2011; Aaron W. Swenson <titanofold@gentoo.org> srm-1.2.11-r2.ebuild:
   Explicit inherit of eutils.

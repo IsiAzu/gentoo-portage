@@ -1,6 +1,31 @@
 # ChangeLog for net-libs/daq
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/daq/ChangeLog,v 1.13 2011/09/22 17:45:57 patrick Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/daq/ChangeLog,v 1.19 2012/07/18 19:45:37 jer Exp $
+
+  18 Jul 2012; Jeroen Roovers <jer@gentoo.org> +daq-0.6.2.ebuild:
+  Bring back stable ebuild.
+
+*daq-0.6.2-r1 (18 Jul 2012)
+
+  18 Jul 2012; Jeroen Roovers <jer@gentoo.org> -daq-0.6.2.ebuild,
+  +daq-0.6.2-r1.ebuild:
+  Use get_libdir instead of hard-coded lib64 (bug #384691).
+
+  27 Jun 2012; Markus Meier <maekke@gentoo.org> daq-0.6.2.ebuild:
+  add ~arm, bug #407799
+
+  14 Jun 2012; Michael Weber <xmw@gentoo.org> daq-0.6.2.ebuild:
+  rekeyword ~ppc (bug 407795)
+
+  11 Mar 2012; Joshua Kinard <kumba@gentoo.org> -daq-0.2.ebuild,
+  -daq-0.3.ebuild, -daq-0.4.ebuild, -daq-0.6.1.ebuild, daq-0.6.2.ebuild:
+  Drop older versions, but keep 0.5 and 0.6.2 around. Also marked 0.6.2 stable
+  on x86/amd64, as it was a minor bugfix only. Added ~mips.
+
+*daq-0.6.2 (11 Jan 2012)
+
+  11 Jan 2012; Patrick Lauer <patrick@gentoo.org> +daq-0.6.2.ebuild:
+  Bump
 
 *daq-0.6.1 (22 Sep 2011)
 

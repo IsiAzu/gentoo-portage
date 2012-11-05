@@ -1,14 +1,14 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xmobar/xmobar-0.13.ebuild,v 1.1 2011/09/18 18:09:00 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xmobar/xmobar-0.13.ebuild,v 1.3 2012/09/12 16:11:06 qnikst Exp $
 
 EAPI="3"
 CABAL_FEATURES="bin"
-inherit haskell-cabal
+inherit base haskell-cabal
 
 DESCRIPTION="A Minimalistic Text Based Status Bar"
 HOMEPAGE="http://projects.haskell.org/xmobar/"
-SRC_URI="http://hackage.haskell.org/packages/archive/${PN}/${PV}/${P}.tar.gz"
+SRC_URI="mirror://hackage/packages/archive/${PN}/${PV}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -33,6 +33,8 @@ DEPEND=">=dev-lang/ghc-6.8.1
 # 		wifi? ( net-wireless/wireless-tools )
 #RDEPEND="mpd? ( media-sound/mpd )"
 RDEPEND=""
+
+PATCHES=("${FILESDIR}/${PN}-0.13-fix-build-failure-against-ghc-7.2.patch")
 
 src_configure() {
 	cabal_src_configure \

@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6.1.ebuild,v 1.6 2011/10/23 16:48:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6.1.ebuild,v 1.9 2012/05/17 20:47:36 aballier Exp $
 
-EAPI="4"
+EAPI=4
 
 inherit libtool eutils flag-o-matic autotools
 
@@ -12,29 +12,26 @@ SRC_URI="mirror://gnu/aspell/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ~ppc ~ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="nls"
 
-# Build PDEPEND from list of language codes provided in the tree.
-# The PDEPEND string is static - this code just makes it easier to maintain.
-def="app-dicts/aspell-en"
-for l in \
-	"af" "be" "bg" "br" "ca" "cs" "cy" "da" "de" "el" \
-	"en" "eo" "es" "et" "fi" "fo" "fr" "ga" "gl" "he" \
-	"hr" "is" "it" "la" "lt" "nl" "no" "pl" "pt" "pt_BR" \
-	"ro" "ru" "sk" "sl" "sr" "sv" "uk" "vi" ; do
-	dep="linguas_${l}? ( app-dicts/aspell-${l/pt_BR/pt-br} )"
-	[[ ${l} = "de" ]] &&
-		dep="linguas_de? ( || ( app-dicts/aspell-de app-dicts/aspell-de-alt ) )"
-	[[ -z ${PDEPEND} ]] &&
-		PDEPEND="${dep}" ||
-		PDEPEND="${PDEPEND}
-${dep}"
-	def="!linguas_${l}? ( ${def} )"
-	IUSE="${IUSE} linguas_${l}"
+PDEPEND="app-dicts/aspell-en"
+LANGS="af be bg br ca cs cy da de el en eo es et fi fo fr ga gl he hr is it la
+lt nl no pl pt pt_BR ro ru sk sl sr sv uk vi"
+for lang in ${LANGS}; do
+	dep="linguas_${lang}? ( app-dicts/aspell-${lang/pt_BR/pt-br} )"
+	if [[ ${lang} == de ]] ; then
+		dep="linguas_${lang}? (
+			|| (
+				app-dicts/aspell-${lang}
+				app-dicts/aspell-${lang}-alt
+			)
+		)"
+	fi
+	PDEPEND+=" ${dep}"
+	IUSE+=" linguas_${lang}"
 done
-PDEPEND="${PDEPEND}
-${def}"
+unset dep
 
 COMMON_DEPEND=">=sys-libs/ncurses-5.2
 	nls? ( virtual/libintl )"
@@ -66,7 +63,7 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
+	default
 
 	dodoc README* TODO
 	dohtml -r manual/aspell{,-dev}.html

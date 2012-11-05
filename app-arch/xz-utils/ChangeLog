@@ -1,6 +1,44 @@
 # ChangeLog for app-arch/xz-utils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.40 2011/10/20 17:15:49 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.51 2012/09/14 02:24:09 ottxor Exp $
+
+  14 Sep 2012; Christoph Junghans <ottxor@gentoo.org> xz-utils-5.0.4.ebuild,
+  xz-utils-9999.ebuild:
+  added prefix support (bug #434854)
+
+  09 Sep 2012; Raúl Porcel <armin76@gentoo.org> xz-utils-5.0.4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #431846
+
+  21 Aug 2012; Anthony G. Basile <blueness@gentoo.org> xz-utils-5.0.4.ebuild:
+  Stable arm, bug #431846
+
+  20 Aug 2012; Anthony G. Basile <blueness@gentoo.org> xz-utils-5.0.4.ebuild:
+  Stable ppc ppc64, bug #431846
+
+  20 Aug 2012; Jeroen Roovers <jer@gentoo.org> xz-utils-5.0.4.ebuild:
+  Stable for HPPA (bug #431846).
+
+  19 Aug 2012; Johannes Huber <johu@gentoo.org> xz-utils-5.0.4.ebuild:
+  Stable for x86, wrt bug #431846
+
+  19 Aug 2012; Agostino Sarubbo <ago@gentoo.org> xz-utils-5.0.4.ebuild:
+  Stable for amd64, wrt bug #431846
+
+*xz-utils-5.0.4 (23 Jun 2012)
+
+  23 Jun 2012; Mike Frysinger <vapier@gentoo.org> +xz-utils-5.0.4.ebuild:
+  Version bump.
+
+  17 May 2012; Mike Frysinger <vapier@gentoo.org> xz-utils-5.0.3.ebuild,
+  xz-utils-9999.ebuild:
+  Use `find` to clean up .la file #409261 by Kevin Pyle.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> xz-utils-5.0.3.ebuild,
+  xz-utils-9999.ebuild:
+  keyword ~amd64-fbsd
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> xz-utils-5.0.3.ebuild:
+  Stable for ppc64; bug #379379
 
   20 Oct 2011; Brent Baude <ranger@gentoo.org> xz-utils-5.0.3.ebuild:
   Marking xz-utils-5.0.3 ppc for bug 379379
@@ -154,4 +192,3 @@
   07 Feb 2009; Mike Frysinger <vapier@gentoo.org> +metadata.xml,
   +xz-utils-9999.ebuild:
   Initial ebuild by me.
-

@@ -1,6 +1,51 @@
 # ChangeLog for app-portage/flaggie
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/flaggie/ChangeLog,v 1.24 2011/11/02 14:57:19 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/flaggie/ChangeLog,v 1.36 2012/10/21 08:12:14 mgorny Exp $
+
+  21 Oct 2012; Michał Górny <mgorny@gentoo.org> flaggie-0.2-r2.ebuild:
+  Re-add ~x86-fbsd & ~amd64-fbsd after keywording python-exec.
+
+  20 Oct 2012; Jeroen Roovers <jer@gentoo.org> flaggie-0.2-r2.ebuild:
+  Marked ~hppa (bug #438388).
+
+  16 Oct 2012; Michał Górny <mgorny@gentoo.org> flaggie-0.2-r2.ebuild:
+  Re-keyword ~arm for python-exec being keyworded.
+
+*flaggie-0.2-r2 (15 Oct 2012)
+
+  15 Oct 2012; Michał Górny <mgorny@gentoo.org> +flaggie-0.2-r2.ebuild:
+  Revision bump to distutils-r1.
+
+*flaggie-0.2-r1 (31 Aug 2012)
+
+  31 Aug 2012; Michał Górny <mgorny@gentoo.org> +flaggie-0.2-r1.ebuild,
+  -flaggie-0.1.4.ebuild, flaggie-0.2.ebuild, metadata.xml:
+  Sync to the live ebuild.
+
+  07 Aug 2012; Alexis Ballier <aballier@gentoo.org> flaggie-0.2.ebuild:
+  keyword ~amd64-fbsd
+
+  20 Jul 2012; Jeroen Roovers <jer@gentoo.org> flaggie-0.2.ebuild:
+  Marked ~hppa too.
+
+  09 Feb 2012; Matt Turner <mattst88@gentoo.org> flaggie-0.2.ebuild:
+  Added ~mips, bug 393175.
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> flaggie-0.2.ebuild:
+  x86 stable wrt bug #399815
+
+  23 Jan 2012; Agostino Sarubbo <ago@gentoo.org> flaggie-0.2.ebuild:
+  Stable for amd64, wrt bug #399815
+
+*flaggie-0.2 (17 Dec 2011)
+
+  17 Dec 2011; Michał Górny <mgorny@gentoo.org> +flaggie-0.2.ebuild,
+  metadata.xml:
+  Version bump. The new version always aborts on ambiguous atoms and brings
+  updated bash-completion.
+
+  09 Dec 2011; Naohiro Aota <naota@gentoo.org> flaggie-0.1.4.ebuild:
+  Add ~x86-fbsd #393175
 
   02 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> flaggie-0.1.4.ebuild:
   x86 stable wrt bug #345441
@@ -126,4 +171,3 @@
   07 Nov 2010; Michał Górny <mgorny@gentoo.org> +flaggie-0.0.1.ebuild,
   +metadata.xml:
   Introducing flaggie, a new CLI package.* file mangler.
-

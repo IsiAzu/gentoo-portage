@@ -1,6 +1,47 @@
 # ChangeLog for sci-chemistry/cns
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/cns/ChangeLog,v 1.42 2011/08/30 13:48:39 jlec Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/cns/ChangeLog,v 1.52 2012/10/19 09:43:33 jlec Exp $
+
+  19 Oct 2012; Justin Lecher <jlec@gentoo.org> cns-1.2.1-r7.ebuild,
+  cns-1.3_p7.ebuild:
+  Remove virtual/fortran and always call fortran-2_pkg_setup as intend by the
+  updated fortran-2.eclass
+
+  10 Jul 2012; Justin Lecher <jlec@gentoo.org> -cns-1.1.ebuild,
+  -cns-1.2.1-r6.ebuild, -files/1.2.1-aria.patch,
+  -files/1.1-time-length-10.patch,
+  -files/1.2-allow-unknown-architectures.patch:
+  Drop old
+
+  10 Jul 2012; Jeff Horelick <jdhore@gentoo.org> cns-1.2.1-r7.ebuild:
+  marked x86 per bug 419859
+
+*cns-1.3_p7 (04 Jul 2012)
+
+  04 Jul 2012; Justin Lecher <jlec@gentoo.org> +files/1.3_p7-delete.patch,
+  +files/1.3_p7-gentoo.patch, -files/1.3_p5-delete.patch,
+  -files/1.3_p5-gentoo.patch, -files/cns_solve_env_sh-1.3_p5,
+  -cns-1.3_p5.ebuild, +files/cns_solve_env_sh-1.3_p7, +cns-1.3_p7.ebuild:
+  Version Bump, #424655
+
+  12 Jun 2012; Agostino Sarubbo <ago@gentoo.org> cns-1.2.1-r7.ebuild:
+  Stable for amd64, wrt bug #419859
+
+  06 Jun 2012; Justin Lecher <jlec@gentoo.org> cns-1.2.1-r7.ebuild:
+  Restrict test suite as it need manual inspection of the results
+
+  21 Mar 2012; Justin Lecher <jlec@gentoo.org> cns-1.2.1-r7.ebuild:
+  Change FFLAGS against FCFLAGS
+
+  06 Feb 2012; Justin Lecher <jlec@gentoo.org> -cns-1.2.1.ebuild,
+  -cns-1.2.1-r5.ebuild:
+  Drop old
+
+  04 Feb 2012; Thomas Kahle <tomka@gentoo.org> cns-1.2.1-r6.ebuild:
+  marked x86 per bug 391555
+
+  26 Nov 2011; Markos Chandras <hwoarang@gentoo.org> cns-1.2.1-r6.ebuild:
+  Stable on amd64 wrt bug #391555
 
 *cns-1.2.1-r7 (30 Aug 2011)
 

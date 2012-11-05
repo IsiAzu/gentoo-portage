@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/uzbl/uzbl-9999.ebuild,v 1.23 2011/10/24 06:43:25 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/uzbl/uzbl-9999.ebuild,v 1.26 2012/08/20 17:12:46 radhermit Exp $
 
 EAPI="4"
 
@@ -15,7 +15,8 @@ if [[ ${PV} == *9999* ]]; then
 		EGIT_BRANCH="experimental" &&
 		EGIT_COMMIT="experimental"
 else
-	KEYWORDS="~amd64 ~x86"
+	inherit vcs-snapshot
+	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 	SRC_URI="http://github.com/Dieterbe/${PN}/tarball/${PV} -> ${P}.tar.gz"
 fi
 
@@ -44,7 +45,7 @@ COMMON_DEPEND="
 "
 
 DEPEND="
-	>=dev-util/pkgconfig-0.19
+	virtual/pkgconfig
 	${COMMON_DEPEND}
 "
 
@@ -91,15 +92,6 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	if [[ ${PV} == *9999* ]]; then
-		git-2_src_unpack
-	else
-		unpack ${A}
-		mv Dieterbe-uzbl-* "${S}"
-	fi
-}
-
 src_prepare() {
 	# remove -ggdb
 	sed -i "s/-ggdb //g" Makefile ||
@@ -119,7 +111,7 @@ src_install() {
 	use browser && targets="${targets} install-uzbl-browser"
 	use browser && use tabbed && targets="${targets} install-uzbl-tabbed"
 
-	emake DESTDIR="${D}" PREFIX="/usr" DOCDIR="${D}/usr/share/doc/${PF}" ${targets}
+	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" DOCDIR="${ED}/usr/share/doc/${PF}" ${targets}
 
 	if use vim-syntax; then
 		insinto /usr/share/vim/vimfiles/ftdetect

@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_mysql/pam_mysql-0.7_rc1-r4.ebuild,v 1.1 2011/11/24 18:27:15 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_mysql/pam_mysql-0.7_rc1-r4.ebuild,v 1.6 2012/05/21 23:25:46 vapier Exp $
 
 EAPI=2
-inherit autotools libtool pam
+inherit autotools libtool pam eutils
 
 DESCRIPTION="pam_mysql is a module for pam to authenticate users with mysql"
 HOMEPAGE="http://pam-mysql.sourceforge.net/"
@@ -13,7 +13,7 @@ DEPEND=">=sys-libs/pam-0.72 virtual/mysql"
 RDEPEND="${DEPEND}"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ppc ~sparc ~x86"
+KEYWORDS="alpha amd64 ppc ~sparc x86"
 IUSE="openssl"
 S="${WORKDIR}/${P/_rc/RC}"
 

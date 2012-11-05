@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.11 2011/08/29 01:28:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.15 2012/09/27 16:35:42 axs Exp $
 
 # Eclass for installing SELinux policy, and optionally
 # reloading the reference-policy based modules.
@@ -38,6 +38,15 @@
 # can be both a simple string (space-separated) or a bash array.
 : ${POLICY_PATCH:=""}
 
+# @ECLASS-VARIABLE: POLICY_FILES
+# @DESCRIPTION:
+# When defined, this contains the files (located in the ebuilds' files/
+# directory) which should be copied as policy module files into the store.
+# Generally, users would want to include at least a .te and .fc file, but .if
+# files are supported as well. The variable can be both a simple string
+# (space-separated) or a bash array.
+: ${POLICY_FILES:=""}
+
 # @ECLASS-VARIABLE: POLICY_TYPES
 # @DESCRIPTION:
 # This variable informs the eclass for which SELinux policies the module should
@@ -47,17 +56,27 @@
 # override it, but the user.
 : ${POLICY_TYPES:="targeted strict mcs mls"}
 
-inherit eutils
+extra_eclass=""
+case ${BASEPOL} in
+	9999)	extra_eclass="git-2";
+			EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/hardened-refpolicy.git";
+			EGIT_SOURCEDIR="${WORKDIR}/refpolicy";;
+esac
+
+inherit eutils ${extra_eclass}
 
 IUSE=""
 
 HOMEPAGE="http://www.gentoo.org/proj/en/hardened/selinux/"
-if [[ -n ${BASEPOL} ]];
+if [[ -n ${BASEPOL} ]] && [[ "${BASEPOL}" != "9999" ]];
 then
 	SRC_URI="http://oss.tresys.com/files/refpolicy/refpolicy-${PV}.tar.bz2
 		http://dev.gentoo.org/~swift/patches/selinux-base-policy/patchbundle-selinux-base-policy-${BASEPOL}.tar.bz2"
-else
+elif [[ "${BASEPOL}" != "9999" ]];
+then
 	SRC_URI="http://oss.tresys.com/files/refpolicy/refpolicy-${PV}.tar.bz2"
+else
+	SRC_URI=""
 fi
 
 LICENSE="GPL-2"
@@ -81,7 +100,7 @@ DEPEND="${RDEPEND}
 
 SELINUX_EXPF="src_unpack src_compile src_install pkg_postinst"
 case "${EAPI:-0}" in
-	2|3|4) SELINUX_EXPF+=" src_prepare" ;;
+	2|3|4|5) SELINUX_EXPF+=" src_prepare" ;;
 	*) ;;
 esac
 
@@ -92,7 +111,12 @@ EXPORT_FUNCTIONS ${SELINUX_EXPF}
 # Unpack the policy sources as offered by upstream (refpolicy). In case of EAPI
 # older than 2, call src_prepare too.
 selinux-policy-2_src_unpack() {
-	unpack ${A}
+	if [[ "${BASEPOL}" != "9999" ]];
+	then
+		unpack ${A}
+	else
+		git-2_src_unpack
+	fi
 
 	# Call src_prepare explicitly for EAPI 0 or 1
 	has "${EAPI:-0}" 0 1 && selinux-policy-2_src_prepare
@@ -112,9 +136,13 @@ selinux-policy-2_src_unpack() {
 # content.
 selinux-policy-2_src_prepare() {
 	local modfiles
+	local add_interfaces=0;
+
+	# Create 3rd_party location for user-contributed policies
+	cd "${S}/refpolicy/policy/modules" && mkdir 3rd_party;
 
 	# Patch the sources with the base patchbundle
-	if [[ -n ${BASEPOL} ]];
+	if [[ -n ${BASEPOL} ]] && [[ "${BASEPOL}" != "9999" ]];
 	then
 		cd "${S}"
 		EPATCH_MULTI_MSG="Applying SELinux policy updates ... " \
@@ -124,30 +152,38 @@ selinux-policy-2_src_prepare() {
 		epatch
 	fi
 
+	# Copy additional files to the 3rd_party/ location
+	if [[ "$(declare -p POLICY_FILES 2>/dev/null 2>&1)" == "declare -a"* ]] ||
+	   [[ -n ${POLICY_FILES} ]];
+	then
+	    add_interfaces=1;
+		cd "${S}/refpolicy/policy/modules"
+		for POLFILE in ${POLICY_FILES[@]};
+		do
+			cp "${FILESDIR}/${POLFILE}" 3rd_party/ || die "Could not copy ${POLFILE} to 3rd_party/ location";
+		done
+	fi
+
 	# Apply the additional patches refered to by the module ebuild.
 	# But first some magic to differentiate between bash arrays and strings
-	if [[ "$(declare -p POLICY_PATCH 2>/dev/null 2>&1)" == "declare -a"* ]];
+	if [[ "$(declare -p POLICY_PATCH 2>/dev/null 2>&1)" == "declare -a"* ]] ||
+	   [[ -n ${POLICY_PATCH} ]];
 	then
 		cd "${S}/refpolicy/policy/modules"
-		for POLPATCH in "${POLICY_PATCH[@]}";
+		for POLPATCH in ${POLICY_PATCH[@]};
 		do
 			epatch "${POLPATCH}"
 		done
-	else
-		if [[ -n ${POLICY_PATCH} ]];
-		then
-			cd "${S}/refpolicy/policy/modules"
-			for POLPATCH in ${POLICY_PATCH};
-			do
-				epatch "${POLPATCH}"
-			done
-		fi
 	fi
 
 	# Collect only those files needed for this particular module
 	for i in ${MODS}; do
 		modfiles="$(find ${S}/refpolicy/policy/modules -iname $i.te) $modfiles"
 		modfiles="$(find ${S}/refpolicy/policy/modules -iname $i.fc) $modfiles"
+		if [ ${add_interfaces} -eq 1 ];
+		then
+			modfiles="$(find ${S}/refpolicy/policy/modules -iname $i.if) $modfiles"
+		fi
 	done
 
 	for i in ${POLICY_TYPES}; do
@@ -183,6 +219,12 @@ selinux-policy-2_src_install() {
 			einfo "Installing ${i} ${j} policy package"
 			insinto ${BASEDIR}/${i}
 			doins "${S}"/${i}/${j}.pp || die "Failed to add ${j}.pp to ${i}"
+
+			if [[ "${POLICY_FILES[@]}" == *"${j}.if"* ]];
+			then
+				insinto ${BASEDIR}/${i}/include/3rd_party
+				doins "${S}"/${i}/${j}.if || die "Failed to add ${j}.if to ${i}"
+			fi
 		done
 	done
 }
@@ -202,7 +244,40 @@ selinux-policy-2_pkg_postinst() {
 		einfo "Inserting the following modules into the $i module store: ${MODS}"
 
 		cd /usr/share/selinux/${i} || die "Could not enter /usr/share/selinux/${i}"
-		semodule -s ${i} ${COMMAND} || die "Failed to load in modules ${MODS} in the $i policy store"
+		semodule -s ${i} ${COMMAND}
+		if [ $? -ne 0 ];
+		then
+			ewarn "SELinux module load failed. Trying full reload...";
+			if [ "${i}" == "targeted" ];
+			then
+				semodule -s ${i} -b base.pp -i $(ls *.pp | grep -v base.pp);
+			else
+				semodule -s ${i} -b base.pp -i $(ls *.pp | grep -v base.pp | grep -v unconfined.pp);
+			fi
+			if [ $? -ne 0 ];
+			then
+				ewarn "Failed to reload SELinux policies."
+				ewarn ""
+				ewarn "If this is *not* the last SELinux module package being installed,"
+				ewarn "then you can safely ignore this as the reloads will be retried"
+				ewarn "with other, recent modules."
+				ewarn ""
+				ewarn "If it is the last SELinux module package being installed however,"
+				ewarn "then it is advised to look at the error above and take appropriate"
+				ewarn "action since the new SELinux policies are not loaded until the"
+				ewarn "command finished succesfully."
+				ewarn ""
+				ewarn "To reload, run the following command from within /usr/share/selinux/${i}:"
+				ewarn "  semodule -b base.pp -i \$(ls *.pp | grep -v base.pp)"
+				ewarn "or"
+				ewarn "  semodule -b base.pp -i \$(ls *.pp | grep -v base.pp | grep -v unconfined.pp)"
+				ewarn "depending on if you need the unconfined domain loaded as well or not."
+			else
+				einfo "SELinux modules reloaded succesfully."
+			fi
+		else
+			einfo "SELinux modules loaded succesfully."
+		fi
 	done
 }
 

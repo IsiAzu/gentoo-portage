@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.121.3.ebuild,v 1.4 2011/10/23 15:23:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.121.3.ebuild,v 1.14 2012/07/15 17:57:38 armin76 Exp $
 
 EAPI=2
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.jackaudio.org/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sh sparc x86 ~amd64-fbsd"
 IUSE="3dnow altivec alsa coreaudio doc debug examples mmx oss sse cpudetection pam"
 
 RDEPEND=">=media-libs/libsndfile-1.0.0
@@ -21,13 +21,14 @@ RDEPEND=">=media-libs/libsndfile-1.0.0
 	media-libs/libsamplerate
 	!media-sound/jack-cvs"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( app-doc/doxygen )"
 RDEPEND="${RDEPEND}
 	pam? ( sys-auth/realtime-base )"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-sparc-cpuinfo.patch"
+	epatch "${FILESDIR}/${PN}-freebsd.patch"
 }
 
 src_configure() {

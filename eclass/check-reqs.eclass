@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/check-reqs.eclass,v 1.10 2011/09/06 13:57:51 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/check-reqs.eclass,v 1.13 2012/10/19 03:35:15 patrick Exp $
 
 # @ECLASS: check-reqs.eclass
 # @MAINTAINER:
@@ -63,7 +63,7 @@ inherit eutils
 EXPORT_FUNCTIONS pkg_setup
 case "${EAPI:-0}" in
 	0|1|2|3) ;;
-	4) EXPORT_FUNCTIONS pkg_pretend ;;
+	4|5) EXPORT_FUNCTIONS pkg_pretend ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
@@ -90,6 +90,8 @@ check_reqs() {
 # pkg_pretend and pkg_setup won't affect the build.
 check-reqs_pkg_setup() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	[[ ${MERGE_TYPE} == binary ]] && return
 
 	check-reqs_prepare
 	check-reqs_run
@@ -188,7 +190,7 @@ check-reqs_get_number() {
 	# Backcompat.
 	if [[ ${size} == ${1} ]]; then
 		ewarn "QA: Package does not specify unit for the size check"
-		ewarn "QA: Assuming mebibytes."
+		ewarn "QA: Assuming megabytes."
 		ewarn "QA: File bug against the package. It should specify the unit."
 	fi
 
@@ -207,9 +209,9 @@ check-reqs_get_unit() {
 	local unit=${1:(-1)}
 
 	case ${unit} in
-		G) echo "gibibytes" ;;
-		[M0-9]) echo "mebibytes" ;;
-		T) echo "tebibytes" ;;
+		G) echo "gigabytes" ;;
+		[M0-9]) echo "megabytes" ;;
+		T) echo "terabytes" ;;
 		*)
 			die "${FUNCNAME}: Unknown unit: ${unit}"
 		;;

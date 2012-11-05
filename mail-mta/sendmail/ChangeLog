@@ -1,6 +1,17 @@
 # ChangeLog for mail-mta/sendmail
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/sendmail/ChangeLog,v 1.98 2011/11/02 21:38:29 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/sendmail/ChangeLog,v 1.100 2012/06/14 18:21:12 eras Exp $
+
+*sendmail-8.14.5-r2 (14 Jun 2012)
+
+  14 Jun 2012; Eray Aslan <eras@gentoo.org> +sendmail-8.14.5-r2.ebuild,
+  +files/sendmail-starttls-multi-crl.patch:
+  Install helper programs - bug #348621. Read multiple crls - bug #354611.
+  Install /etc/sasl2/Sendmail.conf - bug #144060
+
+  04 Jun 2012; Zac Medico <zmedico@gentoo.org> sendmail-8.14.4.ebuild,
+  sendmail-8.14.5-r1.ebuild, sendmail-8.14.5.ebuild:
+  inherit user for enewgroup and enewuser, and multilib for get_libdir
 
   02 Nov 2011; Mike Frysinger <vapier@gentoo.org> sendmail-8.14.4.ebuild,
   sendmail-8.14.5.ebuild, sendmail-8.14.5-r1.ebuild:

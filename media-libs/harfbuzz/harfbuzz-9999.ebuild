@@ -1,56 +1,45 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/harfbuzz/harfbuzz-9999.ebuild,v 1.2 2011/10/06 14:48:14 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/harfbuzz/harfbuzz-9999.ebuild,v 1.4 2012/10/31 06:54:28 scarabeus Exp $
 
-EAPI=4
+EAPI=5
 
 EGIT_REPO_URI="git://anongit.freedesktop.org/harfbuzz"
-[[ ${PV} == 9999 ]] && SCM_ECLASS="git-2 autotools"
-inherit base ${SCM_ECLASS}
+[[ ${PV} == 9999 ]] && inherit git-2 autotools
+
+inherit eutils
 
 DESCRIPTION="An OpenType text shaping engine"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/HarfBuzz"
-SRC_URI=""
+[[ ${PV} == 9999 ]] || SRC_URI="http://www.freedesktop.org/software/${PN}/release/${P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
 [[ ${PV} == 9999 ]] || KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="cairo +glib graphite +icu static-libs +truetype"
+IUSE="static-libs"
 
 RDEPEND="
-	cairo? ( x11-libs/cairo )
-	glib? ( dev-libs/glib:2 )
-	graphite? ( media-gfx/graphite2 )
-	icu? ( dev-libs/icu )
-	truetype? ( media-libs/freetype:2 )
+	dev-libs/glib:2
+	dev-libs/icu
+	media-gfx/graphite2
+	media-libs/freetype:2
+	x11-libs/cairo
 "
 DEPEND="${RDEPEND}
 	dev-util/gtk-doc-am
-	dev-util/pkgconfig
-	dev-util/ragel
+	virtual/pkgconfig
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}-automagicness.patch"
-)
-
 src_prepare() {
-	base_src_prepare
-	libtoolize --force --copy
-	eautoreconf
+	[[ ${PV} == 9999 ]] && eautoreconf
 }
 
 src_configure() {
 	econf \
-		$(use_enable static-libs static) \
-		$(use_with cairo) \
-		$(use_with glib) \
-		$(use_with graphite) \
-		$(use_with icu) \
-		$(use_with truetype freetype)
+		$(use_enable static-libs static)
 }
 
 src_install() {
 	default
-	find "${ED}" -name '*.la' -exec rm -f {} +
+	prune_libtool_files --all
 }

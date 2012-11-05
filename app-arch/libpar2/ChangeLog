@@ -1,6 +1,37 @@
 # ChangeLog for app-arch/libpar2
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libpar2/ChangeLog,v 1.14 2011/10/24 10:26:23 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libpar2/ChangeLog,v 1.22 2012/09/30 18:23:58 armin76 Exp $
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> libpar2-0.2-r1.ebuild,
+  libpar2-0.2-r3.ebuild, libpar2-0.2.1.ebuild:
+  Drop alpha keywords
+
+*libpar2-0.2.1 (27 Aug 2012)
+
+  27 Aug 2012; Tim Harder <radhermit@gentoo.org> +libpar2-0.2.1.ebuild:
+  Version bump.
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> libpar2-0.2-r1.ebuild,
+  libpar2-0.2-r3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  27 Feb 2012; Brent Baude <ranger@gentoo.org> libpar2-0.2-r3.ebuild:
+  Marking libpar2-0.2-r3 ppc for bug 404597
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> libpar2-0.2-r3.ebuild:
+  x86 stable wrt bug #404597
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> libpar2-0.2-r3.ebuild:
+  Stable for amd64, wrt bug #404597
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> libpar2-0.2-r3.ebuild:
+  Add comment to explain the in source build requirement.
+
+*libpar2-0.2-r3 (26 Nov 2011)
+
+  26 Nov 2011; Tim Harder <radhermit@gentoo.org> -libpar2-0.2-r2.ebuild,
+  +libpar2-0.2-r3.ebuild:
+  Revbump and remove old. Build in the source tree (fixes bug #391815).
 
   24 Oct 2011; Tim Harder <radhermit@gentoo.org> libpar2-0.2-r2.ebuild:
   Use $P in patch filename.

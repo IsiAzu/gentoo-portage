@@ -1,6 +1,39 @@
 # ChangeLog for xfce-extra/xfce4-mixer
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.135 2011/05/19 20:04:30 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.144 2012/10/27 20:28:53 ago Exp $
+
+  27 Oct 2012; <ago@gentoo.org> xfce4-mixer-4.10.0.ebuild:
+  Stable for amd64, wrt bug #429484
+
+  21 Oct 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -xfce4-mixer-4.9.0.ebuild:
+  old
+
+  16 Oct 2012; Markus Meier <maekke@gentoo.org> xfce4-mixer-4.9.0.ebuild,
+  xfce4-mixer-4.10.0.ebuild:
+  add ~arm, bug #437156
+
+*xfce4-mixer-4.10.0 (15 Oct 2012)
+
+  15 Oct 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +xfce4-mixer-4.10.0.ebuild:
+  Version bump.
+
+*xfce4-mixer-4.9.0 (04 Oct 2012)
+
+  04 Oct 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +xfce4-mixer-4.9.0.ebuild:
+  Version bump.
+
+  03 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
+  xfce4-mixer-4.8.0.ebuild:
+  Keyword ~mips
+
+  05 May 2012; Michał Górny <mgorny@gentoo.org> xfce4-mixer-4.8.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  22 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> xfce4-mixer-4.8.0.ebuild:
+  Install to libdir instead of libexecdir.
 
   19 May 2011; Samuli Suominen <ssuominen@gentoo.org> xfce4-mixer-4.8.0.ebuild:
   Pull gst-plugins-meta if both USE alsa and oss are disabled.

@@ -1,6 +1,14 @@
 # ChangeLog for dev-lua/luaevent
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lua/luaevent/ChangeLog,v 1.6 2011/08/24 19:27:22 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lua/luaevent/ChangeLog,v 1.8 2012/08/13 14:34:52 blueness Exp $
+
+*luaevent-0.4.1 (13 Aug 2012)
+
+  13 Aug 2012; Anthony G. Basile <blueness@gentoo.org> +luaevent-0.4.1.ebuild:
+  Version bump, bug #431168
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> luaevent-0.3.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   24 Aug 2011; Markus Meier <maekke@gentoo.org> luaevent-0.3.1.ebuild:
   x86 stable, bug #380087

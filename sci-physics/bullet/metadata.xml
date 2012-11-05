@@ -8,7 +8,10 @@
   for games and animation.
 </longdescription>
 <use>
-  <flag name='extras'>Build additional libraries</flag>
-  <flag name='double-precision'>Build libraries in double precision</flag>
+  <flag name="extras">Build additional libraries</flag>
+  <flag name="double-precision">Build libraries in double precision</flag>
 </use>
+<upstream>
+  <remote-id type="google-code">bullet</remote-id>
+</upstream>
 </pkgmetadata>

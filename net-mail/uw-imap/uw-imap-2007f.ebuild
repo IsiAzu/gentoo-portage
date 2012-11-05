@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-imap/uw-imap-2007f.ebuild,v 1.2 2011/11/22 19:49:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-imap/uw-imap-2007f.ebuild,v 1.8 2012/03/08 15:00:53 ranger Exp $
 
 EAPI=4
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.washington.edu/imap/"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="alpha amd64 hppa ia64 ppc ppc64 sparc x86"
 IUSE="ipv6 +ssl kerberos clearpasswd"
 
 DEPEND="!net-libs/c-client
@@ -47,6 +47,9 @@ src_unpack() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2004c-amd64-so-fix.patch
 	epatch "${FILESDIR}/${PN}-ldflags.patch"
+
+	# no interactive build
+	sed -i -e "/read x; case/s/^/#/" Makefile || die
 
 	# Now we must make all the individual Makefiles use different CFLAGS,
 	# otherwise they would all use -fPIC

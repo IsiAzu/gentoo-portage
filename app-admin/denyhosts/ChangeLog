@@ -1,6 +1,38 @@
 # ChangeLog for app-admin/denyhosts
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/denyhosts/ChangeLog,v 1.46 2011/11/05 07:46:40 lxnay Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/denyhosts/ChangeLog,v 1.53 2012/11/04 13:40:59 ago Exp $
+
+  04 Nov 2012; Agostino Sarubbo <ago@gentoo.org> denyhosts-2.6-r6.ebuild:
+  Stable for amd64, wrt bug #441044
+
+  03 Nov 2012; Anthony G. Basile <blueness@gentoo.org> denyhosts-2.6-r6.ebuild:
+  stable arm, bug #441044
+
+  03 Nov 2012; Anthony G. Basile <blueness@gentoo.org> denyhosts-2.6-r6.ebuild:
+  stable ppc, bug #441044
+
+*denyhosts-2.6-r6 (23 Sep 2012)
+
+  23 Sep 2012; Pacho Ramos <pacho@gentoo.org> +denyhosts-2.6-r6.ebuild,
+  +files/denyhosts-2.6-daemon-control.patch,
+  +files/denyhosts-2.6-defconffile.patch,
+  +files/denyhosts-2.6-foreground_mode.patch,
+  +files/denyhosts-2.6-hostname.patch, +files/denyhosts-2.6-plugin_deny.patch,
+  +files/denyhosts-2.6-single_config_switch.patch:
+  Include multiple Fedora and Debian patches that also provide a fix for plugin
+  deny behavior (#264165 by Christoph Erdle).
+
+  19 Sep 2012; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  dropping maintainership, two very minor bugs remain open, app otherwise works
+
+  26 Feb 2012; Jeremy Olexa <darkside@gentoo.org> files/denyhosts.logrotate:
+  silence logrotate script, bug 402275 by Dirkjan Ochtman
+
+*denyhosts-2.6-r5 (31 Dec 2011)
+
+  31 Dec 2011; Christian Ruppert <idl0r@gentoo.org> -denyhosts-2.6-r4.ebuild,
+  +denyhosts-2.6-r5.ebuild, files/denyhosts.init:
+  Revbump. Don't use the deprecated $opts variable, bug 393657.
 
   05 Nov 2011; Fabio Erculiani <lxnay@gentoo.org> denyhosts-2.6-r4.ebuild:
   doesn't work with Python 3, restrict dependency
@@ -189,4 +221,3 @@
   07 Oct 2005; Benjamin Smee <strerror@gentoo.org> +files/denyhosts.init,
   +files/denyhosts-gentoo.patch, +metadata.xml, +denyhosts-1.1.2.ebuild:
   Initial import. Thanks to Rene Zbinden and Mike Kelly for initial ebuild
-

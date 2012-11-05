@@ -1,6 +1,26 @@
 # ChangeLog for dev-perl/FCGI
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/FCGI/ChangeLog,v 1.21 2011/09/24 18:54:04 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/FCGI/ChangeLog,v 1.27 2012/09/02 16:35:41 tove Exp $
+
+  02 Sep 2012; Torsten Veller <tove@gentoo.org> -FCGI-0.67.ebuild,
+  -FCGI-0.71.ebuild, -FCGI-0.730.0.ebuild:
+  Cleanup
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> FCGI-0.67.ebuild,
+  FCGI-0.71.ebuild, FCGI-0.730.0.ebuild, FCGI-0.740.0.ebuild:
+  Drop ia64 keywords
+
+  21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> FCGI-0.740.0.ebuild:
+  x86 stable wrt bug #412999
+
+  06 May 2012; Brent Baude <ranger@gentoo.org> FCGI-0.740.0.ebuild:
+  Marking FCGI-0.740.0 ppc for bug 412999
+
+  22 Apr 2012; Agostino Sarubbo <ago@gentoo.org> FCGI-0.740.0.ebuild:
+  Stable for amd64, wrt bug #412999
 
 *FCGI-0.740.0 (24 Sep 2011)
 
@@ -80,4 +100,3 @@
   25 Aug 2004; Renat Lumpau <rl03@gentoo.org> +metadata.xml,
   +FCGI-0.67.ebuild:
   Initial ebuild. RT dependency. OK'd by mcummings.
-

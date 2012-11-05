@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/aqualung/aqualung-0.9_beta11-r1.ebuild,v 1.9 2011/11/10 12:18:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/aqualung/aqualung-0.9_beta11-r1.ebuild,v 1.11 2012/05/05 08:05:33 mgorny Exp $
 
 EAPI=4
 
@@ -42,13 +42,14 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 	x11-libs/gtk+:2"
 DEPEND="${RDEPEND}
 	dev-libs/libxml2
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/${PN}-${MY_PV}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-use_lrdf_cflags.patch \
-		"${FILESDIR}"/${P}-ffmpeg.patch
+		"${FILESDIR}"/${P}-ffmpeg.patch \
+		"${FILESDIR}"/${P}-libavformat54.patch
 	sed -i \
 		-e 's:$(pkgdatadir)/doc:/usr/share/doc/${PF}:' \
 		doc/Makefile.am || die

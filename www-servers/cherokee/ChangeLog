@@ -1,6 +1,37 @@
 # ChangeLog for www-servers/cherokee
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/cherokee/ChangeLog,v 1.88 2011/10/20 17:10:08 matsuu Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/cherokee/ChangeLog,v 1.95 2012/08/08 12:28:37 blueness Exp $
+
+*cherokee-1.2.101-r2 (08 Aug 2012)
+
+  08 Aug 2012; Anthony G. Basile <blueness@gentoo.org>
+  +cherokee-1.2.101-r2.ebuild:
+  Move distributed htdocs to doc dir, bug #429632
+
+  15 Jul 2012; Anthony G. Basile <blueness@gentoo.org>
+  cherokee-1.2.101-r1.ebuild:
+  Keyword ~arm ~ppc ~ppc64
+
+  11 Jul 2012; Anthony G. Basile <blueness@gentoo.org>
+  cherokee-1.2.101-r1.ebuild:
+  Keyword ~mips
+
+  24 Mar 2012; Anthony G. Basile <blueness@gentoo.org> metadata.xml:
+  Adopt package
+
+*cherokee-1.2.101-r1 (24 Mar 2012)
+
+  24 Mar 2012; Pacho Ramos <pacho@gentoo.org> +cherokee-1.2.101-r1.ebuild,
+  +files/cherokee.logrotate-r1, -cherokee-1.2.101.ebuild,
+  -files/cherokee.logrotate:
+  Fix logrotate file, bug #400759 by Alan Swanson.
+
+  21 Mar 2012; Pacho Ramos <pacho@gentoo.org> -cherokee-1.2.100.ebuild,
+  -cherokee-1.2.99.ebuild, metadata.xml:
+  Drop www-server herd as discussed in gentoo-dev ML. Drop old.
+
+  18 Mar 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #391429.
 
 *cherokee-1.2.101 (20 Oct 2011)
 

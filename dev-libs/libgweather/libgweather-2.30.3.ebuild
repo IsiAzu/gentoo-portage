@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.30.3.ebuild,v 1.13 2011/10/19 18:21:34 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.30.3.ebuild,v 1.15 2012/05/21 18:45:46 tetromino Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
 PYTHON_DEPEND="python? 2"
 
-inherit autotools gnome2 python
+inherit autotools eutils gnome2 python
 
 DESCRIPTION="Library to access weather information from online services"
 HOMEPAGE="http://www.gnome.org/"
@@ -31,7 +31,7 @@ RDEPEND=">=x11-libs/gtk+-2.11:2
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	>=dev-util/intltool-0.40.3
-	>=dev-util/pkgconfig-0.19
+	virtual/pkgconfig
 	>=dev-util/gtk-doc-am-1.9
 	doc? ( >=dev-util/gtk-doc-1.9 )"
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailutils/mailutils-2.2.ebuild,v 1.7 2011/09/25 17:10:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailutils/mailutils-2.2.ebuild,v 1.9 2012/08/11 16:01:29 jer Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2"
@@ -9,7 +9,7 @@ inherit eutils flag-o-matic libtool python
 
 DESCRIPTION="A useful collection of mail servers, clients, and filters."
 HOMEPAGE="http://www.gnu.org/software/mailutils/mailutils.html"
-SRC_URI="http://ftp.gnu.org/gnu/mailutils/${P}.tar.bz2"
+SRC_URI="mirror://gnu/mailutils/${P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 
@@ -41,7 +41,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.1-python.patch
+	epatch "${FILESDIR}"/${PN}-2.1-python.patch \
+		"${FILESDIR}"/${P}-gets.patch
 	elibtoolize  # for Darwin bundles
 
 	# Disable bytecompilation of Python modules.

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/znc/znc-9999.ebuild,v 1.2 2011/10/30 22:35:45 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/znc/znc-9999.ebuild,v 1.5 2012/05/03 06:27:13 jdhore Exp $
 
 EAPI=3
 
@@ -16,17 +16,16 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="ares debug extras ipv6 perl python ssl sasl tcl"
+IUSE="debug dns-threads ipv6 perl python ssl sasl tcl user-networks"
 
 RDEPEND="
-	ares? ( >=net-dns/c-ares-1.5 )
 	perl? ( >=dev-lang/perl-5.10 )
 	sasl? ( >=dev-libs/cyrus-sasl-2 )
 	ssl? ( >=dev-libs/openssl-0.9.7d )
 	tcl? ( dev-lang/tcl )
 "
 DEPEND="
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	perl? ( dev-lang/swig )
 	python? (
 		>=dev-lang/swig-2.0.2
@@ -48,9 +47,9 @@ src_prepare() {
 
 src_configure() {
 	econf \
-		$(use_enable ares c-ares) \
+		$(use_enable user-networks add-networks) \
 		$(use_enable debug) \
-		$(use_enable extras extra) \
+		$(use_enable dns-threads tdns) \
 		$(use_enable ipv6) \
 		$(use_enable perl) \
 		$(use python && echo "--enable-python=python-$(python_get_version)") \

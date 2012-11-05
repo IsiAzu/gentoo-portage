@@ -1,6 +1,55 @@
 # ChangeLog for dev-libs/totem-pl-parser
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/totem-pl-parser/ChangeLog,v 1.109 2011/10/30 15:17:14 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/totem-pl-parser/ChangeLog,v 1.119 2012/09/25 02:48:18 blueness Exp $
+
+  25 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  totem-pl-parser-3.4.3.ebuild:
+  Keyword ~ppc ~ppc64, bug #386611
+
+*totem-pl-parser-2.32.6-r2 (22 Sep 2012)
+
+  22 Sep 2012; Pacho Ramos <pacho@gentoo.org> +totem-pl-parser-2.32.6-r2.ebuild,
+  -totem-pl-parser-2.32.6.ebuild, -totem-pl-parser-3.4.2.ebuild:
+  Revision bump to use gmime-2.6 instead of old 2.4 slot.
+
+  18 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  totem-pl-parser-3.4.3.ebuild,
+  +files/totem-pl-parser-3.4.3-no-g_clear_pointer.patch:
+  Fix build error with <glib-2.33 (bug #435408, thanks to Marien Zwart).
+
+*totem-pl-parser-3.4.3 (18 Sep 2012)
+
+  18 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -totem-pl-parser-2.32.3.ebuild, -totem-pl-parser-2.32.5.ebuild,
+  -totem-pl-parser-2.32.5-r1.ebuild, totem-pl-parser-2.32.6.ebuild,
+  totem-pl-parser-2.32.6-r1.ebuild, totem-pl-parser-3.4.2.ebuild,
+  +totem-pl-parser-3.4.3.ebuild:
+  Version bump with various bugfixes. Make LICENSE more precise. Drop old.
+
+  21 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  totem-pl-parser-3.4.2.ebuild:
+  Add missing test USE flag, thanks to Michael Sterrett.
+
+*totem-pl-parser-3.4.2 (19 May 2012)
+
+  19 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +totem-pl-parser-3.4.2.ebuild:
+  Version bump for gnome-3.4, now supports encrypted AMZ files from Amazon MP3.
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org>
+  totem-pl-parser-2.32.6-r1.ebuild:
+  alpha/ia64/sparc stable wrt #393007
+
+  18 Jan 2012; Markus Meier <maekke@gentoo.org>
+  totem-pl-parser-2.32.6-r1.ebuild:
+  arm stable, bug #393007
+
+  14 Jan 2012; Markus Meier <maekke@gentoo.org>
+  totem-pl-parser-2.32.6-r1.ebuild:
+  x86 stable, bug #393007
+
+  29 Dec 2011; Pacho Ramos <pacho@gentoo.org> totem-pl-parser-2.32.6-r1.ebuild:
+  amd64 stable, bug 393007
 
   30 Oct 2011; Raúl Porcel <armin76@gentoo.org> totem-pl-parser-2.32.6.ebuild:
   alpha/ia64/sparc stable wrt #385699
@@ -520,4 +569,3 @@
   +totem-pl-parser-2.22.1.ebuild:
   New ebuild for GNOME-2.22. Playlist parsing library splitted out
   of totem.
-

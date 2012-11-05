@@ -1,6 +1,29 @@
 # ChangeLog for net-dialup/ppp
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/ppp/ChangeLog,v 1.275 2011/11/11 12:07:15 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dialup/ppp/ChangeLog,v 1.281 2012/09/22 20:58:11 vapier Exp $
+
+  22 Sep 2012; Mike Frysinger <vapier@gentoo.org> ppp-2.4.5-r3.ebuild:
+  Always unpack the dhcp code (since it is small) and update the patches to work
+  with patch-2.7 #435588.
+
+  18 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org> ppp-2.4.5-r3.ebuild:
+  Make patch apply. Fixes bug#430830. Patch by Andrey Volkov.
+
+*ppp-2.4.5-r3 (10 Aug 2012)
+
+  10 Aug 2012; Mike Frysinger <vapier@gentoo.org> +ppp-2.4.5-r3.ebuild:
+  Update to EAPI=4 and move patchset to CVS.
+
+  07 Aug 2012; Mike Frysinger <vapier@gentoo.org> ppp-2.4.5-r2.ebuild:
+  Remove local copies of linux-headers and rely on the system one being up-to-
+  date #427684 by SpanKY.
+
+  14 Jun 2012; Zac Medico <zmedico@gentoo.org> ppp-2.4.4-r25.ebuild,
+  ppp-2.4.5-r1.ebuild, ppp-2.4.5-r2.ebuild:
+  inherit multilib for get_libdir
+
+  06 Apr 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #63588
 
   11 Nov 2011; Diego E. Pettenò <flameeyes@gentoo.org> ppp-2.4.5-r2.ebuild:
   QA: fetch the patchset from dev.gentoo.org rather than mirrors.

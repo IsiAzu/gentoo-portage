@@ -1,6 +1,39 @@
 # ChangeLog for virtual/jdk
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/ChangeLog,v 1.42 2011/11/11 10:54:24 caster Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/ChangeLog,v 1.51 2012/10/30 20:31:10 grobian Exp $
+
+  30 Oct 2012; Fabian Groffen <grobian@gentoo.org> jdk-1.6.0-r1.ebuild,
+  jdk-1.7.0.ebuild:
+  Marked ~ppc-macos, provided by soylatte-jdk-bin-7
+
+  16 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  jdk-1.5.0.ebuild:
+  Keyword ~arm, bug #305773.
+
+  09 Jul 2012; Agostino Sarubbo <ago@gentoo.org> jdk-1.6.0-r1.ebuild:
+  Stable for amd64, wrt bug #425456
+
+  09 Jul 2012; Johannes Huber <johu@gentoo.org> jdk-1.6.0-r1.ebuild:
+  Stable for x86, wrt bug #425456
+
+  10 May 2012; Alexis Ballier <aballier@gentoo.org> jdk-1.6.0-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  15 Apr 2012; Mike Frysinger <vapier@gentoo.org> jdk-1.6.0-r1.ebuild,
+  jdk-1.7.0.ebuild:
+  Add back ia64 love #349020 by Dennis Schridde.
+
+  04 Jan 2012; Ralph Sennhauser <sera@gentoo.org> jdk-1.5.0.ebuild:
+  Drop ia64 support #345433
+
+  16 Dec 2011; Fabian Groffen <grobian@gentoo.org> jdk-1.7.0.ebuild:
+  Add Prefix keywords (now oracle-jdk-bin has them too)
+
+*jdk-1.6.0-r1 (14 Dec 2011)
+
+  14 Dec 2011; Ralph Sennhauser <sera@gentoo.org> +jdk-1.6.0-r1.ebuild:
+  EAPI bump and simplification.
+  Allow all KEYWORDS including not listed ones to use all VMs. #345319
 
   11 Nov 2011; Vlastimil Babka <caster@gentoo.org> jdk-1.7.0.ebuild:
   Add icedtea-bin-7 variant.
@@ -154,4 +187,3 @@
   06 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> +metadata.xml,
   +jdk-1.3.ebuild, +jdk-1.4.ebuild, +jdk-1.5.ebuild:
   Initial version of virtual/jdk.
-

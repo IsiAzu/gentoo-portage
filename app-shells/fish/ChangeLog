@@ -1,6 +1,18 @@
 # ChangeLog for app-shells/fish
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.50 2011/11/12 12:18:03 xmw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.54 2012/06/06 06:17:52 jdhore Exp $
+
+  06 Jun 2012; Jeff Horelick <jdhore@gentoo.org> fish-1.23.1-r2.ebuild:
+  marked x86 per bug 419725
+
+  05 Jun 2012; Michael Weber <xmw@gentoo.org> fish-1.23.1-r2.ebuild:
+  ppc stable (bug 419725)
+
+  05 Jun 2012; Markos Chandras <hwoarang@gentoo.org> fish-1.23.1-r2.ebuild:
+  Stable on amd64 wrt bug #419725
+
+  10 May 2012; Agostino Sarubbo <ago@gentoo.org> -fish-1.23.1-r1.ebuild:
+  Remove old
 
 *fish-1.23.1-r2 (12 Nov 2011)
 

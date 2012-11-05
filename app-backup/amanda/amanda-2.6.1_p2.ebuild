@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-backup/amanda/amanda-2.6.1_p2.ebuild,v 1.6 2011/11/16 07:54:09 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-backup/amanda/amanda-2.6.1_p2.ebuild,v 1.8 2012/05/24 04:36:51 vapier Exp $
 
-inherit autotools eutils
+inherit autotools eutils user
 
 MY_P="${P/_}"
 DESCRIPTION="The Advanced Maryland Automatic Network Disk Archiver"
@@ -34,7 +34,7 @@ RDEPEND="sys-libs/readline
 	)"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
 IUSE="gnuplot ipv6 kerberos minimal nls s3 samba xfs"

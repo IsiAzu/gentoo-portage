@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-9999.ebuild,v 1.2 2011/09/02 15:42:55 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-9999.ebuild,v 1.4 2012/08/24 20:59:07 fuzzyray Exp $
 
 EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="2.[45]"
+RESTRICT_PYTHON_ABIS="2.[45] *-jython 2.7-pypy-*"
 PYTHON_USE_WITH="readline"
 PYTHON_NONVERSIONED_EXECUTABLES=(".*")
 
@@ -47,9 +47,4 @@ src_install() {
 	if ! use linguas_it ; then
 		rm -rf "${ED}"/usr/share/man/it
 	fi
-}
-
-pkg_postinst() {
-	distutils_pkg_postinst
-	ewarn "Because file locations have changed, please run 'hash -r' in your active shells."
 }

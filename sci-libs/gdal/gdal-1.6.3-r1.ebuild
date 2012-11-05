@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.3-r1.ebuild,v 1.21 2011/10/08 10:32:13 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.3-r1.ebuild,v 1.24 2012/05/19 20:01:03 ssuominen Exp $
 
 EAPI=3
 
@@ -20,14 +20,11 @@ SRC_URI="http://download.osgeo.org/gdal/${P}.tar.gz"
 SLOT="0"
 LICENSE="MIT"
 KEYWORDS="amd64 ppc ppc64 x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-# need to get these arches updated on several libs first
-#KEYWORDS="~alpha ~hppa"
-
 IUSE="curl debug doc ecwj2k fits geos gif gml hdf hdf5 jpeg jpeg2k mysql netcdf odbc png ogdi perl postgres python ruby sqlite threads"
 
 RDEPEND="
 	dev-libs/expat
-	media-libs/tiff
+	media-libs/tiff:0
 	sci-libs/libgeotiff
 	sys-libs/zlib
 	curl? ( net-misc/curl )
@@ -87,6 +84,9 @@ src_prepare() {
 	[[ ${CHOST} == *-darwin* ]] \
 		&& epatch "${FILESDIR}"/${PN}-1.5.0-install_name.patch \
 		|| epatch "${FILESDIR}"/${PN}-1.5.0-soname.patch
+
+	has_version '>=sys-libs/zlib-1.2.5.1-r1' && \
+		sed -i -e '1i#define OF(x) x' port/cpl_minizip_ioapi.h
 }
 
 src_configure() {
@@ -139,7 +139,7 @@ src_configure() {
 		-e "s:@exec_prefix@/doc:@exec_prefix@/share/doc/${PF}/html:g" \
 		-i GDALmake.opt.in || die "sed gdalmake.opt failed"
 
-	econf ${pkg_conf} ${use_conf} || die "econf failed"
+	econf ${pkg_conf} ${use_conf}
 
 	# mysql-config puts this in (and boy is it a PITA to get it out)
 	sed \

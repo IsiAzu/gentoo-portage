@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/exim-4.76.ebuild,v 1.10 2011/07/04 10:28:12 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/exim-4.76.ebuild,v 1.12 2012/10/30 21:00:04 swift Exp $
 
 EAPI="3"
 
 inherit eutils toolchain-funcs multilib pam
 
-IUSE="tcpd ssl postgres mysql ldap pam exiscan-acl lmtp ipv6 sasl dnsdb perl mbx X nis syslog spf srs gnutls sqlite dovecot-sasl radius maildir +dkim dcc dsn"
+IUSE="tcpd ssl postgres mysql ldap pam exiscan-acl lmtp ipv6 sasl dnsdb perl mbx X nis selinux syslog spf srs gnutls sqlite dovecot-sasl radius maildir +dkim dcc dsn"
 
 DSN_EXIM_V=469
 DSN_V=1_3
@@ -27,13 +27,14 @@ DEPEND=">=sys-apps/sed-4.0.5
 	perl? ( sys-devel/libperl )
 	pam? ( virtual/pam )
 	tcpd? ( sys-apps/tcp-wrappers )
-	ssl? ( >=dev-libs/openssl-0.9.6 )
+	ssl? ( >=dev-libs/openssl-0.9.6 <dev-libs/openssl-1.0.1 )
 	gnutls? ( net-libs/gnutls
 			  dev-libs/libtasn1 )
 	ldap? ( >=net-nds/openldap-2.0.7 )
 	mysql? ( virtual/mysql )
 	postgres? ( dev-db/postgresql-base )
 	sasl? ( >=dev-libs/cyrus-sasl-2.1.14 )
+	selinux? ( sec-policy/selinux-exim )
 	spf? ( >=mail-filter/libspf2-1.2.5-r1 )
 	srs? ( mail-filter/libsrs_alt )
 	X? ( x11-proto/xproto

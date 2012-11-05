@@ -31,7 +31,6 @@ networkmanager
 # Raúl Porcel <armin76@gentoo.org>
 # Fails to build/work
 openexr
-ocamlopt
 
 # Samuli Suominen <drac@gentoo.org>
 # media-libs/amrnb and media-libs/amrwb not tested.
@@ -49,8 +48,6 @@ gimp
 # There is no java in this profile (if there is it must be available). Without
 # this repoman will fail on apps like sys-libs/db
 java
-java-internal
-java-external
 
 # No hardware to test by the team
 dvb
@@ -81,7 +78,6 @@ schroedinger
 hardened
 frei0r
 google-gadgets
-oracle
 libvirt
 pdfannotextractor
 prelude
@@ -136,8 +132,19 @@ plotutils
 lpsol
 upnp
 quvi
+bluray
+libtar
+zvbi
+aacplus
+devil
+gts
+anthy
+ace
+csharp
 
 # Unmask ARM-only video-cards
+-video_cards_exynos
+-video_cards_omap
 -video_cards_omapfb
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
@@ -162,7 +169,6 @@ video_cards_nsc
 video_cards_nv
 video_cards_r128
 video_cards_radeon
-video_cards_radeonhd
 video_cards_rendition
 video_cards_s3
 video_cards_s3virge
@@ -176,6 +182,18 @@ video_cards_tseng
 video_cards_vesa
 video_cards_via
 video_cards_voodoo
+
+# Matt Turner <mattst88@gentoo.org>
+# Mask more VIDEO_CARDs added with mesa-8.0
+video_cards_r100
+video_cards_r200
+video_cards_r300
+video_cards_r600
+video_cards_radeonsi
+video_cards_i915
+video_cards_i965
+# vmware wasn't added with mesa-8.0, but it should still be masked
+video_cards_vmware
 
 # 2006/03/07 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures lacking direct rendering      
@@ -198,3 +216,17 @@ dri
 # Bug #184563, 18 Sep 2007 
 # Robin H. Johnson <robbat2@gentoo.org>
 audit
+
+# Matt Turner <mattst88@gentoo.org) (10 Feb 2012)
+# mask d3d since we don't have wine
+d3d
+
+# Matt Turner <mattst88@gentoo.org) (10 Feb 2012)
+# mask wayland since dev-libs/wayland isn't keyworded
+wayland
+
+# Michał Górny <mgorny@gentoo.org> (31 Oct 2012)
+# Mask PYTHON_TARGETS for implementations not keyworded on this arch.
+python_targets_pypy1_8
+python_targets_pypy1_9
+python_targets_jython2_5

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-sports/trigger/trigger-0.6.0.ebuild,v 1.1 2011/11/12 15:58:09 tristan Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-sports/trigger/trigger-0.6.0.ebuild,v 1.4 2012/11/01 20:54:54 mr_bones_ Exp $
 
 EAPI=2
 inherit eutils games
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ~ppc x86"
 IUSE=""
 
 RDEPEND="virtual/opengl
@@ -36,13 +36,13 @@ src_configure() {
 }
 
 src_compile() {
-	jam -dx -qa || die "jam failed"
+	AR="${AR} cru" jam -dx -qa || die "jam failed"
 }
 
 src_install() {
-	dogamesbin ${PN} || die "dogamesbin failed"
+	dogamesbin ${PN} || die
 	insinto "${GAMES_DATADIR}"/${PN}
-	doins -r data/* || die "doins failed"
+	doins -r data/* || die
 	newicon data/textures/life_helmet.png ${PN}.png
 	make_desktop_entry ${PN} Trigger
 	dodoc doc/*.txt

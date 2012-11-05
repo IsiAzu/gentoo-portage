@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/exim-4.77.ebuild,v 1.3 2011/10/10 17:13:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/exim-4.77.ebuild,v 1.13 2012/10/30 21:00:04 swift Exp $
 
 EAPI="3"
 
 inherit eutils toolchain-funcs multilib pam
 
-IUSE="tcpd ssl postgres mysql ldap pam exiscan-acl lmtp ipv6 sasl dnsdb perl mbx X nis syslog spf srs gnutls sqlite doc dovecot-sasl radius maildir +dkim dcc dsn"
+IUSE="tcpd ssl postgres mysql ldap pam exiscan-acl lmtp ipv6 sasl dnsdb perl mbx X nis selinux syslog spf srs gnutls sqlite doc dovecot-sasl radius maildir +dkim dcc dsn"
 
 DSN_EXIM_V=469
 DSN_V=1_3
@@ -20,7 +20,7 @@ HOMEPAGE="http://www.exim.org/"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="alpha amd64 hppa ia64 ppc ppc64 sparc x86"
 
 DEPEND=">=sys-apps/sed-4.0.5
 	>=sys-libs/db-3.2
@@ -28,13 +28,14 @@ DEPEND=">=sys-apps/sed-4.0.5
 	perl? ( sys-devel/libperl )
 	pam? ( virtual/pam )
 	tcpd? ( sys-apps/tcp-wrappers )
-	ssl? ( >=dev-libs/openssl-0.9.6 )
+	ssl? ( >=dev-libs/openssl-0.9.6 <dev-libs/openssl-1.0.1 )
 	gnutls? ( net-libs/gnutls
 			  dev-libs/libtasn1 )
 	ldap? ( >=net-nds/openldap-2.0.7 )
 	mysql? ( virtual/mysql )
 	postgres? ( dev-db/postgresql-base )
 	sasl? ( >=dev-libs/cyrus-sasl-2.1.14 )
+	selinux? ( sec-policy/selinux-exim )
 	spf? ( >=mail-filter/libspf2-1.2.5-r1 )
 	srs? ( mail-filter/libsrs_alt )
 	X? ( x11-proto/xproto
@@ -75,8 +76,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/exim-4.74-localscan_dlopen.patch
 	epatch "${FILESDIR}"/exim-4.69-r1.27021.patch
 	epatch "${FILESDIR}"/exim-4.74-radius-db-ENV-clash.patch # 287426
-	epatch "${FILESDIR}"/exim-4.77-makefile-freebsd.patch
-	epatch "${FILESDIR}"/exim-4.76-as-needed.patch # 352265
+	epatch "${FILESDIR}"/exim-4.77-makefile-freebsd.patch # 235785
+	epatch "${FILESDIR}"/exim-4.77-as-needed-ldflags.patch # 352265, 391279
 	epatch "${FILESDIR}"/exim-4.76-crosscompile.patch # 266591
 
 	use maildir && epatch "${FILESDIR}"/exim-4.20-maildir.patch
@@ -327,12 +328,18 @@ src_install () {
 }
 
 pkg_postinst() {
-	einfo "${EROOT}etc/exim/system_filter.exim is a sample system_filter."
-	einfo "${EROOT}etc/exim/auth_conf.sub contains the configuration sub for using smtp auth."
-	einfo "Please create ${EROOT}etc/exim/exim.conf from ${EROOT}etc/exim/exim.conf.dist."
+	if [[ ! -f ${EROOT}etc/exim/exim.conf ]] ; then
+		einfo "${EROOT}etc/exim/system_filter.exim is a sample system_filter."
+		einfo "${EROOT}etc/exim/auth_conf.sub contains the configuration sub for using smtp auth."
+		einfo "Please create ${EROOT}etc/exim/exim.conf from ${EROOT}etc/exim/exim.conf.dist."
+	fi
 	if use dcc ; then
 		einfo "DCC support is experimental, you can find some limited"
 		einfo "documentation at the bottom of this prerelease message:"
 		einfo "http://article.gmane.org/gmane.mail.exim.devel/3579"
 	fi
+	einfo "Exim maintains some db files under its spool directory that need"
+	einfo "cleaning from time to time.  (${EROOT}var/spool/exim/db)"
+	einfo "Please use the exim_tidydb tool as documented in the Exim manual:"
+	einfo "http://www.exim.org/exim-html-current/doc/html/spec_html/ch50.html#SECThindatmai"
 }

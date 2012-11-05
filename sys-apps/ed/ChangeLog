@@ -1,6 +1,35 @@
 # ChangeLog for sys-apps/ed
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.87 2011/08/25 18:09:34 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.96 2012/08/26 17:06:35 armin76 Exp $
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> ed-1.6.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #427116
+
+  03 Aug 2012; Markos Chandras <hwoarang@gentoo.org> ed-1.6.ebuild:
+  Stable on amd64 wrt bug #427116
+
+  24 Jul 2012; Jeroen Roovers <jer@gentoo.org> ed-1.6.ebuild:
+  Stable for HPPA (bug #427116).
+
+  23 Jul 2012; Anthony G. Basile <blueness@gentoo.org> ed-1.6.ebuild:
+  Stable ppc64, bug #427116
+
+  23 Jul 2012; Markus Meier <maekke@gentoo.org> ed-1.6.ebuild:
+  arm stable, bug #427116
+
+  22 Jul 2012; <nixnut@gentoo.org> ed-1.6.ebuild:
+  ppc stable #427116
+
+  21 Jul 2012; Jeff Horelick <jdhore@gentoo.org> ed-1.6.ebuild:
+  marked x86 per bug 427116
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> ed-1.6.ebuild:
+  keyword ~amd64-fbsd
+
+*ed-1.6 (02 Jan 2012)
+
+  02 Jan 2012; Tim Harder <radhermit@gentoo.org> +ed-1.6.ebuild:
+  Version bump. Update to EAPI 4.
 
   25 Aug 2011; Fabian Groffen <grobian@gentoo.org> ed-1.5.ebuild:
   Marked ~m68k-mint, bug #380531

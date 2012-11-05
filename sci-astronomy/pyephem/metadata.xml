@@ -10,6 +10,10 @@
   elements the user can provide. Additional functions are provided to
   compute the angular separation between two objects in the sky, to
   determine the constellation in which an object lies, and to find the
-  times at which an object rises, transits, and sets on a particular day.
+  times at which an object rises, transits, and sets on a particular
+  day.
 </longdescription>
+<upstream>
+  <remote-id type="pypi">pyephem</remote-id>
+</upstream>
 </pkgmetadata>

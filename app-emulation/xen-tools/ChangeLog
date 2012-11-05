@@ -1,6 +1,32 @@
 # ChangeLog for app-emulation/xen-tools
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/ChangeLog,v 1.108 2011/11/11 17:50:59 neurogeek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/ChangeLog,v 1.113 2012/07/10 21:59:27 prometheanfire Exp $
+
+*xen-tools-4.1.2-r3 (10 Jul 2012)
+
+  10 Jul 2012; Matthew Thode <prometheanfire@gentoo.org>
+  +xen-tools-4.1.2-r3.ebuild:
+  Updated ebuild for selinux dependancy xen-tools-4.1.2-r3.ebuild
+
+  29 May 2012; Kacper Kowalik <xarthisius@gentoo.org> metadata.xml:
+  Use <description> field in order to provide more compact <name>
+
+  08 May 2012; Kacper Kowalik <xarthisius@gentoo.org> xen-tools-3.4.2-r3.ebuild,
+  xen-tools-3.4.2-r5.ebuild, xen-tools-4.1.1-r5.ebuild,
+  xen-tools-4.1.1-r6.ebuild, xen-tools-4.1.2-r2.ebuild:
+  Fix building with app-text/texi2html-5, commited on behalf of Ian Delaney.
+  Fixes bug 409333. Thanks to Joerg Neikes <xenoist@midlandgate.de> for the
+  report and patch
+
+  12 Jan 2012; Alexey Shvetsov <alexxy@gentoo.org> xen-tools-4.1.2-r2.ebuild,
+  files/xendomains.initd-r2:
+  re-expand newinitd, fixes Bug 392403, patch prepared by Ian Delaney
+
+*xen-tools-4.1.2-r2 (28 Nov 2011)
+
+  28 Nov 2011; Alexey Shvetsov <alexxy@gentoo.org> +xen-tools-4.1.2-r2.ebuild,
+  -xen-tools-4.1.2-r1.ebuild, -xen-tools-9999.ebuild, files/xendomains.initd-r2:
+  Move -9999 to virtualization overlay and revbump xen-tools to EAPI4
 
 *xen-tools-4.1.2-r1 (11 Nov 2011)
 

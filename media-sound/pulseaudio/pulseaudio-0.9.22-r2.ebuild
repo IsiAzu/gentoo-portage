@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-0.9.22-r2.ebuild,v 1.9 2011/08/20 15:56:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-0.9.22-r2.ebuild,v 1.12 2012/06/01 03:01:18 zmedico Exp $
 
 EAPI=3
 
-inherit autotools eutils libtool flag-o-matic versionator
+inherit autotools eutils libtool flag-o-matic multilib user versionator
 
 DESCRIPTION="A networked sound server with an advanced plugin system"
 HOMEPAGE="http://www.pulseaudio.org/"
@@ -42,7 +42,6 @@ RDEPEND="app-admin/eselect-esd
 	asyncns? ( net-libs/libasyncns )
 	udev? ( || ( >=sys-fs/udev-171[hwdb] >=sys-fs/udev-143[extras] ) )
 	realtime? ( sys-auth/rtkit )
-	>=media-libs/audiofile-0.2.6-r1
 	>=media-libs/speex-1.2_beta
 	>=media-libs/libsndfile-1.0.20
 	sys-libs/gdbm
@@ -55,7 +54,7 @@ DEPEND="${RDEPEND}
 		|| ( >=x11-libs/libXtst-1.0.99.2 <x11-proto/xextproto-7.0.99 )
 	)
 	dev-libs/libatomic_ops
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	system-wide? ( || ( dev-util/unifdef sys-freebsd/freebsd-ubin ) )
 	dev-util/intltool"
 

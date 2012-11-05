@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gucharmap/gucharmap-2.32.1.ebuild,v 1.6 2011/03/22 19:29:29 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gucharmap/gucharmap-2.32.1.ebuild,v 1.9 2012/05/05 06:25:22 jdhore Exp $
 
 EAPI="3"
 GCONF_DEBUG="yes"
-PYTHON_DEPEND="2:2.4"
+PYTHON_DEPEND="python? 2:2.5"
 
 inherit gnome2 python
 
@@ -24,7 +24,7 @@ RDEPEND=">=dev-libs/glib-2.16.3
 	python? ( >=dev-python/pygtk-2.7.1 )"
 DEPEND="${RDEPEND}
 	app-text/scrollkeeper
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	>=dev-util/intltool-0.40
 	>=app-text/gnome-doc-utils-0.9.0
 	doc? ( >=dev-util/gtk-doc-1.0 )

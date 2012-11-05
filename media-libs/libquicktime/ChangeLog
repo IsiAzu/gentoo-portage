@@ -1,6 +1,52 @@
 # ChangeLog for media-libs/libquicktime
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libquicktime/ChangeLog,v 1.177 2011/10/04 19:05:10 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libquicktime/ChangeLog,v 1.189 2012/06/17 18:37:50 armin76 Exp $
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> libquicktime-1.2.4.ebuild:
+  alpha/ia64/sparc stable wrt #416221
+
+  29 May 2012; Brent Baude <ranger@gentoo.org> libquicktime-1.2.4.ebuild:
+  Marking libquicktime-1.2.4 ppc for bug 416221
+
+  23 May 2012; Brent Baude <ranger@gentoo.org> libquicktime-1.2.4.ebuild:
+  Marking libquicktime-1.2.4 ppc64 for bug 416221
+
+  21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libquicktime-1.2.4.ebuild:
+  x86 stable wrt bug #416221
+
+  21 May 2012; Jeroen Roovers <jer@gentoo.org> libquicktime-1.2.4.ebuild:
+  Stable for HPPA (bug #416221).
+
+  20 May 2012; Agostino Sarubbo <ago@gentoo.org> libquicktime-1.2.4.ebuild:
+  Stable for amd64, wrt bug #416221
+
+  17 May 2012; Alexis Ballier <aballier@gentoo.org> libquicktime-1.2.4.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libquicktime-1.2.3-r1.ebuild,
+  libquicktime-1.2.4.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  30 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -libquicktime-1.2.2.ebuild, -files/libquicktime-1.2.2-ffmpeg07.patch,
+  -libquicktime-1.2.3.ebuild:
+  old
+
+  30 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  libquicktime-1.2.3-r1.ebuild:
+  Stabilize for everyone because -r1 is trivial EAPI version change.
+
+*libquicktime-1.2.4 (30 Mar 2012)
+
+  30 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +libquicktime-1.2.4.ebuild:
+  Version bump. Remove all libtool files since libltdl is not used for loading
+  the plugins and USE="static-libs" wrt #381769 by Agostino Sarubbo. Solving
+  issues with recent GTK+ API wrt #351854 by Ingo Krabbe.
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> libquicktime-1.2.3.ebuild:
+  Stable for ppc/ppc64; bug #380169
 
   04 Oct 2011; Jeroen Roovers <jer@gentoo.org> libquicktime-1.2.3-r1.ebuild:
   Stable for HPPA (bug #382225).

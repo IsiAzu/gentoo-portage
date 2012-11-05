@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome/gnome-3.2.1.ebuild,v 1.1 2011/11/07 07:50:42 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome/gnome-3.2.1.ebuild,v 1.3 2012/09/10 06:23:33 tetromino Exp $
 
 EAPI="4"
 
@@ -14,7 +14,7 @@ SLOT="2.0" # Cannot be installed at the same time as gnome-2
 # double check none of the deps are still masked !
 KEYWORDS="~amd64 ~x86"
 
-IUSE="accessibility +cdr cups +extras +fallback"
+IUSE="accessibility +bluetooth +cdr cups +extras +fallback"
 
 S=${WORKDIR}
 
@@ -22,12 +22,12 @@ S=${WORKDIR}
 # GDM-3.0 integrates very nicely with GNOME Shell
 RDEPEND="
 	>=gnome-base/gnome-core-libs-${PV}[cups?]
-	>=gnome-base/gnome-core-apps-${PV}[cups?,bluetooth,cdr?]
+	>=gnome-base/gnome-core-apps-${PV}[cups?,bluetooth?,cdr?]
 
 	>=gnome-base/gdm-${PV}
 
 	>=x11-wm/mutter-${PV}
-	>=gnome-base/gnome-shell-${PV}
+	>=gnome-base/gnome-shell-${PV}[bluetooth?]
 
 	>=x11-themes/gnome-backgrounds-3.2
 	>=x11-themes/gnome-icon-theme-extras-3.0.0
@@ -44,7 +44,7 @@ RDEPEND="
 		>=gnome-base/gnome-applets-${PV}
 		>=gnome-base/gnome-fallback-${PV} )"
 DEPEND=""
-PDEPEND=">=gnome-base/gvfs-1.10.1[gdu]"
+PDEPEND="|| ( >=gnome-base/gvfs-1.10.1[udisks] >=gnome-base/gvfs-1.10.1[gdu] )"
 # Broken from assumptions of gnome-vfs headers being included in nautilus headers,
 # which isn't the case with nautilus-2.22, bug #216019
 #	>=app-admin/gnome-system-tools-2.32.0

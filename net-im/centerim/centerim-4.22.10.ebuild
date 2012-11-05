@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/centerim/centerim-4.22.10.ebuild,v 1.3 2011/11/04 18:34:59 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/centerim/centerim-4.22.10.ebuild,v 1.8 2012/11/04 22:41:01 swegener Exp $
 
 EAPI="2"
 
@@ -9,7 +9,7 @@ inherit eutils
 PROTOCOL_IUSE="+aim gadu +icq +irc +jabber lj +msn rss +yahoo"
 IUSE="${PROTOCOL_IUSE} bidi nls ssl crypt jpeg otr"
 
-DESCRIPTION="CenterIM is a fork of CenterICQ - a ncurses ICQ/Yahoo!/AIM/IRC/MSN/Jabber/GaduGadu/RSS/LiveJournal Client"
+DESCRIPTION="CenterIM is a ncurses ICQ/Yahoo!/AIM/IRC/MSN/Jabber/GaduGadu/RSS/LiveJournal Client"
 if [[ ${PV} = *_p* ]] # is this a snaphot?
 then
 	SRC_URI="http://www.centerim.org/download/snapshots/${PN}-${PV/*_p/}.tar.gz"
@@ -22,18 +22,19 @@ fi
 HOMEPAGE="http://www.centerim.org/"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd"
+KEYWORDS="amd64 x86 ~x86-fbsd"
 
 DEPEND=">=sys-libs/ncurses-5.2
 	bidi? ( dev-libs/fribidi )
 	ssl? ( >=dev-libs/openssl-0.9.6g )
 	jpeg? ( virtual/jpeg )
 	jabber? (
-		otr? ( net-libs/libotr )
+		otr? ( <net-libs/libotr-4 )
 		crypt? ( >=app-crypt/gpgme-1.0.2 )
 	)
 	msn? (
 		|| (
+			>=net-misc/curl-7.25.0-r1[ssl]
 			>=net-misc/curl-7.19.6[ssl]
 			>=net-misc/curl-7.19.6[gnutls]
 			>=net-misc/curl-7.19.6[nss]
@@ -41,6 +42,7 @@ DEPEND=">=sys-libs/ncurses-5.2
 	)
 	yahoo? (
 		|| (
+			>=net-misc/curl-7.25.0-r1[ssl]
 			>=net-misc/curl-7.19.6[ssl]
 			>=net-misc/curl-7.19.6[gnutls]
 			>=net-misc/curl-7.19.6[nss]

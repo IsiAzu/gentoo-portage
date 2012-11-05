@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins10.eclass,v 1.4 2011/04/12 05:55:30 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins10.eclass,v 1.7 2012/10/31 01:51:52 tetromino Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -14,7 +14,7 @@
 # Gentoo developers responsible for gstreamer <gstreamer@gentoo.org> or the application
 # developer.
 
-inherit eutils
+inherit eutils versionator
 
 
 ###
@@ -24,7 +24,7 @@ inherit eutils
 # Create a major/minor combo for our SLOT and executables suffix
 PVP=(${PV//[-\._]/ })
 #PV_MAJ_MIN=${PVP[0]}.${PVP[1]}
-PV_MAJ_MIN=0.10
+PV_MAJ_MIN=$(get_version_component_range '1-2')
 
 # Extract the plugin to build from the ebuild name
 # May be set by an ebuild and contain more than one indentifier, space seperated
@@ -70,9 +70,10 @@ gst-plugins10_remove_unversioned_binaries() {
 	# remove the unversioned binaries gstreamer provide
 	# this is to prevent these binaries to be owned by several SLOTs
 
-	cd ${D}/usr/bin
-	for gst_bins in `ls *-${PV_MAJ_MIN}`
-	do
+	cd "${D}"/usr/bin
+	local gst_bins
+	for gst_bins in *-${PV_MAJ_MIN}; do
+		[[ -e ${gst_bins} ]] || continue
 		rm ${gst_bins/-${PV_MAJ_MIN}/}
 		einfo "Removed ${gst_bins/-${PV_MAJ_MIN}/}"
 	done

@@ -1,36 +1,43 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tracker/tracker-9999.ebuild,v 1.47 2011/11/08 22:25:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tracker/tracker-9999.ebuild,v 1.53 2012/10/25 07:56:27 tetromino Exp $
 
-EAPI="3"
+EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 PYTHON_DEPEND="2:2.6"
+VALA_MIN_API_VERSION="0.14"
 
-inherit autotools git-2 gnome2 linux-info multilib python versionator virtualx
+[[ ${PV} = 9999 ]] && inherit autotools git-2
+inherit gnome2 linux-info multilib python vala versionator virtualx
 
 DESCRIPTION="A tagging metadata database, search tool and indexer"
-HOMEPAGE="http://www.tracker-project.org/"
+HOMEPAGE="http://projects.gnome.org/tracker/"
 EGIT_REPO_URI="git://git.gnome.org/${PN}
 	http://git.gnome.org/browse/${PN}"
-SRC_URI=""
+[[ ${PV} = 9999 ]] && SRC_URI=""
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="0"
-KEYWORDS=""
+if [[ ${PV} = 9999 ]]; then
+	KEYWORDS=""
+else
+	KEYWORDS="~amd64 ~x86"
+fi
 # USE="doc" is managed by eclass.
-IUSE="applet doc eds elibc_glibc exif firefox-bookmarks flac flickr gif gnome-keyring gsf gstreamer gtk iptc +jpeg laptop mp3 networkmanager pdf playlist rss test thunderbird +tiff upnp +vorbis xine +xml xmp" # nautilus qt4 strigi
+IUSE="applet cue doc eds elibc_glibc exif firefox-bookmarks flac flickr gif gnome-keyring gsf gstreamer gtk iptc +iso +jpeg laptop +miner-fs mp3 networkmanager pdf playlist rss test thunderbird +tiff upnp +vorbis xine +xml xmp" # qt4 strigi
+[[ ${PV} = 9999 ]] || IUSE="${IUSE} nautilus"
+REQUIRED_USE="cue? ( gstreamer )"
 
 # Test suite highly disfunctional, loops forever
 # putting aside for now
 RESTRICT="test"
 
-# vala is built with debug by default (see VALAFLAGS)
 # According to NEWS, introspection is non-optional
 # glibc-2.12 needed for SCHED_IDLE (see bug #385003)
 RDEPEND="
 	>=app-i18n/enca-1.9
-	>=dev-db/sqlite-3.7[threadsafe]
+	>=dev-db/sqlite-3.7.14[threadsafe]
 	>=dev-libs/glib-2.28:2
 	>=dev-libs/gobject-introspection-0.9.5
 	>=dev-libs/icu-4
@@ -45,9 +52,12 @@ RDEPEND="
 		>=gnome-base/gnome-panel-2.91.6
 		>=x11-libs/gdk-pixbuf-2.12:2
 		>=x11-libs/gtk+-3:3 )
+	cue? ( media-libs/libcue )
 	eds? (
-		>=mail-client/evolution-2.91.90
-		>=gnome-extra/evolution-data-server-2.91.90 )
+		>=mail-client/evolution-3.3.5
+		>=gnome-extra/evolution-data-server-3.3.5
+		<mail-client/evolution-3.5.3
+		<gnome-extra/evolution-data-server-3.5.3 )
 	elibc_glibc? ( >=sys-libs/glibc-2.12 )
 	exif? ( >=media-libs/libexif-0.6 )
 	firefox-bookmarks? ( || (
@@ -57,9 +67,7 @@ RDEPEND="
 	flickr? ( net-libs/rest:0.7 )
 	gif? ( media-libs/giflib )
 	gnome-keyring? ( >=gnome-base/gnome-keyring-2.26 )
-	gsf? (
-		app-text/odt2txt
-		>=gnome-extra/libgsf-1.13 )
+	gsf? ( >=gnome-extra/libgsf-1.13 )
 	gstreamer? (
 		>=media-libs/gstreamer-0.10.31:0.10
 		upnp? ( >=media-libs/gupnp-dlna-0.5 )
@@ -69,6 +77,7 @@ RDEPEND="
 		>=dev-libs/libgee-0.3:0
 		>=x11-libs/gtk+-3:3 )
 	iptc? ( media-libs/libiptcdata )
+	iso? ( >=sys-libs/libosinfo-0.0.2 )
 	jpeg? ( virtual/jpeg:0 )
 	laptop? ( >=sys-power/upower-0.9 )
 	mp3? (
@@ -94,22 +103,22 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
 	>=sys-devel/gettext-0.17
-	>=dev-util/pkgconfig-0.20
-	dev-util/gtk-doc-am
-	>=dev-util/gtk-doc-1.8
-	applet? ( >=dev-lang/vala-0.12:0.12 )
-	gtk? (
-		app-office/dia
-		>=dev-lang/vala-0.12:0.12
-		>=dev-libs/libgee-0.3 )
+	virtual/pkgconfig
+	gtk? ( >=dev-libs/libgee-0.3 )
 	doc? (
+		app-office/dia
+		>=dev-util/gtk-doc-1.8
 		media-gfx/graphviz )
 	test? (
 		>=dev-libs/dbus-glib-0.82-r1
 		>=sys-apps/dbus-1.3.1[X] )
 "
-#	strigi? ( >=dev-lang/vala-0.12:0.12 )
-#PDEPEND="nautilus? ( >=gnome-extra/nautilus-tracker-tags-${PV} )"
+[[ ${PV} = 9999 ]] && DEPEND="${DEPEND}
+	dev-util/gtk-doc-am
+	>=dev-util/gtk-doc-1.8
+	$(vala_depend)
+"
+[[ ${PV} = 9999 ]] || PDEPEND="nautilus? ( >=gnome-extra/nautilus-tracker-tags-${PV} )"
 
 function inotify_enabled() {
 	if linux_config_exists; then
@@ -126,9 +135,21 @@ function inotify_enabled() {
 
 pkg_setup() {
 	linux-info_pkg_setup
-
 	inotify_enabled
 
+	python_set_active_version 2
+	python_pkg_setup
+}
+
+src_unpack() {
+	if [[ ${PV} = 9999 ]]; then
+		git_src_unpack
+	else
+		gnome2_src_unpack
+	fi
+}
+
+src_prepare() {
 	if use gstreamer ; then
 		G2CONF="${G2CONF} --enable-generic-media-extractor=gstreamer"
 		if use upnp; then
@@ -140,11 +161,6 @@ pkg_setup() {
 		G2CONF="${G2CONF} --enable-generic-media-extractor=xine"
 	else
 		G2CONF="${G2CONF} --enable-generic-media-extractor=external"
-	fi
-
-	# if use applet || use gtk || use strigi; then
-	if use applet || use gtk; then
-		G2CONF="${G2CONF} VALAC=$(type -P valac-0.12)"
 	fi
 
 	# if use mp3 && (use gtk || use qt4); then
@@ -161,7 +177,6 @@ pkg_setup() {
 	# nautilus extension is in a separate package, nautilus-tracker-tags
 	G2CONF="${G2CONF}
 		--disable-hal
-		--disable-libcue
 		--enable-tracker-fts
 		--with-enca
 		--with-unicode-support=libicu
@@ -171,6 +186,7 @@ pkg_setup() {
 		--disable-qt
 		--disable-nautilus-extension
 		$(use_enable applet tracker-search-bar)
+		$(use_enable cue libcue)
 		$(use_enable eds miner-evolution)
 		$(use_enable exif libexif)
 		$(use_enable firefox-bookmarks miner-firefox)
@@ -184,8 +200,10 @@ pkg_setup() {
 		$(use_enable gtk tracker-preferences)
 		$(use_enable gtk tracker-needle)
 		$(use_enable iptc libiptcdata)
+		$(use_enable iso libosinfo)
 		$(use_enable jpeg libjpeg)
 		$(use_enable laptop upower)
+		$(use_enable miner-fs)
 		$(use_enable mp3 taglib)
 		$(use_enable networkmanager network-manager)
 		$(use_enable pdf poppler)
@@ -204,14 +222,6 @@ pkg_setup() {
 
 	DOCS="AUTHORS ChangeLog NEWS README"
 
-	python_set_active_version 2
-}
-
-src_unpack() {
-	git_src_unpack
-}
-
-src_prepare() {
 	# Fix functional tests scripts
 	find "${S}" -name "*.pyc" -delete
 	python_convert_shebangs -r 2 tests utils examples
@@ -221,16 +231,16 @@ src_prepare() {
 	create_version_script "www-client/firefox" "Mozilla Firefox" firefox-version.sh
 	create_version_script "mail-client/thunderbird" "Mozilla Thunderbird" thunderbird-version.sh
 
-	gtkdocize || die "gtkdocize failed"
-	intltoolize --force --copy --automake || die "intltoolize failed"
-	eautoreconf
-
+	if [[ ${PV} = 9999 ]]; then
+		eautoreconf
+		vala_src_prepare
+	fi
 	gnome2_src_prepare
 }
 
 src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
-	Xemake check XDG_DATA_HOME="${T}" XDG_CONFIG_HOME="${T}" || die "tests failed"
+	Xemake check XDG_DATA_HOME="${T}" XDG_CONFIG_HOME="${T}"
 }
 
 src_install() {
@@ -239,12 +249,12 @@ src_install() {
 	# Manually symlink extensions for {firefox,thunderbird}-bin
 	if use firefox-bookmarks; then
 		dosym /usr/share/xul-ext/trackerfox \
-			/usr/$(get_libdir)/firefox-bin/extensions/trackerfox@bustany.org || die
+			/usr/$(get_libdir)/firefox-bin/extensions/trackerfox@bustany.org
 	fi
 
 	if use thunderbird; then
 		dosym /usr/share/xul-ext/trackerbird \
-			/usr/$(get_libdir)/thunderbird-bin/extensions/trackerbird@bustany.org || die
+			/usr/$(get_libdir)/thunderbird-bin/extensions/trackerbird@bustany.org
 	fi
 }
 

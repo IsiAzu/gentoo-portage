@@ -1,6 +1,72 @@
 # ChangeLog for dev-perl/XML-LibXSLT
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/ChangeLog,v 1.77 2011/10/29 18:21:19 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/ChangeLog,v 1.95 2012/09/30 18:42:28 armin76 Exp $
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> XML-LibXSLT-1.760.0.ebuild,
+  XML-LibXSLT-1.770.0.ebuild, XML-LibXSLT-1.780.0.ebuild:
+  Drop alpha keywords
+
+*XML-LibXSLT-1.780.0 (07 Sep 2012)
+
+  07 Sep 2012; Torsten Veller <tove@gentoo.org> +XML-LibXSLT-1.780.0.ebuild:
+  Version bump
+
+  11 Aug 2012; Markus Meier <maekke@gentoo.org> XML-LibXSLT-1.770.0.ebuild:
+  x86 stable, bug #418869
+
+  09 Aug 2012; Brent Baude <ranger@gentoo.org> XML-LibXSLT-1.770.0.ebuild:
+  Marking XML-LibXSLT-1.770.0 ppc for bug 418869
+
+  07 Aug 2012; Brent Baude <ranger@gentoo.org> XML-LibXSLT-1.770.0.ebuild:
+  Marking XML-LibXSLT-1.770.0 ppc64 for bug 418869
+
+  03 Aug 2012; Agostino Sarubbo <ago@gentoo.org> XML-LibXSLT-1.770.0.ebuild:
+  Stable for amd64, wrt bug #418869
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> XML-LibXSLT-1.760.0.ebuild,
+  XML-LibXSLT-1.770.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  21 Apr 2012; Torsten Veller <tove@gentoo.org> -XML-LibXSLT-1.700.0.ebuild:
+  Cleanup
+
+  31 Mar 2012; Tobias Klausmann <klausman@gentoo.org>
+  XML-LibXSLT-1.760.0.ebuild:
+  Stable on alpha, bug #404341
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> XML-LibXSLT-1.700.0.ebuild,
+  XML-LibXSLT-1.760.0.ebuild, XML-LibXSLT-1.770.0.ebuild:
+  Drop ia64/sparc keywords
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> XML-LibXSLT-1.760.0.ebuild:
+  Marking XML-LibXSLT-1.760.0 ppc for bug 404341
+
+  03 Mar 2012; Brent Baude <ranger@gentoo.org> XML-LibXSLT-1.760.0.ebuild:
+  Marking XML-LibXSLT-1.760.0 ppc64 for bug 404341
+
+*XML-LibXSLT-1.770.0 (26 Feb 2012)
+
+  26 Feb 2012; Torsten Veller <tove@gentoo.org> +XML-LibXSLT-1.770.0.ebuild:
+  Version bump
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  XML-LibXSLT-1.760.0.ebuild:
+  x86 stable wrt bug #404341
+
+  19 Feb 2012; Agostino Sarubbo <ago@gentoo.org> XML-LibXSLT-1.760.0.ebuild:
+  Stable for amd64, wrt bug #404341
+
+  18 Feb 2012; Torsten Veller <tove@gentoo.org> -XML-LibXSLT-1.710.0.ebuild,
+  -XML-LibXSLT-1.730.0.ebuild, -XML-LibXSLT-1.750.0.ebuild:
+  Cleanup
+
+*XML-LibXSLT-1.760.0 (24 Jan 2012)
+
+  24 Jan 2012; Torsten Veller <tove@gentoo.org> +XML-LibXSLT-1.760.0.ebuild:
+  Version bump
 
 *XML-LibXSLT-1.750.0 (29 Oct 2011)
 

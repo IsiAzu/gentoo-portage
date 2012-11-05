@@ -1,9 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libaacplus/libaacplus-2.0.2.ebuild,v 1.1 2011/09/27 18:09:06 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libaacplus/libaacplus-2.0.2.ebuild,v 1.12 2012/05/15 13:05:56 aballier Exp $
 
 EAPI=4
-
 inherit autotools
 
 # This file cannot be mirrored.
@@ -20,8 +19,9 @@ SRC_URI="http://dev.gentoo.org/~aballier/${P}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64 hppa ppc ppc64 x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="bindist fftw static-libs"
+
 RESTRICT="mirror"
 REQUIRED_USE="!bindist"
 
@@ -29,7 +29,7 @@ RDEPEND="!media-sound/aacplusenc
 	fftw? ( sci-libs/fftw:3.0 )"
 DEPEND="${RDEPEND}
 	app-arch/unzip
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_unpack() {
 	unpack ${P}.tar.gz
@@ -37,11 +37,12 @@ src_unpack() {
 
 src_prepare() {
 	eautoreconf
-	cp "${DISTDIR}/${TGPPDIST}" "${S}/src/" || die
+	cp "${DISTDIR}/${TGPPDIST}" src/ || die
 }
 
 src_configure() {
-	econf $(use_with fftw fftw3) \
+	econf \
+		$(use_with fftw fftw3) \
 		$(use_enable static-libs static)
 }
 
@@ -51,5 +52,5 @@ src_compile() {
 
 src_install() {
 	default
-	find "${D}" -name '*.la' -delete
+	find "${D}" -name '*.la' -exec rm -f {} +
 }

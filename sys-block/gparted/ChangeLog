@@ -1,6 +1,59 @@
 # ChangeLog for sys-block/gparted
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-block/gparted/ChangeLog,v 1.104 2011/11/05 07:27:21 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-block/gparted/ChangeLog,v 1.118 2012/11/04 10:19:11 eva Exp $
+
+*gparted-0.14.0 (04 Nov 2012)
+
+  04 Nov 2012; Gilles Dartiguelongue <eva@gentoo.org> +gparted-0.14.0.ebuild:
+  Version bump, bug #439856. Enable su replacement through pkexec, bug #425156.
+
+*gparted-0.13.1 (31 Aug 2012)
+
+  31 Aug 2012; Gilles Dartiguelongue <eva@gentoo.org> +gparted-0.13.1.ebuild:
+  Version bump, bug #416797.
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> gparted-0.11.0.ebuild,
+  gparted-0.12.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> gparted-0.12.0.ebuild:
+  x86 stable, bug #410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> gparted-0.12.0.ebuild:
+  Stable for AMD64, wrt bug #222222
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> gparted-0.12.0.ebuild:
+  Stable for amd64, wrt bug #410611
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> gparted-0.11.0.ebuild,
+  gparted-0.12.0.ebuild:
+  Remove obsolete ntfsprogs from USE="ntfs" and force ntfs-3g.
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -gparted-0.9.1.ebuild,
+  -gparted-0.10.0.ebuild:
+  old
+
+  15 Mar 2012; Jeff Horelick <jdhore@gentoo.org> gparted-0.11.0.ebuild:
+  marked x86 per bug 404857
+
+  08 Mar 2012; Markos Chandras <hwoarang@gentoo.org> gparted-0.11.0.ebuild:
+  Stable on amd64 wrt bug #404857
+
+*gparted-0.12.0 (07 Mar 2012)
+
+  07 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> +gparted-0.12.0.ebuild:
+  Version bump.
+
+  14 Jan 2012; Markus Meier <maekke@gentoo.org> gparted-0.10.0.ebuild:
+  x86 stable, bug #393007
+
+  29 Dec 2011; Pacho Ramos <pacho@gentoo.org> gparted-0.10.0.ebuild:
+  amd64 stable, bug 393007
+
+*gparted-0.11.0 (16 Dec 2011)
+
+  16 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> +gparted-0.11.0.ebuild:
+  Version bump.
 
 *gparted-0.10.0 (05 Nov 2011)
 

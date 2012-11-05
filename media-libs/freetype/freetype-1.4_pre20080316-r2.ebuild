@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-1.4_pre20080316-r2.ebuild,v 1.9 2011/09/01 08:35:41 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-1.4_pre20080316-r2.ebuild,v 1.11 2012/05/20 12:45:25 vapier Exp $
 
 inherit autotools eutils libtool multilib
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="FTL"
 SLOT="1"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="doc nls kpathsea"
 
 COMMON_DEPEND="kpathsea? ( virtual/tex-base )"
@@ -55,11 +55,7 @@ src_unpack() {
 	rm aclocal.m4 # Force recreation
 	# Copying this code from autotools.eclass but avoid autoheader call...
 	eaclocal
-	if ${LIBTOOLIZE:-libtoolize} -n --install >& /dev/null ; then
-		_elibtoolize --copy --force --install
-	else
-		_elibtoolize --copy --force
-	fi
+	_elibtoolize --install --copy --force
 	eautoconf
 	elibtoolize
 

@@ -1,26 +1,28 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap-ng/libcap-ng-0.6.6.ebuild,v 1.1 2011/11/10 22:39:14 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap-ng/libcap-ng-0.6.6.ebuild,v 1.14 2012/07/26 02:39:08 radhermit Exp $
 
-EAPI="2"
+EAPI=4
+
 SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="*-jython *-pypy-*"
 
-inherit eutils autotools flag-o-matic python
+inherit autotools flag-o-matic python
 
 DESCRIPTION="POSIX 1003.1e capabilities"
 HOMEPAGE="http://people.redhat.com/sgrubb/libcap-ng/"
-SRC_URI="http://people.redhat.com/sgrubb/libcap-ng/${P}.tar.gz"
+SRC_URI="http://people.redhat.com/sgrubb/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
-IUSE="python"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86"
+IUSE="python static-libs"
 
 RDEPEND="sys-apps/attr
 	python? ( dev-lang/python )"
 DEPEND="${RDEPEND}
 	sys-kernel/linux-headers
-	python? ( dev-lang/swig )"
+	python? ( >=dev-lang/swig-2 )"
 
 PYTHON_CFLAGS=("2.* + -fno-strict-aliasing")
 
@@ -30,10 +32,10 @@ pkg_setup() {
 
 src_prepare() {
 	# Disable byte-compilation of Python modules.
-	echo "#!/bin/sh" > py-compile
+	>py-compile
 
 	# Python bindings are built/tested/installed manually.
-	sed -e "/^SUBDIRS/s/ python//" -i bindings/Makefile.am
+	sed -i -e "/^SUBDIRS/s/ python//" bindings/Makefile.am || die
 
 	eautoreconf
 
@@ -41,7 +43,9 @@ src_prepare() {
 }
 
 src_configure() {
-	econf $(use_with python)
+	econf \
+		$(use_enable static-libs static) \
+		$(use_with python)
 }
 
 src_compile() {
@@ -83,7 +87,7 @@ src_test() {
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die "emake install failed"
+	emake DESTDIR="${D}" install
 
 	if use python; then
 		installation() {
@@ -99,7 +103,9 @@ src_install() {
 		python_clean_installation_image
 	fi
 
-	dodoc ChangeLog README
+	dodoc AUTHORS ChangeLog README
+
+	rm -f "${ED}"/usr/lib*/${PN}.la
 }
 
 pkg_postinst() {

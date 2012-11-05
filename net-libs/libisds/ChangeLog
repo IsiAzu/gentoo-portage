@@ -1,6 +1,32 @@
 # ChangeLog for net-libs/libisds
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libisds/ChangeLog,v 1.10 2011/11/11 11:31:04 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libisds/ChangeLog,v 1.15 2012/10/30 11:15:26 blueness Exp $
+
+  30 Oct 2012; Anthony G. Basile <blueness@gentoo.org> libisds-0.6.1.ebuild,
+  libisds-9999.ebuild:
+  Keyword ~mips, requested by scarabeus
+
+*libisds-0.6.1 (30 Oct 2012)
+
+  30 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org> +libisds-0.6.1.ebuild,
+  -libisds-0.6-r1.ebuild, libisds-9999.ebuild:
+  Version bump to have working tests.
+
+*libisds-0.6-r1 (29 Oct 2012)
+
+  29 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org> +libisds-0.6-r1.ebuild,
+  -libisds-0.6.ebuild, libisds-9999.ebuild:
+  Add define for reauthorisation bug.
+
+*libisds-0.6 (29 Oct 2012)
+
+  29 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org> +libisds-0.6.ebuild,
+  -libisds-0.5.ebuild, libisds-9999.ebuild:
+  Version bump to latest. Punt older.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libisds-0.5.ebuild,
+  libisds-9999.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   11 Nov 2011; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
   Drop me from maint.
@@ -47,4 +73,3 @@
   29 Jun 2010; Tomáš Chvátal <scarabeus@gentoo.org>
   +libisds-0.3.1.ebuild, +libisds-9999.ebuild, +metadata.xml:
   Add client interface to czech "datove schranky" soap service.
-

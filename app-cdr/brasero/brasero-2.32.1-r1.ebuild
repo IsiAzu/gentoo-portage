@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/brasero/brasero-2.32.1-r1.ebuild,v 1.6 2011/11/15 23:24:56 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/brasero/brasero-2.32.1-r1.ebuild,v 1.10 2012/08/26 08:41:38 hasufell Exp $
 
 EAPI="4"
 GNOME2_LA_PUNT="yes"
@@ -14,7 +14,7 @@ HOMEPAGE="http://projects.gnome.org/brasero/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha ~amd64 arm ia64 ppc ppc64 sparc x86"
+KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sparc x86"
 IUSE="+cdr +css doc dvd +introspection +libburn nautilus playlist test vcd"
 
 COMMON_DEPEND="
@@ -26,12 +26,13 @@ COMMON_DEPEND="
 	>=media-libs/gst-plugins-base-0.10:0.10
 	>=dev-libs/libxml2-2.6:2
 	>=dev-libs/libunique-1:1
+	x11-libs/libICE
 	x11-libs/libSM
 	introspection? ( >=dev-libs/gobject-introspection-0.6.3 )
 	libburn? (
 		>=dev-libs/libburn-0.4
 		>=dev-libs/libisofs-0.6.4 )
-	nautilus? ( >=gnome-base/nautilus-2.31.3 )
+	nautilus? ( >=gnome-base/nautilus-2.31.3 <gnome-base/nautilus-3 )
 	playlist? ( >=dev-libs/totem-pl-parser-2.29.1 )"
 RDEPEND="${COMMON_DEPEND}
 	app-cdr/cdrdao
@@ -45,7 +46,7 @@ RDEPEND="${COMMON_DEPEND}
 	!libburn? ( virtual/cdrtools )"
 DEPEND="${COMMON_DEPEND}
 	app-text/gnome-doc-utils
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext
 	dev-util/intltool
 	gnome-base/gnome-common:3
@@ -59,6 +60,7 @@ PDEPEND="gnome-base/gvfs"
 
 pkg_setup() {
 	G2CONF="${G2CONF}
+		--disable-silent-rules
 		--disable-scrollkeeper
 		--disable-caches
 		--disable-dependency-tracking
@@ -79,6 +81,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-underlinking.patch
+
 	# Fix link against installed libraries, bug #340767
 	epatch "${FILESDIR}/${PN}-2.32.0-build-plugins-against-local-library.patch"
 

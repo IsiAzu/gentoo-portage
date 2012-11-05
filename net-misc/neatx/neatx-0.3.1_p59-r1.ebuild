@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neatx/neatx-0.3.1_p59-r1.ebuild,v 1.6 2011/10/24 06:24:21 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neatx/neatx-0.3.1_p59-r1.ebuild,v 1.8 2012/08/21 13:34:00 voyageur Exp $
 
 EAPI="3"
 
 PYTHON_DEPEND="2"
-inherit eutils autotools python
+inherit eutils autotools python multilib user
 
 DESCRIPTION="Google implementation of NX server"
 HOMEPAGE="http://code.google.com/p/neatx/"

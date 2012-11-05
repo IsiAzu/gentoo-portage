@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.104 2011/08/22 04:46:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.108 2012/09/15 16:16:53 zmedico Exp $
 
 # @ECLASS: linux-mod.eclass
 # @MAINTAINER:
@@ -34,7 +34,7 @@
 
 # @ECLASS-VARIABLE: BUILD_TARGETS
 # @DESCRIPTION:
-# It's a string with the build targets to pass to make. The default value is "clean modules"
+# It's a string with the build targets to pass to make. The default value is "clean module"
 
 # @ECLASS-VARIABLE: MODULE_NAMES
 # @DESCRIPTION:
@@ -127,8 +127,7 @@ EXPORT_FUNCTIONS pkg_setup pkg_preinst pkg_postinst src_install src_compile pkg_
 
 IUSE="kernel_linux"
 SLOT="0"
-DESCRIPTION="Based on the $ECLASS eclass"
-RDEPEND="kernel_linux? ( sys-apps/module-init-tools )"
+RDEPEND="kernel_linux? ( virtual/modutils )"
 DEPEND="${RDEPEND}
 	sys-apps/sed
 	kernel_linux? ( virtual/linux-sources )"
@@ -223,7 +222,7 @@ update_depmod() {
 	ebegin "Updating module dependencies for ${KV_FULL}"
 	if [ -r "${KV_OUT_DIR}"/System.map ]
 	then
-		depmod -ae -F "${KV_OUT_DIR}"/System.map -b "${ROOT}" -r ${KV_FULL}
+		depmod -ae -F "${KV_OUT_DIR}"/System.map -b "${ROOT}" ${KV_FULL}
 		eend $?
 	else
 		ewarn

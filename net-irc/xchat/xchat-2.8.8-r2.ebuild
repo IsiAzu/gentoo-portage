@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.8-r2.ebuild,v 1.16 2011/10/27 06:42:00 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.8-r2.ebuild,v 1.18 2012/05/03 06:27:14 jdhore Exp $
 
 EAPI=3
 
@@ -33,7 +33,7 @@ RDEPEND=">=dev-libs/glib-2.6.0:2
 	!<net-irc/xchat-gnome-0.9"
 
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.16
+	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
 pkg_setup() {
@@ -48,7 +48,8 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-2.8.4-interix.patch \
 		"${FILESDIR}"/${P}-libnotify07.patch \
 		"${FILESDIR}"/${P}-dbus.patch \
-		"${FILESDIR}"/${PN}-2.8.8-cflags.patch
+		"${FILESDIR}"/${PN}-2.8.8-cflags.patch \
+		"${FILESDIR}"/${P}-glib-2.31.patch
 
 	use xchatdccserver && epatch "${DISTDIR}"/xchat-dccserver-0.6.patch.bz2
 

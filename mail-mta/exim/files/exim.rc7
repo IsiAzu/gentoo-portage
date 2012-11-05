@@ -1,9 +1,9 @@
 #!/sbin/runscript
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/files/exim.rc7,v 1.2 2011/08/16 16:51:36 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/exim/files/exim.rc7,v 1.4 2012/02/28 04:03:55 idl0r Exp $
 
-opts="${opts} reload"
+extra_started_commands="reload"
 
 depend() {
 	need logger
@@ -13,13 +13,13 @@ depend() {
 
 start() {
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --quiet --exec /usr/sbin/exim --pidfile /var/run/${SVCNAME}.pid -- -C /etc/exim/${SVCNAME}.conf ${EXIM_OPTS:--bd -q15m}
+	start-stop-daemon --start --exec /usr/sbin/exim --pidfile /var/run/${SVCNAME}.pid -- -C /etc/exim/${SVCNAME}.conf ${EXIM_OPTS:--bd -q15m}
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --quiet --pidfile /var/run/${SVCNAME}.pid --name exim
+	start-stop-daemon --stop --pidfile /var/run/${SVCNAME}.pid --name exim
 	eend $?
 }
 

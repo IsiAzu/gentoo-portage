@@ -1,6 +1,49 @@
 # ChangeLog for dev-perl/HTML-Form
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Form/ChangeLog,v 1.10 2011/11/19 19:48:05 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Form/ChangeLog,v 1.23 2012/09/02 18:08:54 armin76 Exp $
+
+  02 Sep 2012; Raúl Porcel <armin76@gentoo.org> HTML-Form-6.30.0.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #422041
+
+  09 Aug 2012; Brent Baude <ranger@gentoo.org> HTML-Form-6.30.0.ebuild:
+  Marking HTML-Form-6.30.0 ppc for bug 422041
+
+  07 Aug 2012; Brent Baude <ranger@gentoo.org> HTML-Form-6.30.0.ebuild:
+  Marking HTML-Form-6.30.0 ppc64 for bug 422041
+
+  04 Aug 2012; Jeroen Roovers <jer@gentoo.org> HTML-Form-6.30.0.ebuild:
+  Stable for HPPA (bug #422041).
+
+  03 Aug 2012; Agostino Sarubbo <ago@gentoo.org> HTML-Form-6.30.0.ebuild:
+  Stable for amd64, wrt bug #422041
+
+  31 Jul 2012; Johannes Huber <johu@gentoo.org> HTML-Form-6.30.0.ebuild:
+  Stable for x86, wrt bug #422041
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  21 Apr 2012; Torsten Veller <tove@gentoo.org> -HTML-Form-6.10.0.ebuild:
+  Cleanup
+
+  14 Apr 2012; Zac Medico <zmedico@gentoo.org> HTML-Form-6.30.0.ebuild:
+  Add ~amd64-linux keyword.
+
+*HTML-Form-6.30.0 (30 Mar 2012)
+
+  30 Mar 2012; Torsten Veller <tove@gentoo.org> +HTML-Form-6.30.0.ebuild:
+  Version bump
+
+  01 Mar 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Add missing cpan remote-id tags in metadata.xml (#406287)
+
+*HTML-Form-6.10.0 (19 Feb 2012)
+
+  19 Feb 2012; Torsten Veller <tove@gentoo.org> +HTML-Form-6.10.0.ebuild:
+  Version bump
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> HTML-Form-6.0.0.ebuild:
+  Stable for ppc64; bug #386309
 
   19 Nov 2011; Raúl Porcel <armin76@gentoo.org> HTML-Form-6.0.0.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #386309
@@ -34,4 +77,3 @@
   09 Mar 2011; Torsten Veller <tove@gentoo.org> +HTML-Form-6.0.0.ebuild,
   +metadata.xml:
   Initial commit - unbundled from libwww-perl
-

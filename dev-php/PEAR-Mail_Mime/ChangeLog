@@ -1,6 +1,25 @@
 # ChangeLog for dev-php/PEAR-Mail_Mime
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-Mail_Mime/ChangeLog,v 1.72 2011/11/13 20:45:30 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-Mail_Mime/ChangeLog,v 1.76 2012/03/13 13:17:27 kumba Exp $
+
+  13 Mar 2012; Joshua Kinard <kumba@gentoo.org>
+  +files/1.8.3-php-pass-by-reference-fix.patch, PEAR-Mail_Mime-1.8.3.ebuild:
+  The 1.5.2 patch does not apply to 1.8.3 any further. Added a tweaked version
+  that does apply to 1.8.3 to prevent this ebuild from failing. Closes #407969.
+  Also changed src_unpack to src_prepare for EAPI4.
+
+*PEAR-Mail_Mime-1.8.3 (12 Mar 2012)
+
+  12 Mar 2012; Ole Markus With <olemarkus@gentoo.org>
+  +PEAR-Mail_Mime-1.8.3.ebuild:
+  Version bump
+
+  03 Dec 2011; Raúl Porcel <armin76@gentoo.org> PEAR-Mail_Mime-1.8.2.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #388763
+
+  25 Nov 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  PEAR-Mail_Mime-1.8.2.ebuild:
+  ppc/ppc64 stable wrt #388613
 
   13 Nov 2011; Markus Meier <maekke@gentoo.org> PEAR-Mail_Mime-1.8.2.ebuild:
   arm stable, bug #388763

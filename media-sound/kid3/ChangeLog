@@ -1,6 +1,58 @@
 # ChangeLog for media-sound/kid3
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/kid3/ChangeLog,v 1.56 2011/09/09 19:11:11 thev00d00 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/kid3/ChangeLog,v 1.69 2012/07/13 08:49:14 ssuominen Exp $
+
+  13 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> kid3-2.1.ebuild,
+  metadata.xml:
+  Rename USE flag "chroma" to "acoustid" in order to synchronize with
+  media-sound/picard.
+
+  10 Jul 2012; Johannes Huber <johu@gentoo.org>
+  -files/kid3-2.0.1-mp4v2-1.9.1_p479.patch, -kid3-2.0.1.ebuild:
+  Remove old.
+
+  10 Jul 2012; Agostino Sarubbo <ago@gentoo.org> kid3-2.1.ebuild:
+  Stable for amd64, wrt bug #425518
+
+  09 Jul 2012; Jeff Horelick <jdhore@gentoo.org> kid3-2.1.ebuild:
+  marked x86 per bug 425518
+
+  20 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> -kid3-1.4.ebuild:
+  old
+
+  11 Jun 2012; Agostino Sarubbo <ago@gentoo.org> kid3-2.0.1.ebuild:
+  Stable for amd64, wrt bug #420009
+
+  07 Jun 2012; Johannes Huber <johu@gentoo.org> kid3-2.0.1.ebuild:
+  Stable for x86, wrt bug #420009
+
+  07 Jun 2012; Michael Palimaka <kensington@gentoo.org> kid3-2.1.ebuild:
+  Drop useless tunepimp configure argument, thanks to Samuli Suominen
+  <ssuominen@gentoo.org>.
+
+*kid3-2.1 (07 Jun 2012)
+
+  07 Jun 2012; Michael Palimaka <kensington@gentoo.org> +kid3-2.1.ebuild,
+  metadata.xml:
+  Version bump. Add upstream metadata.
+
+  19 May 2012; Samuli Suominen <ssuominen@gentoo.org> kid3-1.4.ebuild,
+  kid3-2.0.1.ebuild:
+  Ensure libmp4v2 headers are present by forcing correct SLOT
+
+  19 May 2012; Samuli Suominen <ssuominen@gentoo.org> -kid3-1.6.ebuild,
+  -kid3-2.0.ebuild:
+  old
+
+  16 Apr 2012; Johannes Huber <johu@gentoo.org>
+  +files/kid3-2.0.1-mp4v2-1.9.1_p479.patch, kid3-2.0.1.ebuild:
+  Add upstream patch to fix build with snapshot version of media-libs/libmp4v2,
+  fixes bug #409511.
+
+*kid3-2.0.1 (08 Jan 2012)
+
+  08 Jan 2012; Johannes Huber <johu@gentoo.org> +kid3-2.0.1.ebuild:
+  Version bump wrt bug #398105.
 
 *kid3-2.0 (09 Sep 2011)
 
@@ -226,4 +278,3 @@
 
   26 Apr 2004; Dominik Stadler <centic@gentoo.org> :
   Add new ebuild for kid3, see Bug 23014.
-

@@ -1,6 +1,46 @@
 # ChangeLog for dev-libs/ppl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ppl/ChangeLog,v 1.39 2011/11/15 04:03:55 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ppl/ChangeLog,v 1.51 2012/04/29 06:51:32 dirtyepic Exp $
+
+*ppl-0.12.1 (29 Apr 2012)
+
+  29 Apr 2012; Ryan Hill <dirtyepic@gentoo.org> +ppl-0.12.1.ebuild:
+  Version bump.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> ppl-0.12.ebuild:
+  keyword ~amd64-fbsd
+
+  13 Apr 2012; Ryan Hill <dirtyepic@gentoo.org> ppl-0.12.ebuild:
+  Remove unused test var.
+
+*ppl-0.12 (13 Apr 2012)
+
+  13 Apr 2012; Ryan Hill <dirtyepic@gentoo.org> +ppl-0.12.ebuild:
+  Version bump.
+
+  20 Feb 2012; Ryan Hill <dirtyepic@gentoo.org> -ppl-0.11.2.ebuild:
+  Remove old.
+
+  18 Feb 2012; Raúl Porcel <armin76@gentoo.org> ppl-0.11.2-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #396631
+
+  13 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> ppl-0.11.2-r1.ebuild:
+  ppc64 stable wrt #396631
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> ppl-0.11.2-r1.ebuild:
+  Marking ppl-0.11.2-r1 ppc for bug 396631
+
+  16 Jan 2012; Jeroen Roovers <jer@gentoo.org> ppl-0.11.2-r1.ebuild:
+  Stable for HPPA (bug #396631).
+
+  15 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> ppl-0.11.2-r1.ebuild:
+  x86 stable wrt bug #396631
+
+  14 Jan 2012; Markus Meier <maekke@gentoo.org> ppl-0.11.2-r1.ebuild:
+  arm stable, bug #396631
+
+  31 Dec 2011; Agostino Sarubbo <ago@gentoo.org> ppl-0.11.2-r1.ebuild:
+  Stable for AMD64, wrt bug #396631
 
 *ppl-0.11.2-r1 (15 Nov 2011)
 

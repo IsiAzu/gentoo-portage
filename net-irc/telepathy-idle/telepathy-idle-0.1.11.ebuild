@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/telepathy-idle/telepathy-idle-0.1.11.ebuild,v 1.1 2011/11/01 11:41:32 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/telepathy-idle/telepathy-idle-0.1.11.ebuild,v 1.7 2012/05/03 06:27:14 jdhore Exp $
 
 EAPI="4"
 PYTHON_DEPEND="2"
@@ -13,7 +13,7 @@ SRC_URI="http://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-linux"
+KEYWORDS="alpha amd64 arm ia64 ppc ~ppc64 sparc x86 ~x86-linux"
 IUSE="test"
 
 RDEPEND="dev-libs/dbus-glib
@@ -22,7 +22,7 @@ RDEPEND="dev-libs/dbus-glib
 	>=net-libs/telepathy-glib-0.15.9
 	sys-apps/dbus"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	test? ( dev-python/twisted-words )"
 
 pkg_setup() {

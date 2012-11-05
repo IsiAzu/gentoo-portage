@@ -1,6 +1,44 @@
 # ChangeLog for media-libs/libsoundtouch
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.47 2011/11/02 14:52:23 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.57 2012/09/09 21:48:36 radhermit Exp $
+
+*libsoundtouch-1.7.0 (09 Sep 2012)
+
+  09 Sep 2012; Tim Harder <radhermit@gentoo.org> +libsoundtouch-1.7.0.ebuild,
+  +files/libsoundtouch-1.7.0-flags.patch:
+  Version bump.
+
+  06 Aug 2012; Anthony G. Basile <blueness@gentoo.org>
+  libsoundtouch-1.6.0.ebuild:
+  Keyword ~arm
+
+  03 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
+  libsoundtouch-1.6.0.ebuild:
+  Keyword ~mips
+
+  08 Mar 2012; Tim Harder <radhermit@gentoo.org> -libsoundtouch-1.5.0.ebuild,
+  -files/libsoundtouch-1.5.0-flags_and_version.patch:
+  Remove old.
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Marking libsoundtouch-1.6.0 ppc for bug 387769
+
+  14 Feb 2012; Ulrich Müller <ulm@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  QA: Fix ebuild header, bug 398773.
+
+  12 Feb 2012; Tony Vroon <chainsaw@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Marked stable on PPC64 as requested by Tim "radhermit" Harder in bug
+  #387769. Compile tested on a PowerMac7,3 (64UL) with GCC 4.5.3.
+
+  18 Dec 2011; Raúl Porcel <armin76@gentoo.org> libsoundtouch-1.5.0.ebuild,
+  libsoundtouch-1.6.0.ebuild:
+  Drop sparc keywords
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Revert to autotools eclass (fixes bug #392103).
+
+  27 Nov 2011; Tim Harder <radhermit@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Build in the source tree.
 
   02 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   libsoundtouch-1.6.0.ebuild:

@@ -1,6 +1,15 @@
 # ChangeLog for app-crypt/ekeyd
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/ekeyd/ChangeLog,v 1.26 2011/11/01 09:55:11 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/ekeyd/ChangeLog,v 1.29 2012/07/12 15:31:17 axs Exp $
+
+  12 Jul 2012; Ian Stakenvicius <axs@gentoo.org> ekeyd-1.1.4-r2.ebuild:
+  added GPL-2 to LICENSE per bug 425890
+
+  08 Jul 2012; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml:
+  Re-assign to maintainer-needed.
+
+  31 May 2012; Zac Medico <zmedico@gentoo.org> ekeyd-1.1.4-r2.ebuild:
+  inherit eutils for epatch
 
 *ekeyd-1.1.4-r2 (01 Nov 2011)
 
@@ -176,4 +185,3 @@
   Initial import of the EntropyKey daemon; this is still a work-in-progress
   ebuild, as it lacks an init script for the USB userland driver, and checks
   for Linux kernel options for CDC modem support.
-

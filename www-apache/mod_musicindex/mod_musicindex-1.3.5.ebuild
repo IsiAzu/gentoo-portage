@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apache/mod_musicindex/mod_musicindex-1.3.5.ebuild,v 1.1 2011/10/14 17:11:32 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apache/mod_musicindex/mod_musicindex-1.3.5.ebuild,v 1.3 2012/10/16 05:25:22 patrick Exp $
 
 EAPI="2"
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="+mp3 +mp4 +flac +vorbis"
 
 DEPEND="mp3? ( media-libs/libmad )
-	mp4? ( media-libs/libmp4v2 )
+	mp4? ( media-libs/libmp4v2:0 )
 	flac? ( media-libs/flac )
 	vorbis? ( media-libs/liboggz )"
 RDEPEND="${DEPEND}
@@ -26,7 +26,7 @@ APACHE2_MOD_CONF="50_${PN}"
 APACHE2_MOD_DEFINE="MUSICINDEX"
 DOCFILES="AUTHORS BUGS ChangeLog README UPGRADING"
 
-need_apache2
+need_apache2_2
 
 src_configure() {
 	econf \

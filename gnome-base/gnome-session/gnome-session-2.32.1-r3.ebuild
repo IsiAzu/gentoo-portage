@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.32.1-r3.ebuild,v 1.7 2011/10/30 16:04:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.32.1-r3.ebuild,v 1.9 2012/05/05 05:38:12 jdhore Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -39,7 +39,7 @@ RDEPEND=">=dev-libs/glib-2.16:2
 DEPEND="${RDEPEND}
 	>=dev-lang/perl-5
 	>=sys-devel/gettext-0.10.40
-	>=dev-util/pkgconfig-0.17
+	virtual/pkgconfig
 	>=dev-util/intltool-0.40
 	gnome-base/gnome-common
 	!<gnome-base/gdm-2.20.4
@@ -61,8 +61,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
-
 	# Add "session saving" button back, upstream bug #575544
 	epatch "${FILESDIR}/${PN}-2.32.0-session-saving-button.patch"
 
@@ -81,6 +79,7 @@ src_prepare() {
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
+	gnome2_src_prepare
 }
 
 src_install() {

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pstoedit/pstoedit-3.60.ebuild,v 1.1 2011/09/21 05:02:57 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pstoedit/pstoedit-3.60.ebuild,v 1.5 2012/06/28 12:47:18 naota Exp $
 
 EAPI=4
 inherit autotools eutils
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="emf flash imagemagick plotutils"
 
 RDEPEND=">=media-libs/libpng-1.4.3
@@ -22,7 +22,7 @@ RDEPEND=">=media-libs/libpng-1.4.3
 	imagemagick? ( >=media-gfx/imagemagick-6.6.1.2[cxx] )
 	plotutils? ( media-libs/plotutils )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_prepare() {
 	sed -i \
@@ -30,7 +30,8 @@ src_prepare() {
 		-e 's:-pedantic::' \
 		configure.ac || die
 
-	epatch "${FILESDIR}"/${P}-parallel.patch
+	epatch "${FILESDIR}"/${P}-parallel.patch \
+		"${FILESDIR}"/${P}-libdl.patch
 
 	eautoreconf
 }

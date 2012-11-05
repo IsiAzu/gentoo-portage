@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libatasmart/libatasmart-0.18.ebuild,v 1.1 2011/10/31 14:52:59 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libatasmart/libatasmart-0.18.ebuild,v 1.10 2012/05/19 12:19:40 blueness Exp $
 
 EAPI=4
 
@@ -10,12 +10,12 @@ SRC_URI="http://0pointer.de/public/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86"
 IUSE="static-libs"
 
 RDEPEND=">=sys-fs/udev-143"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_configure() {
 	econf \

@@ -1,18 +1,18 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/office-ext.eclass,v 1.2 2011/11/12 12:03:05 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/office-ext.eclass,v 1.7 2012/09/27 16:35:41 axs Exp $
 
 # @ECLASS: office-ext.eclass
-# @AUTHOR:
-# Tomáš Chvátal <scarabeus@gentoo.org>
 # @MAINTAINER:
 # The office team <openoffice@gentoo.org>
+# @AUTHOR:
+# Tomáš Chvátal <scarabeus@gentoo.org>
 # @BLURB: Eclass for installing libreoffice/openoffice extensions
 # @DESCRIPTION:
 # Eclass for easing maitenance of libreoffice/openoffice extensions.
 
 case "${EAPI:-0}" in
-	4) OEXT_EXPORTED_FUNCTIONS="src_install pkg_postinst pkg_prerm" ;;
+	4|5) OEXT_EXPORTED_FUNCTIONS="src_unpack src_install pkg_postinst pkg_prerm" ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
@@ -31,6 +31,29 @@ fi
 
 DEPEND="virtual/ooo"
 RDEPEND="virtual/ooo"
+
+# Most projects actually do not provide any workdir and we do not unpack the
+# .oxt file at all.
+S="${WORKDIR}"
+
+# @FUNCTION: office-ext_src_unpack
+# @DESCRIPTION:
+# Flush the cache after removal of an extension.
+office-ext_src_unpack() {
+	debug-print-function ${FUNCNAME} "$@"
+	local i
+
+	default
+
+	for i in ${OO_EXTENSIONS[@]}; do
+		# Copy only if the oxt is present, sometimes they are in tarballs
+		# so we want to fail only when we do need to do the cp.
+		if [[ -f "${DISTDIR}/${i}" ]] ; then
+			debug-print "${FUNCNAME}: cp -v \"${DISTDIR}/${i}\" \"${S}\""
+			cp -v "${DISTDIR}/${i}" "${S}" || die
+		fi
+	done
+}
 
 # @FUNCTION: office-ext_flush_unopkg_cache
 # @DESCRIPTION:
@@ -74,7 +97,8 @@ office-ext_add_extension() {
 
 	debug-print "${FUNCNAME}: ${UNOPKG_BINARY} add --shared \"${ext}\""
 	ebegin "Adding office extension: \"${ext}\""
-	${UNOPKG_BINARY} add --shared "${ext}" \
+	${UNOPKG_BINARY} add --suppress-license \
+		--shared "${ext}" \
 		"-env:UserInstallation=file:///${tmpdir}" \
 		"-env:JFW_PLUGIN_DO_NOT_CHECK_ACCESSIBILITY=1"
 	eend $?
@@ -91,7 +115,8 @@ office-ext_remove_extension() {
 
 	debug-print "${FUNCNAME}: ${UNOPKG_BINARY} remove --shared \"${ext}\""
 	ebegin "Removing office extension: \"${ext}\""
-	${UNOPKG_BINARY} remove --shared "${ext}" \
+	${UNOPKG_BINARY} remove --suppress-license \
+		--shared "${ext}" \
 		"-env:UserInstallation=file:///${tmpdir}" \
 		"-env:JFW_PLUGIN_DO_NOT_CHECK_ACCESSIBILITY=1"
 	eend $?

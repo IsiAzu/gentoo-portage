@@ -1,9 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/openbox/openbox-3.5.0_p20111019.ebuild,v 1.1 2011/10/18 21:52:54 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/openbox/openbox-3.5.0_p20111019.ebuild,v 1.10 2012/08/29 10:52:59 hasufell Exp $
 
 EAPI="2"
-WANT_AUTOMAKE="1.9"
 inherit multilib autotools eutils
 
 DESCRIPTION="A standards compliant, fast, light-weight, extensible window manager"
@@ -12,12 +11,12 @@ SRC_URI="http://dev.gentoo.org/~hwoarang/distfiles/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="3"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-IUSE="debug imlib nls session startup-notification static-libs"
+KEYWORDS="~alpha amd64 arm ~hppa ppc ~ppc64 ~sparc x86 ~x86-fbsd"
+IUSE="debug imlib nls python session startup-notification static-libs"
 
 RDEPEND="dev-libs/glib:2
 	>=dev-libs/libxml2-2.0
-	dev-python/pyxdg
+	python? ( dev-python/pyxdg )
 	>=media-libs/fontconfig-2
 	x11-libs/libXft
 	x11-libs/libXrandr
@@ -28,7 +27,7 @@ RDEPEND="dev-libs/glib:2
 	x11-libs/libXinerama"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	x11-proto/xextproto
 	x11-proto/xf86vidmodeproto
 	x11-proto/xineramaproto"
@@ -37,8 +36,11 @@ S="${WORKDIR}"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-gnome-session-3.4.9.patch
-	sed -i -e "s:-O0 -ggdb ::" "${S}"/m4/openbox.m4 || die
-	eautopoint
+	sed -i \
+		-e "s:-O0 -ggdb ::" \
+		-e 's/-fno-strict-aliasing//' \
+		"${S}"/m4/openbox.m4 || die
+	epatch_user
 	eautoreconf
 }
 
@@ -60,4 +62,5 @@ src_install() {
 	fperms a+x /etc/X11/Sessions/${PN}
 	emake DESTDIR="${D}" install || die "emake install failed"
 	! use static-libs && rm "${D}"/usr/$(get_libdir)/lib{obt,obrender}.la
+	! use python && rm "${D}"/usr/libexec/openbox-xdg-autostart
 }

@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ser2net/ser2net-2.7.ebuild,v 1.2 2010/10/26 11:19:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ser2net/ser2net-2.7.ebuild,v 1.6 2012/07/17 19:44:25 sbriesen Exp $
 
 EAPI="2"
 
@@ -10,11 +10,12 @@ DESCRIPTION="Serial To Network Proxy"
 SRC_URI="mirror://sourceforge/ser2net/${P}.tar.gz"
 HOMEPAGE="http://sourceforge.net/projects/ser2net"
 
-KEYWORDS="~amd64 ~ppc ~sparc ~x86"
+KEYWORDS="~amd64 ppc x86"
 SLOT="0"
 LICENSE="GPL-2"
 
 DEPEND="tcpd? ( sys-apps/tcp-wrappers )"
+RDEPEND="${DEPEND}"
 
 IUSE="tcpd"
 

@@ -1,6 +1,39 @@
 # ChangeLog for x11-misc/notify-osd
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notify-osd/ChangeLog,v 1.8 2011/11/20 12:12:21 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notify-osd/ChangeLog,v 1.18 2012/07/30 21:01:34 ssuominen Exp $
+
+  30 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> notify-osd-0.9.34.ebuild:
+  Include dnd.c for savedconfig.eclass kept files to make fullscreen mode
+  behavior adjustable with a sledge hammer wrt #428134
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> notify-osd-0.9.34.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  10 Apr 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -notify-osd-0.9.32.ebuild, -notify-osd-0.9.33.ebuild:
+  old
+
+*notify-osd-0.9.34 (10 Apr 2012)
+
+  10 Apr 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +notify-osd-0.9.34.ebuild:
+  Version bump. Install notify-osd binary to libdir instead of libexecdir.
+
+*notify-osd-0.9.33 (17 Mar 2012)
+
+  17 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +notify-osd-0.9.33.ebuild:
+  Version bump.
+
+  28 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> notify-osd-0.9.32.ebuild:
+  Block x11-misc/qtnotifydaemon because it's using same .service file.
+
+  04 Jan 2012; Mike Frysinger <vapier@gentoo.org> notify-osd-0.9.32.ebuild:
+  Drop `use savedconfig` logic that the savedconfig eclass handles itself.
+
+  22 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> notify-osd-0.9.32.ebuild:
+  Remove --uninstall argument from gnome2_schemas_update wrt #394739 by
+  Alexandre Rostovtsev
 
   20 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
   Move to ayatana herd.

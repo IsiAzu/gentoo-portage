@@ -1,6 +1,20 @@
 # ChangeLog for dev-perl/Nmap-Parser
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Nmap-Parser/ChangeLog,v 1.17 2011/09/21 02:21:30 robbat2 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Nmap-Parser/ChangeLog,v 1.21 2012/06/24 13:00:28 tove Exp $
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  31 Mar 2012; Torsten Veller <tove@gentoo.org> -Nmap-Parser-1.19.ebuild,
+  -Nmap-Parser-1.200.0.ebuild:
+  Cleanup
+
+  09 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  Nmap-Parser-1.210.0.ebuild:
+  x86 stable wrt bug #400191
+
+  24 Feb 2012; Agostino Sarubbo <ago@gentoo.org> Nmap-Parser-1.210.0.ebuild:
+  Stable for amd64, wrt bug #400191
 
 *Nmap-Parser-1.210.0 (21 Sep 2011)
 
@@ -77,4 +91,3 @@
   25 Aug 2006; Christian Hartmann <ian@gentoo.org> +metadata.xml,
   +Nmap-Parser-1.05.ebuild:
   Dep for bug #144762; fixes bug #144041
-

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sound-juicer/sound-juicer-2.99.0_pre20111001.ebuild,v 1.4 2011/11/25 07:20:34 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sound-juicer/sound-juicer-2.99.0_pre20111001.ebuild,v 1.6 2012/06/07 05:37:35 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -41,7 +41,7 @@ RDEPEND="${COMMON_DEPEND}
 	>=media-plugins/gst-plugins-meta-0.10-r2:0.10"
 
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	>=dev-util/intltool-0.40
 	>=app-text/scrollkeeper-0.3.5
 	app-text/gnome-doc-utils
@@ -53,6 +53,13 @@ pkg_setup() {
 		--disable-scrollkeeper
 		GST_INSPECT=$(type -p true)"
 	DOCS="AUTHORS ChangeLog NEWS README TODO"
+}
+
+src_configure() {
+	# Work around sandbox violations when FEATURES=-userpriv caused by
+	# gst-inspect-0.10 (bug #419183)
+	unset DISPLAY
+	gnome2_src_configure
 }
 
 pkg_postinst() {

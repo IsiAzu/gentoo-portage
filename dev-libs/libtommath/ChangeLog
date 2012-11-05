@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libtommath
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/ChangeLog,v 1.45 2011/09/09 14:09:28 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/ChangeLog,v 1.48 2012/08/12 04:58:14 vapier Exp $
+
+  12 Aug 2012; Mike Frysinger <vapier@gentoo.org> libtommath-0.42.0-r1.ebuild,
+  libtommath-0.42.0.ebuild:
+  Add s390/sh love.
+
+  27 Nov 2011; Jeroen Roovers <jer@gentoo.org> libtommath-0.42.0-r1.ebuild:
+  Do not use autotools-utils.eclass (bug #392097).
+
+  27 Nov 2011; Tim Harder <radhermit@gentoo.org> libtommath-0.42.0-r1.ebuild:
+  Build in the source tree.
 
   09 Sep 2011; Tim Harder <radhermit@gentoo.org>
   files/libtommath-0.42.0-makefile.patch:

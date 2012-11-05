@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccp4-libs/ccp4-libs-6.1.3-r10.ebuild,v 1.7 2011/08/26 14:26:09 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccp4-libs/ccp4-libs-6.1.3-r10.ebuild,v 1.10 2012/10/18 21:37:53 jlec Exp $
 
 EAPI=3
 
@@ -41,12 +41,11 @@ RDEPEND="
 	!<sci-chemistry/ccp4-apps-${PVR}
 	app-shells/tcsh
 	dev-lang/tcl
-	sci-libs/cbflib
+	<sci-libs/cbflib-0.9.2.2
 	sci-libs/fftw:2.1
 	sci-libs/mmdb
 	sci-libs/monomer-db
 	sci-libs/ssm
-	virtual/fortran
 	virtual/jpeg
 	virtual/lapack
 	virtual/blas"
@@ -204,7 +203,7 @@ src_configure() {
 		--tmpdir="${TMPDIR}" \
 		--bindir="${EPREFIX}/usr/libexec/ccp4/bin/" \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
-		${GENTOO_OSNAME} || die "econf failed"
+		${GENTOO_OSNAME} || die "configure failed"
 }
 
 src_compile() {

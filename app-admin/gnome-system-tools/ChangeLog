@@ -1,6 +1,59 @@
 # ChangeLog for app-admin/gnome-system-tools
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gnome-system-tools/ChangeLog,v 1.108 2011/11/18 22:21:59 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gnome-system-tools/ChangeLog,v 1.119 2012/10/17 10:34:08 tetromino Exp $
+
+  17 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -gnome-system-tools-2.32.0.ebuild, -gnome-system-tools-2.32.0-r1.ebuild,
+  gnome-system-tools-2.32.0-r2.ebuild, gnome-system-tools-2.32.0-r3.ebuild,
+  +files/gnome-system-tools-2.32.0-glib-2.32.patch:
+  Fix build failure with glib-2.32 (bug #438474, thanks to Sergey Bobrov).
+  Update license. Drop old.
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org>
+  gnome-system-tools-2.32.0-r3.ebuild:
+  alpha/ia64/sparc stable wrt #410611
+
+  24 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  gnome-system-tools-2.32.0-r3.ebuild:
+  ppc stable wrt #410611
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  gnome-system-tools-2.32.0.ebuild, gnome-system-tools-2.32.0-r1.ebuild,
+  gnome-system-tools-2.32.0-r2.ebuild, gnome-system-tools-2.32.0-r3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org>
+  gnome-system-tools-2.32.0-r3.ebuild:
+  x86 stable, bug #410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org>
+  gnome-system-tools-2.32.0-r3.ebuild:
+  Stable for amd64, wrt bug #410611
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org>
+  gnome-system-tools-2.32.0-r2.ebuild:
+  alpha/ia64/sparc stable wrt #393007
+
+*gnome-system-tools-2.32.0-r3 (11 Mar 2012)
+
+  11 Mar 2012; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-system-tools-2.32.0-r3.ebuild,
+  +files/gnome-system-tools-2.32.0-libtool-intermediate-libs.patch,
+  +files/gnome-system-tools-2.32.0-missing-atk.patch,
+  +files/gnome-system-tools-2.32.0-missing-m.patch:
+  Fix build failures due to atk underlinking.
+
+  05 Mar 2012; Brent Baude <ranger@gentoo.org>
+  gnome-system-tools-2.32.0-r2.ebuild:
+  Marking gnome-system-tools-2.32.0-r2 ppc stable for bug 393007
+
+  14 Jan 2012; Markus Meier <maekke@gentoo.org>
+  gnome-system-tools-2.32.0-r2.ebuild:
+  x86 stable, bug #393007
+
+  29 Dec 2011; Pacho Ramos <pacho@gentoo.org>
+  gnome-system-tools-2.32.0-r2.ebuild:
+  amd64 stable, bug 393007
 
   18 Nov 2011; Samuli Suominen <ssuominen@gentoo.org>
   gnome-system-tools-2.32.0-r2.ebuild:

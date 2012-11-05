@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-kbdleds-plugin/xfce4-kbdleds-plugin-0.0.6.ebuild,v 1.2 2011/10/22 15:00:06 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-kbdleds-plugin/xfce4-kbdleds-plugin-0.0.6.ebuild,v 1.4 2012/10/27 20:11:24 ago Exp $
 
 EAPI=4
 inherit xfconf
@@ -11,7 +11,7 @@ SRC_URI="http://compas.com.ua/oco/file/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE="debug"
 
 RDEPEND=">=xfce-base/libxfce4ui-4.8
@@ -20,7 +20,7 @@ RDEPEND=">=xfce-base/libxfce4ui-4.8
 	>=x11-libs/gtk+-2.20:2"
 DEPEND="${RDEPEND}
 	dev-util/intltool
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext"
 
 pkg_setup() {

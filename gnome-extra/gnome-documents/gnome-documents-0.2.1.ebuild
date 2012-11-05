@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-documents/gnome-documents-0.2.1.ebuild,v 1.1 2011/11/07 00:52:56 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-documents/gnome-documents-0.2.1.ebuild,v 1.3 2012/05/05 06:25:22 jdhore Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -33,10 +33,11 @@ COMMON_DEPEND="
 	x11-libs/pango[introspection]"
 RDEPEND="${COMMON_DEPEND}
 	media-libs/clutter[introspection]
-	sys-apps/dbus"
+	sys-apps/dbus
+	x11-themes/gnome-icon-theme-symbolic"
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
-	>=dev-util/pkgconfig-0.22
+	virtual/pkgconfig
 	>=sys-devel/gettext-0.17"
 
 pkg_setup() {

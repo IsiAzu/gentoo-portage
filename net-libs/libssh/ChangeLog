@@ -1,6 +1,32 @@
 # ChangeLog for net-libs/libssh
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/ChangeLog,v 1.56 2011/09/17 23:24:03 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/ChangeLog,v 1.64 2012/09/20 11:49:34 scarabeus Exp $
+
+  20 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> -libssh-0.5.1.ebuild,
+  libssh-0.5.2.ebuild:
+  Stable on ppc64 wrt bug#419273. Remove older.
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> libssh-0.5.2.ebuild:
+  Marking libssh-0.5.2 ppc for bug 419273
+
+  06 Jun 2012; Jeff Horelick <jdhore@gentoo.org> libssh-0.5.2.ebuild:
+  marked x86 per bug 419273
+
+  04 Jun 2012; Agostino Sarubbo <ago@gentoo.org> libssh-0.5.2.ebuild:
+  Stable for amd64, wrt bug #419273
+
+  21 May 2012; Jeroen Roovers <jer@gentoo.org> -libssh-0.4.8.ebuild:
+  Old.
+
+  20 May 2012; Mark Loeser <halcy0n@gentoo.org> libssh-0.5.1.ebuild:
+  Stable for ppc64; bug #382499
+
+  26 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org> libssh-0.5.1.ebuild:
+  Stable ppc wrt bug#382499.
+
+  24 Feb 2012; Tim Harder <radhermit@gentoo.org> -libssh-0.4.91.ebuild,
+  -libssh-0.5.0.ebuild, -files/libssh-0.5.0-no-server.patch:
+  Remove old.
 
 *libssh-0.5.2 (17 Sep 2011)
 

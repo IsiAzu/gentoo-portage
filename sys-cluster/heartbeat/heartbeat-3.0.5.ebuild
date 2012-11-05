@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/heartbeat/heartbeat-3.0.5.ebuild,v 1.5 2011/10/18 10:31:51 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/heartbeat/heartbeat-3.0.5.ebuild,v 1.7 2012/05/04 07:20:30 jdhore Exp $
 
 EAPI="2"
 
@@ -23,7 +23,7 @@ RDEPEND="sys-cluster/cluster-glue
 	snmp? ( net-analyzer/net-snmp )
 "
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	dev-lang/swig
 	doc? ( dev-libs/libxslt app-text/docbook-xsl-stylesheets )"
 
@@ -77,6 +77,8 @@ src_install() {
 
 	# fix collisions
 	rm -rf "${D}"/usr/include/heartbeat/{compress,ha_msg}.h
+
+	use static-libs || find "${D}"/usr/$(get_libdir) -name "*.la" -delete
 
 	if use doc ; then
 		dodoc README doc/*.txt doc/AUTHORS  || die

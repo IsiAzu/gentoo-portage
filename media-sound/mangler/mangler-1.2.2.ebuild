@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mangler/mangler-1.2.2.ebuild,v 1.1 2011/11/15 05:32:39 prometheanfire Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mangler/mangler-1.2.2.ebuild,v 1.4 2012/05/05 08:33:47 mgorny Exp $
 
 EAPI=2
 
@@ -10,7 +10,7 @@ SRC_URI="http://www.mangler.org/downloads/${P}.tar.bz2"
 
 LICENSE="GPL-3 LGPL-2.1 ZLIB"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="+alsa celt espeak g15 +gsm oss pulseaudio static-libs +speex +xosd"
 
 RDEPEND="dev-cpp/gtkmm:2.4
@@ -29,7 +29,7 @@ RDEPEND="dev-cpp/gtkmm:2.4
 	speex? ( >=media-libs/speex-1.2_rc1 )
 	xosd? ( x11-libs/xosd )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_configure() {
 	econf \

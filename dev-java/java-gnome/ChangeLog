@@ -1,6 +1,21 @@
 # ChangeLog for dev-java/java-gnome
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-gnome/ChangeLog,v 1.112 2011/10/27 06:15:04 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-gnome/ChangeLog,v 1.115 2012/05/04 16:09:26 sera Exp $
+
+*java-gnome-4.1.1 (04 May 2012)
+*java-gnome-4.0.19-r1 (04 May 2012)
+
+  04 May 2012; Ralph Sennhauser <sera@gentoo.org> +java-gnome-4.0.19-r1.ebuild,
+  +java-gnome-4.1.1.ebuild:
+  Version bump.
+  Require python2 for building. #390103
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> java-gnome-4.0.18-r2.ebuild,
+  java-gnome-4.0.19.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  04 Mar 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #206112
 
   27 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
   java-gnome-4.0.18-r2.ebuild, java-gnome-4.0.19.ebuild:

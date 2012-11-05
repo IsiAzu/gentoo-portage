@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/empathy/empathy-2.34.0-r2.ebuild,v 1.5 2011/11/22 01:01:42 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/empathy/empathy-2.34.0-r2.ebuild,v 1.9 2012/10/25 20:56:29 eva Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 GNOME_TARBALL_SUFFIX="bz2"
-PYTHON_DEPEND="2:2.4"
+PYTHON_DEPEND="2:2.5"
 
 inherit eutils gnome2 multilib python
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://live.gnome.org/Empathy"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~ia64 ppc ~sparc x86 ~x86-linux"
+KEYWORDS="alpha amd64 ~ia64 ppc ~sparc x86 ~x86-linux"
 # FIXME: Add location support once geoclue stops being idiotic with automagic deps
 IUSE="eds map nautilus networkmanager spell test webkit"
 
@@ -36,8 +36,8 @@ RDEPEND=">=dev-libs/glib-2.27.2:2
 	net-libs/farsight2
 	>=media-libs/gstreamer-0.10.32:0.10
 	>=media-libs/gst-plugins-base-0.10.32:0.10
-	media-libs/gst-plugins-bad
-	media-plugins/gst-plugins-gconf
+	media-libs/gst-plugins-bad:0.10
+	media-plugins/gst-plugins-gconf:0.10
 	>=net-libs/telepathy-farsight-0.0.14
 	dev-libs/libxml2
 	x11-libs/libX11
@@ -59,7 +59,7 @@ DEPEND="${RDEPEND}
 	app-text/scrollkeeper
 	>=app-text/gnome-doc-utils-0.17.3
 	>=dev-util/intltool-0.35.0
-	>=dev-util/pkgconfig-0.16
+	virtual/pkgconfig
 	test? (
 		sys-apps/grep
 		>=dev-libs/check-0.9.4 )

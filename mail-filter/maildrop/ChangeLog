@@ -1,6 +1,53 @@
 # ChangeLog for mail-filter/maildrop
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/maildrop/ChangeLog,v 1.122 2011/10/23 20:16:39 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/maildrop/ChangeLog,v 1.135 2012/09/25 11:33:37 eras Exp $
+
+  25 Sep 2012; Eray Aslan <eras@gentoo.org> -maildrop-2.5.4.ebuild,
+  -maildrop-2.5.5.ebuild:
+  Drop old
+
+*maildrop-2.6.0 (25 Sep 2012)
+
+  25 Sep 2012; Eray Aslan <eras@gentoo.org> +maildrop-2.6.0.ebuild:
+  Version bump
+
+  05 Jul 2012; Jeroen Roovers <jer@gentoo.org> maildrop-2.5.5-r1.ebuild:
+  Stable for HPPA (bug #413597).
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> maildrop-2.5.5-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #413597
+
+  29 May 2012; Brent Baude <ranger@gentoo.org> maildrop-2.5.5-r1.ebuild:
+  Marking maildrop-2.5.5-r1 ppc for bug 413597
+
+  23 May 2012; Brent Baude <ranger@gentoo.org> maildrop-2.5.5-r1.ebuild:
+  Marking maildrop-2.5.5-r1 ppc64 for bug 413597
+
+  21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  maildrop-2.5.5-r1.ebuild:
+  x86 stable wrt bug #413597
+
+  02 May 2012; Jeff Horelick <jdhore@gentoo.org> maildrop-2.5.4.ebuild,
+  maildrop-2.5.5.ebuild, maildrop-2.5.5-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> maildrop-2.5.5-r1.ebuild:
+  arm stable, bug #413597
+
+  26 Apr 2012; Agostino Sarubbo <ago@gentoo.org> maildrop-2.5.5-r1.ebuild:
+  Stable for amd64, wrt bug #413597
+
+*maildrop-2.5.5-r1 (22 Mar 2012)
+
+  22 Mar 2012; Eray Aslan <eras@gentoo.org> +maildrop-2.5.5-r1.ebuild,
+  metadata.xml:
+  Add trashquota USE flag - bug #409201
+
+*maildrop-2.5.5 (05 Dec 2011)
+
+  05 Dec 2011; Eray Aslan <eras@gentoo.org> files/maildrop-2.5.1-db.patch,
+  +maildrop-2.5.5.ebuild:
+  version bump
 
   23 Oct 2011; Tim Harder <radhermit@gentoo.org>
   -files/maildrop-2.2.0-db4.patch, -maildrop-2.4.2.ebuild,

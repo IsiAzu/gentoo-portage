@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/lucene/lucene-2.1.0-r2.ebuild,v 1.1 2011/10/18 23:18:57 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/lucene/lucene-2.1.0-r2.ebuild,v 1.3 2012/05/12 03:39:52 aballier Exp $
 
 EAPI=3
 
@@ -11,11 +11,11 @@ JAVA_PKG_BSFIX_NAME="build.xml common-build.xml"
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="High-performance, full-featured text search engine written entirely in Java"
-HOMEPAGE="http://jakarta.apache.org/lucene"
+HOMEPAGE="http://lucene.apache.org"
 SRC_URI="mirror://apache/lucene/java/archive/${P}-src.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="2.1"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd ~x64-macos"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-fbsd ~x86-fbsd ~x64-macos"
 IUSE=""
 DEPEND=">=virtual/jdk-1.5
 	dev-java/ant-nodeps

@@ -1,6 +1,37 @@
 # ChangeLog for net-libs/jreen
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/jreen/ChangeLog,v 1.3 2011/11/21 19:13:29 jmbsvicetto Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/jreen/ChangeLog,v 1.8 2012/04/15 22:15:10 johu Exp $
+
+*jreen-1.1.0 (15 Apr 2012)
+
+  15 Apr 2012; Johannes Huber <johu@gentoo.org> +jreen-1.1.0.ebuild,
+  -jreen-1.0.5.ebuild:
+  Version bump, remove old.
+
+*jreen-1.0.5-r1 (05 Apr 2012)
+
+  05 Apr 2012; Johannes Huber <johu@gentoo.org>
+  +files/jreen-1.0.5-fix-typo.patch, +jreen-1.0.5-r1.ebuild,
+  -jreen-1.0.3.ebuild:
+  Revision bump adds patch which fixes typo in localized string by Jeff
+  'jefferai' Mitchell. Remove old.
+
+*jreen-1.0.5 (01 Apr 2012)
+
+  01 Apr 2012; Johannes Huber <johu@gentoo.org> +jreen-1.0.5.ebuild,
+  -jreen-1.0.2.ebuild, jreen-1.0.3.ebuild, jreen-9999.ebuild:
+  Version bump, remove old.
+
+*jreen-1.0.3 (18 Mar 2012)
+
+  18 Mar 2012; Johannes Huber <johu@gentoo.org> +jreen-1.0.3.ebuild,
+  -jreen-1.0.1.ebuild, jreen-9999.ebuild:
+  Version bump, remove old.
+
+*jreen-1.0.2 (13 Mar 2012)
+
+  13 Mar 2012; Johannes Huber <johu@gentoo.org> +jreen-1.0.2.ebuild:
+  Version bump.
 
   21 Nov 2011; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   -jreen-0_p20110709.ebuild, jreen-1.0.1.ebuild, jreen-9999.ebuild:

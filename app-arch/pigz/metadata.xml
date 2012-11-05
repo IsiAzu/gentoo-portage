@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>spatz@gentoo.org</email>
-		<name>Dror Levin</name>
+		<email>radhermit@gentoo.org</email>
+		<name>Tim Harder</name>
 	</maintainer>
 	<longdescription lang="en">
 		A parallel implementation of gzip for modern

@@ -1,6 +1,38 @@
 # ChangeLog for dev-php/symfony
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/symfony/ChangeLog,v 1.5 2011/08/16 13:21:09 chainsaw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-php/symfony/ChangeLog,v 1.12 2012/10/31 07:07:29 olemarkus Exp $
+
+*symfony-1.4.19 (31 Oct 2012)
+
+  31 Oct 2012; Ole Markus With <olemarkus@gentoo.org> +symfony-1.4.19.ebuild:
+  Version bump committed on behalf of Jamie Learmonth
+
+  28 Sep 2012; Agostino Sarubbo <ago@gentoo.org> -symfony-1.4.11.ebuild,
+  -symfony-1.4.12.ebuild, -symfony-1.4.16.ebuild, -symfony-1.4.17.ebuild:
+  Remove old
+
+  28 Sep 2012; Agostino Sarubbo <ago@gentoo.org> symfony-1.4.18.ebuild:
+  Stable for x86, wrt bug #401625
+
+  28 Sep 2012; Agostino Sarubbo <ago@gentoo.org> symfony-1.4.18.ebuild:
+  Stable for amd64, wrt bug #401625
+
+*symfony-1.4.18 (02 Jun 2012)
+
+  02 Jun 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> +symfony-1.4.18.ebuild:
+  Version bump wrt security bug #418427.
+
+*symfony-1.4.17 (09 Mar 2012)
+
+  09 Mar 2012; Matti Bickel <mabi@gentoo.org> +symfony-1.4.17.ebuild:
+  version bump. see a list of changes here:
+  http://symfony.com/blog/symfony-1-4-17-released (bug #407427)
+
+*symfony-1.4.16 (31 Jan 2012)
+
+  31 Jan 2012; Matti Bickel <mabi@gentoo.org> +symfony-1.4.16.ebuild,
+  -symfony-1.4.8.ebuild:
+  version bump, remove old
 
   16 Aug 2011; Tony Vroon <chainsaw@gentoo.org> symfony-1.4.11.ebuild:
   Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo, Ian
@@ -135,4 +167,3 @@
   30 Aug 2007; Jakub Moc <jakub@gentoo.org> +metadata.xml,
   +symfony-1.0.6.ebuild:
   New ebuild, Bug 186152
-

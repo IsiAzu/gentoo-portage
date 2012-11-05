@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/locale/locale-2.0.5-r3.ebuild,v 1.1 2011/09/28 17:48:24 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/locale/locale-2.0.5-r3.ebuild,v 1.9 2012/10/28 16:06:38 jer Exp $
 
 EAPI=2
 
@@ -18,13 +18,18 @@ DESCRIPTION="A pure ruby library which provides basic APIs for localization."
 HOMEPAGE="http://locale.rubyforge.org/"
 LICENSE="|| ( Ruby GPL-2 )"
 
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-macos"
+KEYWORDS="~alpha amd64 ~hppa ~ia64 ppc ~ppc64 ~sparc x86 ~x86-macos"
 SLOT="0"
 IUSE=""
 
 ruby_add_bdepend "test? ( || ( virtual/ruby-test-unit dev-ruby/test-unit:2 ) )"
 
 RUBY_PATCHES=( "${FILESDIR}/${PN}-language-fixes.patch" )
+
+all_ruby_prepare() {
+	# Avoid automagic dependency on allison, bug 334937
+	sed -i -e '/allison/ s:^:#:' Rakefile || die
+}
 
 each_ruby_prepare() {
 	case ${RUBY} in

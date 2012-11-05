@@ -1,6 +1,35 @@
 # ChangeLog for dev-ruby/narray
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/narray/ChangeLog,v 1.48 2011/10/23 15:30:21 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/narray/ChangeLog,v 1.55 2012/09/18 08:23:35 johu Exp $
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> narray-0.6.0.1-r2.ebuild:
+  Stable for x86, wrt bug #434486
+
+  15 Sep 2012; Agostino Sarubbo <ago@gentoo.org> narray-0.6.0.1-r2.ebuild:
+  Stable for amd64, wrt bug #434486
+
+  09 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  narray-0.6.0.1-r2.ebuild:
+  Stable ppc, bug #434486
+
+  01 Sep 2012; Hans de Graaff <graaff@gentoo.org> -narray-0.5.9_p6.ebuild,
+  -narray-0.6.0.1-r1.ebuild:
+  Cleanup.
+
+*narray-0.6.0.1-r2 (09 Jun 2012)
+
+  09 Jun 2012; Hans de Graaff <graaff@gentoo.org> +narray-0.6.0.1-r2.ebuild:
+  Revision bump to also install the header files for the compiled extension,
+  bug 420319.
+
+  06 Feb 2012; Brent Baude <ranger@gentoo.org> narray-0.6.0.1.ebuild:
+  Marking narray-0.6.0.1 ppc for bug 386135
+
+*narray-0.6.0.1-r1 (28 Dec 2011)
+
+  28 Dec 2011; Hans de Graaff <graaff@gentoo.org> narray-0.6.0.1.ebuild,
+  +narray-0.6.0.1-r1.ebuild:
+  Revision bump to drop ruby19 from stable version.
 
   23 Oct 2011; Raúl Porcel <armin76@gentoo.org> narray-0.5.9_p6.ebuild,
   narray-0.6.0.1.ebuild:

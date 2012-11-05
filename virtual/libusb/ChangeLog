@@ -1,6 +1,25 @@
 # ChangeLog for virtual/libusb
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/libusb/ChangeLog,v 1.19 2011/09/27 17:29:34 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/libusb/ChangeLog,v 1.25 2012/09/21 05:13:33 ssuominen Exp $
+
+  21 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> libusb-1.ebuild:
+  Force latest dev-libs/libusbx because <1.0.13 had issues with namespace
+  collision(s) wrt #423135
+
+  27 May 2012; Samuli Suominen <ssuominen@gentoo.org> libusb-1.ebuild:
+  Change order of preference for libusbx.
+
+  22 May 2012; Samuli Suominen <ssuominen@gentoo.org> libusb-0.ebuild:
+  Change order of || ( ) to list dev-libs/libusb-compat first wrt #417135
+
+  22 May 2012; Samuli Suominen <ssuominen@gentoo.org> libusb-1.ebuild:
+  Include dev-libs/libusbx:1 as secondary alternative.
+
+  06 May 2012; Alexis Ballier <aballier@gentoo.org> libusb-0.ebuild:
+  keyword ~amd64-fbsd
+
+  20 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> libusb-1.ebuild:
+  Raise requirement of libusb to >= 1.0.9_rc for compability with usbredir.
 
   27 Sep 2011; Fabian Groffen <grobian@gentoo.org> libusb-0.ebuild,
   libusb-1.ebuild:

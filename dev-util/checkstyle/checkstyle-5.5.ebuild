@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/checkstyle-5.5.ebuild,v 1.1 2011/11/20 14:13:58 sera Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/checkstyle-5.5.ebuild,v 1.3 2011/12/21 12:39:35 sera Exp $
 
 EAPI="4"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/checkstyle/${P}-src.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
 IUSE=""
 
 COMMON_DEP="
@@ -56,6 +56,7 @@ EANT_BUILD_XML="maven-build.xml"
 EANT_GENTOO_CLASSPATH="ant-core,antlr,commons-beanutils-1.7,commons-cli-1,commons-logging,guava"
 EANT_BUILD_TARGET="package"
 EANT_ANT_TASKS="ant-nodeps"
+EANT_NEEDS_TOOLS="true"
 
 src_test() {
 	EANT_TEST_GENTOO_CLASSPATH="${EANT_GENTOO_CLASSPATH},junit-4"

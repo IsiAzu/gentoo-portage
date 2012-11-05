@@ -1,6 +1,242 @@
 # ChangeLog for net-mail/dovecot
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/dovecot/ChangeLog,v 1.326 2011/11/24 22:51:32 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/dovecot/ChangeLog,v 1.384 2012/10/28 14:25:14 swift Exp $
+
+  28 Oct 2012; <swift@gentoo.org> dovecot-1.2.17.ebuild, dovecot-2.0.17.ebuild,
+  dovecot-2.0.19.ebuild, dovecot-2.0.20.ebuild, dovecot-2.0.21.ebuild,
+  dovecot-2.1.8.ebuild, dovecot-2.1.9.ebuild, dovecot-2.1.10.ebuild:
+  Adding SELinux dependency towards selinux-dovecot
+
+  17 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> dovecot-2.1.9.ebuild:
+  x86 stable wrt bug #433814
+
+  03 Oct 2012; Agostino Sarubbo <ago@gentoo.org> dovecot-2.1.9.ebuild:
+  Stable for amd64, wrt bug #433814
+
+  02 Oct 2012; Markus Meier <maekke@gentoo.org> dovecot-2.1.9.ebuild:
+  arm stable, bug #433814
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> dovecot-2.1.9.ebuild:
+  Stable for HPPA (bug #433814).
+
+  01 Oct 2012; Anthony G. Basile <blueness@gentoo.org> dovecot-2.1.9.ebuild:
+  stable ppc ppc64, bug #433814
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> dovecot-2.1.8.ebuild,
+  dovecot-2.1.9.ebuild, dovecot-2.1.10.ebuild:
+  Add ~s390/~sh wrt #404267
+
+*dovecot-2.1.10 (18 Sep 2012)
+
+  18 Sep 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.10.ebuild:
+  Version bump
+
+  03 Sep 2012; Eray Aslan <eras@gentoo.org> dovecot-1.2.17.ebuild,
+  dovecot-2.0.17.ebuild, dovecot-2.0.19.ebuild, dovecot-2.0.20.ebuild,
+  dovecot-2.0.21.ebuild, dovecot-2.1.8.ebuild, dovecot-2.1.9.ebuild:
+  inherit user and multilib
+
+  03 Sep 2012; Eray Aslan <eras@gentoo.org> -dovecot-2.1.6-r1.ebuild,
+  -dovecot-2.1.7.ebuild:
+  Remove old
+
+  03 Aug 2012; Eray Aslan <eras@gentoo.org> dovecot-2.1.9.ebuild:
+  Fix building with -sieve - bug #429582
+
+*dovecot-2.1.9 (02 Aug 2012)
+
+  02 Aug 2012; Eray Aslan <eras@gentoo.org> -dovecot-2.1.8-r1.ebuild,
+  -files/dovecot-2.1.8_managesieve_gold.patch, +dovecot-2.1.9.ebuild,
+  +files/dovecot-2.1.9_managesieve_gold.patch:
+  Version bump. Fix linking sieve with gold - bug #425792. Remove masked ebuild
+
+*dovecot-2.1.8-r1 (13 Jul 2012)
+
+  13 Jul 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.8-r1.ebuild,
+  +files/dovecot-2.1.8_managesieve_gold.patch:
+  Include experimental patch from upstream for linking with gold - masked for
+  now
+
+  07 Jul 2012; Anthony G. Basile <blueness@gentoo.org> dovecot-2.1.7.ebuild,
+  dovecot-2.1.8.ebuild:
+  Keyword ~mips
+
+  06 Jul 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.8.ebuild:
+  version bump - bug #425058
+
+  17 Jun 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.0.17.ebuild:
+  add dovecot-2.0.17 back - bug #415571
+
+*dovecot-2.0.21 (12 Jun 2012)
+
+  12 Jun 2012; Eray Aslan <eras@gentoo.org> -dovecot-2.0.17.ebuild,
+  -dovecot-2.0.18.ebuild, +dovecot-2.0.21.ebuild, -dovecot-2.1.4.ebuild,
+  -dovecot-2.1.5.ebuild, -dovecot-2.1.6.ebuild:
+  version bump and remove old
+
+*dovecot-2.1.7 (30 May 2012)
+
+  30 May 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.7.ebuild:
+  version bump
+
+  28 May 2012; Raúl Porcel <armin76@gentoo.org> dovecot-2.0.19.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #413531
+
+*dovecot-2.1.6-r1 (26 May 2012)
+
+  26 May 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.6-r1.ebuild:
+  sieve version bump
+
+  21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> dovecot-2.0.19.ebuild:
+  x86 stable wrt bug #413531
+
+  08 May 2012; Brent Baude <ranger@gentoo.org> dovecot-2.0.19.ebuild:
+  Marking dovecot-2.0.19 ppc64 for bug 413531
+
+*dovecot-2.1.6 (07 May 2012)
+
+  07 May 2012; Eray Aslan <eras@gentoo.org> -dovecot-2.0.15.ebuild,
+  -dovecot-2.0.16.ebuild, -dovecot-2.0.16-r1.ebuild, -dovecot-2.1.0.ebuild,
+  -dovecot-2.1.1.ebuild, -dovecot-2.1.2.ebuild, -dovecot-2.1.3.ebuild,
+  +dovecot-2.1.6.ebuild:
+  version bump and remove old
+
+  05 May 2012; Brent Baude <ranger@gentoo.org> dovecot-2.0.19.ebuild:
+  Marking dovecot-2.0.19 ppc for bug 413531
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> dovecot-2.0.19.ebuild:
+  arm stable, bug #413531
+
+  26 Apr 2012; Jeroen Roovers <jer@gentoo.org> dovecot-2.0.19.ebuild:
+  Stable for HPPA (bug #413531).
+
+  26 Apr 2012; Agostino Sarubbo <ago@gentoo.org> dovecot-2.0.19.ebuild:
+  Stable for amd64, wrt bug #413531
+
+*dovecot-2.1.5 (24 Apr 2012)
+
+  24 Apr 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.5.ebuild:
+  version bump
+
+*dovecot-2.1.4 (10 Apr 2012)
+*dovecot-2.0.20 (10 Apr 2012)
+
+  10 Apr 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.0.20.ebuild,
+  +dovecot-2.1.4.ebuild:
+  version bump
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> dovecot-2.0.17.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #403849
+
+*dovecot-2.1.3 (16 Mar 2012)
+
+  16 Mar 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.3.ebuild:
+  Version bump. Add systemd unit files - bug #366171
+
+*dovecot-2.0.19 (15 Mar 2012)
+
+  15 Mar 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.0.19.ebuild:
+  version bump
+
+*dovecot-2.1.2 (15 Mar 2012)
+
+  15 Mar 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.2.ebuild:
+  version bump
+
+  03 Mar 2012; Markus Meier <maekke@gentoo.org> dovecot-2.0.17.ebuild:
+  arm stable, bug #403849
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> dovecot-2.0.17.ebuild:
+  Marking dovecot-2.0.17 ppc64 for bug 403849
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> dovecot-2.0.17.ebuild:
+  x86 stable wrt bug #403849
+
+*dovecot-2.1.1 (24 Feb 2012)
+
+  24 Feb 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1.1.ebuild:
+  version bump
+
+  23 Feb 2012; Brent Baude <ranger@gentoo.org> dovecot-2.0.17.ebuild:
+  Marking dovecot-2.0.17 ppc for bug 403849
+
+  18 Feb 2012; Eray Aslan <eras@gentoo.org> dovecot-2.1.0.ebuild:
+  Add link for upgrade notes
+
+*dovecot-2.1.0 (17 Feb 2012)
+
+  17 Feb 2012; Eray Aslan <eras@gentoo.org> -dovecot-2.1_rc5.ebuild,
+  -dovecot-2.1_rc7.ebuild, +dovecot-2.1.0.ebuild:
+  version bump
+
+  16 Feb 2012; Agostino Sarubbo <ago@gentoo.org> dovecot-2.0.17.ebuild:
+  Stable for amd64, wrt bug #403849
+
+  15 Feb 2012; Jeroen Roovers <jer@gentoo.org> dovecot-2.0.17.ebuild:
+  Stable for HPPA (bug #403849).
+
+*dovecot-2.1_rc7 (15 Feb 2012)
+
+  15 Feb 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.1_rc7.ebuild:
+  version bump
+
+*dovecot-2.0.18 (14 Feb 2012)
+
+  14 Feb 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.0.18.ebuild:
+  version bump
+
+*dovecot-2.1_rc5 (26 Jan 2012)
+
+  26 Jan 2012; Eray Aslan <eras@gentoo.org> -dovecot-2.1_rc3.ebuild,
+  +dovecot-2.1_rc5.ebuild:
+  version bump
+
+  09 Jan 2012; Eray Aslan <eras@gentoo.org> dovecot-1.2.17.ebuild,
+  dovecot-2.0.15.ebuild, dovecot-2.0.16.ebuild, dovecot-2.0.16-r1.ebuild,
+  dovecot-2.0.17.ebuild, dovecot-2.1_rc3.ebuild:
+  block against postgresql-base[ldap,threads] - bug #396691
+
+*dovecot-2.1_rc3 (06 Jan 2012)
+
+  06 Jan 2012; Eray Aslan <eras@gentoo.org> -dovecot-2.1_rc1.ebuild,
+  +dovecot-2.1_rc3.ebuild, -files/SnowballAnalyzer.h, -files/SnowballFilter.h:
+  version bump
+
+*dovecot-2.0.17 (06 Jan 2012)
+
+  06 Jan 2012; Eray Aslan <eras@gentoo.org> +dovecot-2.0.17.ebuild:
+  version bump
+
+  19 Dec 2011; Eray Aslan <eras@gentoo.org> -files/dovecot-2.0.12-sdbox.patch,
+  -dovecot-2.0.13.ebuild, -dovecot-2.0.14.ebuild, -dovecot-2.0.14-r1.ebuild,
+  -files/dovecot.init-r2:
+  remove old
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> dovecot-2.0.16.ebuild:
+  Stable for ppc/ppc64; bug #390887
+
+  05 Dec 2011; Eray Aslan <eras@gentoo.org> dovecot-2.1_rc1.ebuild:
+  Fix sieve SRC_URI and directories - bug #393173
+
+*dovecot-2.1_rc1 (04 Dec 2011)
+
+  04 Dec 2011; Eray Aslan <eras@gentoo.org> +dovecot-2.1_rc1.ebuild,
+  +files/SnowballAnalyzer.h, +files/SnowballFilter.h:
+  Add v2.1_rc1 release - bug #392709
+
+  28 Nov 2011; Eray Aslan <eras@gentoo.org> dovecot-2.0.16.ebuild,
+  dovecot-2.0.16-r1.ebuild:
+  Add missing prefix to rm
+
+  28 Nov 2011; Eray Aslan <eras@gentoo.org> dovecot-2.0.16.ebuild,
+  dovecot-2.0.16-r1.ebuild:
+  Drop autotools-utils eclass - bug #392115
+
+  26 Nov 2011; Raúl Porcel <armin76@gentoo.org> dovecot-2.0.16.ebuild:
+  alpha/ia64/sparc stable wrt #390887
+
+  25 Nov 2011; Markos Chandras <hwoarang@gentoo.org> dovecot-2.0.16.ebuild:
+  Stable on amd64 wrt bug #390887
 
   24 Nov 2011; Mike Frysinger <vapier@gentoo.org> dovecot-2.0.16.ebuild,
   dovecot-2.0.16-r1.ebuild:
@@ -1535,4 +1771,3 @@
   10 Apr 2004; Grant Goodyear <g2boojum@hotmail.com> :
   Long overdue new package.  Thanks to Zach Bagnell, Andreas Simon, Lars 
   Trieloff, Andrew Cooks, Tony Vroon, and tseng.
-

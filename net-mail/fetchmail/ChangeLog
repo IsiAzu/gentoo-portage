@@ -1,6 +1,38 @@
 # ChangeLog for net-mail/fetchmail
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.224 2011/11/06 20:13:45 eras Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.234 2012/10/05 15:53:15 ranger Exp $
+
+  05 Oct 2012; Brent Baude <ranger@gentoo.org> fetchmail-6.3.22.ebuild:
+  Marking fetchmail-6.3.22 ppc for bug 431284
+
+  26 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org> fetchmail-6.3.22.ebuild:
+  ppc64 stable wrt #431284
+
+  23 Sep 2012; Raúl Porcel <armin76@gentoo.org> fetchmail-6.3.22.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #431284
+
+  14 Sep 2012; Markus Meier <maekke@gentoo.org> fetchmail-6.3.22.ebuild:
+  arm stable, bug #431284
+
+  13 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> fetchmail-6.3.22.ebuild:
+  x86 stable wrt bug #431284
+
+  06 Sep 2012; Agostino Sarubbo <ago@gentoo.org> fetchmail-6.3.22.ebuild:
+  Stable for amd64, wrt bug #431284
+
+  04 Sep 2012; Jeroen Roovers <jer@gentoo.org> fetchmail-6.3.22.ebuild:
+  Stable for HPPA (bug #431284).
+
+  30 Aug 2012; Tim Harder <radhermit@gentoo.org> fetchmail-6.3.21.ebuild:
+  Inherit user eclass and add quotes to appease repoman.
+
+*fetchmail-6.3.22 (30 Aug 2012)
+
+  30 Aug 2012; Tim Harder <radhermit@gentoo.org> +fetchmail-6.3.22.ebuild:
+  Version bump.
+
+  16 Jun 2012; Fabian Groffen <grobian@gentoo.org> fetchmail-6.3.21.ebuild:
+  Added Prefix keywords, fixed for Prefix
 
   06 Nov 2011; Eray Aslan <eras@gentoo.org> fetchmail-6.3.21.ebuild,
   +files/fetchmail-gss_c_nt_hostbased_service.patch:

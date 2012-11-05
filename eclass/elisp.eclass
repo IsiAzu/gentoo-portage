@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.53 2011/10/21 19:16:16 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.55 2012/08/17 20:29:24 ulm Exp $
 #
 # @ECLASS: elisp.eclass
 # @MAINTAINER:
@@ -40,6 +40,11 @@
 # Patch files are searched for in the current working dir, WORKDIR, and
 # FILESDIR.
 
+# @ECLASS-VARIABLE: ELISP_REMOVE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Space separated list of files to remove after unpacking the sources.
+
 # @ECLASS-VARIABLE: SITEFILE
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -71,7 +76,6 @@ esac
 
 DEPEND=">=virtual/emacs-${NEED_EMACS:-21}"
 RDEPEND="${DEPEND}"
-IUSE=""
 
 # @FUNCTION: elisp_pkg_setup
 # @DESCRIPTION:
@@ -120,6 +124,13 @@ elisp_src_prepare() {
 			die "Cannot find ${patch}"
 		fi
 	done
+
+	# apply any user patches
+	epatch_user
+
+	if [[ -n ${ELISP_REMOVE} ]]; then
+		rm ${ELISP_REMOVE} || die
+	fi
 }
 
 # @FUNCTION: elisp_src_configure

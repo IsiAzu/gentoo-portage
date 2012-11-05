@@ -1,6 +1,21 @@
 # ChangeLog for dev-perl/File-MimeInfo
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-MimeInfo/ChangeLog,v 1.70 2011/10/11 23:01:01 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-MimeInfo/ChangeLog,v 1.74 2012/06/24 12:59:14 tove Exp $
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  06 May 2012; Alexis Ballier <aballier@gentoo.org>
+  File-MimeInfo-0.160.0.ebuild:
+  keyword ~amd64-fbsd
+
+  18 Mar 2012; Matt Turner <mattst88@gentoo.org> File-MimeInfo-0.160.0.ebuild:
+  Added ~mips.
+
+*File-MimeInfo-0.160.0 (08 Jan 2012)
+
+  08 Jan 2012; Torsten Veller <tove@gentoo.org> +File-MimeInfo-0.160.0.ebuild:
+  Version bump
 
   11 Oct 2011; Alexis Ballier <aballier@gentoo.org>
   File-MimeInfo-0.150.0.ebuild:
@@ -274,4 +289,3 @@
   Initial import of File-MimeInfo submitted by Sven Wegener
   <sven.wegener@stealer.net> as a dependency for the yet to be added
   app-misc/filer. Thanks to Sven Wegener. Part of bug #41605.
-

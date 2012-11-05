@@ -1,6 +1,15 @@
 # ChangeLog for app-text/podofo
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/podofo/ChangeLog,v 1.29 2011/11/13 11:43:45 jlec Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/podofo/ChangeLog,v 1.32 2012/10/28 02:45:53 zmedico Exp $
+
+  28 Oct 2012; Zac Medico <zmedico@gentoo.org> podofo-0.9.1.ebuild:
+  Add missing unistd include in test/unit/TestUtils.cpp for bug #439784.
+
+  01 May 2012; Jeroen Roovers <jer@gentoo.org> podofo-0.9.1.ebuild:
+  Stable for HPPA too.
+
+  06 Mar 2012; Zac Medico <zmedico@gentoo.org> podofo-0.9.1.ebuild:
+  Bug #407015: fix to compile with Lua 5.2
 
   13 Nov 2011; Justin Lecher <jlec@gentoo.org> podofo-0.9.1.ebuild:
   Corrected Slotting of media-libs/tiff and media-libs/libpng
@@ -115,4 +124,3 @@
   03 Oct 2009; Zac Medico <zmedico@gentoo.org> +podofo-0.7.0.ebuild,
   +metadata.xml:
   Initial import, based off of ebuild from kde-testing overlay.
-

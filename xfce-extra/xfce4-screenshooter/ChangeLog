@@ -1,6 +1,64 @@
 # ChangeLog for xfce-extra/xfce4-screenshooter
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/ChangeLog,v 1.87 2011/11/02 14:19:46 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/ChangeLog,v 1.100 2012/08/07 13:20:07 ssuominen Exp $
+
+  07 Aug 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -xfce4-screenshooter-1.8.0.ebuild,
+  -files/xfce4-screenshooter-1.8.0-underlinking.patch:
+  old
+
+  14 Jul 2012; Markus Meier <maekke@gentoo.org>
+  xfce4-screenshooter-1.8.1.ebuild:
+  arm stable, bug #416233
+
+  22 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  xfce4-screenshooter-1.8.1.ebuild:
+  marked x86 per bug 416233
+
+  20 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  xfce4-screenshooter-1.8.1.ebuild:
+  ppc/ppc64 stable wrt #416233
+
+  20 May 2012; Agostino Sarubbo <ago@gentoo.org>
+  xfce4-screenshooter-1.8.1.ebuild:
+  Stable for amd64, wrt bug #416233
+
+  17 May 2012; Jeroen Roovers <jer@gentoo.org>
+  xfce4-screenshooter-1.8.1.ebuild:
+  Stable for HPPA (bug #416233).
+
+  05 May 2012; Michał Górny <mgorny@gentoo.org>
+  xfce4-screenshooter-1.8.0.ebuild, xfce4-screenshooter-1.8.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*xfce4-screenshooter-1.8.1 (03 May 2012)
+
+  03 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +xfce4-screenshooter-1.8.1.ebuild:
+  Version bump.
+
+  09 Apr 2012; Samuli Suominen <ssuominen@gentoo.org>
+  xfce4-screenshooter-1.8.0.ebuild:
+  Install to libdir instead of libexecdir. Pass --docdir and convert
+  documentation sed to a format it can be pushed to upstream.
+
+  06 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -xfce4-screenshooter-1.7.9-r1.ebuild,
+  -files/xfce4-screenshooter-1.7.9-fix-segfault-at-startup.patch:
+  old
+
+  06 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  xfce4-screenshooter-1.8.0.ebuild:
+  ppc/ppc64 stable wrt #386963
+
+  07 Dec 2011; Samuli Suominen <ssuominen@gentoo.org>
+  xfce4-screenshooter-1.8.0.ebuild,
+  +files/xfce4-screenshooter-1.8.0-underlinking.patch:
+  Explicitely link against -lm for function floor as reported by Jeremy Olexa.
+
+  26 Nov 2011; Raúl Porcel <armin76@gentoo.org>
+  xfce4-screenshooter-1.8.0.ebuild:
+  alpha/ia64/sh/sparc stable wrt #386963
 
   02 Nov 2011; Jeroen Roovers <jer@gentoo.org>
   xfce4-screenshooter-1.8.0.ebuild:

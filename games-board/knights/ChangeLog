@@ -1,6 +1,34 @@
 # ChangeLog for games-board/knights
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-board/knights/ChangeLog,v 1.26 2011/10/30 06:51:00 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-board/knights/ChangeLog,v 1.33 2012/08/15 13:09:51 johu Exp $
+
+*knights-2.5.0 (15 Aug 2012)
+
+  15 Aug 2012; Johannes Huber <johu@gentoo.org> +knights-2.5.0.ebuild:
+  Version bump, which is compatible with KDE 4.9, fixes bug #429418.
+
+  02 Jun 2012; Johannes Huber <johu@gentoo.org> -knights-2.3.2.ebuild:
+  Remove old.
+
+  02 Jun 2012; Johannes Huber <johu@gentoo.org> knights-2.4.2.ebuild:
+  Stable for x86, wrt bug #418983
+
+  01 Jun 2012; Agostino Sarubbo <ago@gentoo.org> knights-2.4.2.ebuild:
+  Stable for amd64, wrt bug #418983
+
+  04 May 2012; Michael Sterrett <mr_bones_@gentoo.org> -knights-2.4.1.ebuild:
+  old
+
+*knights-2.4.2 (22 Apr 2012)
+
+  22 Apr 2012; Johannes Huber <johu@gentoo.org> +knights-2.4.2.ebuild,
+  -knights-2.4.0.ebuild:
+  Version bump, remove old.
+
+*knights-2.4.1 (27 Jan 2012)
+
+  27 Jan 2012; Johannes Huber <johu@gentoo.org> +knights-2.4.1.ebuild:
+  Version bump.
 
 *knights-2.4.0 (30 Oct 2011)
 
@@ -56,4 +84,3 @@
   04 Apr 2010; Tomáš Chvátal <scarabeus@gentoo.org> +knights-2.0.ebuild,
   +metadata.xml:
   Initial commit of game that was removed with kde3 removal.
-

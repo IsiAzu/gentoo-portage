@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libsmbios/libsmbios-2.2.26.ebuild,v 1.7 2011/09/17 17:58:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libsmbios/libsmbios-2.2.26.ebuild,v 1.9 2012/05/04 07:33:11 jdhore Exp $
 
 EAPI=2
-PYTHON_DEPEND="python? *:2.4"
+PYTHON_DEPEND="python? *:2.5"
 
 inherit eutils python flag-o-matic autotools
 
@@ -20,7 +20,7 @@ RDEPEND="dev-libs/libxml2
 	sys-libs/zlib
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.9.0
+	virtual/pkgconfig
 	doc? ( app-doc/doxygen )
 	graphviz? ( media-gfx/graphviz )
 	nls? ( sys-devel/gettext )

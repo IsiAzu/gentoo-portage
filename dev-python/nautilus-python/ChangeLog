@@ -1,6 +1,33 @@
 # ChangeLog for dev-python/nautilus-python
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nautilus-python/ChangeLog,v 1.14 2011/10/19 19:52:40 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nautilus-python/ChangeLog,v 1.19 2012/08/11 12:45:33 maekke Exp $
+
+  11 Aug 2012; Markus Meier <maekke@gentoo.org> nautilus-python-1.1-r1.ebuild:
+  x86 stable, bug #418903
+
+  03 Aug 2012; Markos Chandras <hwoarang@gentoo.org>
+  nautilus-python-1.1-r1.ebuild:
+  Stable on amd64 wrt bug #418903
+
+  21 Jan 2012; Tobias Klausmann <klausman@gentoo.org>
+  nautilus-python-1.1-r1.ebuild:
+  Keyword 1.1-r1 on alpha
+
+  21 Jan 2012; Tobias Klausmann <klausman@gentoo.org>
+  nautilus-python-0.7.3.ebuild:
+  Stable on alpha, bug #383751
+
+*nautilus-python-1.1-r1 (14 Jan 2012)
+
+  14 Jan 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  nautilus-python-0.7.3.ebuild, -nautilus-python-1.0.ebuild,
+  -nautilus-python-1.1.ebuild, +nautilus-python-1.1-r1.ebuild:
+  For nautilus-python-1.1-r1, always depend on pygobject:3 (both for sanity and
+  because it's automagic), create /usr/share/nautilus-python/extensions for
+  systemwide extensions, and properly install API documentation in a location
+  where dev-util/devhelp expects to load it. Add python_need_rebuild (see
+  nautilus_python_init_python()). Update to EAPI4. Drop old/broken. Update
+  homepage. Make sure that 0.7.x does not pull in nautilus-3.
 
 *nautilus-python-1.1 (19 Oct 2011)
 
@@ -75,4 +102,3 @@
   +files/nautilus-python-0.5.1-submenu-example.patch, +metadata.xml:
   Initial import: merged bazaar and rion overlays. Bug #78021, thank Caleb
   Shay, Christian Faulhammer and Rion.
-

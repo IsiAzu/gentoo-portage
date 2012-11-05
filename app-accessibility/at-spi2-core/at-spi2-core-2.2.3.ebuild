@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-accessibility/at-spi2-core/at-spi2-core-2.2.3.ebuild,v 1.1 2011/11/22 13:09:15 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-accessibility/at-spi2-core/at-spi2-core-2.2.3.ebuild,v 1.9 2012/10/14 15:08:02 blueness Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -11,9 +11,9 @@ inherit eutils gnome2
 DESCRIPTION="D-Bus accessibility specifications and registration daemon"
 HOMEPAGE="http://live.gnome.org/Accessibility"
 
-LICENSE="LGPL-2"
+LICENSE="LGPL-2+"
 SLOT="2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 arm ~hppa ~ppc64 x86 ~amd64-fbsd"
 IUSE="doc +introspection"
 
 RDEPEND=">=dev-libs/glib-2.28:2

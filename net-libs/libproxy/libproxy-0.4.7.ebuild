@@ -1,24 +1,25 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.7.ebuild,v 1.1 2011/10/18 19:05:58 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.7.ebuild,v 1.12 2012/10/16 08:04:33 tetromino Exp $
 
-EAPI="4"
+EAPI=4
 PYTHON_DEPEND="python? 2:2.6"
 
-inherit cmake-utils mono python
+inherit cmake-utils eutils mono python
 
 DESCRIPTION="Library for automatic proxy configuration management"
 HOMEPAGE="http://code.google.com/p/libproxy/"
 SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
-LICENSE="LGPL-2.1"
+LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd ~x86-linux"
 IUSE="gnome kde mono networkmanager perl python test"
 
 # FIXME: Disable webkit support due problems like bug #366791
 # FIXME: Also disable xulrunner support due bug #360893, will be readded
 # in the future when only spidermonkey mozjs is provided.
+# NOTE: USE=xulrunner also causes problems like bug 373397, re-add carefully.
 
 RDEPEND="gnome? ( >=dev-libs/glib-2.26:2 )
 	kde? ( >=kde-base/kdelibs-4.4.5 )
@@ -29,7 +30,7 @@ RDEPEND="gnome? ( >=dev-libs/glib-2.26:2 )
 #	webkit? ( net-libs/webkit-gtk:2 )
 # Since 0.4.7, webkit gtk3 support is also available
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	DOCS="AUTHORS ChangeLog NEWS README"
@@ -38,6 +39,10 @@ pkg_setup() {
 		python_set_active_version 2
 		python_pkg_setup
 	fi
+}
+
+src_prepare() {
+	epatch "${FILESDIR}/${P}-gcc-4.7.patch"
 }
 
 src_configure() {

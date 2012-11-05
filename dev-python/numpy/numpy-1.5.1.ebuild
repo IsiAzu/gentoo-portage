@@ -1,12 +1,14 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.5.1.ebuild,v 1.18 2011/06/21 18:05:21 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.5.1.ebuild,v 1.23 2012/10/16 18:38:04 jlec Exp $
 
 EAPI=3
 
-PYTHON_DEPEND="*"
+PYTHON_DEPEND="*::3.2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="*-jython"
+RESTRICT_PYTHON_ABIS="3.3 *-jython 2.7-pypy-*"
+
+FORTRAN_NEEDED=lapack
 
 inherit distutils eutils fortran-2 flag-o-matic toolchain-funcs versionator
 
@@ -28,10 +30,10 @@ IUSE="doc lapack test"
 
 RDEPEND="
 	dev-python/setuptools
-	lapack? ( virtual/cblas virtual/lapack virtual/fortran )"
+	lapack? ( virtual/cblas virtual/lapack )"
 DEPEND="${RDEPEND}
 	doc? ( app-arch/unzip )
-	lapack? ( dev-util/pkgconfig )
+	lapack? ( virtual/pkgconfig )
 	test? ( >=dev-python/nose-0.10 )"
 
 PYTHON_CFLAGS=("* + -fno-strict-aliasing")
@@ -39,7 +41,7 @@ PYTHON_CFLAGS=("* + -fno-strict-aliasing")
 DOCS="COMPATIBILITY DEV_README.txt THANKS.txt"
 
 pkg_setup() {
-	use lapack && fortran-2_pkg_setup
+	fortran-2_pkg_setup
 	python_pkg_setup
 
 	# See progress in http://projects.scipy.org/scipy/numpy/ticket/573

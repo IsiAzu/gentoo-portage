@@ -1,20 +1,20 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-3.2.2.ebuild,v 1.4 2011/11/18 04:41:30 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-3.2.2.ebuild,v 1.10 2012/10/24 07:11:50 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2 multilib pam versionator virtualx
+inherit autotools eutils gnome2 multilib pam versionator virtualx
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE="GPL-2 LGPL-2"
+LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="+caps debug doc pam test"
-KEYWORDS="~amd64 ~mips ~sh ~x86 ~x86-fbsd ~amd64-linux ~sparc-solaris ~x86-linux ~x86-solaris"
+IUSE="+caps debug pam test"
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 # USE=valgrind is probably not a good idea for the tree
 RDEPEND=">=dev-libs/glib-2.25:2
@@ -29,14 +29,11 @@ RDEPEND=">=dev-libs/glib-2.25:2
 "
 #	valgrind? ( dev-util/valgrind )
 DEPEND="${RDEPEND}
-	sys-devel/gettext
 	>=dev-util/gtk-doc-am-1.9
 	>=dev-util/intltool-0.35
-	>=dev-util/pkgconfig-0.9
-	doc? ( >=dev-util/gtk-doc-1.9 )"
+	sys-devel/gettext
+	virtual/pkgconfig"
 PDEPEND=">=gnome-base/libgnome-keyring-3.1.92"
-# eautoreconf needs:
-#	>=dev-util/gtk-doc-am-1.9
 
 # FIXME: tests are flaky and write to /tmp (instead of TMPDIR)
 RESTRICT="test"
@@ -62,7 +59,11 @@ src_prepare() {
 	sed -e 's/^\(SUBDIRS = \.\)\(.*\)/\1/' \
 		-i gcr/Makefile.* || die "sed failed"
 
+	# gold plus glib-2.32 underlinking fix
+	epatch "${FILESDIR}"/${P}-gold-glib-2.32.patch
+
 	gnome2_src_prepare
+	AT_NOELIBTOOLIZE=yes eautoreconf
 }
 
 src_test() {

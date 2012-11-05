@@ -1,6 +1,38 @@
 # ChangeLog for games-simulation/flightgear
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-simulation/flightgear/ChangeLog,v 1.51 2011/10/19 06:36:06 tupone Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-simulation/flightgear/ChangeLog,v 1.59 2012/10/15 11:25:56 nativemad Exp $
+
+  15 Oct 2012; Andreas Schuerch <nativemad@gentoo.org> flightgear-2.8.0.ebuild:
+  x86 stable, see bug 425838
+
+  11 Oct 2012; Maciej Mrozowski <reavertm@gentoo.org> flightgear-2.8.0.ebuild,
+  metadata.xml:
+  Group larcsim and uiuc under oldfdm since they don't link alone. Reported on
+  bug 425838.
+
+  22 Sep 2012; Agostino Sarubbo <ago@gentoo.org> flightgear-2.8.0.ebuild:
+  Stable for amd64, wrt bug #425838
+
+  03 Sep 2012; Maciej Mrozowski <reavertm@gentoo.org> flightgear-2.8.0.ebuild:
+  More strict simgear version dependency (~PV).
+
+*flightgear-2.8.0 (27 Aug 2012)
+
+  27 Aug 2012; Maciej Mrozowski <reavertm@gentoo.org> +flightgear-2.8.0.ebuild,
+  -files/flightgear-1.9.1-gcc44.patch, -files/flightgear-1.9.1-parallel.patch,
+  -files/flightgear-1.9.1-sdl.patch, -flightgear-1.9.1.ebuild,
+  -flightgear-2.0.0.ebuild, metadata.xml:
+  Version bump, bug 405281. Remove old. Original ebuild by Christian Schmitt.
+
+  21 Aug 2012; Michael Weber <xmw@gentoo.org> flightgear-2.4.0.ebuild:
+  ppc stable (405665)
+
+  06 Apr 2012; Andreas Schuerch <nativemad@gentoo.org> flightgear-2.4.0.ebuild:
+  x86 stable, see bug 405665
+
+  11 Mar 2012; Tony Vroon <chainsaw@gentoo.org> flightgear-2.4.0.ebuild:
+  Marked stable on AMD64 based on arch testing by Maurizio "k01" Camisaschi &
+  Elijah "Armageddon" El Lazkani in bug #405665.
 
   19 Oct 2011; Tupone Alfredo <tupone@gentoo.org> flightgear-2.4.0.ebuild,
   +files/flightgear-2.4.0-svn.patch:

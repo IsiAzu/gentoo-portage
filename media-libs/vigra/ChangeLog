@@ -1,6 +1,36 @@
 # ChangeLog for media-libs/vigra
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/ChangeLog,v 1.47 2011/11/23 11:45:23 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/ChangeLog,v 1.55 2012/08/24 22:05:44 dilfridge Exp $
+
+  24 Aug 2012; Andreas K. Huettel <dilfridge@gentoo.org> vigra-1.8.0.ebuild,
+  +files/vigra-1.8.0-gcc47.patch:
+  Fix build with gcc-4.7, thanks dev-zero
+
+  04 Jul 2012; Jeff Horelick <jdhore@gentoo.org> vigra-1.7.1-r1.ebuild:
+  marked x86 per bug 401509
+
+  23 May 2012; Brent Baude <ranger@gentoo.org> vigra-1.7.1-r1.ebuild:
+  Marking vigra-1.7.1-r1 ppc64 for bug 401509
+
+*vigra-1.8.0 (19 May 2012)
+
+  19 May 2012; Andreas K. Huettel <dilfridge@gentoo.org> +vigra-1.8.0.ebuild,
+  +files/vigra-1.8.0-automagicness.patch, +files/vigra-1.8.0-numpy_doc.patch:
+  Version bump
+
+  12 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
+  Openoffice won't use system vigra for one header. Drop us from maint.
+
+  19 Feb 2012; Andreas K. Huettel <dilfridge@gentoo.org> vigra-1.7.1.ebuild,
+  vigra-1.7.1-r1.ebuild:
+  Disable tests, see bug 390447
+
+  28 Jan 2012; Mike Gilbert <floppym@gentoo.org> vigra-1.7.1-r1.ebuild,
+  vigra-1.7.1.ebuild:
+  Change boost dep to resolve bug 400849. Fix by Arfrever.
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> vigra-1.7.1-r1.ebuild:
+  Stable for ppc; bug #387187
 
   23 Nov 2011; Tomáš Chvátal <scarabeus@gentoo.org> vigra-1.7.1-r1.ebuild:
   Just restrict the tests to solve linking issues.

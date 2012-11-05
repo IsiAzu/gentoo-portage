@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/libcmatrix/libcmatrix-3.9.0.ebuild,v 1.1 2011/08/31 14:28:27 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/libcmatrix/libcmatrix-3.9.0.ebuild,v 1.3 2012/06/24 07:43:11 jlec Exp $
 
 EAPI="3"
 
@@ -20,7 +20,7 @@ IUSE="atlas sse threads"
 
 RDEPEND="
 	sci-libs/minuit
-	atlas? ( || ( sci-libs/blas-atlas sci-libs/atlas ) )"
+	atlas? ( || ( sci-libs/atlas sci-libs/blas-atlas ) )"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"/${PN}R3
@@ -31,6 +31,7 @@ src_prepare() {
 		"${FILESDIR}"/3.2.1-minuit2.patch \
 		"${FILESDIR}"/3.2.1-gcc4.4.patch \
 		"${FILESDIR}"/3.2.1-gcc4.6.patch \
+		"${FILESDIR}"/3.2.1-gcc4.7.patch \
 		"${FILESDIR}"/${PV}-atlas.patch
 	eautoreconf
 }

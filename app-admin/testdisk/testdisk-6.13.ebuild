@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/testdisk/testdisk-6.13.ebuild,v 1.1 2011/11/16 20:59:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/testdisk/testdisk-6.13.ebuild,v 1.4 2012/09/08 09:51:48 radhermit Exp $
 
 EAPI=4
 
@@ -13,15 +13,16 @@ SRC_URI="http://www.cgsecurity.org/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="static reiserfs ntfs jpeg"
+IUSE="jpeg ntfs reiserfs static"
 
 # WARNING: reiserfs support does NOT work with reiserfsprogs
 # you MUST use progsreiserfs-0.3.1_rc8 (the last version ever released).
-DEPEND=">=sys-libs/ncurses-5.2
+DEPEND="
+		>=sys-libs/ncurses-5.2
 		jpeg? ( virtual/jpeg )
-	  	ntfs? ( || ( >=sys-fs/ntfsprogs-2.0.0 sys-fs/ntfs3g ) )
-	  	reiserfs? ( >=sys-fs/progsreiserfs-0.3.1_rc8 )
-	  	>=sys-fs/e2fsprogs-1.35
+		ntfs? ( sys-fs/ntfs3g )
+		reiserfs? ( >=sys-fs/progsreiserfs-0.3.1_rc8 )
+		>=sys-fs/e2fsprogs-1.35
 		sys-libs/zlib"
 RDEPEND="!static? ( ${DEPEND} )"
 

@@ -1,10 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/grace/grace-5.1.22-r2.ebuild,v 1.15 2011/10/23 15:36:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/grace/grace-5.1.22-r2.ebuild,v 1.22 2012/10/24 19:45:13 ulm Exp $
 
 EAPI=4
 
-inherit eutils fortran-2 toolchain-funcs
+FORTRAN_NEEDED=fortran
+
+inherit eutils fortran-2 multilib toolchain-funcs
 
 DESCRIPTION="Motif based XY-plotting tool"
 HOMEPAGE="http://plasma-gate.weizmann.ac.il/Grace/"
@@ -14,22 +16,20 @@ SRC_URI="
 
 SLOT="0"
 LICENSE="GPL-2 LGPL-2"
-KEYWORDS="alpha amd64 ia64 ppc ppc64 sparc x86"
+KEYWORDS="amd64 ppc ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="fortran fftw jpeg netcdf png"
 
 DEPEND="
 	media-libs/t1lib
 	media-libs/tiff
 	sys-libs/zlib
-	>=x11-libs/openmotif-2.3:0
+	>=x11-libs/motif-2.3:0
 	x11-libs/xbae
 	fftw? ( sci-libs/fftw:2.1 )
 	jpeg? ( virtual/jpeg )
 	netcdf? ( sci-libs/netcdf )
 	png? ( media-libs/libpng )"
-RDEPEND="
-	fortran? ( virtual/fortran )
-${DEPEND}
+RDEPEND="${DEPEND}
 	x11-misc/xdg-utils"
 
 pkg_setup() {
@@ -52,7 +52,7 @@ src_prepare() {
 	# don't strip if not asked for
 	sed -i \
 		-e 's:$(INSTALL_PROGRAM) -s:$(INSTALL_PROGRAM):g' \
-		{auxiliary,grconvert,src}/Makefile
+		{auxiliary,grconvert,src}/Makefile || die
 
 	sed -i \
 		-e 's:$(GRACE_HOME)/bin:$(PREFIX)/bin:g' \
@@ -101,7 +101,7 @@ src_install() {
 	dosym ../../${PN}/doc /usr/share/doc/${PF}/html
 
 	doman "${ED}"/usr/share/doc/${PF}/html/*.1
-	rm -f "${ED}"/usr/share/doc/${PF}/html/*.1
-	doicon "${WORKDIR}"/${PN}.png || die
+	rm -f "${ED}"/usr/share/doc/${PF}/html/*.1 || die
+	doicon "${WORKDIR}"/${PN}.png
 	make_desktop_entry xmgrace Grace grace
 }

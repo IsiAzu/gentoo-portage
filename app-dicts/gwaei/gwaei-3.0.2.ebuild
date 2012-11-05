@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/gwaei/gwaei-3.0.2.ebuild,v 1.1 2011/08/30 23:07:15 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/gwaei/gwaei-3.0.2.ebuild,v 1.4 2012/05/03 18:18:07 jdhore Exp $
 
 EAPI="4"
 
@@ -31,7 +31,9 @@ DEPEND="${RDEPEND}
 		app-text/scrollkeeper
 	)
 	nls? ( >=sys-devel/gettext-0.17 )
-	dev-util/pkgconfig"
+	app-text/rarian
+	dev-util/intltool
+	virtual/pkgconfig"
 
 REQUIRED_USE="unique? ( gtk )"
 
@@ -70,6 +72,6 @@ pkg_postinst() {
 
 pkg_postrm() {
 	if use gtk ; then
-		gnome2_schemas_update --uninstall
+		gnome2_schemas_update
 	fi
 }

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libaio/libaio-0.3.109-r2.ebuild,v 1.8 2011/10/03 16:55:29 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libaio/libaio-0.3.109-r2.ebuild,v 1.10 2012/09/19 22:53:49 jer Exp $
 
 EAPI="3"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://kernel/linux/libs/aio/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-linux"
 IUSE="static-libs"
 
 RESTRICT="test"
@@ -23,6 +23,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.3.106-build.patch
 	epatch "${FILESDIR}"/${PN}-0.3.107-ar-ranlib.patch
 	epatch "${FILESDIR}"/${PN}-0.3.109-install.patch
+	epatch "${FILESDIR}"/${PN}-0.3.109-x32.patch
 	sed -i \
 		-e "/^libdir=/s:lib$:$(get_libdir):" \
 		-e "/^prefix=/s:/usr:${EPREFIX}/usr:" \

@@ -1,6 +1,43 @@
 # ChangeLog for dev-haskell/hashed-storage
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/ChangeLog,v 1.14 2011/09/25 08:12:28 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/ChangeLog,v 1.23 2012/09/12 16:05:24 qnikst Exp $
+
+  12 Sep 2012; Alexander Vershilov <qnikst@gentoo.org>
+  hashed-storage-0.4.13.ebuild, hashed-storage-0.5.7.ebuild,
+  hashed-storage-0.5.9.ebuild:
+  move dev-haskell/hashed-storage/hashed-storage-0.5.9.ebuild ebuild to
+  mirror://hackage
+
+  13 Aug 2012; Andreas Schuerch <nativemad@gentoo.org>
+  hashed-storage-0.5.9.ebuild:
+  x86 stable, see bug 418699
+
+  09 Aug 2012; Agostino Sarubbo <ago@gentoo.org> hashed-storage-0.5.9.ebuild:
+  restrict test because requires unstable packages
+
+  09 Aug 2012; Sergei Trofimovich <slyfox@gentoo.org>
+  hashed-storage-0.5.9.ebuild:
+  Stable on alpha/ia64/sparc (bug #418699)
+
+  06 Aug 2012; Brent Baude <ranger@gentoo.org> hashed-storage-0.5.9.ebuild:
+  Marking hashed-storage-0.5.9 ppc64 for bug 418699
+
+  03 Aug 2012; Agostino Sarubbo <ago@gentoo.org> hashed-storage-0.5.9.ebuild:
+  Stable for amd64, wrt bug #418699
+
+  03 Aug 2012; Markos Chandras <hwoarang@gentoo.org>
+  hashed-storage-0.5.9.ebuild:
+  add ~amd64 back
+
+  03 Aug 2012; Markos Chandras <hwoarang@gentoo.org>
+  hashed-storage-0.5.9.ebuild:
+  Stable on amd64 wrt bug #418699
+
+*hashed-storage-0.5.9 (14 Apr 2012)
+
+  14 Apr 2012; Mark Wright <gienah@gentoo.org> +hashed-storage-0.5.9.ebuild,
+  metadata.xml:
+  Bump hashed-storage to 0.5.9
 
   25 Sep 2011; Fabian Groffen <grobian@gentoo.org> hashed-storage-0.5.7.ebuild:
   Fixed for Prefix, marked ~ppc-macos and ~x86-macos
@@ -65,4 +102,3 @@
   Initial import, needed by upcomming darcs version.
   It's not the latest version of hashed-storage, but it's the most recent
   version that darcs supports.
-

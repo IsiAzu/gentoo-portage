@@ -1,6 +1,34 @@
 # ChangeLog for dev-db/oracle-instantclient-jdbc
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/oracle-instantclient-jdbc/ChangeLog,v 1.27 2010/11/12 18:17:49 dertobi123 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/oracle-instantclient-jdbc/ChangeLog,v 1.33 2012/06/04 06:39:47 zmedico Exp $
+
+  04 Jun 2012; Zac Medico <zmedico@gentoo.org>
+  oracle-instantclient-jdbc-10.2.0.3.ebuild,
+  oracle-instantclient-jdbc-11.2.0.2.ebuild,
+  oracle-instantclient-jdbc-11.2.0.3.ebuild:
+  inherit multilib for get_libdir
+
+  07 Mar 2012; Michael Haubenwallner <haubi@gentoo.org>
+  oracle-instantclient-jdbc-11.2.0.3.ebuild:
+  must not set ABI for non-multilib-able archs at all
+
+  07 Mar 2012; Michael Haubenwallner <haubi@gentoo.org>
+  oracle-instantclient-jdbc-11.2.0.3.ebuild:
+  fix typo with non-multilib archs
+
+*oracle-instantclient-jdbc-11.2.0.3 (07 Mar 2012)
+
+  07 Mar 2012; Michael Haubenwallner <haubi@gentoo.org>
+  +oracle-instantclient-jdbc-11.2.0.3.ebuild:
+  Revbump. Use EAPI 4. Update homepage. Drop useless postinst info.
+  Add multilib support.
+  RDEPEND on _same_ version of oracle-instantclient-basic.
+
+  09 Feb 2012; Michael Haubenwallner <haubi@gentoo.org> metadata.xml:
+  Taking over maintainership.
+
+  09 Feb 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #85926
 
 *oracle-instantclient-jdbc-11.2.0.2 (12 Nov 2010)
 

@@ -1,6 +1,22 @@
 # ChangeLog for net-nds/389-ds-base
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/389-ds-base/ChangeLog,v 1.20 2011/08/14 09:24:15 lxnay Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nds/389-ds-base/ChangeLog,v 1.23 2012/10/02 20:25:09 lxnay Exp $
+
+*389-ds-base-1.2.11.15 (02 Oct 2012)
+
+  02 Oct 2012; Fabio Erculiani <lxnay@gentoo.org> 389-ds-base-1.2.11.15.ebuild:
+  inherit user eclass
+
+  02 Oct 2012; Fabio Erculiani <lxnay@gentoo.org>
+  +389-ds-base-1.2.11.15.ebuild,
+  +files/389-ds-base-1.2.11.16-cve-2012-4450.patch,
+  +files/389-ds-base-1.2.11-fix-mozldap.patch, -389-ds-base-1.2.8.3.ebuild,
+  -389-ds-base-1.2.9.6.ebuild:
+  version bump, closes #405127, #428178, #436768
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> 389-ds-base-1.2.8.3.ebuild,
+  389-ds-base-1.2.9.6.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
 *389-ds-base-1.2.9.6 (14 Aug 2011)
 

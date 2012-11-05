@@ -1,6 +1,36 @@
 # ChangeLog for dev-ruby/snmplib
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/snmplib/ChangeLog,v 1.34 2011/10/27 06:09:07 graaff Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/snmplib/ChangeLog,v 1.43 2012/09/28 22:09:18 blueness Exp $
+
+  28 Sep 2012; Anthony G. Basile <blueness@gentoo.org> snmplib-1.1.0.ebuild:
+  stable ppc, bug #435966
+
+  27 Sep 2012; Johannes Huber <johu@gentoo.org> snmplib-1.1.0.ebuild:
+  Stable for x86, wrt bug #435966
+
+  24 Sep 2012; Agostino Sarubbo <ago@gentoo.org> snmplib-1.1.0.ebuild:
+  Stable for amd64, wrt bug #435966
+
+  23 Sep 2012; Hans de Graaff <graaff@gentoo.org> -snmplib-1.0.4.ebuild:
+  Cleanup.
+
+  14 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml:
+  Update metadata.xml so that it's the same as most other packages.
+
+  01 May 2012; Raúl Porcel <armin76@gentoo.org> snmplib-1.0.3.ebuild,
+  snmplib-1.0.4.ebuild, snmplib-1.1.0.ebuild:
+  Drop ia64/sparc keywords
+
+  06 Feb 2012; Brent Baude <ranger@gentoo.org> snmplib-1.0.3.ebuild:
+  Marking snmplib-1.0.3 ppc for bug 379019
+
+*snmplib-1.1.0 (25 Dec 2011)
+
+  25 Dec 2011; Hans de Graaff <graaff@gentoo.org> +snmplib-1.1.0.ebuild:
+  Version bump.
+
+  06 Dec 2011; Hans de Graaff <graaff@gentoo.org> -snmplib-1.0.2.ebuild:
+  Remove old version.
 
 *snmplib-1.0.4 (27 Oct 2011)
 
@@ -132,4 +162,3 @@
   08 Nov 2004; Michael Kohl <citizen428@gentoo.org> +metadata.xml,
   +snmplib-0.3.0.ebuild:
   Initial import. Ebuild submitted by pyon <gentoo@pyon.net>, closing bug #67047
-

@@ -1,22 +1,28 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-embedded/avrdude/avrdude-5.11.1.ebuild,v 1.1 2011/09/21 04:29:31 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-embedded/avrdude/avrdude-5.11.1.ebuild,v 1.9 2012/05/30 07:29:42 jdhore Exp $
 
-EAPI=4
+EAPI="4"
+
+inherit eutils
 
 DESCRIPTION="AVR Downloader/UploaDEr"
 HOMEPAGE="http://savannah.nongnu.org/projects/avrdude"
-SRC_URI_BASE="http://savannah.nongnu.org/download/${PN}"
-SRC_URI="${SRC_URI_BASE}/${P}.tar.gz
-	doc? ( ${SRC_URI_BASE}/${PN}-doc-${PV}.tar.gz
-		   ${SRC_URI_BASE}/${PN}-doc-${PV}.pdf )"
+SRC_URI="mirror://nongnu/${PN}/${P}.tar.gz
+	doc? (
+		mirror://nongnu/${PN}/${PN}-doc-${PV}.tar.gz
+		mirror://nongnu/${PN}/${PN}-doc-${PV}.pdf
+	)"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~arm ~amd64 ~ppc ~ppc64 ~x86"
-IUSE="doc"
+KEYWORDS="amd64 arm ppc ppc64 x86"
+IUSE="doc ftdi ncurses readline"
 
-RDEPEND="virtual/libusb"
+RDEPEND="virtual/libusb:1
+	ftdi? ( dev-embedded/libftdi )
+	ncurses? ( sys-libs/ncurses )
+	readline? ( sys-libs/readline )"
 DEPEND="${RDEPEND}"
 
 DOCS="AUTHORS ChangeLog* NEWS README"
@@ -26,9 +32,16 @@ src_prepare() {
 	rm -f lexer.c config_gram.c config_gram.h
 }
 
+src_configure() {
+	export ac_cv_lib_ftdi_ftdi_usb_get_strings=$(usex ftdi)
+	export ac_cv_lib_ncurses_tputs=$(usex ncurses)
+	export ac_cv_lib_readline_readline=$(usex readline)
+	default
+}
+
 src_compile() {
-	# The automake target for these files does not use tempfiles or create these
-	# atomically, confusing a parallel build. So we force them first.
+	# The automake target for these files does not use tempfiles or create
+	# these atomically, confusing a parallel build. So we force them first.
 	emake lexer.c config_gram.c config_gram.h
 	emake
 }

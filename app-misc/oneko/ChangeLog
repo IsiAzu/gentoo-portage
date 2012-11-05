@@ -1,6 +1,12 @@
 # ChangeLog for app-misc/oneko
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/oneko/ChangeLog,v 1.18 2010/09/17 02:23:20 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/oneko/ChangeLog,v 1.20 2011/12/04 14:49:23 hwoarang Exp $
+
+  04 Dec 2011; Markos Chandras <hwoarang@gentoo.org> oneko-1.2-r2.ebuild:
+  Stable on amd64 wrt bug #391475
+
+  01 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> oneko-1.2-r2.ebuild:
+  x86 stable wrt bug #391475
 
   17 Sep 2010; Jeroen Roovers <jer@gentoo.org> oneko-1.2-r2.ebuild,
   +files/oneko-1.2-include.patch:

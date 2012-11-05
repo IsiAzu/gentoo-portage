@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libgksu/libgksu-2.0.12-r1.ebuild,v 1.13 2011/11/15 23:11:17 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libgksu/libgksu-2.0.12-r1.ebuild,v 1.15 2012/05/05 03:52:30 jdhore Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
@@ -27,7 +27,7 @@ DEPEND="${BOTH}
 	doc? ( >=dev-util/gtk-doc-1.2-r1 )
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.35.5
-	>=dev-util/pkgconfig-0.19"
+	virtual/pkgconfig"
 
 RDEPEND="${BOTH}
 	app-admin/sudo"
@@ -56,6 +56,9 @@ src_prepare() {
 	# Do not build test programs that are never executed; also fixes bug
 	# #367397 (underlinking issues).
 	epatch "${FILESDIR}/${P}-notests.patch"
+
+	# Fix automake-1.11.2 compatibility, bug #397411
+	epatch "${FILESDIR}/${P}-automake-1.11.2.patch"
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf

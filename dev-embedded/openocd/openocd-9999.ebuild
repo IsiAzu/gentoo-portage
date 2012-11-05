@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-embedded/openocd/openocd-9999.ebuild,v 1.20 2011/11/15 21:12:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-embedded/openocd/openocd-9999.ebuild,v 1.25 2012/08/29 17:51:45 hwoarang Exp $
 
 EAPI="4"
 
-inherit eutils
+inherit eutils multilib
 if [[ ${PV} == "9999" ]] ; then
 	inherit autotools git-2
 	KEYWORDS=""
@@ -23,8 +23,8 @@ IUSE="blaster dummy ftd2xx ftdi minidriver parport presto segger usb versaloon"
 RESTRICT="strip" # includes non-native binaries
 
 # libftd2xx is the default because it is reported to work better.
-DEPEND="dev-lang/jimtcl
-	usb? ( dev-libs/libusb )
+DEPEND=">=dev-lang/jimtcl-0.73
+	usb? ( virtual/libusb:0 )
 	presto? ( dev-embedded/libftd2xx )
 	ftd2xx? ( dev-embedded/libftd2xx )
 	ftdi? ( dev-embedded/libftdi )"
@@ -55,8 +55,8 @@ src_configure() {
 	use ftd2xx && LDFLAGS="${LDFLAGS} -L/opt/$(get_libdir)"
 
 	if use blaster; then
-		use ftdi && myconf="${myconf} --use_blaster_libftdi"
-		use ftd2xx && myconf="${myconf} --use_blaster_ftd2xx"
+		use ftdi && myconf="${myconf} --enable-usb_blaster_libftdi"
+		use ftd2xx && myconf="${myconf} --enable-usb_blaster_ftd2xx"
 	fi
 	econf \
 		$(use_enable dummy) \

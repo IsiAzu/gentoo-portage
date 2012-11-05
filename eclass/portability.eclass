@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.21 2011/11/03 00:59:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.24 2012/01/04 05:57:19 vapier Exp $
 #
 # Author: Diego Pettenò <flameeyes@gentoo.org>
 #
@@ -8,15 +8,18 @@
 #
 # NB:  If you add anything, please comment it!
 
+if [[ ${___ECLASS_ONCE_PORTABILITY} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_PORTABILITY="recur -_+^+_- spank"
+
 # treecopy orig1 orig2 orig3 .... dest
 #
 # mimic cp --parents copy, but working on BSD userland as well
 treecopy() {
-	dest=${!#}
-	files_count=$#
+	local dest=${!#}
+	local files_count=$#
 
-	while(( $# > 1 )); do
-		dirstruct=$(dirname "$1")
+	while (( $# > 1 )); do
+		local dirstruct=$(dirname "$1")
 		mkdir -p "${dest}/${dirstruct}"
 		cp -pPR "$1" "${dest}/${dirstruct}"
 
@@ -35,6 +38,7 @@ seq() {
 		return $?
 	fi
 
+	local min max step
 	case $# in
 		1) min=1  max=$1 step=1  ;;
 		2) min=$1 max=$2 step=1  ;;
@@ -130,3 +134,5 @@ get_mounts() {
 
 _dead_portability_user_funcs() { die "if you really need this, please file a bug for base-system@gentoo.org"; }
 is-login-disabled() { _dead_portability_user_funcs; }
+
+fi

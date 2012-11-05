@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/leechcraft-downloader-http/leechcraft-downloader-http-9999.ebuild,v 1.1 2011/08/23 19:09:53 maksbotan Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/leechcraft-downloader-http/leechcraft-downloader-http-9999.ebuild,v 1.3 2012/02/09 12:24:51 maksbotan Exp $
 
-EAPI="2"
+EAPI="4"
 
 DESCRIPTION="Virtual for LeechCraft plugins providing HTTP downloading"
 HOMEPAGE=""
@@ -13,5 +13,5 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND="net-misc/leechcraft-cstp"
-RDEPEND="${DEPEND}"
+RDEPEND="net-misc/leechcraft-cstp"
+DEPEND=""

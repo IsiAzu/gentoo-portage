@@ -1,6 +1,16 @@
 # ChangeLog for dev-perl/XML-Stream
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Stream/ChangeLog,v 1.23 2011/09/04 11:22:49 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Stream/ChangeLog,v 1.26 2012/09/06 01:32:36 blueness Exp $
+
+  06 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  XML-Stream-1.230.0.ebuild:
+  Keyword ~arm
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  01 Dec 2011; Torsten Veller <tove@gentoo.org> XML-Stream-1.230.0.ebuild:
+  Only runtime dependencies (tests disabled) so change DEPEND to RDEPEND
 
   04 Sep 2011; Torsten Veller <tove@gentoo.org> -XML-Stream-1.23.ebuild:
   Cleanup
@@ -83,4 +93,3 @@
   06 Jun 2004; Michael Cummings <mcummings@gentoo.org> XML-Stream-1.21.ebuild,
   metadata.xml:
   Dep for soap-lite
-

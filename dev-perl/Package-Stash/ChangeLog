@@ -1,6 +1,51 @@
 # ChangeLog for dev-perl/Package-Stash
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Package-Stash/ChangeLog,v 1.29 2011/11/07 08:05:52 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Package-Stash/ChangeLog,v 1.43 2012/09/09 16:25:44 armin76 Exp $
+
+  09 Sep 2012; Raúl Porcel <armin76@gentoo.org> Package-Stash-0.330.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #418803
+
+  02 Sep 2012; Torsten Veller <tove@gentoo.org> -Package-Stash-0.250.ebuild:
+  Cleanup
+
+  01 Sep 2012; Fabian Groffen <grobian@gentoo.org> Package-Stash-0.330.0.ebuild:
+  Marked ~ppc-aix, bug #432288
+
+  22 Aug 2012; Michael Weber <xmw@gentoo.org> Package-Stash-0.330.0.ebuild:
+  ppc stable (bug 418803)
+
+  05 Aug 2012; Markus Meier <maekke@gentoo.org> Package-Stash-0.330.0.ebuild:
+  arm stable, bug #418803
+
+  02 Aug 2012; Jeroen Roovers <jer@gentoo.org> Package-Stash-0.330.0.ebuild:
+  Stable for HPPA (bug #418803).
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  07 Apr 2012; Markus Meier <maekke@gentoo.org> Package-Stash-0.330.0.ebuild:
+  x86 stable, bug #395297
+
+  06 Apr 2012; Agostino Sarubbo <ago@gentoo.org> Package-Stash-0.330.0.ebuild:
+  Stable for amd64, wrt bug #395297
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> Package-Stash-0.330.0.ebuild:
+  Add ~alpha/~ia64/~s390/~sh/~sparc wrt #403413
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> Package-Stash-0.330.0.ebuild:
+  Marking Package-Stash-0.330.0 ~ppc for bug 403413
+
+  19 Feb 2012; Tobias Klausmann <klausman@gentoo.org>
+  Package-Stash-0.330.0.ebuild:
+  Keyworded on alpha, bug #389001
+
+  18 Feb 2012; Torsten Veller <tove@gentoo.org> -Package-Stash-0.310.0.ebuild,
+  -Package-Stash-0.320.0.ebuild:
+  Cleanup
+
+  14 Feb 2012; Alexis Ballier <aballier@gentoo.org>
+  Package-Stash-0.330.0.ebuild:
+  keyword ~x86-fbsd
 
   07 Nov 2011; Fabian Groffen <grobian@gentoo.org> Package-Stash-0.330.0.ebuild:
   Added Prefix keywords, bug #389001
@@ -127,4 +172,3 @@
   06 Jun 2010; Torsten Veller <tove@gentoo.org> +Package-Stash-0.03.ebuild,
   +metadata.xml:
   Initial import for dev-perl/Class-MOP
-

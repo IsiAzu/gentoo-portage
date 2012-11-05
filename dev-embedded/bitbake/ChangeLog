@@ -1,6 +1,52 @@
 # ChangeLog for dev-embedded/bitbake
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-embedded/bitbake/ChangeLog,v 1.38 2011/11/10 19:34:58 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-embedded/bitbake/ChangeLog,v 1.50 2012/08/02 02:50:03 radhermit Exp $
+
+*bitbake-1.15.3 (02 Aug 2012)
+
+  02 Aug 2012; Tim Harder <radhermit@gentoo.org> +bitbake-1.15.3.ebuild:
+  Version bump.
+
+  14 Jun 2012; Tim Harder <radhermit@gentoo.org> -bitbake-1.10.2.ebuild:
+  Remove old.
+
+  14 Jun 2012; Michael Weber <xmw@gentoo.org> bitbake-1.14.0.ebuild:
+  ppc stable (bug 403759)
+
+*bitbake-1.15.2 (01 May 2012)
+
+  01 May 2012; Tim Harder <radhermit@gentoo.org> +bitbake-1.15.2.ebuild:
+  Version bump.
+
+  04 Apr 2012; Jeff Horelick <jdhore@gentoo.org> bitbake-1.14.0.ebuild:
+  marked x86 per bug 403759
+
+  17 Mar 2012; Tim Harder <radhermit@gentoo.org> bitbake-9999.ebuild:
+  Add updates to live ebuild.
+
+  17 Mar 2012; Tim Harder <radhermit@gentoo.org> -bitbake-1.15.1.ebuild:
+  Remove old.
+
+*bitbake-1.15.1-r1 (17 Mar 2012)
+
+  17 Mar 2012; Tim Harder <radhermit@gentoo.org> +bitbake-1.15.1-r1.ebuild:
+  Revbump to add dependency on futures (fixes bug #406945).
+
+  17 Feb 2012; Tim Harder <radhermit@gentoo.org> bitbake-1.14.0.ebuild,
+  bitbake-1.15.1.ebuild:
+  Die on failure.
+
+  17 Feb 2012; Agostino Sarubbo <ago@gentoo.org> bitbake-1.14.0.ebuild:
+  Stable for amd64, wrt bug #403759
+
+  15 Feb 2012; Tim Harder <radhermit@gentoo.org> -bitbake-1.12.0.ebuild,
+  -bitbake-1.13.2.ebuild, -bitbake-1.13.3.ebuild:
+  Remove old.
+
+*bitbake-1.15.1 (15 Feb 2012)
+
+  15 Feb 2012; Tim Harder <radhermit@gentoo.org> +bitbake-1.15.1.ebuild:
+  Version bump.
 
 *bitbake-1.14.0 (10 Nov 2011)
 

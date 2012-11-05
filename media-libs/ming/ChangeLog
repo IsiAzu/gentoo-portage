@@ -1,6 +1,43 @@
 # ChangeLog for media-libs/ming
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ming/ChangeLog,v 1.82 2011/11/16 00:56:48 xmw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ming/ChangeLog,v 1.93 2012/07/29 18:22:11 armin76 Exp $
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org> ming-0.4.3-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #419719
+
+  29 Jun 2012; Agostino Sarubbo <ago@gentoo.org> ming-0.4.4.ebuild:
+  add back ~amd64
+
+  29 Jun 2012; Jeroen Roovers <jer@gentoo.org> ming-0.4.3-r2.ebuild:
+  Stable for HPPA (bug #419719).
+
+  14 Jun 2012; Jeff Horelick <jdhore@gentoo.org> ming-0.4.3-r2.ebuild:
+  marked x86 per bug 419719
+
+  11 Jun 2012; Agostino Sarubbo <ago@gentoo.org> ming-0.4.4.ebuild:
+  Stable for amd64, wrt bug #419719
+
+  09 Jun 2012; Markus Meier <maekke@gentoo.org> ming-0.4.3-r2.ebuild:
+  arm stable, bug #419719
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> ming-0.4.3-r2.ebuild:
+  Marking ming-0.4.3-r2 ppc for bug 419719
+
+  05 Jun 2012; Brent Baude <ranger@gentoo.org> ming-0.4.3-r2.ebuild:
+  Marking ming-0.4.3-r2 ppc64 for bug 419719
+
+  05 Jun 2012; Agostino Sarubbo <ago@gentoo.org> ming-0.4.3-r2.ebuild:
+  Stable for amd64, wrt bug #419721
+
+*ming-0.4.4 (05 Jun 2012)
+
+  05 Jun 2012; Justin Lecher <jlec@gentoo.org> +ming-0.4.4.ebuild,
+  +files/ming-0.4.4-vasprintf.patch:
+  Version Bump, moved to EAPI=4 and autotools-utils.eclass, add fix for
+  gcc-4.7, #417499
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> ming-0.4.3-r2.ebuild:
+  keyword ~amd64-fbsd
 
 *ming-0.4.3-r2 (16 Nov 2011)
 

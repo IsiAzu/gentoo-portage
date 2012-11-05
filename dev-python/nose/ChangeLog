@@ -1,6 +1,27 @@
 # ChangeLog for dev-python/nose
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.79 2011/10/23 17:23:33 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.85 2012/10/05 12:23:54 djc Exp $
+
+  05 Oct 2012; Dirkjan Ochtman <djc@gentoo.org>
+  -files/nose-0.10.0-tests-nonetwork.patch, -nose-1.0.0.ebuild,
+  -nose-1.1.1.ebuild:
+  Remove old versions.
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> nose-1.1.2.ebuild:
+  keyword ~amd64-fbsd
+
+  09 Apr 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml,
+  nose-1.1.2.ebuild:
+  Add optional dependency on dev-python/coverage, #388443.
+
+  13 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> nose-1.1.2.ebuild:
+  ppc64 stable wrt #386793
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> nose-1.1.2.ebuild:
+  Marking nose-1.1.2 ppc for bug 386793
+
+  30 Nov 2011; Jeroen Roovers <jer@gentoo.org> nose-1.1.2.ebuild:
+  Stable for HPPA (bug #386793).
 
   23 Oct 2011; Raúl Porcel <armin76@gentoo.org> nose-1.1.2.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #386793

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/rest/rest-0.7.12.ebuild,v 1.1 2011/11/13 08:20:04 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/rest/rest-0.7.12.ebuild,v 1.7 2012/09/23 06:00:48 blueness Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -13,7 +13,7 @@ HOMEPAGE="http://git.gnome.org/browse/librest"
 
 LICENSE="LGPL-2.1"
 SLOT="0.7"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~alpha amd64 ~ppc ~ppc64 x86"
 IUSE="doc +gnome +introspection test"
 
 # Coverage testing should not be enabled
@@ -26,7 +26,7 @@ RDEPEND="app-misc/ca-certificates
 
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.13 )
 	test? ( sys-apps/dbus )"
 

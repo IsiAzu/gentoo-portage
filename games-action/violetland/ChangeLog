@@ -1,6 +1,15 @@
 # ChangeLog for games-action/violetland
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-action/violetland/ChangeLog,v 1.21 2011/10/28 06:21:52 mr_bones_ Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-action/violetland/ChangeLog,v 1.24 2012/08/29 04:23:28 mr_bones_ Exp $
+
+  29 Aug 2012; Michael Sterrett <mr_bones_@gentoo.org> violetland-0.4.3.ebuild:
+  limit boost to the versions that work
+
+  07 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> violetland-0.4.3.ebuild:
+  x86 stable wrt bug #392691
+
+  02 Dec 2011; Markos Chandras <hwoarang@gentoo.org> violetland-0.4.3.ebuild:
+  Stable on amd64 wrt bug #392691
 
 *violetland-0.4.3 (28 Oct 2011)
 
@@ -99,4 +108,3 @@
   30 Nov 2009; Michael Sterrett <mr_bones_@gentoo.org>
   +violetland-0.2.4.ebuild, +metadata.xml:
   initial commit - ebuild submitted by Azamat H. Hackimov via bug #294776
-

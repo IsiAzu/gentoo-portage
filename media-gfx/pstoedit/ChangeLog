@@ -1,6 +1,25 @@
 # ChangeLog for media-gfx/pstoedit
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pstoedit/ChangeLog,v 1.69 2011/09/21 05:02:57 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pstoedit/ChangeLog,v 1.75 2012/09/12 13:25:09 scarabeus Exp $
+
+*pstoedit-3.61 (12 Sep 2012)
+
+  12 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> +pstoedit-3.61.ebuild:
+  Version bump to latest.
+
+  28 Jun 2012; Naohiro Aota <naota@gentoo.org> pstoedit-3.60.ebuild:
+  Add ~x86-fbsd. #395347
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> pstoedit-3.60.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> pstoedit-3.50.ebuild,
+  pstoedit-3.50-r1.ebuild, pstoedit-3.60.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  19 Mar 2012; Naohiro Aota <naota@gentoo.org> +files/pstoedit-3.60-libdl.patch,
+  pstoedit-3.60.ebuild:
+  Add patch to link against proper dlopen library. #395347
 
 *pstoedit-3.60 (21 Sep 2011)
 

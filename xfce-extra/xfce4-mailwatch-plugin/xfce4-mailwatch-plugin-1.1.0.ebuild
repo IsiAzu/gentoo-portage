@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch-plugin/xfce4-mailwatch-plugin-1.1.0.ebuild,v 1.6 2011/05/31 11:08:37 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch-plugin/xfce4-mailwatch-plugin-1.1.0.ebuild,v 1.9 2012/06/16 14:52:16 ssuominen Exp $
 
 EAPI=4
 EAUTORECONF=yes
-inherit xfconf
+inherit multilib xfconf
 
-DESCRIPTION="Mail notification panel plugin"
+DESCRIPTION="An mail notification panel plug-in for the Xfce desktop environment"
 HOMEPAGE="http://spuriousinterrupt.org/projects/mailwatch"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
@@ -18,19 +18,24 @@ IUSE="debug ipv6 ssl"
 RDEPEND=">=xfce-base/libxfce4util-4.8
 	>=xfce-base/libxfcegui4-4.8
 	>=xfce-base/xfce4-panel-4.8
-	ssl? ( >=net-libs/gnutls-1.2 )"
+	ssl? (
+		dev-libs/libgcrypt
+		>=net-libs/gnutls-2
+		)"
 DEPEND="${RDEPEND}
 	dev-util/intltool
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	PATCHES=(
 		"${FILESDIR}"/${P}-no-ssl.patch
 		"${FILESDIR}"/${P}-link_to_libxfcegui4.patch
 		"${FILESDIR}"/${P}-link_to_libgcrypt.patch
+		"${FILESDIR}"/${P}-gnutls-3.patch
 		)
 
 	XFCONF=(
+		--libexecdir="${EPREFIX}"/usr/$(get_libdir)
 		$(use_enable ssl)
 		$(use_enable ipv6)
 		$(xfconf_use_debug)

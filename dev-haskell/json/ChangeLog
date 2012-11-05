@@ -1,6 +1,15 @@
 # ChangeLog for dev-haskell/json
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/json/ChangeLog,v 1.4 2011/04/23 15:33:14 slyfox Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/json/ChangeLog,v 1.6 2012/09/12 14:57:34 qnikst Exp $
+
+  12 Sep 2012; Alexander Vershilov <qnikst@gentoo.org> json-0.4.3.ebuild,
+  json-0.4.4.ebuild, json-0.5.ebuild:
+  move dev-haskell/json/json-0.4.3.ebuild ebuild to mirror://hackage
+
+*json-0.5 (11 Mar 2012)
+
+  11 Mar 2012; Sergei Trofimovich <slyfox@gentoo.org> +json-0.5.ebuild:
+  Version bump.
 
 *json-0.4.4 (23 Apr 2011)
 
@@ -18,4 +27,3 @@
 
   08 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org> +json-0.4.3.ebuild, +metadata.xml:
   Initial version.
-

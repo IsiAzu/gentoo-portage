@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.16 2011/08/29 01:28:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.19 2012/10/17 13:16:31 aballier Exp $
 
 # @ECLASS: texlive-common.eclass
 # @MAINTAINER:
@@ -119,9 +119,7 @@ dobin_texmf_scripts() {
 	while [ $# -gt 0 ] ; do
 		local trg=$(basename ${1} | sed 's,\.[^/]*$,,' | tr '[:upper:]' '[:lower:]')
 		einfo "Installing ${1} as ${trg} bin wrapper"
-		if [ "${PV#2008}" = "${PV}" -a "${PV#2009}" = "${PV}" ] ; then
-			[ -x "${D}/usr/share/${1}" ] || die "Trying to install a non existing or non executable symlink to /usr/bin: ${1}"
-		fi
+		[ -x "${D}/usr/share/${1}" ] || die "Trying to install a non existing or non executable symlink to /usr/bin: ${1}"
 		dosym ../share/${1} /usr/bin/${trg} || die "failed to install ${1} as $trg"
 		shift
 	done
@@ -134,11 +132,32 @@ dobin_texmf_scripts() {
 # function helps in factorizing some code.
 
 etexmf-update() {
-	if [ "$ROOT" = "/" ] && [ -x /usr/sbin/texmf-update ] ; then
-		/usr/sbin/texmf-update
-	else
-		ewarn "Cannot run texmf-update for some reason."
-		ewarn "Your texmf tree might be inconsistent with your configuration"
-		ewarn "Please try to figure what has happened"
+	if has_version 'app-text/texlive-core' ; then
+		if [ "$ROOT" = "/" ] && [ -x /usr/sbin/texmf-update ] ; then
+			/usr/sbin/texmf-update
+		else
+			ewarn "Cannot run texmf-update for some reason."
+			ewarn "Your texmf tree might be inconsistent with your configuration"
+			ewarn "Please try to figure what has happened"
+		fi
+	fi
+}
+
+# @FUNCTION: efmtutil-sys
+# @USAGE: In ebuilds' pkg_postinst to force a rebuild of TeX formats.
+# @DESCRIPTION:
+# Runs fmtutil-sys if it is available and prints a warning otherwise. This
+# function helps in factorizing some code.
+
+efmtutil-sys() {
+	if has_version 'app-text/texlive-core' ; then
+		if [ "$ROOT" = "/" ] && [ -x /usr/bin/fmtutil-sys ] ; then
+			einfo "Rebuilding formats"
+			/usr/bin/fmtutil-sys --all &> /dev/null
+		else
+			ewarn "Cannot run fmtutil-sys for some reason."
+			ewarn "Your formats might be inconsistent with your installed ${PN} version"
+			ewarn "Please try to figure what has happened"
+		fi
 	fi
 }

@@ -1,6 +1,27 @@
 # ChangeLog for app-doc/NaturalDocs
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/NaturalDocs/ChangeLog,v 1.32 2011/10/20 14:11:44 titanofold Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/NaturalDocs/ChangeLog,v 1.39 2012/03/18 15:57:13 armin76 Exp $
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> NaturalDocs-1.52.ebuild:
+  sparc stable wrt #391263
+
+  20 Feb 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Drop no-herd.
+
+  19 Feb 2012; Tobias Klausmann <klausman@gentoo.org> NaturalDocs-1.52.ebuild:
+  Stable on alpha, bug #391263
+
+  04 Feb 2012; Brent Baude <ranger@gentoo.org> NaturalDocs-1.52.ebuild:
+  Marking NaturalDocs-1.52 ppc for bug 391263
+
+  04 Dec 2011; Markos Chandras <hwoarang@gentoo.org> NaturalDocs-1.52.ebuild:
+  Stable on amd64 wrt bug #391263
+
+  29 Nov 2011; Jeroen Roovers <jer@gentoo.org> NaturalDocs-1.52.ebuild:
+  Stable for HPPA (bug #391263).
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> NaturalDocs-1.52.ebuild:
+  x86 stable wrt bug #391263
 
 *NaturalDocs-1.52 (20 Oct 2011)
 

@@ -1,6 +1,56 @@
 # ChangeLog for games-strategy/hedgewars
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/hedgewars/ChangeLog,v 1.33 2011/11/11 09:17:43 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/hedgewars/ChangeLog,v 1.45 2012/11/04 05:03:47 mr_bones_ Exp $
+
+  04 Nov 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  hedgewars-0.9.18-r1.ebuild:
+  don't try to find ghc automagically (bug #441686)
+
+*hedgewars-0.9.18-r1 (03 Nov 2012)
+
+  03 Nov 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  +hedgewars-0.9.18-r1.ebuild, -hedgewars-0.9.18.ebuild:
+  rev bump to get updated upstream tarball
+
+  02 Nov 2012; Julian Ospald <hasufell@gentoo.org>
+  files/hedgewars-0.9.18-cmake.patch:
+  newline messup, fixes bug 440974
+
+  01 Nov 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/hedgewars-0.9.18-cmake.patch, hedgewars-0.9.18.ebuild:
+  add parallel-make patch from hasufell
+
+  01 Nov 2012; Michael Sterrett <mr_bones_@gentoo.org> hedgewars-0.9.18.ebuild:
+  add ffmpeg dep
+
+*hedgewars-0.9.18 (01 Nov 2012)
+
+  01 Nov 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/hedgewars-0.9.18-cflags.patch, +hedgewars-0.9.18.ebuild:
+  version bump (bug #440796)
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org> hedgewars-0.9.17.ebuild:
+  QA_DT_HASH (old/deprecated) -> QA_FLAGS_IGNORED (new hotness).
+
+  02 Jul 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  -files/hedgewars-0.9.15-fixes.patch, -files/hedgewars-0.9.15-lua.patch,
+  -hedgewars-0.9.15.ebuild, -hedgewars-0.9.16.ebuild:
+  old
+
+  15 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> hedgewars-0.9.17.ebuild:
+  x86 stable wrt bug #396625
+
+  01 Jan 2012; Agostino Sarubbo <ago@gentoo.org> hedgewars-0.9.17.ebuild:
+  Stable for AMD64, wrt bug #396625
+
+  05 Dec 2011; Thomas Kahle <tomka@gentoo.org> hedgewars-0.9.16.ebuild:
+  amd64 stable per bug 389265
+
+*hedgewars-0.9.17 (25 Nov 2011)
+
+  25 Nov 2011; Michael Sterrett <mr_bones_@gentoo.org>
+  +hedgewars-0.9.17.ebuild:
+  version bump (bug #391835)
 
   11 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> hedgewars-0.9.16.ebuild:
   x86 stable wrt bug #389265
@@ -156,4 +206,3 @@
   +files/hedgewars-0.9.0-debug-file.patch, +metadata.xml,
   +hedgewars-0.9.0.ebuild:
   Initial commit, ebuild by Igor Ulyanov, bug #155872
-

@@ -1,6 +1,47 @@
 # ChangeLog for dev-cpp/gtksourceviewmm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtksourceviewmm/ChangeLog,v 1.21 2011/11/21 22:05:33 eva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtksourceviewmm/ChangeLog,v 1.31 2012/10/16 04:09:58 blueness Exp $
+
+  16 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  gtksourceviewmm-2.10.3.ebuild:
+  stable ppc, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gtksourceviewmm-2.10.3.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gtksourceviewmm-2.10.3.ebuild:
+  x86 stable wrt bug #427544
+
+  21 Jul 2012; Pacho Ramos <pacho@gentoo.org>
+  +files/gtksourceviewmm-3.2.0-glib-single-include.patch,
+  -gtksourceviewmm-3.0.0.ebuild, gtksourceviewmm-3.2.0.ebuild:
+  Let it compile against glib-2.32, drop old.
+
+  24 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  gtksourceviewmm-3.2.0.ebuild:
+  ppc stable wrt #410611
+
+*gtksourceviewmm-2.10.3 (22 May 2012)
+
+  22 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +gtksourceviewmm-2.10.3.ebuild:
+  Version bump.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> gtksourceviewmm-2.10.2.ebuild,
+  gtksourceviewmm-3.0.0.ebuild, gtksourceviewmm-3.2.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  02 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gtksourceviewmm-2.10.2.ebuild, +files/gtksourceviewmm-2.10.2-glib-2.31.patch:
+  Fix building with >=glib-2.31 (bug #414127, thanks to salamanderrake for
+  reporting).
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> gtksourceviewmm-3.2.0.ebuild:
+  x86 stable, bug #410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> gtksourceviewmm-3.2.0.ebuild:
+  Stable for amd64, wrt bug #410611
 
 *gtksourceviewmm-3.2.0 (21 Nov 2011)
 
@@ -90,4 +131,3 @@
   +gtksourceviewmm-2.2.0.ebuild:
   New package gtksourceviewmm which is just a rename of libgtksourceviewmm,
   API and installed files are the same
-

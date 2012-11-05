@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/paprefs/paprefs-0.9.10.ebuild,v 1.1 2011/09/27 09:51:39 ford_prefect Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/paprefs/paprefs-0.9.10.ebuild,v 1.4 2012/05/05 08:45:42 mgorny Exp $
 
 EAPI=4
 
@@ -10,7 +10,7 @@ SRC_URI="http://freedesktop.org/software/pulseaudio/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86"
+KEYWORDS="amd64 ~ppc ~sparc x86"
 IUSE="nls"
 
 RDEPEND="dev-cpp/gtkmm:2.4
@@ -22,7 +22,7 @@ RDEPEND="dev-cpp/gtkmm:2.4
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext
 		dev-util/intltool )
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_configure() {
 	econf \

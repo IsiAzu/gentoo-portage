@@ -1,6 +1,18 @@
 # ChangeLog for net-libs/obby
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/obby/ChangeLog,v 1.35 2011/11/06 13:39:47 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/obby/ChangeLog,v 1.39 2012/03/08 08:51:49 phajdan.jr Exp $
+
+  08 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> obby-0.4.8.ebuild:
+  x86 stable wrt bug #404827
+
+  23 Feb 2012; Brent Baude <ranger@gentoo.org> obby-0.4.8.ebuild:
+  Marking obby-0.4.8 ppc for bug 404827
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> obby-0.4.8.ebuild:
+  Stable for amd64, wrt bug #404827
+
+  21 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> obby-0.4.8.ebuild:
+  Introduce static-libs use flag, remove unneeded .la files
 
 *obby-0.4.8 (06 Nov 2011)
 

@@ -1,6 +1,36 @@
 # ChangeLog for app-emulation/emul-linux-x86-cpplibs
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-cpplibs/ChangeLog,v 1.10 2011/10/16 12:10:19 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-cpplibs/ChangeLog,v 1.15 2012/10/28 11:18:22 pacho Exp $
+
+*emul-linux-x86-cpplibs-20121028 (28 Oct 2012)
+
+  28 Oct 2012; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-cpplibs-20121028.ebuild,
+  -emul-linux-x86-cpplibs-20120127.ebuild:
+  Version bump, drop old.
+
+  25 Jul 2012; Pacho Ramos <pacho@gentoo.org>
+  emul-linux-x86-cpplibs-20120520.ebuild:
+  amd64 stable, bug #427444
+
+*emul-linux-x86-cpplibs-20120520 (20 May 2012)
+
+  20 May 2012; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-cpplibs-20120520.ebuild,
+  -emul-linux-x86-cpplibs-20110928.ebuild:
+  Version bump, drop old.
+
+  09 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  emul-linux-x86-cpplibs-20120127.ebuild:
+  amd64 stable wrt #405779
+
+*emul-linux-x86-cpplibs-20120127 (27 Jan 2012)
+
+  27 Jan 2012; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-cpplibs-20120127.ebuild,
+  -emul-linux-x86-cpplibs-20110129.ebuild,
+  -emul-linux-x86-cpplibs-20110722.ebuild:
+  Version bump, remove old.
 
   16 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
   emul-linux-x86-cpplibs-20110928.ebuild:
@@ -59,4 +89,3 @@
   20 Feb 2010; Pacho Ramos <pacho@gentoo.org>
   +emul-linux-x86-cpplibs-20100220.ebuild, +metadata.xml:
   New package including boost and libsigc++, see bug 298728
-

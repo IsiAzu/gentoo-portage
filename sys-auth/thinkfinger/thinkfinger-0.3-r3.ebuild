@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/thinkfinger/thinkfinger-0.3-r3.ebuild,v 1.3 2011/10/31 00:28:57 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/thinkfinger/thinkfinger-0.3-r3.ebuild,v 1.6 2012/05/24 05:10:31 vapier Exp $
 
 EAPI="4"
 
-inherit autotools-utils eutils linux-info pam
+inherit autotools-utils user linux-info pam
 
 DESCRIPTION="Support for the UPEK/SGS Thomson Microelectronics fingerprint reader, often seen in Thinkpads"
 HOMEPAGE="http://thinkfinger.sourceforge.net/"
@@ -15,11 +15,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug pam static-libs"
 
-RDEPEND=">=dev-libs/libusb-0.1.12:0
+RDEPEND="virtual/libusb:0
 	pam? ( virtual/pam )"
 DEPEND="${RDEPEND}
 	sys-devel/libtool
-	>=dev-util/pkgconfig-0.9.0"
+	virtual/pkgconfig"
 
 PATCHES=(
 	"${FILESDIR}"/${PV}-direct_set_config_usb_hello.patch

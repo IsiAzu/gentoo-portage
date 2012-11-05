@@ -1,6 +1,55 @@
 # ChangeLog for app-emulation/emul-linux-x86-baselibs
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.125 2011/10/16 12:09:55 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.133 2012/10/28 11:15:25 pacho Exp $
+
+*emul-linux-x86-baselibs-20121028 (28 Oct 2012)
+
+  28 Oct 2012; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-baselibs-20121028.ebuild,
+  -emul-linux-x86-baselibs-20120127-r1.ebuild,
+  -emul-linux-x86-baselibs-20120127.ebuild:
+  Version bump, drop old.
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org>
+  emul-linux-x86-baselibs-20120127-r1.ebuild,
+  emul-linux-x86-baselibs-20120127.ebuild,
+  emul-linux-x86-baselibs-20120520.ebuild:
+  QA_DT_HASH (old/deprecated) -> QA_FLAGS_IGNORED (new hotness).
+
+  25 Jul 2012; Pacho Ramos <pacho@gentoo.org>
+  emul-linux-x86-baselibs-20120520.ebuild:
+  amd64 stable, bug #427444
+
+*emul-linux-x86-baselibs-20120520 (20 May 2012)
+
+  20 May 2012; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-baselibs-20120520.ebuild,
+  -emul-linux-x86-baselibs-20110928.ebuild:
+  Version bump, drop old.
+
+*emul-linux-x86-baselibs-20120127-r1 (14 May 2012)
+
+  14 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +emul-linux-x86-baselibs-20120127-r1.ebuild:
+  Symlink libtiff.so.3 to libtiff.so.4 because Debian upgraded SONAME with
+  custom patch which got used by net-im/skype wrt #415997
+
+  15 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  emul-linux-x86-baselibs-20120127.ebuild:
+  Set PYTHON_UPDATER_IGNORE.
+
+  09 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  emul-linux-x86-baselibs-20120127.ebuild:
+  amd64 stable wrt #405779
+
+*emul-linux-x86-baselibs-20120127 (27 Jan 2012)
+
+  27 Jan 2012; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-baselibs-20120127.ebuild,
+  -emul-linux-x86-baselibs-20110129.ebuild,
+  -emul-linux-x86-baselibs-20110722-r99.ebuild,
+  -emul-linux-x86-baselibs-20110722.ebuild:
+  Version bump, remove old.
 
   16 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
   emul-linux-x86-baselibs-20110928.ebuild:

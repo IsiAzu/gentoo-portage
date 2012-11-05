@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.22.ebuild,v 1.8 2011/11/12 19:36:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.22.ebuild,v 1.12 2012/09/22 18:38:06 vapier Exp $
 
 EAPI="2"
 
@@ -10,9 +10,10 @@ DESCRIPTION="POSIX 1003.1e capabilities"
 HOMEPAGE="http://www.friedhoff.org/posixfilecaps.html"
 SRC_URI="mirror://kernel/linux/libs/security/linux-privs/libcap${PV:0:1}/${P}.tar.bz2"
 
-LICENSE="GPL-2 BSD"
+# it's available under either of the licenses
+LICENSE="|| ( GPL-2 BSD )"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm hppa ~ia64 ~m68k ~mips ppc ~ppc64 ~s390 ~sh ~sparc x86"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
 IUSE="pam"
 
 RDEPEND="sys-apps/attr
@@ -33,7 +34,8 @@ src_prepare() {
 }
 
 src_configure() {
-	tc-export BUILD_CC CC AR RANLIB
+	tc-export_build_env BUILD_CC
+	tc-export CC AR RANLIB
 }
 
 src_install() {

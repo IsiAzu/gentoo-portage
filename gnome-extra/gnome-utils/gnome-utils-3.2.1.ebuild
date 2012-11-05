@@ -1,15 +1,15 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/gnome-utils-3.2.1.ebuild,v 1.1 2011/11/06 04:23:12 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/gnome-utils-3.2.1.ebuild,v 1.7 2012/05/05 08:23:09 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2
+inherit autotools eutils gnome2
 
-DESCRIPTION="Utilities for the Gnome2 desktop"
-HOMEPAGE="http://www.gnome.org/"
+DESCRIPTION="Utilities for the Gnome desktop"
+HOMEPAGE="https://live.gnome.org/GnomeUtils"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,8 +30,11 @@ DEPEND="${COMMON_DEPEND}
 	x11-proto/xextproto
 	app-text/scrollkeeper
 	>=dev-util/intltool-0.40
-	>=dev-util/pkgconfig-0.9
-	doc? ( >=dev-util/gtk-doc-1.10 )"
+	virtual/pkgconfig
+	doc? ( >=dev-util/gtk-doc-1.10 )
+	dev-util/gtk-doc-am
+	gnome-base/gnome-common"
+# eautoreconf needs dev-util/gtk-doc-am, gnome-base/gnome-common
 
 # file collisions with g-c-c
 # nautilus is used via dbus
@@ -47,7 +50,6 @@ pkg_setup() {
 	G2CONF="${G2CONF}
 		$(use_enable ipv6)
 		--enable-zlib
-		--disable-maintainer-flags
 		--disable-static
 		--disable-schemas-install
 		--disable-schemas-compile
@@ -56,18 +58,22 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
+	# Fix missing freetype2 headers/libs with gtk+-3.4, bug #411939
+	epatch "${FILESDIR}/${PN}-3.2.1-glib-2.32-gtk-3.4.patch"
+	eautoreconf
 
 	# Remove idiotic -D.*DISABLE_DEPRECATED cflags
 	# This method is kinda prone to breakage. Recheck carefully with next bump.
 	# bug 339074
-	find . -iname 'Makefile.am' -exec \
+	LC_ALL=C find . -iname 'Makefile.am' -exec \
 		sed -e '/-D[A-Z_]*DISABLE_DEPRECATED/d' -i {} + || die "sed 1 failed"
 	# Do Makefile.in after Makefile.am to avoid automake maintainer-mode
-	find . -iname 'Makefile.in' -exec \
-		sed -e '/-D[A-Z_]*DISABLE_DEPRECATED/d' -i {} + || die "sed 1 failed"
+	LC_ALL=C find . -iname 'Makefile.in' -exec \
+		sed -e '/-D[A-Z_]*DISABLE_DEPRECATED/d' -i {} + || die "sed 2 failed"
 
 	if ! use test ; then
-		sed -e 's/ tests//' -i logview/Makefile.{am,in} || die "sed 2 failed"
+		sed -e 's/ tests//' -i logview/Makefile.{am,in} || die "sed 3 failed"
 	fi
+
+	gnome2_src_prepare
 }

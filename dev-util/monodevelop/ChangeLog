@@ -1,6 +1,41 @@
 # ChangeLog for dev-util/monodevelop
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop/ChangeLog,v 1.94 2011/11/23 19:03:02 pacho Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop/ChangeLog,v 1.102 2012/09/16 23:14:32 ago Exp $
+
+  16 Sep 2012; Agostino Sarubbo <ago@gentoo.org> monodevelop-3.0.2-r1.ebuild:
+  Stable for amd64, wrt bug #435202
+
+*monodevelop-3.0.2-r1 (16 Jun 2012)
+
+  16 Jun 2012; Pacho Ramos <pacho@gentoo.org>
+  +files/monodevelop-3.0.2-pc-fix.patch, +monodevelop-3.0.2-r1.ebuild,
+  -monodevelop-3.0.2.ebuild:
+  Fix .pc file.
+
+*monodevelop-3.0.2 (16 Jun 2012)
+
+  16 Jun 2012; Pacho Ramos <pacho@gentoo.org> +monodevelop-3.0.2.ebuild,
+  -monodevelop-2.6.ebuild, -monodevelop-2.8.2.ebuild:
+  Version bump, drop old.
+
+  22 May 2012; Agostino Sarubbo <ago@gentoo.org> monodevelop-2.8.5.1.ebuild:
+  Stable for amd64, wrt bug #407701
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> monodevelop-2.6.ebuild,
+  monodevelop-2.8.2.ebuild, monodevelop-2.8.5.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  09 Apr 2012; Markus Meier <maekke@gentoo.org> monodevelop-2.8.5.1.ebuild:
+  x86 stable, bug #407701
+
+  22 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> monodevelop-2.6.ebuild,
+  monodevelop-2.8.2.ebuild, monodevelop-2.8.5.1.ebuild:
+  Remove net-libs/xulrunner from || () wrt #403415
+
+*monodevelop-2.8.5.1 (22 Jan 2012)
+
+  22 Jan 2012; Pacho Ramos <pacho@gentoo.org> +monodevelop-2.8.5.1.ebuild:
+  Version bump.
 
 *monodevelop-2.8.2 (23 Nov 2011)
 

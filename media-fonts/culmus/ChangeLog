@@ -1,6 +1,27 @@
 # ChangeLog for media-fonts/culmus
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/culmus/ChangeLog,v 1.70 2011/10/18 19:12:48 pva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/culmus/ChangeLog,v 1.77 2012/03/31 17:20:48 armin76 Exp $
+
+  31 Mar 2012; Raúl Porcel <armin76@gentoo.org> culmus-0.120-r3.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #400369
+
+  09 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> culmus-0.120-r3.ebuild:
+  x86 stable wrt bug #400369
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> culmus-0.120-r3.ebuild:
+  Marking culmus-0.120-r3 ppc64 for bug 400369
+
+  02 Mar 2012; Markus Meier <maekke@gentoo.org> culmus-0.120-r3.ebuild:
+  arm stable, bug #400369
+
+  01 Mar 2012; Brent Baude <ranger@gentoo.org> culmus-0.120-r3.ebuild:
+  Marking culmus-0.120-r3 ppc for bug 400369
+
+  27 Feb 2012; Jeroen Roovers <jer@gentoo.org> culmus-0.120-r3.ebuild:
+  Stable for HPPA (bug #400369).
+
+  24 Feb 2012; Agostino Sarubbo <ago@gentoo.org> culmus-0.120-r3.ebuild:
+  Stable for amd64, wrt bug #400369
 
 *culmus-0.120-r3 (18 Oct 2011)
 

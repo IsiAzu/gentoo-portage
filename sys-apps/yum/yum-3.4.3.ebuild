@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/yum/yum-3.4.3.ebuild,v 1.1 2011/08/31 16:21:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/yum/yum-3.4.3.ebuild,v 1.3 2012/04/02 19:54:18 pacho Exp $
 
-EAPI="3"
+EAPI="4"
 PYTHON_DEPEND="2"
 PYTHON_USE_WITH="sqlite"
 
@@ -31,10 +31,15 @@ pkg_setup() {
 	python_pkg_setup
 }
 
+src_prepare() {
+	sed -i -e "s:lib:$(get_libdir):g" rpmUtils/Makefile yum/Makefile || die
+}
+
 src_install() {
-	emake install DESTDIR="${D}" || die
-	rm -r "${ED}etc/rc.d" || die
+	emake install DESTDIR="${D}"
+	rm -r "${ED}etc/rc.d"
 	find "${ED}" -name '*.py[co]' -print0 | xargs -0 rm -f
+	python_convert_shebangs -r -x "${PYTHON_ABI}" "${ED}"
 }
 
 pkg_postinst() {

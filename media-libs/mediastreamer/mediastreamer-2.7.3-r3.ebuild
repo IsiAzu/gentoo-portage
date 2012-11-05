@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mediastreamer/mediastreamer-2.7.3-r3.ebuild,v 1.11 2011/11/06 12:37:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mediastreamer/mediastreamer-2.7.3-r3.ebuild,v 1.13 2012/05/05 08:02:25 jdhore Exp $
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://nongnu/linphone/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ppc ~ppc64 x86 ~x64-macos ~x86-macos"
+KEYWORDS="amd64 ppc ~ppc64 x86 ~x64-macos ~x86-macos"
 # Many cameras will not work or will crash an application if mediastreamer2 is
 # not built with v4l2 support (taken from configure.ac)
 # TODO: run-time test for ipv6: does it really need ortp[ipv6] ?
@@ -41,7 +41,7 @@ RDEPEND=">=net-libs/ortp-0.16.2[ipv6?]
 		X? ( x11-libs/libX11
 			x11-libs/libXv ) )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	x11-proto/videoproto"
 
 PDEPEND="amr? ( !bindist? ( media-plugins/mediastreamer-amr ) )

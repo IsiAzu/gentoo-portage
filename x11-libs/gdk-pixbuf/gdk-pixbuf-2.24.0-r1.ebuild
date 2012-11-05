@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gdk-pixbuf/gdk-pixbuf-2.24.0-r1.ebuild,v 1.10 2011/11/13 11:52:14 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gdk-pixbuf/gdk-pixbuf-2.24.0-r1.ebuild,v 1.15 2012/09/18 09:44:29 tetromino Exp $
 
 EAPI="4"
 
-inherit gnome.org multilib libtool autotools
+inherit eutils gnome.org multilib libtool autotools
 
 DESCRIPTION="Image loading library for GTK+"
 HOMEPAGE="http://www.gtk.org/"
@@ -23,7 +23,7 @@ COMMON_DEPEND="
 	tiff? ( >=media-libs/tiff-3.9.2:0 )
 	X? ( x11-libs/libX11 )"
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	>=sys-devel/gettext-0.17
 	>=dev-util/gtk-doc-am-1.11
 	doc? (
@@ -43,8 +43,6 @@ src_prepare() {
 	# This will avoid polluting the pkg-config file with versioned libpng,
 	# which is causing problems with libpng14 -> libpng15 upgrade
 	sed -i -e 's:libpng15:libpng libpng15:' configure.ac || die
-
-	elibtoolize
 	eautoreconf
 }
 
@@ -77,7 +75,7 @@ pkg_postinst() {
 	# causes segfault if set, see bug 375615
 	unset __GL_NO_DSO_FINALIZER
 
-	tmp_file=$(mktemp --suffix=gdk_pixbuf_ebuild)
+	tmp_file=$(mktemp -t tmp_gdk_pixbuf_ebuild.XXXXXXXXXX)
 	# be atomic!
 	gdk-pixbuf-query-loaders > "${tmp_file}"
 	if [ "${?}" = "0" ]; then

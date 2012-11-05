@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-3.2.1.ebuild,v 1.1 2011/11/04 06:02:36 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-3.2.1.ebuild,v 1.5 2012/05/22 03:18:43 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -29,11 +29,12 @@ RDEPEND="
 	>=net-libs/webkit-gtk-1.3.2:3
 	>=app-arch/xz-utils-4.9
 	app-arch/bzip2
-	dev-db/sqlite:3"
+	dev-db/sqlite:3
+	x11-themes/gnome-icon-theme-symbolic"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.17
 	>=dev-util/intltool-0.41.0
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	gnome-base/gnome-common"
 #	doc? ( >=dev-util/gtk-doc-1.13 )
 # If eautoreconf:

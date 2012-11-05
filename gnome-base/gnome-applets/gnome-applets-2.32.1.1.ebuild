@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.32.1.1.ebuild,v 1.15 2011/11/24 15:09:45 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.32.1.1.ebuild,v 1.21 2012/05/10 09:45:02 tetromino Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
-PYTHON_DEPEND="2:2.4"
+PYTHON_DEPEND="2:2.5"
 
 inherit eutils gnome2 python autotools
 
@@ -31,13 +31,14 @@ RDEPEND=">=x11-libs/gtk+-2.20:2
 	>=dev-libs/libxml2-2.5.0:2
 	>=x11-themes/gnome-icon-theme-2.15.91
 	>=dev-libs/libgweather-2.22.1:2
+	<dev-libs/libgweather-2.91:2
 	x11-libs/libX11
 
 	gnome?	(
 		gnome-base/gnome-settings-daemon
 		gnome-base/libgnome
 
-		>=gnome-extra/gucharmap-2.23
+		>=gnome-extra/gucharmap-2.23:0
 		>=gnome-base/libgtop-2.11.92:2
 
 		>=dev-python/pygobject-2.6:2
@@ -56,7 +57,7 @@ RDEPEND=">=x11-libs/gtk+-2.20:2
 DEPEND="${RDEPEND}
 	>=app-text/scrollkeeper-0.1.4
 	>=app-text/gnome-doc-utils-0.3.2
-	>=dev-util/pkgconfig-0.19
+	virtual/pkgconfig
 	>=dev-util/intltool-0.35
 	dev-libs/libxslt
 	~app-text/docbook-xml-dtd-4.3
@@ -79,8 +80,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
-
 	epatch \
 		"${FILESDIR}"/${P}-libnotify-0.7.patch \
 		"${FILESDIR}"/${P}-underlinking.patch
@@ -89,8 +88,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-dbus-fix.patch
 
 	# disable pyc compiling
-	mv py-compile py-compile.orig
-	ln -s $(type -P true) py-compile
+	echo '#!/bin/sh' > py-compile
 
 	# Invest applet tests need gconf/proxy/...
 	sed 's/^TESTS.*/TESTS=/g' -i invest-applet/invest/Makefile.am \
@@ -100,6 +98,8 @@ src_prepare() {
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
+
+	gnome2_src_prepare
 }
 
 src_test() {

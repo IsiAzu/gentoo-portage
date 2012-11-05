@@ -1,31 +1,36 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/bwidget/bwidget-1.8.0.ebuild,v 1.3 2009/09/06 08:31:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/bwidget/bwidget-1.8.0.ebuild,v 1.5 2012/07/17 11:42:08 jlec Exp $
 
-inherit eutils
+EAPI=4
 
-DESCRIPTION="high-level widget set for Tcl/Tk completely written in Tcl"
+inherit eutils multilib
 
 MY_PN=${PN/bw/BW}
 MY_P=${MY_PN}-${PV}
+
+DESCRIPTION="High-level widget set for Tcl/Tk"
 HOMEPAGE="http://tcllib.sourceforge.net/"
 SRC_URI="mirror://sourceforge/tcllib/${MY_P}.tar.gz"
-IUSE="doc"
+
 LICENSE="BWidget"
 SLOT="0"
 KEYWORDS="~alpha amd64 ~ppc ~ppc64 ~sparc x86"
+IUSE="doc"
 
-DEPEND="dev-lang/tk
-		dev-lang/tcl"
+DEPEND="dev-lang/tk"
+RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
 src_install() {
-	cd ${S}
 	insinto /usr/$(get_libdir)/${P}
 	doins *.tcl
-	cp -R images lang ${D}usr/$(get_libdir)/${P}
-	dodoc ChangeLog LICENSE.txt README.txt
-	cp -R demo ${D}usr/share/doc/${PF}/
+	doins -r images lang
+
+	insinto /usr/share/doc/${PF}/
+	doins -r demo
+	dodoc ChangeLog README.txt
+
 	use doc && dohtml BWman/*
 }

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/rawstudio/rawstudio-2.0.ebuild,v 1.1 2011/10/08 16:47:08 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/rawstudio/rawstudio-2.0.ebuild,v 1.5 2012/09/23 08:53:57 phajdan.jr Exp $
 
 EAPI=4
 inherit autotools eutils
@@ -11,7 +11,7 @@ SRC_URI="http://${PN}.org/files/release/${P}.tar.gz"
 
 LICENSE="GPL-2 CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND="dev-db/sqlite:3
@@ -32,7 +32,7 @@ RDEPEND="dev-db/sqlite:3
 	x11-libs/gtk+:2
 	x11-libs/libX11"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext"
 
 DOCS=( AUTHORS NEWS README TODO )
@@ -40,7 +40,9 @@ DOCS=( AUTHORS NEWS README TODO )
 src_prepare() {
 	find . -name Makefile.am -exec sed -i -e 's:-O4:-Wall:' {} +
 	sed -i -e '/^icondir/s:icons:pixmaps:' pixmaps/Makefile.am || die
-	epatch "${FILESDIR}"/${P}-libpng15.patch
+	epatch \
+		"${FILESDIR}"/${P}-libpng15.patch \
+		"${FILESDIR}"/${P}-g_thread_init.patch
 	eautoreconf
 }
 
@@ -50,5 +52,5 @@ src_configure() {
 
 src_install() {
 	default
-	find "${ED}"usr -name '*.la' -exec rm -f {} +
+	prune_libtool_files --all
 }

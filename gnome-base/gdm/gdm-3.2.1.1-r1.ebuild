@@ -1,22 +1,21 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gdm/gdm-3.2.1.1-r1.ebuild,v 1.1 2011/11/05 08:19:52 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gdm/gdm-3.2.1.1-r1.ebuild,v 1.7 2012/09/27 08:54:42 tetromino Exp $
 
 EAPI="4"
 GNOME2_LA_PUNT="yes"
 GCONF_DEBUG="yes"
 
-inherit autotools eutils gnome2 pam systemd
+inherit autotools eutils gnome2 pam systemd user
 
 DESCRIPTION="GNOME Display Manager"
-HOMEPAGE="http://www.gnome.org/projects/gdm/"
+HOMEPAGE="https://live.gnome.org/GDM"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~sh ~x86"
+KEYWORDS="~amd64 ~sh ~x86"
 
-IUSE_LIBC="elibc_glibc"
-IUSE="accessibility +consolekit fprint +gnome-shell ipv6 gnome-keyring +introspection selinux smartcard tcpd test xinerama +xklavier $IUSE_LIBC"
+IUSE="accessibility +consolekit fprint +gnome-shell ipv6 gnome-keyring +introspection selinux smartcard tcpd test xinerama +xklavier"
 
 # Name of the tarball with gentoo specific files
 GDM_EXTRA="${PN}-3.2.1.1-gentoo-files"
@@ -76,7 +75,7 @@ DEPEND="${COMMON_DEPEND}
 	x11-proto/inputproto
 	x11-proto/randrproto
 	>=dev-util/intltool-0.40.0
-	>=dev-util/pkgconfig-0.19
+	virtual/pkgconfig
 	>=app-text/scrollkeeper-0.1.4
 	>=app-text/gnome-doc-utils-0.3.2"
 # XXX: These deps are from session and desktop files in data/ directory
@@ -85,6 +84,7 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	>=gnome-base/gnome-session-2.91.92
 	x11-apps/xhost
+	x11-themes/gnome-icon-theme-symbolic
 
 	accessibility? (
 		app-accessibility/gnome-mag

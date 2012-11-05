@@ -1,23 +1,23 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-3.0.12-r1.ebuild,v 1.7 2011/10/30 15:50:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-3.0.12-r1.ebuild,v 1.12 2012/10/10 07:44:20 tetromino Exp $
 
 EAPI="4"
 
-inherit eutils flag-o-matic gnome.org gnome2-utils libtool virtualx
+inherit eutils flag-o-matic gnome.org gnome2-utils multilib virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="http://www.gtk.org/"
 SRC_URI="${SRC_URI} http://dev.gentoo.org/~pacho/gnome/${PN}-3.0.12-use-const2.patch.xz"
 
-LICENSE="LGPL-2"
+LICENSE="LGPL-2+"
 SLOT="3"
 # NOTE: This gtk+ has multi-gdk-backend support, see:
 #  * http://blogs.gnome.org/kris/2010/12/29/gdk-3-0-on-mac-os-x/
 #  * http://mail.gnome.org/archives/gtk-devel-list/2010-November/msg00099.html
 # I tried this and got it all compiling, but the end result is unusable as it
 # horribly mixes up the backends -- grobian
-IUSE="aqua cups debug doc examples +introspection test vim-syntax xinerama"
+IUSE="aqua cups debug examples +introspection test vim-syntax xinerama"
 KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 # FIXME: introspection data is built against system installation of gtk+:3
@@ -52,7 +52,7 @@ COMMON_DEPEND="!aqua? (
 	cups? ( net-print/cups )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.1 )"
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	!aqua? (
 		x11-proto/xextproto
 		x11-proto/xproto
@@ -61,9 +61,6 @@ DEPEND="${COMMON_DEPEND}
 	)
 	xinerama? ( x11-proto/xineramaproto )
 	>=dev-util/gtk-doc-am-1.11
-	doc? (
-		>=dev-util/gtk-doc-1.11
-		~app-text/docbook-xml-dtd-4.1.2 )
 	test? (
 		media-fonts/font-misc-misc
 		media-fonts/font-cursor-misc )"
@@ -123,8 +120,7 @@ src_prepare() {
 src_configure() {
 	# FIXME: PackageKit support
 	# png always on to display icons (foser)
-	local myconf="$(use_enable doc gtk-doc)
-		$(use_enable xinerama)
+	local myconf="$(use_enable xinerama)
 		$(use_enable cups cups auto)
 		$(use_enable introspection)
 		--disable-packagekit
@@ -190,5 +186,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome2_schemas_update --uninstall
+	gnome2_schemas_update
 }

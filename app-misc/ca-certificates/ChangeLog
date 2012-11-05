@@ -1,6 +1,53 @@
 # ChangeLog for app-misc/ca-certificates
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.58 2011/10/29 21:46:35 robbat2 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.69 2012/06/28 18:14:34 vapier Exp $
+
+*ca-certificates-20120623 (28 Jun 2012)
+
+  28 Jun 2012; Mike Frysinger <vapier@gentoo.org>
+  +ca-certificates-20120623.ebuild:
+  Version bump #423897 by Manuel Rüger.
+
+*ca-certificates-20120212 (11 May 2012)
+
+  11 May 2012; Mike Frysinger <vapier@gentoo.org>
+  +ca-certificates-20120212.ebuild:
+  Version bump #415395 by Manuel Rüger.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org>
+  ca-certificates-20111025.ebuild:
+  keyword ~amd64-fbsd
+
+  25 Jan 2012; Mike Frysinger <vapier@gentoo.org>
+  ca-certificates-20111025.ebuild:
+  Mark ppc64 stable #394223.
+
+  04 Jan 2012; Brent Baude <ranger@gentoo.org> ca-certificates-20111025.ebuild:
+  Marking ca-certificates-20111025 ppc for bug 394223
+
+  01 Jan 2012; Raúl Porcel <armin76@gentoo.org>
+  ca-certificates-20111025.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #394223
+
+  31 Dec 2011; Mike Frysinger <vapier@gentoo.org>
+  ca-certificates-20111025.ebuild:
+  Block older portages which do not handle unicode filenames in non-unicode
+  locales #394223.
+
+  26 Dec 2011; Markus Meier <maekke@gentoo.org>
+  ca-certificates-20111025.ebuild:
+  arm stable, bug #394223
+
+  22 Dec 2011; Agostino Sarubbo <ago@gentoo.org>
+  ca-certificates-20111025.ebuild:
+  Stable for X86, wrt bug #394223
+
+  12 Dec 2011; Agostino Sarubbo <ago@gentoo.org>
+  ca-certificates-20111025.ebuild:
+  Stable for AMD64, wrt bug #394223
+
+  12 Dec 2011; Jeroen Roovers <jer@gentoo.org> ca-certificates-20111025.ebuild:
+  Stable for HPPA (bug #394223).
 
 *ca-certificates-20111025 (29 Oct 2011)
 

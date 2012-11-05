@@ -1,9 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/openbox/openbox-3.5.0-r1.ebuild,v 1.6 2011/10/18 20:57:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/openbox/openbox-3.5.0-r1.ebuild,v 1.13 2012/08/29 10:52:59 hasufell Exp $
 
 EAPI="2"
-WANT_AUTOMAKE="1.9"
 inherit multilib autotools eutils
 
 DESCRIPTION="A standards compliant, fast, light-weight, extensible window manager"
@@ -12,7 +11,7 @@ SRC_URI="http://openbox.org/dist/openbox/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="3"
-KEYWORDS="~alpha amd64 arm hppa ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="debug imlib nls session startup-notification static-libs"
 
 RDEPEND="dev-libs/glib:2
@@ -28,7 +27,7 @@ RDEPEND="dev-libs/glib:2
 	x11-libs/libXinerama"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	x11-proto/xextproto
 	x11-proto/xf86vidmodeproto
 	x11-proto/xineramaproto"
@@ -37,8 +36,11 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-gnome-session-3.4.9.patch
 	epatch "${FILESDIR}"/${PN}-as-needed.patch
 	epatch "${FILESDIR}"/${P}-configure-imlib2.patch
-	sed -i -e "s:-O0 -ggdb ::" "${S}"/m4/openbox.m4 || die
-	eautopoint
+	sed -i \
+		-e "s:-O0 -ggdb ::" \
+		-e 's/-fno-strict-aliasing//' \
+		"${S}"/m4/openbox.m4 || die
+	epatch_user
 	eautoreconf
 }
 

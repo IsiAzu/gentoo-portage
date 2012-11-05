@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/nxserver-freeedition/nxserver-freeedition-3.5.0.5.ebuild,v 1.3 2011/08/23 17:26:18 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/nxserver-freeedition/nxserver-freeedition-3.5.0.5.ebuild,v 1.5 2012/07/12 08:51:13 voyageur Exp $
 
 EAPI=2
-inherit eutils versionator
+inherit eutils user versionator
 
 MAJOR_PV="$(get_version_component_range 1-3)"
 FULL_PV="${MAJOR_PV}-$(get_version_component_range 4)"
@@ -12,7 +12,8 @@ HOMEPAGE="http://www.nomachine.com/"
 SRC_URI="amd64? ( http://64.34.161.181/download/${MAJOR_PV}/Linux/FE/nxserver-${FULL_PV}.x86_64.tar.gz )
 	x86? ( http://64.34.161.181/download/${MAJOR_PV}/Linux/FE/nxserver-${FULL_PV}.i386.tar.gz )"
 
-LICENSE="nomachine"
+# GPL-2 for Gentoo init script
+LICENSE="nomachine GPL-2"
 SLOT="0"
 KEYWORDS="-* amd64 x86"
 IUSE=""

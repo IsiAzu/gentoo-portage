@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-base/xorg-server/xorg-server-1.9.5-r1.ebuild,v 1.4 2011/10/22 16:57:28 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-base/xorg-server/xorg-server-1.9.5-r1.ebuild,v 1.7 2012/06/12 11:27:07 chithanh Exp $
 
 EAPI=3
-inherit xorg-2 multilib versionator
+inherit flag-o-matic xorg-2 multilib versionator
 
 EGIT_REPO_URI="git://anongit.freedesktop.org/git/xorg/xserver"
 
@@ -119,7 +119,7 @@ pkg_setup() {
 	#	--enable-install-setuid needed because sparcs default off
 	# NOTE: fop is used for doc generating ; and i have no idea if gentoo
 	#	package it somewhere
-	XORG_CONFIGURE_OPTIONS="
+	XORG_CONFIGURE_OPTIONS=(
 		$(use_enable ipv6)
 		$(use_enable dmx)
 		$(use_enable kdrive)
@@ -150,7 +150,8 @@ pkg_setup() {
 		--without-dtrace
 		--without-fop
 		--with-os-vendor=Gentoo
-		${conf_opts}"
+		${conf_opts}
+	)
 
 	# Xorg-server requires includes from OS mesa which are not visible for
 	# users of binary drivers.

@@ -5,6 +5,10 @@
 		<email>redhatter@gentoo.org</email>
 		<name>Stuart Longland</name>
 	</maintainer>
+	<maintainer>
+		<email>tomjbe@gentoo.org</email>
+		<name>Thomas Beierlein</name>
+	</maintainer>
 	<longdescription lang="en">
 		The SvxLink project aim to develop a flexible, general purpose voice
 		services system for ham radio use. The svxlink server consists of a core

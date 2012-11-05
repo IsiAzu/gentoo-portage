@@ -1,6 +1,36 @@
 # ChangeLog for dev-tcltk/togl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/togl/ChangeLog,v 1.19 2011/08/15 17:15:10 jlec Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/togl/ChangeLog,v 1.29 2012/05/29 14:40:02 aballier Exp $
+
+  29 May 2012; Alexis Ballier <aballier@gentoo.org> togl-2.0-r2.ebuild:
+  keyword ~amd64-fbsd
+
+  25 Feb 2012; Justin Lecher <jlec@gentoo.org> -togl-2.0-r1.ebuild:
+  Cleaned old
+
+  24 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> togl-2.0-r2.ebuild:
+  ppc64 stable wrt #400345
+
+  19 Feb 2012; Raúl Porcel <armin76@gentoo.org> togl-2.0-r2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #400345
+
+  08 Feb 2012; Markus Meier <maekke@gentoo.org> togl-2.0-r2.ebuild:
+  arm stable, bug #400345
+
+  07 Feb 2012; Jeroen Roovers <jer@gentoo.org> togl-2.0-r2.ebuild:
+  Stable for HPPA (bug #400345).
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> togl-2.0-r2.ebuild:
+  Marking togl-2.0-r2 ppc for bug 400345
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> togl-2.0-r2.ebuild:
+  x86 stable wrt bug #400345
+
+  27 Jan 2012; Agostino Sarubbo <ago@gentoo.org> togl-2.0-r2.ebuild:
+  Stable for amd64, wrt bug #400345
+
+  24 Jan 2012; Justin Lecher <jlec@gentoo.org> togl-2.0-r2.ebuild:
+  Drop pipe from CFLAGS
 
 *togl-2.0-r2 (15 Aug 2011)
 

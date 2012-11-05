@@ -1,6 +1,29 @@
 # ChangeLog for dev-python/jinja
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja/ChangeLog,v 1.54 2011/10/23 16:29:14 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja/ChangeLog,v 1.60 2012/05/09 00:15:37 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> jinja-2.6.ebuild:
+  keyword ~amd64-fbsd
+
+  01 May 2012; Kacper Kowalik <xarthisius@gentoo.org> -jinja-2.5.5.ebuild,
+  jinja-2.6.ebuild:
+  Fix building docs with python3 wrt #410873 by Ian Abbott <ian@abbott.org>.
+  Thanks to Arfrever and Ian Delaney for solution and patch respectively. Drop
+  old
+
+  10 Mar 2012; Justin Lecher <jlec@gentoo.org> jinja-2.6.ebuild, metadata.xml:
+  Move to EAPI=4 and import pypy fixes from progress overlay, thanks Arfrever
+  for the work
+
+  21 Feb 2012; Patrick Lauer <patrick@gentoo.org> jinja-2.5.5.ebuild,
+  jinja-2.6.ebuild:
+  Restricting pypy
+
+  13 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> jinja-2.6.ebuild:
+  ppc64 stable wrt #386053
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> jinja-2.6.ebuild:
+  Marking jinja-2.6 ppc for bug 386053
 
   23 Oct 2011; Raúl Porcel <armin76@gentoo.org> jinja-2.6.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #386053

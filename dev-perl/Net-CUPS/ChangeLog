@@ -1,6 +1,29 @@
 # ChangeLog for dev-perl/Net-CUPS
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-CUPS/ChangeLog,v 1.34 2011/09/04 11:23:40 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-CUPS/ChangeLog,v 1.40 2012/08/24 22:21:00 dilfridge Exp $
+
+*Net-CUPS-0.610.0-r1 (24 Aug 2012)
+
+  24 Aug 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  Net-CUPS-0.610.0.ebuild, +Net-CUPS-0.610.0-r1.ebuild,
+  +files/Net-CUPS-0.610.0-cups16.patch:
+  Add patch by Jiří Popelka to fix build against cups-1.6, bug 428740
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  03 Jun 2012; Torsten Veller <tove@gentoo.org> -Net-CUPS-0.59.ebuild:
+  Cleanup
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> Net-CUPS-0.59.ebuild,
+  Net-CUPS-0.610.0.ebuild:
+  Drop ia64 keywords
+
+  09 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> Net-CUPS-0.610.0.ebuild:
+  x86 stable wrt bug #400179
+
+  24 Feb 2012; Agostino Sarubbo <ago@gentoo.org> Net-CUPS-0.610.0.ebuild:
+  Stable for amd64, wrt bug #400179
 
   04 Sep 2011; Torsten Veller <tove@gentoo.org> -Net-CUPS-0.61.ebuild:
   Cleanup
@@ -130,4 +153,3 @@
 
   12 Dec 2005; <mcumming@gentoo.org> +metadata.xml, +Net-CUPS-0.37.ebuild:
   Dep for podbrowser for cups support
-

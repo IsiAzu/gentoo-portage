@@ -1,6 +1,57 @@
 # ChangeLog for media-plugins/gst-plugins-ffmpeg
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-ffmpeg/ChangeLog,v 1.132 2011/11/04 09:44:04 ford_prefect Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-ffmpeg/ChangeLog,v 1.143 2012/09/20 12:49:36 xarthisius Exp $
+
+  20 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r2.ebuild:
+  ppc64 stable wrt #422537
+
+  23 Aug 2012; Michael Weber <xmw@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r2.ebuild:
+  ppc stable (bug 422537).
+
+  01 Aug 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r2.ebuild:
+  x86 stable wrt bug #422537
+
+  19 Jul 2012; Markus Meier <maekke@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r2.ebuild:
+  arm stable, bug #422537
+
+  27 Jun 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r1.ebuild:
+  Revert the -r1 to use the internal version. It was commited accidentaly, the
+  change was ment only for -r2.
+
+  22 Jun 2012; Agostino Sarubbo <ago@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r2.ebuild:
+  Stable for amd64, wrt bug #422537
+
+  20 Jun 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r2.ebuild:
+  Depend on postproc too, thanks to Diego.
+
+*gst-plugins-ffmpeg-0.10.13-r2 (20 Jun 2012)
+
+  20 Jun 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +gst-plugins-ffmpeg-0.10.13-r2.ebuild, gst-plugins-ffmpeg-0.10.13-r1.ebuild:
+  Revision bump the latest to use system ffmpeg like old version did. Remove the
+  patch for 4.7 which patched only libav code, same goes for hardened useflag.
+  Add some elog informations for ffmpeg users informing about upstream using
+  libav.
+
+  15 Jun 2012; Justin Lecher <jlec@gentoo.org>
+  gst-plugins-ffmpeg-0.10.13-r1.ebuild, +files/0.10.13-gcc-4.7.patch,
+  metadata.xml:
+  Add fix for gcc-4.7: #407741, move to EAPI=4
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  gst-plugins-ffmpeg-0.10.9.ebuild, gst-plugins-ffmpeg-0.10.11-r1.ebuild,
+  gst-plugins-ffmpeg-0.10.12.ebuild, gst-plugins-ffmpeg-0.10.13-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  02 Apr 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop from metadata as gnome team doesn't maintain this at all now.
 
 *gst-plugins-ffmpeg-0.10.13-r1 (04 Nov 2011)
 

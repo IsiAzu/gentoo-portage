@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-1.1.2.ebuild,v 1.5 2011/10/23 17:23:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-1.1.2.ebuild,v 1.10 2012/05/09 00:06:38 aballier Exp $
 
 EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
@@ -13,10 +13,11 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~hppa ia64 ~mips ~ppc ~ppc64 s390 sh sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="doc examples test"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
+IUSE="coverage doc examples test"
 
-RDEPEND="dev-python/setuptools"
+RDEPEND="coverage? ( dev-python/coverage )
+	dev-python/setuptools"
 DEPEND="${RDEPEND}
 	doc? ( >=dev-python/sphinx-0.6 )
 	test? ( dev-python/twisted )"

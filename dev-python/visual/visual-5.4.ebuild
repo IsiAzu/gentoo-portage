@@ -1,14 +1,14 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/visual/visual-5.4.ebuild,v 1.4 2011/01/15 15:41:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/visual/visual-5.4.ebuild,v 1.9 2012/05/04 15:12:14 patrick Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.* *-jython"
+RESTRICT_PYTHON_ABIS="3.* *-jython 2.7-pypy-*"
 PYTHON_EXPORT_PHASE_FUNCTIONS="1"
 
-inherit flag-o-matic python versionator
+inherit flag-o-matic multilib python versionator
 
 MY_P="${PN}-$(delete_version_separator 2)_release"
 
@@ -21,14 +21,14 @@ SLOT="0"
 KEYWORDS="amd64 ppc x86"
 LICENSE="visual"
 
-RDEPEND=">=dev-libs/boost-1.41.0[python]
+RDEPEND="<dev-libs/boost-1.48[python]
 	dev-cpp/libglademm
 	>=dev-cpp/gtkglextmm-1.2
 	dev-python/numpy"
 #	dev-python/polygon
 #	>=dev-python/ttfquery-1.0.4
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S="${WORKDIR}/${MY_P}"
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.40 2011/08/29 01:28:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.42 2012/06/02 19:16:31 zmedico Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -17,7 +17,7 @@
 # $S (this is where the working copy of source is held) and $DL instead of $D as
 # its installation point.
 
-inherit flag-o-matic eutils
+inherit flag-o-matic eutils multilib
 
 # The environment is set locally in src_compile and src_install functions
 # by the common code sourced here and in gnat-eselect module.

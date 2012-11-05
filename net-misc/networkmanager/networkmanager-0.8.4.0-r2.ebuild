@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/networkmanager/networkmanager-0.8.4.0-r2.ebuild,v 1.7 2011/11/20 10:06:51 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/networkmanager/networkmanager-0.8.4.0-r2.ebuild,v 1.11 2012/10/28 21:27:32 tetromino Exp $
 
 EAPI="3"
 GNOME_ORG_MODULE="NetworkManager"
@@ -10,7 +10,7 @@ inherit autotools eutils gnome.org linux-info systemd
 DESCRIPTION="Network configuration and management in an easy way. Desktop environment independent."
 HOMEPAGE="http://www.gnome.org/projects/NetworkManager/"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="amd64 ~arm ppc ppc64 x86"
 IUSE="avahi bluetooth doc nss gnutls dhclient dhcpcd kernel_linux +ppp resolvconf connection-sharing"
@@ -35,7 +35,7 @@ RDEPEND=">=sys-apps/dbus-1.2
 	!gnutls? ( >=dev-libs/nss-3.11 )
 	dhclient? (
 		dhcpcd? ( >=net-misc/dhcpcd-4.0.0_rc3 )
-		!dhcpcd? ( net-misc/dhcp ) )
+		!dhcpcd? ( net-misc/dhcp[client] ) )
 	!dhclient? ( >=net-misc/dhcpcd-4.0.0_rc3 )
 	resolvconf? ( net-dns/openresolv )
 	connection-sharing? (
@@ -43,7 +43,7 @@ RDEPEND=">=sys-apps/dbus-1.2
 		net-firewall/iptables )"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	dev-util/intltool
 	doc? ( >=dev-util/gtk-doc-1.8 )"
 
@@ -78,6 +78,8 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-shared-connection.patch"
 	epatch "${FILESDIR}/${P}-fix-tests.patch"
 	epatch "${FILESDIR}/${P}-ifnet-smarter-write.patch"
+	# Fix building against linux-headers-3.4, #417055
+	epatch "${FILESDIR}/${PN}-0.9.4.0-ip_ppp.h.patch"
 	eautoreconf
 }
 

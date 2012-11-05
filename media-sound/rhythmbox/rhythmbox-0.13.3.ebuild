@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/rhythmbox/rhythmbox-0.13.3.ebuild,v 1.5 2011/06/09 01:21:35 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/rhythmbox/rhythmbox-0.13.3.ebuild,v 1.10 2012/10/26 07:17:45 eva Exp $
 
 EAPI="3"
-PYTHON_DEPEND="python? 2:2.4"
+PYTHON_DEPEND="python? 2:2.5"
 
 inherit eutils gnome2 python multilib virtualx
 
@@ -28,10 +28,10 @@ COMMON_DEPEND=">=dev-libs/glib-2.26:2
 	>=net-libs/libsoup-2.26:2.4
 	>=net-libs/libsoup-gnome-2.26:2.4
 
-	>=media-libs/gst-plugins-base-0.10.20
+	>=media-libs/gst-plugins-base-0.10.20:0.10
 	|| (
-		>=media-libs/gst-plugins-base-0.10.24
-		>=media-libs/gst-plugins-bad-0.10.6 )
+		>=media-libs/gst-plugins-base-0.10.24:0.10
+		>=media-libs/gst-plugins-bad-0.10.6:0.10 )
 
 	app-misc/media-player-info
 
@@ -59,7 +59,7 @@ COMMON_DEPEND=">=dev-libs/glib-2.26:2
 		>=dev-python/gconf-python-2.22
 		>=dev-python/libgnome-python-2.22
 		>=dev-python/gnome-keyring-python-2.22
-		>=dev-python/gst-python-0.10.8
+		>=dev-python/gst-python-0.10.8:0.10
 		webkit? (
 			dev-python/mako
 			dev-python/pywebkitgtk )
@@ -68,19 +68,18 @@ COMMON_DEPEND=">=dev-libs/glib-2.26:2
 	webkit? ( >=net-libs/webkit-gtk-1.1.7:2 )
 "
 RDEPEND="${COMMON_DEPEND}
-	>=media-plugins/gst-plugins-soup-0.10
-	>=media-plugins/gst-plugins-libmms-0.10
+	>=media-plugins/gst-plugins-soup-0.10:0.10
+	>=media-plugins/gst-plugins-libmms-0.10:0.10
 	|| (
-		>=media-plugins/gst-plugins-cdparanoia-0.10
-		>=media-plugins/gst-plugins-cdio-0.10 )
+		>=media-plugins/gst-plugins-cdparanoia-0.10:0.10
+		>=media-plugins/gst-plugins-cdio-0.10:0.10 )
 	>=media-plugins/gst-plugins-meta-0.10-r2:0.10
-	>=media-plugins/gst-plugins-taglib-0.10.6
-	nsplugin? ( net-libs/xulrunner )
+	>=media-plugins/gst-plugins-taglib-0.10.6:0.10
 "
 # gtk-doc-am needed for eautoreconf
 #	dev-util/gtk-doc-am
 DEPEND="${COMMON_DEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	>=dev-util/intltool-0.40
 	app-text/scrollkeeper
 	>=app-text/gnome-doc-utils-0.9.1
@@ -153,8 +152,7 @@ src_prepare() {
 	gnome2_src_prepare
 
 	# disable pyc compiling
-	mv py-compile py-compile.orig
-	ln -s $(type -P true) py-compile
+	echo > py-compile
 }
 
 src_compile() {

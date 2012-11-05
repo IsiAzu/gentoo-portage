@@ -1,6 +1,29 @@
 # ChangeLog for sys-boot/plymouth
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/plymouth/ChangeLog,v 1.20 2011/11/02 13:07:17 aidecoe Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/plymouth/ChangeLog,v 1.25 2012/05/03 04:50:13 jdhore Exp $
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> plymouth-0.8.3-r5.ebuild,
+  plymouth-0.8.4.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  23 Apr 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  a3li is the new maintainer (as discussed in #gentoo-dev).
+
+  18 Apr 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> metadata.xml:
+  Dropped my maintainership.
+
+*plymouth-0.8.4 (25 Mar 2012)
+
+  25 Mar 2012; Alex Legler <a3li@gentoo.org>
+  -files/0.9_pre20111013-gentoo-fb-path.patch, +plymouth-0.8.4.ebuild,
+  -plymouth-0.9_pre20111013-r1.ebuild:
+  Version bump. Removing 0.9 pre snapshot as upstream decided to go on with the
+  0.8 series.
+
+  13 Mar 2012; Amadeusz Żołnowski <aidecoe@gentoo.org>
+  plymouth-0.8.3-r5.ebuild, plymouth-0.9_pre20111013-r1.ebuild:
+  Disable tracing by default and enable it with 'debug' flag only.
+  Fixes bug #407365.
 
   02 Nov 2011; Amadeusz Żołnowski <aidecoe@gentoo.org>
   plymouth-0.9_pre20111013-r1.ebuild:

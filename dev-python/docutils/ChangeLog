@@ -1,6 +1,57 @@
 # ChangeLog for dev-python/docutils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.144 2011/10/31 19:55:31 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.159 2012/10/07 00:44:32 floppym Exp $
+
+  07 Oct 2012; Mike Gilbert <floppym@gentoo.org> docutils-0.8.1.ebuild,
+  docutils-0.9.1.ebuild, docutils-0.9.ebuild:
+  Restrict python 3.3 based on testing by Arfrever.
+
+  25 Aug 2012; Mike Gilbert <floppym@gentoo.org> docutils-0.9.1.ebuild:
+  Cleanup some overly complex code.
+
+  24 Aug 2012; Mike Gilbert <floppym@gentoo.org> docutils-0.9.1.ebuild:
+  Fix tests when run with python 3. Bug 432546.
+
+  24 Aug 2012; Mike Gilbert <floppym@gentoo.org> docutils-0.9.1.ebuild:
+  Call die if pkg_preinst is not removed on the next bump.
+
+  24 Aug 2012; Mike Gilbert <floppym@gentoo.org> docutils-0.9.1.ebuild:
+  Remove unneeded setuptools. Please drop pkg_preinst on the next version bump.
+
+*docutils-0.9.1 (24 Aug 2012)
+
+  24 Aug 2012; Patrick Lauer <patrick@gentoo.org> +docutils-0.9.1.ebuild:
+  Bump
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> docutils-0.9.ebuild:
+  keyword ~amd64-fbsd, bug #415191
+
+  08 May 2012; Mike Gilbert <floppym@gentoo.org> docutils-0.9.ebuild:
+  Synchronize with ebuild from Progress Overlay. Patch by Arfrever. Drop
+  amd64-fbsd keyword due to dependency on dev-python/pygments.
+
+  08 May 2012; Mike Gilbert <floppym@gentoo.org> docutils-0.9.ebuild:
+  Remove obsolete comment.
+
+  08 May 2012; Kacper Kowalik <xarthisius@gentoo.org> -docutils-0.7.ebuild:
+  Drop old
+
+  08 May 2012; Kacper Kowalik <xarthisius@gentoo.org> docutils-0.8.1.ebuild:
+  ppc/ppc64 stable wrt #386065
+
+  08 May 2012; Dirkjan Ochtman <djc@gentoo.org> -docutils-0.8.ebuild:
+  Remove old version.
+
+*docutils-0.9 (08 May 2012)
+
+  08 May 2012; Dirkjan Ochtman <djc@gentoo.org> +docutils-0.9.ebuild:
+  Version bump to 0.9.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> docutils-0.8.1.ebuild:
+  keyword ~amd64-fbsd
+
+  03 Dec 2011; Markos Chandras <hwoarang@gentoo.org> docutils-0.7.ebuild:
+  Update LICENSE. Patch by Arfrever.
 
   31 Oct 2011; Markos Chandras <hwoarang@gentoo.org> docutils-0.8.1.ebuild:
   Ignore tests failures with Jython. Patch by Arfrever.
@@ -577,4 +628,3 @@
   New package.  Marking stable on x86 because (a) there are no other
   versions in the tree, and (b) if this package is broken it won't break
   anything else.
-

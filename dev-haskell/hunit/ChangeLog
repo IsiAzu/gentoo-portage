@@ -1,6 +1,42 @@
 # ChangeLog for dev-haskell/hunit
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.44 2011/11/10 11:03:07 naota Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.53 2012/09/14 12:31:57 gienah Exp $
+
+*hunit-1.2.5.1 (14 Sep 2012)
+
+  14 Sep 2012; Mark Wright <gienah@gentoo.org> +hunit-1.2.5.1.ebuild:
+  Bump hunit to 1.2.5.1
+
+  12 Sep 2012; Alexander Vershilov <qnikst@gentoo.org> hunit-1.2.0.3.ebuild,
+  hunit-1.2.2.1.ebuild, hunit-1.2.2.3.ebuild, hunit-1.2.4.2.ebuild,
+  hunit-1.2.4.3.ebuild:
+  move dev-haskell/hunit/hunit-1.2.4.2.ebuild ebuild to mirror://hackage
+
+  20 Aug 2012; Christoph Junghans <ottxor@gentoo.org> hunit-1.2.4.3.ebuild:
+  added prefix keywords
+
+*hunit-1.2.4.3 (17 Jun 2012)
+
+  17 Jun 2012; Mark Wright <gienah@gentoo.org> +hunit-1.2.4.3.ebuild,
+  metadata.xml:
+  Bump hunit to 1.2.4.3
+
+  05 May 2012; Sergei Trofimovich <slyfox@gentoo.org> hunit-1.2.4.2.ebuild:
+  alpha/ia64/ppc64/sparc stable (bug #404637)
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> hunit-1.2.4.2.ebuild:
+  Marking hunit-1.2.4.2 ppc for bug 404637
+
+  05 Apr 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> hunit-1.2.4.2.ebuild:
+  x86 stable wrt bug #404637
+
+  28 Mar 2012; Agostino Sarubbo <ago@gentoo.org> hunit-1.2.4.2.ebuild:
+  Stable for amd64, wrt bug #404637
+
+*hunit-1.2.4.2 (04 Dec 2011)
+
+  04 Dec 2011; Sergei Trofimovich <slyfox@gentoo.org> +hunit-1.2.4.2.ebuild:
+  Version bump.
 
   10 Nov 2011; Naohiro Aota <naota@gentoo.org> hunit-1.2.2.3.ebuild:
   Add ~x86-fbsd
@@ -153,4 +189,3 @@
 
   11 Mar 2007; <kolmodin@gentoo.org> +metadata.xml, +hunit-1.1.ebuild:
   Dummy package, see bug 151012
-

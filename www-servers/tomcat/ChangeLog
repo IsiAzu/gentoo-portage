@@ -1,6 +1,186 @@
 # ChangeLog for www-servers/tomcat
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.268 2011/11/13 15:02:17 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.300 2012/10/31 02:45:37 ottxor Exp $
+
+  31 Oct 2012; Christoph Junghans <ottxor@gentoo.org> tomcat-7.0.32.ebuild:
+  added prefix keywords
+
+*tomcat-7.0.32 (29 Oct 2012)
+*tomcat-6.0.36 (29 Oct 2012)
+
+  29 Oct 2012; Miroslav Šulc <fordfrog@gentoo.org> +tomcat-6.0.36.ebuild,
+  +files/tomcat-6.0.36-build.xml.patch, +tomcat-7.0.32.ebuild,
+  +files/tomcat-7.0.32-build.xml.patch:
+  version bump
+
+*tomcat-7.0.30 (06 Sep 2012)
+
+  06 Sep 2012; Miroslav Šulc <fordfrog@gentoo.org> +tomcat-7.0.30.ebuild,
+  +files/tomcat-7.0.30-build.xml.patch:
+  version bump
+
+  24 Aug 2012; Michael Weber <xmw@gentoo.org> tomcat-7.0.27.ebuild:
+  ppc stable (bug 414375).
+
+  25 Jul 2012; Ralph Sennhauser <sera@gentoo.org> files/tomcat.init:
+  Pass to vm instead of catalina in init script. Thanks to Märt Bakhoff
+  <spam3910807@gmail.com> #427664
+
+*tomcat-7.0.29-r1 (20 Jul 2012)
+*tomcat-6.0.35-r1 (20 Jul 2012)
+
+  20 Jul 2012; Ralph Sennhauser <sera@gentoo.org> +tomcat-6.0.35-r1.ebuild,
+  +files/tomcat-6.0.35-build.xml.patch, +tomcat-7.0.29-r1.ebuild,
+  +files/tomcat-7.0.29-build.xml.patch, +files/tomcat.conf, +files/tomcat.init,
+  +files/tomcat-instance-manager.bash, metadata.xml:
+  Full rewrite.
+  Add tomcat-instance-manager.bash to convienintly create and remove multiple
+  instances.
+  Don't symlink jars but use java-config as appropriate.
+  Migrate init script to baselayout2 including major cleanup.
+  Add use extra-webapps to build and install the docs and examples web apps.
+  Use USE=doc for javadocs.
+  Major cleanup of the ebuild, like dropping elog massages obsolete for ages.
+  Don't copy manager and host-manager to catalina base but use a shared
+  instance in catalina home which gets updated with a package
+  update.
+  Actually install sources if requested.
+  Initial Gentoo Prefix support.
+  #180519 : don kill ROOT application
+  #191611 : init script improvements
+  #254526 : emerge --config, implemented with tomcat-instance-manager.bash
+  #283273, #363931 : build docs and examples 
+  #309211 : handling of manager / host-manager
+  #333153 : arbitrary classpath per instance
+  #381693 : init fails with non existent CATALINA_TMPDIR
+  #406285, #411597 : support multiple instances
+  #407979 : fails if /run is tmpfs
+  #420383 : forces invalid java compiler
+
+*tomcat-7.0.29 (08 Jul 2012)
+
+  08 Jul 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.29-build-xml.patch, +tomcat-7.0.29.ebuild:
+  version bump
+
+*tomcat-7.0.28 (19 Jun 2012)
+
+  19 Jun 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.28-build-xml.patch, +tomcat-7.0.28.ebuild:
+  Version bump
+
+  04 Jun 2012; Johannes Huber <johu@gentoo.org> tomcat-7.0.27.ebuild:
+  Stable for x86, wrt bug #414375
+
+  02 May 2012; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.27.ebuild:
+  Stable for amd64, wrt bug #414375
+
+*tomcat-7.0.27 (05 Apr 2012)
+
+  05 Apr 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.27-build-xml.patch, +tomcat-7.0.27.ebuild:
+  Version bump
+
+  25 Mar 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/7/7.0.25-build-xml.patch, -tomcat-6.0.32-r1.ebuild,
+  -tomcat-7.0.25.ebuild:
+  Removed obsolete versions
+
+  25 Mar 2012; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.26.ebuild:
+  Stable for amd64, wrt bug #409609
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-6.0.35.ebuild:
+  Marking tomcat-6.0.35 ppc64 for bug 395933
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-7.0.23-r3.ebuild:
+  Marking tomcat-7.0.23-r3 ppc64 for bug 395933
+
+  10 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-6.0.35.ebuild:
+  Marking tomcat-6.0.35 ppc for bug 395933
+
+  10 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-7.0.23-r3.ebuild:
+  Marking tomcat-7.0.23-r3 ppc for bug 395923
+
+  23 Feb 2012; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.25.ebuild:
+  Stable for amd64, wrt bug #405307
+
+*tomcat-7.0.26 (22 Feb 2012)
+
+  22 Feb 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.26-build-xml.patch, +tomcat-7.0.26.ebuild:
+  Version bump
+
+*tomcat-7.0.25 (21 Jan 2012)
+
+  21 Jan 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.25-build-xml.patch, +tomcat-7.0.25.ebuild:
+  Version bump
+
+  06 Jan 2012; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-6.0.33.ebuild:
+  Removed old version
+
+  04 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> tomcat-6.0.35.ebuild:
+  x86 stable wrt bug #395933
+
+  30 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/7/7.0.22-build-xml.patch, -tomcat-7.0.22-r1.ebuild:
+  Removed old version
+
+  24 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-6.0.35.ebuild:
+  Stable for AMD64, wrt bug #395933
+
+  24 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.23-r3.ebuild:
+  Stable for AMD64, wrt bug #395923
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/5.5/26-main_tomcat_catalina_jasper_build_xml.patch,
+  -tomcat-5.5.27-r5.ebuild, -files/5.5/5.5.27-dynamic-JSSE13Factory.patch,
+  -files/5.5/build-jspc-classpath.patch, -files/5.5/catalina.policy,
+  -files/5.5/examples-cal.patch,
+  -files/5.5/jsr152_jsr154_examples_build_xml.patch, -files/5.5/tomcat.conf.2,
+  -files/5.5/tomcat.init.2, -tomcat-5.5.27-r4.ebuild, metadata.xml:
+  Tomcat 5.5 moved from main tree to java-overlay because it's heading towards
+  its EOL in 2012-09-30. Also the current version (5.5.27) is affected by
+  several security issues and it is unmaintained in our main tree. If you need
+  to use Tomcat 5.5, please use the ebuilds from java-overlay.
+
+*tomcat-7.0.23-r3 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23-r2.ebuild,
+  +tomcat-7.0.23-r3.ebuild:
+  Removed the doc symlink because copying of doc is handled in post_inst.
+
+*tomcat-6.0.35 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> +files/6/tomcat.init.4,
+  +tomcat-6.0.35.ebuild:
+  Version bump. This release fixes CVE-2011-3190. Also fixed issue with
+  documentation installation (bug #357437, thanks to Matt O
+  <locke105@gmail.com> for the fix). Also fixed warnings from init script.
+
+*tomcat-7.0.23-r2 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23-r1.ebuild,
+  +tomcat-7.0.23-r2.ebuild:
+  Fixed installation of documentation (bug #393511, thanks to ron widler
+  <ron@einfach.org> for the fix). Also added symlink to docs to catalina base
+  webapps which fixes display of documentation from Tomcat default web app.
+
+*tomcat-7.0.23-r1 (15 Dec 2011)
+
+  15 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23.ebuild,
+  +tomcat-7.0.23-r1.ebuild:
+  Fixed bug with storing SESSIONS.ser in work directory. It cannot be symlink
+  because tomcat by default does not allow working with symlink paths.
+
+  14 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.22-r1.ebuild:
+  Stable for AMD64, wrt bug #392393
+
+*tomcat-7.0.23 (29 Nov 2011)
+
+  29 Nov 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.23-build-xml.patch, +tomcat-7.0.23.ebuild:
+  Version bump
 
   13 Nov 2011; Markus Meier <maekke@gentoo.org> tomcat-6.0.33.ebuild:
   x86 stable, bug #388131
@@ -1745,4 +1925,3 @@
    
   14 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> tomcat-3.2.2.ebuild :
   Added KEYWORDS, SLOT.
-

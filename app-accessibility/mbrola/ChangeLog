@@ -1,6 +1,21 @@
 # ChangeLog for app-accessibility/mbrola
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-accessibility/mbrola/ChangeLog,v 1.53 2011/11/23 02:04:45 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-accessibility/mbrola/ChangeLog,v 1.58 2012/03/06 21:31:21 ranger Exp $
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> mbrola-3.0.1h-r6.ebuild:
+  Marking mbrola-3.0.1h-r6 ppc64 for bug 391419
+
+  14 Feb 2012; Brent Baude <ranger@gentoo.org> mbrola-3.0.1h-r6.ebuild:
+  Marking mbrola-3.0.1h-r6 ppc for bug 391419
+
+  14 Dec 2011; Agostino Sarubbo <ago@gentoo.org> mbrola-3.0.1h-r6.ebuild:
+  Stable for AMD64, wrt bug #391419
+
+  04 Dec 2011; Raúl Porcel <armin76@gentoo.org> mbrola-3.0.1h-r6.ebuild:
+  alpha/ia64/sparc stable wrt #391419
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> mbrola-3.0.1h-r6.ebuild:
+  x86 stable wrt bug #391419
 
   23 Nov 2011; Jeroen Roovers <jer@gentoo.org> mbrola-3.0.1h-r6.ebuild:
   Stable for HPPA (bug #391419).

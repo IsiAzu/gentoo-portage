@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/vice/vice-2.3.ebuild,v 1.4 2011/10/24 04:12:24 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/vice/vice-2.3.ebuild,v 1.8 2012/10/28 16:57:30 hwoarang Exp $
 
 EAPI=2
-inherit autotools eutils games
+inherit autotools eutils games toolchain-funcs
 
 DESCRIPTION="The Versatile Commodore 8-bit Emulator"
 HOMEPAGE="http://vice-emu.sourceforge.net/"
@@ -11,7 +11,7 @@ SRC_URI="http://www.zimmers.net/anonftp/pub/cbm/crossplatform/emulators/VICE/${P
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc x86"
+KEYWORDS="amd64 ~ppc ~sparc x86"
 IUSE="Xaw3d alsa gnome nls png readline sdl ipv6 memmap ethernet oss zlib X gif jpeg xv dga xrandr ffmpeg lame pulseaudio"
 
 RDEPEND="
@@ -47,7 +47,7 @@ RDEPEND="
 	dga? ( x11-libs/libXxf86dga )
 	xrandr? ( x11-libs/libXrandr )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	x11-apps/bdftopcf
 	x11-apps/mkfontdir
 	x11-proto/xproto
@@ -58,7 +58,9 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-notexi.patch
+	epatch \
+		"${FILESDIR}"/${P}-notexi.patch \
+		"${FILESDIR}"/${P}-libav.patch
 	sed -i \
 		-e "s:/usr/local/lib/VICE:${GAMES_DATADIR}/${PN}:" \
 		man/vice.1 \
@@ -79,7 +81,7 @@ src_prepare() {
 src_configure() {
 	# don't try to actually run fc-cache (bug #280976)
 	FCCACHE=/bin/true \
-	PKG_CONFIG=pkg-config \
+	PKG_CONFIG=$(tc-getPKG_CONFIG) \
 	egamesconf \
 		--disable-dependency-tracking \
 		--enable-fullscreen \

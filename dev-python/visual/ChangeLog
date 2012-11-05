@@ -1,6 +1,62 @@
 # ChangeLog for dev-python/visual
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/visual/ChangeLog,v 1.48 2011/01/15 18:21:07 arfrever Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/visual/ChangeLog,v 1.61 2012/07/07 19:19:25 floppym Exp $
+
+  07 Jul 2012; Mike Gilbert <floppym@gentoo.org>
+  +files/visual-5.74-boost-1.50.patch, visual-5.74.ebuild:
+  Fix build failure with Boost 1.50. Patch by Arfrever.
+
+  18 Jun 2012; Mike Gilbert <floppym@gentoo.org> visual-5.74.ebuild:
+  Remove workarounds due to changes in build system upstream. Thanks Arfrever.
+
+*visual-5.74 (18 Jun 2012)
+
+  18 Jun 2012; Patrick Lauer <patrick@gentoo.org> +visual-5.74.ebuild:
+  Bump
+
+  14 Jun 2012; Jeff Horelick <jdhore@gentoo.org> visual-5.72-r2.ebuild:
+  marked x86 per bug 413815
+
+  23 May 2012; Agostino Sarubbo <ago@gentoo.org> visual-5.72-r2.ebuild:
+  Stable for amd64, wrt bug #413815
+
+  04 May 2012; Patrick Lauer <patrick@gentoo.org> visual-5.4.ebuild,
+  visual-5.72-r2.ebuild:
+  Migrating dev-util/pkgconfig -> virtual/pkgconfig
+
+*visual-5.72-r2 (16 Mar 2012)
+
+  16 Mar 2012; Sébastien Fabbro <bicatali@gentoo.org> -visual-5.72.ebuild,
+  -visual-5.72-r1.ebuild, +visual-5.72-r2.ebuild:
+  Dependency on polygon:2 only
+
+  25 Feb 2012; Patrick Lauer <patrick@gentoo.org> visual-5.4.ebuild,
+  visual-5.72-r1.ebuild, visual-5.72.ebuild:
+  Fixing accidental double asterisk
+
+  24 Feb 2012; Patrick Lauer <patrick@gentoo.org> visual-5.72-r1.ebuild,
+  visual-5.72.ebuild:
+  Restricting py 2.5
+
+  20 Feb 2012; Patrick Lauer <patrick@gentoo.org> visual-5.4.ebuild,
+  visual-5.72-r1.ebuild, visual-5.72.ebuild:
+  Fixing pypy restricts to actually work
+
+  01 Feb 2012; Mike Gilbert <floppym@gentoo.org> visual-5.4.ebuild,
+  visual-5.72-r1.ebuild, visual-5.72.ebuild:
+  Inherit multilib.
+
+*visual-5.72-r1 (28 Jan 2012)
+
+  28 Jan 2012; Mike Gilbert <floppym@gentoo.org> +visual-5.72-r1.ebuild,
+  visual-5.4.ebuild, visual-5.72.ebuild:
+  Prepare for PYTHON_ABI-versioned Boost Python libraries in Boost 1.48. Patch
+  by Arfrever.
+
+*visual-5.72 (05 Jan 2012)
+
+  05 Jan 2012; Sébastien Fabbro <bicatali@gentoo.org> +visual-5.72.ebuild:
+  Tentative bump. Dropped ppc with xarthisius blessing
 
   15 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   -visual-5.3.2.ebuild:
@@ -196,4 +252,3 @@
 
   01 Jun 2005; <tercel@gentoo.org> +metadata.xml, +visual-3.2.1.ebuild:
   Initial commit.
-

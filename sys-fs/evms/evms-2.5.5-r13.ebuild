@@ -1,16 +1,16 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/evms/evms-2.5.5-r13.ebuild,v 1.1 2011/10/18 17:16:11 reavertm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/evms/evms-2.5.5-r13.ebuild,v 1.4 2012/05/24 04:17:33 vapier Exp $
 
 EAPI=4
 
-inherit autotools-utils flag-o-matic toolchain-funcs linux-info
+inherit autotools-utils flag-o-matic toolchain-funcs linux-info eutils
 
-PATCHVER="${PV}-3"
+PATCHVER="${PV}-4"
 
 DESCRIPTION="Utilities for the IBM Enterprise Volume Management System"
 HOMEPAGE="http://www.sourceforge.net/projects/evms"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz mirror://gentoo/${PN}-patches-${PATCHVER}.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz mirror://gentoo/${PN}-patches-${PATCHVER}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -32,7 +32,7 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
-	ncurses? ( dev-util/pkgconfig )
+	ncurses? ( virtual/pkgconfig )
 "
 
 # While the test-concept holds, many of them fail due to unknown reasons.

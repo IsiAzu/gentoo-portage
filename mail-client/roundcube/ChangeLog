@@ -1,6 +1,120 @@
 # ChangeLog for mail-client/roundcube
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/roundcube/ChangeLog,v 1.60 2011/11/04 16:15:07 nativemad Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-client/roundcube/ChangeLog,v 1.90 2012/10/16 16:37:50 radhermit Exp $
+
+*roundcube-0.8.2 (16 Oct 2012)
+
+  16 Oct 2012; Tim Harder <radhermit@gentoo.org> +roundcube-0.8.2.ebuild:
+  Version bump.
+
+  02 Oct 2012; Markus Meier <maekke@gentoo.org> roundcube-0.8.1.ebuild:
+  arm stable, bug #434378
+
+  18 Sep 2012; Andreas Schuerch <nativemad@gentoo.org> roundcube-0.8.1.ebuild:
+  x86 stable, see bug 434378
+
+  15 Sep 2012; Agostino Sarubbo <ago@gentoo.org> roundcube-0.8.1.ebuild:
+  Stable for amd64, wrt bug #434378
+
+  09 Sep 2012; Ole Markus With <olemarkus@gentoo.org> roundcube-0.7.2.ebuild:
+  Removed dependency of php[sqlite] since it is being implicitly pulled in
+  (correctly) by the MDB2 dependency
+
+*roundcube-0.8.1 (18 Aug 2012)
+*roundcube-0.7.3 (18 Aug 2012)
+
+  18 Aug 2012; Tim Harder <radhermit@gentoo.org> +roundcube-0.7.3.ebuild,
+  +roundcube-0.8.1.ebuild:
+  Version bumps.
+
+  10 Aug 2012; Tim Harder <radhermit@gentoo.org> -roundcube-0.7.1.ebuild,
+  -roundcube-0.8_rc.ebuild:
+  Remove old.
+
+*roundcube-0.8.0 (10 Aug 2012)
+
+  10 Aug 2012; Tim Harder <radhermit@gentoo.org> +roundcube-0.8.0.ebuild:
+  Version bump.
+
+  02 Jul 2012; Jeroen Roovers <jer@gentoo.org> roundcube-0.7.2.ebuild,
+  roundcube-0.8_rc.ebuild:
+  Marked ~hppa too.
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> roundcube-0.7.2.ebuild:
+  Marking roundcube-0.7.2 ppc for bug 412029
+
+  05 Jun 2012; Brent Baude <ranger@gentoo.org> roundcube-0.7.2.ebuild:
+  Marking roundcube-0.7.2 ppc64 for bug 412029
+
+  29 May 2012; Tim Harder <radhermit@gentoo.org> -roundcube-0.8_beta.ebuild:
+  Remove old.
+
+*roundcube-0.8_rc (29 May 2012)
+
+  29 May 2012; Tim Harder <radhermit@gentoo.org> +roundcube-0.8_rc.ebuild:
+  Version bump. Drop sqlite USE flag until sqlite3 is supported.
+
+  22 Apr 2012; Markus Meier <maekke@gentoo.org> roundcube-0.7.2.ebuild:
+  x86 stable, bug #412029
+
+  16 Apr 2012; Markus Meier <maekke@gentoo.org> roundcube-0.7.2.ebuild:
+  arm stable, bug #412029
+
+  15 Apr 2012; Agostino Sarubbo <ago@gentoo.org> roundcube-0.7.2.ebuild:
+  Stable for amd64, wrt bug #412029
+
+*roundcube-0.7.2 (12 Mar 2012)
+
+  12 Mar 2012; Tim Harder <radhermit@gentoo.org> +roundcube-0.7.2.ebuild:
+  Version bump.
+
+*roundcube-0.8_beta (09 Mar 2012)
+
+  09 Mar 2012; Tim Harder <radhermit@gentoo.org> +roundcube-0.8_beta.ebuild:
+  Version bump.
+
+  08 Mar 2012; Tim Harder <radhermit@gentoo.org> -roundcube-0.6.ebuild:
+  Remove old.
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> roundcube-0.7.1.ebuild:
+  Marking roundcube-0.7.1 ppc64 for bug 403711
+
+  06 Mar 2012; Tim Harder <radhermit@gentoo.org> -roundcube-0.5.4.ebuild,
+  -roundcube-0.7.ebuild, -files/postinstall-en.txt:
+  Remove old.
+
+  03 Mar 2012; Markus Meier <maekke@gentoo.org> roundcube-0.7.1.ebuild:
+  arm stable, bug #403711
+
+  28 Feb 2012; Brent Baude <ranger@gentoo.org> roundcube-0.7.1.ebuild:
+  Marking roundcube-0.7.1 ppc for bug 403711
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> roundcube-0.7.1.ebuild:
+  x86 stable wrt bug #403711
+
+  17 Feb 2012; Agostino Sarubbo <ago@gentoo.org> roundcube-0.7.1.ebuild:
+  Stable for amd64, wrt bug #403711
+
+  05 Feb 2012; Raúl Porcel <armin76@gentoo.org> roundcube-0.6.ebuild,
+  roundcube-0.7.ebuild, roundcube-0.7.1.ebuild:
+  Add ~sparc wrt #385255
+
+*roundcube-0.7.1 (15 Jan 2012)
+
+  15 Jan 2012; Tim Harder <radhermit@gentoo.org> +roundcube-0.7.1.ebuild:
+  Version bump.
+
+*roundcube-0.7 (15 Dec 2011)
+
+  15 Dec 2011; Tim Harder <radhermit@gentoo.org> +roundcube-0.7.ebuild:
+  Version bump (bug #394705). Update to EAPI 4 and remove bundled php libs to
+  use system versions.
+
+  08 Dec 2011; Markus Meier <maekke@gentoo.org> roundcube-0.6.ebuild:
+  add ~arm, bug #385255
+
+  25 Nov 2011; Kacper Kowalik <xarthisius@gentoo.org> roundcube-0.6.ebuild:
+  ppc/ppc64 stable wrt #389807
 
   05 Nov 2011; Andreas Schuerch <nativemad@gentoo.org> roundcube-0.6.ebuild:
   x86 stable, see bug 388613
@@ -249,4 +363,3 @@
   02 Jan 2009; Benedikt Böhm <hollow@gentoo.org> +files/postinstall-en.txt,
   +metadata.xml, +roundcube-0.2.ebuild:
   initial commit
-

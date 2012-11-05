@@ -1,6 +1,50 @@
 # ChangeLog for net-wireless/iw
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/ChangeLog,v 1.45 2011/11/14 13:14:45 gurligebis Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/ChangeLog,v 1.56 2012/10/17 03:30:18 zerochaos Exp $
+
+*iw-3.7 (17 Oct 2012)
+
+  17 Oct 2012; Rick Farina <zerochaos@gentoo.org> +iw-3.7.ebuild:
+  bump
+
+*iw-3.6 (15 Aug 2012)
+
+  15 Aug 2012; Rick Farina <zerochaos@gentoo.org> +iw-3.6.ebuild:
+  bump
+
+  01 Jul 2012; Rick Farina <zerochaos@gentoo.org> metadata.xml:
+  adding myself as co-maintainer per GurliGebis
+
+*iw-3.5 (01 Jul 2012)
+
+  01 Jul 2012; Rick Farina <zerochaos@gentoo.org> +iw-3.5.ebuild:
+  version bump to 3.5 after quick functionality check
+
+  29 May 2012; Brent Baude <ranger@gentoo.org> iw-3.3.ebuild:
+  Marking iw-3.3 ppc for bug 412381
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> iw-0.9.17.ebuild,
+  iw-0.9.22.ebuild, iw-3.2.ebuild, iw-3.3.ebuild, iw-3.4.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  22 Apr 2012; Markus Meier <maekke@gentoo.org> iw-3.3.ebuild:
+  x86 stable, bug #412381
+
+  22 Apr 2012; Markus Meier <maekke@gentoo.org> iw-3.3.ebuild:
+  arm stable, bug #412381
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> iw-3.3.ebuild:
+  Stable for amd64, wrt bug #412381
+
+*iw-3.4 (17 Apr 2012)
+
+  17 Apr 2012; Jeroen Roovers <jer@gentoo.org> +iw-3.4.ebuild:
+  Version bump.
+
+*iw-3.3 (07 Feb 2012)
+
+  07 Feb 2012; Jeroen Roovers <jer@gentoo.org> +iw-3.3.ebuild:
+  Version bump.
 
   14 Nov 2011; <gurligebis@gentoo.org> iw-3.2.ebuild:
   Changing dependency to not require libnl-1.1 but any version.
@@ -193,4 +237,3 @@
   +iw-0_p20080605.ebuild:
   Initial version of iw for aircrack-ng, ebuild contributions by Roel Aaij and
   Pierre Guinoiseau, bug 233285.
-

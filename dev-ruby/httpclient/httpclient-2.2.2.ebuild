@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/httpclient/httpclient-2.2.2.ebuild,v 1.1 2011/10/17 06:35:21 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/httpclient/httpclient-2.2.2.ebuild,v 1.10 2012/05/21 10:17:12 phajdan.jr Exp $
 
 EAPI=4
 
-USE_RUBY="ruby18 ree18 ruby19 jruby"
+USE_RUBY="ruby18 ree18 jruby"
 
 RUBY_FAKEGEM_TASK_TEST="-Ilib test"
 RUBY_FAKEGEM_TASK_DOC="doc"
@@ -23,7 +23,7 @@ RUBY_S="nahi-httpclient-*"
 LICENSE="Ruby"
 SLOT="0"
 
-KEYWORDS="~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND="${RDEPEND}
@@ -36,6 +36,13 @@ ruby_add_bdepend "doc? ( dev-ruby/rdoc )"
 all_ruby_prepare () {
 	rm Gemfile || die
 	sed -i -e '/[bB]undler/s:^:#:' Rakefile || die
+
+	# Comment out harmless test failures with ruby 1.8, bug 411191
+	sed -i -e '228,268 s:^:#:' test/test_http-access2.rb || die
+
+	# Comment out test requiring network access that makes assumptions
+	# about the environment, bug 395155
+	sed -i -e '/test_async_error/,/^  end/ s:^:#:' test/test_httpclient.rb || die
 }
 
 each_ruby_prepare() {
@@ -51,4 +58,8 @@ each_ruby_prepare() {
 		*)
 			;;
 	esac
+}
+
+each_ruby_test() {
+	${RUBY} -Ilib -S testrb test/test_*.rb || die
 }

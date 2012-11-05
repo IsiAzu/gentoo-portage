@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/cheese/cheese-3.2.2.ebuild,v 1.1 2011/11/16 22:11:18 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/cheese/cheese-3.2.2.ebuild,v 1.5 2012/10/25 20:48:15 eva Exp $
 
 EAPI="4"
 GNOME2_LA_PUNT="yes"
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.gnome.org/projects/cheese/"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="doc +introspection"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~alpha ~amd64 ~ppc ~x86"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.28.0:2
@@ -41,21 +41,21 @@ COMMON_DEPEND="
 
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7 )"
 RDEPEND="${COMMON_DEPEND}
-	>=media-libs/gst-plugins-bad-0.10.19
-	>=media-libs/gst-plugins-good-0.10.16
-	media-plugins/gst-plugins-jpeg
-	>=media-plugins/gst-plugins-ogg-0.10.20
-	>=media-plugins/gst-plugins-pango-0.10.20
-	>=media-plugins/gst-plugins-theora-0.10.20
-	>=media-plugins/gst-plugins-v4l2-0.10
-	>=media-plugins/gst-plugins-vorbis-0.10.20
-	|| ( >=media-plugins/gst-plugins-x-0.10
-		>=media-plugins/gst-plugins-xvideo-0.10 )"
+	>=media-libs/gst-plugins-bad-0.10.19:0.10
+	>=media-libs/gst-plugins-good-0.10.16:0.10
+	media-plugins/gst-plugins-jpeg:0.10
+	>=media-plugins/gst-plugins-ogg-0.10.20:0.10
+	>=media-plugins/gst-plugins-pango-0.10.20:0.10
+	>=media-plugins/gst-plugins-theora-0.10.20:0.10
+	media-plugins/gst-plugins-v4l2:0.10
+	>=media-plugins/gst-plugins-vorbis-0.10.20:0.10
+	|| ( media-plugins/gst-plugins-x:0.10
+		media-plugins/gst-plugins-xvideo:0.10 )"
 DEPEND="${COMMON_DEPEND}
 	>=dev-lang/vala-0.13.2:0.14
 	>=app-text/gnome-doc-utils-0.20
 	>=dev-util/intltool-0.40
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	x11-proto/xf86vidmodeproto
 	app-text/docbook-xml-dtd:4.3
 	doc? ( >=dev-util/gtk-doc-1.14 )"

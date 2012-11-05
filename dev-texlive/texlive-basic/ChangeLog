@@ -1,6 +1,53 @@
 # ChangeLog for dev-texlive/texlive-basic
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-basic/ChangeLog,v 1.55 2011/11/07 13:41:01 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-basic/ChangeLog,v 1.68 2012/10/03 18:08:30 ulm Exp $
+
+  03 Oct 2012; Ulrich Müller <ulm@gentoo.org> texlive-basic-2011-r1.ebuild,
+  texlive-basic-2012.ebuild:
+  "as-is" license cleanup, bug 436698.
+
+*texlive-basic-2012 (27 Jul 2012)
+
+  27 Jul 2012; Alexis Ballier <aballier@gentoo.org>
+  +files/texmfcnflua2012.patch, +texlive-basic-2012.ebuild:
+  Bump to TeX Live 2012.
+
+  19 Jun 2012; Alexis Ballier <aballier@gentoo.org> -texlive-basic-2010.ebuild:
+  remove old
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org>
+  texlive-basic-2011-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> texlive-basic-2011-r1.ebuild:
+  ia64/s390/sh/sparc stable wrt #395735
+
+  04 Mar 2012; Tobias Klausmann <klausman@gentoo.org>
+  texlive-basic-2011-r1.ebuild:
+  Stable on alpha, bug #395735
+
+  03 Mar 2012; Brent Baude <ranger@gentoo.org> texlive-basic-2011-r1.ebuild:
+  Marking texlive-basic-2011-r1 ppc64 stable for bug 395735
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> texlive-basic-2011-r1.ebuild:
+  Marking texlive-basic-2011-r1 ppc stable for bug 395735
+
+  29 Jan 2012; Markus Meier <maekke@gentoo.org> texlive-basic-2011-r1.ebuild:
+  arm stable, bug #395735
+
+  17 Jan 2012; Alexis Ballier <aballier@gentoo.org>
+  texlive-basic-2011-r1.ebuild:
+  make the tl-langcjk block a hard block for bug #399149
+
+  17 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  texlive-basic-2011-r1.ebuild:
+  x86 stable wrt bug #395735
+
+  16 Jan 2012; Agostino Sarubbo <ago@gentoo.org> texlive-basic-2011-r1.ebuild:
+  Stable for amd64, wrt bug #395735
+
+  28 Dec 2011; Jeroen Roovers <jer@gentoo.org> texlive-basic-2011-r1.ebuild:
+  Stable for HPPA (bug #395735).
 
   07 Nov 2011; Alexis Ballier <aballier@gentoo.org> -texlive-basic-2011.ebuild:
   remove old

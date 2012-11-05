@@ -1,39 +1,38 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/vdr-pvr350/vdr-pvr350-1.7.3.ebuild,v 1.1 2011/09/15 13:26:33 hd_brummy Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/vdr-pvr350/vdr-pvr350-1.7.3.ebuild,v 1.3 2012/06/28 17:36:45 mr_bones_ Exp $
 
-EAPI="3"
+EAPI="4"
 
-inherit vdr-plugin eutils
+inherit vdr-plugin-2
 
-IUSE="yaepg"
+VERSION="995"
 
 DESCRIPTION="VDR plugin: use a PVR350 as output device"
-HOMEPAGE="http://drseltsam.device.name/vdr/pvr/src/pvr350/"
-SRC_URI="http://drseltsam.device.name/vdr/pvr/src/pvr350/${P}.tgz"
+HOMEPAGE="http://projects.vdr-developer.org/projects/plg-pvr350"
+SRC_URI="mirror://vdr-developerorg/${VERSION}/${P}.tgz"
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86"
-
-S="${WORKDIR}/${P#vdr-}"
+IUSE="yaepg"
 
 DEPEND=">=media-video/vdr-1.6.0
 	media-sound/mpg123
 	media-sound/twolame
-	media-libs/a52dec"
+	media-libs/a52dec
+	yaepg? ( >=media-video/vdr-1.6.0[yaepg] )"
 RDEPEND="${DEPEND}"
 
 DEPEND="${DEPEND}
 	|| ( >=sys-kernel/linux-headers-2.6.38 )"
 
+S="${WORKDIR}/${P#vdr-}"
+
 pkg_setup() {
-	vdr-plugin_pkg_setup
+	vdr-plugin-2_pkg_setup
 
 	if use yaepg; then
-		elog "Checking for patched vdr"
-		grep -q fontYaepg /usr/include/vdr/font.h
-		eend $? "You need to emerge vdr with use-flag yaepg set!" || die "Unpatched vdr detected!"
-
 		BUILD_PARAMS="SET_VIDEO_WINDOW=1"
 	fi
 }

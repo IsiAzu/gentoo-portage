@@ -1,12 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-accessibility/sphinx3/sphinx3-0.8.ebuild,v 1.1 2011/11/17 17:45:56 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-accessibility/sphinx3/sphinx3-0.8.ebuild,v 1.4 2012/05/23 23:02:36 vapier Exp $
 
 EAPI=3
 PYTHON_DEPEND="python? 2:2.6"
 SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.* *-jython"
 
-inherit autotools-utils prefix python
+inherit autotools-utils prefix python eutils
 
 DESCRIPTION="CMU Speech Recognition engine"
 HOMEPAGE="http://cmusphinx.sourceforge.net/"
@@ -20,20 +21,16 @@ IUSE="doc python static-libs"
 DEPEND=">=app-accessibility/sphinxbase-0.7[static-libs?,python?]"
 RDEPEND="${DEPEND}"
 
-RESTRICT_PYTHON_ABIS="3*"
+# Due to generated Python setup.py.
+AUTOTOOLS_IN_SOURCE_BUILD=1
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}_heap_fix.patch"
 	eprefixify 'python/setup.py'
 }
 
-src_configure() {
-	econf \
-		$( use_enable static-libs static )
-}
-
 src_compile() {
-	default
+	autotools-utils_src_compile
 
 	if use python; then
 		python_copy_sources python
@@ -47,9 +44,8 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
-
-	dodoc AUTHORS ChangeLog NEWS README
+	local DOCS=( AUTHORS ChangeLog NEWS README )
+	autotools-utils_src_install
 
 	if use doc; then
 		cd doc
@@ -57,7 +53,6 @@ src_install() {
 	fi
 
 	if use python; then
-
 		installing() {
 			"$(PYTHON)" setup.py install \
 				--install-lib="${D}/$(python_get_sitedir)"
@@ -65,6 +60,4 @@ src_install() {
 
 		python_execute_function -s --source-dir python installing
 	fi
-
-	remove_libtool_files
 }

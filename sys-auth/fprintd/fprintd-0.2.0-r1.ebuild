@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/fprintd/fprintd-0.2.0-r1.ebuild,v 1.1 2011/11/14 00:45:15 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/fprintd/fprintd-0.2.0-r1.ebuild,v 1.4 2012/05/15 07:15:40 xmw Exp $
 
 EAPI=4
 
 inherit autotools toolchain-funcs versionator
 
-DESCRIPTION="D-Bus to offer libfprint functionality"
+DESCRIPTION="D-Bus service to access fingerprint readers"
 HOMEPAGE="http://cgit.freedesktop.org/libfprint/fprintd/"
 MY_PV="V_$(replace_all_version_separators _)"
 SRC_URI="http://cgit.freedesktop.org/libfprint/${PN}/snapshot/${MY_PV}.tar.bz2"
@@ -23,6 +23,7 @@ RDEPEND="dev-libs/dbus-glib
 	pam? ( sys-libs/pam )"
 DEPEND="${RDEPEND}
 	dev-util/gtk-doc
+	dev-util/gtk-doc-am
 	dev-util/intltool
 	doc? ( dev-libs/libxml2 dev-libs/libxslt )"
 

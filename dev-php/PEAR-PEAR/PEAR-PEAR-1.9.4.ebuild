@@ -1,14 +1,14 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.4.ebuild,v 1.1 2011/11/02 12:32:44 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.4.ebuild,v 1.10 2012/09/09 16:03:48 armin76 Exp $
 
 EAPI="4"
 
-inherit depend.php
+inherit depend.php eutils
 
 PEAR="${PV}"
 
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 s390 sh sparc x86 ~amd64-linux ~ia64-linux ~x86-linux ~x64-macos ~x86-macos"
 
 DESCRIPTION="PEAR Base System"
 HOMEPAGE="http://pear.php.net/package/PEAR"
@@ -21,6 +21,8 @@ DEPEND="|| ( <dev-lang/php-5.3[pcre] >=dev-lang/php-5.3 )
 		dev-lang/php[cli,xml,zlib]"
 
 RDEPEND="${DEPEND}"
+
+PDEPEND="dev-php/pear"
 
 S="${WORKDIR}"
 

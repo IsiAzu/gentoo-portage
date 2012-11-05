@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-3.2.1.ebuild,v 1.1 2011/11/06 02:05:58 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-3.2.1.ebuild,v 1.4 2012/05/05 05:38:07 jdhore Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="no" # bug 340725, no other la files
-PYTHON_DEPEND="2:2.4"
+PYTHON_DEPEND="2:2.5"
 
 inherit eutils gnome2 python
 
@@ -55,7 +55,7 @@ RDEPEND=">=x11-libs/gtk+-3.0.0:3
 DEPEND="${RDEPEND}
 	>=app-text/scrollkeeper-0.1.4
 	>=app-text/gnome-doc-utils-0.3.2
-	>=dev-util/pkgconfig-0.19
+	virtual/pkgconfig
 	>=dev-util/intltool-0.35
 	dev-libs/libxslt
 	app-text/docbook-xml-dtd:4.1.2
@@ -84,8 +84,7 @@ src_prepare() {
 	gnome2_src_prepare
 
 	# disable pyc compiling
-	mv py-compile py-compile.orig
-	ln -s $(type -P true) py-compile
+	echo '#!/bin/sh' > py-compile
 
 	# Invest applet tests need gconf/proxy/...
 	# Note: for now, invest tests are commented out by upstream

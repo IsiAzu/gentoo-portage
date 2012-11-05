@@ -1,6 +1,29 @@
 # ChangeLog for dev-util/suse-build
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/suse-build/ChangeLog,v 1.3 2011/08/15 09:04:56 miska Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/suse-build/ChangeLog,v 1.6 2012/10/02 11:17:27 scarabeus Exp $
+
+*suse-build-2012.09.27 (02 Oct 2012)
+
+  02 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +suse-build-2012.09.27.ebuild, -suse-build-2011.01.20-r1.ebuild,
+  -suse-build-2011.09.26-r1.ebuild, suse-build-9999.ebuild:
+  Version bump to latest. Cleanup older. Polish the ebuild a bit.
+
+*suse-build-2011.09.26-r1 (30 Jul 2012)
+*suse-build-2011.01.20-r1 (30 Jul 2012)
+
+  30 Jul 2012; Michal Hrusecky <miska@gentoo.org>
+  -suse-build-2011.01.20.ebuild, +suse-build-2011.01.20-r1.ebuild,
+  -suse-build-2011.09.26.ebuild, +suse-build-2011.09.26-r1.ebuild,
+  suse-build-9999.ebuild:
+  Fixed sed in ebuild that was correcting paths making package work again
+
+*suse-build-2011.09.26 (07 Mar 2012)
+
+  07 Mar 2012; Michal Hrusecky <miska@gentoo.org> +suse-build-2011.09.26.ebuild,
+  metadata.xml, suse-build-2011.01.20.ebuild, suse-build-9999.ebuild:
+  * added new version 2011.09.26 * added co-maintainer * migrated to use obs-
+  download eclass
 
   08 Jul 2011; Michal Hrusecky <miska@gentoo.org> suse-build-2011.01.20.ebuild,
   suse-build-9999.ebuild:
@@ -16,4 +39,3 @@
   +suse-build-2011.01.20.ebuild, +suse-build-9999.ebuild, +metadata.xml:
   New ebuild for suse-build. Ebuild written by me. Dependency for osc - bug
   #350599
-

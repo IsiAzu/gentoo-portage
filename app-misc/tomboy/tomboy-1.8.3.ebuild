@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tomboy/tomboy-1.8.3.ebuild,v 1.1 2011/11/20 16:16:42 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tomboy/tomboy-1.8.3.ebuild,v 1.6 2012/08/18 12:22:16 xmw Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -13,8 +13,8 @@ HOMEPAGE="http://projects.gnome.org/tomboy/"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="+applet eds test"
+KEYWORDS="amd64 ppc x86"
+IUSE="eds test"
 # galago support dropped due upstream bug #660244
 
 RDEPEND="app-text/gtkspell:2
@@ -27,21 +27,18 @@ RDEPEND="app-text/gtkspell:2
 	dev-libs/atk
 	gnome-base/gconf:2
 	x11-libs/gtk+:2
-	applet? ( dev-dotnet/gnome-sharp:2
-		dev-dotnet/gnome-panel-sharp:2
-		gnome-base/gnome-panel[bonobo] )
 	eds? ( dev-libs/gmime:2.4[mono] )"
 #	galago? ( dev-dotnet/galago-sharp )"
 DEPEND="${RDEPEND}
 	app-text/gnome-doc-utils
 	app-text/rarian
 	dev-util/intltool
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext"
 
 pkg_setup() {
 	G2CONF="${G2CONF}
-		$(use_enable applet panel-applet)
+		--disable-panel-applet
 		$(use_enable eds evolution)
 		$(use_enable test tests)
 		--disable-galago

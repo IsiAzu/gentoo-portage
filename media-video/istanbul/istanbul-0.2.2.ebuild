@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/istanbul/istanbul-0.2.2.ebuild,v 1.8 2011/04/25 21:30:47 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/istanbul/istanbul-0.2.2.ebuild,v 1.10 2012/10/25 20:50:59 eva Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
@@ -17,14 +17,14 @@ SLOT=0
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=media-libs/gst-plugins-base-0.10.8
+RDEPEND=">=media-libs/gst-plugins-base-0.10.8:0.10
 	>=dev-python/pygtk-2.6
-	>=gnome-base/gconf-2.0
-	>=dev-python/gst-python-0.10.0
-	=media-plugins/gst-plugins-ogg-0.10*
-	=media-plugins/gst-plugins-theora-0.10*
+	>=gnome-base/gconf-2
+	dev-python/gst-python:0.10
+	media-plugins/gst-plugins-ogg:0.10
+	media-plugins/gst-plugins-theora:0.10
 	>=media-libs/libtheora-1.0_alpha6[encode]
-	=media-plugins/gst-plugins-gconf-0.10*
+	media-plugins/gst-plugins-gconf:0.10
 	dev-python/python-xlib
 
 	>=dev-python/egg-python-2.11.3
@@ -32,7 +32,7 @@ RDEPEND=">=media-libs/gst-plugins-base-0.10.8
 	>=dev-python/gconf-python-2"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35.0
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	python_set_active_version 2

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/bbweather/bbweather-0.6.3.ebuild,v 1.3 2011/04/16 17:51:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bbweather/bbweather-0.6.3.ebuild,v 1.6 2012/03/24 17:13:07 jer Exp $
 
 EAPI=2
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.netmeister.org/apps/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~sparc ~x86"
+KEYWORDS="~amd64 ~hppa ppc ~x86"
 IUSE=""
 
 DEPEND="dev-lang/perl
@@ -24,8 +24,10 @@ RDEPEND="${DEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-asneeded.patch
-	sed -i -e "s/man_DATA/man1_MANS/" \
-		-e "/^mandir/d" doc/Makefile.am || die
+	gunzip doc/*.gz || die
+	sed -i doc/Makefile.am \
+		-e "s:man_DATA:man1_MANS:;s:.gz::g;/^mandir/d" \
+		|| die
 	eautoreconf
 }
 

@@ -1,6 +1,109 @@
 # ChangeLog for media-gfx/pngcrush
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/ChangeLog,v 1.75 2011/11/11 09:22:59 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/ChangeLog,v 1.99 2012/10/25 09:24:00 radhermit Exp $
+
+*pngcrush-1.7.41 (25 Oct 2012)
+
+  25 Oct 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.41.ebuild:
+  Version bump.
+
+*pngcrush-1.7.40 (23 Oct 2012)
+
+  23 Oct 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.40.ebuild:
+  Version bump.
+
+*pngcrush-1.7.38 (03 Oct 2012)
+
+  03 Oct 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.38.ebuild:
+  Version bump.
+
+*pngcrush-1.7.37 (02 Sep 2012)
+
+  02 Sep 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.37.ebuild:
+  Version bump.
+
+  27 Aug 2012; Tim Harder <radhermit@gentoo.org> -pngcrush-1.7.25.ebuild,
+  -pngcrush-1.7.28.ebuild, -pngcrush-1.7.33.ebuild:
+  Remove old.
+
+  27 Aug 2012; Johannes Huber <johu@gentoo.org> pngcrush-1.7.35.ebuild:
+  Stable for x86, wrt bug #432732
+
+  26 Aug 2012; Agostino Sarubbo <ago@gentoo.org> pngcrush-1.7.35.ebuild:
+  Stable for amd64, wrt bug #431732
+
+  01 Aug 2012; Tim Harder <radhermit@gentoo.org> -pngcrush-1.7.27.ebuild,
+  -pngcrush-1.7.31.ebuild, -pngcrush-1.7.32.ebuild:
+  Remove old.
+
+*pngcrush-1.7.35 (01 Aug 2012)
+
+  01 Aug 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.35.ebuild:
+  Version bump.
+
+*pngcrush-1.7.33 (25 Jul 2012)
+
+  25 Jul 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.33.ebuild:
+  Version bump.
+
+*pngcrush-1.7.32 (24 Jul 2012)
+
+  24 Jul 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.32.ebuild:
+  Version bump.
+
+*pngcrush-1.7.31 (11 Jul 2012)
+
+  11 Jul 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.31.ebuild:
+  Version bump.
+
+  30 Jun 2012; Tim Harder <radhermit@gentoo.org> -pngcrush-1.7.24.ebuild:
+  Remove old.
+
+*pngcrush-1.7.28 (30 Jun 2012)
+
+  30 Jun 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.28.ebuild:
+  Version bump.
+
+  02 Jun 2012; Johannes Huber <johu@gentoo.org> pngcrush-1.7.25.ebuild:
+  Stable for x86, wrt bug #419069
+
+  02 Jun 2012; Agostino Sarubbo <ago@gentoo.org> pngcrush-1.7.25.ebuild:
+  Stable for amd64, wrt bug #419069
+
+*pngcrush-1.7.27 (31 May 2012)
+
+  31 May 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.27.ebuild:
+  Version bump.
+
+  03 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -pngcrush-1.7.20.ebuild,
+  -pngcrush-1.7.22.ebuild, -pngcrush-1.7.23.ebuild:
+  old
+
+*pngcrush-1.7.25 (03 Mar 2012)
+
+  03 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> +pngcrush-1.7.25.ebuild:
+  Version bump.
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> pngcrush-1.7.24.ebuild:
+  x86 stable wrt bug #405079
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> pngcrush-1.7.24.ebuild:
+  Stable for amd64, wrt bug #405079
+
+*pngcrush-1.7.24 (24 Jan 2012)
+
+  24 Jan 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.24.ebuild:
+  Version bump.
+
+*pngcrush-1.7.23 (11 Jan 2012)
+
+  11 Jan 2012; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.23.ebuild:
+  Version bump.
+
+*pngcrush-1.7.22 (08 Dec 2011)
+
+  08 Dec 2011; Tim Harder <radhermit@gentoo.org> +pngcrush-1.7.22.ebuild:
+  Version bump.
 
   11 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> pngcrush-1.7.20.ebuild:
   x86 stable wrt bug #389567

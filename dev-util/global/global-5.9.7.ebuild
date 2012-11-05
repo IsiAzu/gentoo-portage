@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/global/global-5.9.7.ebuild,v 1.1 2011/08/08 18:45:32 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/global/global-5.9.7.ebuild,v 1.3 2012/09/09 16:02:29 armin76 Exp $
 
 EAPI="4"
 
@@ -8,11 +8,11 @@ inherit elisp-common
 
 DESCRIPTION="GNU Global is a tag system to find the locations of a specified object in various sources."
 HOMEPAGE="http://www.gnu.org/software/global/global.html"
-SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.gz"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-fbsd"
 IUSE="doc emacs vim"
 
 RDEPEND="emacs? ( virtual/emacs )

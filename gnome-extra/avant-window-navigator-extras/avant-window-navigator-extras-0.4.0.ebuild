@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/avant-window-navigator-extras/avant-window-navigator-extras-0.4.0.ebuild,v 1.2 2011/11/06 17:17:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/avant-window-navigator-extras/avant-window-navigator-extras-0.4.0.ebuild,v 1.7 2012/05/05 06:25:22 jdhore Exp $
 
-EAPI="4"
+EAPI=4
 
-GCONF_DEBUG="no"
-GNOME2_LA_PUNT="yes"
+GCONF_DEBUG=no
+GNOME2_LA_PUNT=yes
 
 PYTHON_DEPEND="2:2.6"
 
@@ -52,7 +52,7 @@ RDEPEND="dev-python/dbus-python
 	webkit? ( net-libs/webkit-gtk:2 )"
 DEPEND="${RDEPEND}
 	dev-util/intltool
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext"
 
 S=${WORKDIR}/awn-extras-${PV}
@@ -65,8 +65,8 @@ pkg_setup() {
 		export VALAC="$(type -P valac-0.10)"
 		export VALA_GEN_INTROSPECT="$(type -P vapigen-0.10)"
 	else
-		export VALAC="dIsAbLeVaLa"
-		export VALA_GEN_INTROSPECT="dIsAbLeVaLa"
+		export VALAC=dIsAbLeVaLa
+		export VALA_GEN_INTROSPECT=dIsAbLeVaLa
 	fi
 
 	local sound=no
@@ -85,10 +85,12 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-libnotify-0.7.patch
+	epatch \
+		"${FILESDIR}"/${P}-libnotify-0.7.patch \
+		"${FILESDIR}"/${P}-glib-2.31.patch \
+		"${FILESDIR}"/${P}-to-do.py.patch
 
-	rm -f py-compile
-	ln -s $(type -P true) py-compile
+	>py-compile
 
 	gnome2_src_prepare
 }

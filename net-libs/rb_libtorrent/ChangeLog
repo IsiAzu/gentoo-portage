@@ -1,6 +1,113 @@
 # ChangeLog for net-libs/rb_libtorrent
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/rb_libtorrent/ChangeLog,v 1.116 2011/11/22 21:28:44 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/rb_libtorrent/ChangeLog,v 1.139 2012/11/03 23:14:08 hwoarang Exp $
+
+  03 Nov 2012; Markos Chandras <hwoarang@gentoo.org>
+  rb_libtorrent-0.15.10.ebuild, rb_libtorrent-0.15.5.ebuild,
+  rb_libtorrent-0.15.9.ebuild, rb_libtorrent-0.16.3.ebuild:
+  Backport boost fix to 0.15.X releases. Bug #441582
+
+  02 Nov 2012; Markos Chandras <hwoarang@gentoo.org>
+  -rb_libtorrent-0.16.4.ebuild, rb_libtorrent-0.16.3.ebuild:
+  Backport fix from 0.16.5. Bug #440976
+
+  31 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  rb_libtorrent-0.16.5.ebuild:
+  Simplify finding boost library so that it works with all versions, now that
+  it's unslotted.
+
+*rb_libtorrent-0.16.5 (23 Oct 2012)
+
+  23 Oct 2012; Markos Chandras <hwoarang@gentoo.org>
+  +rb_libtorrent-0.16.5.ebuild:
+  Version bump
+
+*rb_libtorrent-0.16.4 (02 Oct 2012)
+
+  02 Oct 2012; Markos Chandras <hwoarang@gentoo.org>
+  +rb_libtorrent-0.16.4.ebuild:
+  Version bump
+
+  23 Sep 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  Remove qt herd from metadata
+
+  31 Aug 2012; Markos Chandras <hwoarang@gentoo.org>
+  -rb_libtorrent-0.16.1.ebuild, -rb_libtorrent-0.16.2.ebuild:
+  Remove old
+
+*rb_libtorrent-0.16.3 (24 Aug 2012)
+
+  24 Aug 2012; Markos Chandras <hwoarang@gentoo.org>
+  +rb_libtorrent-0.16.3.ebuild:
+  Version bump
+
+*rb_libtorrent-0.16.2 (14 Jul 2012)
+
+  14 Jul 2012; Ben de Groot <yngwin@gentoo.org> +rb_libtorrent-0.16.2.ebuild:
+  Version bump
+
+  16 Jun 2012; Markos Chandras <hwoarang@gentoo.org>
+  -rb_libtorrent-0.15.6.ebuild, -rb_libtorrent-0.15.8.ebuild,
+  -rb_libtorrent-0.15.9-r1.ebuild, -rb_libtorrent-0.16.0.ebuild:
+  Remove old
+
+*rb_libtorrent-0.16.1 (15 Jun 2012)
+
+  15 Jun 2012; Markos Chandras <hwoarang@gentoo.org>
+  +rb_libtorrent-0.16.1.ebuild:
+  Version bump
+
+  14 Jun 2012; Jeff Horelick <jdhore@gentoo.org> rb_libtorrent-0.15.10.ebuild:
+  marked x86 per bug 413815
+
+  08 Jun 2012; Michael Weber <xmw@gentoo.org> rb_libtorrent-0.15.10.ebuild:
+  ppc stable (bug 413815)
+
+  23 May 2012; Agostino Sarubbo <ago@gentoo.org> rb_libtorrent-0.15.10.ebuild:
+  Stable for amd64, wrt bug #413815
+
+  28 Apr 2012;  <heroxbd@gentoo.org> rb_libtorrent-0.15.10.ebuild,
+  rb_libtorrent-0.16.0.ebuild:
+  fix boost dirs with EPREFIX for Prefix
+
+  19 Apr 2012; Brent Baude <ranger@gentoo.org> rb_libtorrent-0.15.9.ebuild:
+  Marking rb_libtorrent-0.15.9 ppc64 for bug 411871
+
+  18 Apr 2012; Markos Chandras <hwoarang@gentoo.org>
+  rb_libtorrent-0.15.9.ebuild:
+  Stable on amd64 wrt bug #411871
+
+  17 Apr 2012; Jeff Horelick <jdhore@gentoo.org> rb_libtorrent-0.15.9.ebuild:
+  marked x86 per bug 411871
+
+*rb_libtorrent-0.16.0 (17 Apr 2012)
+
+  17 Apr 2012; Markos Chandras <hwoarang@gentoo.org>
+  +rb_libtorrent-0.16.0.ebuild:
+  version bump. Bug #412357
+
+*rb_libtorrent-0.15.10 (25 Feb 2012)
+
+  25 Feb 2012; Markos Chandras <hwoarang@gentoo.org>
+  +rb_libtorrent-0.15.10.ebuild:
+  version bump
+
+  05 Feb 2012; Mike Gilbert <floppym@gentoo.org> rb_libtorrent-0.15.9-r1.ebuild:
+  Drop duplicate multilib (oops).
+
+  05 Feb 2012; Mike Gilbert <floppym@gentoo.org> rb_libtorrent-0.15.5.ebuild,
+  rb_libtorrent-0.15.6.ebuild, rb_libtorrent-0.15.8.ebuild,
+  rb_libtorrent-0.15.9-r1.ebuild, rb_libtorrent-0.15.9.ebuild:
+  Inherit multilib.
+
+*rb_libtorrent-0.15.9-r1 (28 Jan 2012)
+
+  28 Jan 2012; Mike Gilbert <floppym@gentoo.org>
+  +rb_libtorrent-0.15.9-r1.ebuild, rb_libtorrent-0.15.5.ebuild,
+  rb_libtorrent-0.15.6.ebuild, rb_libtorrent-0.15.8.ebuild,
+  rb_libtorrent-0.15.9.ebuild:
+  Prepare for PYTHON_ABI-versioned Boost Python libraries in Boost 1.48. Patch
+  by Arfrever.
 
 *rb_libtorrent-0.15.9 (22 Nov 2011)
 
@@ -607,4 +714,3 @@
 
   08 Jan 2007; <armin@gentoo.org> +metadata.xml, +rb_libtorrent-0.11.ebuild:
   New ebuild, from bug 148667
-

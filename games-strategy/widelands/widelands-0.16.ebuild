@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/widelands/widelands-0.16.ebuild,v 1.7 2011/10/15 15:24:49 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/widelands/widelands-0.16.ebuild,v 1.9 2012/05/21 19:23:02 mr_bones_ Exp $
 
 EAPI=3
-inherit versionator cmake-utils games
+inherit eutils versionator cmake-utils games
 
 MY_PV=build$(get_version_component_range 2)
 MY_P=${PN}-${MY_PV}-src
@@ -38,7 +38,8 @@ src_prepare() {
 	sed -i -e '22i#define OF(x) x' src/io/filesystem/ioapi.h || die
 	epatch \
 		"${FILESDIR}"/${P}-goldmine.patch \
-		"${FILESDIR}"/${P}-libpng15.patch
+		"${FILESDIR}"/${P}-libpng15.patch \
+		"${FILESDIR}"/${P}-cxxflags.patch
 }
 
 src_configure() {

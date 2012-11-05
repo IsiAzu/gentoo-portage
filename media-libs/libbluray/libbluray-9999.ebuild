@@ -1,27 +1,27 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libbluray/libbluray-9999.ebuild,v 1.6 2011/08/21 06:35:00 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libbluray/libbluray-9999.ebuild,v 1.11 2012/08/27 06:19:51 radhermit Exp $
 
 EAPI=4
 
-inherit autotools java-pkg-opt-2 git-2 flag-o-matic
+inherit autotools java-pkg-opt-2 git-2 flag-o-matic eutils
 
 EGIT_REPO_URI="git://git.videolan.org/libbluray.git"
 
 DESCRIPTION="Blu-ray playback libraries"
 HOMEPAGE="http://www.videolan.org/developers/libbluray.html"
 
-LICENSE="GPL-2"
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS=""
-IUSE="aacs java static-libs utils xine"
+IUSE="aacs java static-libs utils +xml"
 
 COMMON_DEPEND="
-	dev-libs/libxml2
+	xml? ( dev-libs/libxml2 )
 "
 RDEPEND="
 	${COMMON_DEPEND}
-	aacs? ( media-video/aacskeys )
+	aacs? ( media-libs/libaacs )
 	java? ( >=virtual/jre-1.6 )
 "
 DEPEND="
@@ -30,15 +30,12 @@ DEPEND="
 		>=virtual/jdk-1.6
 		dev-java/ant-core
 	)
-	dev-util/pkgconfig
-"
-PDEPEND="
-	xine? ( ~media-libs/libbluray-xine-${PV} )
+	virtual/pkgconfig
 "
 
 REQUIRED_USE="utils? ( static-libs )"
 
-DOCS=( doc/README README.txt TODO.txt )
+DOCS=( ChangeLog README.txt )
 
 src_prepare() {
 	use java && export JDK_HOME="$(java-config -g JAVA_HOME)"
@@ -54,6 +51,8 @@ src_configure() {
 		append-cflags "$(java-pkg_get-jni-cflags)"
 		myconf="--with-jdk=${JDK_HOME}"
 	fi
+
+	use xml && myconf+=" --enable-libxml2"
 
 	econf \
 		--disable-debug \
@@ -82,5 +81,5 @@ src_install() {
 		doenvd "${FILESDIR}"/90${PN}
 	fi
 
-	use static-libs || find "${ED}" -name '*.la' -exec rm -f '{}' +
+	prune_libtool_files
 }

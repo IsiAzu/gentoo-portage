@@ -1,6 +1,80 @@
 # ChangeLog for net-libs/libvncserver
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libvncserver/ChangeLog,v 1.49 2011/11/16 02:17:31 xmw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libvncserver/ChangeLog,v 1.68 2012/09/17 20:16:35 nativemad Exp $
+
+  17 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  libvncserver-0.9.9.ebuild:
+  x86 stable, as dep from bug 434872
+
+  17 Sep 2012; Agostino Sarubbo <ago@gentoo.org> libvncserver-0.9.9.ebuild:
+  Temporary workaround due to failure with USE='+png -zlib', thanks to nativemad
+  wrt to bug #435326
+
+  16 Sep 2012; Agostino Sarubbo <ago@gentoo.org> libvncserver-0.9.9.ebuild:
+  Stable for amd64, wrt bug #434872
+
+  08 Jul 2012; Raúl Porcel <armin76@gentoo.org>
+  libvncserver-0.9.8.2-r2.ebuild:
+  alpha/ia64/sh/sparc wrt #419275
+
+  20 Jun 2012; Mike Gilbert <floppym@gentoo.org> libvncserver-0.9.8.2-r2.ebuild:
+  Fix 24bpp use flag, bug 422503 by Fab.
+
+  19 Jun 2012; Mike Gilbert <floppym@gentoo.org> libvncserver-0.9.8.2-r2.ebuild:
+  Rename 24bpp and crypt use flags.
+
+  19 Jun 2012; Mike Gilbert <floppym@gentoo.org> libvncserver-0.9.9.ebuild:
+  Add png use flag.
+
+  19 Jun 2012; Mike Gilbert <floppym@gentoo.org> -libvncserver-0.9.8.2.ebuild,
+  libvncserver-0.9.9.ebuild, metadata.xml:
+  Force gcrypt when gnutls is selected, bug 420803. Add openssl dependency.
+  Rename crypt and no24bpp use flags to gcrypt and 24bpp.
+
+  14 Jun 2012; Jeroen Roovers <jer@gentoo.org> libvncserver-0.9.8.2-r2.ebuild:
+  Stable for HPPA (bug #419275).
+
+  09 Jun 2012; Markus Meier <maekke@gentoo.org> libvncserver-0.9.8.2-r2.ebuild:
+  arm stable, bug #419275
+
+  08 Jun 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libvncserver-0.9.8.2-r2.ebuild:
+  x86 stable wrt bug #419275
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> libvncserver-0.9.8.2-r2.ebuild:
+  Marking libvncserver-0.9.8.2-r2 ppc for bug 419275
+
+  06 Jun 2012; Mike Gilbert <floppym@gentoo.org> libvncserver-0.9.8.2-r2.ebuild,
+  libvncserver-0.9.9.ebuild:
+  Fix automagic dependency on gnutls. Bug 419797.
+
+  05 Jun 2012; Brent Baude <ranger@gentoo.org> libvncserver-0.9.8.2-r2.ebuild:
+  Marking libvncserver-0.9.8.2-r2 ppc64 for bug 419275
+
+  03 Jun 2012; Agostino Sarubbo <ago@gentoo.org>
+  libvncserver-0.9.8.2-r2.ebuild:
+  Stable for amd64, wrt bug #419275
+
+*libvncserver-0.9.9 (03 Jun 2012)
+
+  03 Jun 2012; Mike Gilbert <floppym@gentoo.org> +libvncserver-0.9.9.ebuild:
+  Version bump.
+
+*libvncserver-0.9.8.2-r2 (08 Mar 2012)
+
+  08 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  +libvncserver-0.9.8.2-r2.ebuild, -libvncserver-0.9.8.2-r1.ebuild,
+  files/libvncserver-memcpy.patch:
+  Adjust patch from previous commit so that we don't break the wire protocol.
+
+*libvncserver-0.9.8.2-r1 (08 Mar 2012)
+
+  08 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  +files/libvncserver-memcpy.patch, +libvncserver-0.9.8.2-r1.ebuild:
+  Add patch to resolve buffer overflow. Bug 329031.
+
+  08 Mar 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Make myself the maintainer.
 
   16 Nov 2011; Michael Weber <xmw@gentoo.org> -libvncserver-0.9.1.ebuild,
   libvncserver-0.9.8.2.ebuild:

@@ -1,6 +1,35 @@
 # ChangeLog for app-misc/editor-wrapper
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/editor-wrapper/ChangeLog,v 1.10 2011/09/03 16:01:26 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/editor-wrapper/ChangeLog,v 1.19 2012/08/05 12:10:36 grobian Exp $
+
+  05 Aug 2012; Fabian Groffen <grobian@gentoo.org> editor-wrapper-4.ebuild:
+  Marked ~x86-freebsd
+
+  05 Jul 2012; Richard Yao <ryao@gentoo.org> editor-wrapper-4.ebuild:
+  Keyword ~x64-freebsd, Bug #424836
+
+  04 Jun 2012; Fabian Groffen <grobian@gentoo.org> editor-wrapper-4.ebuild:
+  Marked ~{amd64,x86}-linux, bug #418129
+
+  04 Jun 2012; Fabian Groffen <grobian@gentoo.org> editor-wrapper-4.ebuild:
+  Marked ~m68k-mint, bug #418389
+
+  28 May 2012; Fabian Groffen <grobian@gentoo.org> editor-wrapper-4.ebuild:
+  Fix wrapper for Prefix usage, marked *-macos and *-solaris
+
+  27 Apr 2012; Fabian Groffen <grobian@gentoo.org> editor-wrapper-4.ebuild:
+  Marked ~sparc-solaris
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> editor-wrapper-4.ebuild:
+  keyword ~amd64-fbsd
+
+  29 Dec 2011; Ulrich Mueller <ulm@gentoo.org> -editor-wrapper-2.ebuild,
+  -files/editor-wrapper-2.sh, -editor-wrapper-3.ebuild,
+  -files/editor-wrapper-3.sh, editor-wrapper-4.ebuild:
+  Remove old. Drop backwards compatibility symlink.
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> editor-wrapper-4.ebuild:
+  Stable for ppc/ppc64; bug #379095
 
   03 Sep 2011; Raúl Porcel <armin76@gentoo.org> editor-wrapper-4.ebuild:
   alpha/ia64/m68k/s390/sh/sparc/x86 stable wrt #379095
@@ -94,4 +123,3 @@
   +files/gentoo-editor-1.sh, +metadata.xml:
   Initial import, bug 286017. gentoo-editor script by Diego Pettenò, with
   modifications by me.
-

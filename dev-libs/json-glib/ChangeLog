@@ -1,6 +1,31 @@
 # ChangeLog for dev-libs/json-glib
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/json-glib/ChangeLog,v 1.29 2011/11/15 22:22:29 eva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/json-glib/ChangeLog,v 1.37 2012/07/14 13:23:39 blueness Exp $
+
+  14 Jul 2012; Anthony G. Basile <blueness@gentoo.org> json-glib-0.14.2.ebuild:
+  Keyword ~mips
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> json-glib-0.12.6.ebuild,
+  json-glib-0.14.2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  24 Apr 2012; Alexis Ballier <aballier@gentoo.org> json-glib-0.14.2.ebuild:
+  keyword ~x86-fbsd
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org> json-glib-0.14.2.ebuild:
+  alpha/ia64/sparc stable wrt #393007
+
+  05 Mar 2012; Brent Baude <ranger@gentoo.org> json-glib-0.14.2.ebuild:
+  Marking json-glib-0.14.2 ppc stable for bug 393007
+
+  05 Mar 2012; Brent Baude <ranger@gentoo.org> json-glib-0.14.2.ebuild:
+  Marking json-glib-0.14.2 ppc64 stable for bug 393007
+
+  14 Jan 2012; Markus Meier <maekke@gentoo.org> json-glib-0.14.2.ebuild:
+  x86 stable, bug #393007
+
+  29 Dec 2011; Pacho Ramos <pacho@gentoo.org> json-glib-0.14.2.ebuild:
+  amd64 stable, bug 393007
 
 *json-glib-0.14.2 (15 Nov 2011)
 

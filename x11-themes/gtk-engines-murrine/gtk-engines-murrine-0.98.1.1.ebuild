@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-murrine/gtk-engines-murrine-0.98.1.1.ebuild,v 1.4 2011/10/06 12:57:18 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-murrine/gtk-engines-murrine-0.98.1.1.ebuild,v 1.6 2012/06/03 03:11:11 xmw Exp $
 
 EAPI="4"
 GNOME_ORG_MODULE="murrine"
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.cimitan.com/murrine/"
 
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="0"
-KEYWORDS="amd64 ~ppc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ppc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="+themes animation-rtl"
 
 RDEPEND=">=x11-libs/gtk+-2.18:2
@@ -24,7 +24,7 @@ PDEPEND="themes? ( x11-themes/murrine-themes )"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.37.1
 	sys-devel/gettext
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 DOCS="AUTHORS ChangeLog NEWS TODO"
 

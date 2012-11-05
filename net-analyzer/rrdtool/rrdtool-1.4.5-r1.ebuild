@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.4.5-r1.ebuild,v 1.7 2011/10/23 17:35:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.4.5-r1.ebuild,v 1.10 2012/05/04 06:08:08 jdhore Exp $
 
 EAPI="3"
 
@@ -17,7 +17,7 @@ SRC_URI="http://oss.oetiker.ch/rrdtool/pub/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ~ppc ~ppc64 s390 sh sparc x86 ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="doc lua perl python ruby rrdcgi tcl"
 
 # This versions are minimal versions upstream tested with.
@@ -33,7 +33,7 @@ RDEPEND="
 	tcl? ( dev-lang/tcl )"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-apps/gawk"
 
 DISTUTILS_SETUP_FILES=("bindings/python|setup.py")
@@ -110,17 +110,17 @@ src_install() {
 pkg_postinst() {
 	use python && distutils_pkg_postinst
 
-	ewarn "rrdtool dump 1.3 does emit completely legal xml. Basically this means that"
-	ewarn "it contains an xml header and a DOCTYPE definition. Unfortunately this"
-	ewarn "causes older versions of rrdtool restore to be unhappy."
+	ewarn "Since version 1.3, rrdtool dump emits completely legal xml. Basically this"
+	ewarn "means that it contains an xml header and a DOCTYPE definition. Unfortunately"
+	ewarn "this causes older versions of rrdtool restore to be unhappy."
 	ewarn
 	ewarn "To restore a new dump with an old rrdtool restore version, either remove"
 	ewarn "the xml header and the doctype by hand (both on the first line of the dump)"
 	ewarn "or use rrdtool dump --no-header."
 	ewarn
-	ewarn "Note: rrdtool-1.3.x doesn't have any default font bundled. Thus if you've"
-	ewarn "upgraded from rrdtool-1.2.x and don't have any font installed to make"
-	ewarn "lables visible, please, install some font, e.g. media-fonts/dejavu."
+	ewarn ">=net-analyzer/rrdtool-1.3 does not have any default font bundled. Thus if"
+	ewarn ">you've upgraded from rrdtool-1.2.x and don't have any font installed to make"
+	ewarn ">lables visible, please, install some font, e.g. media-fonts/dejavu."
 }
 
 pkg_postrm() {

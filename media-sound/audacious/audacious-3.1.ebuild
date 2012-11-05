@@ -1,8 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-3.1.ebuild,v 1.3 2011/11/15 18:27:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-3.1.ebuild,v 1.12 2012/05/05 08:11:04 mgorny Exp $
 
 EAPI=4
+inherit eutils
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -13,13 +14,13 @@ SRC_URI="http://distfiles.atheme.org/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 hppa ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="altivec chardet nls session sse2"
+KEYWORDS="alpha amd64 hppa ppc ppc64 sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+IUSE="chardet nls session"
 
 RDEPEND=">=dev-libs/dbus-glib-0.60
 	>=dev-libs/glib-2.16
 	>=dev-libs/libmcs-0.7.1-r2
-	>=dev-libs/libmowgli-0.9.50
+	>=dev-libs/libmowgli-0.9.50:0
 	dev-libs/libxml2
 	>=x11-libs/cairo-1.2.6
 	>=x11-libs/pango-1.8.0
@@ -27,13 +28,17 @@ RDEPEND=">=dev-libs/dbus-glib-0.60
 	session? ( x11-libs/libSM )"
 
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.9.0
+	virtual/pkgconfig
 	chardet? ( app-i18n/libguess )
 	nls? ( dev-util/intltool )"
 
 PDEPEND=">=media-plugins/audacious-plugins-3.1"
 
 src_configure() {
+	# Some gccs don't like "-z defs" on their command line. Explicitly make it a
+	# linker flag (bug 395213).
+	epatch "${FILESDIR}/audacious_ldflags.patch"
+
 	# D-Bus is a mandatory dependency, remote control,
 	# session management and some plugins depend on this.
 	# Building without D-Bus is *unsupported* and a USE-flag
@@ -43,11 +48,9 @@ src_configure() {
 	econf \
 		--enable-dbus \
 		--enable-gtk3 \
-		$(use_enable altivec) \
 		$(use_enable chardet) \
 		$(use_enable nls) \
-		$(use_enable session sm) \
-		$(use_enable sse2)
+		$(use_enable session sm)
 }
 
 src_install() {

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-ShareDir/File-ShareDir-1.30.0.ebuild,v 1.1 2011/08/30 15:41:26 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-ShareDir/File-ShareDir-1.30.0.ebuild,v 1.6 2012/09/01 11:34:59 grobian Exp $
 
 EAPI=4
 
@@ -11,7 +11,7 @@ inherit perl-module
 DESCRIPTION="Locate per-dist and per-module shared files"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="amd64 hppa x86 ~ppc-aix ~x86-solaris"
 IUSE=""
 
 RDEPEND="dev-perl/Class-Inspector"

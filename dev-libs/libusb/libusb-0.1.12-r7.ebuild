@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r7.ebuild,v 1.9 2011/11/23 06:03:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r7.ebuild,v 1.12 2012/01/09 06:53:36 ssuominen Exp $
 
 EAPI="3"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/libusb/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="debug doc +cxx static-libs"
 RESTRICT="test"
 
@@ -31,11 +31,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.1.12-no-infinite-bulk.patch
 	epatch "${FILESDIR}"/${PN}-0.1-ansi.patch # 273752
 	eautoreconf
-
-	# Ensure that the documentation actually finds the DTD it needs
-	sed -i \
-		-e '1s|\[$|"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [|' \
-		doc/manual.sgml || die
 }
 
 src_configure() {

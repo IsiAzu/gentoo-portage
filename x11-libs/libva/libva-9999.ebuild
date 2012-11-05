@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libva/libva-9999.ebuild,v 1.4 2011/11/04 13:21:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libva/libva-9999.ebuild,v 1.10 2012/10/11 12:05:49 aballier Exp $
 
-EAPI="3"
+EAPI=4
 
 SCM=""
 if [ "${PV%9999}" != "${PV}" ] ; then # Live ebuild
@@ -29,7 +29,7 @@ if [ "${PV%9999}" = "${PV}" ] ; then
 else
 	KEYWORDS=""
 fi
-IUSE="opengl"
+IUSE="egl opengl wayland X"
 
 VIDEO_CARDS="dummy nvidia intel fglrx"
 for x in ${VIDEO_CARDS}; do
@@ -37,18 +37,23 @@ for x in ${VIDEO_CARDS}; do
 done
 
 RDEPEND=">=x11-libs/libdrm-2.4
-	video_cards_dummy? ( sys-fs/udev )
-	x11-libs/libX11
-	x11-libs/libXext
-	x11-libs/libXfixes
-	opengl? ( virtual/opengl )"
+	X? (
+		x11-libs/libX11
+		x11-libs/libXext
+		x11-libs/libXfixes
+	)
+	egl? ( media-libs/mesa[egl] )
+	opengl? ( virtual/opengl )
+	wayland? ( >=dev-libs/wayland-0.95.0 )"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 PDEPEND="video_cards_nvidia? ( x11-libs/vdpau-video )
 	video_cards_fglrx? ( x11-libs/xvba-video )
-	video_cards_intel? ( x11-libs/libva-intel-driver )
+	video_cards_intel? ( >=x11-libs/libva-intel-driver-1.0.18 )
 	"
+
+REQUIRED_USE="opengl? ( X )"
 
 src_prepare() {
 	eautoreconf
@@ -58,8 +63,10 @@ src_configure() {
 	econf \
 		--with-drivers-path="${EPREFIX}/usr/$(get_libdir)/va/drivers" \
 		$(use_enable video_cards_dummy dummy-driver) \
-		$(use_enable video_cards_dummy dummy-backend) \
-		$(use_enable opengl glx)
+		$(use_enable opengl glx) \
+		$(use_enable X x11) \
+		$(use_enable wayland) \
+		$(use_enable egl)
 }
 
 src_install() {

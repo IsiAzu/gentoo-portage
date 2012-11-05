@@ -1,6 +1,51 @@
 # ChangeLog for net-fs/nfs-utils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/nfs-utils/ChangeLog,v 1.190 2011/10/17 18:56:57 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-fs/nfs-utils/ChangeLog,v 1.201 2012/09/16 20:24:32 vapier Exp $
+
+  16 Sep 2012; Mike Frysinger <vapier@gentoo.org> nfs-utils-1.2.6.ebuild:
+  Pull in sqlite when USE=nfsdcld #433062 by Guillaume Castagnino.
+
+  18 May 2012; Mike Frysinger <vapier@gentoo.org> nfs-utils-1.2.6.ebuild:
+  Update request-key.d config settings #415625 by Maciej Szmigiero.
+
+  17 May 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/nfs-utils-1.2.6-conditionals.patch, nfs-utils-1.2.6.ebuild:
+  Fix build with USE=-nfsv4.
+
+*nfs-utils-1.2.6 (17 May 2012)
+
+  17 May 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/nfs-utils-1.2.6-cross-build.patch,
+  +files/nfs-utils-1.2.6-osd-install.patch, +nfs-utils-1.2.6.ebuild,
+  metadata.xml:
+  Version bump #416189 by teidakankan.
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> nfs-utils-1.2.4.ebuild,
+  nfs-utils-1.2.5.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  16 Jan 2012; Justin Lecher <jlec@gentoo.org> nfs-utils-1.2.5.ebuild:
+  Don't use default src_install function, in order to install only valid docs,
+  thanks ssuominen
+
+  16 Jan 2012; Justin Lecher <jlec@gentoo.org> nfs-utils-1.2.5.ebuild:
+  Add missing dep on sys-fs/lvm2, #399051; corrected target path in src install
+  $ED to $D
+
+  14 Jan 2012; Mike Frysinger <vapier@gentoo.org> nfs-utils-1.2.5.ebuild:
+  Require newer version of libgssglue #398901 by Marien Zwart.
+
+*nfs-utils-1.2.5 (14 Jan 2012)
+
+  14 Jan 2012; Mike Frysinger <vapier@gentoo.org> +nfs-utils-1.2.5.ebuild:
+  Version bump #384465 by teidakankan with updates by Justin Lecher.
+
+  28 Dec 2011; <swift@gentoo.org> nfs-utils-1.2.4.ebuild:
+  Add selinux triggered dependencies on selinux-rpc and selinux-rpcbind
+
+  08 Dec 2011; Mike Frysinger <vapier@gentoo.org> nfs-utils-1.2.4.ebuild,
+  +files/nfs-utils-1.2.4-no-nfsctl.patch:
+  Fix building with arches that do not support nfsctl syscalls.
 
   17 Oct 2011; Mike Frysinger <vapier@gentoo.org> nfs-utils-1.2.4.ebuild:
   Pull in pkg-config since we use it #387365 by bay.

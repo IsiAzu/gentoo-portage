@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ogmrip/ogmrip-0.13.7.ebuild,v 1.1 2011/11/18 11:07:12 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ogmrip/ogmrip-0.13.7.ebuild,v 1.4 2012/05/05 08:58:59 jdhore Exp $
 
 EAPI=4
 GCONF_DEBUG=no
-inherit autotools-utils eutils gnome2
+inherit autotools eutils gnome2
 
 DESCRIPTION="Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4"
 HOMEPAGE="http://ogmrip.sourceforge.net/"
@@ -48,7 +48,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	nls? ( sys-devel/gettext
 		dev-util/intltool )
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	DOCS="AUTHORS ChangeLog README TODO"
@@ -83,5 +83,5 @@ src_install() {
 	# bug #317607
 	MAKEOPTS="${MAKEOPTS} -j1" \
 		gnome2_src_install
-	remove_libtool_files all
+	find "${D}" -name '*.la' -delete
 }

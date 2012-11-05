@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/rtmpdump/rtmpdump-2.4.ebuild,v 1.1 2011/08/10 10:41:26 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/rtmpdump/rtmpdump-2.4.ebuild,v 1.4 2012/10/17 12:56:58 ottxor Exp $
 
 EAPI="4"
 
@@ -10,9 +10,10 @@ DESCRIPTION="Open source command-line RTMP client intended to stream audio or vi
 HOMEPAGE="http://rtmpdump.mplayerhq.hu/"
 SRC_URI="http://dev.gentoo.org/~hwoarang/distfiles/${P}.tar.gz"
 
-LICENSE="GPL-2"
+# the library is LGPL-2.1, the command is GPL-2
+LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="gnutls polarssl ssl"
 
 DEPEND="ssl? (
@@ -57,8 +58,8 @@ src_compile() {
 }
 
 src_install() {
-	mkdir -p "${D}"/${DESTTREE}/$(get_libdir)
-	emake DESTDIR="${D}" prefix="${DESTTREE}" mandir="${DESTTREE}/share/man" \
+	mkdir -p "${ED}"/${DESTTREE}/$(get_libdir)
+	emake DESTDIR="${ED}" prefix="${DESTTREE}" mandir="${DESTTREE}/share/man" \
 	CRYPTO="${crypto}" install
 	dodoc README ChangeLog rtmpdump.1.html rtmpgw.8.html
 }

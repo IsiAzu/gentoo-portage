@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/leechcraft-core/leechcraft-core-9999.ebuild,v 1.1 2011/08/22 18:28:23 maksbotan Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/leechcraft-core/leechcraft-core-9999.ebuild,v 1.10 2012/10/13 14:12:16 pinkbyte Exp $
 
-EAPI="2"
+EAPI="4"
 
 EGIT_REPO_URI="git://github.com/0xd34df00d/leechcraft.git"
 EGIT_PROJECT="leechcraft-${PV}"
 
-inherit confutils leechcraft
+inherit eutils confutils leechcraft
 
 DESCRIPTION="Core of LeechCraft, the modular network client"
 
@@ -15,48 +15,32 @@ SLOT="0"
 KEYWORDS=""
 IUSE="debug +sqlite postgres"
 
-DEPEND=">=dev-libs/boost-1.39
-		x11-libs/qt-core
-		x11-libs/qt-gui
-		x11-libs/qt-script
-		x11-libs/qt-sql[postgres?,sqlite?]"
+DEPEND=">=dev-libs/boost-1.46
+		x11-libs/qt-core:4
+		x11-libs/qt-gui:4
+		x11-libs/qt-script:4
+		x11-libs/qt-sql:4[postgres?,sqlite?]"
 RDEPEND="${DEPEND}
-		x11-libs/qt-svg"
+		x11-libs/qt-svg:4"
 
-pkg_setup() {
-	confutils_require_any postgres sqlite
+REQUIRED_USE="|| ( postgres sqlite )"
+
+# TODO: Maybe simplify this or add apropriate function to leechcraft eclass?
+pkg_pretend() {
+	if [[ ${MERGE_TYPE} != binary ]]; then
+		[[ $(gcc-major-version) -lt 4 ]] || \
+				( [[ $(gcc-major-version) -eq 4 && $(gcc-minor-version) -lt 6 ]] ) \
+			&& die "Sorry, but gcc 4.6 or higher is required."
+	fi
 }
 
 src_configure() {
-	local mycmakeargs="-DENABLE_HTTP=OFF
-		-DENABLE_POSHUKU=OFF
-		-DENABLE_TORRENT=OFF
-		-DENABLE_AGGREGATOR=OFF
-		-DENABLE_NUFELLA=OFF
-		-DENABLE_DBUSMANAGER=OFF
-		-DENABLE_DEADLYRICS=OFF
-		-DENABLE_HISTORYHOLDER=OFF
-		-DENABLE_LMP=OFF
-		-DENABLE_NETWORKMONITOR=OFF
-		-DENABLE_SEEKTHRU=OFF
-		-DENABLE_CHATTER=OFF
-		-DENABLE_FTP=OFF
-		-DENABLE_EISKALTDCPP=OFF
-		-DENABLE_YASD=OFF
-		-DENABLE_ANHERO=OFF
-		-DENABLE_KINOTIFY=OFF
-		-DENABLE_VGRABBER=OFF
-		-DENABLE_NEWLIFE=OFF
-		-DENABLE_PYLC=OFF
-		-DENABLE_POC=OFF
-		-DENABLE_AUSCRIE=OFF
-		-DENABLE_SUMMARY=OFF
-		-DENABLE_TABPP=OFF
-		-DENABLE_SECMAN=OFF
-		-DENABLE_QROSP=OFF
-		-DENABLE_POPISHU=OFF
-		-DENABLE_GLANCE=OFF
-		-DENABLE_SHELLOPEN=OFF"
+	local mycmakeargs=(
+		-DWITH_PLUGINS=False
+	)
+	if [[ ${PV} != 9999 ]]; then
+		mycmakeargs+=( -DLEECHCRAFT_VERSION=${PV} )
+	fi
 	cmake-utils_src_configure
 }
 

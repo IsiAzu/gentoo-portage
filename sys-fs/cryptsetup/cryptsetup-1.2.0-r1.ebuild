@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/cryptsetup/cryptsetup-1.2.0-r1.ebuild,v 1.9 2011/09/19 01:33:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/cryptsetup/cryptsetup-1.2.0-r1.ebuild,v 1.12 2012/10/21 13:37:06 ssuominen Exp $
 
 EAPI="2"
 
@@ -37,6 +37,7 @@ DEPEND="${RDEPEND}
 		|| ( >=sys-apps/util-linux-2.20[static-libs] <sys-apps/util-linux-2.20 )
 		dev-libs/libgcrypt[static-libs]
 		|| ( >=sys-fs/lvm2-2.02.88[static-libs] <sys-fs/lvm2-2.02.88 )
+		|| ( >=sys-fs/udev-182[static-libs] <=sys-fs/udev-171-r8 =sys-fs/udev-171* )
 	)"
 
 pkg_setup() {

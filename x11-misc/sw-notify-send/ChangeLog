@@ -1,6 +1,24 @@
 # ChangeLog for x11-misc/sw-notify-send
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/sw-notify-send/ChangeLog,v 1.4 2011/09/04 11:29:26 mgorny Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/sw-notify-send/ChangeLog,v 1.8 2012/05/05 04:53:48 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> sw-notify-send-1.2.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  23 Apr 2012; Michał Górny <mgorny@gentoo.org> sw-notify-send-0.1.1.ebuild:
+  Use mirror:// in SRC_URI.
+
+*sw-notify-send-1.2.1 (03 Jan 2012)
+
+  03 Jan 2012; Michał Górny <mgorny@gentoo.org> -sw-notify-send-1.2.ebuild,
+  +sw-notify-send-1.2.1.ebuild:
+  Version bump. The new version fixes timeout support.
+
+*sw-notify-send-1.2 (02 Jan 2012)
+
+  02 Jan 2012; Michał Górny <mgorny@gentoo.org> -sw-notify-send-1.1.ebuild,
+  +sw-notify-send-1.2.ebuild, metadata.xml:
+  Version bump. The new version adds timeout support and a manpage.
 
 *sw-notify-send-1.1 (04 Sep 2011)
 

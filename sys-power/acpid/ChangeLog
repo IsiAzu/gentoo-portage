@@ -1,6 +1,64 @@
 # ChangeLog for sys-power/acpid
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/acpid/ChangeLog,v 1.78 2011/11/24 19:33:59 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-power/acpid/ChangeLog,v 1.92 2012/09/16 16:20:05 ssuominen Exp $
+
+*acpid-2.0.17 (16 Sep 2012)
+
+  16 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> +acpid-2.0.17.ebuild:
+  Version bump.
+
+  01 Jul 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -files/acpid-1.0.6-conf.d, -files/acpid-2.0.3.patch,
+  -files/acpid-2.0.11-init.d, -acpid-2.0.14.ebuild, -files/acpid.service:
+  old
+
+  01 Jul 2012; Raúl Porcel <armin76@gentoo.org> acpid-2.0.16-r1.ebuild:
+  ia64 stable wrt #419201
+
+  07 Jun 2012; Johannes Huber <johu@gentoo.org> acpid-2.0.16-r1.ebuild:
+  Stable for x86, wrt bug #419201
+
+  02 Jun 2012; Agostino Sarubbo <ago@gentoo.org> acpid-2.0.16-r1.ebuild:
+  Stable for amd64, wrt bug #419201
+
+  19 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  files/systemd/acpid.service:
+  Use EnvironmentFile=-/etc/conf.d/acpid with - in case user has done something stupid
+  like INSTALL_MASK="/etc/conf.d"
+
+  19 May 2012; Samuli Suominen <ssuominen@gentoo.org> -acpid-2.0.12.ebuild,
+  -acpid-2.0.13.ebuild, -acpid-2.0.16.ebuild:
+  old
+
+*acpid-2.0.16-r1 (19 May 2012)
+
+  19 May 2012; Samuli Suominen <ssuominen@gentoo.org> +acpid-2.0.16-r1.ebuild,
+  +files/acpid-2.0.16-conf.d, +files/acpid-2.0.16-init.d,
+  +files/systemd/acpid.service, +files/systemd/acpid.socket:
+  New socket activation based systemd files as per user request. Ensure /run is
+  present in pkg_postinst() for acpid.socket file.
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> acpid-2.0.14.ebuild:
+  ia64 stable wrt #406947
+
+*acpid-2.0.16 (16 Apr 2012)
+
+  16 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> +acpid-2.0.16.ebuild:
+  Version bump wrt #410405 by "teidakankan"
+
+  24 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> acpid-2.0.14.ebuild:
+  x86 stable wrt bug #406947
+
+  05 Mar 2012; Homer Parker <hparker@gentoo.org> acpid-2.0.14.ebuild:
+  Stable on amd64 fixing bug #406947
+
+*acpid-2.0.14 (21 Dec 2011)
+
+  21 Dec 2011; Christoph Junghans <ottxor@gentoo.org> +acpid-2.0.14.ebuild:
+  version bump (bug #395411)
+
+  04 Dec 2011; Sven Wegener <swegener@gentoo.org> files/acpid-2.0.11-init.d:
+  reload is extra_started_commands
 
 *acpid-2.0.13 (24 Nov 2011)
 

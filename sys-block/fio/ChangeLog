@@ -1,6 +1,21 @@
 # ChangeLog for sys-block/fio
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-block/fio/ChangeLog,v 1.22 2011/11/07 08:25:39 robbat2 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-block/fio/ChangeLog,v 1.25 2012/08/22 23:35:23 radhermit Exp $
+
+*fio-2.0.9 (22 Aug 2012)
+
+  22 Aug 2012; Tim Harder <radhermit@gentoo.org> +fio-2.0.9.ebuild:
+  Version bump.
+
+*fio-2.0.8 (03 Aug 2012)
+
+  03 Aug 2012; Tim Harder <radhermit@gentoo.org> +fio-2.0.8.ebuild:
+  Version bump. Update to EAPI 4.
+
+*fio-2.0.3 (21 Feb 2012)
+
+  21 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> +fio-2.0.3.ebuild:
+  version bump.
 
 *fio-1.99.10 (07 Nov 2011)
 

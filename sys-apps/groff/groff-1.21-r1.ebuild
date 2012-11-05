@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.21-r1.ebuild,v 1.1 2011/10/23 19:42:35 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.21-r1.ebuild,v 1.4 2012/06/08 05:17:13 vapier Exp $
 
 EAPI="3"
 
@@ -13,10 +13,10 @@ SRC_URI="mirror://gnu/groff/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="examples X linguas_ja"
 
-DEPEND=">=sys-apps/texinfo-4.7-r1
+RDEPEND=">=sys-apps/texinfo-4.7-r1
 	X? (
 		x11-libs/libX11
 		x11-libs/libXt
@@ -25,9 +25,12 @@ DEPEND=">=sys-apps/texinfo-4.7-r1
 		x11-libs/libSM
 		x11-libs/libICE
 	)"
+DEPEND="${RDEPEND}
+	linguas_ja? ( virtual/yacc )"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.19.2-man-unicode-dashes.patch #16108 #17580 #121502
+	epatch "${FILESDIR}"/${PN}-1.20.1-pdfmark-parallel.patch
 
 	# Make sure we can cross-compile this puppy
 	if tc-is-cross-compiler ; then

@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/mupen64plus/mupen64plus-1.5-r2.ebuild,v 1.3 2011/09/24 05:48:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/mupen64plus/mupen64plus-1.5-r2.ebuild,v 1.9 2012/05/22 00:04:03 jdhore Exp $
 
 EAPI="2"
 
-inherit eutils flag-o-matic games
+inherit eutils flag-o-matic games toolchain-funcs
 
 MY_P="Mupen64Plus-${PV/./-}-src"
 
@@ -16,7 +16,7 @@ SRC_URI="http://mupen64plus.googlecode.com/files/${MY_P}.tar.gz mirror://gentoo/
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="+gtk libsamplerate lirc qt4 sse"
 
 # GTK+ is currently required by plugins even if no GUI support is enabled
@@ -36,11 +36,18 @@ RDEPEND="virtual/opengl
 
 DEPEND="${RDEPEND}
 	dev-lang/yasm
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
+	if [[ ! $(tc-getCC) =~ gcc ]]; then
+		eerror
+		eerror "Compilers like clang and icc are not supported at this point"
+		eerror
+		die "You need gcc to build ${PN}"
+	fi
+
 	if ! use gtk && ! use qt4; then
 		ewarn "Building ${PN} without any GUI! To get one, enable USE=gtk or USE=qt4."
 	elif use gtk && use qt4; then
@@ -89,8 +96,9 @@ get_opts() {
 }
 
 src_compile() {
+	tc-export CC CXX
 	use x86 && use sse && append-flags -fomit-frame-pointer
-	emake $(get_opts) DBGSYM=1 all || die "make failed"
+	emake $(get_opts) DBGSYM=1 CC="${CC}" CXX="${CXX}" LD="${CC}" all || die "make failed"
 }
 
 src_install() {

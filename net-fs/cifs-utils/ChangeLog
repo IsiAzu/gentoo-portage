@@ -1,6 +1,81 @@
 # ChangeLog for net-fs/cifs-utils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/cifs-utils/ChangeLog,v 1.18 2011/10/28 20:07:54 vostorga Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-fs/cifs-utils/ChangeLog,v 1.36 2012/09/29 16:54:02 armin76 Exp $
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> cifs-utils-5.5-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #433325
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> cifs-utils-5.5-r1.ebuild:
+  Stable for HPPA (bug #433325).
+
+*cifs-utils-5.6-r1 (18 Sep 2012)
+
+  18 Sep 2012; Lars Wendler <polynomial-c@gentoo.org> -cifs-utils-5.6.ebuild,
+  +cifs-utils-5.6-r1.ebuild:
+  non-maintainer commit: Revbump to fix econf line in src_configure() (bug
+  #435366).
+
+  13 Sep 2012; Lars Wendler <polynomial-c@gentoo.org> cifs-utils-5.6.ebuild:
+  non-maintainer commit: Removed failing epatch command as patch is not
+  necessary for this version.
+
+*cifs-utils-5.6 (13 Sep 2012)
+
+  13 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> +cifs-utils-5.6.ebuild:
+  Version bump to latest.
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  cifs-utils-5.5-r1.ebuild:
+  Stable arm, bug #433325
+
+  09 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> cifs-utils-5.5-r1.ebuild:
+  Stable on amd64, x86, ppc and ppc64 wrt bug#433325.
+
+  07 Aug 2012; Raúl Porcel <armin76@gentoo.org> cifs-utils-5.4.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #420895
+
+  10 Jul 2012; Brent Baude <ranger@gentoo.org> cifs-utils-5.4.ebuild:
+  Marking cifs-utils-5.4 ppc64 for bug 420895
+
+  10 Jul 2012; Brent Baude <ranger@gentoo.org> cifs-utils-5.4.ebuild:
+  Marking cifs-utils-5.4 ppc for bug 420895
+
+  08 Jul 2012; Jeroen Roovers <jer@gentoo.org> cifs-utils-5.4.ebuild:
+  Stable for HPPA (bug #420895).
+
+*cifs-utils-5.5-r1 (04 Jul 2012)
+
+  04 Jul 2012; Lars Wendler <polynomial-c@gentoo.org> cifs-utils-5.4.ebuild,
+  -cifs-utils-5.5.ebuild, +cifs-utils-5.5-r1.ebuild,
+  +files/cifs-utils-5.5-initialize_rc_var_properly.patch:
+  non-maintainer commit: Added patch to 5.5 version so it mounts shares again.
+  Thanks to Martin Wegner for reporting this problem in bug #424487. Fixed
+  leading spaces in ebuilds.
+
+*cifs-utils-5.5 (28 Jun 2012)
+
+  28 Jun 2012; Patrick Lauer <patrick@gentoo.org> +cifs-utils-5.5.ebuild:
+  Bump
+
+  20 Jun 2012; Markus Meier <maekke@gentoo.org> cifs-utils-5.4.ebuild:
+  arm stable, bug #420895
+
+  13 Jun 2012; Agostino Sarubbo <ago@gentoo.org> cifs-utils-5.4.ebuild:
+  Stable for amd64, wrt bug #420895
+
+  13 Jun 2012; Jeff Horelick <jdhore@gentoo.org> cifs-utils-5.4.ebuild:
+  marked x86 per bug 420895
+
+*cifs-utils-5.4 (23 Apr 2012)
+
+  23 Apr 2012; Víctor Ostorga <vostorga@gentoo.org> -cifs-utils-5.1.ebuild,
+  -cifs-utils-5.3.ebuild, +cifs-utils-5.4.ebuild:
+  Version bump to 5.4 . Includes fixes for CVE-2012-1586, bug 410989
+
+*cifs-utils-5.3 (13 Feb 2012)
+
+  13 Feb 2012; Víctor Ostorga <vostorga@gentoo.org> +cifs-utils-5.3.ebuild:
+  Version bump to 5.3
 
   28 Oct 2011; Víctor Ostorga <vostorga@gentoo.org> cifs-utils-5.1.ebuild:
   Disabling cifsidmap and cifsacl support, because they look for a 
@@ -74,4 +149,3 @@
   Initial import, ebuild based on work from Ewoud Kohl van Wijngaarden
   <gentoo@kohlvanwijngaarden.nl> and Sebastiaan <s.breedveld@erasmusmc.nl>
   bug 308655
-

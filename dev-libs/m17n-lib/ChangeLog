@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/m17n-lib
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/m17n-lib/ChangeLog,v 1.54 2011/11/20 14:26:45 naota Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/m17n-lib/ChangeLog,v 1.58 2012/07/23 21:09:54 maekke Exp $
+
+  23 Jul 2012; Markus Meier <maekke@gentoo.org> m17n-lib-1.6.3-r1.ebuild:
+  add ~arm, bug #424329
+
+  02 Jul 2012; Naohiro Aota <naota@gentoo.org>
+  +files/m17n-lib-1.6.3-ispell.patch, m17n-lib-1.6.3-r1.ebuild:
+  Patch to use aspell instead of ispell. #424427
+
+*m17n-lib-1.6.3-r1 (01 Jul 2012)
+
+  01 Jul 2012; Naohiro Aota <naota@gentoo.org>
+  +files/m17n-lib-1.6.3-configure.patch, +m17n-lib-1.6.3-r1.ebuild,
+  metadata.xml:
+  Add patch to drop automagic dependencies. #417173
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> m17n-lib-1.5.2.ebuild,
+  m17n-lib-1.5.3.ebuild, m17n-lib-1.5.4.ebuild, m17n-lib-1.5.5.ebuild,
+  m17n-lib-1.6.2.ebuild, m17n-lib-1.6.3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   20 Nov 2011; Naohiro Aota <naota@gentoo.org> m17n-lib-1.5.2.ebuild,
   +files/m17n-lib-1.5.2-fribidi.patch:
@@ -202,4 +221,3 @@
 
   16 May 2004; Mamoru KOMACHI <usata@gentoo.org> m17n-lib-1.0.2.ebuild:
   Initial import.
-

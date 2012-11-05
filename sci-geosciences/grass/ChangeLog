@@ -1,6 +1,38 @@
 # ChangeLog for sci-geosciences/grass
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-geosciences/grass/ChangeLog,v 1.109 2011/11/15 04:05:27 nerdboy Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-geosciences/grass/ChangeLog,v 1.117 2012/10/24 19:38:26 ulm Exp $
+
+  24 Oct 2012; Ulrich Müller <ulm@gentoo.org> grass-6.4.1-r1.ebuild,
+  grass-6.4.2.ebuild:
+  Update dependency after package move from x11-libs/openmotif to
+  x11-libs/motif.
+
+  07 Oct 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, #24135.
+
+  28 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> grass-6.4.2.ebuild:
+  Fix wxwidgets handling, thanks to papillon81
+
+  24 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> grass-6.4.2.ebuild:
+  Whitespace to shutup repoman.
+
+*grass-6.4.2 (24 May 2012)
+
+  24 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> +grass-6.4.2.ebuild:
+  Version bump, eapi4.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> grass-6.4.1-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  04 Mar 2012; Justin Lecher <jlec@gentoo.org> grass-6.4.1.ebuild,
+  grass-6.4.1-r1.ebuild, metadata.xml:
+  Adopt deps to unbundled x11-libs/libGLw situation
+
+*grass-6.4.1-r1 (23 Jan 2012)
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> +grass-6.4.1-r1.ebuild:
+  Rename sql.1 manpage to sql.1grass (file collision with sys-process/parallel)
+  wrt #381599 by Matt Summers
 
   15 Nov 2011; Steve Arnold <nerdboy@gentoo.org> grass-6.4.1.ebuild,
   +files/grass-6.4.1-nopycompile.patch, +files/grass-6.4.1-timer_flags.patch:
@@ -542,4 +574,3 @@
   11 Apr 2003; Graham Forest <vladimir@gentoo.org> grass-5.0.1.ebuild:
   Initial import, ebuild submitted by both Andy Romeril <aromeril@attbi.com>,
   and Doug Gorley <douggorley@shaw.ca>
-

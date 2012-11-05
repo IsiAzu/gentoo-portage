@@ -1,6 +1,32 @@
 # ChangeLog for dev-util/systemtap
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/systemtap/ChangeLog,v 1.94 2011/10/11 21:37:43 mattst88 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/systemtap/ChangeLog,v 1.101 2012/11/04 22:15:44 swegener Exp $
+
+*systemtap-2.0 (04 Nov 2012)
+
+  04 Nov 2012; Sven Wegener <swegener@gentoo.org> +systemtap-2.0.ebuild,
+  +files/systemtap-2.0-gettext.patch:
+  Version bump, bug #425570.
+
+  27 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> systemtap-1.7.ebuild:
+  Bump to eapi4 and prune old mess. Do not build with werror. Fixes bug#260893.
+
+  13 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> systemtap-1.7.ebuild:
+  Marked ~ppc/~ppc64 wrt #351931
+
+*systemtap-1.7 (04 Feb 2012)
+
+  04 Feb 2012; Sven Wegener <swegener@gentoo.org> +systemtap-1.7.ebuild:
+  Version bump.
+
+  16 Jan 2012; Tobias Klausmann <klausman@gentoo.org> systemtap-1.6.ebuild:
+  Keyworded on alpha, bug #351931
+
+  18 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> systemtap-1.6.ebuild:
+  x86 stable wrt bug #393405
+
+  15 Dec 2011; Agostino Sarubbo <ago@gentoo.org> systemtap-1.6.ebuild:
+  Stable for AMD64, wrt bug #393405
 
   11 Oct 2011; Matt Turner <mattst88@gentoo.org> systemtap-1.6.ebuild:
   Added ~mips, bug 351931

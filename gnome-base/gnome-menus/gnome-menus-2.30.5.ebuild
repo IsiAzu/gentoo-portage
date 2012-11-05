@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.30.5.ebuild,v 1.9 2011/10/23 23:03:09 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.30.5.ebuild,v 1.12 2012/05/05 05:38:10 jdhore Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
 
-PYTHON_DEPEND="python? 2:2.4"
+PYTHON_DEPEND="python? 2:2.5"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="3.*"
 
@@ -24,7 +24,7 @@ RDEPEND=">=dev-libs/glib-2.18
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7 )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	>=dev-util/intltool-0.40"
 
 pkg_setup() {
@@ -49,8 +49,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-2.18.3-ignore_kde_standalone.patch"
 
 	# disable pyc compiling
-	mv py-compile py-compile-disabled
-	ln -s $(type -P true) py-compile
+	echo '#!/bin/sh' > py-compile
 
 	python_copy_sources
 }

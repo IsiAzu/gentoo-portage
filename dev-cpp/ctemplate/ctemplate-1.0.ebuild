@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/ctemplate/ctemplate-1.0.ebuild,v 1.1 2011/09/03 04:21:59 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/ctemplate/ctemplate-1.0.ebuild,v 1.7 2012/05/24 19:27:18 vapier Exp $
 
-EAPI="3"
+EAPI="4"
 
-inherit elisp-common python
+inherit elisp-common python eutils
 
 DESCRIPTION="A simple but powerful template language for C++"
 HOMEPAGE="http://code.google.com/p/google-ctemplate/"
@@ -12,7 +12,7 @@ SRC_URI="http://google-ctemplate.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 arm ~ppc x86 ~amd64-linux ~x86-linux"
 IUSE="doc emacs vim-syntax static-libs test"
 
 DEPEND="test? ( =dev-lang/python-2* )"
@@ -28,15 +28,18 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-gcc-4.7.patch
+}
+
 src_configure() {
 	econf \
-		--disable-dependency-tracking \
 		--enable-shared \
 		$(use_enable static-libs static)
 }
 
 src_compile() {
-	emake || die "emake failed"
+	default
 
 	if use emacs ; then
 		elisp-compile contrib/tpl-mode.el || die "elisp-compile failed"
@@ -44,7 +47,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	default
 
 	# Installs just every piece
 	rm -rf "${ED}/usr/share/doc"
@@ -65,7 +68,7 @@ src_install() {
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 
-	find "${ED}" -name '*.la' -exec rm -f {} +
+	find "${ED}"/usr -name '*.la' -delete
 }
 
 pkg_postinst() {

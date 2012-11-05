@@ -1,6 +1,27 @@
 # ChangeLog for net-proxy/ufdbguard
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/ufdbguard/ChangeLog,v 1.23 2011/11/04 03:41:55 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/ufdbguard/ChangeLog,v 1.27 2012/08/29 22:30:16 flameeyes Exp $
+
+*ufdbguard-1.29 (29 Aug 2012)
+
+  29 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/ufdbguard-1.29-parallel-make.patch, +ufdbguard-1.29.ebuild:
+  Version bump.
+
+  18 Mar 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #391429.
+
+*ufdbguard-1.28 (19 Jan 2012)
+
+  19 Jan 2012; Diego E. Pettenò <flameeyes@gentoo.org> +ufdbguard-1.28.ebuild:
+  Version bump
+
+*ufdbguard-1.27-r1 (12 Jan 2012)
+
+  12 Jan 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +ufdbguard-1.27-r1.ebuild, -ufdbguard-1.26-r1.ebuild, -ufdbguard-1.26.ebuild,
+  -ufdbguard-1.27.ebuild, files/ufdb.initd.2:
+  Remove old versions; revision bump to fix a mistake in the init script.
 
 *ufdbguard-1.27 (04 Nov 2011)
 

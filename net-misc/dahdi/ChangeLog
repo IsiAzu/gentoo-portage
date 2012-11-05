@@ -1,6 +1,65 @@
 # ChangeLog for net-misc/dahdi
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/dahdi/ChangeLog,v 1.32 2011/10/31 14:34:14 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/dahdi/ChangeLog,v 1.44 2012/08/20 09:17:01 chainsaw Exp $
+
+*dahdi-2.6.1-r1 (20 Aug 2012)
+
+  20 Aug 2012; Tony Vroon <chainsaw@gentoo.org> +dahdi-2.6.1-r1.ebuild:
+  Fix by Jaco Kroon to wctdm24xxp to ensure ringing is detected early &
+  reliably on South African analog lines. This was a regression in 2.6.1 where
+  North American-centric timings/values were used. Closes bug #431294.
+
+  26 Jun 2012; Jeff Horelick <jdhore@gentoo.org> dahdi-2.6.1.ebuild:
+  marked x86 per bug 422143
+
+  22 Jun 2012; Agostino Sarubbo <ago@gentoo.org> dahdi-2.6.1.ebuild:
+  Stable for AMD64, wrt bug #422143
+
+*dahdi-2.6.1 (25 Apr 2012)
+
+  25 Apr 2012; Tony Vroon <chainsaw@gentoo.org> +dahdi-2.6.1.ebuild:
+  First attempt at packaging the 2.6 branch of DAHDI. Would not have been
+  possible without the assistance of Oliver Jaksch, Jaco Kroon & Felix Tiede.
+  Closes bug #403023.
+
+  23 Apr 2012; Tony Vroon <chainsaw@gentoo.org> -dahdi-2.5.0.2-r2.ebuild,
+  dahdi-2.5.0.2-r4.ebuild:
+  Marked stable on AMD64 based on arch testing by Maurizio "k01" Camisaschi &
+  Elijah "Armageddon" El Lazkani in bug #411859. Removed old ebuild.
+
+  22 Apr 2012; Markus Meier <maekke@gentoo.org> dahdi-2.5.0.2-r4.ebuild:
+  x86 stable, bug #411859
+
+*dahdi-2.5.0.2-r4 (28 Feb 2012)
+
+  28 Feb 2012; Tony Vroon <chainsaw@gentoo.org> -dahdi-2.5.0.2-r3.ebuild,
+  +dahdi-2.5.0.2-r4.ebuild:
+  Actually *use* the new patch by Stefan "stkn" Knoblich, my apologies. Jaco
+  Kroon demonstrates to Digium how to do a parallel safe build, closing bug
+  #404407.
+
+*dahdi-2.5.0.2-r3 (28 Feb 2012)
+
+  28 Feb 2012; Tony Vroon <chainsaw@gentoo.org> +dahdi-2.5.0.2-r3.ebuild:
+  zaphfc fixes by Stefan "stkn" Knoblich, closes bug #406189 by Ogelpre. These
+  would have manifested as segfaults on your 3.2 kernel based system.
+
+  03 Feb 2012; Tony Vroon <chainsaw@gentoo.org> -dahdi-2.4.1-r1.ebuild,
+  -dahdi-2.5.0.ebuild, -dahdi-2.5.0-r2.ebuild, -dahdi-2.5.0.2-r1.ebuild:
+  Remove old ebuilds now that stabling has been completed. Closes bug #401077
+  by Sergio Basurto.
+
+  02 Feb 2012; Jeff Horelick <jdhore@gentoo.org> dahdi-2.5.0.2-r2.ebuild:
+  x86 stable per bug 401077
+
+  31 Jan 2012; Agostino Sarubbo <ago@gentoo.org> dahdi-2.5.0.2-r2.ebuild:
+  Stable for AMD64, wrt bug #401077
+
+*dahdi-2.5.0.2-r2 (16 Jan 2012)
+
+  16 Jan 2012; Tony Vroon <chainsaw@gentoo.org> +dahdi-2.5.0.2-r2.ebuild:
+  Patch scavenged by Erich Seifert restores compatibility with 3.2 linux
+  kernels. Closes bug #397959 by Mike "vapier" Frysinger.
 
   31 Oct 2011; Diego E. Pettenò <flameeyes@gentoo.org> dahdi-2.5.0.2-r1.ebuild:
   QA: use KV_OUT_DIR rather than KBUILD_OUTPUT to find which sources to build

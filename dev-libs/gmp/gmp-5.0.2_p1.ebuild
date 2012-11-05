@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.2_p1.ebuild,v 1.3 2011/11/13 20:03:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.2_p1.ebuild,v 1.12 2012/02/13 10:42:49 xarthisius Exp $
 
 inherit flag-o-matic eutils libtool toolchain-funcs
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.bz2
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="doc cxx static-libs"
 
 DEPEND="sys-devel/m4"
@@ -29,6 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${PN}-5.0.0-s390.diff
 	epatch "${FILESDIR}"/${MY_P}-unnormalised-dividends.patch
+	has x32 $(get_all_abis) && epatch "${FILESDIR}"/${PN}-5.0.2*x32*.patch
 
 	# disable -fPIE -pie in the tests for x86  #236054
 	if use x86 && gcc-specs-pie ; then
@@ -59,7 +60,7 @@ src_compile() {
 	case ${ABI} in
 		32|x86)       GMPABI=32;;
 		64|amd64|n64) GMPABI=64;;
-		o32|n32)      GMPABI=${ABI};;
+		[onx]32)      GMPABI=${ABI};;
 	esac
 	export GMPABI
 
@@ -80,7 +81,10 @@ src_install() {
 	# should be a standalone lib
 	rm -f "${D}"/usr/$(get_libdir)/libgmp.la
 	# this requires libgmp
-	use static-libs || rm -f "${D}"/usr/$(get_libdir)/libgmpxx.la
+	local la="${D}/usr/$(get_libdir)/libgmpxx.la"
+	use static-libs \
+		&& sed -i 's:/[^ ]*/libgmp.la:-lgmp:' "${la}" \
+		|| rm -f "${la}"
 
 	dodoc AUTHORS ChangeLog NEWS README
 	dodoc doc/configuration doc/isa_abi_headache

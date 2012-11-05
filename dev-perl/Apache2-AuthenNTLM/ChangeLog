@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/Apache2-AuthenNTLM
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Apache2-AuthenNTLM/ChangeLog,v 1.7 2011/09/04 11:22:39 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Apache2-AuthenNTLM/ChangeLog,v 1.9 2012/06/24 13:00:01 tove Exp $
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  14 Dec 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due move to staffer, bug #99016
 
   04 Sep 2011; Torsten Veller <tove@gentoo.org>
   -Apache2-AuthenNTLM-0.02.ebuild:
@@ -34,4 +40,3 @@
   22 Nov 2006; Christian Hartmann <ian@gentoo.org> +metadata.xml,
   +Apache2-AuthenNTLM-0.02.ebuild:
   New package
-

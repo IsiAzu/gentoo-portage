@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.40 2011/11/16 10:45:20 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.47 2012/09/03 22:47:10 sping Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2:2.5"
@@ -17,29 +17,29 @@ LICENSE="GPL-3 LGPL-3"
 SLOT="2"
 KEYWORDS=""
 
-IUSE="alsa aalib altivec curl dbus debug doc exif gnome jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
+IUSE="alsa aalib altivec bzip2 curl dbus debug doc exif gnome postscript jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
 
-RDEPEND=">=dev-libs/glib-2.28.1:2
-	>=x11-libs/gtk+-2.24.3:2
-	>=x11-libs/gdk-pixbuf-2.22.1:2
+RDEPEND=">=dev-libs/glib-2.30.2:2
+	>=dev-libs/atk-2.2.0
+	>=x11-libs/gtk+-2.24.10:2
+	>=x11-libs/gdk-pixbuf-2.24.1:2
 	>=x11-libs/cairo-1.10.2
-	>=x11-libs/pango-1.22.0
+	>=x11-libs/pango-1.29.4
 	xpm? ( x11-libs/libXpm )
 	>=media-libs/freetype-2.1.7
 	>=media-libs/fontconfig-2.2.0
 	sys-libs/zlib
 	dev-libs/libxml2
 	dev-libs/libxslt
-	x11-misc/xdg-utils
 	x11-themes/hicolor-icon-theme
-	>=media-libs/babl-0.1.4
-	>=media-libs/gegl-0.1.6
+	>=media-libs/babl-0.1.11
+	>=media-libs/gegl-0.2.1
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib )
 	gnome? ( gnome-base/gvfs )
-	webkit? ( net-libs/webkit-gtk:2 )
+	webkit? ( >=net-libs/webkit-gtk-1.6.1:2 )
 	jpeg? ( virtual/jpeg:0 )
 	jpeg2k? ( media-libs/jasper )
 	exif? ( >=media-libs/libexif-0.6.15 )
@@ -49,18 +49,23 @@ RDEPEND=">=dev-libs/glib-2.28.1:2
 	png? ( >=media-libs/libpng-1.2.37:0 )
 	python?	( >=dev-python/pygtk-2.10.4:2 )
 	tiff? ( >=media-libs/tiff-3.5.7:0 )
-	svg? ( >=gnome-base/librsvg-2.14.0:2 )
+	svg? ( >=gnome-base/librsvg-2.34.2:2 )
 	wmf? ( >=media-libs/libwmf-0.2.8 )
 	x11-libs/libXcursor
+	sys-libs/zlib
+	bzip2? ( app-arch/bzip2 )
+	postscript? ( app-text/ghostscript-gpl )
 	udev? ( sys-fs/udev[gudev] )"
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.22
+	sys-apps/findutils
+	virtual/pkgconfig
 	>=dev-util/intltool-0.40.1
 	>=sys-devel/gettext-0.17
 	doc? ( >=dev-util/gtk-doc-1 )
-	>=sys-devel/libtool-1.5
+	>=sys-devel/libtool-2.2
 	>=sys-devel/autoconf-2.54
-	>=sys-devel/automake-1.10"
+	>=sys-devel/automake-1.11
+	dev-util/gtk-doc-am"  # due to our call to eautoreconf below (bug #386453)
 
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
 
@@ -70,6 +75,7 @@ pkg_setup() {
 		$(use_with aalib aa) \
 		$(use_with alsa) \
 		$(use_enable altivec) \
+		$(use_with bzip2) \
 		$(use_with curl libcurl) \
 		$(use_with dbus) \
 		$(use_with gnome gvfs) \
@@ -78,6 +84,7 @@ pkg_setup() {
 		$(use_with jpeg2k libjasper) \
 		$(use_with exif libexif) \
 		$(use_with lcms) \
+		$(use_with postscript gs) \
 		$(use_enable mmx) \
 		$(use_with mng libmng) \
 		$(use_with pdf poppler) \
@@ -122,6 +129,12 @@ src_install() {
 		python_convert_shebangs -r $(python_get_version) "${ED}"
 		python_need_rebuild
 	fi
+
+	# Workaround for bug #321111 to give GIMP the least
+	# precedence on PDF documents by default
+	mv "${D}"/usr/share/applications/{,zzz-}gimp.desktop || die
+
+	find "${D}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {

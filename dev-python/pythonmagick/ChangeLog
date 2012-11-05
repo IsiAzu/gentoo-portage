@@ -1,6 +1,38 @@
 # ChangeLog for dev-python/pythonmagick
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pythonmagick/ChangeLog,v 1.31 2011/11/03 10:24:19 djc Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pythonmagick/ChangeLog,v 1.40 2012/11/01 16:22:15 flameeyes Exp $
+
+  01 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  pythonmagick-0.9.8.ebuild:
+  Drop use of boost-utils so that it can build with unslotted boost. Thanks to
+  Helmut Jaraush for reporting in bug #440736.
+
+*pythonmagick-0.9.8 (29 Sep 2012)
+
+  29 Sep 2012; Tim Harder <radhermit@gentoo.org> +pythonmagick-0.9.8.ebuild:
+  Version bump. Fix build with >=boost-1.50.
+
+  04 May 2012; Patrick Lauer <patrick@gentoo.org> pythonmagick-0.9.7-r1.ebuild,
+  pythonmagick-0.9.7.ebuild:
+  Migrating dev-util/pkgconfig -> virtual/pkgconfig
+
+  25 Feb 2012; Patrick Lauer <patrick@gentoo.org> pythonmagick-0.9.7-r1.ebuild,
+  pythonmagick-0.9.7.ebuild:
+  Fixing accidental double asterisk
+
+  20 Feb 2012; Patrick Lauer <patrick@gentoo.org> pythonmagick-0.9.7-r1.ebuild,
+  pythonmagick-0.9.7.ebuild:
+  Fixing pypy restricts to actually work
+
+  24 Jan 2012; Markos Chandras <hwoarang@gentoo.org>
+  pythonmagick-0.9.7-r1.ebuild:
+  Update dependencies. Patch by Arfrever.
+
+  23 Jan 2012; Markos Chandras <hwoarang@gentoo.org> -pythonmagick-0.9.6.ebuild:
+  old
+
+  23 Jan 2012; Markos Chandras <hwoarang@gentoo.org> ChangeLog:
+  Revbump to be compatible with boost-1.48. Thanks to Arfrever
 
 *pythonmagick-0.9.7 (03 Nov 2011)
 
@@ -152,4 +184,3 @@
   06 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> +metadata.xml,
   +pythonmagick-0.5-r1.ebuild:
   Initial commit, bug #35279. Ebuild by Chris Mayo <mayo@clara.co.uk>.
-

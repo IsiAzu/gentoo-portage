@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/podofo/podofo-0.9.1.ebuild,v 1.7 2011/11/13 11:43:45 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/podofo/podofo-0.9.1.ebuild,v 1.10 2012/10/28 02:45:53 zmedico Exp $
 
 EAPI=2
 inherit cmake-utils flag-o-matic multilib
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/podofo/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="amd64 ~hppa ppc ppc64 ~sparc x86"
+KEYWORDS="amd64 hppa ppc ppc64 ~sparc x86"
 IUSE="+boost debug test"
 
 RDEPEND="dev-lang/lua
@@ -33,6 +33,10 @@ src_prepare() {
 	sed -i \
 		-e "s:LIBDIRNAME \"lib\":LIBDIRNAME \"$(get_libdir)\":" \
 		CMakeLists.txt || die
+
+	# Bug #439784: Add missing unistd include for close() and unlink().
+	sed -i 's:^#include <stdio.h>$:#include <unistd.h>\n\0:' -i \
+		test/unit/TestUtils.cpp || die
 
 	# TODO: fix these test cases
 	# ColorTest.cpp:62:Assertion
@@ -63,6 +67,14 @@ src_prepare() {
 	# - ePdfError_UnsupportedFontFormat
 	sed -e 's:CPPUNIT_TEST( testFonts ://\0:' \
 		-i test/unit/FontTest.h || die
+
+	# Bug #407015: fix to compile with Lua 5.2
+	if has_version '>=dev-lang/lua-5.2' ; then
+		sed -e 's: lua_open(: luaL_newstate(:' \
+			-e 's: luaL_getn(: lua_rawlen(:' -i \
+			tools/podofocolor/luaconverter.cpp \
+			tools/podofoimpose/planreader_lua.cpp || die
+	fi
 }
 
 src_configure() {

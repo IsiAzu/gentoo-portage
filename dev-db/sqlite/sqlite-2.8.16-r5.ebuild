@@ -1,15 +1,16 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-2.8.16-r5.ebuild,v 1.1 2011/09/09 18:15:04 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-2.8.16-r5.ebuild,v 1.8 2012/10/04 23:22:10 ulm Exp $
 
-inherit eutils alternatives toolchain-funcs
+inherit eutils alternatives multilib toolchain-funcs
 
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc ~sparc-fbsd x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
 
 DESCRIPTION="SQLite: an SQL Database Engine in a C Library."
 HOMEPAGE="http://www.sqlite.org/"
 SRC_URI="http://www.sqlite.org/${P}.tar.gz"
-LICENSE="as-is"
+
+LICENSE="public-domain"
 SLOT="0"
 IUSE="doc nls tcl"
 
@@ -42,7 +43,9 @@ src_unpack() {
 
 	use hppa && epatch "${FILESDIR}"/${PN}-2.8.15-alignement-fix.patch
 
-	epatch "${FILESDIR}"/${P}-multilib.patch
+	epatch \
+		"${FILESDIR}"/${P}-multilib.patch \
+		"${FILESDIR}"/${P}-exit.patch
 
 	epunt_cxx
 
@@ -59,6 +62,11 @@ src_unpack() {
 		-e "s:@@RANLIB@@:$(tc-getRANLIB):g" \
 		-e "s:@@ENCODING@@:${ENCODING}:g" \
 		"${S}"/Makefile.linux-gcc
+
+	sed -i \
+		-e '/^LTLINK/s:$(TCC):& $(LDFLAGS):' \
+		-e '/lemon/s:-o:$(LDFLAGS) &:' \
+		"${S}"/{main.mk,Makefile.in}
 }
 
 src_compile() {
@@ -102,7 +110,7 @@ src_install () {
 
 	make DESTDIR="${D}" install || die "make install failed"
 
-	find "${ED}" -name '*.la' -exec rm -f {} +
+	find "${D}" -name '*.la' -exec rm -f {} +
 
 	newbin lemon lemon-${SLOT}
 

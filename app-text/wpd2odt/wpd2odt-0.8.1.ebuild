@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wpd2odt/wpd2odt-0.8.1.ebuild,v 1.3 2011/10/26 15:34:52 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wpd2odt/wpd2odt-0.8.1.ebuild,v 1.6 2012/05/04 03:33:16 jdhore Exp $
 
 EAPI=4
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/libwpd/writerperfect-${PV}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="amd64 ~x86 ~x86-linux ~ppc-macos ~x86-solaris"
+KEYWORDS="amd64 ppc x86 ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="debug gsf +visio +wpg +wps"
 
 RDEPEND="
@@ -21,7 +21,7 @@ RDEPEND="
 	gsf? ( gnome-extra/libgsf )
 "
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 "
 
 S=${WORKDIR}/writerperfect-${PV}

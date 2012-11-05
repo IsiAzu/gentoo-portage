@@ -1,12 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.34.2.ebuild,v 1.4 2011/11/23 23:06:13 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.34.2.ebuild,v 1.16 2012/05/05 05:38:09 jdhore Exp $
 
 EAPI="4"
 GNOME2_LA_PUNT="yes"
 GCONF_DEBUG="no"
+PYTHON_DEPEND="2"
 
-inherit gnome2 multilib eutils autotools
+inherit gnome2 multilib eutils autotools python
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
 HOMEPAGE="http://librsvg.sourceforge.net/"
@@ -14,7 +15,7 @@ SRC_URI="${SRC_URI} mirror://gentoo/introspection.m4.bz2"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc +gtk gtk3 +introspection tools"
 
 RDEPEND=">=media-libs/fontconfig-1.0.1
@@ -24,13 +25,12 @@ RDEPEND=">=media-libs/fontconfig-1.0.1
 	>=x11-libs/pango-1.10
 	>=dev-libs/libxml2-2.4.7:2
 	>=dev-libs/libcroco-0.6.1
-	|| ( x11-libs/gdk-pixbuf:2
-		x11-libs/gtk+:2 )
+	x11-libs/gdk-pixbuf:2[introspection?]
 	gtk? ( >=x11-libs/gtk+-2.16:2 )
 	gtk3? ( >=x11-libs/gtk+-2.90.0:3 )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.8 )"
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.12
+	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.13 )
 
 	>=dev-util/gtk-doc-am-1.13"
@@ -50,6 +50,9 @@ pkg_setup() {
 	! use gtk && use gtk3 && G2CONF+=" --with-gtk=3.0 --enable-gtk-theme"
 
 	DOCS="AUTHORS ChangeLog README NEWS TODO"
+
+	python_set_active_version 2
+	python_pkg_setup
 }
 
 src_prepare() {
@@ -64,6 +67,8 @@ src_prepare() {
 
 	AT_M4DIR="." eautoreconf
 
+	python_convert_shebangs -r 2 .
+
 	gnome2_src_prepare
 }
 
@@ -71,7 +76,7 @@ pkg_postinst() {
 	# causes segfault if set, see bug 375615
 	unset __GL_NO_DSO_FINALIZER
 
-	tmp_file=$(mktemp --suffix=gdk_pixbuf_ebuild)
+	tmp_file=$(mktemp -t tmp.XXXXXXXXXXlibrsvg_ebuild)
 	# be atomic!
 	gdk-pixbuf-query-loaders > "${tmp_file}"
 	if [ "${?}" = "0" ]; then
@@ -86,7 +91,7 @@ pkg_postrm() {
 	# causes segfault if set, see bug 375615
 	unset __GL_NO_DSO_FINALIZER
 
-	tmp_file=$(mktemp --suffix=gdk_pixbuf_ebuild)
+	tmp_file=$(mktemp -t tmp.XXXXXXXXXXlibrsvg_ebuild)
 	# be atomic!
 	gdk-pixbuf-query-loaders > "${tmp_file}"
 	if [ "${?}" = "0" ]; then

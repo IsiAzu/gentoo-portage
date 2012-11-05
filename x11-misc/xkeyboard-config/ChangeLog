@@ -1,6 +1,104 @@
 # ChangeLog for x11-misc/xkeyboard-config
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.145 2011/11/21 00:00:00 chithanh Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.169 2012/09/27 00:16:48 chithanh Exp $
+
+*xkeyboard-config-2.7 (27 Sep 2012)
+
+  27 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +xkeyboard-config-2.7.ebuild, xkeyboard-config-2.4.1-r2.ebuild:
+  Version bump.
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> xkeyboard-config-2.6.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #419473
+
+  12 Jul 2012; Brent Baude <ranger@gentoo.org> xkeyboard-config-2.6.ebuild:
+  Marking xkeyboard-config-2.6 ppc stable for bug 419473
+
+  11 Jul 2012; Brent Baude <ranger@gentoo.org> xkeyboard-config-2.6.ebuild:
+  Marking xkeyboard-config-2.6 ppc64 stable for bug 419473
+
+  29 Jun 2012; Markus Meier <maekke@gentoo.org> xkeyboard-config-2.6.ebuild:
+  arm stable, bug #419473
+
+  28 Jun 2012; Jeroen Roovers <jer@gentoo.org> xkeyboard-config-2.6.ebuild:
+  Stable for HPPA (bug #419473).
+
+  24 Jun 2012; Agostino Sarubbo <ago@gentoo.org> xkeyboard-config-2.6.ebuild:
+  Stable for x86, wrt bug #419473
+
+  22 Jun 2012; Agostino Sarubbo <ago@gentoo.org> xkeyboard-config-2.6.ebuild:
+  Stable for amd64, wrt bug #419473
+
+*xkeyboard-config-2.6 (30 May 2012)
+
+  30 May 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +xkeyboard-config-2.6.ebuild:
+  Version bump.
+
+  10 May 2012; Alexis Ballier <aballier@gentoo.org>
+  xkeyboard-config-2.5.1.ebuild:
+  keyword ~amd64-fbsd
+
+  03 Mar 2012; Brent Baude <ranger@gentoo.org>
+  xkeyboard-config-2.4.1-r3.ebuild:
+  Marking xkeyboard-config-2.4.1-r3 ppc64 stable for bug 394393
+
+  19 Feb 2012; Raúl Porcel <armin76@gentoo.org>
+  xkeyboard-config-2.4.1-r3.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #394393
+
+  15 Feb 2012; Brent Baude <ranger@gentoo.org>
+  xkeyboard-config-2.4.1-r3.ebuild:
+  Marking xkeyboard-config-2.4.1-r3 ppc stable for bug 394393
+
+*xkeyboard-config-2.5.1 (01 Feb 2012)
+
+  01 Feb 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +xkeyboard-config-2.5.1.ebuild:
+  Version bump.
+
+  24 Jan 2012; Jeroen Roovers <jer@gentoo.org>
+  xkeyboard-config-2.4.1-r3.ebuild:
+  Stable for HPPA (bug #399347).
+
+*xkeyboard-config-2.5 (20 Jan 2012)
+
+  20 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +xkeyboard-config-2.5.ebuild:
+  Version bump.
+
+  19 Jan 2012; Michael Weber <xmw@gentoo.org> xkeyboard-config-2.4.1-r3.ebuild:
+  arm stable (security bug 399347)
+
+  19 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  xkeyboard-config-2.4.1-r3.ebuild:
+  x86 stable wrt security bug #399347
+
+  19 Jan 2012; Agostino Sarubbo <ago@gentoo.org>
+  xkeyboard-config-2.4.1-r3.ebuild:
+  Stable for AMD64, wrt security bug #399347
+
+*xkeyboard-config-2.4.1-r3 (19 Jan 2012)
+
+  19 Jan 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +xkeyboard-config-2.4.1-r3.ebuild, +files/xorg-cve-2012-0064.patch:
+  Add patch for security bug #399347.
+
+  27 Dec 2011; Markus Meier <maekke@gentoo.org>
+  xkeyboard-config-2.4.1-r2.ebuild:
+  x86 stable, bug #394393
+
+  21 Dec 2011; Markus Meier <maekke@gentoo.org>
+  xkeyboard-config-2.4.1-r2.ebuild:
+  arm stable, bug #394393
+
+  20 Dec 2011; Jeroen Roovers <jer@gentoo.org>
+  xkeyboard-config-2.4.1-r2.ebuild:
+  Stable for HPPA (bug #394393).
+
+  20 Dec 2011; Agostino Sarubbo <ago@gentoo.org>
+  xkeyboard-config-2.4.1-r2.ebuild:
+  Stable for AMD64, wrt bug #394393
 
 *xkeyboard-config-2.4.1-r2 (20 Nov 2011)
 
@@ -613,4 +711,3 @@
   New, restructured, maintained package for XKB configuration data, expected
   to supercede xkbdata. Since it's the same collection of data files,
   keyworded ~arch for the same arches.
-

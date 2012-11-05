@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/Macaulay2/Macaulay2-1.4-r1.ebuild,v 1.1 2011/09/25 19:44:37 tomka Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/Macaulay2/Macaulay2-1.4-r1.ebuild,v 1.4 2011/12/14 08:44:52 phajdan.jr Exp $
 
 EAPI="2"
 
@@ -22,7 +22,9 @@ HOMEPAGE="http://www.math.uiuc.edu/Macaulay2/"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
+# Tests are broken and building the package runs thousands of tests anyway
+RESTRICT="test"
 
 DEPEND="sys-libs/gdbm
 	>=dev-libs/ntl-5.5.2
@@ -33,6 +35,7 @@ DEPEND="sys-libs/gdbm
 	sci-mathematics/4ti2
 	sci-mathematics/nauty
 	>=sci-mathematics/normaliz-2.5
+	<sci-mathematics/normaliz-2.7
 	sci-mathematics/gfan
 	>=dev-libs/mpfr-3.0.0
 	>=sci-libs/mpir-2.1.1[cxx]

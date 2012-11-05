@@ -1,11 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/scipy-0.9.0-r1.ebuild,v 1.8 2011/10/05 19:30:26 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/scipy-0.9.0-r1.ebuild,v 1.11 2012/10/16 19:47:58 jlec Exp $
 
 EAPI="3"
 
+PYTHON_DEPEND="*::3.2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="*-jython"
+RESTRICT_PYTHON_ABIS="3.3 *-jython"
 
 inherit eutils fortran-2 distutils flag-o-matic toolchain-funcs versionator
 
@@ -32,15 +33,11 @@ CDEPEND="
 	virtual/cblas
 	virtual/lapack
 	umfpack? ( sci-libs/umfpack )"
-
 DEPEND="${CDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( app-arch/unzip )
 	umfpack? ( dev-lang/swig )"
-
-RDEPEND="
-	virtual/fortran
-	${CDEPEND}
+RDEPEND="${CDEPEND}
 	dev-python/imaging"
 
 # buggy test suite - still true for 0.9.0

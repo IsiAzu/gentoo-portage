@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/abyss/abyss-1.3.0.ebuild,v 1.1 2011/09/24 21:48:12 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/abyss/abyss-1.3.0.ebuild,v 1.2 2012/06/20 20:48:56 jlec Exp $
 
 EAPI="4"
 
@@ -31,5 +31,6 @@ src_prepare() {
 
 src_configure() {
 	econf \
+		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		$(use_enable openmp)
 }

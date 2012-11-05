@@ -1,8 +1,8 @@
-# Copyright 2011-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-unico/gtk-engines-unico-1.0.1.ebuild,v 1.1 2011/10/19 04:47:34 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-unico/gtk-engines-unico-1.0.1.ebuild,v 1.4 2012/05/05 04:10:04 jdhore Exp $
 
-EAPI="4"
+EAPI=4
 
 MY_PN=${PN/gtk-engines-}
 MY_PV=${PV/_p/+r}
@@ -15,13 +15,13 @@ S="${WORKDIR}/${MY_PN}-${MY_PV}"
 LICENSE="LGPL-2.1"
 SLOT="0"
 IUSE=""
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 
-RDEPEND=">=dev-libs/glib-2.26.0:2
+RDEPEND=">=dev-libs/glib-2.26
 	>=x11-libs/cairo-1.10[glib]
 	>=x11-libs/gtk+-3.1.10:3"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	DOCS="AUTHORS NEWS" # ChangeLog, README are empty
@@ -37,5 +37,5 @@ src_configure() {
 
 src_install() {
 	default
-	find "${D}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
+	find "${D}" -name '*.la' -exec rm -f {} +
 }

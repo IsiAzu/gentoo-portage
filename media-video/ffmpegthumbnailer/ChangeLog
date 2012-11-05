@@ -1,6 +1,75 @@
 # ChangeLog for media-video/ffmpegthumbnailer
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpegthumbnailer/ChangeLog,v 1.129 2011/11/05 18:35:20 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpegthumbnailer/ChangeLog,v 1.144 2012/11/03 19:21:52 blueness Exp $
+
+  03 Nov 2012; Anthony G. Basile <blueness@gentoo.org>
+  ffmpegthumbnailer-2.0.8.ebuild:
+  stable arm, bug #441408
+
+  03 Nov 2012; Anthony G. Basile <blueness@gentoo.org>
+  ffmpegthumbnailer-2.0.8.ebuild:
+  stable ppc ppc64, bug #441408
+
+  20 Sep 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -ffmpegthumbnailer-2.0.7.ebuild:
+  old
+
+*ffmpegthumbnailer-2.0.8 (20 Sep 2012)
+
+  20 Sep 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +ffmpegthumbnailer-2.0.8.ebuild:
+  Version bump.
+
+  05 Aug 2012; Raúl Porcel <armin76@gentoo.org>
+  ffmpegthumbnailer-2.0.7-r1.ebuild:
+  alpha/ia64/sparc stable wrt #422133
+
+  04 Jul 2012; Jeroen Roovers <jer@gentoo.org>
+  ffmpegthumbnailer-2.0.7-r1.ebuild:
+  Stable for HPPA (bug #422133).
+
+  29 Jun 2012; Brent Baude <ranger@gentoo.org>
+  ffmpegthumbnailer-2.0.7-r1.ebuild:
+  Marking ffmpegthumbnailer-2.0.7-r1 ppc for bug 422133
+
+  27 Jun 2012; Markus Meier <maekke@gentoo.org>
+  ffmpegthumbnailer-2.0.7-r1.ebuild:
+  arm stable, bug #422133
+
+  22 Jun 2012; Brent Baude <ranger@gentoo.org>
+  ffmpegthumbnailer-2.0.7-r1.ebuild:
+  Marking ffmpegthumbnailer-2.0.7-r1 ppc64 for bug 422133
+
+  21 Jun 2012; Jeff Horelick <jdhore@gentoo.org>
+  ffmpegthumbnailer-2.0.7-r1.ebuild:
+  marked x86 per bug 422133
+
+  19 Jun 2012; Agostino Sarubbo <ago@gentoo.org>
+  ffmpegthumbnailer-2.0.7-r1.ebuild:
+  Stable for amd64, wrt bug #422133
+
+*ffmpegthumbnailer-2.0.7-r1 (20 May 2012)
+
+  20 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +ffmpegthumbnailer-2.0.7-r1.ebuild,
+  +files/ffmpegthumbnailer-2.0.7-r238-r241.patch:
+  Use latest upstream revision to avoid using deprecated FFMPEG API.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  ffmpegthumbnailer-2.0.7.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  26 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -ffmpegthumbnailer-2.0.6.ebuild,
+  -files/ffmpegthumbnailer-2.0.6-asneeded.patch,
+  -files/ffmpegthumbnailer-2.0.6-flags.patch,
+  -files/ffmpegthumbnailer-2.0.6-gcc46.patch,
+  -files/ffmpegthumbnailer-2.0.6-libpng15.patch:
+  old
+
+  26 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  ffmpegthumbnailer-2.0.7.ebuild:
+  ppc/ppc64 stable wrt #387599
 
   05 Nov 2011; Raúl Porcel <armin76@gentoo.org>
   ffmpegthumbnailer-2.0.7.ebuild:
@@ -582,4 +651,3 @@
   31 Mar 2007; Samuli Suominen <ssuominen@gentoo.org>
   +ffmpegthumbnailer-1.1.ebuild:
   Initial commit.
-

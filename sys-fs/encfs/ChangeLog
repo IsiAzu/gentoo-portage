@@ -1,6 +1,23 @@
 # ChangeLog for sys-fs/encfs
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/encfs/ChangeLog,v 1.58 2011/11/22 23:05:54 sping Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/encfs/ChangeLog,v 1.63 2012/10/31 23:14:20 flameeyes Exp $
+
+  31 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> encfs-1.7.2.ebuild,
+  encfs-1.7.4.ebuild:
+  Let encfs get the correct boost installed.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> encfs-1.7.2.ebuild,
+  encfs-1.7.4.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  04 Dec 2011; Markos Chandras <hwoarang@gentoo.org> encfs-1.7.4.ebuild:
+  Stable on amd64 wrt bug #346299
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> encfs-1.7.4.ebuild:
+  x86 stable wrt bug #346299
+
+  27 Nov 2011; Anthony G. Basile <blueness@gentoo.org> encfs-1.7.4.ebuild:
+  Added RDEPEND on sys-libs/zlib, bug #346299
 
 *encfs-1.7.4 (22 Nov 2011)
 
@@ -249,4 +266,3 @@
   +encfs-1.1.10.ebuild:
   Adding encfs thanks to Vaclav Slavik <vaclav.slavik@matfyz.cz> and Daniel
   Webert <rockoo@rockoo.homelinux.org> in bug 45070
-

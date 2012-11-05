@@ -1,6 +1,31 @@
 # ChangeLog for net-libs/gupnp-igd
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gupnp-igd/ChangeLog,v 1.31 2011/11/13 21:34:27 eva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gupnp-igd/ChangeLog,v 1.39 2012/10/01 08:29:14 phajdan.jr Exp $
+
+  01 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gupnp-igd-0.2.1.ebuild:
+  x86 stable wrt bug #434300
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> gupnp-igd-0.2.1.ebuild:
+  Stable for HPPA (bug #434300).
+
+  18 Sep 2012; Anthony G. Basile <blueness@gentoo.org> ChangeLog:
+  Fix failed manifest signing
+
+  18 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gupnp-igd-0.2.1.ebuild:
+  stable ppc ppc64, bug #434300
+
+  15 Sep 2012; Agostino Sarubbo <ago@gentoo.org> gupnp-igd-0.2.1.ebuild:
+  Stable for amd64, wrt bug #434300
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> gupnp-igd-0.1.7.ebuild,
+  gupnp-igd-0.1.11.ebuild, gupnp-igd-0.2.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*gupnp-igd-0.2.1 (07 Jan 2012)
+
+  07 Jan 2012; Olivier Crête <tester@gentoo.org> gupnp-igd-0.1.7.ebuild,
+  gupnp-igd-0.1.11.ebuild, -gupnp-igd-0.2.0.ebuild, +gupnp-igd-0.2.1.ebuild:
+  Update gupnp-igd and add blocks for the older versions
 
 *gupnp-igd-0.2.0 (13 Nov 2011)
 

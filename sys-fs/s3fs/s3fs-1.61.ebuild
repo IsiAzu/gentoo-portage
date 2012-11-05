@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/s3fs/s3fs-1.61.ebuild,v 1.1 2011/08/31 05:00:09 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/s3fs/s3fs-1.61.ebuild,v 1.4 2012/05/04 19:09:17 jdhore Exp $
 
 EAPI=4
 
@@ -12,7 +12,7 @@ SRC_URI="http://s3fs.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 CDEPEND=">=dev-libs/libxml2-2.6:2
@@ -22,6 +22,6 @@ CDEPEND=">=dev-libs/libxml2-2.6:2
 RDEPEND="${CDEPEND}
 	app-misc/mime-types"
 DEPEND="${CDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 RESTRICT="test"

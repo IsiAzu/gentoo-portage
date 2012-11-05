@@ -1,6 +1,40 @@
 # ChangeLog for net-misc/gsasl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/ChangeLog,v 1.46 2011/11/05 21:54:01 eras Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/ChangeLog,v 1.56 2012/08/22 19:11:59 johu Exp $
+
+  22 Aug 2012; Johannes Huber <johu@gentoo.org> gsasl-1.8.0.ebuild:
+  Stable for x86, wrt bug #429178
+
+*gsasl-1.8.0-r1 (22 Aug 2012)
+
+  22 Aug 2012; Eray Aslan <eras@gentoo.org> +gsasl-1.8.0-r1.ebuild:
+  Add kerberos implementation info to configure - bug #432220
+
+  15 Aug 2012; Anthony G. Basile <blueness@gentoo.org> gsasl-1.8.0.ebuild:
+  Stable ppc, bug #429178
+
+  03 Aug 2012; Agostino Sarubbo <ago@gentoo.org> gsasl-1.8.0.ebuild:
+  Stable for amd64, wrt bug #429178
+
+  12 Jun 2012; Eray Aslan <eras@gentoo.org> gsasl-1.8.0.ebuild:
+  Don't use AM_PROG_AR in configure.ac as automake-1.11 does not recognize it
+
+  12 Jun 2012; Eray Aslan <eras@gentoo.org> gsasl-1.8.0.ebuild:
+  Fix failing autoreconf
+
+*gsasl-1.8.0 (29 May 2012)
+
+  29 May 2012; Tim Harder <radhermit@gentoo.org> +gsasl-1.8.0.ebuild:
+  Version bump. Add threads use flag and update to EAPI 4.
+
+  20 Feb 2012; Naohiro Aota <naota@gentoo.org> gsasl-1.6.1.ebuild:
+  Add ~x86-fbsd
+
+  27 Nov 2011; Jeroen Roovers <jer@gentoo.org> gsasl-1.6.1.ebuild:
+  Do not inherit autotools-utils.eclass (bug #392117).
+
+  27 Nov 2011; Tim Harder <radhermit@gentoo.org> gsasl-1.6.1.ebuild:
+  Build in the source tree.
 
   05 Nov 2011; Eray Aslan <eras@gentoo.org> gsasl-1.6.1.ebuild,
   +files/gsasl-gss-extra.patch:
@@ -192,4 +226,3 @@
 
   05 Jul 2004; <langthang@gentoo.org> +metadata.xml, +gsasl-0.1.1.ebuild:
   New ebuild, bug #56015
-

@@ -1,19 +1,21 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-3.0.1-r1.ebuild,v 1.1 2011/10/29 01:58:08 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-3.0.1-r1.ebuild,v 1.5 2012/05/05 05:38:10 jdhore Exp $
 
-EAPI="3"
+EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
+GNOME_TARBALL_SUFFIX="bz2"
 
-PYTHON_DEPEND="python? 2:2.4"
+PYTHON_DEPEND="python? 2:2.5"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.*"
+RESTRICT_PYTHON_ABIS="3.* *-jython 2.7-pypy-*"
 
 inherit autotools eutils gnome2 python
 
 DESCRIPTION="The GNOME menu system, implementing the F.D.O cross-desktop spec"
 HOMEPAGE="http://www.gnome.org"
+SRC_URI="${SRC_URI} mirror://gentoo/introspection.m4.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
@@ -25,8 +27,11 @@ RDEPEND=">=dev-libs/glib-2.18
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	>=dev-util/pkgconfig-0.9
-	>=dev-util/intltool-0.40"
+	virtual/pkgconfig
+	>=dev-util/intltool-0.40
+
+	gnome-base/gnome-common"
+# eautoreconf requires gnome-common
 # The actual menus are provided by slot 3
 PDEPEND="gnome-base/gnome-menus:3"
 
@@ -43,17 +48,20 @@ pkg_setup() {
 		--disable-static
 		$(use_enable python)
 		$(use_enable introspection)"
+
+	python_pkg_setup
 }
 
 src_prepare() {
 	# Only build the library (everything else is coming from slot 3)
 	epatch "${FILESDIR}/${PN}-3.0.2-library-only.patch"
+	# introspection.m4 needed for eautoreconf
+	mv "${WORKDIR}/introspection.m4" m4/ || die
 	eautoreconf
 	gnome2_src_prepare
 
 	# disable pyc compiling
-	mv py-compile py-compile-disabled
-	ln -s $(type -P true) py-compile
+	python_clean_py-compile_files
 
 	python_copy_sources
 }

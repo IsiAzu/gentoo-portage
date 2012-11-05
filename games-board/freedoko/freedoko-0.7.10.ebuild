@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-board/freedoko/freedoko-0.7.10.ebuild,v 1.3 2011/11/11 09:19:38 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-board/freedoko/freedoko-0.7.10.ebuild,v 1.6 2012/09/24 08:45:18 tupone Exp $
 
 EAPI=2
 inherit eutils games
@@ -24,14 +24,14 @@ SRC_URI="mirror://sourceforge/free-doko/FreeDoko_${PV}.src.zip
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ppc x86"
+KEYWORDS="amd64 ppc x86"
 IUSE="+xskatcards +gnomecards +kdecards +openclipartcards +pysolcards +backgrounds net doc"
 
 RDEPEND="net? ( net-libs/gnet )
 	>=dev-cpp/gtkmm-2.4:2.4"
 DEPEND="${RDEPEND}
 	app-arch/unzip
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/FreeDoko_${PV}
 
@@ -60,7 +60,10 @@ src_unpack() {
 	fi
 }
 
-PATCHES=( "${FILESDIR}"/${P}-gentoo.patch )
+PATCHES=(
+	"${FILESDIR}"/${P}-gentoo.patch
+	"${FILESDIR}"/${P}-gcc47.patch
+)
 
 src_compile() {
 	export CPPFLAGS="-DPUBLIC_DATA_DIRECTORY_VALUE='\"${GAMES_DATADIR}/${PN}\"'"

@@ -1,6 +1,20 @@
 # ChangeLog for games-engines/frobtads
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-engines/frobtads/ChangeLog,v 1.6 2011/09/04 17:46:48 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-engines/frobtads/ChangeLog,v 1.9 2012/10/02 16:46:53 mr_bones_ Exp $
+
+  02 Oct 2012; Michael Sterrett <mr_bones_@gentoo.org> frobtads-1.2.2.ebuild:
+  drop autotools
+
+*frobtads-1.2.2 (02 Oct 2012)
+
+  02 Oct 2012; Michael Sterrett <mr_bones_@gentoo.org> +frobtads-1.2.2.ebuild:
+  version bump
+
+*frobtads-1.2.1 (23 Aug 2012)
+
+  23 Aug 2012; Julian Ospald <hasufell@gentoo.org> +frobtads-1.2.1.ebuild,
+  +files/frobtads-1.2.1-underlinking.patch:
+  version bump wrt #396449
 
   04 Sep 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> frobtads-1.0.ebuild:
   x86 stable wrt bug #381499
@@ -29,4 +43,3 @@
   05 Sep 2008; Michael Sterrett <mr_bones_@gentoo.org> +metadata.xml,
   +frobtads-0.12.ebuild:
   initial commit - ebuild submitted by Nikos Chantziaras via bug #149764
-

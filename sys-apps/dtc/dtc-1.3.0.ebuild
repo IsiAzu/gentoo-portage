@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dtc/dtc-1.3.0.ebuild,v 1.1 2011/06/15 21:19:11 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dtc/dtc-1.3.0.ebuild,v 1.4 2012/11/03 19:24:19 ssuominen Exp $
 
 EAPI=4
 inherit toolchain-funcs
@@ -13,7 +13,7 @@ SRC_URI="http://www.jdl.com/software/${MY_P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="amd64 ppc ppc64 x86"
 IUSE=""
 
 RDEPEND=""
@@ -42,5 +42,6 @@ src_test() {
 src_install() {
 	emake DESTDIR="${D}" PREFIX="/usr" LIBDIR="/usr/$(get_libdir)" \
 		 install
+	[[ ${D}/usr/bin/ftdump ]] && mv "${D}"/usr/bin/ftdump{,.dtc} #372895
 	dodoc Documentation/manual.txt
 }

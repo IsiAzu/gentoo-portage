@@ -1,6 +1,56 @@
 # ChangeLog for dev-cpp/gtest
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtest/ChangeLog,v 1.1 2011/11/11 20:09:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtest/ChangeLog,v 1.16 2012/11/02 05:32:01 jsbronder Exp $
+
+  02 Nov 2012; Justin Bronder <jsbronder@gentoo.org> gtest-1.6.0-r1.ebuild:
+  Resolve #361703 by enabling threads unconditionally.
+
+*gtest-1.6.0-r1 (02 Nov 2012)
+
+  02 Nov 2012; Justin Bronder <jsbronder@gentoo.org> +gtest-1.6.0-r1.ebuild,
+  +files/configure-fix-pthread-linking.patch:
+  Fix #371647, no response from maintainer since Oct 17.
+
+  16 Jul 2012; Anthony G. Basile <blueness@gentoo.org> gtest-1.6.0.ebuild:
+  Stable ppc ppc64, bug #420853
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org> gtest-1.6.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #420853
+
+  28 Jun 2012; Jeroen Roovers <jer@gentoo.org> gtest-1.6.0.ebuild:
+  Stable for HPPA (bug #420853).
+
+  20 Jun 2012; Markus Meier <maekke@gentoo.org> gtest-1.6.0.ebuild:
+  arm stable, bug #420853
+
+  12 Jun 2012; Jeff Horelick <jdhore@gentoo.org> gtest-1.6.0.ebuild:
+  marked x86 per bug 420853
+
+  12 Jun 2012; Agostino Sarubbo <ago@gentoo.org> gtest-1.6.0.ebuild:
+  Stable for amd64, wrt bug #420853
+
+  12 Jun 2012; Mike Frysinger <vapier@gentoo.org> gtest-1.6.0.ebuild:
+  Run elibtoolize to fix cross-compiles.
+
+  01 Jun 2012; Matt Turner <mattst88@gentoo.org> gtest-1.6.0.ebuild:
+  Add app-arch/unzip to DEPEND, bug 410393.
+
+  22 May 2012; Mike Frysinger <vapier@gentoo.org> gtest-1.4.0.ebuild:
+  Stabilize & add arm love.
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> gtest-1.6.0.ebuild:
+  keyword ~amd64-fbsd
+
+  20 Apr 2012; Mike Frysinger <vapier@gentoo.org> gtest-1.4.0.ebuild,
+  +files/gtest-1.4.0-gcc-4.7.patch:
+  Add fix from upstream for building with newer gcc versions.
+
+*gtest-1.6.0 (30 Mar 2012)
+
+  30 Mar 2012; Mike Frysinger <vapier@gentoo.org> +gtest-1.6.0.ebuild:
+  Version bump.
+
+  09 Dec 2011; Naohiro Aota <naota@gentoo.org> gtest-1.5.0.ebuild:
+  Add ~x86-fbsd
 
   11 Nov 2011; Mike Frysinger <vapier@gentoo.org>:
   Migrate categories from dev-util as this is a C++ testing framework #387155.

@@ -1,6 +1,51 @@
 # ChangeLog for dev-python/setuptools
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.149 2011/11/16 19:06:55 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.159 2012/10/22 10:56:16 radhermit Exp $
+
+*setuptools-0.6.30 (22 Oct 2012)
+
+  22 Oct 2012; Tim Harder <radhermit@gentoo.org> +setuptools-0.6.30.ebuild:
+  Version bump.
+
+  05 Oct 2012; Dirkjan Ochtman <djc@gentoo.org>
+  -files/distribute-0.6.12-disable_versioned_easy_install.patch,
+  -files/distribute-0.6.12-fix_deprecation_warnings.patch,
+  -setuptools-0.6.14.ebuild, -setuptools-0.6.15.ebuild,
+  -setuptools-0.6.16.ebuild, -setuptools-0.6.19.ebuild,
+  -setuptools-0.6.24.ebuild, -setuptools-0.6.25.ebuild:
+  Remove old versions.
+
+*setuptools-0.6.28 (20 Sep 2012)
+
+  20 Sep 2012; Tim Harder <radhermit@gentoo.org> +setuptools-0.6.28.ebuild:
+  Version bump.
+
+  05 Aug 2012; Richard Yao <ryao@gentoo.org> setuptools-0.6.27.ebuild:
+  Keyword ~x64-freebsd
+
+*setuptools-0.6.27 (20 May 2012)
+
+  20 May 2012; Mike Gilbert <floppym@gentoo.org> +setuptools-0.6.27.ebuild:
+  Version bump for #414427 by Johan Bergström.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> setuptools-0.6.25.ebuild:
+  keyword ~amd64-fbsd
+
+*setuptools-0.6.25 (14 Mar 2012)
+
+  14 Mar 2012; Mike Gilbert <floppym@gentoo.org> +setuptools-0.6.25.ebuild:
+  Version bump for bug 408095. EAPI=4. Replace find | xargs with find -exec.
+
+  13 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> setuptools-0.6.21.ebuild:
+  ppc64 stable wrt #386061
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> setuptools-0.6.21.ebuild:
+  Marking setuptools-0.6.21 ppc for bug 386061
+
+*setuptools-0.6.24 (27 Dec 2011)
+
+  27 Dec 2011; Patrick Lauer <patrick@gentoo.org> +setuptools-0.6.24.ebuild:
+  Bump for #396123
 
   16 Nov 2011; Markos Chandras <hwoarang@gentoo.org> setuptools-0.6.14.ebuild,
   setuptools-0.6.15.ebuild, setuptools-0.6.16.ebuild, setuptools-0.6.19.ebuild,

@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>kumba@gentoo.org</email>
-		<description>Primary Maintainer</description>
+		<email>blueness@gentoo.org</email>
+		<name>Anthony G. Basile</name>
 	</maintainer>
 	<longdescription>ESR's utility for making fast comparisons among large source trees</longdescription>
 </pkgmetadata>

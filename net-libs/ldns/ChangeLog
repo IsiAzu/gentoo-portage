@@ -1,6 +1,55 @@
 # ChangeLog for net-libs/ldns
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/ldns/ChangeLog,v 1.21 2011/10/06 14:40:09 chainsaw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/ldns/ChangeLog,v 1.32 2012/07/16 01:13:05 floppym Exp $
+
+  16 Jul 2012; Mike Gilbert <floppym@gentoo.org> ldns-1.6.11.ebuild,
+  ldns-1.6.12-r1.ebuild, ldns-1.6.12-r2.ebuild, ldns-1.6.12.ebuild:
+  Don't call python_set_active version if python is disabled.
+
+  13 Jul 2012; Jeremy Olexa <darkside@gentoo.org> ldns-1.6.13-r1.ebuild:
+  pkg_setup fixes regarding python
+
+*ldns-1.6.13-r1 (13 Jul 2012)
+
+  13 Jul 2012; Jeremy Olexa <darkside@gentoo.org> -ldns-1.6.13.ebuild,
+  +ldns-1.6.13-r1.ebuild:
+  Revbump to byte-compile the installed python, bug 426448 by Samuli Suominen
+
+  13 Jul 2012; Jeremy Olexa <darkside@gentoo.org> ldns-1.6.13.ebuild:
+  Enable USE=ecdsa by default for better net-dns/unbound experience
+
+*ldns-1.6.13 (19 Jun 2012)
+
+  19 Jun 2012; MATSUU Takuto <matsuu@gentoo.org> +ldns-1.6.13.ebuild:
+  Version bumped, bug #418365. Added USE=ecdsa. Removed examples USE flag, bug
+  417075.
+
+*ldns-1.6.12-r2 (02 Jun 2012)
+
+  02 Jun 2012; Michael Weber <xmw@gentoo.org> +ldns-1.6.12-r2.ebuild:
+  Revert -r1 change (inclusion of /usr/bin/drill). Add elog about it.
+
+*ldns-1.6.12-r1 (31 May 2012)
+
+  31 May 2012; Michael Weber <xmw@gentoo.org> +ldns-1.6.12-r1.ebuild:
+  Revbump to include drill, EAPI-4. USE examples (bug 417075)
+
+  21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> ldns-1.6.12.ebuild:
+  x86 stable wrt bug #411885
+
+  26 Apr 2012; Agostino Sarubbo <ago@gentoo.org> ldns-1.6.12.ebuild:
+  Stable for amd64, wrt bug #411885
+
+  10 Feb 2012; Patrick Lauer <patrick@gentoo.org> ldns-1.6.11.ebuild,
+  ldns-1.6.12.ebuild:
+  Changing python deps in preparation for 2.4 removal
+
+*ldns-1.6.12 (11 Jan 2012)
+
+  11 Jan 2012; MATSUU Takuto <matsuu@gentoo.org> +files/1.6.12-cflags.patch,
+  -ldns-1.6.4.ebuild, -ldns-1.6.9.ebuild, -ldns-1.6.10.ebuild,
+  +ldns-1.6.12.ebuild:
+  Version bumped. Removed CFALGS="-g -O2", bug #385151. Removed old versions.
 
   06 Oct 2011; Tony Vroon <chainsaw@gentoo.org> ldns-1.6.11.ebuild:
   Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo & Ian
@@ -97,4 +146,3 @@
   21 Nov 2009; MATSUU Takuto <matsuu@gentoo.org> +ldns-1.6.2.ebuild,
   +metadata.xml:
   Initial import, bug #192728.
-

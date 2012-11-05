@@ -1,6 +1,20 @@
 # ChangeLog for www-apps/mantisbt
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/mantisbt/ChangeLog,v 1.114 2011/10/08 15:51:49 pva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-apps/mantisbt/ChangeLog,v 1.118 2012/10/08 08:10:48 nativemad Exp $
+
+  08 Oct 2012; Andreas Schuerch <nativemad@gentoo.org> mantisbt-1.2.11.ebuild:
+  x86 stable, see bug 420375
+
+  28 Sep 2012; Agostino Sarubbo <ago@gentoo.org> mantisbt-1.2.11.ebuild:
+  Stable for amd64, wrt bug #420375
+
+*mantisbt-1.2.11 (31 Jul 2012)
+
+  31 Jul 2012; Patrick Lauer <patrick@gentoo.org> +mantisbt-1.2.11.ebuild:
+  Bump
+
+  14 Dec 2011; Matti Bickel <mabi@gentoo.org> mantisbt-1.2.8.ebuild:
+  Merging categories dev-php5 and dev-php (bug #324665)
 
   08 Oct 2011; Peter Volkov <pva@gentoo.org> -mantisbt-1.2.7-r1.ebuild,
   -files/mantisbt-1.2.7-file-inclusion.patch:
@@ -527,4 +541,3 @@
   +files/postinstall-en.txt, +mantisbt-0.18.3.ebuild:
   Initial ebuild (by swegener, really). Thanks to blubber, Jacob Smullyan
   <smulloni@smullyan.org>, and swegener for their work. Closes #27161.
-

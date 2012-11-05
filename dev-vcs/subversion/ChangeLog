@@ -1,6 +1,106 @@
 # ChangeLog for dev-vcs/subversion
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/ChangeLog,v 1.66 2011/11/06 16:07:18 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/ChangeLog,v 1.85 2012/10/25 17:07:41 tommy Exp $
+
+*subversion-1.7.7 (25 Oct 2012)
+
+  25 Oct 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -subversion-1.7.0.ebuild, -subversion-1.7.1.ebuild, -subversion-1.7.2.ebuild,
+  -subversion-1.7.4.ebuild, -subversion-1.7.5.ebuild, +subversion-1.7.7.ebuild:
+  Version bump, fixes bug 439362, drop old versions
+
+  25 Oct 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  subversion-1.7.6.ebuild:
+  Drop dodoc on notes/*, since that does not exist any more
+
+  03 Sep 2012; Fabian Groffen <grobian@gentoo.org> subversion-1.7.6.ebuild:
+  Fix linking on Solaris with USE=nls
+
+  22 Aug 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  subversion-1.7.6.ebuild, +files/subversion-1.7.6-kwallet.patch:
+  Add patch for kwallet, upstream applied it to trunk, but did not include it
+  in the following release, should now really fix bug 421575
+
+  21 Aug 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  subversion-1.7.6.ebuild:
+  Drop already commented out --with-sqlite argument, fixes bug 413579
+
+*subversion-1.7.6 (21 Aug 2012)
+
+  21 Aug 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +subversion-1.7.6.ebuild,
+  +files/subversion-1.7.6-revert-mod_dontdothat-move.patch:
+  Version bump, fixes bug 421575, add GPL-2 to the license var, fixes bug
+  425940, convert shebang for tools, fixes bug 415507
+
+  20 Aug 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  subversion-1.6.17-r7.ebuild:
+  Restrict dependency on net-libs/serf to SLOT=0, fixes bug 430730
+
+  20 Jul 2012; Michael Palimaka <kensington@gentoo.org>
+  subversion-1.6.17-r7.ebuild, subversion-1.7.0.ebuild, subversion-1.7.1.ebuild,
+  subversion-1.7.2.ebuild, subversion-1.7.4.ebuild, subversion-1.7.5.ebuild:
+  Add missing slot dependencies on Qt.
+
+*subversion-1.7.5 (14 Jun 2012)
+
+  14 Jun 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +subversion-1.7.5.ebuild:
+  Version bump
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> subversion-1.6.17-r7.ebuild,
+  subversion-1.7.0.ebuild, subversion-1.7.1.ebuild, subversion-1.7.2.ebuild,
+  subversion-1.7.4.ebuild:
+  Inherit eutils for epatch, and user for enewuser/etc...
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> subversion-1.7.4.ebuild:
+  keyword ~amd64-fbsd
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> subversion-1.6.17-r7.ebuild,
+  subversion-1.7.0.ebuild, subversion-1.7.1.ebuild, subversion-1.7.2.ebuild,
+  subversion-1.7.4.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  15 Mar 2012; Mike Gilbert <floppym@gentoo.org> subversion-1.6.17-r7.ebuild,
+  subversion-1.7.0.ebuild, subversion-1.7.1.ebuild, subversion-1.7.2.ebuild,
+  subversion-1.7.4.ebuild:
+  Restrict pypy.
+
+*subversion-1.7.4 (11 Mar 2012)
+
+  11 Mar 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +subversion-1.7.4.ebuild,
+  +files/subversion-fix-parallel-build-support-for-perl-bindings.patch:
+  Version bump, fixes bug 404939 and bug 404527, add workaround for linking
+  issue during cross-compilation, when upgrading from 1.6 to 1.7, fixes bug
+  387057, restrict ruby dependency to 1.8 and force usage of that version,
+  fixes bug 399105, add patch for parallel make issue with perl module, fixes
+  bug 388607, also adjust xinetd.d script with USE=apache2 disabled, fixes bug
+  381385, remove enewgroup and enewuser from pkg_config, fixes bug 404499,
+  remove files for languages not in LINGUAS var, fixes bug 402299
+
+  02 Mar 2012; Fabian Groffen <grobian@gentoo.org> subversion-1.7.2.ebuild:
+  Drop Solaris flag trickery for neon, neon itself is fixed now
+
+  11 Feb 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -subversion-1.6.17.ebuild, -subversion-1.6.17-r6.ebuild:
+  Drop old versions
+
+  11 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org>
+  subversion-1.6.17-r7.ebuild:
+  ppc64 stable wrt #386899
+
+*subversion-1.7.2 (14 Jan 2012)
+
+  14 Jan 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +subversion-1.7.2.ebuild, files/svnserve.initd2, metadata.xml:
+  Version bump, fixes bug 393641 and bug 389961, move from deprecated bashcomp
+  eclass to -r1, adjust svnserve default user and group based on USE flags,
+  fixes bug 381385, adjusting metadata.xml, taking over maintainership for now
+
+  30 Nov 2011; Fabian Groffen <grobian@gentoo.org> subversion-1.7.1.ebuild:
+  Use get_libname instead of hardcoding .so for shared libraries for Darwin, by
+  nietonfir in bug #388275
 
   06 Nov 2011; Brent Baude <ranger@gentoo.org> subversion-1.6.17-r7.ebuild:
   Marking subversion-1.6.17-r7 ppc for bug 386899

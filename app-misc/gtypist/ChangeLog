@@ -1,6 +1,14 @@
 # ChangeLog for app-misc/gtypist
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gtypist/ChangeLog,v 1.30 2011/09/30 15:48:11 darkside Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gtypist/ChangeLog,v 1.32 2012/08/06 19:52:58 darkside Exp $
+
+  06 Aug 2012; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  Drop maintainership since I no longer use application
+
+*gtypist-2.9.1 (01 Dec 2011)
+
+  01 Dec 2011; Jeremy Olexa <darkside@gentoo.org> +gtypist-2.9.1.ebuild:
+  very, very minor upstream version bump including UTF-8 fixes, bug 392555
 
   30 Sep 2011; Jeremy Olexa <darkside@gentoo.org> -gtypist-2.8.5.ebuild,
   gtypist-2.8.5-r1.ebuild:

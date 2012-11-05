@@ -1,6 +1,27 @@
 # ChangeLog for sys-power/iasl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/iasl/ChangeLog,v 1.35 2011/11/07 11:30:29 robbat2 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-power/iasl/ChangeLog,v 1.39 2012/09/07 23:11:29 robbat2 Exp $
+
+*iasl-20120816 (07 Sep 2012)
+
+  07 Sep 2012; Robin H. Johnson <robbat2@gentoo.org>
+  +files/iasl-20120816-locale.patch, +iasl-20120816.ebuild:
+  Bug #415693: version bump.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> iasl-20111123.ebuild:
+  keyword ~amd64-fbsd
+
+  25 Dec 2011; Robin H. Johnson <robbat2@gentoo.org> iasl-20080514.ebuild,
+  iasl-20080701.ebuild, iasl-20090123.ebuild, iasl-20090521.ebuild,
+  iasl-20090903.ebuild, iasl-20091013.ebuild, iasl-20100428.ebuild,
+  iasl-20100528.ebuild, iasl-20110922.ebuild, iasl-20111123.ebuild:
+  Bug #288144: check both features and use for test, so we get the correct
+  result with FEATURES=-test USE=test.
+
+*iasl-20111123 (11 Dec 2011)
+
+  11 Dec 2011; Robin H. Johnson <robbat2@gentoo.org> +iasl-20111123.ebuild:
+  Bug #394305: version bump.
 
   07 Nov 2011; Robin H. Johnson <robbat2@gentoo.org> iasl-20110922.ebuild,
   +files/iasl-20110922-parallelmake-003.patch:
@@ -162,4 +183,3 @@
   13 May 2005; Robin H. Johnson <robbat2@gentoo.org> +metadata.xml,
   +iasl-20050309.ebuild:
   Initial commit. Based on ebuild by Micheal <michi2k@web.de>, bug #52511.
-

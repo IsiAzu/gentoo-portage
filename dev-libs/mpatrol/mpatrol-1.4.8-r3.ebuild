@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpatrol/mpatrol-1.4.8-r3.ebuild,v 1.3 2010/10/10 17:51:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpatrol/mpatrol-1.4.8-r3.ebuild,v 1.6 2012/10/24 19:05:39 ulm Exp $
 
 EAPI=1
 
@@ -12,13 +12,13 @@ SRC_URI="http://www.cbmamiga.demon.co.uk/mpatrol/files/${PN}_${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~sparc"
+KEYWORDS="~amd64 x86"
 IUSE="X"
 
 S="${WORKDIR}/${PN}"
 
 # To use X, mpatrol requires Motif
-DEPEND="X? ( >=x11-libs/openmotif-2.3:0 )"
+DEPEND="X? ( >=x11-libs/motif-2.3:0 )"
 RDEPEND="${DEPEND}
 	!dev-lang/mercury"
 

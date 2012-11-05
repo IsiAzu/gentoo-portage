@@ -1,6 +1,68 @@
 # ChangeLog for dev-util/meld
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/meld/ChangeLog,v 1.136 2011/10/30 15:37:11 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/meld/ChangeLog,v 1.153 2012/10/28 15:49:00 armin76 Exp $
+
+  28 Oct 2012; Raúl Porcel <armin76@gentoo.org> meld-1.6.0.ebuild:
+  ia64/sparc stable wrt #427544
+
+*meld-1.6.1 (27 Oct 2012)
+
+  27 Oct 2012; Pacho Ramos <pacho@gentoo.org> +meld-1.6.1.ebuild,
+  -meld-1.5.2.ebuild:
+  Version bump, drop old.
+
+  16 Oct 2012; Anthony G. Basile <blueness@gentoo.org> meld-1.6.0.ebuild:
+  stable ppc, bug #427544
+
+  15 Oct 2012; Matt Turner <mattst88@gentoo.org> meld-1.6.0.ebuild:
+  Stable on alpha, bug 427544.
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> meld-1.6.0.ebuild:
+  stable ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> meld-1.6.0.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> meld-1.6.0.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> meld-1.6.0.ebuild:
+  x86 stable wrt bug #427544
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org> meld-1.5.4.ebuild:
+  alpha/ia64/sparc stable wrt #410611
+
+  24 May 2012; Samuli Suominen <ssuominen@gentoo.org> meld-1.5.4.ebuild:
+  ppc stable wrt #410611
+
+*meld-1.6.0 (29 Apr 2012)
+
+  29 Apr 2012; Pacho Ramos <pacho@gentoo.org> +meld-1.6.0.ebuild,
+  -meld-1.5.3.ebuild:
+  Version bump, remove old.
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> meld-1.5.4.ebuild:
+  x86 stable, bug #410611
+
+  25 Apr 2012; Markus Meier <maekke@gentoo.org> meld-1.5.4.ebuild:
+  arm stable, bug #410611
+
+  19 Apr 2012; Brent Baude <ranger@gentoo.org> meld-1.5.4.ebuild:
+  Marking meld-1.5.4 ppc64 stable for bug 410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> meld-1.5.4.ebuild:
+  Stable for amd64, wrt bug #410611
+
+*meld-1.5.4 (02 Apr 2012)
+
+  02 Apr 2012; Pacho Ramos <pacho@gentoo.org> +meld-1.5.4.ebuild:
+  Version bump.
+
+*meld-1.5.3 (29 Jan 2012)
+
+  29 Jan 2012; Pacho Ramos <pacho@gentoo.org> +meld-1.5.3.ebuild,
+  -meld-1.5.0.ebuild, -meld-1.5.1.ebuild:
+  Version bump, remove old.
 
   30 Oct 2011; Raúl Porcel <armin76@gentoo.org> meld-1.5.2.ebuild:
   alpha/ia64/sparc stable wrt #385699
@@ -519,4 +581,3 @@
   08 Jun 2003; Alastair Tse <liquidx@gentoo.org> meld-0.8.1.ebuild,
   files/meld-0.8.1-gentoo.diff:
   new package. thanks to suka <suka@t0.or.at> (#21578)
-

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/lvm2/lvm2-2.02.88.ebuild,v 1.3 2011/09/13 05:47:23 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/lvm2/lvm2-2.02.88.ebuild,v 1.13 2012/05/04 19:09:16 jdhore Exp $
 
 EAPI=3
 inherit eutils multilib toolchain-funcs autotools linux-info
@@ -12,11 +12,12 @@ SRC_URI="ftp://sources.redhat.com/pub/lvm2/${PN/lvm/LVM}.${PV}.tgz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~x86-linux"
 
 IUSE="readline +static +static-libs clvm cman +lvm1 selinux"
 
 DEPEND_COMMON="!!sys-fs/device-mapper
+	readline? ( sys-libs/readline )
 	clvm? ( =sys-cluster/dlm-2*
 			cman? ( =sys-cluster/cman-2* ) )
 	>=sys-fs/udev-151-r4"
@@ -32,7 +33,7 @@ RDEPEND="${RDEPEND}
 		!<sys-fs/cryptsetup-1.1.2"
 
 DEPEND="${DEPEND_COMMON}
-		dev-util/pkgconfig
+		virtual/pkgconfig
 		>=sys-devel/binutils-2.20.1-r1"
 
 S="${WORKDIR}/${PN/lvm/LVM}.${PV}"
@@ -88,6 +89,8 @@ src_prepare() {
 
 	# Merged upstream
 	#epatch "${FILESDIR}"/${PN}-2.02.73-asneeded.patch
+
+	epatch "${FILESDIR}"/${PN}-2.02.88-respect-cc.patch
 
 	eautoreconf
 }

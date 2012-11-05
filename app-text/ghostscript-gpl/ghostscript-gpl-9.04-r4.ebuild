@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.04-r4.ebuild,v 1.4 2011/11/12 10:23:33 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.04-r4.ebuild,v 1.8 2012/06/02 08:08:27 zmedico Exp $
 
 EAPI=3
 
-inherit autotools eutils versionator flag-o-matic
+inherit autotools eutils multilib versionator flag-o-matic
 
 DESCRIPTION="Ghostscript is an interpreter for the PostScript language and for PDF"
 HOMEPAGE="http://ghostscript.com/"
@@ -25,7 +25,7 @@ IUSE="bindist cups dbus djvu gtk idn jpeg2k static-libs X"
 COMMON_DEPEND="
 	app-text/libpaper
 	media-libs/fontconfig
-	media-libs/freetype:2
+	>=media-libs/freetype-2.4.2:2
 	media-libs/lcms:0
 	media-libs/libpng:0
 	media-libs/tiff:0
@@ -40,7 +40,7 @@ COMMON_DEPEND="
 	X? ( x11-libs/libXt x11-libs/libXext )"
 
 DEPEND="${COMMON_DEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 RDEPEND="${COMMON_DEPEND}
 	>=app-text/poppler-data-0.4.4
@@ -48,7 +48,10 @@ RDEPEND="${COMMON_DEPEND}
 	linguas_ja? ( media-fonts/kochi-substitute )
 	linguas_ko? ( media-fonts/baekmuk-fonts )
 	linguas_zh_CN? ( media-fonts/arphicfonts )
-	linguas_zh_TW? ( media-fonts/arphicfonts )"
+	linguas_zh_TW? ( media-fonts/arphicfonts )
+	!!media-fonts/gnu-gs-fonts-std
+	!!media-fonts/gnu-gs-fonts-other
+"
 
 S="${WORKDIR}/${MY_P}"
 

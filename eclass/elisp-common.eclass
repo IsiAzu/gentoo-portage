@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.76 2011/10/09 09:10:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.82 2012/09/01 09:39:07 ulm Exp $
 #
 # @ECLASS: elisp-common.eclass
 # @MAINTAINER:
@@ -41,7 +41,7 @@
 # known to fail with lower Emacs versions; the standard case is to
 # depend on virtual/emacs without version.
 #
-# .SS
+# @ROFF .SS
 # src_compile() usage:
 #
 # An elisp file is compiled by the elisp-compile() function defined
@@ -60,7 +60,7 @@
 # comments.  See the Emacs Lisp Reference Manual (node "Autoload") for
 # a detailed explanation.
 #
-# .SS
+# @ROFF .SS
 # src_install() usage:
 #
 # The resulting compiled files (.elc) should be put in a subdirectory of
@@ -120,7 +120,7 @@
 # "50${PN}-gentoo.el".  If your subdirectory is not named ${PN}, give
 # the differing name as second argument.
 #
-# .SS
+# @ROFF .SS
 # pkg_postinst() / pkg_postrm() usage:
 #
 # After that you need to recreate the start-up file of Emacs after
@@ -159,7 +159,7 @@ EMACS=${EPREFIX}/usr/bin/emacs
 # @ECLASS-VARIABLE: EMACSFLAGS
 # @DESCRIPTION:
 # Flags for executing Emacs in batch mode.
-# These work for Emacs versions 18-23, so don't change them.
+# These work for Emacs versions 18-24, so don't change them.
 EMACSFLAGS="-batch -q --no-site-file"
 
 # @ECLASS-VARIABLE: BYTECOMPFLAGS
@@ -173,7 +173,7 @@ BYTECOMPFLAGS="-L ."
 
 elisp-emacs-version() {
 	local ret
-	# The following will work for at least versions 18-23.
+	# The following will work for at least versions 18-24.
 	echo "(princ emacs-version)" >"${T}"/emacs-version.el
 	${EMACS} ${EMACSFLAGS} -l "${T}"/emacs-version.el
 	ret=$?
@@ -195,6 +195,10 @@ elisp-need-emacs() {
 	local need_emacs=$1 have_emacs
 	have_emacs=$(elisp-emacs-version) || return
 	einfo "Emacs version: ${have_emacs}"
+	if [[ ${have_emacs} =~ XEmacs|Lucid ]]; then
+		eerror "This package needs GNU Emacs."
+		return 1
+	fi
 	if ! [[ ${have_emacs%%.*} -ge ${need_emacs%%.*} ]]; then
 		eerror "This package needs at least Emacs ${need_emacs%%.*}."
 		eerror "Use \"eselect emacs\" to select the active version."
@@ -316,7 +320,7 @@ elisp-site-file-install() {
 
 elisp-site-regen() {
 	local sitelisp=${ROOT}${EPREFIX}${SITELISP}
-	local sf i line null="" page=$'\f'
+	local sf i null="" page=$'\f'
 	local -a sflist
 
 	if [[ ! -d ${sitelisp} ]]; then
@@ -329,7 +333,7 @@ elisp-site-regen() {
 		return 1
 	fi
 
-	einfon "Regenerating site-gentoo.el for GNU Emacs (${EBUILD_PHASE}) ..."
+	ebegin "Regenerating site-gentoo.el for GNU Emacs (${EBUILD_PHASE})"
 
 	# Until January 2009, elisp-common.eclass sometimes created an
 	# auxiliary file for backwards compatibility. Remove any such file.
@@ -376,12 +380,14 @@ elisp-site-regen() {
 		# was actually no change.
 		# A case is a remerge where we have doubled output.
 		rm -f "${T}"/site-gentoo.el
-		echo " no changes."
+		eend
+		einfo "... no changes."
 	else
 		mv "${T}"/site-gentoo.el "${sitelisp}"/site-gentoo.el
-		echo
+		eend
 		case ${#sflist[@]} in
-			0) ewarn "... Huh? No site initialisation files found." ;;
+			0) [[ ${PN} = emacs-common-gentoo ]] \
+				|| ewarn "... Huh? No site initialisation files found." ;;
 			1) einfo "... ${#sflist[@]} site initialisation file included." ;;
 			*) einfo "... ${#sflist[@]} site initialisation files included." ;;
 		esac

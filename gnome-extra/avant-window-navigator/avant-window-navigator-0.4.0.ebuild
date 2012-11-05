@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/avant-window-navigator/avant-window-navigator-0.4.0.ebuild,v 1.2 2011/11/06 08:12:59 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/avant-window-navigator/avant-window-navigator-0.4.0.ebuild,v 1.5 2012/06/19 13:45:15 ssuominen Exp $
 
-EAPI="4"
+EAPI=4
 
-GCONF_DEBUG="no"
-GNOME2_LA_PUNT="yes"
+GCONF_DEBUG=no
+GNOME2_LA_PUNT=yes
 
 PYTHON_DEPEND="2:2.6"
 
@@ -22,6 +22,7 @@ IUSE="doc +gconf vala"
 
 RDEPEND=">=dev-libs/dbus-glib-0.80
 	>=dev-libs/glib-2.16
+	dev-python/dbus-python
 	dev-python/librsvg-python
 	dev-python/pycairo
 	dev-python/pygobject:2
@@ -39,7 +40,7 @@ RDEPEND=">=dev-libs/dbus-glib-0.80
 	gconf? ( >=gnome-base/gconf-2 )"
 DEPEND="${RDEPEND}
 	dev-util/intltool
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-devel/gettext
 	x11-proto/xproto
 	!<gnome-extra/avant-window-navigator-extras-${PV}
@@ -66,8 +67,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	rm -f py-compile
-	ln -s $(type -P true) py-compile
+	>py-compile
 
 	gnome2_src_prepare
 }

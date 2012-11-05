@@ -1,6 +1,446 @@
 # ChangeLog for Gentoo base-profile
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.317 2011/11/25 08:06:46 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.456 2012/11/04 05:12:44 flameeyes Exp $
+
+  04 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> package.use.mask:
+  Mask dane USE flag for net-libs/gnutls.
+
+  01 Nov 2012; Alexis Ballier <aballier@gentoo.org> package.use.mask:
+  mask useflags requiring dev-ml/ocamlduce so that we can mask it and unmask
+  ocaml-4
+
+  01 Nov 2012; <swift@gentoo.org> package.mask:
+  Adding mask for selinux-dbadmin package
+
+  30 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="systemd" for sys-power/upower because of stabilization.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> package.use.force:
+  Remove traces of pypy1.7, no longer in the tree and not supported by the
+  eclasses.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> package.use.force:
+  Enable python3.3 for python-exec.
+
+  22 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Punt obsolete imagemagick mask.
+
+  22 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask legacy USE flag "extras" for >=sys-fs/udev-171.
+
+  14 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> package.use.mask:
+  Unmask ipv6 USE-flag on dev-libs/libdnet - all rdeps was built successfully
+  on it
+
+  12 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Temporarily add a masked osmesa-multilib USE flag for wine to allow overlay
+  users to enable osmesa support for win32 on amd64 until bug #430268 is
+  resolved.
+
+  11 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> package.use.mask:
+  Mask ipv6 USE-flag on dev-libs/libdnet
+
+  09 Oct 2012; Justin Lecher <jlec@gentoo.org> package.use.mask:
+  Use mask dev-lang/idb[eclipse] because all versions of dev-util/eclipse-sdk
+  are masked
+
+  08 Oct 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Remove mask on net-libs/telepathy-qt[farstream] as required dep is stable
+  now.
+
+  08 Oct 2012; Mike Gilbert <floppym@gentoo.org> use.mask:
+  Mask python_targets_python3_3.
+
+  02 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask <gnome-base/gvfs-1.12.3-r1[udisks] for stabilization bug #427544,
+  Comment #27
+
+  29 Sep 2012; <swift@gentoo.org> package.mask:
+  Add mask for selinux-rtorrent, new policy ebuild
+
+  27 Sep 2012; Ian Stakenvicius <axs@gentoo.org> make.defaults:
+  Added prefix flag to IUSE_IMPLICIT for EAPI=5 ebuild testing
+
+  25 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask gtk+[egl] since it's only useful with wayland.
+
+  19 Sep 2012; Matt Turner <mattst88@gentoo.org> package.use.force:
+  Add media-libs/glu -multilib to package.use.force
+
+  19 Sep 2012; Matt Turner <mattst88@gentoo.org> package.use.mask:
+  Add media-libs/glu multilib to package.use.mask.
+
+  14 Sep 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Masked media-libs/phonon[zeitgeist] for stabilization as the use flag pulls a
+  dep tree of hell.
+
+  13 Sep 2012; Zac Medico <zmedico@gentoo.org> make.defaults:
+  Add IUSE injection variables to PROFILE_ONLY_VARIABLES.
+
+  13 Sep 2012; Zac Medico <zmedico@gentoo.org> make.defaults:
+  Populate variables for "Profile IUSE injection" (applies only to ebuilds
+  which use EAPI 5 or later). These are just minimal settings for ARCH, ELIBC,
+  KERNEL, and USERLAND flags which everyone can probably agree on.
+
+  12 Sep 2012; Davide Pesavento <pesa@gentoo.org> package.use.force:
+  Force usage of bundled botan in >=qt-creator-2.6
+
+  10 Sep 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Restore mask net-libs/telepathy-qt[farstream] otherwise repoman will scream.
+
+  09 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  GNOME 3.4 is unmasked
+
+  02 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Mask wayland for one more version of mesa so it can go stable, bug #432400.
+
+  31 Aug 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="cdr" of app-pda/gtkpod for #433535
+
+  22 Aug 2012; <swift@gentoo.org> package.mask:
+  Adding mask for SELinux vdagent policy
+
+  22 Aug 2012; <swift@gentoo.org> package.mask:
+  Adding mask for SELinux device kit policy package
+
+  31 Jul 2012; Ralph Sennhauser <sera@gentoo.org> use.mask:
+  Mask python_targets_jython*, unmask where it's available.
+
+  28 Jul 2012; <swift@gentoo.org> package.mask:
+  Adding mask for SELinux flash policy
+
+  27 Jul 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use:
+  Add xorg to default flags for x11-base/xorg-server, sort newest first.
+
+  26 Jul 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Mask osmesa flag for mesa-8.1_rc1_pre20120724
+
+  26 Jul 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Mask experimental udisks2 support for kde-base/kdelibs, bug #424157.
+
+  22 Jul 2012; <swift@gentoo.org> package.mask:
+  Adding mask for SELinux chromium policy module
+
+  21 Jul 2012; <swift@gentoo.org> package.mask:
+  Adding mask for new nslcd selinux policy package
+
+  20 Jul 2012; Ole Markus With <olemarkus@gentoo.org> package.use.mask:
+  PHP Kolab patch broken with newer versions of c-client
+
+  18 Jul 2012; Michael Weber <xmw@gentoo.org> package.use.mask:
+  www-client/netsurf: webp got functional
+
+  18 Jul 2012; Ralph Sennhauser <sera@gentoo.org> package.use.mask:
+  use mask eclipse for dev lang/icc as it requires masked eclipse-sdk
+
+  18 Jul 2012; Michael Weber <xmw@gentoo.org> package.use.mask:
+  www-client/netsurf: mask problematic use flags for now
+
+  16 Jul 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Update glamor mask to only apply to stable xf86-video-intel.
+
+  12 Jul 2012; <swift@gentoo.org> package.mask:
+  Adding selinux-phpfpm to the general selinux mask (upcoming new policy build)
+
+  04 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Remove obsolete entries to net-libs/xulrunner and www-client/icecat wrt
+  #424617
+
+  29 Jun 2012; Mike Gilbert <floppym@gentoo.org> package.use.mask:
+  Mask libzfs flag for grub due to sys-fs/zfs keywords.
+
+  22 Jun 2012; Tony Vroon <chainsaw@gentoo.org> make.defaults:
+  Add VOICEMAIL_STORAGE to USE_EXPAND for net-misc/asterisk; approved by Ian
+  "axs" Stakenvicius on gentoo-dev.
+
+  19 Jun 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  mask wayland flag for stable mesa, #419473
+
+  18 Jun 2012; <swift@gentoo.org> package.mask:
+  Removing obsoleted packages, see #415729
+
+  18 Jun 2012; Ultrabug <ultrabug@gentoo.org> package.use.mask:
+  Drop gevent USE mask for www-servers/uwsgi wrt gevent-1.0_beta2 being
+  unmasked
+
+  17 Jun 2012; Davide Pesavento <pesa@gentoo.org> package.use.mask:
+  Restrict c++0x and qpa USE mask to Qt < 4.8.3 only.
+
+  14 Jun 2012; Davide Pesavento <pesa@gentoo.org> package.use.mask:
+  Consolidate USE=jit masking/unmasking for qt-script and qt-webkit.
+
+  13 Jun 2012; Zac Medico <zmedico@gentoo.org> package.use.mask:
+  Mask USE=pypy1_9 for sys-apps/portage, since pypy has limited KEYWORDS.
+
+  02 Jun 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.use.mask:
+  Postgres support in calligra needs libpqxx-3* which is not in the tree
+  anymore
+
+  02 Jun 2012; Michael Weber <xmw@gentoo.org> package.use.mask:
+  dev-db/firebird client: Not fit for production (bug 404403, comment #5)
+
+  25 May 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.use.mask:
+  Mask ipp useflag on opencv, because icc cannot be installed (no distfile)
+
+  25 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Remove webkit-gtk's USE mask, the flags are now masked in specific arches.
+
+  24 May 2012; Arun Raghavan <ford_prefect@gentoo.org> package.use.mask:
+  Consolidate media-sound/pulseaudio entries.
+
+  24 May 2012; Arun Raghavan <ford_prefect@gentoo.org> package.use.mask:
+  For PulseAudio, mask xen USE flag by default, unmask on x86/amd64 where it is
+  supported.
+
+  21 May 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Remove USE="test" mask for app-text/asciidoc because media-sound/lilypond is
+  stable again wrt #415627
+
+  21 May 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Remove mask for USE="nsplugin" in media-video/vlc because it was removed in
+  favour of media-plugins/npapi-vlc.
+
+  20 May 2012; Maciej Mrozowski <reavertm@gentoo.org> package.use.mask:
+  Remove USE mask on kdevelop-php doc
+
+  18 May 2012; Mike Frysinger <vapier@gentoo.org> packages:
+  Force recent patch version so devs do not need to worry about inconsistent
+  treatment of DOS line endings and differences in behavior with patch-2.5.
+
+  15 May 2012; Mike Gilbert <floppym@gentoo.org> make.defaults:
+  Set default value for PYTHON_TARGETS, bug 415575.
+
+  14 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Start gnome-3.4 package.use.mask
+
+  10 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask =app-misc/gnote-0.8.2[applet] to allow stabilization (bug #414983).
+
+  07 May 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask deprecated xulrunner support for =media-video/vlc-1.1* wrt #407567
+
+  02 May 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Mask qt4 flag for <cairo-1.12
+
+  01 May 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Mask xf86-video-intel glamor flag.
+
+  19 Apr 2012; Davide Pesavento <pesa@gentoo.org> package.use.mask:
+  Mask c++0x and qpa USE flags for the new qt-bearer ebuild too.
+
+  19 Apr 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Mask net-libs/telepathy-qt[farstream] as required dep is masked.
+
+  19 Apr 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Remove obsolete use mask for net-libs/telepathy-qt[glib], required version in
+  tree.
+
+  13 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask webkit-gtk[geoloc] in base and unmask on arches where app-misc/geoclue
+  and app-accessibility/at-spi2-core are available.
+
+  13 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Consolidate USE=systemd mask, and add gnome-system-monitor.
+
+  12 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Temporarily mask gobject-introspection[doctool] for mako keywording to avoid
+  touching hppa profile, bug #411761.
+
+  12 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask gtkmm[wayland] since it needs gtk+[wayland].
+
+  11 Apr 2012; Sebastian Pipping <sping@gentoo.org> package.use.mask:
+  Mask >=media-libs/babl-0.1.8[introspection] and >=media-libs/gegl-0.2[introspection]
+
+  11 Apr 2012; Michał Górny <mgorny@gentoo.org> package.use.mask:
+  Mask USE=jit on libzpaq for non-x86/amd64.
+
+  08 Apr 2012; Alexis Ballier <aballier@gentoo.org> package.use.mask:
+  mask x264-encoder[ffmpegsource] on all versions but latest one
+
+  05 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Unmask USE="q64" for media-gfx/imagemagick >= 6.7.6.4 wrt #401327
+
+  31 Mar 2012; Davide Pesavento <pesa@gentoo.org> package.use.mask:
+  Update mask of c++0x and qpa USE flags to include Qt 4.8.1.
+
+  29 Mar 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> use.mask:
+  Mask video_cards_omap as it is not useful on most arches.
+
+  28 Mar 2012; Arun Raghavan <ford_prefect@gentoo.org> package.use.mask:
+  webrtc-audio-processing is only supported on x86/amd64. Possibly arm can be
+  added.
+
+  27 Mar 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask USE=systemd for gnome-extra/gnome-screensaver, it requires a systemd
+  version which is keyworded only on two arches.
+
+  27 Mar 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask x11-libs/gtk+[wayland], requires libxkbcommon from x11 overlay.
+
+  26 Mar 2012; <swift@gentoo.org> package.mask:
+  Masking out new selinux-sssd package for non-SELinux systems
+
+  25 Mar 2012; Krzysztof Pawlik <nelchael@gentoo.org> make.defaults:
+  Add PYTHON_TARGETS to USE_EXPAND.
+
+  25 Mar 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Fix cairo mask.
+
+  24 Mar 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Allow USE="openvg" for latest cairo release.
+
+  23 Mar 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Mask broken upnp use flag in kde-base/kdelibs for upcoming stabilization.
+
+  22 Mar 2012; Tim Harder <radhermit@gentoo.org> package.use.mask:
+  Mask USE="skype" for bitlbee since skype has no stable versions.
+
+  20 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="acl" for sys-auth/consolekit here and unmask it in
+  default/linux/package.use.mask.
+
+  18 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> use.mask,
+  package.use.mask:
+  Remove entries related to media-sound/esound which got removed from tree.
+
+  12 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> use.mask:
+  Mask USE="packagekit" because it's not ready.
+
+  12 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="test" for app-text/asciidoc because media-sound/lilypond is masked
+  in ../package.mask for removal.
+
+  03 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Remove USE="libffi" mask for sys-devel/gcc because the flag is gone wrt
+  #354903
+
+  28 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> use.mask:
+  Mask USE="vidix" as x86 only.
+
+  26 Feb 2012; Mike Doty <kingtaco@gentoo.org> packages:
+  adding sys-apps/less temporarly to resolve bug 398295.
+
+  26 Feb 2012; <swift@gentoo.org> package.mask:
+  Mask out new selinux policy packages
+
+  25 Feb 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Mask directfb for gnash.
+
+  24 Feb 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Unmask lirc on most recent gnash
+
+  18 Feb 2012; Zac Medico <zmedico@gentoo.org> package.use.mask:
+  Mask USE=pypy1_8 for sys-apps/portage, since pypy has limited KEYWORDS.
+
+  11 Feb 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask USE=systemd for gnome-extra/gnome-screensaver, it requires a systemd
+  version which is masked and keyworded only for 2 arches.
+
+  10 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="q64" for media-gfx/imagemagick wrt #401327 and #402999
+
+  08 Feb 2012; Bernard Cafarelli <voyageur@gentoo.org> package.use.mask:
+  Global mask for gnustep-base/gnustep-make[libobjc2] with new version
+
+  05 Feb 2012; Christoph Junghans <ottxor@gentoo.org> package.use.mask:
+  mips flags exist also in fftw-3.2
+
+  04 Feb 2012; Christoph Junghans <ottxor@gentoo.org> package.use.mask:
+  Masked sci-libs/fftw mips only flags
+
+  03 Feb 2012; William Hubbs <williamh@gentoo.org> packages:
+  replace sys-apps/module-init-tools with virtual/modutils for bug #401899.
+
+  31 Jan 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Remove use mask on phonon-xine. Backend is removed from tree.
+
+  29 Jan 2012; Alex Alexander <wired@gentoo.org> package.use.mask:
+  masked experimental qt useflags qpa and c++0x
+
+  25 Jan 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Mask glib use flag for >=net-libs/telepathy-qt-0.9, required version of
+  net-libs/telepathy-glib is not in tree yet. 
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Unmask USE="test" for x11-libs/libnotify because GTK+ 3.0 has been stabilized
+  since.
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.force:
+  Force USE="symlink" enabled for x11-libs/libnotify while waiting for
+  supporting eselect module wrt #379941
+
+  20 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Unmask USE="jack" for media-plugins/audacious-plugins wrt #389439 by Bob
+  Johnson
+
+  14 Jan 2012; Sven Vermeulen <swift@gentoo.org> package.mask:
+  Mask SELinux policy packages that are soon to be added
+  
+  10 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="e2fsprogs" for app-arch/libarchive as Linux -only feature wrt
+  #354923
+
+  09 Jan 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask USE="jit" for webkit-gtk in base profile; it is unmasked in individual
+  profiles which support it (bug #396313).
+
+  08 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Unmask USE="pronounce" for stardict 3.0.3 and above wrt #246174
+
+  07 Jan 2012; Mike Frysinger <vapier@gentoo.org> packages:
+  Require baselayout-2 now so packages don't have to #396731.
+
+  05 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="systemd" for sys-auth/polkit for keywording and testing.
+
+  31 Dec 2011; Alexis Ballier <aballier@gentoo.org> package.use.mask:
+  remove usemask for vlc useflag thats now gone
+
+  06 Dec 2011; Mike Frysinger <vapier@gentoo.org> package.use.mask:
+  Mask gcc[libssp] as no one should generally be using it.
+
+  06 Dec 2011; Mike Frysinger <vapier@gentoo.org> packages:
+  Drop zlib dep from system since pkgs pull it in as needed.
+
+  06 Dec 2011; Mike Frysinger <vapier@gentoo.org> packages:
+  Drop ncurses dep from system since pkgs pull it in as needed.
+
+  06 Dec 2011; Alexis Ballier <aballier@gentoo.org> package.use.mask:
+  usemask vlc media-library useflag: does not build
+
+  06 Dec 2011; Alexis Ballier <aballier@gentoo.org> package.use.mask:
+  mask vlc macosx-qtkit useflag too
+
+  06 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="pic" in media-video/transcode here and unmask only for x86 arch.
+
+  06 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="nuv" for media-video/transcode and explicitely unmask it for x86
+  arch only.
+
+  02 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Remove now unnecessary entry for media-video/tovid.
+
+  01 Dec 2011; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Drop obsolete introspection mask entries, requested by darkside.
+
+  30 Nov 2011; Davide Pesavento <pesa@gentoo.org> package.use.mask:
+  Mask USE="jit" for x11-libs/qt-webkit.
+
+  29 Nov 2011; Mike Frysinger <vapier@gentoo.org> packages:
+  Drop sys-libs/readline from system; USE=readline controls when it is needed.
 
   25 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
   GNOME 3.2 is unmasked!

@@ -1,6 +1,36 @@
 # ChangeLog for sys-auth/realtime-base
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/realtime-base/ChangeLog,v 1.7 2011/11/02 21:40:45 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/realtime-base/ChangeLog,v 1.17 2012/05/29 15:14:49 aballier Exp $
+
+  29 May 2012; Alexis Ballier <aballier@gentoo.org> realtime-base-0.1.ebuild:
+  keyword ~amd64-fbsd
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> realtime-base-0.1.ebuild:
+  Inherit user for enewuser/etc... rather than eutils.
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> realtime-base-0.1.ebuild:
+  ia64/sh/sparc stable wrt #388171
+
+  13 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> realtime-base-0.1.ebuild:
+  ppc64 stable wrt #388171
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> realtime-base-0.1.ebuild:
+  Marking realtime-base-0.1 ppc for bug 388171
+
+  03 Mar 2012; Tobias Klausmann <klausman@gentoo.org> realtime-base-0.1.ebuild:
+  Stable on alpha, bug #388171
+
+  03 Mar 2012; Markus Meier <maekke@gentoo.org> realtime-base-0.1.ebuild:
+  arm stable, bug #388171
+
+  23 Feb 2012; Agostino Sarubbo <ago@gentoo.org> realtime-base-0.1.ebuild:
+  Stable for AMD64 per Tim Harder(radhermit) test. wrt bug #388171
+
+  26 Dec 2011; Markus Meier <maekke@gentoo.org> realtime-base-0.1.ebuild:
+  x86 stable, bug #388171
+
+  20 Dec 2011; Jeroen Roovers <jer@gentoo.org> realtime-base-0.1.ebuild:
+  Stable for HPPA (bug #388171).
 
   02 Nov 2011; Mike Frysinger <vapier@gentoo.org> realtime-base-0.1.ebuild:
   Drop "die" from enew{user,group} since these have always taken care of

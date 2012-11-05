@@ -10,7 +10,7 @@
   </synopsis>
   <product type="ebuild">postgresql-server postgresql-base</product>
   <announced>October 25, 2011</announced>
-  <revised>October 25, 2011: 1</revised>
+  <revised>March 05, 2012: 3</revised>
   <bug>261223</bug>
   <bug>284274</bug>
   <bug>297383</bug>
@@ -30,6 +30,11 @@
       <unaffected range="rge">8.4.9</unaffected>
       <unaffected range="rge">8.3.16</unaffected>
       <unaffected range="rge">8.2.22</unaffected>
+      <unaffected range="rge">8.4.10</unaffected>
+      <unaffected range="rge">8.3.17</unaffected>
+      <unaffected range="rge">8.2.23</unaffected>
+      <unaffected range="ge">8.4.11</unaffected>
+      <unaffected range="ge">8.3.18</unaffected>
       <vulnerable range="lt">9.0.5</vulnerable>
     </package>
     <package name="dev-db/postgresql-base" auto="yes" arch="*">
@@ -37,6 +42,11 @@
       <unaffected range="rge">8.4.9</unaffected>
       <unaffected range="rge">8.3.16</unaffected>
       <unaffected range="rge">8.2.22</unaffected>
+      <unaffected range="rge">8.4.10</unaffected>
+      <unaffected range="rge">8.3.17</unaffected>
+      <unaffected range="rge">8.2.23</unaffected>
+      <unaffected range="ge">8.4.11</unaffected>
+      <unaffected range="ge">8.3.18</unaffected>
       <vulnerable range="lt">9.0.5</vulnerable>
     </package>
   </affected>
@@ -167,5 +177,5 @@
   <metadata timestamp="Fri, 07 Oct 2011 23:38:07 +0000" tag="requester">
     keytoaster
   </metadata>
-  <metadata timestamp="Tue, 25 Oct 2011 07:32:14 +0000" tag="submitter">a3li</metadata>
+  <metadata timestamp="Mon, 05 Mar 2012 19:10:41 +0000" tag="submitter">a3li</metadata>
 </glsa>

@@ -1,6 +1,50 @@
 # ChangeLog for dev-python/apsw
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/apsw/ChangeLog,v 1.40 2011/10/16 22:12:44 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/apsw/ChangeLog,v 1.50 2012/09/07 22:04:11 johu Exp $
+
+  07 Sep 2012; Johannes Huber <johu@gentoo.org> apsw-3.7.13.1.ebuild:
+  Stable for x86, wrt bug #432432
+
+*apsw-3.7.14.1 (07 Sep 2012)
+
+  07 Sep 2012; Tim Harder <radhermit@gentoo.org> +apsw-3.7.14.1.ebuild:
+  Version bump.
+
+  24 Aug 2012; Agostino Sarubbo <ago@gentoo.org> apsw-3.7.13.1.ebuild:
+  Stable for amd64, wrt bug #432432
+
+*apsw-3.7.13.1 (24 Jun 2012)
+
+  24 Jun 2012; Tim Harder <radhermit@gentoo.org> +apsw-3.7.13.1.ebuild:
+  Version bump.
+
+  31 May 2012; Tim Harder <radhermit@gentoo.org> -apsw-3.7.8.1.ebuild,
+  -apsw-3.7.9.1.ebuild:
+  Remove old.
+
+*apsw-3.7.12.1 (31 May 2012)
+
+  31 May 2012; Tim Harder <radhermit@gentoo.org> +apsw-3.7.12.1.ebuild:
+  Version bump.
+
+*apsw-3.7.11.1 (03 Apr 2012)
+
+  03 Apr 2012; Tim Harder <radhermit@gentoo.org> +apsw-3.7.11.1.ebuild:
+  Version bump.
+
+  20 Feb 2012; Patrick Lauer <patrick@gentoo.org> apsw-3.7.10.1.ebuild,
+  apsw-3.7.6.2.1.ebuild, apsw-3.7.8.1.ebuild, apsw-3.7.9.1.ebuild:
+  Restricting pypy #404011
+
+*apsw-3.7.10.1 (11 Feb 2012)
+
+  11 Feb 2012; Tim Harder <radhermit@gentoo.org> +apsw-3.7.10.1.ebuild:
+  Version bump.
+
+*apsw-3.7.9.1 (14 Dec 2011)
+
+  14 Dec 2011; Tim Harder <radhermit@gentoo.org> +apsw-3.7.9.1.ebuild:
+  Version bump.
 
 *apsw-3.7.8.1 (16 Oct 2011)
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/webob/webob-1.1.ebuild,v 1.1 2011/09/16 08:12:12 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/webob/webob-1.1.ebuild,v 1.10 2012/10/13 18:52:07 armin76 Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -14,12 +14,12 @@ MY_PN="WebOb"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="WSGI request and response object"
-HOMEPAGE="http://pythonpaste.org/webob/ http://pypi.python.org/pypi/WebOb"
+HOMEPAGE="http://webob.org/ http://pypi.python.org/pypi/WebOb"
 SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.zip"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~alpha amd64 arm ~hppa ia64 ppc ppc64 s390 sh sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc test"
 
 DEPEND="app-arch/unzip

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.15.ebuild,v 1.1 2011/10/21 15:17:00 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.15.ebuild,v 1.14 2012/07/23 15:29:25 swift Exp $
 
 EAPI=4
 inherit autotools eutils flag-o-matic multilib pam
@@ -11,43 +11,57 @@ SRC_URI="http://www.jwz.org/xscreensaver/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
-IUSE="jpeg new-login opengl pam suid xinerama"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+IUSE="jpeg new-login opengl pam +perl selinux suid xinerama"
 
-RDEPEND="x11-libs/libXmu
-	x11-libs/libXxf86vm
-	x11-libs/libXrandr
-	x11-libs/libXxf86misc
-	x11-libs/libXt
+COMMON_DEPEND="dev-libs/libxml2
+	>=gnome-base/libglade-2
+	media-libs/netpbm
+	x11-apps/appres
+	x11-apps/xwininfo
+	x11-libs/gtk+:2
 	x11-libs/libX11
 	x11-libs/libXext
 	x11-libs/libXi
-	x11-apps/xwininfo
-	x11-apps/appres
-	media-libs/netpbm
-	>=dev-libs/libxml2-2.5
-	>=x11-libs/gtk+-2:2
-	>=gnome-base/libglade-1.99
-	pam? ( virtual/pam )
+	x11-libs/libXmu
+	x11-libs/libXrandr
+	x11-libs/libXt
+	x11-libs/libXxf86misc
+	x11-libs/libXxf86vm
 	jpeg? ( virtual/jpeg )
+	new-login? ( || ( x11-misc/lightdm gnome-base/gdm kde-base/kdm ) )
 	opengl? ( virtual/opengl )
-	xinerama? ( x11-libs/libXinerama )
-	new-login? ( || ( gnome-base/gdm kde-base/kdm ) )"
-DEPEND="${RDEPEND}
-	x11-proto/xf86vidmodeproto
-	x11-proto/xextproto
-	x11-proto/scrnsaverproto
-	x11-proto/recordproto
-	x11-proto/xf86miscproto
-	sys-devel/bc
-	dev-util/pkgconfig
-	sys-devel/gettext
+	pam? ( virtual/pam )
+	selinux? ( sec-policy/selinux-xscreensaver )
+	xinerama? ( x11-libs/libXinerama )"
+# For USE="perl" see output of `qlist xscreensaver | grep bin | xargs grep '::'`
+RDEPEND="${COMMON_DEPEND}
+	perl? (
+		dev-lang/perl
+		dev-perl/libwww-perl
+		virtual/perl-Digest-MD5
+		)"
+DEPEND="${COMMON_DEPEND}
 	dev-util/intltool
+	virtual/pkgconfig
+	sys-devel/bc
+	sys-devel/gettext
+	x11-proto/recordproto
+	x11-proto/scrnsaverproto
+	x11-proto/xextproto
+	x11-proto/xf86miscproto
+	x11-proto/xf86vidmodeproto
 	xinerama? ( x11-proto/xineramaproto )"
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
 src_prepare() {
+	if use new-login && has_version x11-misc/lightdm; then #392967
+		sed -i \
+			-e "/default_l.*1/s:gdmflexiserver -ls:${EPREFIX}/usr/libexec/lightdm/&:" \
+			configure{,.in} || die
+	fi
+
 	epatch \
 		"${FILESDIR}"/${PN}-5.15-gentoo.patch \
 		"${FILESDIR}"/${PN}-5.05-interix.patch
@@ -57,14 +71,13 @@ src_prepare() {
 
 src_configure() {
 	if use ppc || use ppc64; then
-		filter-flags -mabi=altivec
-		filter-flags -maltivec
+		filter-flags -maltivec -mabi=altivec
 		append-flags -U__VEC__
 	fi
 
 	unset LINGUAS #113681
 	unset BC_ENV_ARGS #24568
-	export RPM_PACKAGE_VERSION="no" #368025
+	export RPM_PACKAGE_VERSION=no #368025
 
 	econf \
 		--x-includes="${EPREFIX}"/usr/include \

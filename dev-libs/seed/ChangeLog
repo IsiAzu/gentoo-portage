@@ -1,6 +1,22 @@
 # ChangeLog for dev-libs/seed
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/seed/ChangeLog,v 1.5 2011/11/24 19:49:46 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/seed/ChangeLog,v 1.9 2012/08/13 18:20:01 blueness Exp $
+
+  13 Aug 2012; Anthony G. Basile <blueness@gentoo.org> seed-3.2.0-r1.ebuild:
+  Keyword ppc, dep for bug #385237
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> seed-3.2.0-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  18 Mar 2012; Pacho Ramos <pacho@gentoo.org> -seed-2.30.0.ebuild, metadata.xml:
+  Drop old.
+
+*seed-3.2.0-r1 (04 Dec 2011)
+
+  04 Dec 2011; Alexandre Rostovtsev <tetromino@gentoo.org> -seed-3.2.0.ebuild,
+  +seed-3.2.0-r1.ebuild:
+  Fix docs directory (bug #392445, thanks to Chris Mayo <aklhfex@gmail.com> for
+  reporting).
 
   24 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
   -files/seed-2.31.5-cleanup-autotools.patch, -seed-3.0.0.ebuild:

@@ -1,6 +1,32 @@
 # ChangeLog for dev-lang/mercury
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mercury/ChangeLog,v 1.143 2011/08/12 23:28:17 keri Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mercury/ChangeLog,v 1.150 2012/06/25 12:22:53 keri Exp $
+
+  25 Jun 2012; <keri@gentoo.org> mercury-11.07.1.ebuild:
+  Ensure debugger/completion test passes with --force-readline ml option
+
+  24 Jun 2012; <keri@gentoo.org> mercury-11.07.1.ebuild:
+  Check mmc is sufficiently recent when bootstrapping with installed mercury
+  compiler
+
+  22 Jun 2012; <keri@gentoo.org> mercury-11.07.1.ebuild:
+  Include missing testsuite patches. Closes #422477
+
+  09 Mar 2012; <keri@gentoo.org> mercury-11.07.1.ebuild:
+  Update Mmake.vars to set INSTALL_LIBDIR
+
+  09 Mar 2012; <keri@gentoo.org> -mercury-11.07_beta1.ebuild:
+  Remove old beta version
+
+*mercury-11.07.1 (09 Mar 2012)
+
+  09 Mar 2012; <keri@gentoo.org> +mercury-11.07.1.ebuild:
+  Version bump
+
+*mercury-11.07 (09 Jan 2012)
+
+  09 Jan 2012; <keri@gentoo.org> +mercury-11.07.ebuild:
+  Version bump
 
   12 Aug 2011; <keri@gentoo.org> -mercury-0.13.1-r2.ebuild,
   -files/mercury-0.13.1-docs.patch, -files/mercury-0.13.1-libgrades.patch,

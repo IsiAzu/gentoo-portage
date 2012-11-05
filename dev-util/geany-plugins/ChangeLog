@@ -1,6 +1,52 @@
 # ChangeLog for dev-util/geany-plugins
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/geany-plugins/ChangeLog,v 1.11 2011/11/20 05:15:39 binki Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/geany-plugins/ChangeLog,v 1.22 2012/09/27 00:11:29 blueness Exp $
+
+  27 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  geany-plugins-1.22.ebuild:
+  stable ppc, bug #429056
+
+*geany-plugins-1.22-r1 (26 Sep 2012)
+
+  26 Sep 2012; Nathan Phillip Brink <binki@gentoo.org>
+  +geany-plugins-1.22-r1.ebuild:
+  Restore and fix the multiterm useflag for bug #430926.
+
+  26 Sep 2012; Nathan Phillip Brink <binki@gentoo.org>
+  geany-plugins-1.22.ebuild:
+  Provisionally drop multiterm useflag which is broken due to vala misuse in
+  this ebuild, bug #430926.
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  geany-plugins-1.22.ebuild:
+  x86 stable wrt bug #429056
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> geany-plugins-1.22.ebuild:
+  Stable for amd64, wrt bug #429056
+
+*geany-plugins-1.22 (01 Aug 2012)
+
+  01 Aug 2012; Nathan Phillip Brink <binki@gentoo.org>
+  +geany-plugins-1.22.ebuild, metadata.xml:
+  Bump to geany-plugins-1.22 for bug #429056.
+
+  20 Jun 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -geany-plugins-0.19.ebuild:
+  Removed old version.
+
+  14 Jun 2012; Michael Weber <xmw@gentoo.org> geany-plugins-0.21.1.ebuild:
+  ppc stable (bug 404537)
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> geany-plugins-0.20-r1.ebuild,
+  geany-plugins-0.21.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  geany-plugins-0.21.1.ebuild:
+  x86 stable wrt bug #404537
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> geany-plugins-0.21.1.ebuild:
+  Stable for amd64, wrt bug #404537
 
 *geany-plugins-0.21.1 (20 Nov 2011)
 
@@ -56,4 +102,3 @@
   +geany-plugins-0.19.ebuild, +metadata.xml:
   Initial commit from sunrise overlay. Big thanks to Nathan who volunteered
   to take care of this package.
-

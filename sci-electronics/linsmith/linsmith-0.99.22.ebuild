@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-electronics/linsmith/linsmith-0.99.22.ebuild,v 1.1 2011/09/23 14:53:47 tomjbe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-electronics/linsmith/linsmith-0.99.22.ebuild,v 1.6 2012/09/23 12:29:18 ago Exp $
 
 EAPI="2"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="doc examples"
 
 RDEPEND="
@@ -24,7 +24,7 @@ RDEPEND="
 	gnome-base/libgnomecanvas
 	gnome-base/libgnomeui"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_prepare() {
 	# This patch is to prevent make install copying
@@ -32,6 +32,11 @@ src_prepare() {
 	# Now they are cp to the correct location.
 	epatch \
 		"${FILESDIR}"/${PN}-datafiles.patch
+
+	# fix QA warnings about wrong categories in .desktop file
+	sed -i -e "s/Application;Engineering;/Education;Science;Electronics;/" \
+		-e "s/Encoding=/#Encoding=/" \
+		${PN}.desktop || die
 
 	# fix QA warnings about 'maintainer mode'
 	eautoreconf

@@ -1,6 +1,60 @@
 # ChangeLog for x11-wm/awesome
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/awesome/ChangeLog,v 1.126 2011/07/23 14:43:31 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/awesome/ChangeLog,v 1.138 2012/09/30 14:23:20 matsuu Exp $
+
+  30 Sep 2012; MATSUU Takuto <matsuu@gentoo.org>
+  -files/3.4-0001-Update-the-code-following-release-of-xcb-util-0.3.8.patch,
+  -files/awesome-3.4.4-cmake-2.8.4.patch,
+  -files/awesome-3.4.8-cmake-2.8.4.patch, +files/awesome-gnome.desktop,
+  +files/awesome-gnome.session, +files/awesome-gnome-xsession.desktop:
+  Added gnome related files. Removed unused patches.
+
+*awesome-3.4.13 (30 Sep 2012)
+
+  30 Sep 2012; MATSUU Takuto <matsuu@gentoo.org> -awesome-3.4.8.ebuild,
+  -awesome-3.4.9.ebuild, -awesome-3.4.9-r1.ebuild, -awesome-3.4.10.ebuild,
+  +awesome-3.4.13.ebuild:
+  Version bumped, bug #421025. Added gnome USE flag, bug #379833. Depends on
+  media-gfx/imagemagick[X], bug #421333. Removed old versions.
+
+  11 May 2012; Agostino Sarubbo <ago@gentoo.org> awesome-3.4.11.ebuild:
+  Stable for amd64, wrt bug #407861
+
+  10 May 2012; Julian Ospald <hasufell@gentoo.org> awesome-3.4.11.ebuild,
+  +files/awesome-3.4.11-convert-path.patch:
+  fix buildtime bug #408025
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> awesome-3.4.8.ebuild,
+  awesome-3.4.9.ebuild, awesome-3.4.9-r1.ebuild, awesome-3.4.10.ebuild,
+  awesome-3.4.11.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  03 May 2012; Alex Alexander <wired@gentoo.org> awesome-3.4.8.ebuild,
+  awesome-3.4.9.ebuild, awesome-3.4.9-r1.ebuild, awesome-3.4.10.ebuild,
+  awesome-3.4.11.ebuild, +files/awesome-glib-fix.patch:
+  build fix for >=glib-2.31, bug #396417
+
+  17 Apr 2012; Brent Baude <ranger@gentoo.org> awesome-3.4.11.ebuild:
+  Marking awesome-3.4.11 ppc for bug 407861
+
+  11 Apr 2012; Andreas Schuerch <nativemad@gentoo.org> awesome-3.4.11.ebuild:
+  x86 stable, see bug 407861, Thanks Mikle and Dan
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> awesome-3.4.11.ebuild:
+  Marking awesome-3.4.11 ppc64 for bug 407861
+
+  06 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> awesome-3.4.11.ebuild:
+  Remove restriction of dev-lang/lua since it's not slotted wrt #406985
+
+  05 Mar 2012; Alex Alexander <wired@gentoo.org> awesome-3.4.8.ebuild,
+  awesome-3.4.9.ebuild, awesome-3.4.9-r1.ebuild, awesome-3.4.10.ebuild,
+  awesome-3.4.11.ebuild:
+  awesome doesn't work with lua 5.2, restricted lua dep to 5.1.* - bug #406985
+
+*awesome-3.4.11 (05 Dec 2011)
+
+  05 Dec 2011; Alex Alexander <wired@gentoo.org> +awesome-3.4.11.ebuild:
+  version bump
 
   23 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> awesome-3.4.9-r1.ebuild:
   ppc64 stable wrt #372799

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r4.ebuild,v 1.1 2011/11/12 14:50:02 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r4.ebuild,v 1.6 2012/08/06 00:46:37 ottxor Exp $
 
 EAPI=4
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.sigala.it/sandro/files/${P}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86"
+KEYWORDS="amd64 ppc x86 ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 RDEPEND=""
@@ -20,6 +20,8 @@ DEPEND="sys-devel/flex"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-infopage.patch
+
+	epatch "${FILESDIR}"/${P}-case-insensitive.patch
 
 	mv "${S}"/src/cdecl/cdecl.1 			\
 		"${S}"/src/cdecl/cutils-cdecl.1 || die

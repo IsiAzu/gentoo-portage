@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/seamonkey/seamonkey-2.4.1-r1.ebuild,v 1.5 2011/11/13 14:44:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/seamonkey/seamonkey-2.4.1-r1.ebuild,v 1.9 2012/07/04 19:20:50 anarchy Exp $
 
 EAPI="3"
 WANT_AUTOCONF="2.1"
@@ -31,8 +31,7 @@ if [[ ${PV} == *_pre* ]] ; then
 	LANG_URI="${REL_URI}/linux-i686/xpi"
 	LANGPACK_PREFIX=""
 	LANGPACK_SUFFIX=""
-	#KEYWORDS=""
-	KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 x86"
+	KEYWORDS=""
 	#HAS_LANGS="false"
 else
 	# This is where arch teams should change the KEYWORDS.
@@ -40,7 +39,7 @@ else
 	#REL_URI="http://releases.mozilla.org/pub/mozilla.org/${PN}/releases/${MY_PV}"
 	REL_URI="ftp://ftp.mozilla.org/pub/${PN}/releases/${MY_PV}"
 	LANG_URI="${REL_URI}/langpack"
-	KEYWORDS="~alpha amd64 ~arm ~ppc ~ppc64 x86"
+	KEYWORDS="ppc"
 	[[ ${PV} == *alpha* ]] && HAS_LANGS="false"
 fi
 
@@ -48,7 +47,7 @@ DESCRIPTION="Seamonkey Web Browser"
 HOMEPAGE="http://www.seamonkey-project.org"
 
 SLOT="0"
-LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
+LICENSE="MPL-1.1 GPL-2 LGPL-2.1"
 IUSE="+alsa +chatzilla +crypt +ipc +methodjit +roaming system-sqlite +webm"
 
 SRC_URI="${REL_URI}/source/${MY_P}.source.tar.bz2 -> ${P}.source.tar.bz2
@@ -92,7 +91,7 @@ RDEPEND=">=sys-devel/binutils-2.16.1
 		media-libs/alsa-lib )"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	webm? ( amd64? ( ${ASM_DEPEND} )
 		x86? ( ${ASM_DEPEND} ) )"
 

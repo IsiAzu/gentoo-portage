@@ -1,6 +1,31 @@
 # ChangeLog for games-strategy/uqm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/uqm/ChangeLog,v 1.32 2011/10/03 19:58:21 josejx Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/uqm/ChangeLog,v 1.39 2012/10/19 22:54:29 hasufell Exp $
+
+*uqm-0.7.0-r2 (19 Oct 2012)
+
+  19 Oct 2012; Julian Ospald <hasufell@gentoo.org> +uqm-0.7.0-r2.ebuild:
+  fix bug #438992 and #438980
+
+  24 Aug 2012; Michael Sterrett <mr_bones_@gentoo.org> -uqm-0.7.0.ebuild:
+  old
+
+  09 Jul 2012; Joseph Jezak <josejx@gentoo.org> uqm-0.7.0-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #424467.
+
+  03 Jul 2012; Agostino Sarubbo <ago@gentoo.org> uqm-0.7.0-r1.ebuild:
+  Stable for amd64, wrt bug #424467
+
+  02 Jul 2012; Michael Sterrett <mr_bones_@gentoo.org> -uqm-0.6.2.ebuild:
+  old
+
+  02 Jul 2012; Jeff Horelick <jdhore@gentoo.org> uqm-0.7.0-r1.ebuild:
+  marked x86 per bug 424467
+
+*uqm-0.7.0-r1 (28 May 2012)
+
+  28 May 2012; Michael Sterrett <mr_bones_@gentoo.org> +uqm-0.7.0-r1.ebuild:
+  correct install location for addon files (bug #417705)
 
   03 Oct 2011; Joseph Jezak <josejx@gentoo.org> uqm-0.7.0.ebuild:
   Marked ppc/ppc64 stable for bug #379419.
@@ -113,4 +138,3 @@
   09 Jul 2003; Michael Sterrett <msterret@gentoo.org> uqm-0.2.ebuild:
   initial commit.  ebuild based on the one provided by Martti Rannanjarvi
   in bug 12153 and vapier's continued work on it as well.
-

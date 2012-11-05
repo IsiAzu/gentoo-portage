@@ -1,6 +1,28 @@
 # ChangeLog for net-nds/jxplorer
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/jxplorer/ChangeLog,v 1.30 2011/11/23 11:29:47 jlec Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nds/jxplorer/ChangeLog,v 1.36 2012/08/23 14:40:07 xmw Exp $
+
+  23 Aug 2012; Michael Weber <xmw@gentoo.org> jxplorer-3.2-r2.ebuild:
+  ppc stable (bug 419325).
+
+  09 Aug 2012; Johannes Huber <johu@gentoo.org> jxplorer-3.2-r2.ebuild:
+  Stable for x86, wrt bug #419325
+
+  03 Aug 2012; Markos Chandras <hwoarang@gentoo.org> jxplorer-3.2-r2.ebuild:
+  Stable on amd64 wrt bug #419325
+
+  25 Apr 2012; Justin Lecher <jlec@gentoo.org> jxplorer-3.2-r2.ebuild,
+  metadata.xml:
+  Add launcher
+
+*jxplorer-3.2-r2 (26 Dec 2011)
+
+  26 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -jxplorer-3.2-r1.ebuild,
+  +jxplorer-3.2-r2.ebuild:
+  Previous fix needs revbump to install the new script
+
+  26 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> files/jxplorer-pre-r1:
+  Fixed bug #391713 (security files not available in user's home directory)
 
   23 Nov 2011; Justin Lecher <jlec@gentoo.org> jxplorer-3.2-r1.ebuild,
   files/jxplorer-pre-r1:
@@ -135,4 +157,3 @@
   +jxplorer-3.1_beta1.ebuild:
   Initial Import. Closes #50973
   Thanks to dju` <dju@elegiac.net> for the initial ebuild.
-

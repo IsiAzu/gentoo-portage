@@ -1,6 +1,22 @@
 # ChangeLog for dev-java/byaccj
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/byaccj/ChangeLog,v 1.4 2011/08/10 17:36:18 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/byaccj/ChangeLog,v 1.8 2012/10/11 07:43:00 sera Exp $
+
+  11 Oct 2012; Ralph Sennhauser <sera@gentoo.org> byaccj-1.15.ebuild,
+  byaccj-1.15-r1.ebuild:
+  As-is cleanp, change license to public-domain. #437774
+
+*byaccj-1.15-r1 (02 Aug 2012)
+
+  02 Aug 2012; Ralph Sennhauser <sera@gentoo.org> +byaccj-1.15-r1.ebuild,
+  files/Makefile:
+  Respect flags, thanks to Michael Palimaka (kensington) for the patch. #366459
+
+  04 Dec 2011; Markos Chandras <hwoarang@gentoo.org> byaccj-1.15.ebuild:
+  add missing die. stable on amd64. bug #370403
+
+  01 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> byaccj-1.15.ebuild:
+  x86 stable wrt bug #370403
 
   10 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> byaccj-1.15.ebuild:
   Marked ~ppc/~ppc64 wrt #375891

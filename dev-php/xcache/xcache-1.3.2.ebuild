@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/xcache/xcache-1.3.2.ebuild,v 1.1 2011/10/12 16:00:34 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-php/xcache/xcache-1.3.2.ebuild,v 1.4 2012/04/13 19:07:42 ulm Exp $
 
+EAPI="2"
 PHP_EXT_NAME="xcache"
 PHP_EXT_INI="yes"
 PHP_EXT_ZENDEXT="yes"
 PHPSAPILIST="apache2 cgi fpm"
 
-EAPI="2"
 inherit php-ext-source-r2 confutils
 
 DESCRIPTION="A fast and stable PHP opcode cacher"
@@ -16,7 +16,7 @@ SRC_URI="http://xcache.lighttpd.net/pub/Releases/${PV}/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 # make test would just run php's test and as such need the full php source

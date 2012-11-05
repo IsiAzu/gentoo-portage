@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmakerx/texmakerx-2.1.ebuild,v 1.2 2011/06/17 07:55:28 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmakerx/texmakerx-2.1.ebuild,v 1.4 2012/07/12 05:37:56 jlec Exp $
 
 EAPI=4
 
@@ -31,11 +31,14 @@ RDEPEND="${COMMON_DEPEND}
 	app-text/ghostscript-gpl
 	media-libs/netpbm"
 DEPEND="${COMMON_DEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S="${WORKDIR}"/${P/-/}
 
-PATCHES=( "${FILESDIR}/${P}-hunspell.patch" )
+PATCHES=(
+	"${FILESDIR}/${P}-hunspell.patch"
+	"${FILESDIR}/${P}-gcc-4.7.patch"
+	)
 
 src_prepare() {
 	find hunspell -delete

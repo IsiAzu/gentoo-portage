@@ -1,6 +1,33 @@
 # ChangeLog for app-cdr/brasero
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/brasero/ChangeLog,v 1.138 2011/11/15 23:24:56 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/brasero/ChangeLog,v 1.144 2012/08/26 08:41:38 hasufell Exp $
+
+  26 Aug 2012; Julian Ospald <hasufell@gentoo.org> brasero-2.32.1-r1.ebuild,
+  +files/brasero-2.32.1-underlinking.patch:
+  fix underlinking wrt #429280
+
+*brasero-3.4.1 (14 May 2012)
+
+  14 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +brasero-3.4.1.ebuild:
+  Bump, translation updates only.
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> brasero-2.32.1-r1.ebuild,
+  brasero-3.2.0-r1.ebuild, brasero-3.4.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*brasero-3.4.0 (14 Apr 2012)
+
+  14 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +brasero-3.4.0.ebuild:
+  Version bump.
+
+  28 Jan 2012; Pacho Ramos <pacho@gentoo.org> -brasero-2.32.1.ebuild,
+  brasero-2.32.1-r1.ebuild:
+  Prevent people from mixing brasero-2 with nautilus-3, bug #397469. Drop old.
+
+  29 Dec 2011; Pacho Ramos <pacho@gentoo.org> brasero-2.32.1-r1.ebuild:
+  amd64 stable, bug 393007
 
   15 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
   brasero-2.32.1.ebuild, brasero-2.32.1-r1.ebuild:

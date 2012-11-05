@@ -1,6 +1,76 @@
 # ChangeLog for sys-apps/pcsc-lite
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/ChangeLog,v 1.124 2011/11/20 13:52:18 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/ChangeLog,v 1.140 2012/09/01 10:05:56 flameeyes Exp $
+
+*pcsc-lite-1.8.6 (01 Sep 2012)
+
+  01 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> +pcsc-lite-1.8.6.ebuild:
+  Version bump.
+
+  22 Aug 2012; Michael Weber <xmw@gentoo.org> pcsc-lite-1.8.2.ebuild:
+  ppc stable (bug 411059).
+
+*pcsc-lite-1.8.5-r1 (12 Aug 2012)
+
+  12 Aug 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +pcsc-lite-1.8.5-r1.ebuild:
+  Query udev.pc pkg-config file for correct udevdir value.
+
+*pcsc-lite-1.8.5 (04 Aug 2012)
+
+  04 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org> +pcsc-lite-1.8.5.ebuild,
+  -pcsc-lite-1.8.3.ebuild, -pcsc-lite-1.8.4.ebuild:
+  Version bump; disable silent build; cleanup old.
+
+*pcsc-lite-1.8.4 (26 Jun 2012)
+
+  26 Jun 2012; Diego E. Pettenò <flameeyes@gentoo.org> +pcsc-lite-1.8.4.ebuild,
+  -files/pcscd-init.4, -pcsc-lite-1.7.2-r2.ebuild:
+  Version bump and remove old.
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> pcsc-lite-1.6.6-r2.ebuild,
+  pcsc-lite-1.7.2-r2.ebuild, pcsc-lite-1.8.2.ebuild, pcsc-lite-1.8.3.ebuild:
+  Inherit user for enewuser/etc...
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> pcsc-lite-1.8.2.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #411059
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> pcsc-lite-1.6.6-r2.ebuild,
+  pcsc-lite-1.7.2-r2.ebuild, pcsc-lite-1.8.2.ebuild, pcsc-lite-1.8.3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  15 Apr 2012; Markus Meier <maekke@gentoo.org> pcsc-lite-1.8.2.ebuild:
+  arm stable, bug #411059
+
+  11 Apr 2012; Jeff Horelick <jdhore@gentoo.org> pcsc-lite-1.8.2.ebuild:
+  marked x86 per bug 411059
+
+  11 Apr 2012; Jeroen Roovers <jer@gentoo.org> pcsc-lite-1.8.2.ebuild:
+  Stable for HPPA (bug #411059).
+
+*pcsc-lite-1.8.3 (30 Mar 2012)
+
+  30 Mar 2012; Diego E. Pettenò <flameeyes@gentoo.org> +pcsc-lite-1.8.3.ebuild:
+  Version bump.
+
+  15 Mar 2012; Agostino Sarubbo <ago@gentoo.org> pcsc-lite-1.8.2.ebuild:
+  Stable for amd64, wrt bug #407357
+
+  12 Feb 2012; Tony Vroon <chainsaw@gentoo.org> pcsc-lite-1.7.2-r2.ebuild:
+  Marked stable on PPC64 as requested by Diego Elio "Flameeyes" Pettenò in
+  bug #386345. Compile tested on a PowerMac7,3 (64UL) with GCC 4.5.3.
+
+*pcsc-lite-1.8.2 (18 Jan 2012)
+
+  18 Jan 2012; Diego E. Pettenò <flameeyes@gentoo.org> +pcsc-lite-1.8.2.ebuild,
+  -pcsc-lite-1.7.4-r2.ebuild, -pcsc-lite-1.8.1.ebuild:
+  Version bump; remove old.
+
+*pcsc-lite-1.8.1 (25 Nov 2011)
+
+  25 Nov 2011; Diego E. Pettenò <flameeyes@gentoo.org> +pcsc-lite-1.8.1.ebuild,
+  -pcsc-lite-1.8.0.ebuild:
+  Version bump.
 
 *pcsc-lite-1.8.0 (20 Nov 2011)
 

@@ -1,6 +1,20 @@
 # ChangeLog for dev-perl/Apache-AuthTicket
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Apache-AuthTicket/ChangeLog,v 1.16 2011/09/04 11:21:00 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Apache-AuthTicket/ChangeLog,v 1.20 2012/06/24 12:59:13 tove Exp $
+
+  24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Update CPAN upstream info
+
+  31 Mar 2012; Torsten Veller <tove@gentoo.org> -Apache-AuthTicket-0.40.ebuild:
+  Cleanup
+
+  08 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  Apache-AuthTicket-0.900.0.ebuild:
+  x86 stable wrt bug #400025
+
+  24 Feb 2012; Agostino Sarubbo <ago@gentoo.org>
+  Apache-AuthTicket-0.900.0.ebuild:
+  Stable for amd64, wrt bug #400025
 
   04 Sep 2011; Torsten Veller <tove@gentoo.org> -Apache-AuthTicket-0.90.ebuild:
   Cleanup
@@ -68,4 +82,3 @@
   04 Nov 2005; Chris White <chriswhite@gentoo.org> +metadata.xml,
   +Apache-AuthTicket-0.40.ebuild:
   Initial import into the tree to meet Eidetic depend.
-

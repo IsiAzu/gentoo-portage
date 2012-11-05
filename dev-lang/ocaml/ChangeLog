@@ -1,6 +1,37 @@
 # ChangeLog for dev-lang/ocaml
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.201 2011/11/06 13:41:53 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.208 2012/10/07 21:33:31 aballier Exp $
+
+*ocaml-4.00.1 (07 Oct 2012)
+
+  07 Oct 2012; Alexis Ballier <aballier@gentoo.org> +ocaml-4.00.1.ebuild:
+  version bump
+
+  27 Jul 2012; Alexis Ballier <aballier@gentoo.org> -ocaml-4.00.0_beta2.ebuild,
+  -ocaml-4.00.0_rc1.ebuild:
+  remove old
+
+*ocaml-4.00.0 (27 Jul 2012)
+
+  27 Jul 2012; Alexis Ballier <aballier@gentoo.org> +ocaml-4.00.0.ebuild:
+  bump to 4.00.0 final
+
+*ocaml-4.00.0_rc1 (19 Jul 2012)
+
+  19 Jul 2012; Alexis Ballier <aballier@gentoo.org> +ocaml-4.00.0_rc1.ebuild:
+  version bump
+
+*ocaml-4.00.0_beta2 (10 Jun 2012)
+
+  10 Jun 2012; Alexis Ballier <aballier@gentoo.org> +ocaml-4.00.0_beta2.ebuild:
+  version bump
+
+  24 May 2012; Alexis Ballier <aballier@gentoo.org> ocaml-3.12.1.ebuild:
+  keyword ~amd64-fbsd
+
+  15 May 2012; Benda Xu <heroxbd@gentoo.org> ocaml-3.12.1.ebuild:
+  on arm, use user -O flags instead of hard coding -O0, as per bug 340607.
+  Thanks to Josh Parsons for investigating the issue.
 
   06 Nov 2011; Brent Baude <ranger@gentoo.org> ocaml-3.12.1.ebuild:
   Marking ocaml-3.12.1 ppc for bug 361767

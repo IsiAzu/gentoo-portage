@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/udunits/udunits-2.1.24.ebuild,v 1.1 2011/11/23 10:05:04 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/udunits/udunits-2.1.24.ebuild,v 1.3 2012/10/16 19:34:33 jlec Exp $
 
 EAPI=4
 
@@ -13,11 +13,9 @@ SRC_URI="ftp://ftp.unidata.ucar.edu/pub/udunits/${P}.tar.gz"
 SLOT="0"
 LICENSE="UCAR-Unidata"
 IUSE="doc static-libs"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~sparc ~x86 ~amd64-linux ~x86-linux"
 
-RDEPEND="
-	virtual/fortran
-	dev-libs/expat"
+RDEPEND="dev-libs/expat"
 DEPEND="${RDEPEND}"
 
 src_prepare() {

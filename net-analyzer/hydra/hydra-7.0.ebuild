@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/hydra/hydra-7.0.ebuild,v 1.1 2011/09/14 05:49:26 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/hydra/hydra-7.0.ebuild,v 1.3 2012/05/04 06:08:10 jdhore Exp $
 
 EAPI="4"
 
@@ -25,7 +25,7 @@ RDEPEND="
 		x11-libs/gtk+:2
 	)
 	idn? ( net-dns/libidn )
-	mysql? ( dev-db/mysql )
+	mysql? ( virtual/mysql )
 	ncp? ( net-fs/ncpfs )
 	oracle? ( dev-db/oracle-instantclient-basic )
 	pcre? ( dev-libs/libpcre )
@@ -35,7 +35,7 @@ RDEPEND="
 "
 DEPEND="
 	${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 "
 
 S=${WORKDIR}/${P}-src

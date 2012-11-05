@@ -1,6 +1,128 @@
 # ChangeLog for dev-java/icedtea-bin
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea-bin/ChangeLog,v 1.8 2011/11/21 11:07:41 sera Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea-bin/ChangeLog,v 1.31 2012/10/31 14:24:22 nativemad Exp $
+
+  31 Oct 2012; Andreas Schuerch <nativemad@gentoo.org>
+  icedtea-bin-6.1.11.5.ebuild:
+  x86 stable, see bug 438750
+
+  21 Oct 2012; Agostino Sarubbo <ago@gentoo.org> icedtea-bin-6.1.11.5.ebuild:
+  Stable for amd64, wrt bug #438750
+
+*icedtea-bin-7.2.3.3 (20 Oct 2012)
+*icedtea-bin-6.1.11.5 (20 Oct 2012)
+
+  20 Oct 2012; Vlastimil Babka <caster@gentoo.org>
+  +icedtea-bin-6.1.11.5.ebuild, +icedtea-bin-7.2.3.3.ebuild:
+  Version bump, security bug #438750. Use QA_PREBUILT to disable warnings not
+  useful for binary package, bug #423161.
+
+  12 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  icedtea-bin-6.1.11.4.ebuild:
+  x86 stable, see bug 433389
+
+  07 Sep 2012; Agostino Sarubbo <ago@gentoo.org> icedtea-bin-6.1.11.4.ebuild:
+  Stable for amd64, wrt bug #433389
+
+*icedtea-bin-7.2.3.2 (02 Sep 2012)
+*icedtea-bin-6.1.11.4 (02 Sep 2012)
+
+  02 Sep 2012; Vlastimil Babka <caster@gentoo.org>
+  -icedtea-bin-6.1.11.3.ebuild, +icedtea-bin-6.1.11.4.ebuild,
+  -icedtea-bin-7.2.2.1.ebuild, +icedtea-bin-7.2.3.2.ebuild:
+  Version bump, security bug #433389.
+
+  08 Aug 2012; Andreas Schuerch <nativemad@gentoo.org>
+  icedtea-bin-6.1.11.3-r1.ebuild:
+  x86 stable, see bug 429522
+
+  06 Aug 2012; Agostino Sarubbo <ago@gentoo.org>
+  icedtea-bin-6.1.11.3-r1.ebuild:
+  Stable for amd64, wrt bug #429522
+
+*icedtea-bin-7.2.2.1-r1 (03 Aug 2012)
+*icedtea-bin-6.1.11.3-r1 (03 Aug 2012)
+
+  03 Aug 2012; Vlastimil Babka <caster@gentoo.org>
+  -icedtea-bin-6.1.11.1.ebuild, -icedtea-bin-6.1.11.1-r1.ebuild,
+  +icedtea-bin-6.1.11.3-r1.ebuild, -icedtea-bin-7.2.1.ebuild,
+  -icedtea-bin-7.2.1-r1.ebuild, +icedtea-bin-7.2.2.1-r1.ebuild:
+  Revbump based on icedtea-web-1.2.1-r1/r8. Security bug #429522.
+
+  17 Jun 2012; Agostino Sarubbo <ago@gentoo.org> icedtea-bin-6.1.11.3.ebuild:
+  Stable for amd64, wrt bug #421031
+
+  17 Jun 2012; Jeff Horelick <jdhore@gentoo.org> icedtea-bin-6.1.11.3.ebuild:
+  marked x86 per bug 421031
+
+*icedtea-bin-7.2.2.1 (16 Jun 2012)
+*icedtea-bin-6.1.11.3 (16 Jun 2012)
+
+  16 Jun 2012; Vlastimil Babka <caster@gentoo.org>
+  +icedtea-bin-6.1.11.3.ebuild, +icedtea-bin-7.2.2.1.ebuild:
+  Version bump, security bug #421031.
+
+  05 Jun 2012; Ralph Sennhauser <sera@gentoo.org>
+  icedtea-bin-6.1.11.1-r1.ebuild, icedtea-bin-7.2.1-r1.ebuild:
+  Add missing -* keyword, so it wont be pulled in on archs with no keyworded
+  alternative. #344345
+
+  04 Jun 2012; Zac Medico <zmedico@gentoo.org> icedtea-bin-6.1.11.1-r1.ebuild,
+  icedtea-bin-6.1.11.1.ebuild, icedtea-bin-7.2.1-r1.ebuild,
+  icedtea-bin-7.2.1.ebuild:
+  inherit multilib for get_libdir
+
+*icedtea-bin-7.2.1-r1 (08 Mar 2012)
+*icedtea-bin-6.1.11.1-r1 (08 Mar 2012)
+
+  08 Mar 2012; Vlastimil Babka <caster@gentoo.org>
+  +icedtea-bin-6.1.11.1-r1.ebuild, -icedtea-bin-7.2.0-r2.ebuild,
+  +icedtea-bin-7.2.1-r1.ebuild:
+  Revbump updating plugin/javaws to icedtea-web-1.2.
+
+*icedtea-bin-7.2.1 (03 Mar 2012)
+
+  03 Mar 2012; Vlastimil Babka <caster@gentoo.org> -files/icedtea6-bin.env,
+  -icedtea-bin-1.10.4.ebuild, -icedtea-bin-6.1.10.4-r1.ebuild,
+  -icedtea-bin-6.1.11.ebuild, +icedtea-bin-7.2.1.ebuild:
+  Version bump, security bug #404095.
+
+  19 Feb 2012; Agostino Sarubbo <ago@gentoo.org> icedtea-bin-6.1.11.1.ebuild:
+  Stable for AMD64, wrt security bug #404095
+
+  18 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  icedtea-bin-6.1.11.1.ebuild:
+  x86 stable wrt bug #404095
+
+*icedtea-bin-6.1.11.1 (17 Feb 2012)
+
+  17 Feb 2012; Vlastimil Babka <caster@gentoo.org>
+  +icedtea-bin-6.1.11.1.ebuild:
+  Version bump, security bug #404095.
+
+*icedtea-bin-6.1.11 (14 Feb 2012)
+
+  14 Feb 2012; Vlastimil Babka <caster@gentoo.org> +icedtea-bin-6.1.11.ebuild:
+  Version bump. Also pre-populates .systemPrefs, fixes bug #402507.
+
+  13 Feb 2012; Vlastimil Babka <caster@gentoo.org>
+  -icedtea-bin-1.10.3-r2.ebuild, -icedtea-bin-6.1.10.4.ebuild,
+  icedtea-bin-6.1.10.4-r1.ebuild, -icedtea-bin-7.2.0-r1.ebuild,
+  icedtea-bin-7.2.0-r2.ebuild:
+  Update dependencies and flag defaults to match dev-java/icedtea, add cups
+  flag. Remove xawt directory with -X.
+
+*icedtea-bin-7.2.0-r2 (28 Nov 2011)
+*icedtea-bin-6.1.10.4-r1 (28 Nov 2011)
+
+  28 Nov 2011; Ralph Sennhauser <sera@gentoo.org>
+  +icedtea-bin-6.1.10.4-r1.ebuild, files/icedtea-bin-6.env,
+  +icedtea-bin-7.2.0-r2.ebuild, files/icedtea-bin-7.env,
+  +files/fontconfig.Gentoo.properties.src:
+  Install Gentoo specific fontconfig properties file. #390663
+  Depend on dejavu font with use X and others with use cjk. #349916
+  Require use X for use nsplugin.
+  Prefixify.
 
   21 Nov 2011; Ralph Sennhauser <sera@gentoo.org> icedtea-bin-6.1.10.4.ebuild,
   icedtea-bin-7.2.0-r1.ebuild:

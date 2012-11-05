@@ -9,6 +9,9 @@
 		<!-- XXX: describe those two better -->
 		<flag name='audit'>Enable support for <pkg>sys-process/audit</pkg></flag>
 		<flag name='cryptsetup'>Use libcryptsetup</flag>
-		<flag name='plymouth'>Enable support for <pkg>sys-boot/plymouth</pkg></flag>
+		<flag name='gcrypt'>Enable sealing of journal files using gcrypt</flag>
+		<flag name='http'>Enable embedded HTTP server in journald</flag>
+		<flag name='qrcode'>Enable qrcode output support in journal</flag>
+		<flag name='vanilla'>Disable Gentoo-specific behavior and compatibility quirks</flag>
 	</use>
 </pkgmetadata>

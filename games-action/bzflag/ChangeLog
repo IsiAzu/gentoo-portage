@@ -1,6 +1,27 @@
 # ChangeLog for games-action/bzflag
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-action/bzflag/ChangeLog,v 1.55 2011/08/07 03:20:22 phajdan.jr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-action/bzflag/ChangeLog,v 1.61 2012/10/30 12:01:01 ago Exp $
+
+  30 Oct 2012; <ago@gentoo.org> bzflag-2.4.2.ebuild:
+  Stable for amd64, wrt bug #438546
+
+  22 Oct 2012; Alfredo Tupone <tupone@gentoo.org> bzflag-2.4.2.ebuild,
+  +files/bzflag-2.4.2-nocxxflags.patch:
+  Removing mtune from CXXFLAGS. Bug #439064 by Vicente Olivert Riera
+
+  18 Oct 2012; Anthony G. Basile <blueness@gentoo.org> bzflag-2.4.2.ebuild:
+  stable ppc, bug #438546
+
+  18 Oct 2012; Michael Sterrett <mr_bones_@gentoo.org> bzflag-2.4.2.ebuild:
+  prune_libtool_files for bug #438818
+
+*bzflag-2.4.2 (14 Sep 2012)
+
+  14 Sep 2012; Tupone Alfredo <tupone@gentoo.org> +bzflag-2.4.2.ebuild:
+  Version bump to 2.4.2
+
+  10 Jan 2012; Brent Baude <ranger@gentoo.org> bzflag-2.4.0.ebuild:
+  Marking bzflag-2.4.0 ppc for bug 377575
 
   07 Aug 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> bzflag-2.4.0.ebuild:
   x86 stable wrt bug #377575

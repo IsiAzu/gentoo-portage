@@ -1,6 +1,50 @@
 # ChangeLog for sys-apps/flashrom
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/flashrom/ChangeLog,v 1.19 2011/10/14 18:54:46 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/flashrom/ChangeLog,v 1.29 2012/10/28 16:49:56 hwoarang Exp $
+
+  28 Oct 2012; Markos Chandras <hwoarang@gentoo.org> flashrom-0.9.6.ebuild:
+  Stable on amd64 wrt bug #439552
+
+*flashrom-0.9.6.1 (25 Oct 2012)
+
+  25 Oct 2012; Christian Ruppert <idl0r@gentoo.org> +flashrom-0.9.6.1.ebuild:
+  Version bump
+
+  25 Oct 2012; Anthony G. Basile <blueness@gentoo.org> flashrom-0.9.6.ebuild:
+  stable arm, bug #439552
+
+*flashrom-0.9.6 (03 Aug 2012)
+
+  03 Aug 2012; Christian Ruppert <idl0r@gentoo.org> +flashrom-0.9.6.ebuild,
+  flashrom-9999.ebuild, metadata.xml:
+  Version bump. Also disable some unsupported programmers by default.
+
+  16 Jun 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Leio is second maintainer as talked with him.
+
+  22 May 2012; Johannes Huber <johu@gentoo.org> flashrom-0.9.5.2.ebuild:
+  Stable for x86, wrt bug #416435
+
+  20 May 2012; Agostino Sarubbo <ago@gentoo.org> flashrom-0.9.5.2.ebuild:
+  Stable for amd64, wrt bug #416435
+
+*flashrom-0.9.5.2 (13 Mar 2012)
+
+  13 Mar 2012; Christian Ruppert <idl0r@gentoo.org> -flashrom-0.9.5.1.ebuild,
+  +flashrom-0.9.5.2.ebuild:
+  Version bump.
+
+*flashrom-0.9.5.1 (02 Mar 2012)
+
+  02 Mar 2012; Christian Ruppert <idl0r@gentoo.org> -flashrom-0.9.5.ebuild,
+  +flashrom-0.9.5.1.ebuild, flashrom-9999.ebuild:
+  Version bump. Sync with the live ebuild.
+
+*flashrom-0.9.5 (18 Feb 2012)
+
+  18 Feb 2012; Christian Ruppert <idl0r@gentoo.org> -flashrom-0.9.3.ebuild,
+  +flashrom-0.9.5.ebuild:
+  Version bump
 
 *flashrom-9999 (14 Oct 2011)
 
@@ -86,4 +130,3 @@
   erasing flash ROM chips. It's used to flash BIOS/coreboot/firmware images.
   Roughly based on ebuilds from Peter Stuge and Christian Ruppert. Closes bug
   196945
-

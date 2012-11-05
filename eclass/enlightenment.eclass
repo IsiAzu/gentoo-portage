@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.90 2011/11/20 08:19:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.95 2012/10/22 10:14:31 tommy Exp $
 
 # @ECLASS: enlightenment.eclass
 # @MAINTAINER:
@@ -32,7 +32,7 @@ inherit eutils libtool
 #
 #	live         $PV has a 9999 marker
 #		KEYWORDS ""
-#		SRC_URI  cvs/svn/etc... up
+#		SRC_URI  svn/etc... up
 #		S        $WORKDIR/$E_S_APPEND
 #
 # Overrides:
@@ -40,30 +40,20 @@ inherit eutils libtool
 #	SRC_URI     EURI_STATE
 #	S           EURI_STATE
 
-#E_LIVE_DEFAULT_CVS="cvs.sourceforge.net:/cvsroot/enlightenment"
-E_LIVE_SERVER_DEFAULT_CVS="anoncvs.enlightenment.org:/var/cvs/e"
 E_LIVE_SERVER_DEFAULT_SVN="http://svn.enlightenment.org/svn/e/trunk"
 
 E_STATE="release"
-if [[ ${PV/9999} != ${PV} ]] ; then
+if [[ ${PV} == *9999* ]] ; then
 	E_LIVE_SERVER=${E_LIVE_SERVER:-${E_LIVE_SERVER_DEFAULT_SVN}}
 	E_STATE="live"
 	WANT_AUTOTOOLS="yes"
 
-	# force people to opt-in to legacy cvs
-	if [[ -n ${ECVS_MODULE} ]] ; then
-		ECVS_SERVER=${ECVS_SERVER:-${E_LIVE_SERVER_DEFAULT_CVS}}
-		E_LIVE_SOURCE="cvs"
-		E_S_APPEND=${ECVS_MODULE}
-		inherit cvs
-	else
-		ESVN_URI_APPEND=${ESVN_URI_APPEND:-${PN}}
-		ESVN_PROJECT="enlightenment/${ESVN_SUB_PROJECT}"
-		ESVN_REPO_URI=${ESVN_SERVER:-${E_LIVE_SERVER_DEFAULT_SVN}}/${ESVN_SUB_PROJECT}/${ESVN_URI_APPEND}
-		E_S_APPEND=${ESVN_URI_APPEND}
-		E_LIVE_SOURCE="svn"
-		inherit subversion
-	fi
+	ESVN_URI_APPEND=${ESVN_URI_APPEND:-${PN}}
+	ESVN_PROJECT="enlightenment/${ESVN_SUB_PROJECT}"
+	ESVN_REPO_URI=${ESVN_SERVER:-${E_LIVE_SERVER_DEFAULT_SVN}}/${ESVN_SUB_PROJECT}/${ESVN_URI_APPEND}
+	E_S_APPEND=${ESVN_URI_APPEND}
+	E_LIVE_SOURCE="svn"
+	inherit subversion
 elif [[ -n ${E_SNAP_DATE} ]] ; then
 	E_STATE="snap"
 else
@@ -86,8 +76,8 @@ fi
 
 ENLIGHTENMENT_EXPF="src_unpack src_compile src_install"
 case "${EAPI:-0}" in
-        2|3|4) ENLIGHTENMENT_EXPF+=" src_prepare src_configure" ;;
-        *) ;;
+		2|3|4|5) ENLIGHTENMENT_EXPF+=" src_prepare src_configure" ;;
+		*) ;;
 esac
 EXPORT_FUNCTIONS ${ENLIGHTENMENT_EXPF}
 
@@ -122,7 +112,6 @@ esac
 enlightenment_src_unpack() {
 	if [[ ${E_STATE} == "live" ]] ; then
 		case ${E_LIVE_SOURCE} in
-			cvs) cvs_src_unpack;;
 			svn) subversion_src_unpack;;
 			*)   die "eek!";;
 		esac
@@ -133,6 +122,7 @@ enlightenment_src_unpack() {
 }
 
 enlightenment_src_prepare() {
+	epatch_user
 	[[ -s gendoc ]] && chmod a+rx gendoc
 	if [[ ${WANT_AUTOTOOLS} == "yes" ]] ; then
 		[[ -d po ]] && eautopoint -f
@@ -157,19 +147,19 @@ enlightenment_src_configure() {
 enlightenment_src_compile() {
 	has src_configure ${ENLIGHTENMENT_EXPF} || enlightenment_src_configure
 
-	emake || die
+	V=1 emake || die
 
 	if use doc ; then
 		if [[ -x ./gendoc ]] ; then
 			./gendoc || die
 		elif emake -j1 -n doc >&/dev/null ; then
-			emake doc || die
+			V=1 emake doc || die
 		fi
 	fi
 }
 
 enlightenment_src_install() {
-	emake install DESTDIR="${D}" || die
+	V=1 emake install DESTDIR="${D}" || die
 	find "${D}" '(' -name CVS -o -name .svn -o -name .git ')' -type d -exec rm -rf '{}' \; 2>/dev/null
 	for d in AUTHORS ChangeLog NEWS README TODO ${EDOCS}; do
 		[[ -f ${d} ]] && dodoc ${d}

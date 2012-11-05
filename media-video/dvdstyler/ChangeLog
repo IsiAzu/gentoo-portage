@@ -1,6 +1,22 @@
 # ChangeLog for media-video/dvdstyler
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/dvdstyler/ChangeLog,v 1.49 2011/10/16 12:22:03 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/dvdstyler/ChangeLog,v 1.53 2012/05/05 08:58:59 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> dvdstyler-2.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  23 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> dvdstyler-2.1.ebuild:
+  Fix building with FFmpeg >= 0.9 wrt #395793 by Helmut Jarausch
+
+  22 Dec 2011; Samuli Suominen <ssuominen@gentoo.org>
+  -dvdstyler-2.0_rc1.ebuild, -dvdstyler-2.0_rc2.ebuild:
+  old
+
+*dvdstyler-2.1 (22 Dec 2011)
+
+  22 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> +dvdstyler-2.1.ebuild:
+  Version bump. Missing -ljpeg (in wxVillaLib/ for imagjpg.cpp) wrt #367863 by
+  Diego Elio Pettenò.
 
 *dvdstyler-2.0_rc2 (16 Oct 2011)
 

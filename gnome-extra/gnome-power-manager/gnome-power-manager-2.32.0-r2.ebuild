@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-power-manager/gnome-power-manager-2.32.0-r2.ebuild,v 1.5 2011/10/30 16:21:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-power-manager/gnome-power-manager-2.32.0-r2.ebuild,v 1.7 2012/05/05 06:25:24 jdhore Exp $
 
 EAPI="4"
 GNOME_TARBALL_SUFFIX="bz2"
@@ -48,7 +48,7 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext
 	app-text/scrollkeeper
 	app-text/docbook-xml-dtd:4.3
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	>=dev-util/intltool-0.35
 	>=app-text/gnome-doc-utils-0.3.2
 	doc? (
@@ -74,8 +74,6 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-libnotify-0.7.patch
-
-	gnome2_src_prepare
 
 	# Fix intltoolize broken file, see upstream #577133
 	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
@@ -109,6 +107,8 @@ src_prepare() {
 	# FIXME: This is required to prevent maintainer mode after "debugger sed"
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
+
+	gnome2_src_prepare
 
 	# This needs to be after eautoreconf to prevent problems like bug #356277
 	if ! use doc; then

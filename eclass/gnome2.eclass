@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.103 2011/11/14 06:10:32 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.108 2012/10/23 20:32:51 eva Exp $
 
 # @ECLASS: gnome2.eclass
 # @MAINTAINER:
@@ -16,7 +16,7 @@ case "${EAPI:-0}" in
 	0|1)
 		EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm
 		;;
-	2|3|4)
+	2|3|4|5)
 		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install pkg_preinst pkg_postinst pkg_postrm
 		;;
 	*) die "EAPI=${EAPI} is not supported" ;;
@@ -94,6 +94,9 @@ gnome2_src_prepare() {
 	# Prevent scrollkeeper access violations
 	gnome2_omf_fix
 
+	# Disable all deprecation warnings
+	gnome2_disable_deprecation_warning
+
 	# Run libtoolize
 	if has ${EAPI:-0} 0 1 2 3; then
 		elibtoolize ${ELTCONF}
@@ -117,12 +120,17 @@ gnome2_src_configure() {
 
 	# Prevent a QA warning
 	if has doc ${IUSE} ; then
-		G2CONF="${G2CONF} $(use_enable doc gtk-doc)"
+		grep -q "enable-gtk-doc" configure && G2CONF="${G2CONF} $(use_enable doc gtk-doc)"
 	fi
 
 	# Pass --disable-maintainer-mode when needed
 	if grep -q "^[[:space:]]*AM_MAINTAINER_MODE(\[enable\])" configure.*; then
 		G2CONF="${G2CONF} --disable-maintainer-mode"
+	fi
+
+	# Pass --disable-scrollkeeper when possible
+	if grep -q "disable-scrollkeeper" configure; then
+		G2CONF="${G2CONF} --disable-scrollkeeper"
 	fi
 
 	# Avoid sandbox violations caused by gnome-vfs (bug #128289 and #345659)
@@ -172,10 +180,9 @@ gnome2_src_install() {
 	# 1. The scrollkeeper database is regenerated at pkg_postinst()
 	# 2. ${ED}/var/lib/scrollkeeper contains only indexes for the current pkg
 	#    thus it makes no sense if pkg_postinst ISN'T run for some reason.
-	if [[ -z "$(find "${D}" -name '*.omf')" ]]; then
-		export SCROLLKEEPER_UPDATE="0"
-	fi
 	rm -rf "${ED}${sk_tmp_dir}"
+	rmdir "${ED}/var/lib" 2>/dev/null
+	rmdir "${ED}/var" 2>/dev/null
 
 	# Make sure this one doesn't get in the portage db
 	rm -fr "${ED}/usr/share/applications/mimeinfo.cache"
@@ -197,6 +204,7 @@ gnome2_pkg_preinst() {
 	gnome2_gconf_savelist
 	gnome2_icon_savelist
 	gnome2_schemas_savelist
+	gnome2_scrollkeeper_savelist
 }
 
 # @FUNCTION: gnome2_pkg_postinst
@@ -209,10 +217,7 @@ gnome2_pkg_postinst() {
 	fdo-mime_mime_database_update
 	gnome2_icon_cache_update
 	gnome2_schemas_update
-
-	if [[ "${SCROLLKEEPER_UPDATE}" = "1" ]]; then
-		gnome2_scrollkeeper_update
-	fi
+	gnome2_scrollkeeper_update
 }
 
 # @#FUNCTION: gnome2_pkg_prerm
@@ -229,9 +234,6 @@ gnome2_pkg_postrm() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
 	gnome2_icon_cache_update
-	gnome2_schemas_update --uninstall
-
-	if [[ "${SCROLLKEEPER_UPDATE}" = "1" ]]; then
-		gnome2_scrollkeeper_update
-	fi
+	gnome2_schemas_update
+	gnome2_scrollkeeper_update
 }

@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/squid/squid-3.1.15.ebuild,v 1.5 2011/09/03 13:22:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/squid/squid-3.1.15.ebuild,v 1.7 2012/09/03 18:14:40 eras Exp $
 
 EAPI=4
 
-inherit eutils pam toolchain-funcs autotools linux-info
+inherit eutils pam toolchain-funcs autotools linux-info user
 
 DESCRIPTION="A full-featured web proxy cache"
 HOMEPAGE="http://www.squid-cache.org/"
@@ -26,7 +26,7 @@ COMMON_DEPEND="caps? ( >=sys-libs/libcap-2.16 )
 	kerberos? ( virtual/krb5 )
 	ssl? ( dev-libs/openssl )
 	sasl? ( dev-libs/cyrus-sasl )
-	ecap? ( net-libs/libecap )
+	ecap? ( net-libs/libecap:0 )
 	selinux? ( sec-policy/selinux-squid )
 	!x86-fbsd? ( logrotate? ( app-admin/logrotate ) )
 	>=sys-libs/db-4

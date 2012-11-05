@@ -1,10 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/coot/coot-0.6.2-r1.ebuild,v 1.2 2011/10/07 09:37:25 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/coot/coot-0.6.2-r1.ebuild,v 1.4 2012/03/07 19:33:39 jlec Exp $
 
 EAPI=3
 
 PYTHON_DEPEND="2"
+
+AUTOTOOLS_AUTORECONF="true"
 
 inherit autotools-utils flag-o-matic python toolchain-funcs versionator
 
@@ -87,9 +89,11 @@ PATCHES=(
 	)
 
 src_prepare() {
-	autotools-utils_src_prepare
+	sed \
+		-e "s:AM_COOT_SYS_BUILD_TYPE:COOT_SYS_BUILD_TYPE=Gentoo-Linux-$(PYTHON)-gtk2 ; AC_MSG_RESULT([\$COOT_SYS_BUILD_TYPE]); AC_SUBST(COOT_SYS_BUILD_TYPE):g" \
+		-i configure.in || die
 
-	eautoreconf
+	autotools-utils_src_prepare
 }
 
 src_configure() {

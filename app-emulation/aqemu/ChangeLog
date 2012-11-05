@@ -1,6 +1,32 @@
 # ChangeLog for app-emulation/aqemu
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/aqemu/ChangeLog,v 1.8 2011/09/15 18:02:23 maksbotan Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/aqemu/ChangeLog,v 1.15 2012/10/09 21:14:05 cardoe Exp $
+
+  09 Oct 2012; Doug Goldstein <cardoe@gentoo.org> aqemu-0.8.2-r2.ebuild,
+  metadata.xml:
+  Update to reflect app-emulation/qemu-kvm -> app-emulation/qemu move.
+
+  04 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> -aqemu-0.8.1.ebuild,
+  -aqemu-0.8.2-r1.ebuild, aqemu-0.8.2-r2.ebuild:
+  Stable on x86 wrt bug#414353. Remove older.
+
+  02 May 2012; Agostino Sarubbo <ago@gentoo.org> aqemu-0.8.2-r2.ebuild:
+  Stable for amd64, wrt bug #414353
+
+  04 Apr 2012; Jeff Horelick <jdhore@gentoo.org> aqemu-0.8.2-r1.ebuild:
+  marked x86 per bug 404483
+
+*aqemu-0.8.2-r2 (21 Feb 2012)
+
+  21 Feb 2012; Maxim Koltsov <maksbotan@gentoo.org> +aqemu-0.8.2-r2.ebuild,
+  +files/aqemu-0.8.2_desktop_file.patch, +files/aqemu-0.8.2_qt48_build.patch:
+  Revbump to 0.8.2-r2, fix bug 405117
+
+  19 Feb 2012; Agostino Sarubbo <ago@gentoo.org> aqemu-0.8.2-r1.ebuild:
+  Stable for amd64, wrt bug #404483
+
+  04 Feb 2012; Maxim Koltsov <maksbotan@gentoo.org> metadata.xml:
+  Fix maintainer's email in metadata
 
   15 Sep 2011; Maxim Koltsov <maksbotan@gentoo.org>
   files/aqemu-0.8.2_sigsev_propertis.patch:

@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.18.ebuild,v 1.2 2011/08/19 19:31:56 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.18.ebuild,v 1.9 2012/05/31 03:13:18 zmedico Exp $
 
 EAPI="4"
 
-inherit flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 HOMEPAGE="http://www.gnupg.org/"
@@ -14,7 +14,7 @@ SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="adns bzip2 doc ldap nls static selinux smartcard usb"
+IUSE="adns bzip2 doc ldap nls readline static selinux smartcard usb"
 
 COMMON_DEPEND_LIBS="
 	>=dev-libs/libassuan-2
@@ -23,8 +23,10 @@ COMMON_DEPEND_LIBS="
 	>=dev-libs/libksba-1.0.7
 	>=dev-libs/pth-1.3.7
 	>=net-misc/curl-7.10
+	sys-libs/zlib
 	adns? ( >=net-libs/adns-1.4 )
 	bzip2? ( app-arch/bzip2 )
+	readline? ( sys-libs/readline )
 	smartcard? ( usb? ( virtual/libusb:0 ) )
 	ldap? ( net-nds/openldap )"
 COMMON_DEPEND_BINS="|| ( app-crypt/pinentry app-crypt/pinentry-qt )"
@@ -37,6 +39,8 @@ DEPEND="${COMMON_DEPEND_LIBS}
 		>=dev-libs/libgcrypt-1.4[static-libs]
 		>=dev-libs/libgpg-error-1.7[static-libs]
 		>=dev-libs/libksba-1.0.7[static-libs]
+		>=dev-libs/pth-1.3.7[static-libs]
+		|| ( sys-libs/zlib[static-libs] <sys-libs/zlib-1.2.5.1-r2 )
 	)
 	nls? ( sys-devel/gettext )
 	doc? ( sys-apps/texinfo )"
@@ -46,7 +50,7 @@ RDEPEND="!static? ( ${COMMON_DEPEND_LIBS} )
 	virtual/mta
 	!app-crypt/gpg-agent
 	!<=app-crypt/gnupg-2.0.1
-	selinux? ( sec-policy/selinux-gnupg )
+	selinux? ( sec-policy/selinux-gpg )
 	nls? ( virtual/libintl )"
 
 REQUIRED_USE="smartcard? ( !static )"
@@ -80,6 +84,7 @@ src_configure() {
 		$(use_enable !elibc_SunOS symcryptrun) \
 		$(use_enable nls) \
 		$(use_enable ldap) \
+		$(use_with readline) \
 		CC_FOR_BUILD="$(tc-getBUILD_CC)"
 }
 
@@ -127,7 +132,7 @@ pkg_postinst() {
 	elog
 	if use smartcard; then
 		elog "To use your OpenPGP smartcard (or token) with GnuPG you need one of"
-		use usb && elog " - a CCID-compatible reader, used directly through dev-libs/libusb;"
+		use usb && elog " - a CCID-compatible reader, used directly through libusb;"
 		elog " - sys-apps/pcsc-lite and a compatible reader device;"
 		elog " - dev-libs/openct and a compatible reader device;"
 		elog " - a reader device and drivers exporting either PC/SC or CT-API interfaces."

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-voip/telepathy-salut/telepathy-salut-0.6.0.ebuild,v 1.1 2011/10/18 19:15:38 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-voip/telepathy-salut/telepathy-salut-0.6.0.ebuild,v 1.7 2012/05/03 07:27:48 jdhore Exp $
 
 EAPI="4"
 PYTHON_DEPEND="2:2.5"
@@ -13,7 +13,7 @@ SRC_URI="http://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~sparc ~x86 ~x86-linux"
+KEYWORDS="alpha amd64 ia64 ppc sparc x86 ~x86-linux"
 IUSE="test"
 
 RDEPEND="dev-libs/libxml2
@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 		net-libs/libgsasl
 		dev-python/twisted-words )
 	dev-libs/libxslt
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 # FIXME: needs xmppstream python module
 #               >=net-dns/avahi-0.6.22[python]
 
@@ -42,6 +42,9 @@ pkg_setup() {
 src_prepare() {
 	# Fix uninitialized variable, upstream bug #37701
 	epatch "${FILESDIR}/${PN}-0.5.0-uninitialized.patch"
+
+	# Fix building with >=glib-2.31, patch from wocky git master, bug #397765
+	epatch "${FILESDIR}/${PN}-0.6.0-glib-gtypes.h.patch"
 
 	python_convert_shebangs -r 2 .
 }

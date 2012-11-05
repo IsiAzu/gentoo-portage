@@ -1,6 +1,51 @@
 # ChangeLog for media-video/x264-encoder
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/x264-encoder/ChangeLog,v 1.60 2011/10/19 16:40:42 lu_zero Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/x264-encoder/ChangeLog,v 1.68 2012/07/08 17:11:26 lu_zero Exp $
+
+*x264-encoder-0.0.20120707 (08 Jul 2012)
+
+  08 Jul 2012; Luca Barbato <lu_zero@gentoo.org>
+  +x264-encoder-0.0.20120707.ebuild:
+  version bump
+
+  07 May 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -x264-encoder-0.0.20110825-r1.ebuild, -x264-encoder-0.0.20111017.ebuild,
+  -x264-encoder-0.0.20111218.ebuild:
+  Remove all overshadowed versions to fix broken deps by my x264 old versions
+  removal.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  x264-encoder-0.0.20110426.ebuild, x264-encoder-0.0.20110825-r1.ebuild,
+  x264-encoder-0.0.20111017.ebuild, x264-encoder-0.0.20111218.ebuild,
+  x264-encoder-0.0.20111220.ebuild, x264-encoder-0.0.20120327.ebuild,
+  x264-encoder-9999.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  12 Apr 2012; Andreas Schuerch <nativemad@gentoo.org>
+  x264-encoder-0.0.20111220.ebuild:
+  x86 stable, see bug 411369
+
+  09 Apr 2012; Agostino Sarubbo <ago@gentoo.org>
+  x264-encoder-0.0.20111220.ebuild:
+  Stable for amd64, wrt bug #401069
+
+*x264-encoder-0.0.20120327 (28 Mar 2012)
+
+  28 Mar 2012; Luca Barbato <lu_zero@gentoo.org>
+  +x264-encoder-0.0.20120327.ebuild:
+  New snapshot
+
+*x264-encoder-0.0.20111220 (21 Dec 2011)
+
+  21 Dec 2011; Luca Barbato <lu_zero@gentoo.org>
+  +x264-encoder-0.0.20111220.ebuild:
+  New version using the 120 api
+
+*x264-encoder-0.0.20111218 (19 Dec 2011)
+
+  19 Dec 2011; Alexis Ballier <aballier@gentoo.org>
+  +x264-encoder-0.0.20111218.ebuild:
+  new snapshot
 
 *x264-encoder-0.0.20111017 (19 Oct 2011)
 

@@ -1,6 +1,25 @@
 # ChangeLog for net-misc/vino
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/vino/ChangeLog,v 1.170 2011/11/07 05:02:34 tetromino Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/vino/ChangeLog,v 1.174 2012/05/20 03:59:50 tetromino Exp $
+
+*vino-3.4.2 (20 May 2012)
+
+  20 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org> -vino-3.2.1.ebuild,
+  +vino-3.4.2.ebuild:
+  Version bump for gnome-3.4; drop old.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> vino-2.32.2.ebuild,
+  vino-3.2.1.ebuild, vino-3.2.2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*vino-3.2.2 (17 Dec 2011)
+
+  17 Dec 2011; Alexandre Rostovtsev <tetromino@gentoo.org> +vino-3.2.2.ebuild:
+  Bump. Translation updates only.
+
+  14 Dec 2011; Alexandre Rostovtsev <tetromino@gentoo.org> vino-3.2.1.ebuild:
+  Build fails if USE="jpeg -zlib" (bug #394611, thanks to Ben Kohler for
+  reporting).
 
 *vino-3.2.1 (07 Nov 2011)
 

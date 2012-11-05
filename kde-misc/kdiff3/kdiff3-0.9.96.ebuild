@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-misc/kdiff3/kdiff3-0.9.96.ebuild,v 1.2 2011/11/22 20:43:57 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-misc/kdiff3/kdiff3-0.9.96.ebuild,v 1.7 2012/07/26 17:03:43 johu Exp $
 
 EAPI=4
 
@@ -8,9 +8,9 @@ KDE_REQUIRED="optional"
 QT_MINIMAL="4.4.0"
 
 if [[ ${PV} != *9999* ]]; then
-	KDE_LINGUAS="ar bg br bs ca ca@valencia cs cy da de el en_GB eo es et fr ga gl hi hne
-                     hr hu is it ja ka lt mai ml nb nds nl nn pl pt pt_BR ro ru rw sk sv ta tg
-                     tr ug uk zh_CN zh_TW"
+	KDE_LINGUAS="ar bg br bs ca ca@valencia cs cy da de el en_GB eo es et fr ga
+	gl hi hne hr hu is it ja ka lt mai ml nb nds nl nn pl pt pt_BR ro ru rw sk
+	sv ta tg tr ug uk zh_CN zh_TW"
 	SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 	KDE_HANDBOOK="optional"
 fi
@@ -21,13 +21,13 @@ DESCRIPTION="Qt/KDE based frontend to diff3"
 HOMEPAGE="http://kdiff3.sourceforge.net/"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
+KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux"
 SLOT="4"
 IUSE="debug kde"
 
 DEPEND="
-	>=x11-libs/qt-core-${QT_MINIMAL}
-	>=x11-libs/qt-gui-${QT_MINIMAL}
+	>=x11-libs/qt-core-${QT_MINIMAL}:4
+	>=x11-libs/qt-gui-${QT_MINIMAL}:4
 	kde? ( $(add_kdebase_dep kdelibs) )
 "
 RDEPEND="${DEPEND}
@@ -50,9 +50,9 @@ src_unpack(){
 src_prepare() {
 	if ! use kde; then
 		# adapt to Gentoo paths
-		sed -e s,documentation.path.*$,documentation.path\ =\ ${EPREFIX}/usr/share/doc/${PF}, \
-			-e s,target.path.*$,target.path\ =\ ${EPREFIX}/usr/bin, \
-			"${S}"/src-QT4/kdiff3.pro > "${S}"/src-QT4/kdiff3_fixed.pro
+		sed -e s,documentation.path.*$,documentation.path\ =\ "${EPREFIX}"/usr/share/doc/"${PF}", \
+		-e s,target.path.*$,target.path\ =\ "${EPREFIX}"/usr/bin, \
+		"${S}"/src-QT4/kdiff3.pro > "${S}"/src-QT4/kdiff3_fixed.pro
 	else
 		kde4-base_src_prepare
 	fi

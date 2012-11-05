@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/xmms2/xmms2-0.7-r3.ebuild,v 1.3 2011/08/25 20:03:51 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/xmms2/xmms2-0.7-r3.ebuild,v 1.5 2012/05/05 08:56:07 mgorny Exp $
 
 EAPI=3
 
@@ -44,7 +44,7 @@ RDEPEND="server? (
 		mms? ( virtual/ffmpeg
 			>=media-libs/libmms-0.3 )
 		modplug? ( media-libs/libmodplug )
-		mad? ( media-sound/madplay )
+		mad? ( media-libs/libmad )
 		mp3? ( >=media-sound/mpg123-1.5.1 )
 		musepack? ( media-sound/musepack-tools )
 		ofa? ( media-libs/libofa )
@@ -70,7 +70,7 @@ DEPEND="${RDEPEND}
 	=dev-lang/python-2*
 	python? ( dev-python/pyrex )
 	perl? ( virtual/perl-Module-Build )
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S="${WORKDIR}/${MY_P}"
 

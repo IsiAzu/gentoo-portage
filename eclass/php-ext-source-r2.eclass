@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r2.eclass,v 1.18 2011/11/24 00:04:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r2.eclass,v 1.30 2012/09/27 16:35:41 axs Exp $
 
 # @ECLASS: php-ext-source-r2.eclass
 # @MAINTAINER:
@@ -16,7 +16,7 @@
 # This eclass provides a unified interface for compiling and installing standalone
 # PHP extensions (modules).
 
-inherit flag-o-matic autotools
+inherit flag-o-matic autotools multilib
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install
 
@@ -26,7 +26,7 @@ RDEPEND=""
 
 # Because of USE deps, we require at least EAPI 2
 case ${EAPI} in
-	2|3|4) ;;
+	2|3|4|5) ;;
 	*)
 		die "php-ext-source-r2 is not compatible with EAPI=${EAPI}"
 esac
@@ -53,7 +53,7 @@ esac
 # @ECLASS-VARIABLE: USE_PHP
 # @DESCRIPTION:
 # Lists the PHP slots compatibile the extension is compatibile with
-[[ -z "${USE_PHP}" ]] && USE_PHP="php5-3 php5-2"
+[[ -z "${USE_PHP}" ]] && USE_PHP="php5-3"
 
 # @ECLASS-VARIABLE: PHP_EXT_OPTIONAL_USE
 # @DESCRIPTION:
@@ -85,6 +85,11 @@ RDEPEND="${RDEPEND}
 	${PHPDEPEND}
 	${PHP_EXT_OPTIONAL_USE:+ )}"
 
+DEPEND="${DEPEND}
+	${PHP_EXT_OPTIONAL_USE}${PHP_EXT_OPTIONAL_USE:+? ( }
+	${PHPDEPEND}
+	${PHP_EXT_OPTIONAL_USE:+ )}
+"
 
 # @FUNCTION: php-ext-source-r2_src_unpack
 # @DESCRIPTION:
@@ -99,7 +104,7 @@ php-ext-source-r2_src_unpack() {
 	unpack ${A}
 	local slot orig_s="${PHP_EXT_S}"
 	for slot in $(php_get_slots); do
-		cp -r "${orig_s}" "${WORKDIR}/${slot}"
+		cp -r "${orig_s}" "${WORKDIR}/${slot}" || die "Failed to copy source ${orig_s} to PHP target directory"
 	done
 }
 
@@ -135,6 +140,10 @@ php-ext-source-r2_phpize() {
 # @DESCRIPTION:
 # Set this in the ebuild to pass configure options to econf.
 php-ext-source-r2_src_configure() {
+	# net-snmp creates this file #385403
+	addpredict /usr/share/snmp/mibs/.index
+	addpredict /var/lib/net-snmp/mib_indexes
+
 	local slot
 	for slot in $(php_get_slots); do
 		php_init_slot_env ${slot}
@@ -149,6 +158,8 @@ php-ext-source-r2_src_configure() {
 php-ext-source-r2_src_compile() {
 	# net-snmp creates this file #324739
 	addpredict /usr/share/snmp/mibs/.index
+	addpredict /var/lib/net-snmp/mib_indexes
+
 	# shm extension createss a semaphore file #173574
 	addpredict /session_mm_cli0.sem
 	local slot
@@ -159,7 +170,7 @@ php-ext-source-r2_src_compile() {
 	done
 }
 
-# @FUNCTION: php-ext-source-r1_src_install
+# @FUNCTION: php-ext-source-r2_src_install
 # @DESCRIPTION:
 # Takes care of standard install for PHP extensions (modules).
 
@@ -213,7 +224,7 @@ php_init_slot_env() {
 php-ext-source-r2_buildinilist() {
 	# Work out the list of <ext>.ini files to edit/add to
 	if [[ -z "${PHPSAPILIST}" ]] ; then
-		PHPSAPILIST="apache2 cli cgi fpm"
+		PHPSAPILIST="apache2 cli cgi fpm embed"
 	fi
 
 	PHPINIFILELIST=""

@@ -1,6 +1,50 @@
 # ChangeLog for sys-devel/gettext
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.197 2011/11/13 19:21:31 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.209 2012/09/23 19:05:55 armin76 Exp $
+
+  23 Sep 2012; Raúl Porcel <armin76@gentoo.org> gettext-0.18.1.1-r3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #434566
+
+  13 Sep 2012; Jeroen Roovers <jer@gentoo.org> gettext-0.18.1.1-r3.ebuild:
+  Stable for HPPA (bug #434566).
+
+  11 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  gettext-0.18.1.1-r3.ebuild:
+  Stable amd64, bug #434566
+
+  11 Sep 2012; Johannes Huber <johu@gentoo.org> gettext-0.18.1.1-r3.ebuild:
+  Stable for x86, wrt bug #434566
+
+  11 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  gettext-0.18.1.1-r3.ebuild:
+  Stable ppc ppc64, bug #434566
+
+  11 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  gettext-0.18.1.1-r3.ebuild:
+  Stable arm, bug #434566
+
+  06 Sep 2012; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r1.ebuild,
+  gettext-0.18.1.1-r2.ebuild:
+  Add no-gets patch to all current versions.
+
+  06 Jun 2012; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r3.ebuild:
+  Fix typo with USE=git and cvs handling #419887 by Bernd Lommerzheim.
+
+  05 Jun 2012; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r1.ebuild,
+  gettext-0.18.1.1-r2.ebuild, gettext-0.18.1.1-r3.ebuild, metadata.xml:
+  Drop USE=git from the default as the overall size of the git package is larger
+  than the space savings of the raw tarballs, and the latest gettext versions no
+  longer require cvs or git but support raw tarballs #339547 by Jared B..
+
+  23 May 2012; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r1.ebuild:
+  Call elibtoolize since we inherit libtool eclass.
+
+  23 May 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/gettext-0.18.1.1-no-gets.patch, gettext-0.18.1.1-r3.ebuild:
+  Fix building with glibc-2.16+.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> gettext-0.18.1.1-r3.ebuild:
+  keyword ~amd64-fbsd
 
   13 Nov 2011; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r1.ebuild,
   gettext-0.18.1.1-r2.ebuild, gettext-0.18.1.1-r3.ebuild:

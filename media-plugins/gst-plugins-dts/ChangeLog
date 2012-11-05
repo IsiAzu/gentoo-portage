@@ -1,6 +1,16 @@
 # ChangeLog for media-plugins/gst-plugins-dts
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-dts/ChangeLog,v 1.15 2011/10/15 23:28:00 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-dts/ChangeLog,v 1.18 2012/06/20 08:48:37 scarabeus Exp $
+
+  20 Jun 2012; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
+  Whitespace.
+
+  17 May 2012; Alexis Ballier <aballier@gentoo.org>
+  gst-plugins-dts-0.10.22.ebuild:
+  keyword ~amd64-fbsd
+
+  05 Dec 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop gnome team from metadata as talked with leio and eva.
 
   15 Oct 2011; Markus Meier <maekke@gentoo.org> gst-plugins-dts-0.10.22.ebuild:
   x86 stable, bug #385703

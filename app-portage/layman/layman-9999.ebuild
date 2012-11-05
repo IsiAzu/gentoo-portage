@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-9999.ebuild,v 1.23 2011/09/18 23:21:11 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-9999.ebuild,v 1.25 2012/10/21 03:00:31 dolsen Exp $
 
 EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
@@ -18,7 +18,7 @@ EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/layman.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="bazaar cvs darcs git mercurial subversion test"
+IUSE="bazaar cvs darcs +git mercurial subversion test"
 
 COMMON_DEPS="dev-lang/python"
 DEPEND="${COMMON_DEPS}
@@ -67,40 +67,14 @@ src_install() {
 	dohtml doc/layman.8.html
 
 	keepdir /var/lib/layman
+	keepdir /etc/layman/overlays
 }
 
 pkg_postinst() {
 	distutils_pkg_postinst
 
-	ewarn "The installed db file '%(storage)/overlays.xml'"
-	ewarn "has been renamed to '%(storage)/installed.xml'"
-
-	if [ -f "${EROOT}/var/lib/layman/overlays.xml" ]; then
-		mv "${EROOT}/var/lib/layman/overlays.xml" "${EROOT}/var/lib/layman/installed.xml"
-		einfo "${EROOT}/var/lib/layman/overlays.xml has been moved to ${EROOT}/var/lib/layman/installed.xml"
-	fi
-
-	einfo "You are now ready to add overlays into your system."
+	# now run layman's update utility
+	einfo "Running layman-updater..."
+	"${EROOT}"/usr/bin/layman-updater
 	einfo
-	einfo "  layman -L"
-	einfo
-	einfo "will display a list of available overlays."
-	einfo
-	elog  "Select an overlay and add it using"
-	elog
-	elog  "  layman -a overlay-name"
-	elog
-	elog  "If this is the very first overlay you add with layman,"
-	elog  "you need to append the following statement to your"
-	elog  "/etc/make.conf file:"
-	elog
-	elog  "  source /var/lib/layman/make.conf"
-	elog
-	elog  "If you modify the 'storage' parameter in the layman"
-	elog  "configuration file (/etc/layman/layman.cfg) you will"
-	elog  "need to adapt the path given above to the new storage"
-	elog  "directory."
-	elog
-	ewarn "Please add the 'source' statement to make.conf only AFTER "
-	ewarn "you added your first overlay. Otherwise portage will fail."
 }
