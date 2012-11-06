@@ -5728,14 +5728,6 @@ www-client/seamonkey:methodjit - Enable JIT for JavaScript using MethodJIT for f
 www-client/seamonkey:roaming - Build roaming extension support (default on)
 www-client/seamonkey:system-sqlite - Use the system-wide dev-db/sqlite installation with secure-delete enabled
 www-client/seamonkey:webm - Use system media-libs/libvpx for HTML5 WebM video support.
-www-client/torbrowser:bindist - Disable official Firefox branding (icons, name) which are not binary-redistributable according to upstream.
-www-client/torbrowser:crashreporter - Enable crashreporter for mozilla upstream, debugging symbols are not required for reporting crashes.
-www-client/torbrowser:custom-optimization - Fine-tune custom compiler optimizations, setting this is not recommended.
-www-client/torbrowser:ipc - Use inter-process communication between tabs and plugins. Allows for greater stability in case of plugin crashes
-www-client/torbrowser:pgo - Add support for profile-guided optimization using gcc-4.5, for faster binaries. This option will double the compile time.
-www-client/torbrowser:system-sqlite - Use the system-wide dev-db/sqlite installation with secure-delete enabled
-www-client/torbrowser:torprofile - Install pre-configured profile folder by upstream into "/usr/share/torbrowser/profile" (you still have to copy it in place)
-www-client/torbrowser:webm - Use system media-libs/libvpx for HTML5 WebM video support.
 www-client/uget:aria2 - Enable support for net-misc/aria2 through xmlrpc. You'll find the plugin in the app's settings.
 www-client/uget:gtk3 - Use x11-libs/gtk+:3 instead of x11-libs/gtk+:2
 www-client/uget:hide-temp-files - Make temporary files that are used while downloading hidden.
