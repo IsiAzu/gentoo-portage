@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/unbound/unbound-1.4.17.ebuild,v 1.1 2012/07/13 13:30:58 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/unbound/unbound-1.4.18.ebuild,v 1.2 2012/11/07 03:02:01 jer Exp $
 
 EAPI="4"
 PYTHON_DEPEND="python? 2"
@@ -13,9 +13,9 @@ DESCRIPTION="A validating, recursive and caching DNS resolver"
 HOMEPAGE="http://unbound.net/"
 SRC_URI="http://unbound.net/downloads/${P}.tar.gz"
 
-LICENSE="BSD"
+LICENSE="BSD GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x64-macos"
+KEYWORDS="~amd64 ~hppa ~x86 ~x64-macos"
 IUSE="debug gost python selinux static-libs test threads"
 
 RDEPEND="dev-libs/expat
@@ -48,24 +48,24 @@ src_prepare() {
 	# 'auto-trust-anchor-file'.
 	# [23109:0] error: Could not open autotrust file for writing,
 	# /etc/dnssec/root-anchors.txt: Permission denied
-	epatch "${FILESDIR}/${PN}-1.4.12-gentoo.patch"
+	epatch "${FILESDIR}"/${PN}-1.4.12-gentoo.patch
 }
 
 src_configure() {
 	append-ldflags -Wl,-z,noexecstack
 	econf \
-		--with-pidfile="${EPREFIX}"/var/run/unbound.pid \
-		--with-ldns="${EPREFIX}"/usr \
-		--with-libevent="${EPREFIX}"/usr \
-		--with-rootkey-file="${EPREFIX}"/etc/dnssec/root-anchors.txt \
 		$(use_enable debug) \
 		$(use_enable gost) \
 		$(use_enable static-libs static) \
-		$(use_with threads pthreads) \
-		$(use_with python pyunbound) \
 		$(use_with python pythonmodule) \
+		$(use_with python pyunbound) \
+		$(use_with threads pthreads) \
+		--disable-rpath \
 		--enable-ecdsa \
-		--disable-rpath
+		--with-ldns="${EPREFIX}"/usr \
+		--with-libevent="${EPREFIX}"/usr \
+		--with-pidfile="${EPREFIX}"/var/run/unbound.pid \
+		--with-rootkey-file="${EPREFIX}"/etc/dnssec/root-anchors.txt
 
 		# http://unbound.nlnetlabs.nl/pipermail/unbound-users/2011-April/001801.html
 		# $(use_enable debug lock-checks) \
