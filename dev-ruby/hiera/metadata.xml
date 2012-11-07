@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
-		<email>jlec@gentoo.org</email>
-	</maintainer>
+<maintainer>
+  <email>matsuu@gentoo.org</email>
+</maintainer>
+<herd>sysadmin</herd>
+<herd>ruby</herd>
 </pkgmetadata>

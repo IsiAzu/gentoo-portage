@@ -405,7 +405,10 @@ app-emacs/slime:xref - Install xref.lisp cross-referencing tool
 app-emacs/vm:bbdb - Include support for app-emacs/bbdb
 app-emacs/wanderlust:bbdb - Include support for app-emacs/bbdb
 app-emacs/wikipedia-mode:outline-magic - Enable support for outline-mode extensions (app-emacs/outline-magic)
-app-emulation/bochs:debugger - Enable the bochs debugger
+app-emulation/bochs:avx - Enable support for Advanced Vector Extensions (AVX)
+app-emulation/bochs:debugger - Enable debugger (slows down emulation)
+app-emulation/bochs:gdb - Enable support for the remote GDB stub
+app-emulation/bochs:x86-64 - Enable support for emulation of 64-bit CPUs
 app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
 app-emulation/emul-linux-x86-baselibs:development - Install pkgconfig files
@@ -2381,6 +2384,7 @@ mail-filter/amavisd-new:dkim - Add DomainKeys Identified Mail support
 mail-filter/amavisd-new:qmail - Add qmail support
 mail-filter/amavisd-new:razor - Add support for mail-filter/razor
 mail-filter/amavisd-new:spamassassin - Add support for mail-filter/spamassassin
+mail-filter/amavisd-new:zmq - Add support for zeromq sockets
 mail-filter/ask:procmail - Adds support for mail-filter/procmail
 mail-filter/assp:spf - Adds support for Sender Policy Framework
 mail-filter/assp:srs - Adds support for Sender Rewriting Scheme
