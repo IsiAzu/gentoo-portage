@@ -1,23 +1,21 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/libmems/libmems-9999.ebuild,v 1.2 2012/11/08 09:11:51 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/libmems/libmems-1.6_p1.ebuild,v 1.1 2012/11/08 09:09:17 jlec Exp $
 
 EAPI=4
 
 AUTOTOOLS_AUTORECONF=yes
 
-ESVN_REPO_URI="https://mauve.svn.sourceforge.net/svnroot/mauve/libMems/trunk"
-
-inherit autotools-utils subversion
+inherit autotools-utils
 
 DESCRIPTION="Library for sci-biology/mauve"
 HOMEPAGE="http://gel.ahabs.wisc.edu/mauve/"
-SRC_URI=""
+SRC_URI="mirror://dev.gentoo.org/~jlec/${P}.tar.xz"
 
 SLOT="0"
 LICENSE="GPL-2"
 IUSE="doc"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 
 CDEPEND="
 	dev-libs/boost
@@ -27,4 +25,8 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}"
 
-S="${WORKDIR}"
+PATCHES=(
+	"${FILESDIR}"/${P}-build.patch
+	"${FILESDIR}"/${P}-boost.patch
+	"${FILESDIR}"/${P}-gcc-4.7.patch
+	)
