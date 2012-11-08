@@ -1317,6 +1317,7 @@ dev-libs/atk:introspection - Use dev-libs/gobject-introspection for introspectio
 dev-libs/blitz:boost - Enable usage of boost::serialization
 dev-libs/boost:debug - Build and install debug versions of the Boost libraries. These libraries are not used by default, and should not be used unless you're developing against Boost.
 dev-libs/boost:eselect - Run "eselect boost update" even if version is already selected
+dev-libs/boost:threads - Build multi-thread-compatible libraries instead of single-threaded only.
 dev-libs/boost:tools - Build and install the boost tools (bcp, quickbook, inspect, wave)
 dev-libs/check:subunit - Enable support for the subunit unit test protocol
 dev-libs/cyberjack:fox - Enable installation of x11-libs/fox based fxcyberjack program
