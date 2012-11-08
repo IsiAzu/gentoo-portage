@@ -1,24 +1,27 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/stella/stella-3.5.ebuild,v 1.2 2012/01/30 17:40:39 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/stella/stella-3.7.4.ebuild,v 1.1 2012/11/08 21:06:47 mr_bones_ Exp $
 
 EAPI=2
-inherit eutils games
+inherit eutils gnome2-utils games
 
 DESCRIPTION="Stella Atari 2600 VCS Emulator"
 HOMEPAGE="http://stella.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}-src.tar.gz"
+SRC_URI="mirror://sourceforge/stella/${P}-src.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="joystick opengl"
 
-DEPEND="media-libs/libsdl[joystick?,video]
+DEPEND="media-libs/libsdl[joystick?,opengl?,video]
 	x11-libs/libX11
-	media-libs/libpng
+	media-libs/libpng:0
 	sys-libs/zlib
-	opengl? ( virtual/opengl )"
+	opengl? (
+		virtual/opengl
+		virtual/glu
+	)"
 
 src_prepare() {
 	sed -i \
@@ -27,6 +30,7 @@ src_prepare() {
 		-e "/icons/d" \
 		-e '/INSTALL.*DOCDIR/d' \
 		-e '/INSTALL.*\/applications/d' \
+		-e '/CXXFLAGS+=/s/-fomit-frame-pointer//' \
 		Makefile || die
 	sed -i \
 		-e '/Icon/s/.png//' \
@@ -49,10 +53,28 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
-	doicon src/common/stella.png
+	local i
+	for i in 16 22 24 32 48 64 128 ; do
+		newicon -s ${i} src/common/stella-${i}x${i}.png stella.png
+	done
+
+	emake DESTDIR="${D}" install || die
 	domenu src/unix/stella.desktop
 	dohtml -r docs/*
 	dodoc Announce.txt Changes.txt Copyright.txt README-SDL.txt Readme.txt Todo.txt
 	prepgamesdirs
+}
+
+pkg_preinst() {
+	games_pkg_preinst
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	games_pkg_postinst
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
