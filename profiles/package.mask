@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14206 2012/11/09 05:21:04 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14210 2012/11/09 20:54:44 hwoarang Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Markos Chandras <hwoarang@gentoo.org> (09 Nov 2012)
+# Masked for testing
+=dev-embedded/u-boot-tools-2012.07
+
 # Pawel Hajdan jr <phajdan.jr@gentoo.org> (08 Nov 2012)
 # Dev channel releases are only for people who are developers or want more
 # experimental features and accept a more unstable release.
@@ -52,6 +56,8 @@
 # packages using the new layout.
 >=dev-libs/boost-1.52.0
 >=dev-cpp/libxsd-frontend-1.18.0-r1
+>=dev-cpp/xsd-3.3.0-r1
+>=dev-util/source-highlight-3.1.7-r2
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> ( 2012/11/04 )
 # masked for testing, bug #422605
@@ -428,8 +434,8 @@ dev-util/pccts
 games-strategy/glest
 
 # Markos Chandras <hwoarang@gentoo.org> (17 August 2012)
-# Masked rc release. Required by dev-lang/jimctl-0.73
-=dev-embedded/openocd-0.6.0_rc*
+# Masked for testing. Required by dev-lang/jimctl-0.73
+=dev-embedded/openocd-0.6.1
 
 # Benedikt Böhm <hollow@gentoo.org> (11 Aug 2012)
 # Regression in iproute code, does not detect IP addresses correctly anymore.
