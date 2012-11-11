@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install
+DEPEND=>=sys-fs/udev-143 virtual/pkgconfig
+DESCRIPTION=A small and lightweight parser library for ATA S.M.A.R.T. hard disks
+EAPI=4
+HOMEPAGE=http://0pointer.de/blog/projects/being-smart.html
+IUSE=static-libs
+KEYWORDS=alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86
+LICENSE=LGPL-2.1
+RDEPEND=>=sys-fs/udev-143
+SLOT=0
+SRC_URI=http://0pointer.de/public/libatasmart-0.19.tar.xz
+_md5_=cff84e413dbea105131e64009341f133

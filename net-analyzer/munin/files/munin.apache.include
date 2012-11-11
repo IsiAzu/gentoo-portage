@@ -11,18 +11,11 @@ RewriteCond %{REQUEST_URI} !/static
 RewriteRule ^/munin/(.*) /munin-cgi/munin-cgi-html/$1 [PT,L]
 </IfDefine>
 
-<Directory "/usr/libexec/munin/cgi/">
+<Directory /usr/libexec/munin/cgi/>
 	Options +ExecCGI
 
-	# for Apache < 2.4
-	<IfModule !mod_authz_host.c>
-		Order Deny,Allow
-		Allow from all
-	</IfModule>
-	# for Apache >= 2.4
-	<IfModule mod_authz_host.c>
-		Require all granted
-	</IfModule>
+	Order allow,deny
+	Allow from all
 
 	<IfModule mod_fcgid.c>
 		SetHandler fcgid-script
@@ -32,14 +25,7 @@ RewriteRule ^/munin/(.*) /munin-cgi/munin-cgi-html/$1 [PT,L]
 	</IfModule>
 </Directory>
 
-<Directory "/etc/munin/static">
-	# for Apache < 2.4
-	<IfModule !mod_authz_host.c>
-		Order Deny,Allow
-		Allow from all
-	</IfModule>
-	# for Apache >= 2.4
-	<IfModule mod_authz_host.c>
-		Require all granted
-	</IfModule>
+<Directory /etc/munin/static>
+	Order allow,deny
+	Allow from all
 </Directory>

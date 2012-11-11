@@ -1,0 +1,6 @@
+DEFINED_PHASES=-
+DESCRIPTION=Virtual for Socket
+KEYWORDS=~amd64 ~x86
+RDEPEND=~perl-core/Socket-2.6.0
+SLOT=0
+_md5_=796f86d954e4be90f2666ab79c5adf73
