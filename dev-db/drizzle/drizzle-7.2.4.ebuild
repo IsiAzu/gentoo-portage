@@ -1,19 +1,22 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/drizzle/drizzle-7.2.3.ebuild,v 1.1 2012/09/19 05:25:54 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/drizzle/drizzle-7.2.4.ebuild,v 1.2 2012/11/11 02:18:49 flameeyes Exp $
 
-EAPI=4
+EAPI=5
 
-inherit flag-o-matic libtool autotools eutils pam user versionator
+inherit python flag-o-matic libtool autotools eutils pam user versionator
+
+MY_P="${P}-alpha"
+S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Database optimized for Cloud and Net applications"
 HOMEPAGE="http://drizzle.org"
-SRC_URI="http://launchpad.net/drizzle/$(get_version_component_range 1-2)/${PV}/+download/${P}.tar.gz"
+SRC_URI="http://launchpad.net/drizzle/$(get_version_component_range 1-2)/${PV}/+download/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug tcmalloc doc memcache curl pam gearman +md5 ldap"
+IUSE="debug tcmalloc doc memcache curl pam gearman +md5 ldap v8"
 
 RDEPEND="tcmalloc? ( dev-util/google-perftools )
 		sys-libs/readline
@@ -22,30 +25,39 @@ RDEPEND="tcmalloc? ( dev-util/google-perftools )
 		dev-libs/openssl
 		>=dev-libs/libevent-1.4
 		>=dev-libs/protobuf-2.1.0
+		dev-libs/libaio
+		>=dev-libs/boost-1.52.0-r1[threads]
 		gearman? ( >=sys-cluster/gearmand-0.12 )
 		pam? ( sys-libs/pam )
 		curl? ( net-misc/curl )
 		memcache? ( >=dev-libs/libmemcached-0.39 )
 		md5? ( >=dev-libs/libgcrypt-1.4.2 )
-		>=dev-libs/boost-1.32
 		ldap? ( net-nds/openldap )
+		v8? ( dev-lang/v8 )
 		!dev-db/libdrizzle"
 
 DEPEND="${RDEPEND}
+		=dev-lang/python-2*
 		sys-devel/gettext
 		dev-util/intltool
 		dev-util/gperf
 		sys-devel/flex
-		doc? ( app-doc/doxygen )
-		>=dev-util/boost-build-1.32"
+		dev-python/sphinx
+		doc? ( app-doc/doxygen )"
 
 pkg_setup() {
 	enewuser drizzle -1 -1 /dev/null nogroup
+	python_set_active_version 2
+	python_pkg_setup
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-libtool.patch
-	epatch "${FILESDIR}"/${P}+automake-1.12.patch
+	epatch "${FILESDIR}"/${PN}-7.2.3-libtool.patch
+	epatch "${FILESDIR}"/${PN}-7.2.3+automake-1.12.patch
+	epatch "${FILESDIR}"/${PN}-7.2.4+boost-1.50.patch
+
+	python_convert_shebangs -r 2 .
+
 	eautoreconf
 }
 
@@ -81,16 +93,17 @@ src_configure() {
 		--enable-logging-stats-plugin \
 		--with-logging-stats-plugin \
 		--enable-console-plugin \
-		$(use_enable tcmalloc) \
-		$(use_enable memcache libmemcached) \
 		$(use_enable gearman libgearman) \
 		$(use_enable ldap libldap) \
+		$(use_enable memcache libmemcached) \
+		$(use_enable tcmalloc) \
 		$(use_with curl auth-http-plugin) \
-		$(use_with pam auth-pam-plugin) \
-		$(use_with md5 md5-plugin) \
 		$(use_with gearman gearman-udf-plugin) \
 		$(use_with gearman logging-gearman-plugin) \
 		$(use_with ldap auth-ldap-plugin) \
+		$(use_with md5 md5-plugin) \
+		$(use_with pam auth-pam-plugin) \
+		$(use_with v8 js-plugin) \
 		${myconf}
 }
 
@@ -108,14 +121,13 @@ src_test() {
 		return 1
 	fi
 
-	# If you want to turn off a test, rename to suffix of .DISABLED
-	# Explicitly allow parallel make check
-	emake check
+	default
 }
 
+DOCS=( AUTHORS NEWS README )
+
 src_install() {
-	emake DESTDIR="${D}" install
-	dodoc AUTHORS NEWS README
+	default
 
 	find "${D}" -name '*.la' -delete || die
 
@@ -126,7 +138,7 @@ src_install() {
 		popd
 	fi
 
-	newinitd "${FILESDIR}"/drizzle.init.d drizzled
+	newinitd "${FILESDIR}"/drizzle.init.d.2 drizzled
 	newconfd "${FILESDIR}"/drizzle.conf.d drizzled
 
 	if ! use gearman; then
@@ -139,16 +151,13 @@ src_install() {
 			|| die "unable to sed init script (memcache)"
 	fi
 
-	keepdir /var/run/drizzle
 	keepdir /var/log/drizzle
 	keepdir /var/lib/drizzle/drizzled
 	keepdir /etc/drizzle
 
-	fperms 0755 /var/run/drizzle
 	fperms 0755 /var/log/drizzle
 	fperms -R 0700 /var/lib/drizzle
 
-	fowners drizzle:nogroup /var/run/drizzle
 	fowners drizzle:nogroup /var/log/drizzle
 	fowners -R drizzle:nogroup /var/lib/drizzle
 

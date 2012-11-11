@@ -974,6 +974,7 @@ dev-db/drizzle:haildb - Use the dev-db/haildb libraries to replace the innodb pl
 dev-db/drizzle:md5 - Enable the MD5 plugin, using dev-libs/libgcrypt; this replaces the older openssl and gnutls USE flags.
 dev-db/drizzle:memcache - Enable the memcache plugin for user-defined functions and statistics in I_S tables (using dev-libs/libmemcached). Currently restricts tests because of an upstream testsuite bug.
 dev-db/drizzle:pam - Enable the PAM authentication plugin (using sys-libs/pam). The configuration file created will be /etc/pam.d/drizzle.
+dev-db/drizzle:v8 - Use dev-lang/v8.
 dev-db/firebird:client - Install client library and header files only
 dev-db/firebird:superserver - Install SuperServer
 dev-db/firebird:xinetd - Install ClassicServer
@@ -1623,7 +1624,8 @@ dev-python/pygobject:introspection - Use dev-libs/gobject-introspection for intr
 dev-python/pylons:genshi - Add optional genshi support
 dev-python/pylons:jinja - Add optional jinja support
 dev-python/pymongo:mod_wsgi - Disable the C extension to work with mod_wsgi.
-dev-python/pypax:xtpax - Enable XT_PAX and prefer it to PT_PAX.
+dev-python/pypax:ptpax - Enable PT_PAX_FLAGS support.
+dev-python/pypax:xtpax - Enable XATTR_PAX_FLAGS support.
 dev-python/pypy:sandbox - Enable sandboxing functionality
 dev-python/pypy:shadowstack - Use a shadow stack for finding GC roots
 dev-python/pyside:X - Build QtGui, QtDesigner, QtTest and QtUiTools modules
@@ -5184,7 +5186,8 @@ sys-apps/dbus:systemd - Build with sys-apps/systemd at_console support
 sys-apps/dmtcp:fast - Enable experimental performance options such as mmap allocator.
 sys-apps/dmtcp:trace - Enable ptrace support (only valid with debug enabled).
 sys-apps/dstat:wifi - Enable wireless network functions
-sys-apps/elfix:xtpax - Enable XATTR_PAX_FLAGS support (EXPERIMENTAL).
+sys-apps/elfix:ptpax - Enable PT_PAX_FLAGS support.
+sys-apps/elfix:xtpax - Enable XATTR_PAX_FLAGS support.
 sys-apps/etckeeper:bazaar - Support dev-vcs/bzr based repository
 sys-apps/flashrom:atahpt - Highpoint (HPT) ATA/RAID controller support
 sys-apps/flashrom:bitbang_spi - Bitbanging SPI infrastructure
