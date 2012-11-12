@@ -4,10 +4,10 @@ DESCRIPTION=A validating, recursive and caching DNS resolver
 EAPI=4
 HOMEPAGE=http://unbound.net/
 IUSE=debug gost python selinux static-libs test threads
-KEYWORDS=~amd64 ~hppa ~x86 ~x64-macos
+KEYWORDS=~amd64 ~hppa ~ppc ~ppc64 ~x86 ~x64-macos
 LICENSE=BSD GPL-2
 RDEPEND=dev-libs/expat dev-libs/libevent >=dev-libs/openssl-0.9.8 >=net-libs/ldns-1.6.13[ecdsa,ssl,gost?] selinux? ( sec-policy/selinux-bind ) net-dns/dnssec-root python? ( =dev-lang/python-2* )
 SLOT=0
 SRC_URI=http://unbound.net/downloads/unbound-1.4.18.tar.gz
 _eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	420c4859890a664d00a25bab483dcc07	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=c9bd91fdd0cac24db1afc4102a407906
+_md5_=d0a6ca5873a5209e5f88fb6beddb52ec
