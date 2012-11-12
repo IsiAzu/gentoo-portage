@@ -4989,7 +4989,8 @@ sci-libs/adolc:sparse - Add support for sparse matrix algebra with sci-libs/colp
 sci-libs/armadillo:atlas - Link with ATLAS libraries for cblas and clapack (needs sci-libs/lapack-atlas)
 sci-libs/arprec:qd - Use sci-libs/qd
 sci-libs/cfitsio:tools - Build execs fpack, funpack, imcopy, fitscopy, listhead
-sci-libs/cholmod:metis - Enable the Partition module to cholmod using metis (sci-libs/metis, sci-libs/parmetis)
+sci-libs/cholmod:cuda - Use nvidia cuda toolkit for speeding up computations
+sci-libs/cholmod:metis - Enable the Partition module to cholmod using sci-libs/metis
 sci-libs/cholmod:supernodal - Enable the Supernodal module (needs virtual/lapack)
 sci-libs/fftw:avx - Adds support for Advanced Vector Extensions
 sci-libs/fftw:float - Link default library to single precision instead of double (symlinks only and fftw-2.1)
@@ -5050,8 +5051,8 @@ sci-libs/shogun:lpsolve - Enable support for Linear Programming Solver
 sci-libs/shogun:octave - Enable support for sci-mathematics/octave
 sci-libs/shogun:snappy - Enable support for snappy compression
 sci-libs/shogun:superlu - Enable support for sci-libs/superlu
-sci-libs/spqr:metis - Use METIS (sci-libs/metis or sci-libs/parmetis) for partitioning
-sci-libs/spqr:tbb - Enable multithreading with the Intel Threads Building Block (needs dev-cpp/tbb)
+sci-libs/spqr:metis - Use sci-libs/metis or sci-libs/parmetis for partitioning
+sci-libs/spqr:tbb - Enable multithreading with the Intel Threads Building Block dev-cpp/tbb
 sci-libs/spr:root - Add sci-physics/root graphics and i/o support
 sci-libs/suitesparse:metis - Use METIS (sci-libs/metis or sci-libs/parmetis) for partitioning
 sci-libs/taucs:cilk - Enable multithreading using dev-lang/cilk)
