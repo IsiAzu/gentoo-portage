@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_rc5-r1.ebuild,v 1.2 2012/11/10 21:42:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_rc5-r1.ebuild,v 1.4 2012/11/13 19:39:35 jer Exp $
 
 EAPI=4
 
