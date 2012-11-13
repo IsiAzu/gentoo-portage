@@ -1,12 +1,12 @@
 DEFINED_PHASES=compile configure install prepare test unpack
-DEPEND=>=dev-libs/boost-1.48 dev-libs/expat dev-libs/json-c dev-libs/libgcrypt dev-libs/libgpg-error net-misc/curl sys-devel/binutils sys-libs/glibc sys-libs/zlib >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DEPEND=dev-libs/boost dev-libs/expat dev-libs/json-c dev-libs/libgcrypt dev-libs/libgpg-error net-misc/curl sys-devel/binutils sys-libs/glibc sys-libs/zlib >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
 DESCRIPTION=an open source Linux client for Google Drive
 EAPI=4
 HOMEPAGE=http://www.lbreda.com/grive/
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
-RDEPEND=>=dev-libs/boost-1.48 dev-libs/expat dev-libs/json-c dev-libs/libgcrypt dev-libs/libgpg-error net-misc/curl sys-devel/binutils sys-libs/glibc sys-libs/zlib
+RDEPEND=dev-libs/boost dev-libs/expat dev-libs/json-c dev-libs/libgcrypt dev-libs/libgpg-error net-misc/curl sys-devel/binutils sys-libs/glibc sys-libs/zlib
 SLOT=0
 SRC_URI=https://github.com/Grive/grive/tarball/v0.2.0 -> grive-0.2.0.tar.gz
 _eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	d9d351169c1d554e8f47f1a19f17becd	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	420c4859890a664d00a25bab483dcc07	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	vcs-snapshot	d7572a392e0bd8e207deae5414f6a887
-_md5_=8ed432e0ac139ebc8640b895b9a4daaf
+_md5_=50f5078f64e31416e00a6f82c69ec41a
