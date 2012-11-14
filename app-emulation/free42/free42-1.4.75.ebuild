@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/free42/free42-1.4.75.ebuild,v 1.1 2012/11/11 19:32:05 nimiux Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/free42/free42-1.4.75.ebuild,v 1.3 2012/11/13 22:16:36 nimiux Exp $
 
 EAPI=4
 
@@ -32,16 +32,18 @@ src_prepare() {
 	sed -i -e '/^LDFLAGS =/{s/=/:=/;s/$/ \$\{LDFLAGS\}/}' \
 		"${S}/gtk/Makefile" || die
 	sed -i -e '/^LDFLAGS +=/d' "${S}/gtk/Makefile" || die
+	sed -i -e 's/print_gif_name\[FILENAMELEN\]/print_gif_name\[1000\]/' \
+		"${S}/gtk/shell_main.cc" || die
 	epatch "${FILESDIR}"/${P}-fix-alsa.patch
 }
 
 src_compile() {
 	local myconf
 	use alsa && myconf="AUDIO_ALSA=yes"
-	emake -j1 CXX="$(tc-getCXX)" ${myconf} -C "${S}/gtk"
+	emake -j1 CXX="$(tc-getCXX)" BCD_MATH=1 ${myconf} -C "${S}/gtk"
 }
 
 src_install() {
 	dodoc CREDITS HISTORY README TODO
-	dobin gtk/free42bin
+	dobin gtk/free42dec
 }
