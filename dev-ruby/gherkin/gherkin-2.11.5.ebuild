@@ -1,11 +1,11 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gherkin/gherkin-2.9.3.ebuild,v 1.1 2012/04/27 07:41:35 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gherkin/gherkin-2.11.5.ebuild,v 1.1 2012/11/16 06:45:56 graaff Exp $
 
 EAPI=4
 USE_RUBY="ruby18 ruby19 ree18"
 
-RUBY_FAKEGEM_TASK_DOC="yard"
+RUBY_FAKEGEM_TASK_DOC=""
 RUBY_FAKEGEM_TASK_TEST=""
 
 RUBY_FAKEGEM_DOCDIR="rdoc"
@@ -18,8 +18,8 @@ HOMEPAGE="http://wiki.github.com/aslakhellesoy/cucumber/gherkin"
 LICENSE="MIT"
 SRC_URI="https://github.com/cucumber/gherkin/tarball/v${PV} -> ${P}.tgz"
 
-KEYWORDS="~amd64"
-SLOT="2.9"
+KEYWORDS="~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+SLOT="0"
 IUSE="doc test"
 
 DEPEND="${DEPEND} dev-util/ragel"
@@ -30,7 +30,6 @@ RUBY_S="cucumber-gherkin-*"
 ruby_add_bdepend "
 	dev-ruby/rake-compiler
 	test? (
-		>=dev-ruby/awesome_print-0.4.0
 		>=dev-ruby/builder-2.1.2
 		>=dev-util/cucumber-1.1.3
 		>=dev-ruby/rspec-2.6.0
@@ -60,6 +59,14 @@ all_ruby_prepare() {
 	if ! use test ; then
 		rm tasks/cucumber.rake tasks/rspec.rake || die "Unable to remove rake tasks."
 	fi
+
+	# Avoid implicit dependency on git
+	sed -i -e 's/git ls-files/echo/' gherkin.gemspec || die
+}
+
+all_ruby_compile() {
+	all_fakegem_compile
+	yard || die
 }
 
 each_ruby_compile() {
