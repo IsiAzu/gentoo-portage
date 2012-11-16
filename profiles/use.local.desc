@@ -5112,6 +5112,7 @@ sci-mathematics/maxima:ecls - Compile maxima with Embeddable Common Lisp (dev-li
 sci-mathematics/maxima:gcl - Compile maxima with GNU Common Lisp (dev-lisp/gcl)
 sci-mathematics/maxima:sbcl - Compile maxima with Steel Bank Common Lisp (dev-lisp/sbcl)
 sci-mathematics/minisat:extended-solver - Build extended version of SAT solver with additional features.
+sci-mathematics/msieve:ecm - Enable support for the GMP-ECM library
 sci-mathematics/normaliz:extras - Install sci-mathematics/Macaulay2 and sci-mathematics/singular packages as shipped by upstream
 sci-mathematics/nusmv:minisat - Enable support for MiniSat
 sci-mathematics/octave:glpk - Add support for sci-libs/glpk for linear programming

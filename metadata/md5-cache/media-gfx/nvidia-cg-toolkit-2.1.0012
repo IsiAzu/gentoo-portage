@@ -1,5 +1,4 @@
-DEFINED_PHASES=compile install
-DEPEND=media-libs/freeglut
+DEFINED_PHASES=install
 DESCRIPTION=nvidia's c graphics compiler toolkit
 HOMEPAGE=http://developer.nvidia.com/object/cg_toolkit.html
 KEYWORDS=amd64 x86
@@ -9,4 +8,4 @@ RESTRICT=strip
 SLOT=0
 SRC_URI=x86? ( http://developer.download.nvidia.com/cg/Cg_2.0/2.1.0012/Cg-2.1_October2008_x86.tgz ) amd64? ( http://developer.download.nvidia.com/cg/Cg_2.0/2.1.0012/Cg-2.1_October2008_x86_64.tgz )
 _eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
-_md5_=66a1bd38be33724eb9d179ab7471b84e
+_md5_=26a9a476313d717fa279bf326fc27b0d
