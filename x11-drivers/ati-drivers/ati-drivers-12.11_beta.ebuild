@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-12.11_beta.ebuild,v 1.2 2012/11/11 01:32:44 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-12.11_beta.ebuild,v 1.4 2012/11/16 18:42:08 chithanh Exp $
 
 EAPI=4
 
@@ -15,7 +15,7 @@ FOLDER_PREFIX="common/"
 IUSE="debug +modules multilib qt4 static-libs disable-watermark"
 
 LICENSE="AMD GPL-2 QPL-1.0 as-is"
-KEYWORDS="-* ~amd64 ~x86"
+KEYWORDS="-* amd64 ~x86"
 SLOT="1"
 
 RESTRICT="bindist"
@@ -616,6 +616,13 @@ pkg_postinst() {
 	use modules && linux-mod_pkg_postinst
 	"${ROOT}"/usr/bin/eselect opengl set --use-old ati
 	"${ROOT}"/usr/bin/eselect opencl set --use-old amd
+
+	if has_version ">=x11-drivers/xf86-video-intel-2.20.3"; then
+		ewarn "It is reported that xf86-video-intel-2.20.3 and later cause the X server"
+		ewarn "to crash on systems that use hybrid AMD/Intel graphics. If you experience"
+		ewarn "this crash, downgrade to xf86-video-intel-2.20.2 or earlier."
+		ewarn "For details, see https://bugs.gentoo.org/show_bug.cgi?id=430000"
+	fi
 }
 
 pkg_preinst() {

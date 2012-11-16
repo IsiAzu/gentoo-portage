@@ -186,6 +186,7 @@ app-admin/sagan-rules:lognorm - Install normalize rules support with dev-libs/li
 app-admin/salt:jinja - Add support to use dev-python/jinja to parse Salt states.
 app-admin/salt:libvirt - Support managing virtual machines with app-emulation/libvirt.
 app-admin/salt:mongodb - Support returning data to a mongodb server.
+app-admin/salt:openssl - Add support for using TLS via OpenSSL.
 app-admin/salt:redis - Support returning data to a redis database.
 app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
 app-admin/sudo:offensive - Let sudo print insults when the user types the wrong password.
@@ -424,6 +425,7 @@ app-emulation/emul-linux-x86-medialibs:development - Install pkgconfig files
 app-emulation/emul-linux-x86-motif:development - Install pkgconfig files
 app-emulation/emul-linux-x86-opengl:development - Install pkgconfig files
 app-emulation/emul-linux-x86-qtlibs:development - Install pkgconfig files
+app-emulation/emul-linux-x86-qtlibs:gtkstyle - Build a Qt style called GTK+ that mimics the activeGTK+ theme
 app-emulation/emul-linux-x86-sdl:development - Install pkgconfig files
 app-emulation/emul-linux-x86-soundlibs:development - Install pkgconfig files
 app-emulation/emul-linux-x86-xlibs:development - Install pkgconfig files
@@ -2621,6 +2623,9 @@ media-libs/coin:simage - Texture loading via media-libs/simage library
 media-libs/devil:allegro - Add support for Allegro
 media-libs/devil:nvtt - Add support for dev-util/nvidia-texture-tools
 media-libs/edje:cache - Enable caching
+media-libs/elementary:dbus - Enable integration with dev-libs/e_dbus.
+media-libs/elementary:quicklaunch - Enable quick-launch support
+media-libs/elementary:xdg - Enable integration with dev-libs/efreet for cross-desktop standards (freedesktop.org).
 media-libs/esdl:image - Enable image support
 media-libs/evas:bmp - Support windows bitmap (bmp) image loader
 media-libs/evas:eet - Support dev-libs/eet
@@ -3815,7 +3820,6 @@ net-fs/samba:cluster - Enable support for clustering
 net-fs/samba:dmapi - Enable support for DMAPI. This currently works only in combination with XFS.
 net-fs/samba:fulltest - Enabling extra tests in test phase
 net-fs/samba:iprint - Enabling iPrint technology by Novell
-net-fs/samba:krb5 - Enable kerberos support
 net-fs/samba:ldb - Enable the ldb tools
 net-fs/samba:netapi - Enable building of netapi bits
 net-fs/samba:quota - Enables support for user quotas
@@ -6146,7 +6150,54 @@ x11-wm/compiz:gconf - Enable the GConf-based configuration backend; it is not re
 x11-wm/compiz-fusion:emerald - Install the x11-wm/emerald package.
 x11-wm/compiz-fusion:unsupported - Install the x11-plugins/compiz-fusion-plugins-unsupported package.
 x11-wm/echinus:xrandr - Enable support for multihead configuration
+x11-wm/enlightenment:enlightenment_modules_access - Accessibility module designed to improve ease of use for the vision impaired and the blind
+x11-wm/enlightenment:enlightenment_modules_backlight - Backlight control slider gadget
+x11-wm/enlightenment:enlightenment_modules_battery - A gadget to visualize your battery status
+x11-wm/enlightenment:enlightenment_modules_clock - Nice clock gadget to show current time
+x11-wm/enlightenment:enlightenment_modules_comp - Enlightenment Composite Manager
+x11-wm/enlightenment:enlightenment_modules_conf-applications - Allows configuration of Ibar, Restart, and Startup applications
+x11-wm/enlightenment:enlightenment_modules_conf-dialogs - Configure default dialog properties
+x11-wm/enlightenment:enlightenment_modules_conf-display - Used to configure your screen
+x11-wm/enlightenment:enlightenment_modules_conf-edgebindings - Configure your edge bindings here
+x11-wm/enlightenment:enlightenment_modules_conf-interaction - Configure Mouse and Touch input
+x11-wm/enlightenment:enlightenment_modules_conf-intl - Used to select a default language
+x11-wm/enlightenment:enlightenment_modules_conf-keybindings - Key, Mouse and Button control settings
+x11-wm/enlightenment:enlightenment_modules_conf-menus - Configures menu behavior
+x11-wm/enlightenment:enlightenment_modules_conf-paths - Specifies the Enlightenment search paths and default directories
+x11-wm/enlightenment:enlightenment_modules_conf-performance - Used to configure certain performance related items as frame rates and cache settings
+x11-wm/enlightenment:enlightenment_modules_conf-randr - Used to configure your screen's resolution
+x11-wm/enlightenment:enlightenment_modules_conf-shelves - Shelf configuration dialog
+x11-wm/enlightenment:enlightenment_modules_conf-theme - Used to configure your theme preferences
+x11-wm/enlightenment:enlightenment_modules_conf-window-manipulation - Configures window raise, resistance, and maximize policies
+x11-wm/enlightenment:enlightenment_modules_conf-window-remembers - Delete existing window remembers
+x11-wm/enlightenment:enlightenment_modules_connman - Control Wifi and wired networks as a user
+x11-wm/enlightenment:enlightenment_modules_cpufreq - Gadget to monitor and change the CPU frequency
+x11-wm/enlightenment:enlightenment_modules_dropshadow - Module to add a dropshadow to windows
+x11-wm/enlightenment:enlightenment_modules_everything - The run command module provides an application launcher dialog
+x11-wm/enlightenment:enlightenment_modules_fileman - Enlightenment's integrated file manager
+x11-wm/enlightenment:enlightenment_modules_fileman-opinfo - Can be placed on the desktop or in a shelf
+x11-wm/enlightenment:enlightenment_modules_gadman - Module to manage gadgets on the desktop
+x11-wm/enlightenment:enlightenment_modules_ibar - Iconic application launcher
+x11-wm/enlightenment:enlightenment_modules_ibox - A home for your iconified applications
+x11-wm/enlightenment:enlightenment_modules_illume2 - Illume2 - next generation of illume - special WM mode for embedded devices and set of plugins with same purpose
+x11-wm/enlightenment:enlightenment_modules_mixer - A module to provide a mixer for changing volume
+x11-wm/enlightenment:enlightenment_modules_msgbus - DBus Extension
+x11-wm/enlightenment:enlightenment_modules_notification - notification-daemon alternative. Popup if an event occur
+x11-wm/enlightenment:enlightenment_modules_pager - Gadget to allow you to visualize your virtual desktops and the windows they contain
+x11-wm/enlightenment:enlightenment_modules_quickaccess - Enlightenment Quickaccess Launcher
+x11-wm/enlightenment:enlightenment_modules_shot - Simple screenshot+save/upload module
+x11-wm/enlightenment:enlightenment_modules_start - Enlightenment's "Start" button equivalent
+x11-wm/enlightenment:enlightenment_modules_syscon - This module provides a unified popup dialog for all the system actions in Enlightenment
+x11-wm/enlightenment:enlightenment_modules_systray - system tray that hold applications icons like Skype, Pidgin, Kopete and others
+x11-wm/enlightenment:enlightenment_modules_tasks - Gadget to allow you to switch tasks
+x11-wm/enlightenment:enlightenment_modules_temperature - Temperature monitor
+x11-wm/enlightenment:enlightenment_modules_tiling - Positions/resizes your windows tilingly
+x11-wm/enlightenment:enlightenment_modules_winlist - A module to show the list of client applications presently running
+x11-wm/enlightenment:enlightenment_modules_wizard - First Run Wizard
+x11-wm/enlightenment:enlightenment_modules_xkbswitch - Keyboard layout configuration and switcher
 x11-wm/enlightenment:pango - Enable pango font rendering
+x11-wm/enlightenment:udev - Use sys-fs/udev to determine available devices
+x11-wm/enlightenment:ukit - Use upower/udisks to automount devices
 x11-wm/enlightenment:xrandr - Enable support for the X xrandr extension
 x11-wm/fluxbox:bidi - Enable bidirectional language support with dev-libs/fribidi
 x11-wm/fluxbox:newmousefocus - Patches the focus model to the upcoming 1.1.2 model, which adds a new 'StrictMouseFocus' mode

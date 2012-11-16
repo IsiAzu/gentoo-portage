@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-python/python-exec[python_targets_python2_7?,python_targets_python3_2?,python_targets_python3_3?] python_targets_python2_7? ( dev-lang/python:2.7 ) python_targets_python3_2? ( dev-lang/python:3.2 ) python_targets_python3_3? ( dev-lang/python:3.3 )
+DESCRIPTION=plugin core for use by pytest-cov, nose-cov and nose2-cov
+EAPI=4
+HOMEPAGE=http://amoffat.github.com/sh://bitbucket.org/memedough/cov-core/overview
+IUSE=python_targets_python2_7 python_targets_python3_2 python_targets_python3_3
+KEYWORDS=~amd64
+LICENSE=MIT
+RDEPEND=dev-python/pytest dev-python/coverage dev-python/python-exec[python_targets_python2_7?,python_targets_python3_2?,python_targets_python3_3?] python_targets_python2_7? ( dev-lang/python:2.7 ) python_targets_python3_2? ( dev-lang/python:3.2 ) python_targets_python3_3? ( dev-lang/python:3.3 )
+REQUIRED_USE=|| ( python_targets_python2_7 python_targets_python3_2 python_targets_python3_3 )
+SLOT=0
+SRC_URI=mirror://pypi/c/cov-core/cov-core-1.7.tar.gz
+_eclasses_=distutils-r1	f1e9639178263b24ebf7f155397aa5da	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python-r1	d6bad0368cb11a367dc1b2e75f47cb34	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=cc242d45000873161f0e07058b12e2d6
