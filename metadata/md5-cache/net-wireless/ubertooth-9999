@@ -9,4 +9,4 @@ RDEPEND=clock_debug? ( net-wireless/bluez ) specan? ( virtual/libusb:1 >=x11-lib
 REQUIRED_USE=dfu? ( python ) specan? ( python ) ubertooth0-firmware? ( dfu ) ubertooth1-firmware? ( dfu ) python? ( || ( dfu specan ) )
 SLOT=0
 _eclasses_=distutils	15ae23f6f8219a009bfcfff7724fe727	git-2	15733ab6a6feb34af9837b41623c2bad	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4
-_md5_=3d50d7f74527f347d0e943258e684d67
+_md5_=604e93b11020b530fa7758298c0eec46
