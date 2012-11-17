@@ -9,4 +9,4 @@ RDEPEND=x11-libs/gtk+:3
 SLOT=0
 SRC_URI=mirror://sourceforge/galculator/galculator-2.0.tar.bz2
 _eclasses_=gnome2-utils	794d2847b4af390a1e020924876c8297
-_md5_=1d3ee99e6e67c1574e7231b5343826cd
+_md5_=26c572a52594a2621dbd46d4c748ddc2
