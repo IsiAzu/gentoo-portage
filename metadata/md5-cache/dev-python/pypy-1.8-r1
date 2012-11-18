@@ -11,4 +11,4 @@ RDEPEND=>=sys-libs/zlib-1.1.3 virtual/libffi virtual/libintl dev-libs/expat bzip
 SLOT=1.8
 SRC_URI=https://bitbucket.org/pypy/pypy/get/release-1.8.tar.bz2 -> pypy-1.8.tar.bz2
 _eclasses_=check-reqs	0efdf29c9002a1995388968bf54e9d3d	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
-_md5_=ea4d56a1749207cbda2906f0311ed74a
+_md5_=ea617d51eb96ddd5583e46e32dbc4c02
