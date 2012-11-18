@@ -10,4 +10,4 @@ RDEPEND=>=dev-cpp/libxmlpp-2.33.1:2.6 >=dev-libs/boost-1.42 dev-libs/libpcre[cxx
 SLOT=0
 SRC_URI=http://launchpad.net/lightspark/trunk/lightspark-0.7.0/+download/lightspark-0.7.0.tar.gz
 _eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	d9d351169c1d554e8f47f1a19f17becd	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	multilib	9aa8a023e062fca0ba79362d9d0cc488	nsplugins	b195a1306f4ee7cf507037dc6aa5ba89	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=a3dbdbcb0214637b6dd4a978f60b66cb
+_md5_=36ad3ce13d40f40efb51a8067b158ece

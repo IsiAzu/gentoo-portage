@@ -1,10 +1,34 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7153 2012/11/16 17:14:13 tommy Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7161 2012/11/18 13:55:01 kensington Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 Nov 2012; Michael Palimaka <kensington@gentoo.org> package.mask:
+  Remove mask on net-libs/libwww - package removed wrt bug #320253.
+
+  18 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  dev-vcs/svk is gone
+
+  18 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  media-sound/audtty is gone
+
+  18 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  net-p2p/sancho-bin removal. Bug #421971
+
+  18 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  dev-libs/mpatrol is gone
+
+  18 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  gnome-extra/wp_tray is gone
+
+  18 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  sci-geosciences/qlandkarte is gone
+
+  18 Nov 2012; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Obsolete dev-vcs/gitosis and dev-vcs/gitosis-gentoo.
 
   16 Nov 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org> updates/4Q-2012:
   Move x11-libs/elementary to media-libs/elementary
