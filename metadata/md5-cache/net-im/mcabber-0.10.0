@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=ssl? ( net-libs/loudmouth[ssl] ) crypt? ( >=app-crypt/gpgme-1.0.0 ) >=net-libs/loudmouth-1.4.3 otr? ( >=net-libs/libotr-3.1.0 ) spell? ( app-text/aspell ) >=dev-libs/glib-2.0.0 sys-libs/ncurses
 SLOT=0
 SRC_URI=http://mcabber.com/files/mcabber-0.10.0.tar.bz2
-_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	420c4859890a664d00a25bab483dcc07	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=c25c10fb8169929f9cd4c990531e5f4d

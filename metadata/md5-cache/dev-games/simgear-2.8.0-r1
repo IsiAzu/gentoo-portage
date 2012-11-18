@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=dev-libs/expat >=dev-games/openscenegraph-3.0.1 media-libs/freealut media-libs/openal sys-libs/zlib virtual/opengl jpeg? ( virtual/jpeg ) subversion? ( dev-libs/apr dev-vcs/subversion )
 SLOT=0
 SRC_URI=http://mirrors.ibiblio.org/pub/mirrors/simgear/ftp/Source/simgear-2.8.0.tar.bz2
-_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	d9d351169c1d554e8f47f1a19f17becd	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	420c4859890a664d00a25bab483dcc07	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	d9d351169c1d554e8f47f1a19f17becd	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=453531696256583aef5ce272368e2cec

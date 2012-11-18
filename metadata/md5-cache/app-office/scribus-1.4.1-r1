@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=dev-libs/hyphen dev-libs/libxml2 media-libs/fontconfig media-libs/freetype:2 media-libs/lcms:2 media-libs/libpng:0 media-libs/tiff:0 net-print/cups sys-libs/zlib[minizip] x11-libs/qt-core:4 x11-libs/qt-gui:4 virtual/jpeg spell? ( app-text/aspell ) pdf? ( app-text/podofo ) cairo? ( x11-libs/cairo[X,svg] ) app-text/ghostscript-gpl =dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://sourceforge/scribus/1.4.1/scribus-1.4.1.tar.xz
-_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	d9d351169c1d554e8f47f1a19f17becd	eutils	d40dc948067bd3db1c8ebf7d51897313	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	420c4859890a664d00a25bab483dcc07	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	d9d351169c1d554e8f47f1a19f17becd	eutils	d40dc948067bd3db1c8ebf7d51897313	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=a5abb89fed931020ccbfb7b45278ed67

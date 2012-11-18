@@ -10,5 +10,5 @@ RDEPEND=>=media-libs/freetype-2.0 sys-libs/zlib x11-libs/libX11 x11-libs/libXext
 REQUIRED_USE=bluray? ( xml ) theora? ( vorbis )
 SLOT=0
 SRC_URI=ftp://ftp.osuosl.org/pub/mythtv/mythtv-0.25.2.tar.bz2 http://dev.gentoo.org/~cardoe/distfiles/mythtv-0.25.2-4e446508ec.tar.xz
-_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	420c4859890a664d00a25bab483dcc07	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=aaee132185467905d145ce9c4a2a109f
