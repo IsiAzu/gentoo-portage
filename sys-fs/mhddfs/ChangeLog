@@ -1,6 +1,24 @@
 # ChangeLog for sys-fs/mhddfs
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/mhddfs/ChangeLog,v 1.3 2012/11/18 17:46:02 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/mhddfs/ChangeLog,v 1.7 2012/11/19 11:48:19 pinkbyte Exp $
+
+  19 Nov 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Add myself as a maintainer
+
+*mhddfs-0.1.39 (19 Nov 2012)
+
+  19 Nov 2012; Sergey Popov <pinkbyte@gentoo.org> +mhddfs-0.1.39.ebuild:
+  Version bump, wrt bug #398261
+
+  19 Nov 2012; Sergey Popov <pinkbyte@gentoo.org> mhddfs-0.1.30-r1.ebuild:
+  Add missing inherit for toolchain-funcs eclass
+
+*mhddfs-0.1.30-r1 (19 Nov 2012)
+
+  19 Nov 2012; Sergey Popov <pinkbyte@gentoo.org> -mhddfs-0.1.30.ebuild,
+  +mhddfs-0.1.30-r1.ebuild, +files/mhddfs-respect-compiler-vars.patch:
+  Revision bump: EAPI 4, utilize base eclass, fix bug #442774, drop old
+  revision
 
   18 Nov 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
   Remove beandog wrt #131511

@@ -735,6 +735,7 @@ app-misc/tracker:nautilus - Enable tracker to integrate with gnome-base/nautilus
 app-misc/tracker:playlist - Add support for playlists
 app-misc/tracker:thunderbird - Install email data miner plugin for mail-client/thunderbird and mail-client/thunderbird-bin
 app-misc/tracker:upnp - Add support for video extraction via media-libs/gupnp-dlna.
+app-misc/unfoo:minimal - Do not install all support archive binaries
 app-misc/vifm:compatibility - Compatibility with previous versions of vifm
 app-misc/vifm:extended-keys - Support for extended keys (arrows, home etc)
 app-misc/vifm:magic - Use libmagic to determine mimetypes
