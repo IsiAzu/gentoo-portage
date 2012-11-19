@@ -8,5 +8,5 @@ LICENSE=MIT
 RDEPEND=>=dev-python/feedparser-5.1.2 >=dev-python/sqlalchemy-0.7 dev-python/pyyaml dev-python/beautifulsoup:python-2 dev-python/beautifulsoup:4 dev-python/html5lib dev-python/jinja dev-python/PyRSS2Gen dev-python/pynzb dev-python/progressbar dev-python/flask dev-python/cherrypy dev-python/python-dateutil =dev-python/requests-0.14* dev-python/setuptools virtual/python-argparse[python_targets_python2_6?,python_targets_python2_7?] dev-python/python-exec[python_targets_python2_6?,python_targets_python2_7?] python_targets_python2_6? ( dev-lang/python:2.6 ) python_targets_python2_7? ( dev-lang/python:2.7 )
 REQUIRED_USE=|| ( python_targets_python2_6 python_targets_python2_7 )
 SLOT=0
-_eclasses_=distutils-r1	f1e9639178263b24ebf7f155397aa5da	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python-r1	d6bad0368cb11a367dc1b2e75f47cb34	subversion	877d251a42b69543c01f6a36b4707b3b	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=distutils-r1	f1e9639178263b24ebf7f155397aa5da	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python-r1	1b238d639d35a5f6e241ed13e131723a	subversion	877d251a42b69543c01f6a36b4707b3b	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=16816f926b95c7dc711fdfb59e7a9476
