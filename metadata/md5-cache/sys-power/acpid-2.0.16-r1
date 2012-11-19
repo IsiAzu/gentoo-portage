@@ -7,4 +7,4 @@ LICENSE=GPL-2
 SLOT=0
 SRC_URI=http://tedfelix.com/linux/acpid-2.0.16.tar.xz
 _eclasses_=systemd	fc2fa698095b76894d4516729da4337b
-_md5_=830d5533a790ea71a12b2ccfdad0fc47
+_md5_=a9f1f7dc76059ec0b98ea07378ec1f60
