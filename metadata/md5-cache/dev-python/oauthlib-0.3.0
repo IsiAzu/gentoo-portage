@@ -4,10 +4,10 @@ DESCRIPTION=A generic, spec-compliant, thorough implementation of the OAuth requ
 EAPI=4
 HOMEPAGE=https://github.com/idan/oauthlib http://pypi.python.org/pypi/oauthlib
 IUSE=test test
-KEYWORDS=amd64 ~arm ~x86
+KEYWORDS=amd64 ~arm x86
 LICENSE=BSD
 RDEPEND=dev-python/pycrypto || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 SLOT=0
 SRC_URI=mirror://pypi/o/oauthlib/oauthlib-0.3.0.tar.gz
 _eclasses_=distutils	15ae23f6f8219a009bfcfff7724fe727	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4
-_md5_=92d525212151d3d80676c13db275dc68
+_md5_=aec628d0e5bc6db6979a51002c9efbdd
