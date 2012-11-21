@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python-r1.eclass,v 1.18 2012/11/19 21:38:33 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python-r1.eclass,v 1.20 2012/11/21 09:04:14 mgorny Exp $
 
 # @ECLASS: python-r1
 # @MAINTAINER:
@@ -742,4 +742,161 @@ python_replicate_script() {
 	for f; do
 		_python_ln_rel "${ED}"/usr/bin/python-exec "${f}" || die
 	done
+}
+
+# @ECLASS-VARIABLE: python_scriptroot
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The current script destination for python_doscript(). The path
+# is relative to the installation root (${ED}).
+#
+# When unset, ${DESTTREE}/bin (/usr/bin by default) will be used.
+#
+# Can be set indirectly through the python_scriptinto() function.
+#
+# Example:
+# @CODE
+# src_install() {
+#   local python_scriptroot=${GAMES_BINDIR}
+#   python_foreach_impl python_doscript foo
+# }
+# @CODE
+
+# @FUNCTION: python_scriptinto
+# @USAGE: <new-path>
+# @DESCRIPTION:
+# Set the current scriptroot. The new value will be stored
+# in the 'python_scriptroot' environment variable. The new value need
+# be relative to the installation root (${ED}).
+#
+# Alternatively, you can set the variable directly.
+python_scriptinto() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	python_scriptroot=${1}
+}
+
+# @FUNCTION: python_doscript
+# @USAGE: <files>...
+# @DESCRIPTION:
+# Install the given scripts into current python_scriptroot,
+# for the current Python implementation (${EPYTHON}).
+#
+# All specified files must start with a 'python' shebang. The shebang
+# will be converted, the file will be renamed to be EPYTHON-suffixed
+# and a wrapper will be installed in place of the original name.
+#
+# Example:
+# @CODE
+# src_install() {
+#   python_foreach_impl python_doscript ${PN}
+# }
+# @CODE
+python_doscript() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
+
+	local d=${python_scriptroot:-${DESTTREE}/bin}
+	local INSDESTTREE INSOPTIONS
+
+	insinto "${d}"
+	insopts -m755
+
+	local f
+	for f; do
+		local oldfn=${f##*/}
+		local newfn=${oldfn}-${EPYTHON}
+
+		debug-print "${FUNCNAME}: ${oldfn} -> ${newfn}"
+		newins "${f}" "${newfn}"
+		_python_rewrite_shebang "${D}/${d}/${newfn}"
+
+		# install the wrapper
+		_python_ln_rel "${ED}"/usr/bin/python-exec "${D}/${d}/${oldfn}" || die
+	done
+}
+
+# @ECLASS-VARIABLE: python_moduleroot
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The current module root for python_domodule(). The path can be either
+# an absolute system path (it must start with a slash, and ${D} will be
+# prepended to it) or relative to the implementation's site-packages directory
+# (then it must start with a non-slash character).
+#
+# When unset, the modules will be installed in the site-packages root.
+#
+# Can be set indirectly through the python_moduleinto() function.
+#
+# Example:
+# @CODE
+# src_install() {
+#   local python_moduleroot=bar
+#   # installs ${PYTHON_SITEDIR}/bar/baz.py
+#   python_foreach_impl python_domodule baz.py
+# }
+# @CODE
+
+# @FUNCTION: python_moduleinto
+# @USAGE: <new-path>
+# @DESCRIPTION:
+# Set the current module root. The new value will be stored
+# in the 'python_moduleroot' environment variable. The new value need
+# be relative to the site-packages root.
+#
+# Alternatively, you can set the variable directly.
+python_moduleinto() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	python_moduleroot=${1}
+}
+
+# @FUNCTION: python_domodule
+# @USAGE: <files>...
+# @DESCRIPTION:
+# Install the given modules (or packages) into the current
+# python_moduleroot. The list can mention both modules (files)
+# and packages (directories). All listed files will be installed
+# for all enabled implementations, and compiled afterwards.
+#
+# Example:
+# @CODE
+# src_install() {
+#   # (${PN} being a directory)
+#   python_foreach_impl python_domodule ${PN}
+# }
+# @CODE
+python_domodule() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
+
+	local d
+	if [[ ${python_moduleroot} == /* ]]; then
+		# absolute path
+		d=${python_moduleroot}
+	else
+		# relative to site-packages
+		local PYTHON_SITEDIR=${PYTHON_SITEDIR}
+		[[ ${PYTHON_SITEDIR} ]] || python_export PYTHON_SITEDIR
+
+		d=${PYTHON_SITEDIR}/${python_moduleroot}
+	fi
+
+	local INSDESTTREE
+
+	insinto "${d}"
+	doins -r "${@}"
+
+	# erm, python2.6 can't handle passing files to compileall...
+	case "${EPYTHON}" in
+		python*)
+			"${PYTHON}" -m compileall -q "${D}/${d}"
+			"${PYTHON}" -OO -m compileall -q -f "${D}/${d}"
+			;;
+		*)
+			"${PYTHON}" -m compileall -q "${D}/${d}"
+			;;
+	esac
 }

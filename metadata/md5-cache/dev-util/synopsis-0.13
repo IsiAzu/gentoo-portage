@@ -10,5 +10,5 @@ RDEPEND=dev-libs/boehm-gc media-gfx/graphviz dev-python/python-exec[python_targe
 REQUIRED_USE=|| ( python_targets_python2_5 python_targets_python2_6 python_targets_python2_7 )
 SLOT=0
 SRC_URI=http://synopsis.fresco.org/download/synopsis-0.13.tar.gz
-_eclasses_=distutils-r1	f1e9639178263b24ebf7f155397aa5da	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python-r1	1b238d639d35a5f6e241ed13e131723a	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=distutils-r1	f1e9639178263b24ebf7f155397aa5da	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python-r1	ca1a1c3ce9a1ac0993eaf7ac0c3ce10e	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=bf0cd9c07f5386242ce1b91d9f34d287

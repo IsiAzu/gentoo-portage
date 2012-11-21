@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=>=dev-libs/dbus-glib-0.100 >=dev-libs/glib-2.22 sys-apps/dbus >=sys-auth/polkit-0.104-r1 introspection? ( dev-libs/gobject-introspection ) kernel_linux? ( || ( >=sys-fs/udev-171-r6[gudev] <sys-fs/udev-171[extras] ) virtual/libusb:1 ios? ( >=app-pda/libimobiledevice-1 >=app-pda/libplist-1 ) ) systemd? ( sys-apps/systemd ) kernel_linux? ( >=sys-power/pm-utils-1.4.1 ) systemd? ( app-shells/bash )
 SLOT=0
 SRC_URI=http://upower.freedesktop.org/releases/upower-0.9.18.tar.xz
-_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	systemd	fc2fa698095b76894d4516729da4337b	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	udev	f7490675e06a5e4db55adf394f078b7b	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	systemd	94264c6516a1a0c2059c7fc6eed21fe4	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	udev	f7490675e06a5e4db55adf394f078b7b	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=9fddf11b87ca4f4f7e5921b10809ea84

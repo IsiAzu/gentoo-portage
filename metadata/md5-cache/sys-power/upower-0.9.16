@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=>=dev-libs/dbus-glib-0.98 >=dev-libs/glib-2.22 sys-apps/dbus >=sys-auth/polkit-0.104-r1 introspection? ( dev-libs/gobject-introspection ) kernel_linux? ( || ( >=sys-fs/udev-171-r5[gudev] <sys-fs/udev-171[extras] ) virtual/libusb:1 ios? ( >=app-pda/libimobiledevice-1 >=app-pda/libplist-1 ) ) kernel_linux? ( >=sys-power/pm-utils-1.4.1 )
 SLOT=0
 SRC_URI=http://upower.freedesktop.org/releases/upower-0.9.16.tar.xz
-_eclasses_=systemd	fc2fa698095b76894d4516729da4337b
+_eclasses_=systemd	94264c6516a1a0c2059c7fc6eed21fe4
 _md5_=2cfe0ec55c6f7393c762a74c63364f84
