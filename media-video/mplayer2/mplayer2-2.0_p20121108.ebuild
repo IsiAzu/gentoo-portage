@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer2/mplayer2-2.0_p20121108.ebuild,v 1.1 2012/11/12 08:20:18 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer2/mplayer2-2.0_p20121108.ebuild,v 1.3 2012/11/21 13:46:53 scarabeus Exp $
 
 EAPI=4
 
@@ -208,9 +208,6 @@ src_prepare() {
 src_configure() {
 	local myconf=""
 	local uses i
-
-	# set LINGUAS
-	[[ -n $LINGUAS ]] && LINGUAS="${LINGUAS/da/dk}"
 
 	# mplayer ebuild uses "use foo || --disable-foo" to forcibly disable
 	# compilation in almost every situation. The reason for this is
@@ -423,7 +420,7 @@ src_configure() {
 
 src_compile() {
 	base_src_compile
-	use doc && emake -j1 -C DOCS/xml html-chunked
+	use doc && emake -C DOCS/xml html-chunked
 }
 
 src_install() {
