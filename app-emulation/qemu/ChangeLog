@@ -1,6 +1,27 @@
 # ChangeLog for app-emulation/qemu
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/ChangeLog,v 1.143 2012/11/05 06:42:53 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/ChangeLog,v 1.148 2012/11/21 21:57:51 cardoe Exp $
+
+  21 Nov 2012; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  Delete no longer used flags.
+
+*qemu-1.1.2-r3 (21 Nov 2012)
+
+  21 Nov 2012; Doug Goldstein <cardoe@gentoo.org> +qemu-1.1.2-r3.ebuild:
+  Bump 1.1.2 with more patches from the 1.1.x stabilization queue.
+
+  21 Nov 2012; Agostino Sarubbo <ago@gentoo.org> qemu-1.1.2-r2.ebuild:
+  Stable for x86, wrt to bug #440092
+
+*qemu-1.2.1 (21 Nov 2012)
+
+  21 Nov 2012; Doug Goldstein <cardoe@gentoo.org> +qemu-1.2.1.ebuild:
+  Version bump to qemu 1.2.1 + qemu-kvm 1.2.0 + extra upstream fixes. Should be
+  Gentoo's first 1.2.x candidate.
+
+  21 Nov 2012; Doug Goldstein <cardoe@gentoo.org> qemu-9999.ebuild:
+  For 1.3 we're switching to qemu from qemu-kvm which is now merged fully into
+  qemu so adjust the 9999 live ebuild to do that.
 
   05 Nov 2012; Sergei Trofimovich <slyfox@gentoo.org> qemu-9999.ebuild:
   Once againt readd or32 target (OpenRISC). Added nore binaries to RWX exempt
