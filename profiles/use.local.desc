@@ -733,6 +733,7 @@ app-misc/tracker:nautilus - Enable tracker to integrate with gnome-base/nautilus
 app-misc/tracker:playlist - Add support for playlists
 app-misc/tracker:thunderbird - Install email data miner plugin for mail-client/thunderbird and mail-client/thunderbird-bin
 app-misc/tracker:upnp - Add support for video extraction via media-libs/gupnp-dlna.
+app-misc/tracker:xps - Add support for XPS file format through app-text/libgxps.
 app-misc/unfoo:minimal - Do not install all support archive binaries
 app-misc/vifm:compatibility - Compatibility with previous versions of vifm
 app-misc/vifm:extended-keys - Support for extended keys (arrows, home etc)
@@ -5073,7 +5074,8 @@ sci-libs/spqr:tbb - Enable multithreading with the Intel Threads Building Block 
 sci-libs/spr:root - Add sci-physics/root graphics and i/o support
 sci-libs/suitesparse:metis - Use METIS (sci-libs/metis or sci-libs/parmetis) for partitioning
 sci-libs/taucs:cilk - Enable multithreading using dev-lang/cilk)
-sci-libs/umfpack:cholmod - Use sci-libs/cholmod for matrrix ordering
+sci-libs/umfpack:cholmod - Use sci-libs/cholmod for matrix ordering
+sci-libs/umfpack:metis - Use METIS via (sci-libs/cholmod) for matrix partitioning
 sci-libs/votca-tools:system-boost - Use system boost (dev-libs/boost) instead of bundled one
 sci-libs/vtk:R - Enable support for dev-lang/R
 sci-libs/vtk:boost - Add support for boost
