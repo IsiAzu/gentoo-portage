@@ -5850,6 +5850,7 @@ www-servers/uwsgi:graylog2 - Enable logging to graylog2 (see http://graylog2.org
 www-servers/uwsgi:json - Support json as a configuration file format.
 www-servers/uwsgi:nagios - Add nagios-friendly logging output (see http://projects.unbit.it/uwsgi/wiki/Nagios).
 www-servers/uwsgi:pam - Add the pam plugin.
+www-servers/uwsgi:probepg - Add the PostgreSQL probe plugin (see http://projects.unbit.it/uwsgi/wiki/DjangoDBHA).
 www-servers/uwsgi:rrdtool - Enable support for writing requests data in RRD files.
 www-servers/uwsgi:rsyslog - Support direct logging to a app-admin/rsyslog socket (without going through the syslog interface).
 www-servers/uwsgi:spooler - Build a plugin which gives a network spooler (see http://projects.unbit.it/uwsgi/wiki/Spooler).
