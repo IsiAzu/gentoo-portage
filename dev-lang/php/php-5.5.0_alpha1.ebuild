@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.5.0_alpha1.ebuild,v 1.1 2012/11/15 12:18:46 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.5.0_alpha1.ebuild,v 1.2 2012/11/23 14:45:43 olemarkus Exp $
 
 EAPI=4
 
@@ -55,7 +55,7 @@ PHP_SRC_URI="$(php_get_uri "${PHP_RELEASE}" "${PHP_P}.tar.bz2")"
 
 PHP_PATCHSET="0"
 PHP_PATCHSET_URI="
-	$(php_get_uri "${PHP_PATCHSET_LOC}" "php-patchset-$SLOT-${PHP_PATCHSET}.tar.bz2")"
+	$(php_get_uri "${PHP_PATCHSET_LOC}" "php-patchset-${SLOT}-r${PHP_PATCHSET}.tar.bz2")"
 
 PHP_FPM_INIT_VER="4"
 PHP_FPM_CONF_VER="1"
@@ -107,7 +107,7 @@ IUSE="${IUSE} bcmath berkdb bzip2 calendar cdb cjk
 	mssql mysql mysqlnd mysqli nls
 	oci8-instant-client odbc pcntl pdo +phar pic +posix postgres qdbm
 	readline recode selinux +session sharedmem
-	+simplexml snmp soap sockets spell sqlite3 ssl
+	+simplexml snmp soap sockets spell sqlite ssl
 	sybase-ct sysvipc tidy +tokenizer truetype unicode wddx
 	+xml xmlreader xmlwriter xmlrpc xpm xsl zip zlib"
 
@@ -164,7 +164,7 @@ DEPEND="
 	snmp? ( >=net-analyzer/net-snmp-5.2 )
 	soap? ( >=dev-libs/libxml2-2.6.8 )
 	spell? ( >=app-text/aspell-0.50 )
-	sqlite3? ( >=dev-db/sqlite-3.7.6.3 )
+	sqlite? ( >=dev-db/sqlite-3.7.6.3 )
 	ssl? ( >=dev-libs/openssl-0.9.7 )
 	sybase-ct? ( dev-db/freetds )
 	tidy? ( app-text/htmltidy )
@@ -460,7 +460,7 @@ src_configure() {
 	$(use_with snmp snmp "${EPREFIX}"/usr)
 	$(use_enable soap soap )
 	$(use_enable sockets sockets )
-	$(use_with sqlite3 sqlite3 "${EPREFIX}"/usr)
+	$(use_with sqlite sqlite3 "${EPREFIX}"/usr)
 	$(use_with sybase-ct sybase-ct "${EPREFIX}"/usr)
 	$(use_enable sysvipc sysvmsg )
 	$(use_enable sysvipc sysvsem )
@@ -577,7 +577,7 @@ src_configure() {
 		fi
 	    my_conf+="
 		$(use_with postgres pdo-pgsql )
-		$(use_with sqlite3 pdo-sqlite ${EPREFIX}/usr)
+		$(use_with sqlite pdo-sqlite ${EPREFIX}/usr)
 		$(use_with odbc pdo-odbc unixODBC,${EPREFIX}/usr)"
 		if use oci8-instant-client ; then
 	        my_conf+="

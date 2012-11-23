@@ -1,8 +1,9 @@
-DEFINED_PHASES=install
+DEFINED_PHASES=compile install
 DESCRIPTION=Security and system auditing tool
+EAPI=5
 HOMEPAGE=http://yasat.sourceforge.net
 KEYWORDS=~amd64 ~sparc ~x86
 LICENSE=GPL-3
 SLOT=0
 SRC_URI=mirror://sourceforge/yasat/yasat-526.tar.gz
-_md5_=b63143c142205f89fcd72b5b37f7d991
+_md5_=c67b95acfd109a162072f63159db78f0
