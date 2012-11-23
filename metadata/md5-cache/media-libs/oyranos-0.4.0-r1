@@ -11,4 +11,4 @@ RESTRICT=test
 SLOT=0
 SRC_URI=mirror://sourceforge/oyranos/Oyranos/Oyranos%200.4/oyranos-0.4.0.tar.bz2
 _eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
-_md5_=650b6f3d4b7a855403ece43d2cb49d14
+_md5_=4d88d3917fab30807870e9d3599e5de2
