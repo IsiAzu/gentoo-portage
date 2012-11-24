@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ardour/ardour-2.8.14.ebuild,v 1.2 2012/11/21 21:21:28 nativemad Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ardour/ardour-2.8.14.ebuild,v 1.3 2012/11/23 23:35:47 nativemad Exp $
 
 EAPI=4
 inherit eutils flag-o-matic toolchain-funcs scons-utils
@@ -42,9 +42,9 @@ RDEPEND="media-libs/aubio
 	x11-libs/cairo
 	media-libs/libart_lgpl
 	virtual/libusb:0
+	dev-libs/boost
 	curl? ( net-misc/curl )"
 DEPEND="${RDEPEND}
-	dev-libs/boost
 	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 

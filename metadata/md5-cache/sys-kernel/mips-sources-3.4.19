@@ -9,7 +9,7 @@ LICENSE=GPL-2 freedist
 PDEPEND=!build? ( virtual/dev-manager )
 RDEPEND=!build? ( >=sys-libs/ncurses-5.2 sys-devel/make dev-lang/perl )
 RESTRICT=binchecks strip
-SLOT=3.4.14
-SRC_URI=mirror://kernel/linux/kernel/v3.x/patch-3.4.14.bz2 mirror://kernel/linux/kernel/v3.x/linux-3.4.tar.bz2 mirror://gentoo/mipsgit-3.4.0-20120623.diff.xz mirror://gentoo/mips-sources-3.4.0-patches-v1.tar.xz
+SLOT=3.4.19
+SRC_URI=mirror://kernel/linux/kernel/v3.x/patch-3.4.19.bz2 mirror://kernel/linux/kernel/v3.x/linux-3.4.tar.bz2 mirror://gentoo/mipsgit-3.4.0-20120623.diff.xz mirror://gentoo/mips-sources-3.4.0-patches-v1.tar.xz
 _eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	kernel-2	dd451098928ff900df7c254820871c00	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
-_md5_=e78099a12cb9b573630d4e7e99c83858
+_md5_=7f057224195d1399113455c532eb7d9c

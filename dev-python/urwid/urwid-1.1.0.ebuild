@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/urwid-1.1.0.ebuild,v 1.2 2012/11/05 22:10:00 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/urwid-1.1.0.ebuild,v 1.3 2012/11/24 02:04:27 radhermit Exp $
 
 EAPI="4"
 PYTHON_USE_WITH="ncurses"
@@ -30,6 +30,10 @@ src_prepare() {
 	distutils_src_prepare
 
 	epatch "${FILESDIR}"/${P}-sphinx.patch
+
+	if [[ $(python_get_version -f --major) == 3 ]] ; then
+		2to3-$(PYTHON -f --ABI) -nw --no-diffs docs/conf.py || die
+	fi
 }
 
 src_compile() {
@@ -37,14 +41,14 @@ src_compile() {
 
 	if use doc ; then
 		cd docs
-		sphinx-build . _build || die
+		PYTHONPATH="$(ls -d ../build-$(PYTHON -f --ABI)/lib*)" sphinx-build . _build/html || die
 	fi
 }
 
 src_install() {
 	distutils_src_install
 
-	use doc && dohtml -r docs/_build/*
+	use doc && dohtml -r docs/_build/html/*
 
 	if use examples ; then
 		dodoc -r examples
