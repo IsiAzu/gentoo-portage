@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.38 2012/11/10 22:40:03 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.39 2012/11/24 20:47:20 ssuominen Exp $
 
 EAPI=4
 
-inherit autotools eutils toolchain-funcs libtool
+inherit autotools eutils libtool toolchain-funcs
 
 if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/kernel/${PN}/${PN}.git"
@@ -29,7 +29,7 @@ RESTRICT="test"
 
 RDEPEND="!sys-apps/module-init-tools
 	!sys-apps/modutils
-	lzma? ( app-arch/xz-utils )
+	lzma? ( >=app-arch/xz-utils-5.0.4-r1 )
 	zlib? ( >=sys-libs/zlib-1.2.6 )" #427130
 DEPEND="${RDEPEND}
 	dev-libs/libxslt
@@ -54,6 +54,7 @@ src_prepare()
 src_configure()
 {
 	econf \
+		--bindir=/sbin \
 		$(use_enable static-libs static) \
 		$(use_enable tools) \
 		$(use_enable debug) \
@@ -66,16 +67,14 @@ src_install()
 {
 	default
 	prune_libtool_files
+	gen_usr_ldscript -a kmod
 
 	if use tools; then
 		local cmd
-		for cmd in depmod insmod lsmod modinfo modprobe rmmod; do
-			dosym kmod /usr/bin/${cmd}
+		for cmd in depmod insmod modinfo modprobe rmmod; do
+			dosym kmod /sbin/${cmd}
 		done
-		# Compability symlink(s):
-		# These are both hardcoded in the Linux kernel source tree wrt #426698
-		dosym /usr/bin/kmod /sbin/depmod
-		dosym /usr/bin/kmod /sbin/modprobe
+		dosym /sbin/kmod /bin/lsmod
 	fi
 
 	cat <<-EOF > "${T}"/usb-load-ehci-first.conf

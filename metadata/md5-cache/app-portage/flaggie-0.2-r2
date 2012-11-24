@@ -10,5 +10,5 @@ RDEPEND=>=sys-apps/portage-2.1.8.3 dev-python/python-exec[python_targets_python2
 REQUIRED_USE=|| ( python_targets_python2_6 python_targets_python2_7 python_targets_python3_1 python_targets_python3_2 python_targets_pypy1_9 )
 SLOT=0
 SRC_URI=mirror://bitbucket/mgorny/flaggie/downloads/flaggie-0.2.tar.bz2
-_eclasses_=bash-completion-r1	fcc2dafb65a2b662dd4b076f2103f6a6	distutils-r1	f1e9639178263b24ebf7f155397aa5da	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python-r1	ca1a1c3ce9a1ac0993eaf7ac0c3ce10e	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=bash-completion-r1	fcc2dafb65a2b662dd4b076f2103f6a6	distutils-r1	607f539140767d24c34ad2a0108f6cef	eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	python-r1	637087aa3c7cd67e9d15f21e73402d86	python-utils-r1	da721fea3d4fbf5e04ca6c69f3b2d30a	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=207d6cc275ac6d753e248871d7552d7a
