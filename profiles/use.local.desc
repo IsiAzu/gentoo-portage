@@ -1803,6 +1803,7 @@ dev-util/kdevelop:okteta - Enable hex editor plugin
 dev-util/kdevelop:qthelp - Enable support for QtHelp documentation browsing
 dev-util/kdevplatform:git - Enable Git version control support
 dev-util/kdevplatform:reviewboard - Enable reviewboard support
+dev-util/meld:highlight - Enable source code highlighting via dev-python/pygtksourceview
 dev-util/metro:ccache - Enable support for ccache
 dev-util/metro:git - Enable support for git snapshots
 dev-util/metro:threads - Enable support for pbzip2 tarball packing/unpacking
@@ -2375,7 +2376,6 @@ mail-client/pine:passfile - Adds support for caching IMAP passwords into a file 
 mail-client/squirrelmail:filter - Enable mail-filter/amavisd-new filtering
 mail-client/sylpheed:oniguruma - Use dev-libs/oniguruma for regular expression
 mail-client/thunderbird:bindist - Disable official Firefox branding (icons, name) which are not binary-redistributable according to upstream.
-mail-client/thunderbird:crashreporter - Enable crash reporter for bugs
 mail-client/thunderbird:crypt - Enable encryption support with enigmail
 mail-client/thunderbird:custom-optimization - Enable user CFLAGS
 mail-client/thunderbird:gconf - Enable gnome2 gconf support
@@ -2834,7 +2834,7 @@ media-plugins/frei0r-plugins:scale0tilt - Enables building of scale0tilt and vec
 media-plugins/gkrellmpc:threads - Use separate thread to init connection (unsafe)
 media-plugins/grilo-plugins:daap - Enable dmap support through net-libs/libdmapsharing
 media-plugins/grilo-plugins:tracker - Build support for content discovery using the app-misc/tracker indexer
-media-plugins/grilo-plugins:upnp - Build support for UPnP devices using net-libs/gupnp and net-libs/gupnp-av
+media-plugins/grilo-plugins:upnp - Build support for UPnP Audio/Video streaming using net-libs/gupnp-av
 media-plugins/grilo-plugins:vimeo - Build support for Vimeo content discovery using net-libs/libsoup and dev-libs/libgcrypt
 media-plugins/grilo-plugins:youtube - Build support for YouTube content discovery using dev-libs/libgdata
 media-plugins/gst-plugins-a52dec:orc - Use dev-lang/orc for runtime detection of CPU MMX/MMXEXT/3dNow! capabilities to pass down to a52dec library.
@@ -4073,7 +4073,9 @@ net-irc/epic5:archive - Use app-arch/libarchive to use zip and tar archives from
 net-irc/epic5:valgrind - Compile against dev-util/valgrind headers to improve memory-leak checking when running epic5 under valgrind.
 net-irc/ezbounce:boost - Compile against dev-libs/boost libraries
 net-irc/hexchat:fastscroll - Make scrolling of large text buffers faster by circumventing some of pango's overhead
+net-irc/hexchat:libproxy - Enable proxy support.
 net-irc/hexchat:ntlm - Enable NTLM authentication
+net-irc/hexchat:plugins - Enable plugin support and installs some built-in plugins
 net-irc/inspircd:geoip - Add geoip support for country and city lookup based on IPs
 net-irc/inspircd:gnutls - Enable TLS support
 net-irc/inspircd:ipv6 - Enable support for IP version 6
@@ -5739,7 +5741,6 @@ www-client/elinks:mouse - Make elinks to grab all mouse events
 www-client/epiphany:introspection - Use dev-libs/gobject-introspection for introspection
 www-client/epiphany:nss - Import passwords from older gecko based www-client/epiphany keyring.
 www-client/firefox:bindist - Disable official Firefox branding (icons, name) which are not binary-redistributable according to upstream.
-www-client/firefox:crashreporter - Enable crashreporter for mozilla upstream, debugging symbols are not required for reporting crashes.
 www-client/firefox:custom-optimization - Fine-tune custom compiler optimizations, setting this is not recommended.
 www-client/firefox:ipc - Use inter-process communication between tabs and plugins. Allows for greater stability in case of plugin crashes
 www-client/firefox:minimal - Prevent sdk and headers from being installed
