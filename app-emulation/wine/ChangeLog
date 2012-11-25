@@ -1,6 +1,14 @@
 # ChangeLog for app-emulation/wine
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/wine/ChangeLog,v 1.437 2012/11/09 23:24:07 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/wine/ChangeLog,v 1.439 2012/11/25 03:03:08 tetromino Exp $
+
+*wine-1.5.18 (24 Nov 2012)
+
+  24 Nov 2012; Alexandre Rostovtsev <tetromino@gentoo.org> +wine-1.5.18.ebuild,
+  wine-9999.ebuild:
+  Bump, see http://www.winehq.org/announce/1.5.18 for the announcement (bug
+  #444512). Follow Ubuntu's example and install a Wine menu category and some
+  useful .desktop files and icons.
 
 *wine-1.5.17 (09 Nov 2012)
 
