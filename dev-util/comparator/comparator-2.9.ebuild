@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/comparator/comparator-2.8.ebuild,v 1.2 2012/11/26 03:25:42 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/comparator/comparator-2.9.ebuild,v 1.2 2012/11/26 03:25:42 blueness Exp $
 
-EAPI="3"
+EAPI="4"
 PYTHON_DEPEND="2"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="3.*"
@@ -33,13 +33,13 @@ src_prepare() {
 
 src_compile() {
 	distutils_src_compile
-	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" || die "emake failed"
-	emake comparator.html scf-standard.html || die "emake html failed"
+	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+	emake comparator.html scf-standard.html
 }
 
 src_install() {
 	distutils_src_install
-	emake ROOT="${D}" install || die "emake install failed"
+	emake ROOT="${D}" install
 
 	install_filterator() {
 		newbin filterator filterator-${PYTHON_ABI} || return 1
@@ -48,5 +48,5 @@ src_install() {
 	python_execute_function -q install_filterator
 	python_generate_wrapper_scripts "${ED}usr/bin/filterator"
 
-	dohtml *.html || die "dohtml failed"
+	dohtml *.html
 }
