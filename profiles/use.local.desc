@@ -5580,6 +5580,7 @@ sys-infiniband/ofed:perftest - Add perftest utils
 sys-infiniband/ofed:rds - Tools to manage rds sockets
 sys-infiniband/ofed:sdp - Add SDP tools
 sys-infiniband/ofed:srp - Suport for userspace part for srp initiator
+sys-kernel/aufs-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/ck-sources:bfsonly - BFS by itslef vs The full ck patchset
 sys-kernel/ck-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/ck-sources:experimental - Allow experimental code. Can break or degrade performances. (UNSUPPORTED)
