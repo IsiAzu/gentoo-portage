@@ -10,4 +10,4 @@ RDEPEND=virtual/httpd-php dev-lang/php[simplexml,xml,xsl,unicode] >=app-admin/we
 SLOT=3.0.19
 SRC_URI=mirror://sourceforge/phpsysinfo/phpsysinfo-3.0.19.tar.gz
 _eclasses_=webapp	25b9b1696f5e698711f47d45c3d45e3e
-_md5_=ddeea9b21806701c21f9a91b3d20765b
+_md5_=c878b1d2b09f9c437ec69d2ee91d1f57
