@@ -9,5 +9,5 @@ LICENSE=charm
 RDEPEND=virtual/fortran
 SLOT=0
 SRC_URI=http://charm.cs.uiuc.edu/distrib/charm-6.2.0_src.tar.gz
-_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	fortran-2	09dce3a4663874693a88d3ddb85cf4aa	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	fortran-2	19652e219ec9b62d7d89735821d7afb6	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=a86c30df900248b287c78871126c8876
