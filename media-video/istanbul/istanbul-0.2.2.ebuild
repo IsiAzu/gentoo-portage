@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/istanbul/istanbul-0.2.2.ebuild,v 1.10 2012/10/25 20:50:59 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/istanbul/istanbul-0.2.2.ebuild,v 1.11 2012/11/29 09:38:47 tetromino Exp $
 
-EAPI="3"
+EAPI="5"
 GCONF_DEBUG="no"
 PYTHON_DEPEND="2"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://live.gnome.org/Istanbul"
 DESCRIPTION="Istanbul is a screencast application for the Unix desktop"
 SRC_URI="http://zaheer.merali.org/${P}.tar.bz2"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2" # Note: not GPL-2+
 SLOT=0
 KEYWORDS="~amd64 ~x86"
 IUSE=""
@@ -40,18 +40,15 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
-
-	# disable pyc compiling
-	mv py-compile py-compile.orig
-	ln -s $(type -P true) py-compile
-	echo "py_compile = $(type -P true)" > common/python.mk
+	python_clean_py-compile_files
+	cp py-compile common/py-compile-destdir || die
 
 	# fix autoreconf failure, bug #230325
 	epatch "${FILESDIR}/${P}-macro-typo.patch"
 
-	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
+
+	gnome2_src_prepare
 }
 
 src_configure() {
