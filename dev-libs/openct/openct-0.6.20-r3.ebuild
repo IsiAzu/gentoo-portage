@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openct/openct-0.6.20-r2.ebuild,v 1.1 2012/06/19 13:56:54 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openct/openct-0.6.20-r3.ebuild,v 1.1 2012/11/28 22:39:36 ssuominen Exp $
 
-EAPI=4
+EAPI=5
 
-inherit eutils flag-o-matic multilib user
+inherit eutils flag-o-matic multilib udev user
 
 DESCRIPTION="library for accessing smart card terminals"
 HOMEPAGE="http://www.opensc-project.org/openct/"
@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 # installing the rules; add openrc for the checkpath used in the new
 # init script
 RDEPEND="${RDEPEND}
-	udev? ( >=sys-fs/udev-096 )
+	udev? ( virtual/udev )
 	sys-apps/openrc"
 
 pkg_setup() {
@@ -43,7 +43,7 @@ src_configure() {
 		--docdir="/usr/share/doc/${PF}" \
 		--htmldir="/usr/share/doc/${PF}/html" \
 		--localstatedir=/var \
-		--with-udev="/$(get_libdir)/udev" \
+		--with-udev="$(udev_get_udevdir)" \
 		--enable-non-privileged \
 		--with-daemon-user=openctd \
 		--with-daemon-groups=usb \
@@ -57,11 +57,11 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install
-	find "${D}" -name '*.la' -delete
+	prune_libtool_files --all
 	rm "${D}"/usr/$(get_libdir)/openct-ifd.*
 
 	if use udev; then
-		insinto /lib/udev/rules.d/
+		insinto "$(udev_get_udevdir)"/rules.d
 		newins etc/openct.udev 70-openct.rules
 	fi
 

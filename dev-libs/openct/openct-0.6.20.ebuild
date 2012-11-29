@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openct/openct-0.6.20.ebuild,v 1.8 2012/06/06 03:45:11 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openct/openct-0.6.20.ebuild,v 1.9 2012/11/28 22:39:36 ssuominen Exp $
 
 EAPI="2"
 
@@ -19,7 +19,7 @@ IUSE="doc pcsc-lite usb"
 # libtool is required at runtime for libltdl
 RDEPEND="pcsc-lite? ( sys-apps/pcsc-lite )
 	usb? ( virtual/libusb:0 )
-	>=sys-fs/udev-096
+	virtual/udev
 	sys-devel/libtool"
 
 DEPEND="${RDEPEND}

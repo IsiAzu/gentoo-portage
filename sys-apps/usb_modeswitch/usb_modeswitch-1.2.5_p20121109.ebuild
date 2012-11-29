@@ -1,9 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usb_modeswitch/usb_modeswitch-1.2.3_p20120531-r2.ebuild,v 1.2 2012/08/06 08:22:44 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usb_modeswitch/usb_modeswitch-1.2.5_p20121109.ebuild,v 1.1 2012/11/28 23:00:08 ssuominen Exp $
 
-EAPI=4
-inherit linux-info toolchain-funcs
+EAPI=5
+inherit linux-info toolchain-funcs udev
 
 MY_PN=${PN/_/-}
 MY_P=${MY_PN}-${PV/_p*}
@@ -19,7 +19,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-COMMON_DEPEND="sys-fs/udev
+COMMON_DEPEND="virtual/udev
 	virtual/libusb:0"
 RDEPEND="${COMMON_DEPEND}
 	dev-lang/tcl" # usb_modeswitch script is tcl
@@ -31,7 +31,10 @@ S=${WORKDIR}/${MY_P}
 CONFIG_CHECK="~USB_SERIAL"
 
 src_prepare() {
-	sed -i -e 's:/usr/sbin/modp:/usr/bin/modp:' ${PN}.tcl || die #416223
+	# NOTE: This one can be removed once >= kmod-11-r3 is marked stable since it
+	# puts modprobe back to /sbin which is already in the search patch earlier.
+	sed -i -e 's:/usr/sbin/modprobe:& /usr/bin/modprobe:' ${PN}.tcl || die #416223
+
 	sed -i -e '/install.*BIN/s:-s::' Makefile || die
 }
 
@@ -42,7 +45,7 @@ src_compile() {
 src_install() {
 	emake \
 		DESTDIR="${D}" \
-		UDEVDIR="${D}/$($(tc-getPKG_CONFIG) --variable=udevdir udev)" \
+		UDEVDIR="${D}/$(udev_get_udevdir)" \
 		install
 
 	dodoc ChangeLog README
@@ -50,7 +53,7 @@ src_install() {
 	pushd ../${MY_PN}-data-${DATA_VER} >/dev/null
 	emake \
 		DESTDIR="${D}" \
-		RULESDIR="${D}/$($(tc-getPKG_CONFIG) --variable=udevdir udev)/rules.d" \
+		RULESDIR="${D}/$(udev_get_udevdir)/rules.d" \
 		files-install db-install
 	docinto data
 	dodoc ChangeLog README
