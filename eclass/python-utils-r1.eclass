@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python-utils-r1.eclass,v 1.3 2012/11/26 10:16:43 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python-utils-r1.eclass,v 1.5 2012/11/30 11:43:14 mgorny Exp $
 
 # @ECLASS: python-utils-r1
 # @MAINTAINER:
@@ -21,10 +21,7 @@
 # http://www.gentoo.org/proj/en/Python/python-r1/dev-guide.xml
 
 case "${EAPI:-0}" in
-	0|1|2|3)
-		die "Unsupported EAPI=${EAPI:-0} (too old) for ${ECLASS}"
-		;;
-	4|5)
+	0|1|2|3|4|5)
 		# EAPI=4 makes die behavior clear
 		;;
 	*)
@@ -39,6 +36,17 @@ fi
 if [[ ! ${_PYTHON_UTILS_R1} ]]; then
 
 inherit multilib
+
+# @ECLASS-VARIABLE: _PYTHON_ALL_IMPLS
+# @INTERNAL
+# @DESCRIPTION:
+# All supported Python implementations, most preferred last.
+_PYTHON_ALL_IMPLS=(
+	jython2_5
+	pypy1_8 pypy1_9
+	python3_1 python3_2 python3_3
+	python2_5 python2_6 python2_7
+)
 
 # @ECLASS-VARIABLE: PYTHON
 # @DESCRIPTION:
@@ -399,7 +407,7 @@ python_doscript() {
 		local newfn=${oldfn}-${EPYTHON}
 
 		debug-print "${FUNCNAME}: ${oldfn} -> ${newfn}"
-		newins "${f}" "${newfn}"
+		newins "${f}" "${newfn}" || die
 		_python_rewrite_shebang "${D}/${d}/${newfn}"
 
 		# install the wrapper
@@ -477,7 +485,7 @@ python_domodule() {
 	local INSDESTTREE
 
 	insinto "${d}"
-	doins -r "${@}"
+	doins -r "${@}" || die
 
 	python_optimize "${D}/${d}"
 }

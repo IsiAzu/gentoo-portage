@@ -1,0 +1,11 @@
+DEFINED_PHASES=install
+DEPEND=dev-lang/perl >=sys-libs/libhx-3.12.1
+DESCRIPTION=A collection of tools and scripts
+EAPI=5
+HOMEPAGE=http://inai.de/projects/hxtools/
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=GPL-3
+RDEPEND=dev-lang/perl >=sys-libs/libhx-3.12.1
+SLOT=0
+SRC_URI=http://jftp.inai.de/hxtools/hxtools-20121125.tar.xz
+_md5_=f2c22090bbbf2a0f568c1188424fd651
