@@ -9,5 +9,5 @@ LICENSE=|| ( GPL-2 Artistic )
 RDEPEND=sys-process/procps ssl? ( dev-libs/openssl ) foomaticdb? ( net-print/foomatic-filters net-print/foomatic-db ) !net-print/cups
 SLOT=0
 SRC_URI=ftp://ftp.lprng.com/pub/LPRng/LPRng/LPRng-3.8.35.tgz
-_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	e5bc4d49fb1a376c2ac3a203b3a4dc8a	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	2217e1eabd5b2bf0b24dca0bae46f8e2	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=597ee29e0fe18c781b6470d0f4b7d5e2
