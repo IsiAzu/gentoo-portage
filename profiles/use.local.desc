@@ -4499,6 +4499,8 @@ net-misc/mediatomb:mysql - Use dev-db/mysql as backend rather than SQLite3
 net-misc/mediatomb:taglib - Use media-libs/taglib for reading files' metadata rather than id3lib
 net-misc/mediatomb:thumbnail - Enables video thumbnails generation throughmedia-video/ffmpegthumbnailer
 net-misc/memcached:slabs-reassign - Allow manual reassignment of memory slabs at the cost of slab optimizations.
+net-misc/mirall:sftp - Enable sftp transfer support via net-libs/libssh
+net-misc/mirall:webdav - Adds support for HTTP/dav content via net-libs/neon
 net-misc/mosh:client - Build network client
 net-misc/mosh:examples - Include example scripts
 net-misc/mosh:mosh-hardening - Enable compiler and linker options to frustrate memory corruption exploits
@@ -4996,7 +4998,8 @@ sci-libs/acml:ifc - Fetch and install acml compiled with Intel Fortran Compiler 
 sci-libs/acml:int64 - Install the 64 bits integer library
 sci-libs/adolc:sparse - Add support for sparse matrix algebra with sci-libs/colpack
 sci-libs/armadillo:atlas - Link with ATLAS libraries for cblas and clapack (needs sci-libs/lapack-atlas)
-sci-libs/arprec:qd - Use sci-libs/qd
+sci-libs/arprec:fma - Use the Fused Multiply Add instruction set
+sci-libs/arprec:qd - Use sci-libs/qdfor quad-double datatype
 sci-libs/ceres-solver:gflags - Use dev-cpp/gflags for flag parsing
 sci-libs/ceres-solver:metis - Use METIS via sci-libs/cholmod for matrix partitioning
 sci-libs/ceres-solver:protobuf - Use dev-libs/protobuf to encode structured data
