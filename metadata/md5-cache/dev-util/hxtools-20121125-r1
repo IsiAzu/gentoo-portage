@@ -8,4 +8,4 @@ LICENSE=GPL-3
 RDEPEND=dev-lang/perl >=sys-libs/libhx-3.12.1
 SLOT=0
 SRC_URI=http://jftp.inai.de/hxtools/hxtools-20121125.tar.xz
-_md5_=f2c22090bbbf2a0f568c1188424fd651
+_md5_=4eb7bd8f35331eae94f31ac8480af5f8

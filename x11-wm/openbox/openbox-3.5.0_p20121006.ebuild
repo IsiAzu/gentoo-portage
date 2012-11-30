@@ -1,9 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/openbox/openbox-3.5.0_p20121006.ebuild,v 1.2 2012/11/29 16:33:14 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/openbox/openbox-3.5.0_p20121006.ebuild,v 1.4 2012/11/30 20:18:03 hwoarang Exp $
 
 EAPI="4"
-inherit multilib autotools eutils
+inherit multilib autotools python eutils
 
 DESCRIPTION="A standards compliant, fast, light-weight, extensible window manager"
 HOMEPAGE="http://openbox.org/"
@@ -36,6 +36,7 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}"
 
 src_prepare() {
+	use python && python_convert_shebangs -r 2 .
 	epatch "${FILESDIR}"/${PN}-gnome-session-3.4.9.patch
 	epatch "${FILESDIR}"/${P/_p*/}-fix-desktop-files.patch
 	epatch "${FILESDIR}"/${P}-javaswing.patch
@@ -50,6 +51,7 @@ src_prepare() {
 src_configure() {
 	econf \
 		--docdir=/usr/share/doc/${PF} \
+		--disable-silent-rules \
 		$(use_enable debug) \
 		$(use_enable imlib imlib2) \
 		$(use_enable nls) \
