@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils-r1.eclass,v 1.20 2012/11/26 10:05:11 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils-r1.eclass,v 1.24 2012/12/01 10:54:50 mgorny Exp $
 
 # @ECLASS: distutils-r1
 # @MAINTAINER:
@@ -57,7 +57,7 @@ esac
 
 if [[ ! ${_DISTUTILS_R1} ]]; then
 
-inherit eutils python-r1
+inherit eutils multiprocessing python-r1
 
 fi
 
@@ -130,6 +130,29 @@ DEPEND=${PYTHON_DEPS}
 # 'build --build-base ${BUILD_DIR}' to enforce keeping & using built
 # files in the specific root.
 
+# @ECLASS-VARIABLE: DISTUTILS_NO_PARALLEL_BUILD
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# If set to a non-null value, the parallel build feature will
+# be disabled.
+#
+# When parallel builds are used, the implementation-specific sub-phases
+# for selected Python implementation will be run in parallel. This will
+# increase build efficiency with distutils which does not do parallel
+# builds.
+#
+# This variable can be used to disable the afore-mentioned feature
+# in case it causes issues with the package.
+
+#
+# If in-source builds are used, the eclass will create a copy of package
+# sources for each Python implementation in python_prepare_all(),
+# and work on that copy afterwards.
+#
+# If out-of-source builds are used, the eclass will instead work
+# on the sources directly, prepending setup.py arguments with
+# 'build --build-base ${BUILD_DIR}' to enforce keeping & using built
+# files in the specific root.
 # @ECLASS-VARIABLE: mydistutilsargs
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -243,38 +266,45 @@ distutils-r1_python_test() {
 	:
 }
 
-# @FUNCTION: distutils-r1_rename_scripts
+# @FUNCTION: _distutils-r1_rename_scripts
+# @USAGE: <path>
+# @INTERNAL
 # @DESCRIPTION:
 # Renames installed Python scripts to be implementation-suffixed.
-# ${PYTHON} has to be set to the expected Python executable (which
-# hashbang will be grepped for), and ${EPYTHON} to the implementation
-# name (for new name).
-distutils-r1_rename_scripts() {
+# ${EPYTHON} needs to be set to the implementation name.
+#
+# All executable scripts having shebang referencing ${EPYTHON}
+# in given path will be renamed.
+_distutils-r1_rename_scripts() {
 	debug-print-function ${FUNCNAME} "${@}"
+
+	local path=${1}
+	[[ ${path} ]] || die "${FUNCNAME}: no path given"
 
 	local f
 	# XXX: change this if we ever allow directories in bin/sbin
-	for f in "${D}"/{bin,sbin,usr/bin,usr/sbin}/*; do
-		if [[ -x ${f} ]]; then
-			debug-print "${FUNCNAME}: found executable at ${f#${D}/}"
+	while IFS= read -r -d '' f; do
+		debug-print "${FUNCNAME}: found executable at ${f#${D}/}"
 
-			if [[ "$(head -n 1 "${f}")" == '#!'*${EPYTHON}* ]]
-			then
-				debug-print "${FUNCNAME}: matching shebang: $(head -n 1 "${f}")"
+		if [[ "$(head -n 1 "${f}")" == '#!'*${EPYTHON}* ]]
+		then
+			debug-print "${FUNCNAME}: matching shebang: $(head -n 1 "${f}")"
 
-				local newf=${f}-${EPYTHON}
-				debug-print "${FUNCNAME}: renamed to ${newf#${D}/}"
-				mv "${f}" "${newf}" || die
-			fi
+			local newf=${f}-${EPYTHON}
+			debug-print "${FUNCNAME}: renaming to ${newf#${D}/}"
+			mv "${f}" "${newf}" || die
+
+			debug-print "${FUNCNAME}: installing wrapper at ${f#${D}/}"
+			_python_ln_rel "${path}"/usr/bin/python-exec "${f}" || die
 		fi
-	done
+	done < <(find "${path}" -type f -executable -print0)
 }
 
 # @FUNCTION: distutils-r1_python_install
 # @USAGE: [additional-args...]
 # @DESCRIPTION:
 # The default python_install(). Runs 'esetup.py install', appending
-# the optimization flags. Then calls distutils-r1_rename_scripts.
+# the optimization flags. Then renames the installed scripts.
 # Any parameters passed to this function will be passed to setup.py.
 distutils-r1_python_install() {
 	debug-print-function ${FUNCNAME} "${@}"
@@ -293,16 +323,19 @@ distutils-r1_python_install() {
 	local PYTHONDONTWRITEBYTECODE
 	export PYTHONDONTWRITEBYTECODE
 
-	esetup.py install "${flags[@]}" --root="${D}" "${@}"
+	local root=${D}/_${EPYTHON}
 
-	distutils-r1_rename_scripts
+	esetup.py install "${flags[@]}" --root="${root}" "${@}"
+	_distutils-r1_rename_scripts "${root}"
+
+	# merge
+	cp -a -l -n "${root}"/* "${D}"/ || die "Merging ${EPYTHON} image failed."
+	rm -rf "${root}"
 }
 
 # @FUNCTION: distutils-r1_python_install_all
 # @DESCRIPTION:
-# The default python_install_all(). It symlinks wrappers
-# for the implementation-suffixed executables and installs
-# documentation.
+# The default python_install_all(). It installs the documentation.
 distutils-r1_python_install_all() {
 	debug-print-function ${FUNCNAME} "${@}"
 
@@ -322,20 +355,6 @@ distutils-r1_python_install_all() {
 	if declare -p HTML_DOCS &>/dev/null; then
 		dohtml -r "${HTML_DOCS[@]}" || die "dohtml failed"
 	fi
-
-	# note: keep in sync with ...rename_scripts()
-	# also, we assume that each script is installed for all impls
-	local EPYTHON
-	python_export_best EPYTHON
-
-	local f
-	while IFS= read -r -d '' f; do
-		debug-print "${FUNCNAME}: found executable at ${f#${D}/}"
-
-		local wrapf=${f%-${EPYTHON}}
-
-		_python_ln_rel "${ED}"/usr/bin/python-exec "${wrapf}" || die
-	done < <(find "${D}" -type f -executable -name "*-${EPYTHON}" -print0)
 }
 
 # @FUNCTION: distutils-r1_run_phase
@@ -360,7 +379,11 @@ distutils-r1_run_phase() {
 		export PYTHONPATH
 	fi
 
-	"${@}" || die "${1} failed."
+	if [[ ${DISTUTILS_NO_PARALLEL_BUILD} ]]; then
+		"${@}" || die "${1} failed."
+	else
+		multijob_child_init "${@}" || die "${1} failed."
+	fi
 
 	if [[ ${DISTUTILS_IN_SOURCE_BUILD} ]]; then
 		popd &>/dev/null || die
@@ -377,19 +400,23 @@ distutils-r1_src_prepare() {
 		distutils-r1_python_prepare_all
 	fi
 
+	multijob_init
 	if declare -f python_prepare >/dev/null; then
 		python_foreach_impl distutils-r1_run_phase python_prepare
 	else
 		python_foreach_impl distutils-r1_run_phase distutils-r1_python_prepare
 	fi
+	multijob_finish
 }
 
 distutils-r1_src_configure() {
+	multijob_init
 	if declare -f python_configure >/dev/null; then
 		python_foreach_impl distutils-r1_run_phase python_configure
 	else
 		python_foreach_impl distutils-r1_run_phase distutils-r1_python_configure
 	fi
+	multijob_finish
 
 	if declare -f python_configure_all >/dev/null; then
 		python_configure_all
@@ -399,11 +426,13 @@ distutils-r1_src_configure() {
 distutils-r1_src_compile() {
 	debug-print-function ${FUNCNAME} "${@}"
 
+	multijob_init
 	if declare -f python_compile >/dev/null; then
 		python_foreach_impl distutils-r1_run_phase python_compile
 	else
 		python_foreach_impl distutils-r1_run_phase distutils-r1_python_compile
 	fi
+	multijob_finish
 
 	if declare -f python_compile_all >/dev/null; then
 		python_compile_all
@@ -413,11 +442,13 @@ distutils-r1_src_compile() {
 distutils-r1_src_test() {
 	debug-print-function ${FUNCNAME} "${@}"
 
+	multijob_init
 	if declare -f python_test >/dev/null; then
 		python_foreach_impl distutils-r1_run_phase python_test
 	else
 		python_foreach_impl distutils-r1_run_phase distutils-r1_python_test
 	fi
+	multijob_finish
 
 	if declare -f python_test_all >/dev/null; then
 		python_test_all
@@ -427,11 +458,13 @@ distutils-r1_src_test() {
 distutils-r1_src_install() {
 	debug-print-function ${FUNCNAME} "${@}"
 
+	multijob_init
 	if declare -f python_install >/dev/null; then
 		python_foreach_impl distutils-r1_run_phase python_install
 	else
 		python_foreach_impl distutils-r1_run_phase distutils-r1_python_install
 	fi
+	multijob_finish
 
 	if declare -f python_install_all >/dev/null; then
 		python_install_all
