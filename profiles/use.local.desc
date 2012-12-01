@@ -258,6 +258,7 @@ app-benchmarks/ltp:expect - Build against the expect library for interactive tes
 app-benchmarks/ltp:open-posix - Build and install the POSIX testsuite
 app-benchmarks/ltp:pm - Build and install the power management testsuite
 app-benchmarks/ltp:rt - Build and install the realtime testsuite
+app-benchmarks/ramspeed:pic - Force shared libraries to be built as PIC (this is slower)
 app-benchmarks/sysbench:aio - Enable libaio support
 app-cdr/backlite:mplayer - Add support for mplayer preview in addition to X11 and phonon
 app-cdr/brasero:introspection - Use dev-libs/gobject-introspection for introspection
