@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-196.ebuild,v 1.1 2012/12/02 02:03:22 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-196-r1.ebuild,v 1.1 2012/12/02 07:29:05 ssuominen Exp $
 
 EAPI=4
 
@@ -28,7 +28,7 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl doc gudev introspection keymap +openrc selinux static-libs"
+IUSE="acl doc gudev hwdb introspection keymap +openrc selinux static-libs"
 
 RESTRICT="test"
 
@@ -46,7 +46,8 @@ DEPEND="${COMMON_DEPEND}
 	virtual/os-headers
 	virtual/pkgconfig
 	!<sys-kernel/linux-headers-${KV_min}
-	doc? ( dev-util/gtk-doc )"
+	doc? ( dev-util/gtk-doc )
+	hwdb? ( >=sys-apps/hwids-20121202.2[udev] )"
 
 if [[ ${PV} = 9999* ]]
 then
@@ -391,4 +392,6 @@ pkg_postinst()
 	elog "For more information on udev on Gentoo, writing udev rules, and"
 	elog "         fixing known issues visit:"
 	elog "         http://www.gentoo.org/doc/en/udev-guide.xml"
+
+	use hwdb && udevadm hwdb --update
 }

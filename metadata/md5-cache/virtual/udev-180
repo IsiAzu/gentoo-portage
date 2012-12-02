@@ -3,6 +3,6 @@ DESCRIPTION=Virtual for udev implementation and number of it's features
 EAPI=2
 IUSE=acl gudev hwdb introspection keymap selinux static-libs
 KEYWORDS=~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
-RDEPEND=|| ( ~sys-fs/udev-195[acl?,gudev?,hwdb?,introspection?,keymap?,selinux?,static-libs?] >=sys-fs/udev-196[acl?,gudev?,introspection?,keymap?,selinux?,static-libs?] )
+RDEPEND=>=sys-fs/udev-196[acl?,gudev?,hwdb?,introspection?,keymap?,selinux?,static-libs?]
 SLOT=0
-_md5_=9e5bce35d625bc23e3f356e90a930453
+_md5_=cfe65d83fbd2c7c59793214013216ec2
