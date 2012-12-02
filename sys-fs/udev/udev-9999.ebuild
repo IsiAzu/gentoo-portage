@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.119 2012/11/29 23:16:08 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.120 2012/12/02 02:03:22 ssuominen Exp $
 
 EAPI=4
 
@@ -28,23 +28,23 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl doc gudev hwdb introspection keymap +openrc selinux static-libs"
+IUSE="acl doc gudev introspection keymap +openrc selinux static-libs"
 
 RESTRICT="test"
 
-COMMON_DEPEND="acl? ( sys-apps/acl )
-	gudev? ( dev-libs/glib:2 )
+COMMON_DEPEND=">=sys-apps/kmod-11-r3
+	>=sys-apps/util-linux-2.20
+	acl? ( sys-apps/acl )
+	gudev? ( >=dev-libs/glib-2 )
 	introspection? ( >=dev-libs/gobject-introspection-1.31.1 )
 	selinux? ( sys-libs/libselinux )
-	>=sys-apps/kmod-5
-	>=sys-apps/util-linux-2.20
 	!<sys-libs/glibc-2.11"
 
 DEPEND="${COMMON_DEPEND}
 	dev-util/gperf
-	>=dev-util/intltool-0.40.0
-	virtual/pkgconfig
+	>=dev-util/intltool-0.50
 	virtual/os-headers
+	virtual/pkgconfig
 	!<sys-kernel/linux-headers-${KV_min}
 	doc? ( dev-util/gtk-doc )"
 
@@ -56,11 +56,9 @@ then
 fi
 
 RDEPEND="${COMMON_DEPEND}
-	hwdb? ( sys-apps/hwids )
 	openrc? ( >=sys-fs/udev-init-scripts-16
 		!<sys-apps/openrc-0.9.9 )
 	!sys-apps/coldplug
-	!=sys-apps/systemd-188
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
 	!<sys-fs/udev-init-scripts-16
@@ -69,7 +67,7 @@ RDEPEND="${COMMON_DEPEND}
 
 PDEPEND=">=virtual/udev-180"
 
-S="${WORKDIR}/systemd-${PV}"
+S=${WORKDIR}/systemd-${PV}
 
 QA_MULTILIB_PATHS="usr/lib/systemd/systemd-udevd"
 
@@ -86,8 +84,8 @@ check_default_rules()
 {
 	# Make sure there are no sudden changes to upstream rules file
 	# (more for my own needs than anything else ...)
-	local udev_rules_md5=f742230cf0c2075adfba9e6b517c7095
-	MD5=$(md5sum < "${S}/rules/50-udev-default.rules")
+	local udev_rules_md5=66bb698deeae64ab444b710baf54a412
+	MD5=$(md5sum < "${S}"/rules/50-udev-default.rules)
 	MD5=${MD5/  -/}
 	if [[ ${MD5} != ${udev_rules_md5} ]]
 	then
@@ -164,10 +162,8 @@ src_configure()
 		--with-distro=gentoo
 		--with-firmware-path=/usr/lib/firmware/updates:/usr/lib/firmware:/lib/firmware/updates:/lib/firmware
 		--with-html-dir=/usr/share/doc/${PF}/html
-		--with-pci-ids-path=/usr/share/misc/pci.ids
 		--with-rootlibdir=/usr/$(get_libdir)
 		--with-rootprefix=/usr
-		--with-usb-ids-path=/usr/share/misc/usb.ids
 		--disable-audit
 		--disable-coredump
 		--disable-hostnamed
@@ -347,37 +343,7 @@ pkg_postinst()
 			einfo "Removed unneeded file 64-device-mapper.rules"
 	fi
 
-	# http://bugs.gentoo.org/440462
-	if [[ ${REPLACING_VERSIONS} ]] && [[ ${REPLACING_VERSIONS} < 141 ]]; then
-		ewarn
-		ewarn "If you build an initramfs including udev, please make sure the"
-		ewarn "/usr/bin/udevadm binary gets included, Also, change your scripts to"
-		ewarn "use it, as it replaces the old udevinfo and udevtrigger helpers."
-
-		ewarn
-		ewarn "mount options for /dev are no longer set in /etc/udev/udev.conf."
-		ewarn "Instead, /etc/fstab should be used. This matches other mount points."
-	fi
-
-	if [[ ${REPLACING_VERSIONS} ]] && [[ ${REPLACING_VERSIONS} < 151 ]]; then
-		ewarn
-		ewarn "Rules for /dev/hd* devices have been removed."
-		ewarn "Please migrate to libata."
-	fi
-
 	if [[ ${REPLACING_VERSIONS} ]] && [[ ${REPLACING_VERSIONS} < 189 ]]; then
-		ewarn
-		ewarn "action_modeswitch has been removed by upstream."
-		ewarn "Please use sys-apps/usb_modeswitch."
-
-		if use acl; then
-			ewarn
-			ewarn "The udev-acl functionality has been moved."
-			ewarn "If you are not using systemd, this is handled by ConsoleKit."
-			ewarn "Otherwise, you need to make sure that systemd is emerged with"
-			ewarn "the acl use flag active."
-		fi
-
 		ewarn
 		ewarn "Upstream has removed the persistent-net and persistent-cd rules"
 		ewarn "generator. If you need persistent names for these devices,"
