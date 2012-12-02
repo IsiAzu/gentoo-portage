@@ -2666,6 +2666,7 @@ media-libs/gst-plugins-bad:orc - Use dev-lang/orc for runtime optimisations
 media-libs/gst-plugins-base:introspection - Use dev-libs/gobject-introspection for introspection
 media-libs/gst-plugins-base:orc - Use dev-lang/orc for runtime optimisations
 media-libs/gst-plugins-good:orc - Use dev-lang/orc for runtime optimisations
+media-libs/gst-plugins-ugly:orc - Use dev-lang/orc for runtime optimisations
 media-libs/gst-rtsp-server:introspection - Use dev-libs/gobject-introspection for introspection
 media-libs/gst-rtsp-server:vala - Add support for dev-lang/vala
 media-libs/gstreamer:introspection - Use dev-libs/gobject-introspection for introspection
