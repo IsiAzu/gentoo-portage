@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/sylpheed/sylpheed-3.1.4.ebuild,v 1.9 2012/08/19 15:55:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/sylpheed/sylpheed-3.3.0.ebuild,v 1.1 2012/12/03 12:13:41 hattya Exp $
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ SRC_URI="http://sylpheed.sraoss.jp/${PN}/v${PV%.*}/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="alpha amd64 hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="crypt ipv6 ldap nls oniguruma pda spell ssl xface"
 
 CDEPEND="x11-libs/gtk+:2
@@ -29,10 +29,6 @@ RDEPEND="${CDEPEND}
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
 	xface? ( media-libs/compface )"
-
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-r3033.diff
-}
 
 src_configure() {
 	local htmldir=/usr/share/doc/${PF}/html

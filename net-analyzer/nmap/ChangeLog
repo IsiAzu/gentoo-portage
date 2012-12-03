@@ -1,6 +1,18 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.263 2012/12/02 15:57:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.267 2012/12/03 13:30:27 blueness Exp $
+
+  03 Dec 2012; Anthony G. Basile <blueness@gentoo.org> nmap-6.01.ebuild:
+  stable ppc ppc64, bug #445500
+
+  03 Dec 2012; Jeroen Roovers <jer@gentoo.org> nmap-6.25.ebuild, metadata.xml:
+  Describe USE=lua better, prefer USE=lua. Enforce USE=-nls.
+
+  03 Dec 2012; Jeroen Roovers <jer@gentoo.org> nmap-6.25.ebuild:
+  Add IUSE=ipv6, IUSE=nls and LINGUAS (bug #445752 by Alex Turbov).
+
+  03 Dec 2012; Jeroen Roovers <jer@gentoo.org> nmap-6.01.ebuild:
+  Add IUSE=ipv6 (bug #445734 by LeeL).
 
   02 Dec 2012; Jeroen Roovers <jer@gentoo.org> nmap-6.25.ebuild,
   +files/nmap-6.25-lua.patch:
