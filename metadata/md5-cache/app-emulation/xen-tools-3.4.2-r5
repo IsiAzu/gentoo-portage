@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=dev-lang/python[ncurses,threads] sys-libs/zlib hvm? ( media-libs/libsdl ) acm? ( dev-libs/libxml2 ) api? ( dev-libs/libxml2 net-misc/curl ) sys-apps/iproute2 net-misc/bridge-utils dev-python/pyxml screen? ( app-misc/screen app-admin/logrotate ) || ( virtual/udev sys-apps/hotplug )
 SLOT=0
 SRC_URI=http://bits.xensource.com/oss-xen/release/3.4.2/xen-3.4.2.tar.gz
-_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	2217e1eabd5b2bf0b24dca0bae46f8e2	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	4092929a66c8b47ffa8d314ca9314ea7	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	1a0b9986e891584bbc9f18928d126299	multilib	9aa8a023e062fca0ba79362d9d0cc488	python	4092929a66c8b47ffa8d314ca9314ea7	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
 _md5_=f7c3df0c57960a7ada9132ad114a6844

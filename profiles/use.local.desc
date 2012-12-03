@@ -28,6 +28,7 @@ app-admin/ansible:sudo - Use app-admin/sudo on client nodes
 app-admin/bcfg2:cheetah - Include dev-python/cheetah support
 app-admin/bcfg2:genshi - Include dev-python/genshi support
 app-admin/bcfg2:server - Installs scripts to be used on the server-side of this app
+app-admin/collectd:collectd_plugins_aggregation - Build the aggregation plugin (aggregate multiplte values into a single value)
 app-admin/collectd:collectd_plugins_apache - Build the apache input plugin (transferred bytes, handled requests, detailed scoreboard statistics)
 app-admin/collectd:collectd_plugins_apcups - Build the apcups input plugin (UPS charge, load, input/output/battery voltage, etc.)
 app-admin/collectd:collectd_plugins_ascent - Build the ascent input plugin (statistics about a free server for World of Warcraft)
@@ -112,6 +113,7 @@ app-admin/collectd:collectd_plugins_tcpconns - Build the tcpconns input plugin (
 app-admin/collectd:collectd_plugins_teamspeak2 - Build the teamspeak2 input plugin (collects traffic statistics from a teamspeak2 instance)
 app-admin/collectd:collectd_plugins_ted - Build the ted input plugin (connects to The Energy Detective and reads the current power over connected power lines)
 app-admin/collectd:collectd_plugins_thermal - Build the thermal input plugin (ACPI thermal zone information)
+app-admin/collectd:collectd_plugins_threshold - Build the threshold plugin (checks values against configured thresholds and creates notifications if values are out of bounds)
 app-admin/collectd:collectd_plugins_tokyotyrant - Build the tokyotyrant input plugin (number of records and file size from a running Tokyo Tyrant server)
 app-admin/collectd:collectd_plugins_unixsock - Build the unixsock output plugin (opens a UNIX domain socket and accepts connections)
 app-admin/collectd:collectd_plugins_uptime - Build the uptime input plugin (system uptime)
@@ -6089,6 +6091,7 @@ x11-misc/google-gadgets:soup - Enables XML HTTP request extension based on net-l
 x11-misc/lightdm:branding - Replace original gnome background with one from Gentoo ten project
 x11-misc/lightdm:introspection - Use dev-libs/gobject-introspection for introspection
 x11-misc/obconf:lxde - Add wrapper for LXDE environment
+x11-misc/openbox-menu:icons - Turn on to let icons appear in menus
 x11-misc/rednotebook:libyaml - enable libyaml support
 x11-misc/rednotebook:spell - enable gtk-spell support
 x11-misc/redshift:geoclue - Control dependency on app-misc/geoclue
