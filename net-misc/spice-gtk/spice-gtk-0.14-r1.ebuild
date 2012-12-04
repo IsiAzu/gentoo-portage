@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/spice-gtk/spice-gtk-0.13.ebuild,v 1.5 2012/12/03 02:27:45 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/spice-gtk/spice-gtk-0.14-r1.ebuild,v 1.2 2012/12/04 21:22:33 cardoe Exp $
 
-EAPI="4"
+EAPI=5
 GCONF_DEBUG="no"
 WANT_AUTOMAKE="1.11"
 
@@ -20,19 +20,20 @@ KEYWORDS="~amd64 ~x86"
 IUSE="doc gstreamer gtk3 +introspection policykit pulseaudio
 python sasl smartcard static-libs usbredir vala"
 
+REQUIRED_USE="?? ( pulseaudio gstreamer )"
+
 # TODO:
 # * check if sys-freebsd/freebsd-lib (from virtual/acl) provides acl/libacl.h
 # * use external pnp.ids as soon as that means not pulling in gnome-desktop
 RDEPEND="pulseaudio? ( media-sound/pulseaudio )
-	gstreamer? ( !pulseaudio? (
+	gstreamer? (
 		media-libs/gstreamer:0.10
-		media-libs/gst-plugins-base:0.10 ) )
-	>=app-emulation/spice-protocol-0.10.1
+		media-libs/gst-plugins-base:0.10 )
 	>=x11-libs/pixman-0.17.7
 	>=media-libs/celt-0.5.1.1:0.5.1
 	dev-libs/openssl
 	gtk3? ( x11-libs/gtk+:3[introspection?] )
-	!gtk3? ( x11-libs/gtk+:2[introspection?] )
+	x11-libs/gtk+:2[introspection?]
 	>=dev-libs/glib-2.26:2
 	>=x11-libs/cairo-1.2
 	virtual/jpeg
@@ -43,58 +44,61 @@ RDEPEND="pulseaudio? ( media-sound/pulseaudio )
 	smartcard? ( app-emulation/libcacard )
 	usbredir? (
 		sys-apps/hwids
+		>=sys-apps/usbredir-0.4.2
+		virtual/libusb:1
+		virtual/udev[gudev]
 		policykit? (
 			sys-apps/acl
 			>=sys-auth/polkit-0.101 )
-		virtual/libusb:1
-		>=sys-apps/usbredir-0.4.2
-		<sys-apps/usbredir-0.5
-		virtual/udev[gudev] )"
+		)"
 DEPEND="${RDEPEND}
-	vala? ( dev-lang/vala:0.14 )
+	>=app-emulation/spice-protocol-0.10.1
 	dev-lang/python
 	dev-python/pyparsing
-	virtual/pkgconfig
 	>=dev-util/intltool-0.40.0
-	>=sys-devel/gettext-0.17"
+	>=sys-devel/gettext-0.17
+	virtual/pkgconfig
+	vala? ( dev-lang/vala:0.14 )"
 
 # Hard-deps while building from git:
 # dev-lang/vala:0.14
 # dev-lang/perl
 # dev-perl/Text-CSV
 
+GTK2_BUILDDIR="${WORKDIR}/${P}_gtk2"
+GTK3_BUILDDIR="${WORKDIR}/${P}_gtk3"
+
 pkg_setup() {
 	python_set_active_version 2
 	python_pkg_setup
-	if use gstreamer && use pulseaudio ; then
-		ewarn "spice-gtk can use only one audio backend: pulseaudio will be used since you enabled both."
-	fi
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/0.12-parallel-install.patch"
+	mkdir ${GTK2_BUILDDIR} || die 
+	mkdir ${GTK3_BUILDDIR} || die 
+
+	epatch \
+		"${FILESDIR}/0.12-parallel-install.patch" \
+		"${FILESDIR}/${PV}-Deal-with-libusbredirparser.pc-rename-to-libusbredir.patch"
 	eautoreconf
 }
 
 src_configure() {
+	local myconf
 	local audio="no"
-	local gtk="2.0"
 
 	use gstreamer && audio="gstreamer"
 	use pulseaudio && audio="pulse"
-	# TODO: do a double build like gtk-vnc does to install both gtk2 & gtk3 libs
-	use gtk3 && gtk="3.0"
+
 	if use vala ; then
 		# force vala regen for MinGW, etc
 		rm -fv gtk/controller/controller.{c,vala.stamp} gtk/controller/menu.c
 	fi
 
-	econf --disable-maintainer-mode \
-		VALAC=$(type -P valac-0.14) \
-		VAPIGEN=$(type -P vapigen-0.14) \
+	myconf="
 		$(use_enable static-libs static) \
 		$(use_enable introspection) \
-		--with-audio="${audio}" \
+		--with-audio=${audio} \
 		$(use_with python) \
 		$(use_with sasl) \
 		$(use_enable smartcard) \
@@ -103,16 +107,69 @@ src_configure() {
 		$(use_with usbredir usb-acl-helper-dir /usr/libexec) \
 		$(use_enable policykit polkit) \
 		$(use_enable vala) \
-		--with-gtk="${gtk}" \
-		--disable-werror
+		--disable-werror"
+
+	cd ${GTK2_BUILDDIR}
+	echo "Running configure in ${GTK2_BUILDDIR}"
+	ECONF_SOURCE="${S}" econf --disable-maintainer-mode \
+		VALAC=$(type -P valac-0.14) \
+		VAPIGEN=$(type -P vapigen-0.14) \
+		--with-gtk=2.0 \
+		${myconf}
+
+	if use gtk3; then
+		cd ${GTK3_BUILDDIR}
+		echo "Running configure in ${GTK3_BUILDDIR}"
+		ECONF_SOURCE="${S}" econf --disable-maintainer-mode \
+			VALAC=$(type -P valac-0.14) \
+			VAPIGEN=$(type -P vapigen-0.14) \
+			--with-gtk=3.0 \
+			${myconf}
+	fi
+}
+
+src_compile() {
+	cd ${GTK2_BUILDDIR}
+	einfo "Running make in ${GTK2_BUILDDIR}"
+	default
+
+	if use gtk3; then
+		cd ${GTK3_BUILDDIR}
+		einfo "Running make in ${GTK3_BUILDDIR}"
+		default
+	fi
+}
+
+src_test() {
+	cd ${GTK2_BUILDDIR}
+	einfo "Running make check in ${GTK2_BUILDDIR}"
+	default
+
+	if use gtk3; then
+		cd ${GTK3_BUILDDIR}
+		einfo "Running make check in ${GTK3_BUILDDIR}"
+		default
+	fi
 }
 
 src_install() {
+	cd ${GTK2_BUILDDIR}
+	einfo "Running make check in ${GTK2_BUILDDIR}"
 	default
 
-	use static-libs || rm -rf "${D}"/usr/lib*/*.la
-	use python && rm -rf "${D}"/usr/lib*/python*/site-packages/*.la
-	use doc || rm -rf "${D}/usr/share/gtk-doc"
+	if use gtk3; then
+		cd ${GTK3_BUILDDIR}
+		einfo "Running make install in ${GTK3_BUILDDIR}"
+		default
+	fi
+
+	# Remove .la files if they're not needed
+	if ! use static-libs; then
+		find "${ED}" -name '*.la' -exec rm -f '{}' + || die
+	fi
+
+	use python && rm -rf "${ED}"/usr/lib*/python*/site-packages/*.la
+	use doc || rm -rf "${ED}/usr/share/gtk-doc"
 
 	make_desktop_entry spicy Spicy "utilities-terminal" "Network;RemoteAccess;"
 }
