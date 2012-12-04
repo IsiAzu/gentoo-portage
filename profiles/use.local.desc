@@ -2665,8 +2665,8 @@ media-libs/grilo:introspection - Use dev-libs/gobject-introspection for introspe
 media-libs/grilo:network - Enable network access for media discovery using net-libs/libsoup
 media-libs/grilo:vala - Generate bindings for dev-lang/vala
 media-libs/gst-plugins-bad:orc - Use dev-lang/orc for runtime optimisations
-media-libs/gst-plugins-base:introspection - Use dev-libs/gobject-introspection for introspection
 media-libs/gst-plugins-base:orc - Use dev-lang/orc for runtime optimisations
+media-libs/gst-plugins-base:pango - Enable pango GStreamer plugin
 media-libs/gst-plugins-good:orc - Use dev-lang/orc for runtime optimisations
 media-libs/gst-plugins-ugly:orc - Use dev-lang/orc for runtime optimisations
 media-libs/gst-rtsp-server:introspection - Use dev-libs/gobject-introspection for introspection
