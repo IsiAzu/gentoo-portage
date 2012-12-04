@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.40 2012/11/25 09:42:58 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.41 2012/12/04 04:16:52 williamh Exp $
 
 EAPI=4
 
@@ -54,14 +54,15 @@ src_prepare()
 src_configure()
 {
 	econf \
-		--bindir=/sbin \
+		--bindir=/bin \
+		--libdir=/$(get_libdir) \
+		--with-rootlibdir=/$(get_libdir) \
 		$(use_enable static-libs static) \
 		$(use_enable tools) \
 		$(use_enable debug) \
 		$(use_enable doc gtk-doc) \
 		$(use_with lzma xz) \
-		$(use_with zlib) \
-		--with-rootlibdir=/$(get_libdir)
+		$(use_with zlib)
 }
 
 src_install()
@@ -71,10 +72,13 @@ src_install()
 
 	if use tools; then
 		local cmd
-		for cmd in depmod insmod modinfo modprobe rmmod; do
-			dosym kmod /sbin/${cmd}
+		for cmd in depmod insmod lsmod modinfo modprobe rmmod; do
+			dosym kmod /bin/${cmd}
 		done
-		dosym /sbin/kmod /bin/lsmod
+		# Compatibility symlink(s):
+		# These are both hardcoded in the Linux kernel source tree wrt #426698
+		dosym /bin/kmod /sbin/depmod
+		dosym /bin/kmod /sbin/modprobe
 	fi
 
 	cat <<-EOF > "${T}"/usb-load-ehci-first.conf
