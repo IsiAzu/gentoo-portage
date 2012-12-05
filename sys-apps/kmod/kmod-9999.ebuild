@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.41 2012/12/04 04:16:52 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.42 2012/12/05 17:13:29 williamh Exp $
 
 EAPI=4
 
@@ -55,7 +55,6 @@ src_configure()
 {
 	econf \
 		--bindir=/bin \
-		--libdir=/$(get_libdir) \
 		--with-rootlibdir=/$(get_libdir) \
 		$(use_enable static-libs static) \
 		$(use_enable tools) \
