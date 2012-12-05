@@ -2844,6 +2844,7 @@ media-plugins/grilo-plugins:youtube - Build support for YouTube content discover
 media-plugins/gst-plugins-a52dec:orc - Use dev-lang/orc for runtime detection of CPU MMX/MMXEXT/3dNow! capabilities to pass down to a52dec library.
 media-plugins/gst-plugins-dts:orc - Use dev-lang/orc for runtime optimisations
 media-plugins/gst-plugins-ffmpeg:orc - Use dev-lang/orc for runtime optimisations
+media-plugins/gst-plugins-libav:orc - Use dev-lang/orc for runtime optimisations
 media-plugins/gst-plugins-meta:http - Enable http streaming via net-libs/libsoup
 media-plugins/gst-plugins-meta:libvisual - Enable visualization effects via media-libs/libvisual
 media-plugins/gst-plugins-meta:vpx - Enables vp8 codec support using libvpx, required to play some HTML5 videos
@@ -4566,11 +4567,12 @@ net-misc/ps3mediaserver:multiuser - Allow renderer customization per-user.
 net-misc/ps3mediaserver:transcode - Install optional dependencies for transcoding support via media-video/mplayer
 net-misc/ps3mediaserver:tsmuxer - Install optional dependencies for transcoding support via media-video/tsmuxer
 net-misc/quagga:bgpclassless - Apply unofficial patch to enable classless prefixes for BGP. Patch and information to be found at http://hasso.linux.ee/doku.php/english:network:quagga
+net-misc/quagga:logrotate - Use app-admin/logrotate for rotating logs
 net-misc/quagga:multipath - Enable multipath routes support for any number of routes
 net-misc/quagga:ospfapi - Enable OSPFAPI support for client applications accessing the OSPF link state database
-net-misc/quagga:pam - Add support for PAM (via sys-libs/pam) to the Quagga Virtual Terminal Interface Shell (vtysh); if the readline USE flag is disabled, this flag is ignored.
-net-misc/quagga:readline - Enable support for sys-libs/readline to provide the Quagga Virtual Terminal Interface Shell (vtysh).
-net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are chosen otherwise.
+net-misc/quagga:pam - Add support for PAM (via sys-libs/pam) to the Quagga Virtual Terminal Interface Shell (vtysh); if the readline USE flag is disabled, this flag is ignored
+net-misc/quagga:readline - Enable support for sys-libs/readline to provide the Quagga Virtual Terminal Interface Shell (vtysh)
+net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are chosen otherwise
 net-misc/rdesktop:pcsc-lite - Enable smartcard support with sys-apps/pcsc-lite driver
 net-misc/remmina:freerdp - Add support for the net-misc/freerdp application
 net-misc/remmina:ssh - Enable support for SSH/SFTP using net-libs/libssh
