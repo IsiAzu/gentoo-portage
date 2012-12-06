@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-2.0.21.ebuild,v 1.2 2012/11/19 21:12:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-2.0.21.ebuild,v 1.4 2012/12/06 03:58:27 jer Exp $
 
 EAPI="2"
 
