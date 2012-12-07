@@ -1,6 +1,6 @@
 DEFINED_PHASES=-
 DESCRIPTION=Virtual for JDK
-KEYWORDS=~amd64 ~ia64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris
+KEYWORDS=~amd64 ~ia64 x86 ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris
 RDEPEND=|| ( =dev-java/icedtea-bin-7* =dev-java/icedtea-7* =dev-java/oracle-jdk-bin-1.7.0* =dev-java/soylatte-jdk-bin-7* )
 SLOT=1.7
-_md5_=b001dd485c1b97fe63a460db804be67d
+_md5_=4a597343efa1b4110eebaf0afa29284a

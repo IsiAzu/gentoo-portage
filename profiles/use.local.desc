@@ -6275,10 +6275,8 @@ x11-wm/windowmaker:vdesktop - Enable dynamic virtual desktop (conflicts with sof
 x11-wm/windowmaker:xrandr - Enable XRandR window extension support
 x11-wm/xmonad:default-term - Pull terminal specified in default xmonad config to be a bit less hostile by default.
 x11-wm/xpra:clipboard - Enable clipboard support
-x11-wm/xpra:parti - Runtime support for partioning window manager
 x11-wm/xpra:rencode - Enable rencode support
 x11-wm/xpra:server - Build server-side code
-x11-wm/xpra:ssh - Runtime support for secure shell communication
 x11-wm/xpra:vpx - Enable vpx image format support
 x11-wm/xpra:webp - Enable webp image format support
 xfce-base/libxfce4ui:glade - Build support for Glade 3's GtkBuilder implementation
