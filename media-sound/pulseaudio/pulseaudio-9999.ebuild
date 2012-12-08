@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-9999.ebuild,v 1.30 2012/12/02 02:11:15 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-9999.ebuild,v 1.31 2012/12/07 20:13:21 ford_prefect Exp $
 
 EAPI=4
 
@@ -41,8 +41,9 @@ RDEPEND=">=media-libs/libsndfile-1.0.20
 	gtk? ( x11-libs/gtk+:2 )
 	gnome? ( >=gnome-base/gconf-2.4.0 )
 	bluetooth? (
-		>=net-wireless/bluez-4
+		>=net-wireless/bluez-4.99
 		>=sys-apps/dbus-1.0.0
+		media-libs/sbc
 	)
 	asyncns? ( net-libs/libasyncns )
 	udev? ( >=virtual/udev-143[hwdb] )
@@ -64,6 +65,7 @@ RDEPEND=">=media-libs/libsndfile-1.0.20
 DEPEND="${RDEPEND}
 	sys-devel/m4
 	doc? ( app-doc/doxygen )
+	test? ( dev-libs/check )
 	X? (
 		x11-proto/xproto
 		>=x11-libs/libXtst-1.0.99.2
@@ -90,18 +92,17 @@ REQUIRED_USE="bluetooth? ( dbus )"
 
 pkg_setup() {
 	enewgroup audio 18 # Just make sure it exists
-	enewgroup pulse-access
-	enewgroup pulse
-	enewuser pulse -1 -1 /var/run/pulse pulse,audio
+
+	if use system-wide; then
+		enewgroup pulse-access
+		enewgroup pulse
+		enewuser pulse -1 -1 /var/run/pulse pulse,audio
+	fi
 }
 
 EGIT_BOOTSTRAP="./bootstrap.sh"
 
 src_configure() {
-	# It's a binutils bug, once I can find time to fix that I'll add a
-	# proper dependency and fix this up. — flameeyes
-	append-ldflags $(no-as-needed)
-
 	if use gdbm; then
 		myconf+=" --with-database=gdbm"
 	#elif use tdb; then
@@ -122,7 +123,6 @@ src_configure() {
 		$(use_enable jack) \
 		$(use_enable lirc) \
 		$(use_enable avahi) \
-		--disable-hal \
 		$(use_enable dbus) \
 		$(use_enable gnome gconf) \
 		$(use_enable gtk gtk2) \
@@ -195,7 +195,6 @@ src_install() {
 
 	# Create the state directory
 	use prefix || diropts -o pulse -g pulse -m0755
-	keepdir /var/run/pulse
 
 	find "${D}" -name '*.la' -delete
 }
@@ -225,6 +224,4 @@ pkg_postinst() {
 		elog "your Bluetooth controller enabled and inserted at bootup or"
 		elog "PulseAudio will refuse to start."
 	fi
-
-	eselect esd update --if-unset
 }
