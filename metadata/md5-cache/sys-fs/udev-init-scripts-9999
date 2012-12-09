@@ -8,4 +8,4 @@ RDEPEND=>=sys-fs/udev-187 sys-apps/openrc !<sys-fs/udev-186
 RESTRICT=test
 SLOT=0
 _eclasses_=git-2	15733ab6a6feb34af9837b41623c2bad
-_md5_=4f57d7becf73f085a0eca3c5656c1479
+_md5_=14af5c2fa03b7605bde13a601e70a259
