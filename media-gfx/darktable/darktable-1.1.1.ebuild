@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/darktable/darktable-1.1.1.ebuild,v 1.1 2012/12/10 04:30:54 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/darktable/darktable-1.1.1.ebuild,v 1.4 2012/12/10 21:56:56 radhermit Exp $
 
 EAPI="5"
 
@@ -14,8 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
 LICENSE="GPL-3 CCPL-Attribution-3.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="colord debug doc facebook flickr geo gnome-keyring gphoto2 kde nls opencl openmp +rawspeed
-+slideshow video_cards_nvidia"
+IUSE="colord debug doc facebook flickr geo gnome-keyring gphoto2 kde nls opencl openmp +rawspeed +slideshow"
 
 RDEPEND="
 	dev-db/sqlite:3
@@ -82,10 +81,10 @@ src_configure() {
 		$(cmake-utils_use_use gphoto2 CAMERA_SUPPORT)
 		$(cmake-utils_use_use kde KWALLET)
 		$(cmake-utils_use_use nls NLS)
+		$(cmake-utils_use_use opencl OPENCL)
 		$(cmake-utils_use_use openmp OPENMP)
 		$(cmake-utils_use !rawspeed DONT_USE_RAWSPEED)
 		$(cmake-utils_use_build slideshow SLIDESHOW)
-		-DUSE_OPENCL=$(usex opencl ON OFF)
 		-DINSTALL_IOP_EXPERIMENTAL=ON
 		-DINSTALL_IOP_LEGACY=ON
 	)
@@ -94,7 +93,7 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
-	use doc && dodoc "${WORKDIR}"/${PN}-usermanual-${PV}.pdf
+	use doc && dodoc "${DISTDIR}"/${PN}-usermanual-${PV}.pdf
 }
 
 pkg_preinst() {
