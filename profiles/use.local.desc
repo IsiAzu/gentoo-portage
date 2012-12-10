@@ -1632,7 +1632,6 @@ dev-python/pandas:excel - Pull a few Python packages Microsoft Excel i/o
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
 dev-python/psycopg:mxdatetime - Enable support for MX DateTime and use it instead of Python's built-in datetime module
-dev-python/pygobject:introspection - Use dev-libs/gobject-introspection for introspection
 dev-python/pylons:genshi - Add optional genshi support
 dev-python/pylons:jinja - Add optional jinja support
 dev-python/pymongo:mod_wsgi - Disable the C extension to work with mod_wsgi.
@@ -1783,6 +1782,8 @@ dev-util/coccigrep:vim - Install the coccigrep vim plugin
 dev-util/codeblocks:contrib - Build additional contrib components
 dev-util/cppcheck:htmlreport - install cppcheck-htmlreport
 dev-util/ctags:ada - Enable Ada support
+dev-util/cwdiff:a2ps - install app-text/a2ps for postscript output
+dev-util/cwdiff:mercurial - install hg wdiff alias for dev-vcs/mercurial
 dev-util/dialog:minimal - Disable library, install command-line program only
 dev-util/fatrace:powertop - Add powetop integration
 dev-util/geany:vte - Enable Terminal support (x11-libs/vte)
@@ -2140,7 +2141,6 @@ gnome-extra/gnome-games:artworkextra - Installs extra artwork for various games
 gnome-extra/gnome-games:clutter - Install games that use media-libs/clutter
 gnome-extra/gnome-games:glchess - Install Chess written in dev-lang/vala and OpenGL
 gnome-extra/gnome-games:introspection - Use dev-libs/gobject-introspection for introspection
-gnome-extra/gnome-games:seed - Install swell-foop and lightsoff which are written in JavaScript using dev-libs/seed
 gnome-extra/gnome-games:sudoku - Install the game Sudoku which uses dev-python/pygobject and introspection
 gnome-extra/gnome-media:twolame - Allow encoding MPEG Audio Layer 2 (MP2) files using twolame
 gnome-extra/gnome-packagekit:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for rebooting
