@@ -1,13 +1,13 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/gnome-bluetooth/gnome-bluetooth-3.2.2.ebuild,v 1.5 2012/09/27 20:19:00 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/gnome-bluetooth/gnome-bluetooth-3.2.2.ebuild,v 1.7 2012/12/11 21:59:34 ssuominen Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
 # libgnome-bluetooth-applet.la is needed by gnome-shell during compilation
 GNOME2_LA_PUNT="no"
 
-inherit eutils gnome2 multilib user
+inherit eutils gnome2 multilib user udev
 
 DESCRIPTION="Fork of bluez-gnome focused on integration with GNOME"
 HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
@@ -28,7 +28,7 @@ COMMON_DEPEND=">=dev-libs/glib-2.25.7:2
 RDEPEND="${COMMON_DEPEND}
 	>=net-wireless/bluez-4.34
 	app-mobilephone/obexd
-	sys-fs/udev
+	virtual/udev
 	x11-themes/gnome-icon-theme-symbolic"
 # To break circular dependencies
 PDEPEND=">=gnome-base/gnome-control-center-2.91"
@@ -75,8 +75,7 @@ src_install() {
 		rm -v "${ED}/usr/$(get_libdir)/${la}" || die
 	done
 
-	insinto /$(get_libdir)/udev/rules.d
-	doins "${FILESDIR}"/80-rfkill.rules
+	udev_dorules "${FILESDIR}"/80-rfkill.rules
 }
 
 pkg_postinst() {
