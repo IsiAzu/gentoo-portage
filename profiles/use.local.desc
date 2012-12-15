@@ -1325,7 +1325,6 @@ dev-libs/bitset:tcmalloc - Use tcmalloc from dev-util/google-perftools for alloc
 dev-libs/blitz:boost - Enable usage of boost::serialization
 dev-libs/boost:debug - Build and install only the debug version of the Boost libraries. Only enable this flag if you're developing against boost.
 dev-libs/boost:doc - Install the full API documentation documentation. This takes over 200MB of extra disk space.
-dev-libs/boost:eselect - Run "eselect boost update" even if version is already selected
 dev-libs/boost:nls - Build libboost_locale. This library requires compatible C library interfaces, which might not be provided by uClibc or other embedded libraries.
 dev-libs/boost:threads - Build multi-thread-compatible libraries instead of single-threaded only.
 dev-libs/boost:tools - Build and install the boost tools (bcp, quickbook, inspect, wave)
@@ -3908,8 +3907,11 @@ net-im/ekg2:gnutls - Enable SSL/TLS support through GnuTLS for the plugins suppo
 net-im/ekg2:gpg - Enable jabber message encryption through app-crypt/gpgme.
 net-im/ekg2:inotify - Enable inotify-based filesystem moniotoring support for xmsg&mail plugins.
 net-im/ekg2:jpeg - JPEG token support for Gadu-Gadu protocol.
+net-im/ekg2:minimal - Disable building extra plugins with no additional deps.
+net-im/ekg2:openssl - Support encryption in sim plugin, using OpenSSL.
 net-im/ekg2:oracle - Support logging messages into Oracle database.
 net-im/ekg2:sqlite - Support logging messages into SQLite2 database. If 'sqlite3' is set too, it will be used instead.
+net-im/ekg2:sqlite2 - Prefer SQLite2 over SQLite3 (if USE=sqlite is set).
 net-im/ekg2:sqlite3 - Support logging messages into SQLite3 database. If 'sqlite' is set too, SQLite3 will be used.
 net-im/ekg2:ssl - Enable the complete SSL/TLS support through OpenSSL. This also enables the 'sim' plugin which relies on OpenSSL.
 net-im/empathy:call - Enable Call channel support using net-libs/telepathy-farstream for audio/video calls
