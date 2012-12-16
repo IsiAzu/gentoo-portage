@@ -1,0 +1,47 @@
+# Copyright 1999-2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/harfbuzz/harfbuzz-0.9.9.ebuild,v 1.1 2012/12/16 10:19:03 scarabeus Exp $
+
+EAPI=5
+
+EGIT_REPO_URI="git://anongit.freedesktop.org/harfbuzz"
+[[ ${PV} == 9999 ]] && inherit git-2 autotools
+
+inherit eutils
+
+DESCRIPTION="An OpenType text shaping engine"
+HOMEPAGE="http://www.freedesktop.org/wiki/Software/HarfBuzz"
+[[ ${PV} == 9999 ]] || SRC_URI="http://www.freedesktop.org/software/${PN}/release/${P}.tar.bz2"
+
+LICENSE="MIT"
+SLOT="0"
+[[ ${PV} == 9999 ]] || \
+KEYWORDS="~amd64 ~arm ~ppc ~x86 ~amd64-linux ~x86-linux"
+IUSE="static-libs"
+
+RDEPEND="
+	dev-libs/glib:2
+	dev-libs/icu
+	media-gfx/graphite2
+	media-libs/freetype:2
+	x11-libs/cairo
+"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig
+"
+# needed for autoreconf
+[[ ${PV} == 9999 ]] && DEPEND+=" dev-util/gtk-doc-am"
+
+src_prepare() {
+	[[ ${PV} == 9999 ]] && eautoreconf
+}
+
+src_configure() {
+	econf \
+		$(use_enable static-libs static)
+}
+
+src_install() {
+	default
+	prune_libtool_files --all
+}
