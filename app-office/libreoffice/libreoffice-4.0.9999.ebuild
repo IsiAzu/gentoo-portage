@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-4.0.9999.ebuild,v 1.6 2012/12/18 15:28:45 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-4.0.9999.ebuild,v 1.8 2012/12/18 21:52:42 scarabeus Exp $
 
 EAPI=4
 
@@ -71,7 +71,7 @@ IUSE="bluetooth +branding +cups dbus debug eds gnome gstreamer +gtk
 gtk3 jemalloc kde mysql nsplugin odk opengl pdfimport postgres
 telepathy test +vba +webdav"
 
-LO_EXTS="nlpsolver presenter-console presenter-minimizer scripting-beanshell scripting-javascript wiki-publisher"
+LO_EXTS="nlpsolver presenter-minimizer scripting-beanshell scripting-javascript wiki-publisher"
 # Unpackaged separate extensions:
 # diagram: lo has 0.9.5 upstream is weirdly patched 0.9.4 -> wtf?
 # hunart: only on ooo extensions -> fubared download path somewhere on sf
@@ -335,11 +335,6 @@ src_prepare() {
 	eautoreconf
 	# hack in the autogen.sh
 	touch autogen.lastrun
-
-	# mysql dmake build is MESSY at minimal
-	sed -i \
-		-e "s:/usr/lib/:${EPREFIX}/usr/$(get_libdir):g" \
-		mysqlc/source/makefile.mk || die
 
 	# system pyuno mess
 	sed \
