@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ffi/ffi-1.0.11.ebuild,v 1.4 2012/10/28 17:17:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ffi/ffi-1.2.0.ebuild,v 1.1 2012/12/21 07:49:56 graaff Exp $
 
-EAPI=4
+EAPI=5
 
 # jruby → unneeded, this is part of the standard JRuby distribution, and
 # would just install a dummy.
@@ -10,17 +10,16 @@ USE_RUBY="ruby18 ruby19 ree18"
 
 RUBY_FAKEGEM_TASK_TEST="specs"
 
-RUBY_FAKEGEM_TASK_DOC="doc:rdoc"
+RUBY_FAKEGEM_TASK_DOC="doc:yard"
 RUBY_FAKEGEM_DOCDIR="doc"
-RUBY_FAKEGEM_EXTRADOC="History.txt README.rdoc"
+RUBY_FAKEGEM_EXTRADOC="README.md"
 
 inherit ruby-fakegem
 
 DESCRIPTION="Ruby extension for programmatically loading dynamic libraries"
 HOMEPAGE="http://wiki.github.com/ffi/ffi"
 
-SRC_URI="http://github.com/${PN}/${PN}/tarball/${PV} -> ${PN}-git-${PV}.tgz"
-RUBY_S="${PN}-${PN}-*"
+SRC_URI="http://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${PN}-git-${PV}.tgz"
 
 IUSE=""
 LICENSE="BSD"
@@ -30,7 +29,7 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-li
 RDEPEND="${RDEPEND} virtual/libffi"
 DEPEND="${DEPEND} virtual/libffi"
 
-ruby_add_bdepend "dev-ruby/rake-compiler dev-ruby/rdoc
+ruby_add_bdepend "dev-ruby/rake-compiler dev-ruby/yard
 	test? ( dev-ruby/rspec:2 )"
 
 ruby_add_rdepend "virtual/ruby-threads"
