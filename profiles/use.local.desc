@@ -1379,7 +1379,6 @@ dev-libs/libcgroup:tools - Install the cgroup rules processing daemon and init/c
 dev-libs/libdbusmenu:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/libgee:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/libgpg-error:common-lisp - Install common-lisp files
-dev-libs/libgusb:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/libgusb:vala - Enable bindings for dev-lang/vala
 dev-libs/libindicate:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/libisoburn:cdio - Enable EXPERIMENTAL use of libcdio as system adapter
@@ -1984,6 +1983,7 @@ games-puzzle/xlogical:alt_gfx - Use alternate graphics which are closer to the o
 games-roguelike/angband:sound - Enable and install sounds
 games-roguelike/stone-soup:ncurses - Enable for console based build (uses ncurses).
 games-roguelike/stone-soup:tiles - Enable for graphical (tiled) build.
+games-roguelike/tomenet:server - Compile server support
 games-rpg/arx-libertatis:crash-reporter - Build a x11-libs/qt-gui-based tool that allows to submit crash information to the upstream backtracker.
 games-rpg/arx-libertatis:debug - Enable asserts and debug logging.
 games-rpg/arx-libertatis:demo - Install the Arx Fatalis demo data.
@@ -2103,7 +2103,6 @@ gnome-base/librsvg:gtk3 - Build with gtk+-3 support
 gnome-base/librsvg:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-base/librsvg:tools - Build miscellaneous tools
 gnome-base/librsvg:vala - Enable bindings for dev-lang/vala
-gnome-base/nautilus:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-base/nautilus:packagekit - Use packagekit to search for programs to open unknown file types
 gnome-base/nautilus:previewer - Use gnome-extra/sushi to preview files from the file mananger
 gnome-base/nautilus:sendto - Enable the nautilus-sendto extension to send files to various locations/devices
@@ -4661,7 +4660,6 @@ net-p2p/eiskaltdcpp:json - Enable JSON for cli and daemon
 net-p2p/eiskaltdcpp:libcanberra - Enable sound notifications support over libcanberra in EiskaltDC++ Gtk
 net-p2p/eiskaltdcpp:minimal - Don't install headers
 net-p2p/fms:frost - Add support for frost boards
-net-p2p/freenet:freemail - Add Freemail support
 net-p2p/gift:ares - pull in Ares plugin
 net-p2p/gift:fasttrack - pull in FastTrack plugin
 net-p2p/gift:gnutella - pull in Gnutella plugin
@@ -5897,7 +5895,6 @@ x11-libs/cairo:lcdfilter - Add FreeType LCD filtering, ClearType-style behavior 
 x11-libs/cairo:legacy-drivers - Include the buggy gradients patch (for legacy drivers, such as nvidia-drivers older than 304.30)
 x11-libs/cairo:opengl - Use Mesa backend for acceleration
 x11-libs/cairo:openvg - Use OpenVG for backend acceleration
-x11-libs/colord-gtk:introspection - Use dev-libs/gobject-introspection for introspection
 x11-libs/colord-gtk:vala - Generate bindings for dev-lang/vala
 x11-libs/fltk:games - Builds and installs some extra games
 x11-libs/glamor:gles - Build glamor based on gles2
@@ -6057,7 +6054,6 @@ x11-misc/bmpanel:libevent - Use the libevent event loop interface
 x11-misc/bumblebee:bbswitch - Add dependency on sys-kernel/bbswitch for PM feature
 x11-misc/cdm:consolekit - Enable native consolekit support
 x11-misc/colord:gusb - Enable dev-libs/libgusb support, needed for colorimeter drivers
-x11-misc/colord:introspection - Use dev-libs/gobject-introspection for introspection
 x11-misc/colord:vala - Generate bindings for dev-lang/vala
 x11-misc/dmenu:xft - Enable unofficial x11-libs/libXft support
 x11-misc/etm:ical - Enable export of ical format files by depending on dev-python/icalendar
