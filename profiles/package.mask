@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14314 2012/12/21 09:19:58 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14318 2012/12/21 22:08:43 swegener Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,20 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Sven Wegener <swegener@gentoo.org> (21 Dec 2012)
+# temporary mask for socket location change
+=app-misc/screen-4.0.3-r8
+
+# Rick Farina <zerochaos@gentoo.org> (21 Dec 2012)
+# madwifi has been replaced by ath5k and ath9k in kernel
+# drivers and is subject to numerous long standing bugs
+net-wireless/madwifi-ng-tools
+net-wireless/madwifi-ng
+
+# Pawel Hajdan jr <phajdan.jr@gentoo.org> (21 Dec 2012)
+# Masked for testing to avoid drama like bug #439892 .
+>=dev-libs/icu-50.1.1
 
 # Julian Ospald <hasufell@gentoo.org> (20 Dev 2012)
 # old and subject to removal
@@ -622,6 +636,7 @@ gnome-extra/gnome-clocks
 =net-libs/libsoup-gnome-2.40*
 net-libs/libzapojit
 >=net-libs/rest-0.7.90
+=net-im/telepathy-logger-0.6*
 =net-libs/telepathy-glib-0.20*
 =net-libs/webkit-gtk-1.10*
 =net-misc/vinagre-3.6*
