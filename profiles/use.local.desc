@@ -4888,8 +4888,8 @@ sci-chemistry/gromacs:avx256 - Enable 256bit avx (e.g. Intel Sandy Bridge)
 sci-chemistry/gromacs:cuda - Enable cuda non-bonded kernels
 sci-chemistry/gromacs:double-precision - More precise calculations at the expense of speed
 sci-chemistry/gromacs:fkernels - Enable building of Fortran Kernels for platforms that dont have assembly loops
+sci-chemistry/gromacs:offensive - Enable gromacs partly offensive quotes
 sci-chemistry/gromacs:openmm - Add acceleration through sci-libs/openmm
-sci-chemistry/gromacs:power6 - Enable Power6 optimizations
 sci-chemistry/gromacs:single-precision - Single precision version of gromacs (default)
 sci-chemistry/gromacs:sse41 - Enable sse4.1 acceleration
 sci-chemistry/gsim:emf - Support for .emf export
@@ -4972,7 +4972,7 @@ sci-libs/acml:int64 - Install the 64 bits integer library
 sci-libs/adolc:sparse - Add support for sparse matrix algebra with sci-libs/colpack
 sci-libs/armadillo:atlas - Link with ATLAS libraries for cblas and clapack (needs sci-libs/lapack-atlas)
 sci-libs/arprec:fma - Use the Fused Multiply Add instruction set
-sci-libs/arprec:qd - Use sci-libs/qdfor quad-double datatype
+sci-libs/arprec:qd - Use sci-libs/qd for quad-double datatype
 sci-libs/ceres-solver:gflags - Use dev-cpp/gflags for flag parsing
 sci-libs/ceres-solver:metis - Use METIS via sci-libs/cholmod for matrix partitioning
 sci-libs/ceres-solver:protobuf - Use dev-libs/protobuf to encode structured data
