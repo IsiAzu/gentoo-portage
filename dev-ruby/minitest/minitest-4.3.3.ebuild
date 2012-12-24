@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/minitest/minitest-3.3.0.ebuild,v 1.1 2012/08/27 06:05:05 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/minitest/minitest-4.3.3.ebuild,v 1.1 2012/12/24 08:13:10 graaff Exp $
 
-EAPI=4
+EAPI=5
 # jruby → tests fail, reported upstream
 # http://rubyforge.org/tracker/index.php?func=detail&aid=27657&group_id=1040&atid=4097
 USE_RUBY="ruby18 ruby19 ree18 jruby"
@@ -20,14 +20,10 @@ HOMEPAGE="https://github.com/seattlerb/minitest"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE=""
+IUSE="doc test"
 
 ruby_add_bdepend "
-	doc? ( dev-ruby/hoe dev-ruby/rdoc )
-	test? (
-		dev-ruby/rdoc
-		dev-ruby/hoe
-	)"
+	doc? ( dev-ruby/hoe dev-ruby/rdoc )"
 
 each_ruby_prepare() {
 	case ${RUBY} in
@@ -43,6 +39,20 @@ each_ruby_prepare() {
 			sed -i -e 's/not :xxx/not \\"xxx\\"/' test/minitest/test_minitest_spec.rb || die
 				;;
 		*)
+				;;
+	esac
+}
+
+each_ruby_test() {
+	case ${RUBY} in
+		*jruby)
+			# JRuby 1.6.x has threading bugs that are triggered by
+			# minitests 4's new parallel test support. Should be fixed
+			# in JRuby 1.7.
+			N=1 ${RUBY} -Ilib:bin:test:. -S testrb test || die
+				;;
+		*)
+			${RUBY} -Ilib:bin:test:. -S testrb test || die
 				;;
 	esac
 }
