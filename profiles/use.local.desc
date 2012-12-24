@@ -1378,7 +1378,6 @@ dev-libs/libcdio:minimal - Only build the libcdio library and little more, just 
 dev-libs/libcgroup:daemon - Install the configuration tools and init/config files.
 dev-libs/libcgroup:tools - Install the cgroup rules processing daemon and init/config files.
 dev-libs/libdbusmenu:introspection - Use dev-libs/gobject-introspection for introspection
-dev-libs/libgee:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/libgpg-error:common-lisp - Install common-lisp files
 dev-libs/libgusb:vala - Enable bindings for dev-lang/vala
 dev-libs/libindicate:introspection - Use dev-libs/gobject-introspection for introspection
@@ -2079,7 +2078,6 @@ gnome-base/gnome-light:automount - Use gnome-base/gvfs[gdu] for automounting of 
 gnome-base/gnome-light:fallback - Install gnome-base/gnome-panel and x11-wm/metacity for the GNOME 3 fallback mode
 gnome-base/gnome-light:gnome-shell - Install gnome-base/gnome-shell and x11-wm/mutter for the standard GNOME 3 desktop mode
 gnome-base/gnome-panel:bonobo - Enable Bonobo compatibility modules for applets still not ported to DBUS.
-gnome-base/gnome-panel:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-base/gnome-session:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for session tracking
 gnome-base/gnome-settings-daemon:colord - Support color management using x11-misc/colord
 gnome-base/gnome-settings-daemon:packagekit - Enable support for the distro-neutral package manager GUI app-admin/packagekit
@@ -3402,7 +3400,6 @@ media-video/smplayer2:download-subs - Enable subtitle downloader (requires QuaZi
 media-video/totem:bluetooth - Enable support for user-presence detection via the user's bluetooth handset using net-wireless/bluez
 media-video/totem:flash - Install browser plugin for playing embedded Adobe Flash videos. Warning: breaks non-video Flash objects on many websites.
 media-video/totem:grilo - Use media-libs/grilo to browse media content from various sources
-media-video/totem:introspection - Use dev-libs/gobject-introspection for introspection
 media-video/totem:iplayer - Enable BBC player support
 media-video/totem:lirc - Enable support for controlling Totem with a remote control using app-misc/lirc
 media-video/totem:nautilus - Enable the nautilus extension
@@ -4264,7 +4261,6 @@ net-libs/ptlib:vxml - Enable VoiceXML support
 net-libs/ptlib:wav - Enable WAVFILE support
 net-libs/qxmpp:extras - Obsolete flag left for compability with leechcraft ebuilds
 net-libs/rest:gnome - Extract proxy information using net-libs/libsoup-gnome
-net-libs/rest:introspection - Use dev-libs/gobject-introspection for introspection
 net-libs/telepathy-glib:vala - Enable bindings for dev-lang/vala
 net-libs/telepathy-qt:farsight - Enable support for farsight connection manager
 net-libs/telepathy-qt:farstream - Enable support for audio/video calls via farstream
@@ -4762,7 +4758,6 @@ net-wireless/blueman:network - Add functionality to setup (host) PAN connections
 net-wireless/blueman:sendto - Install the sendto-plugin for gnome-base/nautilus
 net-wireless/bluez:consolekit - Use sys-auth/pambase[consolekit] to determine access to bluetooth devices based on whether a user is logged in locally or remotely
 net-wireless/bluez:test-programs - Install tools for testing of various Bluetooth functions
-net-wireless/gnome-bluetooth:introspection - Use dev-libs/gobject-introspection for introspection
 net-wireless/gnome-bluetooth:nautilus - Build the gnome-extra/nautilus-sendto plugin
 net-wireless/gnome-bluetooth:sendto - Build the gnome-extra/nautilus-sendto plugin
 net-wireless/gnuradio:audio - enable audio output
