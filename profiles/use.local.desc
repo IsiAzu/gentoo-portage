@@ -1009,7 +1009,7 @@ dev-db/mysql:systemtap - Build support for profiling and tracing using dev-util/
 dev-db/mysql:test - Install upstream testsuites for end use.
 dev-db/mysql:xtradb - Add experimental support for Percona's InnoDB replacement: XtraDB
 dev-db/mysql-connector-c++:gcov - Build coverage support
-dev-db/pgadmin3:database-designer - Enable the Database Designer component
+dev-db/pgadmin3:databasedesigner - Enable the Database Designer component
 dev-db/pgpool2:memcached - Use memcached for query caching.
 dev-db/phpmyadmin:setup - Installs the phpMyAdmin setup utility. Users who don't use the utility should disable this USE flag for security reasons as the setup tool was the target of various exploits in the past.
 dev-db/postgis:geos - Add the sci-libs/geos library for exact topological tests
@@ -1550,10 +1550,13 @@ dev-python/PyFoam:extras - Enable optional dependencies
 dev-python/PyQt4:X - Build QtGui, QtDesigner and QtScriptTools modules
 dev-python/PyQt4:assistant - Build QtHelp and QtAssistant modules
 dev-python/PyQt4:declarative - Build QtDeclarative module
+dev-python/PyQt4:help - Build QtHelp module
 dev-python/PyQt4:kde - Select media-libs/phonon as Phonon variant (needed for KDE)
 dev-python/PyQt4:multimedia - Build QtMultimedia module
 dev-python/PyQt4:opengl - Build QtOpenGL module
 dev-python/PyQt4:phonon - Build phonon module
+dev-python/PyQt4:script - Build QtScript module
+dev-python/PyQt4:scripttools - Build QtScriptTools module
 dev-python/PyQt4:sql - Build QtSql module
 dev-python/PyQt4:svg - Build QtSvg module
 dev-python/PyQt4:webkit - Build QtWebKit module
@@ -2073,6 +2076,7 @@ gnome-base/gnome-light:automount - Use gnome-base/gvfs[gdu] for automounting of 
 gnome-base/gnome-light:fallback - Install gnome-base/gnome-panel and x11-wm/metacity for the GNOME 3 fallback mode
 gnome-base/gnome-light:gnome-shell - Install gnome-base/gnome-shell and x11-wm/mutter for the standard GNOME 3 desktop mode
 gnome-base/gnome-panel:bonobo - Enable Bonobo compatibility modules for applets still not ported to DBUS.
+gnome-base/gnome-session:gconf - Optional support for gnome-base/gconf configuration storage system
 gnome-base/gnome-session:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for session tracking
 gnome-base/gnome-settings-daemon:colord - Support color management using x11-misc/colord
 gnome-base/gnome-settings-daemon:i18n - Enable support for enhanced input methods through app-i18n/ibus
@@ -3701,6 +3705,7 @@ net-dialup/ppp:pam - Enables PAM (Pluggable Authentication Modules) support
 net-dialup/ppp:radius - Enables RADIUS support
 net-dialup/pptpd:gre-extreme-debug - Log all GRE accepted packages when in debug mode (required if you want upstream support)
 net-dialup/xl2tpd:dnsretry - Patch for host lookup retries, activated by redial feature
+net-dialup/xl2tpd:kernel - Enable kernel interface for PPPoL2TP
 net-dns/avahi:autoipd - Build and install the IPv4LL (RFC3927) network address configuration daemon
 net-dns/avahi:bookmarks - Install the avahi-bookmarks application (requires dev-python/twisted)
 net-dns/avahi:gtk3 - Build the avahi-ui-gtk3 library, and use gtk3 for the avahi utilities under USE=utils
@@ -4261,7 +4266,6 @@ net-libs/telepathy-qt:farstream - Enable support for audio/video calls via farst
 net-libs/telepathy-qt:glib - Enable support for various telepathy/glib related packages
 net-libs/webkit-gtk:coverage - Enable code coverage support
 net-libs/webkit-gtk:geoloc - Enable geolocation support through app-misc/geoclue
-net-libs/webkit-gtk:introspection - Use dev-libs/gobject-introspection for introspection
 net-libs/webkit-gtk:webgl - Build support for the WebGL HTML API using virtual/opengl
 net-libs/webkit-gtk:webkit2 - Enable WebKit2 API that splits web content rendering and application UI into separate processes
 net-libs/wt:extjs - Build Wt Ext library with JavaScript-only widgets (http://extjs.com/)
