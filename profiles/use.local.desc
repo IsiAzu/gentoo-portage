@@ -2053,7 +2053,6 @@ gnome-base/gdm:dmx - Enables Distributed Multihead X (DMX) support
 gnome-base/gdm:fallback - Install x11-wm/metacity as fallback in case gnome-shell greeter fails to start
 gnome-base/gdm:fprint - Enables experimental fingerprint authentication using sys-auth/fprintd
 gnome-base/gdm:gnome-shell - Enables a greeter based on GNOME Shell (uses OpenGL)
-gnome-base/gdm:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-base/gdm:plymouth - Enable support for smooth transition from sys-boot/plymouth
 gnome-base/gdm:remote - Enables support for secure remote connections
 gnome-base/gdm:smartcard - Enables experimental smartcard authentication
@@ -2514,7 +2513,6 @@ media-gfx/digikam:thumbnails - Enable thumbnails database support
 media-gfx/digikam:video - Pull in mplayerthumbs to enable video thumbnails
 media-gfx/enblend:gpu - GPU support for Enblend
 media-gfx/enblend:image-cache - allow for processing of large images
-media-gfx/eog:introspection - Use dev-libs/gobject-introspection for introspection
 media-gfx/eog-plugins:flickr - Enable uploading to Flickr
 media-gfx/eog-plugins:map - Enable world map display using media-libs/libchamplain
 media-gfx/eog-plugins:picasa - Enable uploading to Google's Picasa Web Albums
@@ -5718,6 +5716,7 @@ www-apps/venus:redland - Enable support for Redland RDF
 www-apps/viewvc:cvsgraph - Add dev-vcs/cvsgraph support to show graphical views of revisions and branches
 www-apps/viewvc:mod_wsgi - Add www-apache/mod_wsgi support
 www-apps/viewvc:pygments - Add dev-python/pygments support for syntax highlighting
+www-client/chromium:bindist - Disable patent-encumbered HTML5 video codecs
 www-client/chromium:system-ffmpeg - Use system ffmpeg instead of bundled ffmpeg.
 www-client/chromium:tcmalloc - Use bundled tcmalloc instead of system malloc.
 www-client/dwb:gtk3 - Link against x11-libs/gtk+:3 instead of x11-libs/gtk+:2
