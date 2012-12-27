@@ -1,6 +1,27 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/package.use.mask,v 1.107 2012/12/15 18:17:07 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/package.use.mask,v 1.112 2012/12/27 07:33:17 tetromino Exp $
+
+# Alexandre Rostovtsev <tetromino@gentoo.org> (27 Dec 2012)
+# remove mask when app-text/yelp-tools is keyworded here
+>=gnome-extra/zenity-3.6 test
+
+# Alexandre Rostovtsev <tetromino@gentoo.org> (27 Dec 2012)
+# remove mask when dev-java/fop is keyworded here
+gnome-extra/libgda reports
+
+# Alexandre Rostovtsev <tetromino@gentoo.org> (27 Dec 2012)
+# remove mask when >=app-editors/gedit-3.6 is keyworded here
+dev-util/devhelp gedit
+
+# Alexandre Rostovtsev <tetromino@gentoo.org> (27 Dec 2012)
+# remove mask when app-crypt/libsecret is keyworded here
+>=gnome-base/gvfs-1.14 gnome-keyring
+>=gnome-extra/libgda-5.1 gnome-keyring
+
+# Alexandre Rostovtsev <tetromino@gentoo.org> (27 Dec 2012)
+# remove mask when  is keyworded here
+>=dev-libs/folks-0.8 telepathy
 
 # Alexandre Rostovtsev <tetromino@gentoo.org> (15 Dec 2012)
 # media-video/coherence not keyworded
