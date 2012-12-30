@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-12.11_beta11.ebuild,v 1.1 2012/12/25 16:41:58 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-12.11_beta11.ebuild,v 1.4 2012/12/30 17:05:35 mr_bones_ Exp $
 
 EAPI=4
 
@@ -15,7 +15,7 @@ FOLDER_PREFIX="common/"
 IUSE="debug +modules multilib qt4 static-libs disable-watermark"
 
 LICENSE="AMD GPL-2 QPL-1.0"
-KEYWORDS="-* ~amd64 ~x86"
+KEYWORDS="-* amd64 x86"
 SLOT="1"
 
 RESTRICT="bindist"
@@ -343,7 +343,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/ati-drivers-12.9-KCL_AGP_FindCapsRegisters-stub.patch
 
 	# Use ACPI_DEVICE_HANDLE wrapper to make driver build on linux-3.8
-	# see https://bugs.gentoo.org/show_bug.cgi?id=448216 
+	# see https://bugs.gentoo.org/show_bug.cgi?id=448216
 	epatch "${FILESDIR}/ati-drivers-kernel-3.8-acpihandle.patch"
 
 	cd "${MODULE_DIR}"
