@@ -3397,6 +3397,7 @@ media-video/mplayer2:xanim - Enables support for xanim based codecs
 media-video/mplayer2:yuv4mpeg - Enables yuv4mpeg video output
 media-video/ogmrip:ogm - Support for OGM container format
 media-video/ogmrip:srt - Support for SRT subtitle format
+media-video/pgcedit:video - Add support for video preview
 media-video/rtmpdump:gnutls - Use GnuTLS library instead of the default OpenSSL
 media-video/rtmpdump:polarssl - Use PolarSSL library instead of the default OpenSSL
 media-video/smplayer2:download-subs - Enable subtitle downloader (requires QuaZip)
@@ -5329,6 +5330,7 @@ sys-auth/sssd:manpages - Build man pages with dev-libs/libxslt
 sys-auth/sssd:netlink - Add support for netlink protocol via dev-libs/libnl
 sys-auth/sssd:ssh - Build helper to let net-misc/openssh use sssd provided information
 sys-auth/sssd:sudo - Build helper to let app-admin/sudo use sssd provided information
+sys-auth/ykpers:consolekit - Use sys-auth/consolekit and virtual/udev to allow access to the YubiKey HID device to the console user.
 sys-block/gparted:btrfs - Include Btrfs support (sys-fs/btrfs-progs)
 sys-block/gparted:dmraid - Support for dmraid devices, also known as ATA-RAID, or Fake RAID.
 sys-block/gparted:fat - Include FAT16/FAT32 support (sys-fs/dosfstools)
@@ -5938,7 +5940,6 @@ x11-libs/qt-assistant:c++0x - Build Qt using the C++11 standard
 x11-libs/qt-assistant:compat - Build the extra compatibility layer required by a few packages, see http://labs.qt.nokia.com/2010/06/22/qt-assistant-compat-version-available-as-extra-source-package/
 x11-libs/qt-assistant:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by Nokia)
 x11-libs/qt-assistant:glib - Enable dev-libs/glib eventloop support
-x11-libs/qt-assistant:qpa - Build a window system agnostic implementation of Qt
 x11-libs/qt-assistant:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
 x11-libs/qt-assistant:trace - Build the 'qttracereplay' utility which is required to play drawings recorded with the trace graphicssystem
 x11-libs/qt-bearer:c++0x - Build Qt using the C++11 standard
