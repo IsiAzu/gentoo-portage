@@ -1,14 +1,14 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/charybdis/charybdis-3.4.1.ebuild,v 1.2 2012/11/25 16:00:55 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/shadowircd/shadowircd-6.3.3.ebuild,v 1.1 2012/12/31 22:46:14 jdhore Exp $
 
 EAPI=4
 
 inherit eutils multilib user
 
-DESCRIPTION="The atheme project's IRCd based on ratbox"
-HOMEPAGE="http://atheme.org/project/charybdis http://www.stack.nl/~jilles/irc/#charybdis"
-SRC_URI="http://www.stack.nl/~jilles/irc/${P}.tbz2"
+DESCRIPTION="An IRCd based on charybdis that adds several useful features"
+HOMEPAGE="http://shadowircd.net"
+SRC_URI="https://github.com/${PN}/${PN}/archive/${P}.tar.gz"
 LICENSE="GPL-2"
 
 SLOT="0"
@@ -21,6 +21,8 @@ DEPEND="${RDEPEND}
 	virtual/yacc
 	sys-devel/flex"
 
+S="${WORKDIR}/${PN}-${P}"
+
 pkg_setup() {
 	enewgroup ${PN}
 	enewuser ${PN} -1 -1 "${EPREFIX}"/usr ${PN}
@@ -31,7 +33,7 @@ src_prepare() {
 	sed -i \
 		-e "s:path =.*modules:path = \"$(get_libdir)/${PN}/modules:g" \
 		-e "s:etc/:../etc/${PN}/:g" \
-		-e "s:logs/:../var/log/charybdis/:g" \
+		-e "s:logs/:../var/log/shadowircd/:g" \
 		-e "s:test\.\(cert\|key\):ssl.\1:g" \
 		doc/example.conf \
 		doc/reference.conf \
@@ -48,7 +50,7 @@ src_configure() {
 		$(use_enable !largenet small-net) \
 		$(use_enable ssl openssl) \
 		$(use_enable zlib) \
-		--with-program-prefix=charybdis- \
+		--with-program-prefix=shadowircd- \
 		\
 		--enable-fhs-paths \
 		--sysconfdir="${EPREFIX}"/etc/${PN} \
@@ -73,18 +75,18 @@ src_install() {
 	# force the initscript to create that directory.
 	rm -rf "${D}"/var/run || die
 
-	# charybdis ircd needs writing to its state (bandb) and log directories
-	fowners :charybdis /var/{lib,log}/${PN}
+	# shadowircd needs writing to its state (bandb) and log directories
+	fowners :shadowircd /var/{lib,log}/${PN}
 	fperms 770 /var/{lib,log}/${PN}
 
-	# ensure that charybdis can access but not modify its configuration
+	# ensure that shadowircd can access but not modify its configuration
 	# while protecting it from others
-	fowners :charybdis /etc/${PN}{,/ircd.conf}
+	fowners :shadowircd /etc/${PN}{,/ircd.conf}
 	fperms 750 /etc/${PN}
 	fperms 640 /etc/${PN}/ircd.conf
 }
 
 pkg_postinst() {
-	elog "All of the charybdis binaries in PATH have been prefixed with"
-	elog "'charybdis-' to prevent file collisions."
+	elog "All of the shadowircd binaries in PATH have been prefixed with"
+	elog "'shadowircd-' to prevent file collisions."
 }
