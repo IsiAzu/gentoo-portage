@@ -1492,6 +1492,7 @@ dev-lisp/sbcl:ldb - Include support for the SBCL low level debugger
 dev-lisp/sbcl:pax_kernel - Enable if the user plans to run the package under a pax enabled hardened kernel
 dev-lua/luarocks:curl - Uses net-misc/curl for fetching lua packages instead of net-misc/wget.
 dev-lua/luarocks:openssl - Uses dev-libs/openssl for verifying lua packages instead of md5sum.
+dev-lua/luvit:system-libs - Use system version of dev-libs/yajl.
 dev-ml/cairo-ocaml:pango - Enable support for x11-libs/pango
 dev-ml/deriving-ocsigen:type-conv - Enable type-conv for the syntax extention.
 dev-ml/eliom:ocamlduce - Enables ocamlduce XML typechecking.
@@ -1981,6 +1982,7 @@ games-puzzle/jag:editor - Install level editor
 games-puzzle/jag:extras - Install additional graphics
 games-puzzle/pingus:music - Enable playing of background music
 games-puzzle/xlogical:alt_gfx - Use alternate graphics which are closer to the original Amiga version
+games-roguelike/FTL:system-libs - Use system provided libraries.
 games-roguelike/angband:sound - Enable and install sounds
 games-roguelike/stone-soup:ncurses - Enable for console based build (uses ncurses).
 games-roguelike/stone-soup:tiles - Enable for graphical (tiled) build.
@@ -2216,7 +2218,7 @@ kde-base/kdebindings-meta:csharp - Enable C# language bindings for KDE and Qt
 kde-base/kdelibs:opengl - Enable OpenGL support for Plasma (GLApplet)
 kde-base/kdelibs:udisks - Use udisks for block device access (e.g., automounting)
 kde-base/kdelibs:udisks2 - Use the udisks2 support backported from kf5
-kde-base/kdelibs:upnp - Enable UPnP support
+kde-base/kdelibs:upnp - Build the Solid backend to provide information about UPnP devices on the network
 kde-base/kdelibs:upower - Use upower for power management
 kde-base/kdenetwork-meta:ppp - Enable support for net-dialup/ppp.
 kde-base/kdepim-runtime:google - Google service integration via net-libs/libkgapi
