@@ -678,6 +678,7 @@ app-misc/mc:xdg - Toggles mc's config dir location. Enable for $XDG_CONFIG_HOME/
 app-misc/muttprint:doc - Builds documentation
 app-misc/note:general - Add support for ascii flatfile backend
 app-misc/note:text - Add support for text backend
+app-misc/pax-utils:python - Install a more powerful/faster version of lddtree
 app-misc/recoll:audio - Index audio files
 app-misc/recoll:camelcase - Enable indexing for camelCase sentences and words
 app-misc/recoll:chm - Index chm files
@@ -5411,6 +5412,11 @@ sys-cluster/slurm:multiple-slurmd - Allow multiple slurmd to run
 sys-cluster/slurm:munge - Enable authentication via munge
 sys-cluster/slurm:torque - Enable perl scripts that emulates pbs (qstat, qsub etc.)
 sys-cluster/slurm:ypbind - Enable ypbind based auth
+sys-cluster/swift:account - adds swift account support
+sys-cluster/swift:container - adds swift container suppport
+sys-cluster/swift:memcache - adds memcached support
+sys-cluster/swift:object - adds swift object support
+sys-cluster/swift:proxy - adds swift proxy support
 sys-cluster/torque:cpusets - Enable pbs_mom to utilize linux cpusets if available
 sys-cluster/torque:drmaa - Enable the Distributed Resource Management Application API
 sys-cluster/torque:munge - Enable authentication via munge
