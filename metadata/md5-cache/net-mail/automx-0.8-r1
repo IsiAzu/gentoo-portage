@@ -10,4 +10,4 @@ RDEPEND=dev-python/lxml || ( www-apache/mod_wsgi www-servers/uwsgi ) sql? ( dev-
 SLOT=0
 SRC_URI=http://www.automx.org/download/automx-0.8.tar.gz
 _eclasses_=multilib	9aa8a023e062fca0ba79362d9d0cc488	python	e5b3412fa9f03670a666c8a137bd1060	toolchain-funcs	69a2016af67775a812f4c03ba4b0e03e
-_md5_=f15e8d987f938cf383e5deec31473865
+_md5_=a9b820010ee2d3b927b3181d46df66c5
