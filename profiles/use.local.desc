@@ -1968,6 +1968,7 @@ games-fps/qudos:mods - Build support for the quake2 mission packs
 games-fps/qudos:qmax - Build the pretty version (quake max)
 games-fps/qudos:textures - Install the enhanced textures (quake2-textures)
 games-fps/rott:demo - Install the shareware version
+games-fps/sauerbraten:server - Compile server support
 games-fps/unreal-tournament-goty:S3TC - Add the extra fancy textures to UT ... only works on certain cards (nvidia/ati/s3)
 games-fps/urbanterror:server - Build server target
 games-fps/warsow:angelscript - Enable AngelScript support
@@ -5539,7 +5540,8 @@ sys-fs/eudev:kmod - enable module loading through libkmod (requires modules)
 sys-fs/eudev:modutils - enable module loading support
 sys-fs/eudev:openrc - install the OpenRC init scripts
 sys-fs/eudev:rule_generator - for eudev-0: enable persistent network and optical device rule generator
-sys-fs/ext4magic:expert-mode - Builds ext4magic with expert mode. Highly useful in recovering data from a corrupted filesystem.
+sys-fs/ext4magic:expert-mode - Builds ext4magic with expert mode. Highly useful in recovering data from a corrupted filesystem
+sys-fs/ext4magic:file-attr - Enable the recovery of file attributes (append, immutable, nodump etc)
 sys-fs/fur:void-chmod - Enable fake hook for "chmod" that will only return 0
 sys-fs/leechcraft-vrooby:udisks - Use sys-fs/udisks:0 for block device access (e.g., automounting)
 sys-fs/leechcraft-vrooby:udisks2 - Use sys-fs/udisks:2 for block device access (e.g., automounting)
