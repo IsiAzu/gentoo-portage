@@ -1,15 +1,14 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pypax/pypax-0.8.0.ebuild,v 1.1 2012/12/29 15:27:03 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pypax/pypax-0.8.1.ebuild,v 1.2 2013/01/06 23:05:22 blueness Exp $
 
-EAPI="3"
+EAPI="5"
 
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="*-jython"
+PYTHON_COMPAT=( python{2_5,2_6,2_7,3_1,3_2,3_3} )
 
-inherit distutils
+inherit distutils-r1
 
-DESCRIPTION="Python module for reading or writing PaX flags to an ELF."
+DESCRIPTION="Python module to get or set either PT_PAX and/or XATTR_PAX flags"
 HOMEPAGE="http://dev.gentoo.org/~blueness/elfix/
 	http://www.gentoo.org/proj/en/hardened/pax-quickstart.xml"
 SRC_URI="http://dev.gentoo.org/~blueness/elfix/elfix-${PV}.tar.gz"
@@ -21,8 +20,10 @@ SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 IUSE="+ptpax +xtpax"
 
-DEPEND="
-	dev-libs/elfutils
+REQUIRED_USE="|| ( ptpax xtpax )"
+
+DEPEND="dev-python/setuptools
+	ptpax? ( dev-libs/elfutils )
 	xtpax? ( sys-apps/attr )"
 
 RDEPEND=""

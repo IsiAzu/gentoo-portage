@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/axtls/axtls-1.4.6-r1.ebuild,v 1.7 2012/07/20 01:59:37 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/axtls/axtls-1.4.9.ebuild,v 1.1 2013/01/07 00:01:07 blueness Exp $
 
 EAPI="4"
 
@@ -41,7 +41,8 @@ S="${WORKDIR}/${MY_PN}"
 
 LICENSE="BSD GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~arm hppa ~mips ~ppc ~ppc64 x86"
+KEYWORDS="~amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~x86"
+
 IUSE="httpd cgi-lua cgi-php static static-libs doc"
 
 # TODO: add ipv6, and c#, java, lua, perl bindings
@@ -73,7 +74,6 @@ pkg_setup() {
 src_prepare() {
 	tc-export CC
 
-	epatch "${FILESDIR}/bigint_impl.h-add-missing-include.patch"
 	epatch "${FILESDIR}/explicit-libdir.patch"
 
 	sed -i -e 's:^LIBDIR.*/lib:LIBDIR = $(PREFIX)/'"$(get_libdir):" \
