@@ -1622,6 +1622,7 @@ dev-python/pandas:excel - Pull a few Python packages Microsoft Excel i/o
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
 dev-python/psycopg:mxdatetime - Enable support for MX DateTime and use it instead of Python's built-in datetime module
+dev-python/py-amqp:extras - Install extra tools to generate initial Python mod from an AMQP XML file
 dev-python/pylons:genshi - Add optional genshi support
 dev-python/pylons:jinja - Add optional jinja support
 dev-python/pymongo:mod_wsgi - Disable the C extension to work with mod_wsgi.
@@ -5017,7 +5018,6 @@ sci-libs/gdal:xls - Add the dev-libs/freexl library for xls import support
 sci-libs/grib_api:jasper - Use media-libs/jasper instead of media-libs/openjpeg for JPEG 2000 support
 sci-libs/gsl:cblas-external - Link gsl with external cblas provided by (virtual/cblas) instead of shipped internal version
 sci-libs/hdf5:fortran2003 - enable new features that require Fortran 2003 (http://www.hdfgroup.org/HDF5/doc/fortran/NewFeatures_F2003.pdf)
-sci-libs/indilib:fits - Enable support for the FITS image format through cfitsio
 sci-libs/indilib:nova - Enable support for nova celestial mechanics calculations
 sci-libs/libghemical:mopac7 - Use sci-chemistry/mopac7 for semi-empirical calculations
 sci-libs/libghemical:mpqc - Use sci-chemistry/mpqc for quantum-mechanical calculations
