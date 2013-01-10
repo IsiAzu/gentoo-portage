@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/torque/torque-2.5.9.ebuild,v 1.5 2012/12/13 16:21:38 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/torque/torque-2.5.9.ebuild,v 1.6 2013/01/10 15:13:31 jlec Exp $
 
 EAPI=4
 
@@ -33,6 +33,8 @@ RDEPEND="${DEPEND_COMMON}
 	!crypt? ( net-misc/netkit-rsh )"
 
 DOCS=( Release_Notes )
+
+PATCHES=( "${FILESDIR}"/${P}-tcl8.6.patch )
 
 pkg_setup() {
 	PBS_SERVER_HOME="${PBS_SERVER_HOME:-/var/spool/torque}"
