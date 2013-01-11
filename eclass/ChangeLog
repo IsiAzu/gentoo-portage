@@ -1,6 +1,15 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.605 2013/01/09 17:26:55 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.607 2013/01/11 01:06:37 floppym Exp $
+
+  11 Jan 2013; Mike Gilbert <floppym@gentoo.org> distutils-r1.eclass:
+  Close the lock file explicitly instead of relying on the subshell created by
+  the pipe to tee in distutils-r1_run_phase.
+
+  10 Jan 2013; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Use locks to avoid race conditions when merging (bug #449760). Use tar
+  instead of cp on FreeBSD due to bug when copying broken symlinks (bug
+  #447370).
 
   09 Jan 2013; Ian Stakenvicius <axs@gentoo.org> git-2.eclass:
   added documentation for an undocumented override variable
