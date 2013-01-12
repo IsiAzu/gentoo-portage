@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.127 2013/01/11 20:55:00 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.128 2013/01/12 05:57:42 williamh Exp $
 
 EAPI=4
 
 KV_min=2.6.39
 
-inherit autotools eutils linux-info systemd
+inherit autotools eutils linux-info multilib systemd
 
 if [[ ${PV} = 9999* ]]
 then
@@ -165,7 +165,7 @@ src_configure()
 		--libdir=/usr/$(get_libdir)
 		--with-html-dir=/usr/share/doc/${PF}/html
 		--with-rootprefix=
-		--with-rootlibdir=/lib
+		--with-rootlibdir=/$(get_libdir)
 		--disable-audit
 		--disable-coredump
 		--disable-hostnamed
@@ -258,6 +258,8 @@ src_install()
 		install-dist_docDATA
 		udev-confdirs
 		systemd-install-hook
+		libudev-install-hook
+		libsystemd-daemon-install-hook
 	)
 
 	if use gudev
