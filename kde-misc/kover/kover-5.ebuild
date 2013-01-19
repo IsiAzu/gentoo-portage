@@ -1,27 +1,27 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-misc/kover/kover-5.ebuild,v 1.1 2012/12/10 16:10:30 creffett Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-misc/kover/kover-5.ebuild,v 1.2 2013/01/19 02:24:14 creffett Exp $
 
-EAPI=4
+EAPI=5
 KDE_LINGUAS="de es fr it nb no pl"
 
 inherit kde4-base
 
-DESCRIPTION="Kover is an easy to use WYSIWYG CD cover printer with CDDB support"
+DESCRIPTION="An easy to use WYSIWYG CD cover printer with CDDB support"
 HOMEPAGE="http://lisas.de/kover/"
 SRC_URI="http://lisas.de/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="nls"
 
-DEPEND="
-	sys-devel/gettext
-"
 RDEPEND="
-	dev-libs/libcdio
+	<dev-libs/libcdio-0.90[-minimal]
 	media-libs/libcddb
+"
+DEPEND="${RDEPEND}
+	nls? ( sys-devel/gettext )
 "
 PATCHES=(
 	"${FILESDIR}/${PN}-4-cflags.patch"
