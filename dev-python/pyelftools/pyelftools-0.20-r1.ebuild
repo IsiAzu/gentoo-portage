@@ -1,11 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyelftools/pyelftools-0.20-r1.ebuild,v 1.1 2013/01/02 18:27:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyelftools/pyelftools-0.20-r1.ebuild,v 1.2 2013/01/21 02:39:53 idella4 Exp $
 
 EAPI="4"
 
 SUPPORT_PYTHON_ABIS="1"
-
 inherit distutils eutils
 
 DESCRIPTION="pure-Python library for parsing and analyzing ELF files and DWARF debugging information"
