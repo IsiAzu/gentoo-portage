@@ -1,47 +1,11 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-9999.ebuild,v 1.8 2012/12/04 12:10:35 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-9999.ebuild,v 1.9 2013/01/22 01:48:41 vapier Exp $
+
+# See `man savedconfig.eclass` for info on how to use USE=savedconfig.
 
 EAPI="4"
 inherit eutils flag-o-matic savedconfig toolchain-funcs multilib
-
-################################################################################
-# BUSYBOX ALTERNATE CONFIG MINI-HOWTO
-#
-# Busybox can be modified in many different ways. Here's a few ways to do it:
-#
-# (1) Emerge busybox with FEATURES=keepwork so the work directory won't
-#     get erased afterwards. Add a definition like ROOT=/my/root/path to the
-#     start of the line if you're installing to somewhere else than the root
-#     directory. This command will save the default configuration to
-#     ${PORTAGE_CONFIGROOT} (or ${ROOT} if ${PORTAGE_CONFIGROOT} is not
-#     defined), and it will tell you that it has done this. Note the location
-#     where the config file was saved.
-#
-#     FEATURES=keepwork USE=savedconfig emerge busybox
-#
-# (2) Go to the work directory and change the configuration of busybox using its
-#     menuconfig feature.
-#
-#     cd /var/tmp/portage/busybox*/work/busybox-*
-#     make menuconfig
-#
-# (3) Save your configuration to the default location and copy it to the
-#     one of the locations listed in /usr/portage/eclass/savedconfig.eclass
-#
-# (4) Emerge busybox with USE=savedconfig to use the configuration file you
-#     just generated.
-#
-################################################################################
-#
-# (1) Alternatively skip the above steps and simply emerge busybox without
-#     USE=savedconfig.
-#
-# (2) Edit the file it saves by hand. ${ROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF}
-#
-# (3) Remerge busybox as using USE=savedconfig.
-#
-################################################################################
 
 DESCRIPTION="Utilities for rescue and embedded systems"
 HOMEPAGE="http://www.busybox.net/"
@@ -70,13 +34,13 @@ S=${WORKDIR}/${MY_P}
 
 busybox_config_option() {
 	case $1 in
-		y) sed -i -e "s:.*\<CONFIG_$2\>.*set:CONFIG_$2=y:g" .config;;
-		n) sed -i -e "s:CONFIG_$2=y:# CONFIG_$2 is not set:g" .config;;
-		*) use $1 \
-		       && busybox_config_option y $2 \
-		       || busybox_config_option n $2
-		   return 0
-		   ;;
+	y) sed -i -e "s:.*\<CONFIG_$2\>.*set:CONFIG_$2=y:g" .config;;
+	n) sed -i -e "s:CONFIG_$2=y:# CONFIG_$2 is not set:g" .config;;
+	*) use $1 \
+	       && busybox_config_option y $2 \
+	       || busybox_config_option n $2
+	   return 0
+	   ;;
 	esac
 	einfo $(grep "CONFIG_$2[= ]" .config || echo Could not find CONFIG_$2 ...)
 }
