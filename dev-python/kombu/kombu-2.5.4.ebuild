@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/kombu/kombu-2.5.4.ebuild,v 1.1 2013/01/08 22:07:41 iksaif Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/kombu/kombu-2.5.4.ebuild,v 1.2 2013/01/23 09:31:55 iksaif Exp $
 
 EAPI="4"
 
@@ -27,7 +27,6 @@ RDEPEND=">=dev-python/anyjson-0.3.3
 DEPEND="${RDEPEND}
 	test? ( dev-python/nose-cover3
 	dev-python/mock
-	virtual/python-unittest2
 	dev-python/simplejson
 	dev-python/anyjson
 	dev-python/redis-py
