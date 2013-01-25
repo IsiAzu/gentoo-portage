@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/networkmanager/networkmanager-0.9.6.4.ebuild,v 1.10 2013/01/25 03:49:38 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/networkmanager/networkmanager-0.9.6.4.ebuild,v 1.11 2013/01/25 04:42:37 tetromino Exp $
 
-EAPI="4"
+EAPI="5"
 GNOME_ORG_MODULE="NetworkManager"
 VALA_MIN_API_VERSION="0.18"
 VALA_USE_DEPEND="vapigen"
@@ -13,14 +13,16 @@ DESCRIPTION="Network configuration and management in an easy way. Desktop enviro
 HOMEPAGE="http://www.gnome.org/projects/NetworkManager/"
 
 LICENSE="GPL-2+"
-SLOT="0"
-IUSE="avahi bluetooth connection-sharing dhclient +dhcpcd doc gnutls +introspection kernel_linux +nss modemmanager +ppp resolvconf systemd vala +wext wimax"
+SLOT="0" # TODO: add subslot on 0.9.8 bump
+IUSE="avahi bluetooth connection-sharing +consolekit dhclient +dhcpcd doc gnutls +introspection kernel_linux +nss modemmanager +ppp resolvconf vala +wext wimax" # systemd
 KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
 REQUIRED_USE="
 	modemmanager? ( ppp )
 	^^ ( nss gnutls )
-	^^ ( dhclient dhcpcd )"
+	^^ ( dhclient dhcpcd )
+"
+#	?? ( consolekit systemd )
 
 # gobject-introspection-0.10.3 is needed due to gnome bug 642300
 # wpa_supplicant-0.7.3-r3 is needed due to bug 359271
@@ -32,14 +34,14 @@ COMMON_DEPEND=">=sys-apps/dbus-1.2
 	virtual/udev[gudev]
 	>=dev-libs/glib-2.26
 	>=sys-auth/polkit-0.97
-	>=net-libs/libsoup-2.26:2.4
+	>=net-libs/libsoup-2.26:2.4=
 	>=net-wireless/wpa_supplicant-0.7.3-r3[dbus]
 	bluetooth? ( >=net-wireless/bluez-4.82 )
-	avahi? ( net-dns/avahi[autoipd] )
+	avahi? ( net-dns/avahi:=[autoipd] )
 	gnutls? (
-		dev-libs/libgcrypt
-		net-libs/gnutls )
-	nss? ( >=dev-libs/nss-3.11 )
+		dev-libs/libgcrypt:=
+		net-libs/gnutls:= )
+	nss? ( >=dev-libs/nss-3.11:= )
 	dhclient? ( net-misc/dhcp[client] )
 	dhcpcd? ( >=net-misc/dhcpcd-4.0.0_rc3 )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.3 )
@@ -49,14 +51,15 @@ COMMON_DEPEND=">=sys-apps/dbus-1.2
 		net-dns/dnsmasq
 		net-firewall/iptables )
 	wimax? (
-		dev-libs/libnl:1.1
+		dev-libs/libnl:1.1=
 		>=net-wireless/wimax-1.5.1 )
-	!wimax? ( dev-libs/libnl:3 )"
-
+	!wimax? ( dev-libs/libnl:3= )
+"
 RDEPEND="${COMMON_DEPEND}
 	modemmanager? ( >=net-misc/modemmanager-0.4 )
-	systemd? ( >=sys-apps/systemd-31 )
-	!systemd? ( sys-auth/consolekit )"
+	consolekit? ( sys-auth/consolekit )
+"
+#	systemd? ( >=sys-apps/systemd-31 )
 
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
@@ -65,7 +68,8 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-kernel/linux-headers-2.6.29
 	doc? ( >=dev-util/gtk-doc-1.8 )
 	vala? ( $(vala_depend) )
-	!wimax? ( !=dev-libs/libnl-3.2.20 )"
+	!wimax? ( !=dev-libs/libnl-3.2.20 )
+"
 
 sysfs_deprecated_check() {
 	ebegin "Checking for SYSFS_DEPRECATED support"
@@ -117,40 +121,29 @@ src_prepare() {
 }
 
 src_configure() {
-	ECONF="--disable-more-warnings
-		--disable-static
-		--localstatedir=/var
-		--with-distro=gentoo
-		--with-dbus-sys-dir=/etc/dbus-1/system.d
-		--with-udev-dir=$(udev_get_udevdir)
-		--with-iptables=/sbin/iptables
-		--enable-concheck
-		$(use_enable doc gtk-doc)
-		$(use_enable introspection)
-		$(use_enable ppp)
-		$(use_enable wimax)
-		$(use_with dhclient)
-		$(use_with dhcpcd)
-		$(use_with doc docs)
-		$(use_with resolvconf)
-		$(use_enable vala)
-		$(use_with wext)
-		$(use_with wimax libnl-1)
-		$(systemd_with_unitdir)"
-
-		if use nss ; then
-			ECONF="${ECONF} $(use_with nss crypto=nss)"
-		else
-			ECONF="${ECONF} $(use_with gnutls crypto=gnutls)"
-		fi
-
-		if use systemd; then
-			ECONF="${ECONF} --with-session-tracking=systemd"
-		else
-			ECONF="${ECONF} --with-session-tracking=ck"
-		fi
-
-	econf ${ECONF}
+	econf \
+		--disable-more-warnings \
+		--disable-static \
+		--localstatedir=/var \
+		--with-distro=gentoo \
+		--with-dbus-sys-dir=/etc/dbus-1/system.d \
+		--with-udev-dir="$(udev_get_udevdir)" \
+		--with-iptables=/sbin/iptables \
+		--enable-concheck \
+		--with-crypto=$(usex nss nss gnutls) \
+		--with-session-tracking=$(usex consolekit ck none) \
+		$(use_enable doc gtk-doc) \
+		$(use_enable introspection) \
+		$(use_enable ppp) \
+		$(use_enable wimax) \
+		$(use_with dhclient) \
+		$(use_with dhcpcd) \
+		$(use_with doc docs) \
+		$(use_with resolvconf) \
+		$(use_enable vala) \
+		$(use_with wext) \
+		$(use_with wimax libnl-1) \
+		"$(systemd_with_unitdir)"
 }
 
 src_test() {
@@ -166,11 +159,11 @@ src_install() {
 	# Need to keep the /etc/NetworkManager/dispatched.d for dispatcher scripts
 	keepdir /etc/NetworkManager/dispatcher.d
 
-	if use systemd; then
+#	if use systemd; then
 		# Our init.d script requires running a dispatcher script that annoys
 		# systemd users; bug #434692
-		rm -rv "${ED}/etc/init.d" || die "rm failed"
-	else
+#		rm -rv "${ED}/etc/init.d" || die "rm failed"
+#	else
 		# Provide openrc net dependency only when nm is connected
 		exeinto /etc/NetworkManager/dispatcher.d
 		newexe "${FILESDIR}/10-openrc-status-r3" 10-openrc-status
@@ -179,7 +172,7 @@ src_install() {
 
 		# Default conf.d file
 		newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
-	fi
+#	fi
 
 	# Add keyfile plugin support
 	keepdir /etc/NetworkManager/system-connections
@@ -196,7 +189,7 @@ src_install() {
 	fi
 
 	# Remove useless .la files
-	find "${D}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
+	prune_libtool_files --modules
 }
 
 pkg_postinst() {
