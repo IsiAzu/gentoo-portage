@@ -1,6 +1,12 @@
 # ChangeLog for kde-base/kontact
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kontact/ChangeLog,v 1.244 2013/01/05 20:19:05 creffett Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kontact/ChangeLog,v 1.246 2013/01/27 15:45:20 ago Exp $
+
+  27 Jan 2013; Agostino Sarubbo <ago@gentoo.org> kontact-4.9.5.ebuild:
+  Stable for x86, wrt bug #450678
+
+  27 Jan 2013; Agostino Sarubbo <ago@gentoo.org> kontact-4.9.5.ebuild:
+  Stable for amd64, wrt bug #450678
 
 *kontact-4.9.5 (05 Jan 2013)
 
@@ -932,4 +938,3 @@
   +kontact-3.4.0_beta1.ebuild:
   Adding the split ebuilds to portage. For KDE 3.4, we've created separate
   ebuilds for all the KDE apps.
-

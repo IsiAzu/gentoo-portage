@@ -1,6 +1,12 @@
 # ChangeLog for kde-base/kgeography
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kgeography/ChangeLog,v 1.203 2013/01/05 20:18:46 creffett Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kgeography/ChangeLog,v 1.205 2013/01/27 15:30:57 ago Exp $
+
+  27 Jan 2013; Agostino Sarubbo <ago@gentoo.org> kgeography-4.9.5.ebuild:
+  Stable for x86, wrt bug #450678
+
+  27 Jan 2013; Agostino Sarubbo <ago@gentoo.org> kgeography-4.9.5.ebuild:
+  Stable for amd64, wrt bug #450678
 
 *kgeography-4.9.5 (05 Jan 2013)
 
@@ -816,4 +822,3 @@
   24 Sep 2005; Gregorio Guidi <greg_g@gentoo.org> +metadata.xml,
   +kgeography-3.5_beta1.ebuild:
   Initial import. New package in KDE 3.5.
-

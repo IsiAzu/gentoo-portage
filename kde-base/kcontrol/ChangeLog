@@ -1,6 +1,12 @@
 # ChangeLog for kde-base/kcontrol
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kcontrol/ChangeLog,v 1.273 2013/01/05 20:19:06 creffett Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kcontrol/ChangeLog,v 1.275 2013/01/27 15:10:56 ago Exp $
+
+  27 Jan 2013; Agostino Sarubbo <ago@gentoo.org> kcontrol-4.9.5.ebuild:
+  Stable for x86, wrt bug #450678
+
+  27 Jan 2013; Agostino Sarubbo <ago@gentoo.org> kcontrol-4.9.5.ebuild:
+  Stable for amd64, wrt bug #450678
 
 *kcontrol-4.9.5 (05 Jan 2013)
 
@@ -1077,4 +1083,3 @@
   +files/configure.in.in-kdm-settings.diff, +kcontrol-3.4.0_beta1.ebuild:
   Adding the split ebuilds to portage. For KDE 3.4, we've created separate
   ebuilds for all the KDE apps.
-
