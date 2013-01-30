@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/xen-tools-4.2.0-r2.ebuild,v 1.6 2013/01/24 08:53:49 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/xen-tools-4.2.0-r2.ebuild,v 1.7 2013/01/30 09:09:01 idella4 Exp $
 
 EAPI=5
 
@@ -23,6 +23,7 @@ else
 	$XEN_SEABIOS_URL"
 	S="${WORKDIR}/xen-${PV}"
 fi
+
 inherit flag-o-matic eutils multilib python-single-r1 toolchain-funcs udev ${live_eclass}
 
 DESCRIPTION="Xend daemon and tools"
@@ -131,6 +132,7 @@ src_prepare() {
 	# Drop .config
 	sed -e '/-include $(XEN_ROOT)\/.config/d' -i Config.mk || die "Couldn't drop"
 
+
 	# Xend
 	if ! use xend; then
 		sed -e 's:xm xen-bugtool xen-python-path xend:xen-bugtool xen-python-path:' \
@@ -138,6 +140,7 @@ src_prepare() {
 		sed -e 's:^XEND_INITD:#XEND_INITD:' \
 			-i tools/examples/Makefile || die "Disabling xend failed"
 	fi
+
 	# if the user *really* wants to use their own custom-cflags, let them
 	if use custom-cflags; then
 		einfo "User wants their own CFLAGS - removing defaults"
