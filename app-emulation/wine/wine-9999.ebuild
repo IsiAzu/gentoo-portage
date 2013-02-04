@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/wine/wine-9999.ebuild,v 1.130 2013/02/03 00:52:52 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/wine/wine-9999.ebuild,v 1.131 2013/02/04 02:38:40 tetromino Exp $
 
 EAPI="5"
 
-inherit autotools eutils flag-o-matic gnome2-utils multilib pax-utils
+inherit autotools eutils flag-o-matic gnome2-utils multilib pax-utils toolchain-funcs
 
 if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="git://source.winehq.org/git/wine.git"
@@ -155,6 +155,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.1.15-winegcc.patch #260726
 	epatch "${FILESDIR}"/${PN}-1.4_rc2-multilib-portage.patch #395615
 	epatch "${FILESDIR}"/${PN}-1.5.17-osmesa-check.patch #429386
+	epatch "${FILESDIR}"/${PN}-1.5.23-winebuild-CCAS.patch #455308
 	[[ ${PV} == "9999" ]] || epatch "../${PULSE_PATCHES}"/*.patch #421365
 	epatch_user #282735
 	if [[ "$(md5sum server/protocol.def)" != "${md5}" ]]; then
@@ -211,6 +212,7 @@ do_configure() {
 		$(use_with xinerama) \
 		$(use_with xml) \
 		$(use_with xml xslt) \
+		CCAS="$(tc-getAS)" \
 		$2
 
 	emake -j1 depend
