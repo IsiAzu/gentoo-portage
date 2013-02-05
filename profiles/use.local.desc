@@ -1360,6 +1360,7 @@ dev-libs/eina:mempool-pass-through - Compile "pass-through" (system's malloc) me
 dev-libs/elfutils:lzma - Support automatic decompression of LZMA-compressed files and kernel images
 dev-libs/elfutils:threads - Build the libraries with thread safe support
 dev-libs/elfutils:utils - Install command-line utilities (all the eu-* programs)
+dev-libs/fampp2:stlport - Include support for dev-libs/STLport
 dev-libs/fcgi:html - Install HTML documentation
 dev-libs/ferrisloki:stlport - Include support for dev-libs/STLport
 dev-libs/folks:socialweb - Load web service contacts using net-libs/libsocialweb
@@ -5071,6 +5072,7 @@ sci-libs/nlopt:octave - Add plugin for sci-mathematics/octave
 sci-libs/opencascade:gl2ps - Use gl2ps PostScript printing library
 sci-libs/openmm:cuda - enable cuda back-end
 sci-libs/openmm:opencl - enable opencl back-end
+sci-libs/openmm:wrappers - build wrappers for C and Fortran
 sci-libs/plplot:ada - Add bindings for the ADA programming language
 sci-libs/plplot:dynamic - Build with dynamic drivers
 sci-libs/plplot:octave - Add bindings for sci-mathematics/octave
