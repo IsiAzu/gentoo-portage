@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/rack-1.2.6.ebuild,v 1.1 2013/01/13 09:31:39 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/rack-1.2.8.ebuild,v 1.1 2013/02/09 07:41:50 graaff Exp $
 
-EAPI="2"
+EAPI=4
 USE_RUBY="ruby18 ree18 ruby19 jruby"
 
 RUBY_FAKEGEM_DOCDIR="doc"

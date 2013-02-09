@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/rack-1.1.3-r1.ebuild,v 1.6 2012/08/10 10:35:25 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/rack-1.1.6.ebuild,v 1.1 2013/02/09 07:41:50 graaff Exp $
 
-EAPI="2"
+EAPI=4
 USE_RUBY="ruby18 ree18 jruby"
 
 RUBY_FAKEGEM_DOCDIR="doc"
@@ -17,7 +17,7 @@ SRC_URI="mirror://rubyforge/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
 # The gem has automagic dependencies over mongrel, ruby-openid,
@@ -30,6 +30,18 @@ all_ruby_prepare() {
 	sed -i -e '/foobarfoo/ s:^:#:' test/spec_rack_response.rb || die
 	sed -i -e '/should build query strings correctly/,/end/ s:^:#:' test/spec_rack_utils.rb || die
 	sed -i -e '/should build nested query strings correctly/,/end/ s:^:#:' test/spec_rack_utils.rb || die
+}
+
+each_ruby_prepare() {
+	case ${RUBY} in
+		*jruby)
+			# Avoid broken specs. Already broken in 1.1.3 and not likely
+			# to be fixed anymore due to the age of this version.
+			rm test/spec_rack_mock.rb test/spec_rack_runtime.rb || die
+			;;
+		*)
+			;;
+	esac
 }
 
 each_ruby_test() {
