@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.97 2013/02/10 02:21:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.100 2013/02/10 07:53:31 vapier Exp $
 
 # @ECLASS: linux-info.eclass
 # @MAINTAINER:
@@ -111,9 +111,6 @@ inherit toolchain-funcs versionator
 
 EXPORT_FUNCTIONS pkg_setup
 
-DEPEND=""
-RDEPEND=""
-
 # Overwritable environment Var's
 # ---------------------------------------
 KERNEL_DIR="${KERNEL_DIR:-${ROOT}usr/src/linux}"
@@ -183,8 +180,10 @@ getfilevar() {
 		basedname="$(dirname ${2})"
 		unset ARCH
 
+		# We use nonfatal because we want the caller to take care of things #373151
+		[[ ${EAPI:-0} == [0123] ]] && nonfatal() { "$@"; }
 		echo -e "e:\\n\\t@echo \$(${1})\\ninclude ${basefname}" | \
-			make -C "${basedname}" M="${S}" ${BUILD_FIXES} -s -f - 2>/dev/null
+			nonfatal emake -C "${basedname}" M="${S}" ${BUILD_FIXES} -s -f - 2>/dev/null
 
 		ARCH=${myARCH}
 	fi
@@ -463,6 +462,13 @@ get_version() {
 		return 1
 	fi
 
+	# See if the kernel dir is actually an output dir. #454294
+	if [ -z "${KBUILD_OUTPUT}" -a -L "${KERNEL_DIR}/source" ]; then
+		KBUILD_OUTPUT=${KERNEL_DIR}
+		KERNEL_DIR=$(readlink -f "${KERNEL_DIR}/source")
+		KV_DIR=${KERNEL_DIR}
+	fi
+
 	if [ -z "${get_version_warning_done}" ]; then
 		qeinfo "Found kernel source directory:"
 		qeinfo "    ${KV_DIR}"
@@ -482,7 +488,7 @@ get_version() {
 	# KBUILD_OUTPUT, and we need this for .config and localversions-*
 	# so we better find it eh?
 	# do we pass KBUILD_OUTPUT on the CLI?
-	OUTPUT_DIR="${OUTPUT_DIR:-${KBUILD_OUTPUT}}"
+	local OUTPUT_DIR=${KBUILD_OUTPUT}
 
 	# keep track of it
 	KERNEL_MAKEFILE="${KV_DIR}/Makefile"
