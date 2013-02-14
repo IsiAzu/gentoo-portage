@@ -1,14 +1,14 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/udevil/udevil-0.3.4.ebuild,v 1.2 2012/11/29 02:05:38 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/udevil/udevil-0.4.0.ebuild,v 1.1 2013/02/14 00:16:25 hasufell Exp $
 
-EAPI=4
+EAPI=5
 
-inherit eutils autotools user
+inherit eutils autotools user vcs-snapshot
 
 DESCRIPTION="mount and unmount removable devices without a password"
 HOMEPAGE="http://ignorantguru.github.com/udevil/"
-SRC_URI="http://dev.gentoo.org/~hasufell/distfiles/${P}.tar.xz"
+SRC_URI="https://github.com/IgnorantGuru/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -18,8 +18,8 @@ IUSE="systemd"
 RDEPEND=">=app-shells/bash-4.0
 	dev-libs/glib:2
 	sys-apps/util-linux
-	>=virtual/udev-143
 	virtual/acl
+	>=virtual/udev-143
 	systemd? ( sys-apps/systemd )"
 DEPEND="${RDEPEND}
 	dev-util/intltool
@@ -54,6 +54,7 @@ pkg_postinst() {
 	elog
 	elog "Optional dependencies:"
 	elog "  gnome-extra/zenity (devmon popups)"
+	elog "  net-fs/davfs2      (mount WebDAV resources)"
 	elog "  net-fs/cifs-utils  (mounting samba shares)"
 	elog "  net-fs/curlftpfs   (mounting ftp shares)"
 	elog "  net-fs/nfs-utils   (mounting nfs shares)"

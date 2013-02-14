@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/spacefm/spacefm-0.8.2.ebuild,v 1.2 2012/12/02 22:17:27 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/spacefm/spacefm-0.8.6.ebuild,v 1.1 2013/02/14 00:04:11 hasufell Exp $
 
-EAPI=4
+EAPI=5
 
 inherit fdo-mime gnome2-utils linux-info
 
@@ -18,7 +18,6 @@ IUSE="+startup-notification"
 
 RDEPEND="dev-libs/glib:2
 	dev-util/desktop-file-utils
-	sys-apps/dbus
 	>=virtual/udev-143
 	virtual/freedesktop-icon-theme
 	x11-libs/cairo
@@ -39,7 +38,8 @@ src_configure() {
 		$(use_enable startup-notification) \
 		--disable-hal \
 		--enable-inotify \
-		--disable-pixmaps
+		--disable-pixmaps \
+		--with-gtk2 # still glitches in gtk3
 }
 
 pkg_preinst() {
@@ -64,6 +64,7 @@ pkg_postinst() {
 	elog "  x11-libs/gksu"
 	elog "  kde-base/kdesu"
 	elog "Other optional dependencies:"
+	elog "  sys-apps/dbus"
 	elog "  sys-process/lsof (device processes)"
 	elog "  virtual/eject (eject media)"
 	einfo
