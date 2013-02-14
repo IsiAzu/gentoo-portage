@@ -3039,7 +3039,6 @@ media-sound/herrie:xspf - Enable support for reading and saving XSPF playlists
 media-sound/hydrogen:archive - Use libarchive instead of libtar
 media-sound/jack-audio-connection-kit:coreaudio - Build the CoreAudio driver on Mac OS X systems
 media-sound/jack-audio-connection-kit:cpudetection - Enables runtime cpudetection
-media-sound/jack-audio-connection-kit:netjack - Build with support for Realtime Audio Transport over generic IP
 media-sound/jack-audio-connection-kit:pam - Add basic realime configuration via sys-auth/realtime-base
 media-sound/jalv:gtk2 - Adds support for GTK+2 in addition to GTK+3 controlled by the gtk useflag.
 media-sound/jalv:gtkmm - Adds support for dev-cpp/gtkmm: C++ interface for GTK+2
@@ -4771,6 +4770,7 @@ net-p2p/rtorrent:color - Add custom color support for torrent list
 net-p2p/rtorrent:daemon - Uses app-misc/screen to daemonize this application
 net-p2p/transmission:lightweight - Optimize transmission for low-resource systems (smaller cache size, prefer unencrypted peer connections, etc.)
 net-p2p/transmission:xfs - Enable XFS filesystem capabilities by using sys-fs/xfsprogs headers (in building of fdlimit(.c))
+net-p2p/transmission-remote-cli:rdns - Enable support for host name resolution
 net-p2p/transmission-remote-gtk:libproxy - Use net-libs/libproxy for getting the HTTP/HTTPS/SOCKS proxy configuration.
 net-p2p/transmission-remote-gtk:unique - Enable single instance support using dev-libs/libunique
 net-p2p/tribler:vlc - Enable vlc support.
@@ -5762,6 +5762,7 @@ sys-process/htop:vserver - Enable vserver support
 sys-process/lsof:rpc - support looking up RPC service info
 sys-process/procps:ncurses - Build programs that use ncurses: top, slabtop, watch
 virtual/ffmpeg:vaapi - Enables VAAPI (Video Acceleration API) for hardware decoding
+virtual/linux-sources:firmware - Install linux kernel firmware
 virtual/mpi:romio - Enable romio, a high-performance portable MPI-IO
 virtual/mysql:embedded - Build embedded server (libmysqld)
 virtual/udev:gudev - Build and install libgudev support
