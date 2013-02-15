@@ -1,10 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7496 2013/02/14 22:33:47 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7498 2013/02/15 20:03:27 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  15 Feb 2013; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask ffmpeg-1.1 for a different reason as >=0.11; for now this double masks
+  it but it will remain masked once the >=0.11 mask is removed
+
+  15 Feb 2013; Alexis Ballier <aballier@gentoo.org> base/package.use.mask:
+  Mask media-sound/audacity[ffmpeg], it needs to be fixed upstream to cope with
+  new releases of FFmpeg/libav. bug #417869
 
   14 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> updates/1Q-2013:
   Move rt61-firmware from net-wireless/ to sys-firmware/ category.
