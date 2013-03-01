@@ -610,6 +610,9 @@ app-i18n/libtomoe-gtk:gucharmap - Enable gucharmap dictionary plugin
 app-i18n/mozc:ibus - Enable support for app-i18n/ibus
 app-i18n/mozc:renderer - Enable native candidate window.
 app-i18n/mozc:scim - Enable support for app-i18n/scim
+app-i18n/pyzy:boost - Enable support for dev-libs/boost
+app-i18n/pyzy:doc - Enable support for documents
+app-i18n/pyzy:opencc - Use app-i18n/opencc for input
 app-i18n/scim:gtk3 - Enable support for x11-libs/gtk+:3
 app-i18n/scim-tomoe:gucharmap - Enable gucharmap dictionary plugin
 app-i18n/tomoe:hyperestraier - Enable support for app-text/hyperestraier
@@ -1054,6 +1057,7 @@ dev-db/sqlite:unlock-notify - Adds API for notifications when a database is unlo
 dev-db/unixODBC:minimal - Disable bundled drivers and extra libraries (most users don't need these)
 dev-db/unixODBC:odbcmanual - Administrator, Internal Structure, Programmer and User documentation
 dev-embedded/avrdude:ftdi - Enable support for USB FTDI chips via dev-embedded/libftdi
+dev-embedded/libftdi:tools - build ftdi_eeprom helper tool
 dev-embedded/msp430-binutils:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 dev-embedded/msp430-binutils:multitarget - Adds support to binutils for cross compiling (does not work with gas)
 dev-embedded/msp430-gcc:fixed-point - Enable fixed-point arithmetic support for MIPS targets in gcc (Warning: significantly increases compile time!)
