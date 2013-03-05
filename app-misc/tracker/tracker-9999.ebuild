@@ -1,15 +1,15 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tracker/tracker-9999.ebuild,v 1.57 2013/03/02 19:33:02 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tracker/tracker-9999.ebuild,v 1.58 2013/03/04 23:10:42 eva Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
-PYTHON_DEPEND="2:2.6"
+PYTHON_COMPAT=( python2_{6,7} )
 VALA_MIN_API_VERSION="0.14"
 
 [[ ${PV} = 9999 ]] && inherit autotools git-2
-inherit gnome2 linux-info multilib python vala versionator virtualx
+inherit gnome2 linux-info multilib python-any-r1 vala versionator virtualx
 
 DESCRIPTION="A tagging metadata database, search tool and indexer"
 HOMEPAGE="http://projects.gnome.org/tracker/"
@@ -18,16 +18,16 @@ EGIT_REPO_URI="git://git.gnome.org/${PN}
 [[ ${PV} = 9999 ]] && SRC_URI=""
 
 LICENSE="GPL-2+ LGPL-2.1+"
-SLOT="0"
-if [[ ${PV} = 9999 ]]; then
-	KEYWORDS=""
-else
-	KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
-fi
-# USE="doc" is managed by eclass.
+SLOT="0/14"
 IUSE="applet cue doc eds elibc_glibc exif firefox-bookmarks flac flickr gif
 gnome-keyring gsf gstreamer gtk iptc +iso +jpeg laptop +miner-fs mp3 networkmanager pdf playlist rss test thunderbird +tiff upnp-av +vorbis xine +xml xmp xps" # qt4 strigi
-[[ ${PV} = 9999 ]] || IUSE="${IUSE} nautilus"
+if [[ ${PV} = 9999 ]]; then
+	KEYWORDS=""
+	IUSE="${IUSE} doc"
+else
+	KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+	IUSE="${IUSE} nautilus"
+fi
 
 REQUIRED_USE="
 	^^ ( gstreamer xine )
@@ -35,10 +35,6 @@ REQUIRED_USE="
 	upnp-av? ( gstreamer )
 	!miner-fs? ( !cue !exif !flac !gif !gsf !iptc !iso !jpeg !mp3 !pdf !playlist !tiff !vorbis !xml !xmp !xps )
 "
-
-# Test suite highly disfunctional, loops forever
-# putting aside for now
-RESTRICT="test"
 
 # According to NEWS, introspection is non-optional
 # glibc-2.12 needed for SCHED_IDLE (see bug #385003)
@@ -79,7 +75,7 @@ RDEPEND="
 		>=media-libs/gstreamer-0.10.31:0.10
 		>=media-libs/gst-plugins-base-0.10.31:0.10 )
 	gtk? (
-		>=dev-libs/libgee-0.3:0
+		>=dev-libs/libgee-0.3:0.8
 		>=x11-libs/gtk+-3:3 )
 	iptc? ( media-libs/libiptcdata )
 	iso? ( >=sys-libs/libosinfo-0.0.2:= )
@@ -110,19 +106,18 @@ RDEPEND="
 #	strigi? ( >=app-misc/strigi-0.7 )
 #	mp3? ( qt4? (  >=dev-qt/qtgui-4.7.1:4 ) )
 DEPEND="${RDEPEND}
+	${PYTHON_DEPS}
 	>=dev-util/gtk-doc-am-1.8
 	>=dev-util/intltool-0.40
 	>=sys-devel/gettext-0.17
 	virtual/pkgconfig
 	gtk? ( >=dev-libs/libgee-0.3 )
-	doc? (
-		app-office/dia
-		media-gfx/graphviz )
 	test? (
 		>=dev-libs/dbus-glib-0.82-r1
 		>=sys-apps/dbus-1.3.1[X] )
 "
 [[ ${PV} = 9999 ]] && DEPEND="${DEPEND}
+	doc? ( media-gfx/graphviz )
 	>=dev-util/gtk-doc-1.8
 	$(vala_depend)
 "
@@ -145,8 +140,7 @@ pkg_setup() {
 	linux-info_pkg_setup
 	inotify_enabled
 
-	python_set_active_version 2
-	python_pkg_setup
+	python-any-r1_pkg_setup
 }
 
 src_unpack() {
@@ -158,10 +152,6 @@ src_unpack() {
 }
 
 src_prepare() {
-	# Fix functional tests scripts
-	find "${S}" -name "*.pyc" -delete
-	python_convert_shebangs -r 2 tests utils examples
-
 	# Don't run 'firefox --version' or 'thunderbird --version'; it results in
 	# access violations on some setups (bug #385347, #385495).
 	create_version_script "www-client/firefox" "Mozilla Firefox" firefox-version.sh
@@ -194,6 +184,10 @@ src_configure() {
 	if use mp3 && use gtk; then
 		#myconf="${myconf} $(use_enable !qt4 gdkpixbuf) $(use_enable qt4 qt)"
 		myconf="${myconf} --enable-gdkpixbuf"
+	fi
+
+	if [[ ${PV} = 9999 ]]; then
+		myconf="${myconf} $(use_enable doc gtk-doc)"
 	fi
 
 	# unicode-support: libunistring, libicu or glib ?
