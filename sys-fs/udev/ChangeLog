@@ -1,6 +1,32 @@
 # ChangeLog for sys-fs/udev
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.854 2013/03/10 17:28:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.860 2013/03/11 14:32:47 williamh Exp $
+
+  11 Mar 2013; William Hubbs <williamh@gentoo.org> udev-198-r1.ebuild,
+  udev-9999.ebuild:
+  another typo fix
+
+  11 Mar 2013; William Hubbs <williamh@gentoo.org> udev-198-r1.ebuild,
+  udev-9999.ebuild:
+  typo fix
+
+  11 Mar 2013; Samuli Suominen <ssuominen@gentoo.org> udev-198-r1.ebuild,
+  udev-9999.ebuild:
+  Missing <> in the example command.
+
+  11 Mar 2013; Samuli Suominen <ssuominen@gentoo.org> udev-198-r1.ebuild,
+  udev-9999.ebuild:
+  Synchronize the coding style with if, then, fi.
+
+  11 Mar 2013; Samuli Suominen <ssuominen@gentoo.org> udev-198-r1.ebuild,
+  udev-9999.ebuild:
+  Example udevadm command for determining the new interface name with the
+  predictable scheme before booting.
+
+  11 Mar 2013; Samuli Suominen <ssuominen@gentoo.org> udev-198-r1.ebuild,
+  udev-9999.ebuild:
+  Create manpage .so link file from udevd(8) to systemd-udevd.service(8) to
+  which udevd-systemd(8) is pointing too.
 
   10 Mar 2013; Samuli Suominen <ssuominen@gentoo.org> udev-198-r1.ebuild,
   udev-9999.ebuild:

@@ -1,12 +1,11 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.189 2013/03/10 17:28:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.196 2013/03/11 14:32:47 williamh Exp $
 
 EAPI=4
 
 # accept4() patch is only in non-live version
-if [[ ${PV} = 9999* ]]
-then
+if [[ ${PV} = 9999* ]]; then
 	KV_min=2.6.39
 else
 	KV_min=2.6.32
@@ -14,17 +13,16 @@ fi
 
 inherit autotools eutils linux-info multilib systemd toolchain-funcs versionator
 
-if [[ ${PV} = 9999* ]]
-then
+if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
 	inherit git-2
 else
 	patchset=
 	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz"
-	if [[ -n "${patchset}" ]]
-		then
+	if [[ -n "${patchset}" ]]; then
 				SRC_URI="${SRC_URI}
-					http://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.bz2"
+					http://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
+					http://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
 			fi
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
@@ -54,8 +52,7 @@ DEPEND="${COMMON_DEPEND}
 	doc? ( >=dev-util/gtk-doc-1.18 )
 	keymap? ( dev-util/gperf )"
 
-if [[ ${PV} = 9999* ]]
-then
+if [[ ${PV} = 9999* ]]; then
 	DEPEND="${DEPEND}
 		app-text/docbook-xsl-stylesheets
 		dev-libs/libxslt
@@ -83,8 +80,7 @@ QA_MULTILIB_PATHS="lib/systemd/systemd-udevd"
 
 udev_check_KV()
 {
-	if kernel_is lt ${KV_min//./ }
-	then
+	if kernel_is lt ${KV_min//./ }; then
 		return 1
 	fi
 	return 0
@@ -97,8 +93,7 @@ check_default_rules()
 	local udev_rules_md5=a3e16362de3750807b52eae9525c102c
 	MD5=$(md5sum < "${S}"/rules/50-udev-default.rules)
 	MD5=${MD5/  -/}
-	if [[ ${MD5} != ${udev_rules_md5} ]]
-	then
+	if [[ ${MD5} != ${udev_rules_md5} ]]; then
 		eerror "50-udev-default.rules has been updated, please validate!"
 		eerror "md5sum: ${MD5}"
 		die "50-udev-default.rules has been updated, please validate!"
@@ -111,16 +106,14 @@ pkg_setup()
 
 	linux-info_pkg_setup
 
-	if ! udev_check_KV
-	then
+	if ! udev_check_KV; then
 		eerror "Your kernel version (${KV_FULL}) is too old to run ${P}"
 		eerror "It must be at least ${KV_min}!"
 	fi
 
 	KV_FULL_SRC=${KV_FULL}
 	get_running_version
-	if ! udev_check_KV
-	then
+	if ! udev_check_KV; then
 		eerror
 		eerror "Your running kernel version (${KV_FULL}) is too old"
 		eerror "for this version of udev."
@@ -145,8 +138,7 @@ src_prepare()
 	fi
 
 	# backport some patches
-	if [[ -n "${patchset}" ]]
-	then
+	if [[ -n "${patchset}" ]]; then
 		EPATCH_SUFFIX=patch EPATCH_FORCE=yes epatch
 	fi
 
@@ -180,10 +172,8 @@ src_prepare()
 		-i rules/*.rules \
 	|| die "failed to change group dialout to uucp"
 
-	if [[ ! -e configure ]]
-	then
-		if use doc
-		then
+	if [[ ! -e configure ]]; then
+		if use doc; then
 			gtkdocize --docdir docs || die "gtkdocize failed"
 		else
 			echo 'EXTRA_DIST =' > docs/gtk-doc.make
@@ -198,6 +188,9 @@ src_prepare()
 		echo '#define secure_getenv(x) NULL' >> config.h.in
 		sed -i -e '/error.*secure_getenv/s:.*:#define secure_getenv(x) NULL:' src/shared/missing.h || die
 	fi
+
+	# link udevd(8) to systemd-udevd.service(8) manpage
+	echo '.so systemd-udevd.service.8' > "${T}"/udevd.8
 }
 
 src_configure()
@@ -277,8 +270,7 @@ src_compile()
 	use gudev && targets+=( libgudev-1.0.la )
 
 	emake "${targets[@]}"
-	if use doc
-	then
+	if use doc; then
 		emake -C docs/libudev
 		use gudev && emake -C docs/gudev
 	fi
@@ -316,8 +308,7 @@ src_install()
 		install-dist_bashcompletionDATA
 	)
 
-	if use gudev
-	then
+	if use gudev; then
 		lib_LTLIBRARIES+=" libgudev-1.0.la"
 		pkgconfiglib_DATA+=" src/gudev/gudev-1.0.pc"
 	fi
@@ -342,8 +333,7 @@ src_install()
 		dist_bashcompletion_DATA="shell-completion/bash/udevadm"
 	)
 	emake DESTDIR="${D}" "${targets[@]}"
-	if use doc
-	then
+	if use doc; then
 		emake -C docs/libudev DESTDIR="${D}" install
 		use gudev && emake -C docs/gudev DESTDIR="${D}" install
 	fi
@@ -368,18 +358,19 @@ src_install()
 	dosym /sbin/udevd "$(systemd_get_utildir)"/systemd-udevd
 	find "${ED}/$(systemd_get_unitdir)" -name '*.service' -exec \
 		sed -i -e "/ExecStart/s:/lib/systemd:$(systemd_get_utildir):" {} +
+
+	# see src_prepare() where this is created
+	doman "${T}"/udevd.8
 }
 
 pkg_preinst()
 {
 	local htmldir
 	for htmldir in gudev libudev; do
-		if [[ -d ${ROOT}usr/share/gtk-doc/html/${htmldir} ]]
-		then
+		if [[ -d ${ROOT}usr/share/gtk-doc/html/${htmldir} ]]; then
 			rm -rf "${ROOT}"usr/share/gtk-doc/html/${htmldir}
 		fi
-		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]
-		then
+		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]; then
 			dosym ../../doc/${PF}/html/${htmldir} \
 				/usr/share/gtk-doc/html/${htmldir}
 		fi
@@ -404,8 +395,7 @@ pkg_postinst()
 	# "losetup -f" is confused if there is an empty /dev/loop/, Bug #338766
 	# So try to remove it here (will only work if empty).
 	rmdir "${ROOT}"dev/loop 2>/dev/null
-	if [[ -d ${ROOT}dev/loop ]]
-	then
+	if [[ -d ${ROOT}dev/loop ]]; then
 		ewarn "Please make sure your remove /dev/loop,"
 		ewarn "else losetup may be confused when looking for unused devices."
 	fi
@@ -414,16 +404,14 @@ pkg_postinst()
 	# just ignore them anyway...
 
 	# 64-device-mapper.rules is related to sys-fs/device-mapper which we block
-	# in favour of sys-fs/lvm2
+	# in favor of sys-fs/lvm2
 	old_dm_rules=${ROOT}etc/udev/rules.d/64-device-mapper.rules
-	if [[ -f ${old_dm_rules} ]]
-	then
+	if [[ -f ${old_dm_rules} ]]; then
 		rm -f "${old_dm_rules}"
 		einfo "Removed unneeded file ${old_dm_rules}"
 	fi
 
-	if ismounted /usr
-	then
+	if ismounted /usr; then
 		ewarn
 		ewarn "Your system has /usr on a separate partition. This means"
 		ewarn "you will need to use an initramfs to pre-mount /usr before"
@@ -450,8 +438,7 @@ pkg_postinst()
 		fi
 	done < "${fstab}"
 
-	if [[ -d ${ROOT}usr/lib/udev ]]
-	then
+	if [[ -d ${ROOT}usr/lib/udev ]]; then
 		ewarn
 		ewarn "Please re-emerge all packages on your system which install"
 		ewarn "rules and helpers in /usr/lib/udev. They should now be in"
@@ -465,8 +452,7 @@ pkg_postinst()
 	old_cd_rules=${ROOT}etc/udev/rules.d/70-persistent-cd.rules
 	old_net_rules=${ROOT}etc/udev/rules.d/70-persistent-net.rules
 	for old_rules in "${old_cd_rules}" "${old_net_rules}"; do
-		if [[ -f ${old_rules} ]]
-		then
+		if [[ -f ${old_rules} ]]; then
 			ewarn
 			ewarn "File ${old_rules} is from old udev installation but if you still use it,"
 			ewarn "rename it to something else starting with 70- to silence this"
@@ -474,17 +460,20 @@ pkg_postinst()
 		fi
 	done
 
-	if has_version sys-apps/biosdevname
-	then
+	if has_version sys-apps/biosdevname; then
 		ewarn
 		ewarn "You have sys-apps/biosdevname installed which has been deprecated"
-		ewarn "in favour of the predicatable network interface names."
+		ewarn "in favor of the predictable network interface names."
 	fi
 
 	ewarn
 	ewarn "We don't install ${ROOT}etc/udev/rules.d/80-net-name-slot.rules anymore"
 	ewarn "and the new predictable network interface names are used by default:"
 	ewarn "http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames"
+	ewarn
+	ewarn "Example command to get the information for the new interface name before booting"
+	ewarn "(replace ifname with, for example, eth0):"
+	ewarn "# udevadm test-builtin net_id /sys/class/net/<ifname> 2> /dev/null"
 
 	ewarn
 	ewarn "You need to restart udev as soon as possible to make the upgrade go"
