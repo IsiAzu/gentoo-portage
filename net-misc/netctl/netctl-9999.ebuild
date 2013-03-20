@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netctl/netctl-9999.ebuild,v 1.1 2013/03/10 22:56:40 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netctl/netctl-9999.ebuild,v 1.2 2013/03/20 00:01:10 floppym Exp $
 
 EAPI=5
 
@@ -26,10 +26,6 @@ RDEPEND="
 	sys-apps/iproute2
 	sys-apps/systemd
 "
-
-src_prepare() {
-	epatch "${FILESDIR}/${PN}-util-paths.patch"
-}
 
 src_compile() {
 	return 0
