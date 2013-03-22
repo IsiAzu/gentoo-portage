@@ -355,7 +355,6 @@ app-editors/emacs-vcs:gtk3 - Link against version 3 of the GIMP Toolkit instead 
 app-editors/emacs-vcs:gzip-el - Compress bundled Emacs Lisp source
 app-editors/emacs-vcs:hesiod - Enable support for net-dns/hesiod
 app-editors/emacs-vcs:imagemagick - Use media-gfx/imagemagick for image processing
-app-editors/emacs-vcs:inotify - Enable inotify filesystem monitoring support
 app-editors/emacs-vcs:libxml2 - Use dev-libs/libxml2 to parse XML instead of the internal Lisp implementations
 app-editors/emacs-vcs:pax_kernel - Enable building under a PaX enabled kernel (sys-apps/paxctl)
 app-editors/emacs-vcs:source - Install C source files and make them available for find-function
@@ -2067,6 +2066,7 @@ dev-vcs/subversion:dso - Enable runtime module search
 dev-vcs/subversion:extras - Install extra scripts (examples, tools, hooks)
 dev-vcs/subversion:webdav-neon - Enable WebDAV support using net-libs/neon
 dev-vcs/subversion:webdav-serf - Enable WebDAV support using net-libs/serf
+games-action/beathazardultra:bundled-libs - Use the upstream provided bundled libraries.
 games-action/chromium-bsu:mixer - Enables media-libs/sdl-mixer sound backend instead of media-libs/openal one.
 games-action/d1x-rebirth:awe32 - Enable AWE32 support
 games-action/d1x-rebirth:demo - Use the demo data instead of the full game
@@ -2084,6 +2084,10 @@ games-action/d2x-rebirth:music - Support for ingame music
 games-action/d2x-rebirth:opl3-musicpack - Include alternate version of the game's music, recorded with the Yamaha YMF262 OPL3 soundchip
 games-action/d2x-rebirth:sc55-musicpack - Include alternate version of the game's music, recorded with the Roland Sound Canvas SC-55 MIDI module
 games-action/openlierox:breakpad - Compile with support for breakpad crash reporting system
+games-action/solar2:bundled-libs - Use the upstream provided bundled libraries.
+games-action/super-hexagon:bundled-glew - Use the upstream provided bundled glew.
+games-action/super-hexagon:bundled-libs - Use the upstream provided bundled libraries.
+games-action/swordandsworcery:bundled-libs - Use the upstream provided bundled libraries.
 games-action/trine2:launcher - Install gtk+ launcher
 games-action/trine2:system-libs - Use system provided libraries.
 games-arcade/bomns:editor - enables building the level editor
@@ -2186,6 +2190,7 @@ games-fps/warsow:angelscript - Enable AngelScript support
 games-fps/warsow:irc - Enable IRC support
 games-fps/warsow:server - Build server binaries additionally
 games-fps/worldofpadman:maps - Install extra maps (PadPack)
+games-kids/crayon-physics:bundled-libs - Use the upstream provided bundled libraries.
 games-misc/katawa-shoujo:system-renpy - Use games-engines/renpy instead of the bundled one (experimental)
 games-misc/xcowsay:fortune - Installs the fortune-mod xcow binary
 games-mud/tf:atcp - enable ATCP support.
@@ -2193,6 +2198,7 @@ games-mud/tf:gmcp - enable GMCP support.
 games-mud/tf:option102 - enable telnet option 102 support.
 games-puzzle/cuyo:music - Enable playing of background music
 games-puzzle/jag:editor - Install level editor
+games-puzzle/nightsky:bundled-libs - Use the upstream provided bundled libraries.
 games-puzzle/pingus:music - Enable playing of background music
 games-puzzle/xlogical:alt_gfx - Use alternate graphics which are closer to the original Amiga version
 games-roguelike/FTL:system-libs - Use system provided libraries.
@@ -2205,8 +2211,10 @@ games-rpg/arx-libertatis:crash-reporter - Build a dev-qt/qtgui-based tool that a
 games-rpg/arx-libertatis:debug - Enable asserts and debug logging.
 games-rpg/arx-libertatis:tools - Build tools that can extract the game's data and save files.
 games-rpg/arx-libertatis:unity-build - Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher memory usage.
+games-rpg/bastion:bundled-libs - Use the upstream provided bundled libraries.
 games-rpg/daimonin-client:music - Install extra music
 games-rpg/drascula:sound - Install optional audio files
+games-rpg/dungeon-defenders:bundled-libs - Use the upstream provided bundled libraries.
 games-rpg/eternal-lands-data:bloodsuckermaps - Will install Bloodsucker's Maps in place of the official map files.
 games-rpg/eternal-lands-data:music - Adds in-game music.
 games-rpg/eternal-lands-data:sound - Adds in-game sound effects.
@@ -4099,7 +4107,6 @@ net-im/ekg2:gadu - Enable Gadu-Gadu protocol support (requires net-libs/libgadu)
 net-im/ekg2:gif - GIF token support for Gadu-Gadu protocol.
 net-im/ekg2:gnutls - Enable SSL/TLS support through GnuTLS for the plugins supporting it. If 'ssl' is enabled too, GnuTLS will be preferred where possible (and OpenSSL will be used elsewhere).
 net-im/ekg2:gpg - Enable jabber message encryption through app-crypt/gpgme.
-net-im/ekg2:inotify - Enable inotify-based filesystem monitoring support for xmsg&mail plugins.
 net-im/ekg2:jpeg - JPEG token support for Gadu-Gadu protocol.
 net-im/ekg2:minimal - Disable building extra plugins with no additional deps.
 net-im/ekg2:openssl - Support encryption in sim plugin, using OpenSSL.
