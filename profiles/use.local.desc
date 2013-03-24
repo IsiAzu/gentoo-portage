@@ -147,6 +147,7 @@ app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
 app-admin/elektra:gcov - Enable coverage support
 app-admin/elektra:simpleini - Enable simpleini support
 app-admin/elektra:yajl - Enable yajl support
+app-admin/eselect-php:fpm - Enable the FastCGI Process Manager SAPI
 app-admin/gkrellm:X - Build both the X11 gui (gkrellm) and the server (gkrellmd). Disabling this flag builds the server only.
 app-admin/gkrellm:gnutls - Enable SSL support for mail checking with net-libs/gnutls (overrides 'ssl' USE flag)
 app-admin/gkrellm:hddtemp - Enable monitoring harddrive temperatures via app-admin/hddtemp
@@ -1352,7 +1353,7 @@ dev-lang/php:pdo - Enable the bundled PDO extensions
 dev-lang/php:phar - Enables the phar extension to provide phar archive support
 dev-lang/php:pic - Force shared modules to build as PIC on x86 (speed tradeoff with memory usage)
 dev-lang/php:sqlite2 - Add sqlite2 support. Will be removed
-dev-lang/php:suhosin - Add Suhosin support (patch and extension from http://www.suhosin.org/)
+dev-lang/php:suhosin - Add the Suhosin patch from http://www.suhosin.org/)
 dev-lang/php:xmlreader - Enable XMLReader support
 dev-lang/php:xmlwriter - Enable XMLWriter support
 dev-lang/php:zip - Enable ZIP file support
@@ -1367,10 +1368,6 @@ dev-lang/ruby:rdoc - Install dev-ruby/rdoc after installing Ruby.
 dev-lang/ruby:readline - Use the sys-libs/readline library to provide the readline extension, used for instance by the irb tool. This flag is meaningful only if the libedit USE flag is disabled. If neither libedit nor readline USE flags are enabled, the readline extension will not be built (and irb will lose line editing functionality).
 dev-lang/ruby:rubytests - Install ruby tests that can only be run after ruby is installed
 dev-lang/ruby:yaml - Use the dev-libs/libyaml library to build the psych extension, available since Ruby 1.9.2_rc2, in alternative to the bundled syck-based parser.
-dev-lang/ruby-enterprise:fastthreading - EXPERIMENTAL Enables fast threading routines. Removes support for callcc.
-dev-lang/ruby-enterprise:libedit - Use the dev-libs/libedit library to provide the readline extension, used for instance by the irb tool. This flag will take precedence over the readline USE flag. If neither libedit nor readline USE flags are enabled, the readline extension will not be built (and irb will lose line editing functionality).
-dev-lang/ruby-enterprise:readline - Use the sys-libs/readline library to provide the readline extension, used for instance by the irb tool. This flag is meaningful only if the libedit USE flag is disabled. If neither libedit nor readline USE flags are enabled, the readline extension will not be built (and irb will lose line editing functionality).
-dev-lang/ruby-enterprise:rubytests - Install ruby tests that can only be run after ruby is installed
 dev-lang/scala:binary - Install from (Gentoo-compiled) binary instead of building from sources. Set this when you run out of memory during build.
 dev-lang/spidermonkey:threadsafe - Build a threadsafe version of spidermonkey
 dev-lang/swi-prolog:archive - Use libarchive for extension packs
@@ -3376,10 +3373,8 @@ media-sound/xwax:fallback - Sets runtime dependencies to support decoding "other
 media-sound/xwax:jack - Adds support for audio input/output via the JACK Audio Connection Kit.
 media-sound/xwax:mp3 - Sets runtime dependencies to support decoding MP3 audio.
 media-sound/xwax:oss - Adds support for OSS (open sound system) audio input/output.
-media-tv/freevo:ivtv - Enables ivtv support
 media-tv/freevo:mixer - Enable support for adjusting volume via media-sound/aumix
 media-tv/freevo:tv - Enable support for the tv guide plugin
-media-tv/freevo:tvtime - Enables tvtime support, additional to tv use flag
 media-tv/gentoo-vdr-scripts:nvram - Add support for using nvram-wakeup to set wakeup time in bios
 media-tv/me-tv:http - Installation of Web-frontend
 media-tv/mythtv:alsa - Allows MythTV to directly output sound to ALSA devices, this is needed if you are using ALSA dmix or SPDIF. Note, you will have to physically type your device into the MythTV configuration since it will only give you /dev/dsp devices in the drop down.
@@ -3410,6 +3405,7 @@ media-tv/xawtv:zvbi - Enable VBI Decoding Library for Zapping
 media-tv/xbmc:airplay - enable AirPlay support
 media-tv/xbmc:bluray - Enable playback of Blu-ray filesystems
 media-tv/xbmc:cec - Enable support for HDMI-CEC devices via libcec
+media-tv/xbmc:fishbmc - Enable fishBMC visualization plugin
 media-tv/xbmc:goom - Enable GOOM visualization plugin
 media-tv/xbmc:midi - Support MIDI files
 media-tv/xbmc:nfs - Enable NFS client support
@@ -4661,6 +4657,7 @@ net-misc/dnetstats:gnome - Use gksu to gain root access
 net-misc/dnetstats:kde - Use kdesu to gain root access
 net-misc/dropbear:bsdpty - Add support for legacy BSD pty's rather than dynamic UNIX pty's -- do not use this flag unless you are absolutely sure you actually want it
 net-misc/dropbear:multicall - Build all the programs as one little binary (to save space)
+net-misc/dropbear:shadow - Enable shadow password support
 net-misc/dropbox:librsync-bundled - Use bundled librsync library
 net-misc/freerdp:channels - Build virtual channel plugins
 net-misc/freerdp:client - Build client binaries
@@ -4770,9 +4767,9 @@ net-misc/quagga:readline - Enable support for sys-libs/readline to provide the Q
 net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are chosen otherwise
 net-misc/rdesktop:pcsc-lite - Enable smartcard support with sys-apps/pcsc-lite driver
 net-misc/remmina:freerdp - Add support for the net-misc/freerdp application
-net-misc/remmina:ssh - Enable support for SSH/SFTP using net-libs/libssh
+net-misc/remmina:ssh - Enable support for SSH/SFTP protocol; see also 'vte'
 net-misc/remmina:telepathy - Enable telepathy support
-net-misc/remmina:vte - Enable Terminal support using x11-libs/vte
+net-misc/remmina:vte - Enable virtual terminal support (for SSH sessions)
 net-misc/rygel:tracker - Install dependencies for the tracker plugin
 net-misc/rygel:transcode - Install dependencies for transcoding support
 net-misc/scponly:gftp - Enables gFTP compatibility
@@ -4951,7 +4948,6 @@ net-p2p/mldonkey:fasttrack - enable fasttrack support
 net-p2p/mldonkey:gnutella - enable gnutella and gnutella2 support
 net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
-net-p2p/ncdc:db-upgrade - Build db-upgrade utility
 net-p2p/rtorrent:color - Add custom color support for torrent list
 net-p2p/rtorrent:daemon - Uses app-misc/screen to daemonize this application
 net-p2p/transmission:lightweight - Optimize transmission for low-resource systems (smaller cache size, prefer unencrypted peer connections, etc.)
@@ -5563,6 +5559,7 @@ sys-apps/systemd:audit - Enable support for sys-process/audit
 sys-apps/systemd:cryptsetup - Use libcryptsetup
 sys-apps/systemd:efi - Enable EFI support (installs bootctl)
 sys-apps/systemd:gcrypt - Enable sealing of journal files using gcrypt
+sys-apps/systemd:gudev - enable libudev gobject interface
 sys-apps/systemd:http - Enable embedded HTTP server in journald
 sys-apps/systemd:kmod - Enable kernel module loading via sys-apps/kmod
 sys-apps/systemd:qrcode - Enable qrcode output support in journal

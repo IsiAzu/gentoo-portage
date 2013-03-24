@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-action/super-hexagon/super-hexagon-15.ebuild,v 1.1 2013/03/21 21:58:14 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-action/super-hexagon/super-hexagon-15.ebuild,v 1.3 2013/03/23 21:20:31 hasufell Exp $
 
 EAPI=5
 
-inherit eutils games
+inherit eutils unpacker games
 
 DESCRIPTION="A minimal action game by Terry Cavanagh, with music by Chipzel"
 HOMEPAGE="http://www.superhexagon.com/"
@@ -43,13 +43,6 @@ RDEPEND="
 
 S=${WORKDIR}/data
 
-pkg_pretend() {
-	if has splitdebug ${FEATURES}; then
-		eerror "FEATURES=splitdebug is broken for this package, disable it locally"
-		die "FEATURES=splitdebug is broken for this package, disable it locally"
-	fi
-}
-
 pkg_nofetch() {
 	einfo "Please buy & download ${SRC_URI} from:"
 	einfo "  ${HOMEPAGE}"
@@ -58,9 +51,7 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	# self unpacking zip archive; unzip warns about the exe stuff
-	unzip -q "${DISTDIR}"/${A}
-	[[ $? -gt 1 ]] && die "unpacking failed"
+	unpack_zip ${A}
 }
 
 src_prepare() {

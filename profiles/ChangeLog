@@ -1,10 +1,108 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7618 2013/03/21 23:02:46 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7645 2013/03/24 15:16:02 hwoarang Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  24 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Don't threaten MSN clients for removal yet
+
+  24 Mar 2013; Dion Moult <moult@gentoo.org> package.mask:
+  Remove www-client/xxxterm mask as package has been removed
+
+  24 Mar 2013; Dion Moult <moult@gentoo.org> package.mask:
+  Remove bug #367423 dev-lang/ruby-enterprise masks as package has been removed
+  and bug marked as WONTFIX
+
+  24 Mar 2013; Dion Moult <moult@gentoo.org> package.mask:
+  Remove dev-lang/ruby-enterprise and associated virtuals mask as packages have
+  been removed
+
+  24 Mar 2013; Dion Moult <moult@gentoo.org> package.mask:
+  Remove app-misc/secure-delete mask as package has been removed
+
+  24 Mar 2013; Dion Moult <moult@gentoo.org> package.mask:
+  Remove dev-python/pysqlite-2 mask as package has been removed
+
+  24 Mar 2013; Richard Freeman <rich0@gentoo.org> package.mask:
+  Taking over cuneiform maintainership.
+
+  24 Mar 2013; Anthony G. Basile <blueness@gentoo.org>
+  +hardened/linux/13.0/amd64/deprecated,
+  +hardened/linux/13.0/amd64/no-multilib/deprecated,
+  +hardened/linux/13.0/amd64/no-multilib/selinux/deprecated,
+  +hardened/linux/13.0/amd64/selinux/deprecated,
+  +hardened/linux/13.0/amd64/x32/deprecated,
+  +hardened/linux/13.0/x86/deprecated,
+  +hardened/linux/13.0/x86/selinux/deprecated, hardened/linux/parent:
+  Switch hardened profiles to inherit from 13.0
+
+  23 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Mask app-text/gonzui for removal
+
+  23 Mar 2013; Rick Farina <zerochaos@gentoo.org> package.mask:
+  Removing iwl{3945,4965}-ucode mask as packages have been removed
+
+  23 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Add amsn* to the MSN-only packages that going away
+
+  23 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Masking net-im/kmess for removal
+
+  23 Mar 2013; Tom Wijsman <TomWij@gentoo.org> package.mask:
+  Removed gentoo-sources mask since the old ebuilds have been deleted.
+
+  23 Mar 2013; Tomáš Chvátal <scarabeus@gentoo.org>
+  +desc/office_implementation.desc, base/make.defaults:
+  Add office implementation for next version of office-ext eclass. So the
+  extensions are not installed automagically based on whats found on the
+  system.
+
+  23 Mar 2013; Pawel Hajdan jr <phajdan.jr@gentoo.org> base/package.use.mask:
+  Unmask pulseaudio flag for chromium-27.x
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Add alternatives for media-tv/tvtime
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Mask media-tv/tvtime for removal
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Mask app-text/cuneiform for removal
+
+  22 Mar 2013; Andreas K. Huettel <dilfridge@gentoo.org>
+  targets/desktop/kde/package.use:
+  Enable app-arch/unzip natspec useflag by default in kde profile as per kde
+  team decision, bug 457934
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  dev-python/papyon and net-voip/telepathy-butterfly removal. Bug #362611
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  app-misc/ccal removal. Fixes bug #350559
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  sys-apps/i2c removal. Fixes bug #450594
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  net-misc/wxdfast is gone. Fixes #457832
+
+  22 Mar 2013; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Mask net-misc/gwibber for removal. Bug #388913
+
+  22 Mar 2013; Ole Markus With <olemarkus@gentoo.org>
+  eapi-5-files/use.stable.mask:
+  Adding PHP_TARGETS='php5-5' to use.stable.mask
+
+  22 Mar 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove mask entry for mkxf86config, and old version of livecd-tools. Former
+  is no longer required with modern X.org and udev and latter only has latest
+  in tree left.
+
+  22 Mar 2013; Sergey Popov <pinkbyte@gentoo.org> package.mask:
+  Removing mask on app-text/linuxdoc-tools
 
   21 Mar 2013; Zac Medico <zmedico@gentoo.org> desc/python_targets.desc:
   Add python_targets_python3_4 description (it's not available in the main tree

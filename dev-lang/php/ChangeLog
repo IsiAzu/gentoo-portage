@@ -1,6 +1,61 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.676 2013/03/21 13:34:38 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.688 2013/03/23 19:45:32 olemarkus Exp $
+
+  23 Mar 2013; Ole Markus With <olemarkus@gentoo.org> metadata.xml:
+  Removing suhosin USE flag description from metadata.xml
+
+*php-5.4.13-r2 (23 Mar 2013)
+*php-5.5.0_beta1-r2 (23 Mar 2013)
+*php-5.3.23-r1 (23 Mar 2013)
+
+  23 Mar 2013; Ole Markus With <olemarkus@gentoo.org> +php-5.3.23-r1.ebuild,
+  +php-5.4.13-r2.ebuild, +php-5.5.0_beta1-r2.ebuild:
+  Revbumps. Resolving bug 323783, 389805 and 412913
+
+  23 Mar 2013; Jeroen Roovers <jer@gentoo.org> php-5.3.23.ebuild,
+  php-5.4.13.ebuild:
+  Stable for HPPA (bug #459904).
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> php-5.3.23.ebuild,
+  php-5.4.13.ebuild:
+  Stable for arm, wrt bug #459904
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> php-5.3.23.ebuild,
+  php-5.4.13.ebuild:
+  Stable for alpha, wrt bug #459904
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> php-5.3.23.ebuild,
+  php-5.4.13.ebuild:
+  Stable for ppc64, wrt bug #459904
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> php-5.3.23.ebuild,
+  php-5.4.13.ebuild:
+  Stable for ppc, wrt bug #459904
+
+  23 Mar 2013; Ole Markus With <olemarkus@gentoo.org>
+  +files/missing-openssl-include.patch, php-5.3.23.ebuild, php-5.4.13.ebuild:
+  Added patch for bug 455040
+
+  23 Mar 2013; Ole Markus With <olemarkus@gentoo.org> -php-5.3.20.ebuild,
+  -php-5.3.21-r1.ebuild, -php-5.3.21-r2.ebuild, -php-5.3.22.ebuild,
+  -php-5.4.10.ebuild, -php-5.4.11-r1.ebuild, -php-5.4.11-r2.ebuild,
+  -php-5.4.12.ebuild:
+  Removing older versions
+
+*php-5.5.0_beta1-r1 (23 Mar 2013)
+
+  23 Mar 2013; Ole Markus With <olemarkus@gentoo.org>
+  +php-5.5.0_beta1-r1.ebuild:
+  Revbump fixing bug 462724
+
+  22 Mar 2013; Agostino Sarubbo <ago@gentoo.org> php-5.3.23.ebuild,
+  php-5.4.13.ebuild:
+  Stable for x86, wrt bug #459904
+
+  22 Mar 2013; Agostino Sarubbo <ago@gentoo.org> php-5.3.23.ebuild,
+  php-5.4.13.ebuild:
+  Stable for amd64, wrt bug #459904
 
   21 Mar 2013; Ole Markus With <olemarkus@gentoo.org> -php-5.5.0_alpha2.ebuild,
   -php-5.5.0_alpha4.ebuild, -php-5.5.0_alpha6.ebuild:

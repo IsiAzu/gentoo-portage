@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.23.ebuild,v 1.1 2013/03/15 08:55:15 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.23.ebuild,v 1.9 2013/03/23 18:30:04 jer Exp $
 
 EAPI=5
 
@@ -10,7 +10,7 @@ SUHOSIN_VERSION=""
 FPM_VERSION="builtin"
 EXPECTED_TEST_FAILURES=""
 
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd"
+KEYWORDS="alpha amd64 arm hppa ~ia64 ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-fbsd"
 
 function php_get_uri ()
 {
@@ -336,6 +336,9 @@ src_prepare() {
 		EPATCH_FORCE="yes" \
 		EPATCH_MULTI_MSG="Applying generic patches and fixes from upstream..." epatch
 
+	# Patch for pkg-config-0.28 (Bug 455040)
+	epatch "${FILESDIR}"/missing-openssl-include.patch
+
 	# Patch PHP to show Gentoo as the server platform
 	sed -e 's/PHP_UNAME=`uname -a | xargs`/PHP_UNAME=`uname -s -n -r -v | xargs`/g' \
 		-i configure.in || die "Failed to fix server platform name"
@@ -363,6 +366,8 @@ src_prepare() {
 	else
 		ewarn "Please note that this version of PHP does not yet come with a suhosin patch"
 	fi
+
+
 
 	#Add user patches #357637
 	epatch_user
