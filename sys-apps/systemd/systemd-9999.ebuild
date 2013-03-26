@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.25 2013/03/24 22:12:25 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.27 2013/03/26 16:24:26 mgorny Exp $
 
 EAPI=5
 
@@ -13,7 +13,7 @@ inherit git-2
 #endif
 
 PYTHON_COMPAT=( python2_7 )
-inherit autotools-utils linux-info multilib pam python-single-r1 systemd user
+inherit autotools-utils linux-info multilib pam python-single-r1 systemd udev user
 
 DESCRIPTION="System and service manager for Linux"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
@@ -23,7 +23,8 @@ LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~ppc64 ~x86"
 IUSE="acl audit cryptsetup doc efi gcrypt gudev http
-	introspection +kmod lzma pam python qrcode selinux tcpd vanilla xattr"
+	introspection +kmod lzma pam python qrcode selinux static-libs
+	tcpd vanilla xattr"
 
 MINKV="2.6.39"
 
@@ -107,6 +108,9 @@ src_configure() {
 		--enable-split-usr
 		# no deps
 		--enable-keymap
+		# disable sysv compatibility
+		--with-sysvinit-path=
+		--with-sysvrcnd-path=
 		# just text files
 		--enable-polkit
 		# optional components/dependencies
@@ -130,11 +134,21 @@ src_configure() {
 		$(use_enable xattr)
 	)
 
+	# Keep using the one where the rules were installed.
+	MY_UDEVDIR=$(get_udevdir)
+
 	autotools-utils_src_configure
 }
 
+src_compile() {
+	autotools-utils_src_compile \
+		udevlibexecdir="${MY_UDEVDIR}"
+}
+
 src_install() {
-	autotools-utils_src_install -j1 dist_udevhwdb_DATA=
+	autotools-utils_src_install -j1 \
+		udevlibexecdir="${MY_UDEVDIR}" \
+		dist_udevhwdb_DATA=
 
 	# zsh completion
 	insinto /usr/share/zsh/site-functions
