@@ -309,6 +309,8 @@ app-crypt/ophcrack:tables - Require the additional tables used to carry out crac
 app-crypt/ophcrack-tables:vistafree - Installs the free Vista ophcrack tables
 app-crypt/ophcrack-tables:xpfast - Installs the fast XP ophcrack tables
 app-crypt/ophcrack-tables:xpsmall - Installs the small free XP ophcrack tables
+app-crypt/p11-kit:asn1 - Enable ASN.1 certificate support
+app-crypt/p11-kit:trust - Build the trust policy module
 app-crypt/seahorse:ldap - Enable seahorse to manipulate GPG keys on a LDAP server.
 app-crypt/seahorse-plugins:applet - Enable seahorse applet for gnome-base/gnome-panel
 app-crypt/seahorse-plugins:gedit - Enable text encryption plugin to integrate into app-editors/gedit
@@ -410,6 +412,7 @@ app-emulation/bochs:avx - Enable support for Advanced Vector Extensions (AVX)
 app-emulation/bochs:debugger - Enable debugger (slows down emulation)
 app-emulation/bochs:gdb - Enable support for the remote GDB stub
 app-emulation/bochs:x86-64 - Enable support for emulation of 64-bit CPUs
+app-emulation/crossover-bin:capi - Enable ISDN support via CAPI
 app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
 app-emulation/emul-linux-x86-baselibs:development - Install pkgconfig files
@@ -909,6 +912,7 @@ app-portage/eix:security - This adds some checks which can prevent certain explo
 app-portage/eix:sqlite - Compile in support for portage's sqlite backend; to actually use it you need additional configuration of portage and eix
 app-portage/eix:strong-optimization - Adds several more agressive CXXFLAGS/LDFLAGS for optimization like graphite (if available). May cause trouble with some buggy compiler versions. Absense of this USE flag does not strip user's *FLAGS
 app-portage/eix:strong-security - Add many checks to prevent exploits if eix code has a bug. This will slow down eix considerably. Use only if you are paranoid or have reasons to suspect a bug.
+app-portage/eix:swap-remote - Swap role of remote addresses in eix-remote, making the data from gpo.zugaina.org the first choice.
 app-portage/eix:tools - Create separate binary for script helper tools; useful if they are called extremely often
 app-portage/layman:bazaar - Support dev-vcs/bzr based overlays
 app-portage/layman:cvs - Support dev-vcs/cvs based overlays
@@ -5209,6 +5213,7 @@ sci-geosciences/googleearth:qt-bundled - Use bundled Qt4 libraries instead of sy
 sci-geosciences/googleearth:system-mdns - Use nss-mdns library from portagen instead of the bundled one.
 sci-geosciences/googleearth:system-qt - Use Qt4 libraries from portage instead of the bundled ones.
 sci-geosciences/gpsd:dbus - export gpsd data over dbus connections
+sci-geosciences/gpsd:latency_timing - support latency timing information
 sci-geosciences/gpsd:ntp - Enable net-misc/ntp shared memory interface and PPS kernel support for GPS time
 sci-geosciences/gpsd:shm - export gpsd over shared memory
 sci-geosciences/gpsd:sockets - export gpsd over unix sockets
