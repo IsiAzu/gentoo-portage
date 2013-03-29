@@ -779,6 +779,7 @@ app-misc/strigi:clucene - Enable dev-cpp/clucene backend support.
 app-misc/strigi:hyperestraier - Enable app-text/hyperestraier backend support.
 app-misc/strigi:inotify - Enable support for inotify.
 app-misc/strigi:log - Enables advanced logging through dev-libs/log4cxx.
+app-misc/subsurface:map - Adds support for OpenStreetMap maps that can be used with your dive logs.
 app-misc/tablix:pvm - Add support for parallel virtual machine (sys-cluster/pvm)
 app-misc/tasque:hiveminder - Allows you to use http://www.hiveminder.com/ as your storage backend.
 app-misc/tasque:rememberthemilk - Allows you to use http://www.rememberthemilk.com/ as your storage backend.
@@ -791,6 +792,7 @@ app-misc/tracker:gsf - Enable gnome-extra/libgsf based data extractor and for OD
 app-misc/tracker:iptc - Enable extraction of IPTC data from pictures
 app-misc/tracker:iso - Enable extraction of metadata from ISO disk images
 app-misc/tracker:laptop - Make tracker power management aware
+app-misc/tracker:libsecret - Enable libsecret support to store login credentials
 app-misc/tracker:miner-fs - Enable tracker-miner-fs (required for filesystem indexing)
 app-misc/tracker:nautilus - Enable tracker to integrate with gnome-base/nautilus by providing entries in its context menu
 app-misc/tracker:playlist - Add support for playlists
@@ -2269,7 +2271,6 @@ games-strategy/warzone2100:qt4 - Use qt-gui/qt-opengl for backend rendering inst
 games-strategy/wesnoth:server - Enable compilation of server
 games-util/gslist:web - Enable the web interface
 games-util/pyfa:graph - Enable support for graphs
-gnome-base/dconf:vala - Add support for dev-lang/vala
 gnome-base/gconf:ldap - Build backend which enables default mail accounts, addressbooks and calendars for Evolution to be configured using each user's LDAP entry."
 gnome-base/gconf:orbit - Use gnome-base/orbit for IPC, same as in gconf-2.x
 gnome-base/gdm:audit - Enable support for sys-process/audit
@@ -2307,6 +2308,7 @@ gnome-base/gvfs:archive - Enables support for accessing files in archives transp
 gnome-base/gvfs:bluray - Enable playback of Blu-ray filesystems using media-libs/libbluray
 gnome-base/gvfs:fuse - Enables fuse mount points in $HOME/.gvfs for legacy application access
 gnome-base/gvfs:gdu - Enable sys-apps/gnome-disk-utility integration
+gnome-base/gvfs:gnome-online-accounts - Enable configuration panel for net-libs/gnome-online-accounts accounts
 gnome-base/gvfs:http - Enable the HTTP/DAV backend using net-libs/libsoup-gnome
 gnome-base/gvfs:udev - Enable udev base replacement code for cdda feature
 gnome-base/gvfs:udisks - Enable volume monitoring using sys-fs/udisks
@@ -2327,6 +2329,7 @@ gnome-extra/avant-window-navigator:vala - Enable installation of dev-lang/vala b
 gnome-extra/avant-window-navigator-extras:gconf - Enable GConf as configuration backend
 gnome-extra/evolution-data-server:api-doc-extras - Build documentation for private APIs
 gnome-extra/evolution-data-server:gnome-online-accounts - Enable using net-libs/gnome-online-accounts for authorization
+gnome-extra/evolution-data-server:google - Enable Google Contacts support
 gnome-extra/evolution-data-server:vala - Build dev-lang/vala bindings
 gnome-extra/evolution-data-server:weather - Enable optional weather calendar support
 gnome-extra/file-browser-applet:gtkhotkey - Enable hotkey support via x11-libs/gtkhotkey
@@ -2559,13 +2562,16 @@ mail-client/claws-mail:dillo - Enables support for inline HTTP email viewing wit
 mail-client/claws-mail:smime - Build plugin for S/MIME support
 mail-client/claws-mail:spamassassin - Build mail-filter/spamassassin plugin
 mail-client/claws-mail:ssl - Use gnutls for Secure Socket Layer transactions (deprecated, USE=gnutls should be used)
+mail-client/evolution:bogofilter - Build mail-filter/bogofilter plugin
 mail-client/evolution:clutter - Build with clutter support for animation effects
 mail-client/evolution:connman - Enable net-misc/connman support (requires 'networkmanager' USE flag to be disabled).
 mail-client/evolution:crypt - Enable GPG encryption support using app-crypt/gnupg and app-crypt/pinentry
 mail-client/evolution:gnome-online-accounts - Enable using net-libs/gnome-online-accounts for authorization
+mail-client/evolution:highlight - Enable text highlighting plugin
 mail-client/evolution:ldap - Enable support for fetching contacts from an LDAP or Active Directory server using net-nds/openldap
 mail-client/evolution:map - Enable support for displaying contacts on a map inside evolution using media-libs/libchamplain
 mail-client/evolution:networkmanager - Allows Evolution to automagically toggle online/offline mode by talking to net-misc/networkmanager and getting the current network state
+mail-client/evolution:spamassassin - Build mail-filter/spamassassin plugin
 mail-client/evolution:weather - Enable optional weather calendar support
 mail-client/mail-notification:gmail - Enable Gmail mailbox checking
 mail-client/mail-notification:mh - Enable MH mailbox checking
@@ -5583,6 +5589,7 @@ sys-apps/util-linux:cramfs - build mkfs/fsck helpers for cramfs filesystems
 sys-apps/util-linux:ddate - build ddate helper (Discordian dates)
 sys-apps/util-linux:loop-aes - include support for Loop AES encryption
 sys-apps/util-linux:perl - install the chkdupexe helper script
+sys-apps/util-linux:suid - install mount/umount as setuid so non-root users may mount/umount devices, and wall/write as setgid so non-root users can notify other users
 sys-apps/v86d:x86emu - Use x86emu for Video BIOS calls
 sys-apps/watchdog:nfs - enable support for checking nfs mounts
 sys-apps/xinetd:rpc - support RPC services
@@ -5845,10 +5852,10 @@ sys-fs/quota:rpc - Enable quota interaction via RPC
 sys-fs/s3ql:contrib - Install additional contributed scripts
 sys-fs/snapraid:ssl - use the MD5 fast implementation of the OpenSSL
 sys-fs/squashfs-tools:xz - Enable support for XZ ("LZMA2") compression using app-arch/xz-utils
-sys-fs/udev:action_modeswitch - switch Mobile Action cables into serial mode
+sys-fs/udev:action_modeswitch - switch Mobile Action cables into serial mode (DEPRECATED, replaced by sys-apps/usb_modeswitch)
 sys-fs/udev:edd - create /dev/disk/by-id/edd-* links for BIOS EDD data
-sys-fs/udev:extras - Compile udev-extras requiring external dependencies
-sys-fs/udev:firmware-loader - Enable deprecated firmware loader for use with older kernels
+sys-fs/udev:extras - no-op USE flag (DEPRECATED, replaced by other USE flags in sys-fs/udev)
+sys-fs/udev:firmware-loader - Enable userspace firmware loader (DEPRECATED, replaced by loader in kernels 3.8 and newer)
 sys-fs/udev:floppy - create historical floppy kernel device nodes (/dev/fd0h1440, ...)
 sys-fs/udev:gudev - enable libudev gobject interface
 sys-fs/udev:hwdb - read vendor/device string database and add it to udev database
@@ -5856,7 +5863,7 @@ sys-fs/udev:introspection - Use dev-libs/gobject-introspection for introspection
 sys-fs/udev:keymap - map custom hardware's multimedia keys
 sys-fs/udev:kmod - enable udev to load kernel modules
 sys-fs/udev:openrc - install the OpenRC init scripts
-sys-fs/udev:rule_generator - enable persistent network and optical device rule generator
+sys-fs/udev:rule_generator - enable persistent network and optical device rule generator (DEPRECATED, replaced by the new predictable network interface names in udev 197 and newer
 sys-fs/udisks:gptfdisk - Pull in sys-apps/gptfdisk for sgdisk command as used by partitioning functionality
 sys-fs/udisks:introspection - Use dev-libs/gobject-introspection for introspection
 sys-fs/udisks:remote-access - Control whether connections from other clients over LAN are allowed
@@ -6305,6 +6312,7 @@ x11-terms/aterm:background - Enable background image support via media-libs/liba
 x11-terms/aterm:xgetdefault - Enable resources via X instead of aterm small version
 x11-terms/eterm:escreen - Enable built-in app-misc/screen support
 x11-terms/eterm:utempter - Include libutempter support
+x11-terms/gnome-terminal:nautilus - Build gnome-base/nautilus extension
 x11-terms/hanterm:utempter - Records user logins. Useful on multi-user systems
 x11-terms/mlterm:ibus - Enable app-i18n/ibus support
 x11-terms/mlterm:libssh2 - Enable net-libs/libssh2 support
