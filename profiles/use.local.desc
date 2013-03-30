@@ -21,8 +21,8 @@ app-accessibility/gnome-speech:freetts - Adds support for the freetts speech dri
 app-accessibility/speech-dispatcher:espeak - Adds support for espeak speech engine
 app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine
 app-accessibility/speechd-el:brltty - brltty support
-app-admin/ansible:paramiko - Use dev-python/paramiko as SSH library
-app-admin/ansible:sudo - Use app-admin/sudo on client nodes
+app-admin/ansible:paramiko - Use dev-python/paramiko as SSH library (deprecated)
+app-admin/ansible:sudo - Use app-admin/sudo on client nodes (deprecated)
 app-admin/bcfg2:cheetah - Include dev-python/cheetah support
 app-admin/bcfg2:genshi - Include dev-python/genshi support
 app-admin/bcfg2:server - Installs scripts to be used on the server-side of this app
@@ -282,7 +282,7 @@ app-cdr/k3b:emovix - Enable burning support for eMoviX images
 app-cdr/mirage2iso:pinentry - Support app-crypt/pinentry password input backend.
 app-cdr/mybashburn:normalize - Add support for normalizing audio file volume levels
 app-crypt/ccid:twinserial - Enable twinserial reader
-app-crypt/eid-mw:gtk - Enable the dialog pages, by using x11-libs/gtk:2
+app-crypt/eid-mw:gtk - Enable the dialog pages, by using x11-libs/gtk+:2
 app-crypt/eid-mw:xpi - Build and install an extension for Mozilla browsers.
 app-crypt/ekeyd:minimal - Only install the ekey-egd-linux service rather than the full ekeyd package.
 app-crypt/ekeyd:munin - Install a plugin for net-analyzer/munin to graph statistical data from ekeyd.
