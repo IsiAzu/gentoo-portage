@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.5.0_beta2-r1.ebuild,v 1.2 2013/03/30 17:47:16 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.5.0_beta2-r1.ebuild,v 1.3 2013/03/31 06:32:29 olemarkus Exp $
 
 EAPI=5
 
@@ -452,10 +452,12 @@ src_configure() {
 
 	# MySQL support
 	local mysqllib="mysqlnd"
+	local mysqlilib="mysqlnd"
 	use libmysqlclient && mysqllib="${EPREFIX}/usr"
+	use libmysqlclient && mysqlilib="${EPREFIX}/usr/bin/mysql_config"
 	
 	my_conf+=" $(use_with mysql mysql $mysqllib)"
-	my_conf+=" $(use_with mysqli mysqli ${EPREFIX}/usr/bin/mysql_config)"
+	my_conf+=" $(use_with mysqli mysqli $mysqlilib)"
 
 	local mysqlsock=" $(use_with mysql mysql-sock ${EPREFIX}/var/run/mysqld/mysqld.sock)"
 	if use mysql ; then
