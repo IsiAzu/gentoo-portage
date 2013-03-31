@@ -1,12 +1,11 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-3.8.0.ebuild,v 1.1 2013/03/28 17:04:38 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-3.8.0.ebuild,v 1.2 2013/03/30 23:01:13 eva Exp $
 
 EAPI="5"
 GCONF_DEBUG="yes" # Not gnome macro but similar
 GNOME2_LA_PUNT="yes"
 
-# Need to learn how fcaps.eclass works
 inherit gnome2 pam versionator virtualx
 
 DESCRIPTION="Password and keyring managing daemon"
@@ -59,16 +58,15 @@ src_prepare() {
 }
 
 src_configure() {
-	G2CONF="${G2CONF}
-		$(use_with caps libcap-ng)
-		$(use_enable pam)
-		$(use_with pam pam-dir $(getpam_mod_dir))
-		$(use_enable selinux)
-		--with-root-certs=${EPREFIX}/etc/ssl/certs/
-		--with-ca-certificates=${EPREFIX}/etc/ssl/certs/ca-certificates.crt
-		--enable-ssh-agent
-		--enable-gpg-agent"
-	gnome2_src_configure
+	gnome2_src_configure \
+		$(use_with caps libcap-ng) \
+		$(use_enable pam) \
+		$(use_with pam pam-dir $(getpam_mod_dir)) \
+		$(use_enable selinux) \
+		--with-root-certs="${EPREFIX}"/etc/ssl/certs/ \
+		--with-ca-certificates="${EPREFIX}"/etc/ssl/certs/ca-certificates.crt \
+		--enable-ssh-agent \
+		--enable-gpg-agent
 }
 
 src_test() {

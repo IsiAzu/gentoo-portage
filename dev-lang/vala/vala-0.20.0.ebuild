@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/vala/vala-0.20.0.ebuild,v 1.1 2013/03/28 16:54:54 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/vala/vala-0.20.0.ebuild,v 1.3 2013/03/30 22:32:13 eva Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -27,9 +27,9 @@ DEPEND="${RDEPEND}
 		dev-libs/dbus-glib
 		>=dev-libs/glib-2.26:2 )"
 
-pkg_setup() {
+src_configure() {
 	DOCS="AUTHORS ChangeLog MAINTAINERS NEWS README"
-	G2CONF="${G2CONF}
-		--disable-unversioned
-		$(use_enable vapigen)"
+	gnome2_src_configure \
+		--disable-unversioned \
+		$(use_enable vapigen)
 }

@@ -1,10 +1,32 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7670 2013/03/29 22:24:52 titanofold Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7677 2013/03/31 01:55:01 robbat2 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+  
+  30 Mar 2013; Robin Johnson <robbat2@gentoo.org> desc/nginx_modules_http.desc:
+  Add SPDY for nginx.
+
+  30 Mar 2013; Ulrich Müller <ulm@gentoo.org> package.mask:
+  Remove mask for app-emacs/yow, package removed.
+
+  30 Mar 2013; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Drop some more packages from Gnome 3.8 mask, they are safe.
+
+  30 Mar 2013; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Split DLNA stack mask out of Gnome 3.8 mask, they are most likely not
+  blocking each other.
+
+  30 Mar 2013; Gilles Dartiguelongue <eva@gentoo.org> updates/1Q-2013:
+  Move old gupnp-dlna to slot 1.0.
+
+  30 Mar 2013; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Drop libgdata and vala from Gnome 3.8 mask, they are fine for ~arch.
+
+  30 Mar 2013; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Remove gtk-vnc from Gnome 3.8 mask, it has no relation to the release.
 
   29 Mar 2013; Aaron W. Swenson <titanofold@gentoo.org> package.mask:
   Update removal time of dev-db/postgresql-{base,docs,server}:8.3 in
