@@ -974,7 +974,7 @@ app-text/libwpd:tools - Build miscellaneous tools
 app-text/libwpg:tools - Build miscellaneous tools
 app-text/lodgeit:vim - Install a vim plugin allowing to paste and download from within vim
 app-text/mathtex:png - Generate png images by default instead of gif
-app-text/pandoc:highlight - Add support for syntax highlighting with dev-haskell/highlighting-kate
+app-text/pandoc:embed_data_files - Embed data files in binary for relocatable executable.
 app-text/pdf2djvu:graphicsmagick - Enable media-gfx/graphicsmagick support
 app-text/pdfgrep:unac - Removing accents and ligatures before search
 app-text/pdftk:nodrm - Decrypt a document with the user_pw even if it has an owner_pw set
@@ -1199,16 +1199,21 @@ dev-games/physfs:wad - Enable Doom WAD archive support
 dev-games/physfs:zip - Enable ZIP archive support
 dev-haskell/cabal-install:noprefs - Ignore 'preferred-versions' file from hackage's tarball.
 dev-haskell/citeproc-hs:bibutils - use Chris Putnam's app-text/bibutils
+dev-haskell/citeproc-hs:embed_data_files - Embed locale files into the library (needed for windows packaging)
 dev-haskell/citeproc-hs:hexpat - use dev-haskell/hexpat instead of dev-haskell/xml for XML parsing
 dev-haskell/citeproc-hs:network - use dev-haskell/network and dev-haskell/http to retrieve CSL file from URIs
+dev-haskell/citeproc-hs:small_base - Choose the new smaller, split-up base package.
 dev-haskell/gtk:gio - Add glib's GIO bindings.
 dev-haskell/highlighting-kate:executable - Build the Highlight executable.
 dev-haskell/highlighting-kate:pcre-light - Use the pcre-light library instead of regex-pcre-builtin.
 dev-haskell/json:generic - Add support for generic encoder (dev-haskell/syb)
 dev-haskell/json:parsec - Add support for parsing with Parsec
 dev-haskell/json:pretty - Add support for using pretty printing combinators
+dev-haskell/monad-control:instancest - If enabled this package will export MonadBaseControl instances for the lazy and strict ST monad. If disabled these instances are only exported when base >= 4.4. If enabled it is required that the transformer-base package exports MonadBase instances for ST. It will do this by default.
 dev-haskell/quickcheck:template_haskell - Enable additional test modules requiring Template Haskell support.
 dev-haskell/texmath:cgi - Build texmath-cgi executable.
+dev-haskell/unix-compat:old-time - build against old-time package
+dev-haskell/zip-archive:executable - Build the Zip executable.
 dev-java/ant:antlr - Enable ANTLR Ant tasks
 dev-java/ant:bcel - Enable bcel (bytecode manipulation) Ant tasks
 dev-java/ant:commonslogging - Enable commons-logging Ant tasks
@@ -1428,9 +1433,11 @@ dev-libs/e_dbus:ofono - Enable interfacing with net-misc/ofono DBus API.
 dev-libs/e_dbus:test-binaries - Enable building of test binaries for enabled features
 dev-libs/ecore:ares - Enables support for asynchronous DNS using the net-dns/c-ares library
 dev-libs/ecore:evas - Provides easy to use canvas by gluing media-libs/evas and various input/output systems.
+dev-libs/ecore:gles - Add gles support to the ecore-evas-wayland module
 dev-libs/ecore:glib - Enable dev-libs/glib eventloop support
 dev-libs/ecore:inotify - Enable support for inotify
 dev-libs/ecore:tslib - Build with tslib support for touchscreen devices.
+dev-libs/ecore:wayland - Add support for dev-libs/wayland
 dev-libs/ecore:xprint - Enable X11 Xprint support
 dev-libs/eeze:utilities - Install some test utilities for mount/umount support in eeze
 dev-libs/eina:default-mempool - By default use system's allocator (pass-through) instead of custom choice for Eina's own data structures.
@@ -2439,7 +2446,6 @@ kde-base/kdebase-startkde:wallpapers - Install the KDE wallpapers
 kde-base/kdebindings-meta:csharp - Enable C# language bindings for KDE and Qt
 kde-base/kdelibs:opengl - Enable OpenGL support for Plasma (GLApplet)
 kde-base/kdelibs:udisks - Use udisks for block device access (e.g., automounting)
-kde-base/kdelibs:udisks2 - Use the udisks2 support backported from kf5
 kde-base/kdelibs:upnp - Build the Solid backend to provide information about UPnP devices on the network
 kde-base/kdelibs:upower - Use upower for power management
 kde-base/kdenetwork-meta:ppp - Enable support for net-dialup/ppp.
@@ -2864,6 +2870,7 @@ media-libs/evas:ico - Support windows icon (ico) image loader
 media-libs/evas:ppm - Support PPM image loader
 media-libs/evas:psd - Support PSD image loader
 media-libs/evas:tga - Support tga image loader
+media-libs/evas:wayland - Add support for dev-libs/wayland
 media-libs/faad2:digitalradio - Digital Radio Mondiale (warning: disables other decoders)
 media-libs/flickcurl:oauth - Enable experimental OAuth support
 media-libs/flickcurl:raptor - Use media-libs/raptor for proper RDF serializing
