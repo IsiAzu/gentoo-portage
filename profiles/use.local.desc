@@ -2423,6 +2423,7 @@ gnome-extra/zenity:compat - Installs gdialog for compatibility with older shell 
 gnustep-apps/cdplayer:preferences - Use gnustep-apps/preferences for preferences setting
 gnustep-apps/cdplayer:systempreferences - Use gnustep-apps/systempreferences for preferences setting
 gnustep-apps/gnumail:emoticon - Enable extra Emoticon Bundle to see smiley's in e-mail messages
+gnustep-apps/gworkspace:gwmetadata - Enable the metadata indexing and searching system
 gnustep-base/gnustep-back-art:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
@@ -3512,7 +3513,6 @@ media-video/dvdstyler:deprecated - Use the old libgnomeui-2 library
 media-video/ffmpeg:3dnowext - Enable manually-optimised routines using the AMD 3DNow!Ex SIMD instruction set, present in modern AMD CPUs. (Check for 3dnowext in /proc/cpuinfo to know whether your CPU supports it).
 media-video/ffmpeg:aacplus - AAC+ encoding via media-libs/libaacplus.
 media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
-media-video/ffmpeg:avresample - Enables libavresample, media-video/libav version of libswresample (which installed and makes libavresample redundant): A conversion library between uncompressed audio formats.
 media-video/ffmpeg:avx - Adds support for Advanced Vector Extensions instructions (Intel Sandy Bridge, AMD Bulldozer and later chips)
 media-video/ffmpeg:bindist - Enforces license compatibility constraints via REQUIRED_USE.
 media-video/ffmpeg:bluray - Enable playback of Blu-ray filesystems

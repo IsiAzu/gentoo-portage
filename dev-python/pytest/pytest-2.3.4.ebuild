@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytest/pytest-2.3.4.ebuild,v 1.14 2013/04/02 23:14:11 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytest/pytest-2.3.4.ebuild,v 1.16 2013/04/04 12:38:16 patrick Exp $
 
 EAPI="5"
 
