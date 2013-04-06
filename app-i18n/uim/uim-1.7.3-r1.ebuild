@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/uim/uim-1.6.1.ebuild,v 1.7 2013/03/02 19:29:05 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/uim/uim-1.7.3-r1.ebuild,v 1.1 2013/04/06 02:45:32 naota Exp $
 
-EAPI="3"
+EAPI="4"
 inherit autotools eutils multilib elisp-common flag-o-matic
 
 DESCRIPTION="Simple, secure and flexible input method library"
@@ -12,9 +12,11 @@ SRC_URI="http://uim.googlecode.com/files/${P}.tar.bz2"
 LICENSE="BSD GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~x86"
-IUSE="+anthy canna curl eb emacs libffi gnome gtk kde libedit libnotify m17n-lib ncurses nls prime qt4 skk sqlite ssl test unicode X xft linguas_zh_CN linguas_zh_TW linguas_ja linguas_ko"
+IUSE="+anthy canna curl eb emacs libffi gnome gtk gtk3 kde libedit libnotify m17n-lib ncurses nls prime qt4 skk sqlite ssl static-libs test unicode X xft linguas_zh_CN linguas_zh_TW linguas_ja linguas_ko"
 
 RESTRICT="test"
+
+REQUIRED_USE="gtk? ( X ) qt4? ( X )"
 
 RDEPEND="X? (
 		x11-libs/libX11
@@ -36,6 +38,7 @@ RDEPEND="X? (
 	libffi? ( virtual/libffi )
 	gnome? ( >=gnome-base/gnome-panel-2.14 )
 	gtk? ( >=x11-libs/gtk+-2.4:2 )
+	gtk3? ( x11-libs/gtk+:3 )
 	kde? ( >=kde-base/kdelibs-4 )
 	libedit? ( dev-libs/libedit )
 	libnotify? ( >=x11-libs/libnotify-0.4 )
@@ -55,8 +58,12 @@ RDEPEND="X? (
 #	scim? ( >=app-i18n/scim-1.3.0 ) # broken
 #	sj3? ( >=app-i18n/sj3-2.0.1.21 )
 #	wnn? ( app-i18n/wnn )
-
+#	gnome? (
+#		gtk? ( >=gnome-base/gnome-panel-2.14 )
+#		gtk3? ( >=gnome-base/gnome-panel-3 )
+#	)
 DEPEND="${RDEPEND}
+	dev-util/intltool
 	virtual/pkgconfig
 	>=sys-devel/gettext-0.15
 	kde? ( dev-util/cmake )
@@ -85,36 +92,83 @@ RDEPEND="${RDEPEND}
 
 SITEFILE=50${PN}-gentoo.el
 
+gnome2_query_immodules_gtk2() {
+	local GTK2_CONFDIR="/etc/gtk-2.0/$(get_abi_CHOST)"
+
+	local query_exec="${EPREFIX}/usr/bin/gtk-query-immodules-2.0"
+	local gtk_conf="${EPREFIX}${GTK2_CONFDIR}/gtk.immodules"
+	local gtk_conf_dir=$(dirname "${gtk_conf}")
+
+	einfo "Generating Gtk2 immodules/gdk-pixbuf loaders listing:"
+	einfo "-> ${gtk_conf}"
+
+	mkdir -p "${gtk_conf_dir}"
+	local tmp_file=$(mktemp -t tmp.XXXXXXXXXXgtk_query_immodules)
+	if [ -z "${tmp_file}" ]; then
+		ewarn "gtk_query_immodules: cannot create temporary file"
+		return 1
+	fi
+
+	if ${query_exec} > "${tmp_file}"; then
+		cat "${tmp_file}" > "${gtk_conf}" || \
+			ewarn "Failed to write to ${gtk_conf}"
+	else
+		ewarn "Cannot update gtk.immodules, file generation failed"
+	fi
+	rm "${tmp_file}"
+}
+
+update_gtk_immodules() {
+	if [ -x "${EPREFIX}/usr/bin/gtk-query-immodules-2.0" ] ; then
+		gnome2_query_immodules_gtk2
+	fi
+}
+
+update_gtk3_immodules() {
+	if [ -x "${EPREFIX}/usr/bin/gtk-query-immodules-3.0" ] ; then
+		"${EPREFIX}/usr/bin/gtk-query-immodules-3.0" --update-cache
+	fi
+}
+
 pkg_setup() {
-	# An arch specific config directory is used on multilib systems
-	has_multilib_profile && GTK2_CONFDIR="/etc/gtk-2.0/${CHOST}"
-	GTK2_CONFDIR=${GTK2_CONFDIR:=/etc/gtk-2.0/}
+	strip-linguas fr ja ko
+	if [[ -z "${LINGUAS}" ]]; then
+		# no linguas set, using the default one
+		LINGUAS=" "
+	fi
 }
 
 src_prepare() {
 	epatch \
 		"${FILESDIR}"/${PN}-1.6.0-gentoo.patch \
 		"${FILESDIR}"/${PN}-1.5.4-zhTW.patch \
-		"${FILESDIR}"/${PN}-1.6.0-linker.patch \
-		"${FILESDIR}"/${PN}-1.6.1-libnotify-0.7.patch \
-		"${FILESDIR}"/${PN}-1.6.1-canna.patch
+		"${FILESDIR}"/${PN}-1.7.3-linguas.patch
+
+	if has_version ">=dev-libs/glib-2.32"; then
+		epatch "${FILESDIR}"/${P}-glib-2.32.patch
+	fi
 
 	# bug 275420
 	sed -i -e "s:\$libedit_path/lib:/$(get_libdir):g" configure.ac || die
+
+	echo "QMAKE_LFLAGS = ${LDFLAGS}" >> qt4/common.pro.in || die
+
 	#./autogen.sh
 	AT_NO_RECURSIVE=1 eautoreconf
+	cp po/Makefile.in.in qt/chardict/po || die
+	cp po/Makefile.in.in qt4/chardict/po || die
 }
 
 src_configure() {
 	local myconf
 
-	if use gtk && (use anthy || use canna) ; then
+	if (use gtk || use gtk3) && (use anthy || use canna) ; then
 		myconf="${myconf} --enable-dict"
 	else
 		myconf="${myconf} --disable-dict"
 	fi
 
-	if use gtk || use qt4 ; then
+	if use gtk || use gtk3 || use qt4 ; then
 		myconf="${myconf} --enable-pref"
 	else
 		myconf="${myconf} --disable-pref"
@@ -134,6 +188,11 @@ src_configure() {
 		myconf="${myconf} --enable-notify=libnotify"
 	fi
 
+	#if use gnome ; then
+	#	myconf="${myconf} $(use_enable gtk gnome-applet)"
+	#	myconf="${myconf} $(use_enable gtk3 gnome3-applet)"
+	#fi
+
 	econf $(use_with X x) \
 		$(use_with canna) \
 		$(use_with curl) \
@@ -143,6 +202,7 @@ src_configure() {
 		$(use_with libffi ffi) \
 		$(use_enable gnome gnome-applet) \
 		$(use_with gtk gtk2) \
+		$(use_with gtk3) \
 		$(use_with libedit) \
 		--disable-kde-applet \
 		$(use_enable kde kde4-applet) \
@@ -154,12 +214,13 @@ src_configure() {
 		--without-qt-immodule \
 		$(use_with qt4 qt4) \
 		$(use_with qt4 qt4-immodule) \
+		$(use_enable qt4 qt4-qt3support) \
 		$(use_with skk) \
 		$(use_with sqlite sqlite3) \
 		$(use_enable ssl openssl) \
+		$(use_enable static-libs static) \
 		$(use_with xft) \
 		${myconf}
-		# $(use_enable qt4 qt4-qt3support) \
 }
 
 src_compile() {
@@ -182,6 +243,9 @@ src_install() {
 			|| die "elisp-site-file-install failed"
 	fi
 
+	find "${ED}/usr/$(get_libdir)/uim" -name '*.la' -exec rm {} +
+	use static-libs || find "${ED}" -name '*.la' -exec rm {} +
+
 	sed -e "s:@EPREFIX@:${EPREFIX}:" "${FILESDIR}/xinput-uim" > "${T}/uim.conf" || die
 	insinto /etc/X11/xinit/xinput.d
 	doins "${T}/uim.conf" || die
@@ -203,12 +267,13 @@ pkg_postinst() {
 	elog "to your ~/.uim."
 	elog
 	elog "All input methods can be found by running uim-im-switcher-gtk, "
-	elog "or uim-im-switcher-qt4."
+	elog "uim-im-switcher-gtk3 or uim-im-switcher-qt4."
 	elog
 	elog "If you upgrade from a version of uim older than 1.4.0,"
 	elog "you should run revdep-rebuild."
 
-	use gtk && gtk-query-immodules-2.0 > "${ROOT}/${GTK2_CONFDIR}/gtk.immodules"
+	use gtk && update_gtk_immodules
+	use gtk3 && update_gtk3_immodules
 	if use emacs; then
 		elisp-site-regen
 		echo
@@ -221,6 +286,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	use gtk && gtk-query-immodules-2.0 > "${ROOT}/${GTK2_CONFDIR}/gtk.immodules"
+	use gtk && update_gtk_immodules
+	use gtk3 && update_gtk3_immodules
 	use emacs && elisp-site-regen
 }

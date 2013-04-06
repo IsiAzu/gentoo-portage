@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/uim/uim-1.7.1.ebuild,v 1.5 2013/03/02 19:29:05 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/uim/uim-1.8.0-r1.ebuild,v 1.1 2013/04/06 02:45:32 naota Exp $
 
-EAPI="3"
+EAPI="4"
 inherit autotools eutils multilib elisp-common flag-o-matic
 
 DESCRIPTION="Simple, secure and flexible input method library"
@@ -15,6 +15,8 @@ KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~x86"
 IUSE="+anthy canna curl eb emacs libffi gnome gtk gtk3 kde libedit libnotify m17n-lib ncurses nls prime qt4 skk sqlite ssl static-libs test unicode X xft linguas_zh_CN linguas_zh_TW linguas_ja linguas_ko"
 
 RESTRICT="test"
+
+REQUIRED_USE="gtk? ( X ) qt4? ( X )"
 
 RDEPEND="X? (
 		x11-libs/libX11
@@ -61,6 +63,7 @@ RDEPEND="X? (
 #		gtk3? ( >=gnome-base/gnome-panel-3 )
 #	)
 DEPEND="${RDEPEND}
+	dev-util/intltool
 	virtual/pkgconfig
 	>=sys-devel/gettext-0.15
 	kde? ( dev-util/cmake )
@@ -108,10 +111,20 @@ update_gtk3_immodules() {
 	fi
 }
 
+pkg_setup() {
+	strip-linguas fr ja ko
+	if [[ -z "${LINGUAS}" ]]; then
+		# no linguas set, using the default one
+		LINGUAS=" "
+	fi
+}
+
 src_prepare() {
 	epatch \
 		"${FILESDIR}"/${PN}-1.6.0-gentoo.patch \
-		"${FILESDIR}"/${PN}-1.5.4-zhTW.patch
+		"${FILESDIR}"/${PN}-1.5.4-zhTW.patch \
+		"${FILESDIR}"/${PN}-1.8.0-glib2.32.patch \
+		"${FILESDIR}"/${PN}-1.7.3-linguas.patch
 
 	# bug 275420
 	sed -i -e "s:\$libedit_path/lib:/$(get_libdir):g" configure.ac || die
@@ -177,13 +190,13 @@ src_configure() {
 		--without-qt-immodule \
 		$(use_with qt4 qt4) \
 		$(use_with qt4 qt4-immodule) \
+		$(use_enable qt4 qt4-qt3support) \
 		$(use_with skk) \
 		$(use_with sqlite sqlite3) \
 		$(use_enable ssl openssl) \
 		$(use_enable static-libs static) \
 		$(use_with xft) \
 		${myconf}
-		# $(use_enable qt4 qt4-qt3support) \
 }
 
 src_compile() {
@@ -215,6 +228,8 @@ src_install() {
 
 	# collision with dev-scheme/sigscheme, bug #330975
 	# find "${ED}" -name '*gcroots*' -delete || die
+
+	rmdir "${ED}"/usr/share/doc/sigscheme || die
 }
 
 pkg_postinst() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/uim/uim-1.7.1-r1.ebuild,v 1.4 2013/03/02 19:29:05 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/uim/uim-1.8.3-r1.ebuild,v 1.1 2013/04/06 02:45:32 naota Exp $
 
 EAPI="4"
 inherit autotools eutils multilib elisp-common flag-o-matic
@@ -111,11 +111,19 @@ update_gtk3_immodules() {
 	fi
 }
 
+pkg_setup() {
+	strip-linguas fr ja ko
+	if [[ -z "${LINGUAS}" ]]; then
+		# no linguas set, using the default one
+		LINGUAS=" "
+	fi
+}
+
 src_prepare() {
 	epatch \
-		"${FILESDIR}"/${PN}-1.7.1-qt4.patch \
 		"${FILESDIR}"/${PN}-1.6.0-gentoo.patch \
-		"${FILESDIR}"/${PN}-1.5.4-zhTW.patch
+		"${FILESDIR}"/${PN}-1.5.4-zhTW.patch \
+		"${FILESDIR}"/${PN}-1.7.3-linguas.patch
 
 	# bug 275420
 	sed -i -e "s:\$libedit_path/lib:/$(get_libdir):g" configure.ac || die
@@ -219,6 +227,8 @@ src_install() {
 
 	# collision with dev-scheme/sigscheme, bug #330975
 	# find "${ED}" -name '*gcroots*' -delete || die
+
+	#rmdir "${ED}"/usr/share/doc/sigscheme || die
 }
 
 pkg_postinst() {
