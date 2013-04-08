@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.578 2013/04/07 18:27:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.580 2013/04/08 06:19:00 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1293,10 +1293,6 @@ toolchain_death_notice() {
 # Travis Tilley <lv@gentoo.org> (04 Sep 2004)
 #
 gcc_do_make() {
-	# Fix for libtool-portage.patch
-	local OLDS=${S}
-	S=${WORKDIR}/build
-
 	# Set make target to $1 if passed
 	[[ -n $1 ]] && GCC_MAKE_TARGET=$1
 	# default target
@@ -1335,7 +1331,7 @@ gcc_do_make() {
 		BOOT_CFLAGS=${BOOT_CFLAGS-"$(get_abi_CFLAGS ${TARGET_DEFAULT_ABI}) ${CFLAGS}"}
 	fi
 
-	pushd "${WORKDIR}"/build
+	pushd "${WORKDIR}"/build >/dev/null
 
 	emake \
 		LDFLAGS="${LDFLAGS}" \
@@ -1359,7 +1355,7 @@ gcc_do_make() {
 		fi
 	fi
 
-	popd
+	popd >/dev/null
 }
 
 # This is mostly a stub function to be overwritten in an ebuild
