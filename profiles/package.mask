@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14636 2013/04/06 20:27:25 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14639 2013/04/07 20:01:11 floppym Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Mike Gilbert <floppym@gentoo.org> (07 Apr 2013)
+# Masked for testing.
+=dev-lang/python-2.7.4
+=dev-lang/python-3.2.4
 
 # Ryan Hill <dirtyepic@gentoo.org> (06 Apr 2013)
 # Restrictive licence, basically demo versions of paid software.  14 versions
@@ -236,6 +241,12 @@ net-proxy/swiftiply
 >=media-gfx/gthumb-3.2
 >=app-editors/latexila-2.8
 >=gnome-extra/gnome-calculator-3.8
+>=net-misc/networkmanager-openconnect-0.9.8
+>=net-misc/networkmanager-openswan-0.9.8
+>=net-misc/networkmanager-openvpn-0.9.8
+>=net-misc/networkmanager-pptp-0.9.8
+>=net-misc/networkmanager-sstp-0.9.8
+>=net-misc/networkmanager-vpnc-0.9.8
 
 # Sebastien Fabbro <bicatali@gentoo.org> (26 Mar 2013)
 # Now included in sci-mathematics/mathgl
@@ -388,11 +399,6 @@ sys-fs/device-mapper
 # didn't with module-init-tools.
 # Later removal at 01-01-2014 by request from eudev maintainers
 sys-apps/module-init-tools
-
-# Andreas K. Huettel <dilfridge@gentoo.org> (05 Mar 2013)
-# Outdated and not needed anymore; does not build.
-# Masked for removal in 30 days.
-sys-auth/polkit-kde
 
 # Samuli Suominen <ssuominen@gentoo.org> (05 Mar 2013)
 # Fails to compile unless system has previously installed copy

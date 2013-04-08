@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/powertop-9999.ebuild,v 1.17 2013/03/08 06:16:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/powertop-9999.ebuild,v 1.20 2013/04/07 18:31:33 zerochaos Exp $
 
-EAPI="4"
+EAPI="5"
 
 inherit eutils linux-info
 if [[ ${PV} == "9999" ]] ; then
@@ -24,21 +24,23 @@ IUSE="unicode X"
 COMMON_DEPEND="
 	dev-libs/libnl:3
 	sys-apps/pciutils
-	sys-devel/gettext
 	sys-libs/ncurses[unicode?]
 "
 
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
+	sys-devel/gettext
 "
 RDEPEND="
 	${COMMON_DEPEND}
 	X? ( x11-apps/xset )
+	virtual/libintl
 "
 
 DOCS=( TODO README )
 
 pkg_setup() {
+	linux-info_pkg_setup
 	if linux_config_exists; then
 		CONFIG_CHECK="
 			~X86_MSR
@@ -76,7 +78,6 @@ pkg_setup() {
 		ERROR_KERNEL_TIMER_STATS="TIMER_STATS should be enabled in the kernel for full powertop function"
 		ERROR_KERNEL_EVENT_POWER_TRACING_DEPRECATED="EVENT_POWER_TRACING_DEPRECATED should be enabled in the kernel for full powertop function"
 		ERROR_KERNEL_TRACING="TRACING should be enabled in the kernel for full powertop function"
-		linux-info_pkg_setup
 	else
 		ewarn "unable to find kernel config, all checks disabled"
 	fi
@@ -91,13 +92,6 @@ src_prepare() {
 src_configure() {
 	export ac_cv_search_delwin=$(usex unicode -lncursesw -lncurses)
 	default
-}
-
-src_compile() {
-	# This fixes cross-compiling.  Please verify before deleting.
-	emake -C src csstoh
-	cp "${FILESDIR}"/csstoh src/ || die
-	emake
 }
 
 src_install() {
