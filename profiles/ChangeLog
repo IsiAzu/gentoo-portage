@@ -1,10 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7706 2013/04/09 06:15:12 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7711 2013/04/09 18:46:58 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  09 Apr 2013; Ulrich Müller <ulm@gentoo.org> license_groups:
+  Add LambdaMOO license to MISC-FREE group, bug 465280.
+
+  09 Apr 2013; Gilles Dartiguelongue <eva@gentoo.org> updates/2Q-2013:
+  Add slotmove for net-libs/libgrss.
+
+  09 Apr 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Lastrite sys-kernel/mkinitcpio since it's been abandoned.
+
+  09 Apr 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Drop lastrite entry for sys-fs/device-mapper which has been removed from
+  gentoo-x86 wrt #461382
+
+  09 Apr 2013; Christoph Mende <angelos@gentoo.org> package.mask:
+  Mask mail-client/postler for removal
 
   09 Apr 2013; Justin Lecher <jlec@gentoo.org> package.mask:
   Mask sci-chemistry/talos+-1.2009.1013.14, #465144

@@ -1,10 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/kbuild/kbuild-0.1.9998_pre20120806.ebuild,v 1.2 2012/10/05 19:24:48 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/kbuild/kbuild-0.1.9998_pre20120806.ebuild,v 1.5 2013/04/09 18:26:29 ago Exp $
 
 EAPI=4
-
-WANT_AUTOMAKE=1.9
 
 inherit eutils autotools toolchain-funcs
 
@@ -16,7 +14,7 @@ SRC_URI="http://dev.gentoo.org/~polynomial-c/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="sys-devel/flex
