@@ -2956,6 +2956,7 @@ media-libs/libvpx:sse3 - Enable optimization for SSE3 capable chips
 media-libs/libvpx:sse4_1 - Enable optimization for SSE4_1 capable processors (Intel Core 2 Penryn and later chips)
 media-libs/libvpx:ssse3 - faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)
 media-libs/libwebp:experimental - Build with -DWEBP_EXPERIMENTAL_FEATURES
+media-libs/libwebp:swap-16bit-csp - Enable byte swapping for 16 bit colorspace
 media-libs/lilv:dyn-manifest - Add LV2 Dynamic Manifest support. See http://lv2plug.in/ns/ext/dynmanifest/
 media-libs/lv2:plugins - Enables examples plugins.
 media-libs/mash:introspection - Use dev-libs/gobject-introspection for introspection
@@ -4094,6 +4095,7 @@ net-ftp/proftpd:ctrls - Enable support for the mod_ctrls and mod_ctrls_admin mod
 net-ftp/proftpd:deflate - Enable support for the mod_deflate module
 net-ftp/proftpd:diskuse - Enable support for the mod_diskuse module
 net-ftp/proftpd:dso - Enable support for the mod_dso module
+net-ftp/proftpd:dynmasq - Enable support for the mod_dynmasq module, for dynamically updating MasqueradeAddress for dyndns-like scenarios)
 net-ftp/proftpd:exec - Enable support for the mod_exec module. WARNING: this could be a security risk
 net-ftp/proftpd:ident - Enable support for the mod_ident module
 net-ftp/proftpd:ifsession - Enable support for the ifsession module
@@ -4104,6 +4106,7 @@ net-ftp/proftpd:linguas_it_IT - Language support for it_IT
 net-ftp/proftpd:linguas_ja_JP - Language support for ja_JP
 net-ftp/proftpd:linguas_ru_RU - Language support for ru_RU
 net-ftp/proftpd:memcache - Enable support for the mod_memcache module, for using memcached servers
+net-ftp/proftpd:msg - Enable support for the mod_msg module, allows system users to send messages to connected clients via the ftpdctl program.
 net-ftp/proftpd:openssl - Enable dev-libs/openssl support
 net-ftp/proftpd:qos - Enable support for the mod_qos module
 net-ftp/proftpd:ratio - Enable support for the mod_ratio module
@@ -5296,7 +5299,6 @@ sci-libs/acml:gfortran - Fetch and install acml compiled with GNU gfortran
 sci-libs/acml:ifc - Fetch and install acml compiled with Intel Fortran Compiler (dev-lang/ifc)
 sci-libs/acml:int64 - Install the 64 bits integer library
 sci-libs/adolc:sparse - Add support for sparse matrix algebra with sci-libs/colpack
-sci-libs/armadillo:atlas - Link with ATLAS libraries for cblas and clapack (needs sci-libs/lapack-atlas)
 sci-libs/arprec:fma - Use the Fused Multiply Add instruction set
 sci-libs/arprec:qd - Use sci-libs/qd for quad-double datatype
 sci-libs/ceres-solver:gflags - Use dev-cpp/gflags for flag parsing
