@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/thunderbird-bin/thunderbird-bin-17.0.5.ebuild,v 1.3 2013/04/09 16:06:31 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/thunderbird-bin/thunderbird-bin-17.0.5.ebuild,v 1.5 2013/04/11 03:02:20 zerochaos Exp $
 
 EAPI="4"
 MOZ_ESR="1"
@@ -42,6 +42,8 @@ IUSE="+crashreporter"
 
 DEPEND="app-arch/unzip"
 RDEPEND="virtual/freedesktop-icon-theme
+	gnome-base/gconf
+	gnome-base/orbit
 	x11-libs/libXrender
 	x11-libs/libXt
 	x11-libs/libXmu
@@ -82,7 +84,7 @@ EOF
 	fperms 0755 /usr/bin/${PN}
 
 	# Install icon and .desktop for menu entry
-	doicon "${FILESDIR}"/icon/${PN}-icon.png
+	newicon "${S}"/chrome/icons/default/default48.png ${PN}-icon.png
 	domenu "${FILESDIR}"/icon/${PN}.desktop
 
 	# revdep-rebuild entry
