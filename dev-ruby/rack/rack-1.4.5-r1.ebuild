@@ -1,9 +1,9 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/rack-1.3.9.ebuild,v 1.5 2013/01/21 14:09:52 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/rack-1.4.5-r1.ebuild,v 1.1 2013/04/13 12:29:14 graaff Exp $
 
-EAPI=4
-USE_RUBY="ruby18 ree18 ruby19 jruby"
+EAPI=5
+USE_RUBY="ruby18 ruby19 jruby"
 
 RUBY_FAKEGEM_DOCDIR="doc"
 RUBY_FAKEGEM_EXTRADOC="ChangeLog KNOWN-ISSUES README.rdoc SPEC"
@@ -13,13 +13,15 @@ RUBY_FAKEGEM_BINWRAP=""
 inherit ruby-fakegem eutils versionator
 
 DESCRIPTION="A modular Ruby webserver interface"
-HOMEPAGE="http://rubyforge.org/projects/rack"
+HOMEPAGE="http://rack.github.com/"
 SRC_URI="mirror://rubyforge/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="$(get_version_component_range 1-2)"
-KEYWORDS="~alpha amd64 ~ia64 ppc ppc64 ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
+
+RUBY_PATCHES=( ${PN}-1.2.1-gentoo.patch )
 
 ruby_add_rdepend "virtual/ruby-ssl"
 
@@ -30,16 +32,7 @@ ruby_add_rdepend "virtual/ruby-ssl"
 ruby_add_bdepend "test? ( dev-ruby/bacon dev-ruby/fcgi )"
 
 # Block against versions in older slots that also try to install a binary.
-RDEPEND="${RDEPEND} !<dev-ruby/rack-1.1.3-r1:0 !<dev-ruby/rack-1.2.5:1.2"
-
-all_ruby_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.2.1-gentoo.patch
-
-	# Avoid tests depending on now randomized hash ordering.
-	sed -i -e '/foobarfoo/ s:^:#:' test/spec_response.rb || die
-	sed -i -e '/build query strings correctly/,/end/ s:^:#:' test/spec_utils.rb || die
-	sed -i -e '/build nested query strings correctly/,/end/ s:^:#:' test/spec_utils.rb || die
-}
+RDEPEND="${RDEPEND} !<dev-ruby/rack-1.1.3-r1:0 !<dev-ruby/rack-1.2.5:1.2 !<dev-ruby/rack-1.3.6-r1:1.3"
 
 each_ruby_test() {
 	# Since the Rakefile calls specrb directly rather than loading it, we
