@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/skrooge/skrooge-1.6.0.ebuild,v 1.1 2013/03/10 09:00:29 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/skrooge/skrooge-1.6.0.ebuild,v 1.4 2013/04/13 16:55:38 ago Exp $
 
 EAPI=5
 
@@ -15,11 +15,11 @@ SRC_URI="http://www.skrooge.org/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="4"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdebase_dep kdepimlibs)
+	$(add_kdebase_dep kdepimlibs 'semantic-desktop')
 	app-crypt/qca:2
 	dev-db/sqlite:3
 	dev-libs/grantlee
