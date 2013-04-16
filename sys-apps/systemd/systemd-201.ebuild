@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-201.ebuild,v 1.3 2013/04/16 05:21:34 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-201.ebuild,v 1.5 2013/04/16 18:47:31 mgorny Exp $
 
 EAPI=5
 
@@ -14,9 +14,9 @@ SRC_URI="http://www.freedesktop.org/software/systemd/${P}.tar.xz"
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~ppc64 ~x86"
-IUSE="acl audit cryptsetup doc gcrypt gudev http
-	introspection +kmod lzma openrc pam python qrcode selinux static-libs
-	tcpd vanilla xattr"
+IUSE="acl audit cryptsetup doc gcrypt gudev http introspection +kmod
+	lzma openrc pam policykit python qrcode selinux static-libs tcpd
+	vanilla xattr"
 
 MINKV="2.6.39"
 
@@ -43,6 +43,7 @@ COMMON_DEPEND=">=sys-apps/dbus-1.6.8-r1
 RDEPEND="${COMMON_DEPEND}
 	>=sys-apps/baselayout-2.2
 	openrc? ( >=sys-fs/udev-init-scripts-25 )
+	policykit? ( sys-auth/polkit )
 	|| (
 		>=sys-apps/util-linux-2.22
 		<sys-apps/sysvinit-2.88-r4
@@ -62,6 +63,19 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-kernel/linux-headers-${MINKV}
 	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.18 )"
+
+pkg_pretend() {
+	local CONFIG_CHECK="~AUTOFS4_FS ~BLK_DEV_BSG ~CGROUPS ~DEVTMPFS
+		~FANOTIFY ~HOTPLUG ~INOTIFY_USER ~IPV6 ~NET ~PROC_FS ~SIGNALFD
+		~SYSFS ~!IDE ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2"
+
+	if [[ ${MERGE_TYPE} != buildonly ]]; then
+		if kernel_is -lt ${MINKV//./ }; then
+			ewarn "Kernel version at least ${MINKV} required"
+		fi
+		check_extra_config
+	fi
+}
 
 src_configure() {
 	local myeconfargs=(
@@ -92,6 +106,7 @@ src_configure() {
 		$(use_enable kmod)
 		$(use_enable lzma xz)
 		$(use_enable pam)
+		$(use_enable policykit polkit)
 		$(use_with python)
 		$(use python && echo PYTHON_CONFIG=/usr/bin/python-config-${EPYTHON#python})
 		$(use_enable qrcode qrencode)
@@ -175,14 +190,6 @@ src_install() {
 	do
 		[[ -x ${D}${x} ]] || die "${x} symlink broken, aborting."
 	done
-}
-
-pkg_preinst() {
-	local CONFIG_CHECK="~AUTOFS4_FS ~BLK_DEV_BSG ~CGROUPS ~DEVTMPFS
-		~FANOTIFY ~HOTPLUG ~INOTIFY_USER ~IPV6 ~NET ~PROC_FS ~SIGNALFD
-		~SYSFS ~!IDE ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2"
-	kernel_is -ge ${MINKV//./ } || ewarn "Kernel version at least ${MINKV} required"
-	check_extra_config
 }
 
 optfeature() {
