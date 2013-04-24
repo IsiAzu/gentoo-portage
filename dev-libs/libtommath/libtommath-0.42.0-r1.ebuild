@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/libtommath-0.42.0-r1.ebuild,v 1.5 2013/03/28 15:43:01 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/libtommath-0.42.0-r1.ebuild,v 1.7 2013/04/24 01:10:55 vapier Exp $
 
 EAPI=4
 
-inherit eutils multilib toolchain-funcs
+inherit autotools eutils multilib toolchain-funcs
 
 DESCRIPTION="highly optimized and portable routines for integer based number theoretic applications"
 HOMEPAGE="http://www.libtom.org/"
@@ -16,24 +16,44 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 IUSE="doc examples static-libs"
 
 DEPEND="sys-devel/libtool"
+RDEPEND=""
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-makefile.patch
 
-	[[ ${CHOST} == *-darwin* ]] && \
-		sed -i -e 's/libtool/glibtool/g' makefile.shared
+	# need libtool for cross compilation. Bug #376643
+	cat <<-EOF > configure.ac
+	AC_INIT(libtommath, 0)
+	AM_INIT_AUTOMAKE
+	LT_INIT
+	AC_CONFIG_FILES(Makefile)
+	AC_OUTPUT
+	EOF
+	touch NEWS README AUTHORS ChangeLog Makefile.am
+	eautoreconf
+	export LT="${S}"/libtool
+}
+
+src_configure() {
+	econf $(use_enable static-libs static)
+}
+
+_emake() {
+	emake CC="$(tc-getCC)" -f makefile.shared \
+		IGNORE_SPEED=1 \
+		LIBPATH="${EPREFIX}/usr/$(get_libdir)" \
+		INCPATH="${EPREFIX}/usr/include" \
+		"$@"
 }
 
 src_compile() {
-	emake CC=$(tc-getCC) -f makefile.shared IGNORE_SPEED=1 LIBPATH="${EPREFIX}/usr/$(get_libdir)"
+	_emake
 }
 
 src_install() {
-	emake -f makefile.shared \
-		DESTDIR="${ED}" \
-		LIBPATH="${EPREFIX}/usr/$(get_libdir)" \
-		INCPATH="${EPREFIX}/usr/include" \
-		install
+	_emake DESTDIR="${ED}" install
+	# We only link against -lc, so drop the .la file.
+	find "${ED}" -name '*.la' -delete
 
 	dodoc changes.txt
 
@@ -43,6 +63,4 @@ src_install() {
 		docinto demo
 		dodoc demo/*.c
 	fi
-
-	use static-libs || find "${ED}" \( -name '*.a' -or -name '*.la' \) -delete
 }
