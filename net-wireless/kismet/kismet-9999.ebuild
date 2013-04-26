@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/kismet/kismet-9999.ebuild,v 1.8 2013/03/17 19:33:57 zerochaos Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/kismet/kismet-9999.ebuild,v 1.9 2013/04/25 23:38:11 zerochaos Exp $
 
 EAPI=5
 
@@ -24,7 +24,7 @@ DESCRIPTION="IEEE 802.11 wireless LAN sniffer"
 HOMEPAGE="http://www.kismetwireless.net/"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="0/${PV}"
 IUSE="+client +pcre speech +plugin-autowep +plugin-btscan plugin-dot15d4 +plugin-ptw +plugin-spectools +plugin-syslog +ruby +suid"
 
 RDEPEND="net-wireless/wireless-tools
