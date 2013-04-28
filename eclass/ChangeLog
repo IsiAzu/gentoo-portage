@@ -1,6 +1,16 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.801 2013/04/24 01:49:40 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.803 2013/04/28 18:59:59 tetromino Exp $
+
+  28 Apr 2013; Alexandre Rostovtsev <tetromino@gentoo.org> autotools.eclass:
+  Reverting autotools.eclass commit that broke eautoreconf (bug #467772), acked
+  by multiple people in #gentoo-dev.
+
+  28 Apr 2013; Zac Medico <zmedico@gentoo.org> apache-2.eclass,
+  haskell-cabal.eclass, mercurial.eclass, perl-module.eclass,
+  php-common-r1.eclass, qt4-build.eclass, selinux-policy-2.eclass,
+  subversion.eclass:
+  Bug #467646 - Refer to /etc/portage/make.conf, not /etc/make.conf.
 
   24 Apr 2013; Tim Harder <radhermit@gentoo.org> vim.eclass:
   Remove old, conditional src_configure call in src_compile.
