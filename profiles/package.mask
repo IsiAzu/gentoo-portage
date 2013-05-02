@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14707 2013/05/02 04:31:58 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14709 2013/05/02 12:48:56 mgorny Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -359,6 +359,7 @@ net-proxy/swiftiply
 >=dev-cpp/pangomm-2.34
 >=app-misc/bijiben-3.8
 >=gnome-extra/gnome-weather-3.8
+>=media-gfx/gnome-photos-3.8
 
 # Sebastien Fabbro <bicatali@gentoo.org> (26 Mar 2013)
 # Now included in sci-mathematics/mathgl
@@ -415,6 +416,7 @@ dev-libs/dvutil
 # Samuli Suominen <ssuominen@gentoo.org> (16 Mar 2013)
 # Waiting for new emul-linux-x86-{media,sound}libs without
 # the duplicate files.
+>=media-libs/audiofile-0.3.6-r1
 >=media-libs/flac-1.2.1-r5
 >=media-libs/libmikmod-3.2.0-r1
 >=media-libs/libv4l-0.8.9-r1
