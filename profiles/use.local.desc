@@ -624,6 +624,8 @@ app-i18n/ibus-pinyin:opencc - Enable support for app-i18n/opencc
 app-i18n/ibus-unikey:gtk3 - Enable support for gtk+3
 app-i18n/im-ja:anthy - Support for Anthy input method
 app-i18n/im-ja:skk - Support for SKK input method
+app-i18n/imsettings:gconf - Enable GConf support
+app-i18n/imsettings:gtk3 - Enable support for x11-libs/gtk+:3
 app-i18n/imsettings:xfconf - Enable integration in the Xfce desktop environment with xfce-base/xfconf
 app-i18n/kimera:anthy - Support for Anthy input method
 app-i18n/libskk:introspection - Use dev-libs/gobject-introspection for introspection
@@ -5047,6 +5049,7 @@ net-p2p/transmission-remote-gtk:unique - Enable single instance support using de
 net-p2p/tribler:vlc - Enable vlc support.
 net-print/cups:filters - Pull in net-print/foomatic-filters for filtering by default.
 net-print/cups:java - Add support for the Java interpeter in the web server CGIs.
+net-print/cups:lprng-compat - Do not install lp... binaries so cups and lprng can coexist.
 net-print/cups:perl - Add support for the Perl interpeter in the web server CGIs.
 net-print/cups:php - Add support for the PHP interpeter in the web server CGIs.
 net-print/cups:python - Add support for the Python interpeter in the web server CGIs.

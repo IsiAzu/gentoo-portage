@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/tomahawk/tomahawk-9999.ebuild,v 1.13 2013/05/01 11:53:55 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/tomahawk/tomahawk-9999.ebuild,v 1.14 2013/05/03 22:09:30 johu Exp $
 
 EAPI=5
 
@@ -58,6 +58,8 @@ src_configure() {
 		$(cmake-utils_use_with jabber Jreen)
 		$(cmake-utils_use_with twitter QTweetLib)
 	)
+
+	mycmakeargs+=( -DBUILD_WITH_QT4=ON )
 
 	if [[ ${PV} != *9999* ]]; then
 		mycmakeargs+=( -DBUILD_RELEASE=ON )
