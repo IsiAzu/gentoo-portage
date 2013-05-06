@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14729 2013/05/06 06:56:55 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14731 2013/05/06 15:32:19 floppym Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,12 @@
 
 #--- END OF EXAMPLES ---
 
+# Samuli Suominen <ssuominen@gentoo.org> (06 May 2013)
+# Requires the deprecated media-sound/alsa-headers wrt #468712
+# Queries kernel source location wrong wrt #370099
+# And fails to build with Linux 3.8+
+media-sound/line6usb
+
 # Ulrich Müller <ulm@gentoo.org> (06 May 2013)
 # Fails to build with Emacs 24.3.
 # Masked for removal in 30 days, bug #466444.
@@ -44,11 +50,6 @@ media-fonts/adi-dsp-fonts
 # Tom Wijsman <TomWij@gentoo.org> (05 May 2013)
 # Masking media-video/handbrake until =media-video/ffmpeg-1.2 is unmasked.
 media-video/handbrake
-
-# Mike Gilbert <floppym@gentoo.org>
-# Masked until I can figure out how to deal with cffi trying to write files to
-# /usr/lib64/pypy2.0/lib_pypy/__pycache__/.
->=dev-python/pypy-2.0_beta2
 
 # Patrick Lauer <patrick@gentoo.org> (04 May 2013)
 # Dependency on nonexisting =gnome-extra/evolution-data-server-3.4* 
