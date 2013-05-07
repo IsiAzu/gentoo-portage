@@ -3574,6 +3574,7 @@ media-video/google2srt:html - Install HTML documentation
 media-video/griffith:csv - Enable proper support for csv import (respectively auto-detection encoding of csv files)
 media-video/gxine:gnome-screensaver - Enable dbus support to communicate with gnome-extra/gnome-screensaver
 media-video/h264enc:ogm - Support for OGM container format
+media-video/handbrake:fdk - Support for encoding AAC using media-libs/fdk-aac.
 media-video/handbrake:ffmpeg - Use FFmpeg from media-video/ffmpeg to decode MPEG-2 instead of media-plugins/gst-plugins-mpeg2dec.
 media-video/handbrake:gstreamer - Support for the streaming media framework from media-libs/gstreamer.
 media-video/handbrake:gtk - Support for Gimp ToolKit + from x11-libs/gtk+, requirement for a GUI-based HandBrake.
@@ -5553,6 +5554,7 @@ sci-visualization/opendx:hdf - Add support for the Hierarchical Data Format (sci
 sci-visualization/paraview:boost - Enable the usage of dev-libs/boost
 sci-visualization/paraview:cg - Add support for nvidia's cg shaders
 sci-visualization/paraview:coprocessing - Enable the coprocessing infrastructure which is mainly useful in the context of clusters
+sci-visualization/paraview:development - Install development files including headers
 sci-visualization/paraview:nvcontrol - Add NVCONTROL support for OpenGL options
 sci-visualization/paraview:plugins - Build and install additional plugins
 sci-visualization/veusz:fits - Add FITS format via dev-python/pyfits
