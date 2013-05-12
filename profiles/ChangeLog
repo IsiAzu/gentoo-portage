@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7826 2013/05/09 19:44:06 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7829 2013/05/12 07:28:39 patrick Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  12 May 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Add vflib to freetype-1 mask
+
+  12 May 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Add yablex to blender mask, fix typo
+
+  12 May 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Add reverse deps of xchat to the mask
 
   09 May 2013; Johannes Huber <johu@gentoo.org> package.mask:
   Mask kde-misc/akonadi-google for removal.
