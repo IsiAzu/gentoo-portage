@@ -1498,10 +1498,8 @@ dev-libs/libisofs:verbose-debug - Enable verbose debug messages
 dev-libs/libjit:interpreter - Enable the libjit interpreter
 dev-libs/libjit:long-double - Enable the use of long double for jit_nfloat
 dev-libs/libmail:apop - Enables the APOP authentication method
-dev-libs/libmemcached:gtest - Build with libgtest support.
 dev-libs/libmemcached:hsieh - Use Hsieh hash algorithm.
 dev-libs/libmemcached:libevent - Use the libevent event loop interface.
-dev-libs/libmix:no-net2 - Disable support for net-libs/libpcap and net-libs/libnet
 dev-libs/libnl:doc - Install development documentation
 dev-libs/libnl:utils - Install command line interface utils
 dev-libs/libowfat:diet - Compile against dev-libs/dietlibc
@@ -1525,7 +1523,6 @@ dev-libs/libverto:tevent - Support event loops using sys-libs/tevent
 dev-libs/link-grammar:aspell - Adds support for app-text/aspell spell checker
 dev-libs/link-grammar:hunspell - Adds support for app-text/hunspell spell checker
 dev-libs/log4cplus:iconv - Use inconv for wchar_t <-> char conversions. See also log4cplus's unicode.txt documentation
-dev-libs/log4cplus:qt - Build the liblog4cplusqt4debugappender library that implements Qt4DebugAppender
 dev-libs/log4cplus:working-c-locale - Use the C99 locale facilities for wchar_t <-> char conversions. See also log4cplus's unicode.txt documentation
 dev-libs/log4cplus:working-locale - Use C++'s std::locale for wchar_t <-> char conversions. See also log4cplus's unicode.txt documentation
 dev-libs/log4cxx:smtp - Offer SMTP support via net-libs/libesmtp
@@ -2315,6 +2312,7 @@ gnome-base/gnome-applets:cpufreq - Build cpu frequency scaling monitor applet
 gnome-base/gnome-control-center:colord - Support color management using x11-misc/colord
 gnome-base/gnome-control-center:gnome-online-accounts - Enable configuration panel for net-libs/gnome-online-accounts accounts
 gnome-base/gnome-control-center:i18n - Enable support for enhanced input methods through app-i18n/ibus
+gnome-base/gnome-control-center:modemmanager - Enable support for mobile broadband devices using net-misc/modemmanager
 gnome-base/gnome-control-center:socialweb - Add support for desktop background images from Flickr using net-libs/libsocialweb
 gnome-base/gnome-desktop:license-docs - Install help files documenting GNOME's licenses
 gnome-base/gnome-extra-apps:shotwell - Install the media-gfx/shotwell photo manager
@@ -2707,10 +2705,7 @@ mail-mta/qmail-ldap:gencertdaily - Generate SSL certificates daily instead of ho
 mail-mta/qmail-ldap:highvolume - Prepare qmail for high volume servers
 mail-mta/qmail-ldap:rfc2307 - Add support for RFC2307 compliant uid/gid attributes
 mail-mta/qmail-ldap:rfc822 - Add support for RFC822 compliant mail attributes
-mail-mta/qpsmtpd:async - Add deps + support for asynchronous mail reception/processing as well as preforked daemon
 mail-mta/qpsmtpd:postfix - create user with permissions for proper postfix interaction
-mail-mta/ssmtp:maxsysuid - Allow to define a MinUserId
-mail-mta/ssmtp:md5sum - Enables MD5 summing for ssmtp
 mail-mta/ssmtp:mta - Install symlinks for sendmail-compatible MTA.
 media-fonts/culmus:ancient - Install ancient semitic scripts
 media-fonts/culmus:fancy - Install fancy fonts
@@ -3209,7 +3204,6 @@ media-sound/beets:echonest_tempo - Enable support for writing the BPM of a track
 media-sound/beets:lastgenre - Enable support for importing music genres from last.fm tags
 media-sound/beets:replaygain - Enable support for Replay Gain metadata calculation during import
 media-sound/beets:web - Enable embedded webserver support through dev-python/flask
-media-sound/cantata:mpg123 - Enable support for mp3 decoding over media-sound/mpg123.
 media-sound/cantata:phonon - Enable support for Phonon
 media-sound/cantata:replaygain - Enable ReplayGain support, for relative volume adjustments.
 media-sound/clementine:googledrive - Enable Google Drive support
@@ -3562,7 +3556,6 @@ media-video/ffmpeg:vpx - Enables vp8 codec support using libvpx: Decoding vp8 do
 media-video/ffmpeg2theora:kate - Adds support for Ogg Kate subtitles via libkate.
 media-video/gnome-mplayer:dconf - Enable support for gnome-base/dconf
 media-video/google2srt:html - Install HTML documentation
-media-video/griffith:csv - Enable proper support for csv import (respectively auto-detection encoding of csv files)
 media-video/gxine:gnome-screensaver - Enable dbus support to communicate with gnome-extra/gnome-screensaver
 media-video/h264enc:ogm - Support for OGM container format
 media-video/handbrake:fdk - Support for encoding AAC using media-libs/fdk-aac.
@@ -3708,7 +3701,6 @@ media-video/totem:lirc - Enable support for controlling Totem with a remote cont
 media-video/totem:nautilus - Enable the nautilus extension
 media-video/totem:python - Build support for dev-lang/python plugins
 media-video/totem:tracker - Enable support for searching media files using the indexer app-misc/tracker
-media-video/totem:vala - Enable bindings for dev-lang/vala
 media-video/totem:youtube - Enable youtube plugin
 media-video/totem:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
 media-video/transcode:mjpeg - Enables mjpegtools support
