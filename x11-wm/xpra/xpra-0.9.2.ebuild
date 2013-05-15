@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/xpra/xpra-0.8.7-r1.ebuild,v 1.1 2013/03/02 21:21:17 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/xpra/xpra-0.9.2.ebuild,v 1.1 2013/05/15 06:33:38 xmw Exp $
 
 EAPI=5
 
@@ -15,7 +15,7 @@ SRC_URI="http://xpra.org/src/${P}.tar.bz2"
 LICENSE="GPL-2 BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="+clipboard +rencode server vpx webp x264"
+IUSE="+clipboard pulseaudio +rencode server vpx webp x264"
 
 # x264/old-libav.path situation see bug 459218
 COMMON_DEPEND="dev-python/pygobject:2
@@ -59,12 +59,13 @@ python_prepare_all() {
 		fi
 	fi
 
-	use clipboard || epatch patches/disable-clipboard.patch
-	use rencode   || epatch patches/disable-rencode.patch
-	use server    || epatch patches/disable-posix-server.patch
-	use vpx       || epatch patches/disable-vpx.patch
-	use webp      || epatch patches/disable-webp.patch
-	use x264      || epatch patches/disable-x264.patch
+	use clipboard  || epatch patches/disable-clipboard.patch
+	use pulseaudio || epatch patches/disable-pulseaudio.patch
+	use rencode    || epatch patches/disable-rencode.patch
+	use server     || epatch patches/disable-posix-server.patch
+	use vpx        || epatch patches/disable-vpx.patch
+	use webp       || epatch patches/disable-webp.patch
+	use x264       || epatch patches/disable-x264.patch
 }
 
 src_install() {
