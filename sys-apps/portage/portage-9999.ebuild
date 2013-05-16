@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.75 2013/05/06 21:42:24 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.76 2013/05/16 00:34:25 zmedico Exp $
 
 EAPI=3
 PYTHON_COMPAT=(
@@ -286,9 +286,6 @@ src_prepare() {
 			|| die "failed to append to make.globals"
 	fi
 
-	echo -e '\nFEATURES="${FEATURES} preserve-libs"' >> cnf/make.globals \
-		|| die "failed to append to make.globals"
-
 	cd "${S}/cnf" || die
 	if [ -f "make.conf.${ARCH}".diff ]; then
 		patch make.conf "make.conf.${ARCH}".diff || \
@@ -416,22 +413,18 @@ pkg_postinst() {
 		sed -i -e '/^@/d' world
 	fi
 
-	if $NEEDED_REBUILD_UPGRADE ; then
+	if ${NEEDED_REBUILD_UPGRADE} ; then
 		einfo "rebuilding NEEDED.ELF.2 files"
+		local cpv filename line newline
 		for cpv in "${EROOT}/var/db/pkg"/*/*; do
-			if [ -f "${cpv}/NEEDED" ]; then
-				rm -f "${cpv}/NEEDED.ELF.2"
-				while read line; do
-					filename=${line% *}
-					needed=${line#* }
-					needed=${needed//+/++}
-					needed=${needed//#/##}
-					needed=${needed//%/%%}
-					newline=$(scanelf -BF "%a;%F;%S;%r;${needed}" $filename)
-					newline=${newline//  -  }
-					echo "${newline:3}" >> "${cpv}/NEEDED.ELF.2"
-				done < "${cpv}/NEEDED"
-			fi
+			[[ -f "${cpv}/NEEDED" && ! -f "${cpv}/NEEDED.ELF.2" ]] || continue
+			while read -r line; do
+				filename=${line% *}
+				newline=$(scanelf -BF "%a;%F;%S;%r;%n" "${ROOT%/}${filename}")
+				newline=${newline//  -  }
+				[[ ${#ROOT} -gt 1 ]] && newline=${newline/${ROOT%/}}
+				echo "${newline:3}" >> "${cpv}/NEEDED.ELF.2"
+			done < "${cpv}/NEEDED"
 		done
 	fi
 }
