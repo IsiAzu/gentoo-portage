@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/avidemux-core/avidemux-core-2.6.3.ebuild,v 1.2 2013/04/19 18:54:14 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/avidemux-core/avidemux-core-2.6.3.ebuild,v 1.3 2013/05/16 07:00:59 tomwij Exp $
 
 EAPI="5"
 
@@ -12,7 +12,7 @@ MY_PN="${PN/-core/}"
 MY_P="${MY_PN}_${PV}"
 
 DESCRIPTION="Core libraries for a video editor designed for simple cutting, filtering and encoding tasks."
-HOMEPAGE="http://fixounet.free.fr/${MY_PN}"
+HOMEPAGE="http://fixounet.free.fr/avidemux"
 SRC_URI="mirror://sourceforge/${MY_PN}/${PV}/${MY_P}.tar.gz"
 
 # Multiple licenses because of all the bundled stuff.
