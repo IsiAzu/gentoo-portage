@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/go/go-9999.ebuild,v 1.10 2013/04/16 16:10:18 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/go/go-9999.ebuild,v 1.11 2013/05/17 22:55:44 williamh Exp $
 
-EAPI=4
+EAPI=5
 
 export CTARGET=${CTARGET:-${CHOST}}
 
@@ -33,8 +33,8 @@ RDEPEND="bash-completion? ( app-shells/bash-completion )
 # The tools in /usr/lib/go should not cause the multilib-strict check to fail.
 QA_MULTILIB_PATHS="usr/lib/go/pkg/tool/linux*/*"
 
-	# The go language stores binary data for packages in *.a files.
-	# These are _NOT_ libraries, and should not be stripped.
+# The go language uses *.a files which are _NOT_ libraries and should not be
+# stripped.
 STRIP_MASK="/usr/lib/go/pkg/linux*/*.a"
 
 if [[ ${PV} != 9999 ]]; then
@@ -44,7 +44,7 @@ fi
 src_prepare()
 {
 	if [[ ${PV} != 9999 ]]; then
-		epatch "${FILESDIR}"/${P}-hardened.patch
+		epatch "${FILESDIR}"/${P}-no-Werror.patch
 	fi
 	epatch_user
 }

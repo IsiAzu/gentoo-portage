@@ -1,20 +1,20 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.16.ebuild,v 1.19 2013/03/03 23:09:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.86.ebuild,v 1.1 2013/05/18 00:17:33 aballier Exp $
 
-EAPI=3
-inherit eutils flag-o-matic elisp-common toolchain-funcs
+EAPI=4
+inherit eutils flag-o-matic elisp-common toolchain-funcs multilib
 
 DESCRIPTION="DVI previewer for X Window System"
 HOMEPAGE="http://xdvi.sourceforge.net/"
 SRC_URI="mirror://sourceforge/xdvi/${P}.tar.gz"
 
-KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 s390 sh sparc x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="GPL-2"
 IUSE="motif neXt Xaw3d emacs"
 
-RDEPEND=">=media-libs/t1lib-5.0.2
+RDEPEND="media-libs/freetype:2
 	x11-libs/libXmu
 	x11-libs/libXp
 	x11-libs/libXpm
@@ -26,29 +26,22 @@ RDEPEND=">=media-libs/t1lib-5.0.2
 			!Xaw3d? ( x11-libs/libXaw )
 		)
 	)
-	virtual/latex-base
-	!<app-text/texlive-2007"
+	dev-libs/kpathsea"
 DEPEND="sys-devel/flex
 	virtual/yacc
 	${RDEPEND}"
-TEXMF_PATH=/usr/share/texmf
+RDEPEND="${RDEPEND}
+	virtual/latex-base
+	!<app-text/texlive-2007"
 S=${WORKDIR}/${P}/texk/xdvik
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-open-mode.patch \
-		"${FILESDIR}"/${P}-cvararg.patch \
-		"${FILESDIR}"/${P}-parallel_make.patch
-	has_version '>=app-text/texlive-core-2009' && epatch "${FILESDIR}"/${P}-kpathsea_version.patch
 	# Make sure system kpathsea headers are used
 	cd "${WORKDIR}/${P}/texk/kpathsea"
 	for i in *.h ; do echo "#include_next \"$i\"" > $i; done
 }
 
 src_configure() {
-	cd "${WORKDIR}/${P}"
-
-	tc-export CC AR RANLIB
-
 	local toolkit
 
 	if use motif ; then
@@ -64,32 +57,28 @@ src_configure() {
 		toolkit="xaw"
 	fi
 
-	econf --disable-multiplatform \
-		--enable-t1lib \
-		--enable-gf \
-		--with-system-t1lib \
+	econf \
+		--with-system-freetype2 \
 		--with-system-kpathsea \
 		--with-kpathsea-include="${EPREFIX}"/usr/include/kpathsea \
-		--with-xdvi-x-toolkit="${toolkit}"
+		--with-xdvi-x-toolkit="${toolkit}" \
+		--x-includes="${EPREFIX}"/usr/include \
+		--x-libraries="${EPREFIX}"/usr/$(get_libdir)
 }
 
 src_compile() {
-	emake kpathsea_dir="${EPREFIX}/usr/include/kpathsea" texmf="${EPREFIX}${TEXMF_PATH}" || die
+	emake kpathsea_dir="${EPREFIX}/usr/include/kpathsea"
 	use emacs && elisp-compile xdvi-search.el
 }
 
 src_install() {
-	einstall kpathsea_dir="${EPREFIX}/usr/include/kpathsea" texmf="${ED}${TEXMF_PATH}" || die "install failed"
+	dodir /usr/share/texmf-dist/dvips/config
 
-	dodir /etc/texmf/xdvi /etc/X11/app-defaults
-	mv "${ED}${TEXMF_PATH}/xdvi/XDvi" "${ED}etc/X11/app-defaults" || die "failed to move config file"
-	dosym {/etc/X11/app-defaults,"${TEXMF_PATH}/xdvi"}/XDvi || die "failed to symlink config file"
-	for i in $(find "${ED}${TEXMF_PATH}/xdvi" -maxdepth 1 -type f) ; do
-		mv ${i} "${ED}etc/texmf/xdvi" || die "failed to move $i"
-		dosym {/etc/texmf,"${TEXMF_PATH}"}/xdvi/$(basename ${i}) || die "failed	to symlink $i"
-	done
+	emake DESTDIR="${D}" install
 
-	dodoc BUGS FAQ README.* || die "dodoc failed"
+	dosym /usr/share/texmf-dist/xdvi/XDvi /usr/share/X11/app-defaults/XDvi
+
+	dodoc BUGS FAQ README.*
 
 	use emacs && elisp-install tex-utils *.el *.elc
 
