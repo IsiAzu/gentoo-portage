@@ -2897,7 +2897,6 @@ media-libs/evas:psd - Support PSD image loader
 media-libs/evas:tga - Support tga image loader
 media-libs/evas:wayland - Add support for dev-libs/wayland
 media-libs/faad2:digitalradio - Digital Radio Mondiale (warning: disables other decoders)
-media-libs/flickcurl:oauth - Enable experimental OAuth support
 media-libs/flickcurl:raptor - Use media-libs/raptor for proper RDF serializing
 media-libs/fontconfig-infinality:nyx - Additional style using croscorefonts
 media-libs/freeglut:mpx - Enable support for multi-pointer-X. One pointer for each pointer device.
@@ -5397,6 +5396,7 @@ sci-libs/plplot:dynamic - Build with dynamic drivers
 sci-libs/plplot:octave - Add bindings for sci-mathematics/octave
 sci-libs/plplot:qhull - Add bindings for media-libs/qhull
 sci-libs/scikits_image:freeimage - Enable support for image i/o via media-libs/freeimage
+sci-libs/scipy:sparse - Adds support for sparse solving with sci-libs/umfpack
 sci-libs/scipy:umfpack - Adds support for sparse solving with sci-libs/umfpack
 sci-libs/scotch:int64 - Build the 64 bits integer library (needed for > 2^31 vertices)
 sci-libs/scotch:tools - Build and install extra exec tools
