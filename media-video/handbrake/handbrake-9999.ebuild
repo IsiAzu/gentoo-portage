@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/handbrake/handbrake-9999.ebuild,v 1.4 2013/05/16 05:52:11 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/handbrake/handbrake-9999.ebuild,v 1.6 2013/05/23 17:57:14 tomwij Exp $
 
 EAPI="5"
 
@@ -13,8 +13,8 @@ if [[ ${PV} = *9999* ]]; then
 	inherit subversion
 	KEYWORDS=""
 else
-	SRC_URI="http://dev.gentoo.org/~tomwij/files/dist/${P}.tar.gz"
-	S="${WORKDIR}"
+	SRC_URI="http://handbrake.fr/rotation.php?file=HandBrake-${PV}.tar.bz2 -> ${P}.tar.bz2"
+	S="${WORKDIR}/HandBrake-${PV}"
 	KEYWORDS="~amd64 ~x86"
 fi
 
@@ -43,7 +43,6 @@ RDEPEND="
 	media-libs/x264
 	media-sound/lame
 	ffmpeg? ( =virtual/ffmpeg-9 )
-	sys-libs/glibc:2.2
 	sys-libs/zlib
 	gstreamer? (
 		media-libs/gstreamer:1.0
@@ -66,6 +65,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
 	dev-lang/yasm
+	dev-util/intltool
 	sys-devel/automake"
 
 pkg_setup() {
