@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-radio/xlog/xlog-2.0.7.ebuild,v 1.3 2013/05/24 07:12:30 tomjbe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-radio/xlog/xlog-2.0.8.ebuild,v 1.1 2013/05/24 12:49:37 tomjbe Exp $
 
 EAPI=4
 
@@ -13,7 +13,7 @@ SRC_URI="http://download.savannah.gnu.org/releases/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="media-libs/hamlib
@@ -26,8 +26,7 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-cabrillo.patch" \
-		"${FILESDIR}/${P}-desktop.patch"
+	epatch "${FILESDIR}/${PN}-2.0.7-desktop.patch"
 
 	# Let portage handle updating mime/desktop databases,
 	epatch "${FILESDIR}/${PN}-1.9-desktop-update.patch"
