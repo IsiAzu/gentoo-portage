@@ -1,18 +1,26 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/aircrack-ng-9999.ebuild,v 1.3 2013/04/24 22:53:28 zerochaos Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/aircrack-ng-9999.ebuild,v 1.5 2013/05/26 05:11:10 zerochaos Exp $
 
 EAPI="5"
 
-inherit toolchain-funcs versionator subversion
+inherit toolchain-funcs versionator
 
 DESCRIPTION="WLAN tools for breaking 802.11 WEP/WPA keys"
 HOMEPAGE="http://www.aircrack-ng.org"
-ESVN_REPO_URI="http://trac.aircrack-ng.org/svn/trunk/"
+
+if [[ ${PV} == "9999" ]] ; then
+	inherit subversion
+	ESVN_REPO_URI="http://svn.aircrack-ng.org/trunk"
+	KEYWORDS=""
+else
+	MY_PV="$(replace_version_separator 2 '-')"
+	SRC_URI="http://download.aircrack-ng.org/${PN}-${MY_PV}.tar.gz"
+	KEYWORDS="~amd64 ~arm ~ppc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
 
 IUSE="+airdrop-ng +airgraph-ng kernel_linux kernel_FreeBSD netlink +sqlite +unstable"
 
@@ -30,10 +38,6 @@ RDEPEND="${DEPEND}
 	airdrop-ng? ( net-wireless/lorcon[python] )"
 
 S="${WORKDIR}/${PN}"
-
-subversion_src_prepare() {
-	subversion_bootstrap || die "${ESVN}: unknown problem occurred in subversion_bootstrap."
-}
 
 src_compile() {
 	emake \
