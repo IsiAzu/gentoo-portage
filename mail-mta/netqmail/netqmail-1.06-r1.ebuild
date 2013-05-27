@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/netqmail/netqmail-1.06-r1.ebuild,v 1.1 2013/04/15 22:55:10 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/netqmail/netqmail-1.06-r1.ebuild,v 1.2 2013/05/27 00:45:52 robbat2 Exp $
 
 EAPI=5
 
@@ -94,7 +94,11 @@ src_prepare() {
 	ht_fix_file Makefile*
 
 	if ! use vanilla; then
-		use ssl        && epatch "${DISTDIR}"/${QMAIL_TLS_F}
+		# This patch contains relative paths and needs to be cleaned up.
+		sed 's~^--- ../../~--- ~g' \
+			<"${DISTDIR}"/${QMAIL_TLS_F} \
+			>"${T}"/${QMAIL_TLS_F}
+		use ssl        && epatch "${T}"/${QMAIL_TLS_F}
 		use highvolume && epatch "${DISTDIR}"/${QMAIL_BIGTODO_F}
 
 		if use qmail-spp; then
