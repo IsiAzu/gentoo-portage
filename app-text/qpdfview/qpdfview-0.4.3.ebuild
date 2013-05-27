@@ -1,13 +1,13 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/qpdfview/qpdfview-0.4.ebuild,v 1.2 2013/03/25 04:19:41 pinkbyte Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/qpdfview/qpdfview-0.4.3.ebuild,v 1.1 2013/05/27 12:04:55 pinkbyte Exp $
 
 EAPI=5
 
-PLOCALES="ast bs ca cs da de el en_GB es eu fi fr he hr id it ky ms my pl pt_BR ro ru sk tr ug uk zh_CN"
+PLOCALES="ast az bg bs ca cs da de el en_GB eo es eu fi fr he hr id it ky ms my pl pt_BR ro ru sk tr ug uk zh_CN"
 inherit l10n multilib qt4-r2
 
-DESCRIPTION="A tabbed PDF viewer using the poppler library"
+DESCRIPTION="A tabbed document viewer"
 HOMEPAGE="http://launchpad.net/qpdfview"
 SRC_URI="https://launchpad.net/${PN}/trunk/${PV}/+download/${P}.tar.gz"
 
@@ -31,15 +31,13 @@ DEPEND="${RDEPEND}
 
 DOCS=( CHANGES CONTRIBUTORS README TODO )
 
-rm_loc() {
-	sed -e "/translations\/${PN}_${1}.ts/d" \
-		-i ${PN}.pro || die "sed translations failed"
-	rm translations/${PN}_${1}.{qm,ts} || die "rm translations failed"
+prepare_locale() {
+	lrelease "translations/${PN}_${1}.ts" || die "preparing ${1} locale failed"
 }
 
 src_prepare() {
 	l10n_find_plocales_changes "translations" "${PN}_" '.ts'
-	l10n_for_each_disabled_locale_do rm_loc
+	l10n_for_each_locale_do prepare_locale
 
 	qt4-r2_src_prepare
 }
