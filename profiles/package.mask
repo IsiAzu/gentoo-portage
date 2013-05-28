@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14784 2013/05/27 06:25:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14788 2013/05/28 01:05:38 rafaelmartins Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Mike Gilbert <floppym@gentoo.org (27 May 2013)
+# Masked until reverse dependencies are tested bug 401009.
+=dev-python/imaging-2.0.0
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> (26 May 2013)
 # dead on upstream, homepage dead 
@@ -86,6 +90,7 @@ x11-themes/pekwm-themes-hewphoria
 # Maxim Koltsov <maksbotan@gentoo.org> (16 May 2013)
 # Needs masked ffmpeg-9
 =media-video/mplayer2-2.0_p20130428
+=media-libs/ffmpegsource-2.17.4_pre755
 
 # Patrick Lauer <patrick@gentoo.org> (16 May 2013)
 # Dependencies broken, new version brokererer. #469264
@@ -821,7 +826,12 @@ www-client/opera-next
 
 # Diego E. Pettenò <flameeyes@gentoo.org> (30 Oct 2011)
 # Working on more reliable versioning, consider experimental for now.
->=dev-lang/luajit-2.0.0_beta8
+#
+# Rafael G. Martins <rafaelmartins@gentoo.org> (27 May 2013)
+# Remove generic mask. These versions will be removed later.
+=dev-lang/luajit-2.0.0_beta8_p1
+=dev-lang/luajit-2.0.0_beta10
+=dev-lang/luajit-2.0.0
 
 # Samuli Suominen <ssuominen@gentoo.org> (30 Oct 2011)
 # Masked for security bug #294253, use only at your own risk!

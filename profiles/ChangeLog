@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7875 2013/05/27 06:25:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7880 2013/05/28 01:05:38 rafaelmartins Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  28 May 2013; Rafael G. Martins <rafaelmartins@gentoo.org> package.mask:
+  Update luajit mask
+
+  27 May 2013; Alexandre Rostovtsev <tetromino@gentoo.org>
+  targets/desktop/gnome/package.use:
+  Enable ibus[dconf] in gnome profile for gnome-shell.
+
+  27 May 2013; Mike Gilbert <floppym@gentoo.org> package.mask:
+  Mask dev-python/imaging-2.0.0 for testing.
+
+  27 May 2013; Maxim Koltsov <maksbotan@gentoo.org> package.mask:
+  Mask new media-libs/ffmpegsource snapshot due to ffmpeg-9
 
   27 May 2013; Ulrich Müller <ulm@gentoo.org> package.mask:
   Remove mask for sys-apps/kuroevtd, app-admin/addpatches, app-text/duconv, and
