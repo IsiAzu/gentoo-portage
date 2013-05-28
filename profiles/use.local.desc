@@ -3877,6 +3877,7 @@ net-analyzer/flowgrind:pcap - Enable packet capturing support using net-libs/lib
 net-analyzer/fprobe:messages - enable console messages
 net-analyzer/httping:tfo - Enable support for TCP Fast Open
 net-analyzer/hydra:ncp - NCP protocol (NetWare) support through net-fs/ncpfs
+net-analyzer/icinga:contrib - additional scripts
 net-analyzer/icinga:eventhandler - Adds support for running custom scripts whenever a host or service state change occurs
 net-analyzer/icinga:idoutils - Adds DB support
 net-analyzer/icinga:lighttpd - Adds Lighttpd support
@@ -6253,6 +6254,8 @@ www-servers/lighttpd:mmap - Use mmap with files owned by lighttpd. This is a dan
 www-servers/lighttpd:rrdtool - Enable rrdtool support via mod_rrdtool
 www-servers/lighttpd:uploadprogress - Apply experimental patch for upload progress module
 www-servers/lighttpd:webdav - Enable webdav properties
+www-servers/monkeyd:debug - Enable lots of debugging info
+www-servers/monkeyd:shared-lib - Install shared lib
 www-servers/nginx:aio - Enables file AIO support
 www-servers/nginx:http - Enable HTTP core support
 www-servers/nginx:http-cache - Enable HTTP cache support
