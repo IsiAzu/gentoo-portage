@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/paraview/paraview-3.98.0-r1.ebuild,v 1.1 2013/05/07 15:59:53 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/paraview/paraview-3.98.0-r1.ebuild,v 1.3 2013/05/29 16:37:35 jlec Exp $
 
 EAPI=5
 
@@ -20,6 +20,8 @@ LICENSE="paraview GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE="boost cg coprocessing development doc examples ffmpeg mpi mysql nvcontrol plugins python qt4 sqlite tcl test tk"
+
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
 	dev-db/sqlite:3

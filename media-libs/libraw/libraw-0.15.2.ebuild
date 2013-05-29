@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libraw/libraw-0.15.0.ebuild,v 1.1 2013/05/29 08:40:23 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libraw/libraw-0.15.2.ebuild,v 1.1 2013/05/29 18:14:44 radhermit Exp $
 
 EAPI=5
 
