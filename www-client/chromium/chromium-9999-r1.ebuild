@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/chromium-9999-r1.ebuild,v 1.195 2013/05/25 00:13:09 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/chromium-9999-r1.ebuild,v 1.196 2013/05/29 21:49:21 phajdan.jr Exp $
 
 EAPI="5"
 PYTHON_COMPAT=( python{2_6,2_7} )
@@ -192,7 +192,7 @@ src_prepare() {
 		touch out/Release/gen/sdk/toolchain/linux_x86_newlib/stamp.untar || die
 	fi
 
-	epatch "${FILESDIR}/${PN}-system-ffmpeg-r6.patch"
+	epatch "${FILESDIR}/${PN}-system-ffmpeg-r7.patch"
 
 	epatch_user
 
