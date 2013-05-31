@@ -1,15 +1,14 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-9999.ebuild,v 1.13 2013/02/21 02:17:07 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-9999.ebuild,v 1.14 2013/05/31 05:48:50 radhermit Exp $
 
-EAPI="3"
+EAPI="4"
 
 inherit flag-o-matic systemd
 if [[ ${PV} == "9999" ]] ; then
 	ESVN_REPO_URI="https://smartmontools.svn.sourceforge.net/svnroot/smartmontools/trunk/smartmontools"
 	ESVN_PROJECT="smartmontools"
 	inherit subversion autotools
-	SRC_URI=""
 else
 	SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~arm-linux ~ia64-linux ~x86-freebsd ~x86-linux ~x64-macos"
@@ -49,10 +48,10 @@ src_configure() {
 
 src_install() {
 	if use minimal ; then
-		dosbin smartctl || die
+		dosbin smartctl
 		doman smartctl.8
 	else
-		emake install DESTDIR="${D}" || die
+		default
 		newinitd "${FILESDIR}"/smartd.rc smartd
 		newconfd "${FILESDIR}"/smartd.confd smartd
 	fi
