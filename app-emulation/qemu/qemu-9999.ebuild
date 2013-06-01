@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.50 2013/05/30 15:56:30 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.52 2013/05/31 15:35:40 slyfox Exp $
 
 EAPI=5
 
@@ -17,6 +17,7 @@ if [[ ${PV} = *9999* ]]; then
 	inherit git-2
 	SRC_URI=""
 	KEYWORDS=""
+	BACKPORTS="" # live does not need backporting
 else
 	SRC_URI="http://wiki.qemu-project.org/download/${P}.tar.bz2
 	${BACKPORTS:+
@@ -36,9 +37,9 @@ static-user systemtap tci test +threads tls usbredir +uuid vde +vhost-net \
 virtfs +vnc xattr xen xfs"
 
 COMMON_TARGETS="i386 x86_64 alpha arm cris m68k microblaze microblazeel mips
-mipsel or32 ppc ppc64 sh4 sh4eb sparc sparc64 s390x unicore32"
-IUSE_SOFTMMU_TARGETS="${COMMON_TARGETS} lm32 mips64 mips64el ppcemb xtensa xtensaeb"
-IUSE_USER_TARGETS="${COMMON_TARGETS} armeb ppc64abi32 sparc32plus"
+mipsel mips64 mips64el or32 ppc ppc64 sh4 sh4eb sparc sparc64 s390x unicore32"
+IUSE_SOFTMMU_TARGETS="${COMMON_TARGETS} lm32 moxie ppcemb xtensa xtensaeb"
+IUSE_USER_TARGETS="${COMMON_TARGETS} armeb mipsn32 mipsn32el ppc64abi32 sparc32plus"
 
 # Setup the default SoftMMU targets, while using the loops
 # below to setup the other targets.
@@ -286,7 +287,7 @@ qemu_src_configure() {
 		conf_opts+=" $(use_enable kernel_linux kvm)"
 		conf_opts+=" $(use_enable kernel_linux nptl)"
 		conf_opts+=" $(use_enable ncurses curses)"
-		conf_opts+=" $(use_enable opengl)"
+		conf_opts+=" $(use_enable opengl glx)"
 		conf_opts+=" $(use_enable png vnc-png)"
 		conf_opts+=" $(use_enable rbd)"
 		conf_opts+=" $(use_enable sasl vnc-sasl)"
@@ -444,7 +445,7 @@ src_install() {
 	mv "${ED}/usr/share/doc/${PF}/html/qmp-commands.txt" "${S}/QMP/"
 
 	cd "${S}"
-	dodoc Changelog MAINTAINERS TODO docs/specs/pci-ids.txt
+	dodoc Changelog MAINTAINERS docs/specs/pci-ids.txt
 	newdoc pc-bios/README README.pc-bios
 	dodoc QMP/qmp-commands.txt QMP/qmp-events.txt QMP/qmp-spec.txt
 

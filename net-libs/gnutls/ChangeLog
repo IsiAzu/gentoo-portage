@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.429 2013/05/30 19:56:09 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.431 2013/05/31 16:00:24 jer Exp $
+
+  31 May 2013; Jeroen Roovers <jer@gentoo.org> gnutls-2.12.23-r1.ebuild:
+  Stable for HPPA (bug #471788).
+
+  31 May 2013; Tobias Klausmann <klausman@gentoo.org> gnutls-2.12.23-r1.ebuild:
+  Stable on alpha, bug #471788
 
 *gnutls-2.12.23-r1 (30 May 2013)
 
