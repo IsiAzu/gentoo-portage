@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14793 2013/05/31 10:26:22 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14795 2013/06/01 13:29:23 idella4 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ian Delaney <idella4@gentoo.org> (1 June 2013)
+# Test phase extensively reworked, replaced
+# Requires review of its merit
+=dev-python/django-registration-0.8-r2
 
 # Diego Elio Pettenò <flameeyes@gentoo.org> (31 May 2013)
 # Waiting for final release
@@ -163,10 +168,6 @@ media-video/handbrake
 # Dependency on nonexisting =gnome-extra/evolution-data-server-3.4*
 =gnome-extra/evolution-groupwise-3.4.2
 =gnome-extra/evolution-exchange-3.4.4
-
-# Jeroen Roovers <jer@gentoo.org> (02 May 2013)
-# Has long surpassed its use, removal in thirty days
-www-plugins/diamondx
 
 # Kacper Kowalik <xarthisius@gentoo.org> (01 May 2013)
 # Removal due to licensing issue wrt #452420
