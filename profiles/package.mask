@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14798 2013/06/02 12:29:58 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14800 2013/06/02 19:29:17 sping Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Sebastian Pipping <sping@gentoo.org> (2 Jun 2013)
+# Effect working, freeze on opening preferences dialog
+>=media-libs/freeverb3-3.0.0
 
 # Diego Elio Pettenò <flameeyes@gentoo.org> (31 May 2013)
 # Waiting for final release
@@ -962,19 +966,10 @@ net-misc/asterisk-spandsp_codec_g726
 # No actual Gentoo support yet. If you're interested, please see bug #295993
 net-misc/netcf
 
-# Justin Lecher <jlec@gentoo.org> (16 Jun 10)
-# Just working with the masked experimental version of refmac
->=sci-libs/monomer-db-5.16
-
 # Robin H. Johnson <robbat2@gentoo.org> (09 Jun 2010)
 # Fails to self-verify/sign in FIPS mode, pending upstream response before
 # usage for GSoC project.
 app-crypt/hmaccalc
-
-# Justin Lecher <jlec@gentoo.org> (16 May 2010)
-# Upstreams testing version
-# Added on request
->=sci-chemistry/refmac-5.6
 
 # Patrick Lauer <patrick@gentoo.org> (07 Apr 2010)
 # Keeping samba-4 masked until release.
