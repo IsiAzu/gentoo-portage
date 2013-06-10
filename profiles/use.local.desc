@@ -1644,6 +1644,7 @@ dev-perl/Eidetic:auth - Enables dev-perl/Apache-AuthTicket based cookie authenti
 dev-perl/GD:animgif - Enable animated gif support
 dev-perl/Graphics-ColorNames:recommended - Install recommended support modules
 dev-perl/HTML-Mason:modperl - Enable www-apache/mod_perl support
+dev-perl/Lab-Measurement:xpression - Install the Xpression measurement framework
 dev-perl/Net-OpenSSH:sftp - Enable SFTP protocol support.
 dev-perl/Net-SSH2:gcrypt - Use libgcrypt instead of openssl
 dev-perl/PDL:badval - Enable bad values support
@@ -3092,6 +3093,7 @@ media-libs/xine-lib:imagemagick - Build the ImageMagick-based image decoder plug
 media-libs/xine-lib:mad - Build the media-libs/libmad based mp3 decoder. This mp3 decoder has superior support compared to the one coming from FFmpeg that is used as a fallback. If you experience any bad behaviour with mp3 files (skipping, distorted sound) make sure you enabled this USE flag.
 media-libs/xine-lib:mmap - Use mmap() function while reading file from local disks. Using mmap() will use more virtual memory space, but leaves to the Kernel the task of caching the file's data. mmap() access should be faster, but might misbehave if the device where the file resides in is removed during playback.
 media-libs/xine-lib:truetype - Use media-libs/freetype for font rendering and media-libs/fontconfig for font discovery. Enabling this USE flag will allow OSD (such as subtitles) to use more advanced font and to more easily select which font to use. The support for TrueType fonts in xine-lib is still experimental, and might not be as good looking as the bitmap fonts used with this USE flag disabled.
+media-libs/xine-lib:vaapi - Enables VAAPI (Video Acceleration API) for hardware decoding
 media-libs/xine-lib:vdr - Build the VDR plugin
 media-libs/xine-lib:vidix - Enable support for vidix video output.
 media-libs/xine-lib:vis - Adds support for SIMD optimizations for UltraSPARC processors.
@@ -5564,6 +5566,7 @@ sci-physics/root:clarens - Build the Clarens and PEAC plug-ins, to use in a GRID
 sci-physics/root:fits - Support for images and data from FITS files with sci-libs/cfitsio
 sci-physics/root:htmldoc - Generate html documentation
 sci-physics/root:math - Build all math related libraries plugins, needs sci-libs/gsl
+sci-physics/root:metric - Default to A4 paper size and metric measurement
 sci-physics/root:pythia6 - Build the interface for sci-physics/pythia version 6.x
 sci-physics/root:pythia8 - Build the interface for sci-physics/pythia version 8.x
 sci-physics/root:reflex - Build the reflection database for the C++ interpreter
