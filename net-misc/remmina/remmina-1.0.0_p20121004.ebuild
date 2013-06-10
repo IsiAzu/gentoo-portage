@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/remmina/remmina-1.0.0_p20121004.ebuild,v 1.6 2013/03/27 15:58:43 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/remmina/remmina-1.0.0_p20121004.ebuild,v 1.8 2013/06/10 00:42:56 floppym Exp $
 
 EAPI="4"
 
@@ -34,7 +34,7 @@ RDEPEND="
 	avahi? ( net-dns/avahi[gtk3] )
 	ayatana? ( dev-libs/libappindicator )
 	crypt? ( dev-libs/libgcrypt )
-	freerdp? ( >=net-misc/freerdp-1.1.0_pre20121004 )
+	freerdp? ( ~net-misc/freerdp-1.1.0_alpha20121004 )
 	gnome-keyring? ( gnome-base/libgnome-keyring )
 	ssh? ( net-libs/libssh[sftp] )
 	telepathy? ( net-libs/telepathy-glib )
