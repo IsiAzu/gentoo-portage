@@ -1,13 +1,13 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/golly/golly-2.4-r1.ebuild,v 1.1 2013/05/15 07:09:23 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/golly/golly-2.4-r1.ebuild,v 1.2 2013/06/21 16:04:03 xmw Exp $
 
 EAPI=5
 WX_GTK_VER=2.8
 
 PYTHON_COMPAT=( python{2_5,2_6,2_7} )
 
-inherit eutils python-single-r1 wxwidgets
+inherit eutils python-single-r1 toolchain-funcs wxwidgets
 
 DESCRIPTION="simulator for Conway's Game of Life and other cellular automata"
 HOMEPAGE="http://golly.sourceforge.net/"
@@ -30,8 +30,11 @@ src_prepare() {
 }
 
 src_configure() {
-	econf \
-		--with-perl-shlib="libperl.so"
+	econf --with-perl-shlib="libperl.so"
+}
+
+src_compile() {
+	emake AR=$(tc-getAR)
 }
 
 src_install() {
