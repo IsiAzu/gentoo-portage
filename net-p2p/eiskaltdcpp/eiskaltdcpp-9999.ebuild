@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/eiskaltdcpp/eiskaltdcpp-9999.ebuild,v 1.34 2013/06/14 08:13:25 maksbotan Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/eiskaltdcpp/eiskaltdcpp-9999.ebuild,v 1.35 2013/06/24 08:24:55 maksbotan Exp $
 
-EAPI="4"
+EAPI="5"
 
 LANGS="be bg cs de el en es fr hu it pl pt_BR ru sk sr@latin uk"
 
