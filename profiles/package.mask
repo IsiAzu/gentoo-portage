@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14859 2013/06/26 10:49:50 titanofold Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14862 2013/06/26 15:16:38 hd_brummy Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Julian Ospald <hasufell@gentoo.org> (26 Jun 2013)
+# Depends on masked dev-lang/lua-5.2
+>=games-emulation/sdlmame-0.149
+>=games-emulation/sdlmess-0.149
 
 # Aaron W. Swenson <titanofold@gentoo.org> (26 Jun 2013)
 # PostGIS beta/rc releases are not considered production ready neither
@@ -193,13 +198,6 @@ dev-util/lafilefixer
 # Masked until reverse dependencies are tested bug 401009.
 =dev-python/imaging-2.0.0
 
-# Joerg Bornkessel <hd_brummy@gentoo.org> (26 May 2013)
-# dead on upstream, homepage dead
-# failed on compile >=media-video/vdr-1.7.27
-# see wrt bug 414245 414177, use as alternative media-plugins/vdr-cdplayer
-# Removal in ~ 30 days
-media-plugins/vdr-vdrcd
-
 # Justin Lecher <jlec@gentoo.org> (25 May 2013)
 # Upstream dropped support long ago
 # Switch to sys-fs/aufs3 or
@@ -237,11 +235,6 @@ dev-php/ezc-Graph
 # Unclear license. Bug #452418
 # Removal in 30 days
 x11-themes/pekwm-themes-hewphoria
-
-# Maxim Koltsov <maksbotan@gentoo.org> (16 May 2013)
-# Needs masked ffmpeg-9
-=media-video/mplayer2-2.0_p20130428
-=media-libs/ffmpegsource-2.17.4_pre755
 
 # Markos Chandras <hwoarang@gentoo.org> (12 May 2013)
 # Does not build. Dead upstream. Bug #467286
@@ -707,10 +700,7 @@ net-dialup/hsfmodem
 dev-vcs/gitosis
 dev-vcs/gitosis-gentoo
 
-# Diego Elio Pettenò <flameeyes@gentoo.org> (14 Nov 2012)
-# Masked for testing as some packages fail.
-# See bug #443230 for tracking the progress
-~virtual/ffmpeg-9
+
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> (04 Nov 2012)
 # masked for testing, bug #422605
