@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/xen-tools-4.2.1-r4.ebuild,v 1.2 2013/06/27 05:46:51 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/xen-tools-4.2.1-r4.ebuild,v 1.4 2013/06/27 15:15:54 idella4 Exp $
 
 EAPI=5
 
@@ -69,8 +69,7 @@ DEPEND="${CDEPEND}
 		dev-texlive/texlive-pictures
 		dev-texlive/texlive-latexrecommended
 	)
-	hvm? (  x11-proto/xproto )
-	qemu? ( >=sys-apps/texinfo-5 )"
+	hvm? (  x11-proto/xproto )"
 RDEPEND="${CDEPEND}
 	sys-apps/iproute2
 	net-misc/bridge-utils
@@ -200,6 +199,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/xen-4-ulong.patch \
 		"${FILESDIR}"/${PN}-4.2-xen_disk_leak.patch
 
+	# Set dom0-min-mem to kb; Bug #472982
+	epatch "${FILESDIR}"/${PN/-tools/}-4.2-configsxp.patch
+
 	#Sec patches currently valid
 	epatch "${FILESDIR}"/xen-4-CVE-2012-6075-XSA-41.patch \
 		"${FILESDIR}"/xen-4-CVE-2013-0215-XSA-38.patch \
@@ -223,6 +225,8 @@ src_prepare() {
                 "${FILESDIR}"/xen-4.2-CVE-2013-20to23-XSA-55.patch \
 		"${FILESDIR}"/xen-4-CVE-2013-2072-XSA-56.patch \
 		"${FILESDIR}"/xen-4.2-CVE-XSA-57.patch
+
+		epatch_user
 }
 
 src_compile() {
