@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/herbstluftwm/herbstluftwm-9999.ebuild,v 1.6 2013/01/02 03:13:42 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/herbstluftwm/herbstluftwm-9999.ebuild,v 1.7 2013/06/28 22:04:48 radhermit Exp $
 
 EAPI=5
 
@@ -14,7 +14,6 @@ SRC_URI=""
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS=""
 IUSE="examples xinerama zsh-completion"
 
 CDEPEND=">=dev-libs/glib-2.24:2
