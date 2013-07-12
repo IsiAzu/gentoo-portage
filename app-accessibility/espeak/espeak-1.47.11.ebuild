@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-accessibility/espeak/espeak-1.47.11.ebuild,v 1.1 2013/07/11 05:14:31 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-accessibility/espeak/espeak-1.47.11.ebuild,v 1.4 2013/07/12 06:52:31 williamh Exp $
 
 EAPI=5
 
@@ -14,9 +14,12 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="portaudio pulseaudio"
-RDEPEND="media-sound/sox
+
+RDEPEND="
+	media-sound/sox
 	pulseaudio? ( media-sound/pulseaudio )
 	portaudio? ( >=media-libs/portaudio-19_pre20071207 )"
+
 DEPEND="${RDEPEND}
 	app-arch/unzip"
 
@@ -65,9 +68,8 @@ src_install() {
 
 pkg_preinst() {
 	local voicedir="${ROOT}/usr/share/${PN}-data/voices/en"
-	local errormsg="${voicedir} not empty.  Please remove it manually."
 	if [ -d "${voicedir}" ]; then
-		rmdir "${voicedir}" || die "${errormsg}"
+		rm -rf "${voicedir}"
 	fi
 }
 
