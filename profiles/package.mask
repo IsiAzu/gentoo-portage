@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14913 2013/07/11 12:27:39 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14917 2013/07/12 00:16:38 pinkbyte Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,21 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (11 Jul 2013)
+# pwlib/openh323 masked for removal, bugs #290062 and #290063
+dev-libs/pwlib
+net-libs/openh323
+<=net-libs/opal-2.2.11
+<=net-voip/ekiga-2.0.12
+<=net-voip/gnugk-2.2.8
+<=net-voip/openmcu-2.2.1
+<=net-voip/yate-2.0.0
+
+# Sergey Popov <pinkbyte@gentoo.org> (12 Jul 2013)
+# Probably new versions will work with hexchat too.
+# Do not lastrite this, just leave mask by Lars Wendler's request.
+net-irc/xchat-otr
 
 # Davide Pesavento <pesa@gentoo.org> (09 Jul 2013)
 # Major packaging changes to some of the modules. Need to check all revdeps.
@@ -317,11 +332,6 @@ net-wireless/ipw3945d
 # builds only versions prior to current 0.8.x, see Bug #472496
 dev-python/elixir
 
-# Sergey Popov <pinkbyte@gentoo.org> (06 Jun 2013)
-# Abandoned package, most of functions incorporated in portage
-# Masked for removal in 30 days, bug #289899
-dev-util/lafilefixer
-
 # Diego Elio Pettenò <flameeyes@gentoo.org> (31 May 2013)
 # Waiting for final release
 =sys-libs/freeipmi-1.3*
@@ -435,16 +445,6 @@ www-plugins/chrome-binary-plugins:unstable
 # masked for removal on 20130502
 # replaced by games-emulation/sdlmess
 games-emulation/xmess
-
-# Lars Wendler <polynomial-c@gentoo.org> (02 Apr 2013)
-# Dead upstream. Masked for removal in 30 days.
-# other packages depend on xchat directly
-# Use net-irc/hexchat instead which is a fork of xchat.
-net-irc/xchat
-net-irc/cwirc
-net-irc/xchat-otr
-net-irc/xchatosd
-
 
 # Sergey Popov <pinkbyte@gentoo.org> (02 Apr 2013)
 # Masking =media-libs/ffmpegsource-2.17.4_pre753
@@ -654,11 +654,6 @@ app-text/cuneiform
 # 2.5.* has known security and other issues due to an affected
 # bundled ffmpeg, see bugs #446468 and #444262.
 <media-video/avidemux-2.6.2
-
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (11 Mar 2013)
-# Does not build against modern xorg-server, dead upstream
-# Removal in 30 days
-x11-drivers/xf86-input-citron
 
 # Julian Ospald <hasufell@gentoo.org> (10 Mar 2013)
 # Unsupported and full of bundled libs. Only left
