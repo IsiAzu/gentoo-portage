@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/cups/cups-9999.ebuild,v 1.36 2013/07/12 18:37:26 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/cups/cups-9999.ebuild,v 1.40 2013/07/12 20:02:55 dilfridge Exp $
 
 EAPI=5
 
@@ -8,16 +8,21 @@ PYTHON_DEPEND="python? 2:2.5"
 
 inherit autotools base fdo-mime gnome2-utils flag-o-matic linux-info multilib pam python user versionator java-pkg-opt-2 systemd
 
-MY_P=${P/_beta/b}
-MY_PV=${PV/_beta/b}
+MY_P=${P/_rc/rc}
+MY_P=${MY_P/_beta/b}
+MY_PV=${PV/_rc/rc}
+MY_PV=${MY_PV/_beta/b}
 
-if [[ "${PV}" != "9999" ]]; then
-	SRC_URI="http://www.cups.org/software/${MY_PV}/${MY_P}-source.tar.bz2"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
-else
+if [[ ${PV} == *9999 ]]; then
 	inherit git-2
 	EGIT_REPO_URI="http://www.cups.org/cups.git"
+	if [[ ${PV} != 9999 ]]; then
+		EGIT_BRANCH=branch-${PV/.9999}
+	fi
 	KEYWORDS=""
+else
+	SRC_URI="http://www.cups.org/software/${MY_PV}/${MY_P}-source.tar.bz2"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
 fi
 
 DESCRIPTION="The Common Unix Printing System"
@@ -83,7 +88,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.6.0-fix-install-perms.patch"
 	"${FILESDIR}/${PN}-1.4.4-nostrip.patch"
 	"${FILESDIR}/${PN}-1.5.0-systemd-socket-2.patch"	# systemd support
-	"${FILESDIR}/${PN}-1.6.2-statedir.patch"
+	"${FILESDIR}/${PN}-1.6.3-colord-profile.patch"
 )
 
 pkg_setup() {
@@ -162,6 +167,7 @@ src_configure() {
 	econf \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		--localstatedir="${EPREFIX}"/var \
+		--with-rundir="${EPREFIX}"/run/cups \
 		--with-cups-user=lp \
 		--with-cups-group=lp \
 		--with-docdir="${EPREFIX}"/usr/share/cups/html \
