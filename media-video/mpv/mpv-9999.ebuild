@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-9999.ebuild,v 1.12 2013/07/09 16:38:16 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-9999.ebuild,v 1.13 2013/07/15 08:38:08 lu_zero Exp $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ inherit toolchain-funcs flag-o-matic multilib base
 DESCRIPTION="Video player based on MPlayer/mplayer2"
 HOMEPAGE="http://mpv.io/"
 [[ ${PV} == *9999* ]] || \
-SRC_URI="http://rion-overlay.googlecode.com/files/${P}.tar.xz"
+SRC_URI="http://dev.gentoo.org/~lu_zero/distfiles/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -136,7 +136,8 @@ pkg_setup() {
 		ewarn "and makes them fail silently."
 	fi
 
-	einfo "For various format support you need to enable the support on your ffmpeg package:"
+	einfo "For additional format support you need to enable the support on your"
+	einfo "libavcodec/libavformat provider:"
 	einfo "    media-video/libav or media-video/ffmpeg"
 }
 
@@ -233,6 +234,9 @@ src_configure() {
 	####################
 	# Advanced Options #
 	####################
+	# keep build reproducible
+	myconf+=" --disable-build-date"
+	# do not add -g to CFLAGS
 	myconf+=" --disable-debug"
 	use threads || myconf+=" --disable-pthreads"
 
