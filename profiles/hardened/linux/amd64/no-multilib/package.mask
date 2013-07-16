@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/hardened/linux/amd64/no-multilib/package.mask,v 1.21 2013/06/09 11:43:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/hardened/linux/amd64/no-multilib/package.mask,v 1.24 2013/07/16 19:31:16 hasufell Exp $
 
 # These are broken as reported by Halcy0n, Aug, 23, 2011
 net-misc/teamviewer
@@ -63,6 +63,7 @@ dev-util/android-sdk-update-manager
 dev-util/biew
 dev-util/dialogblocks
 dev-util/helpblocks
+games-action/awesomenauts
 games-action/cs2d
 games-action/descent3
 games-action/descent3-demo
@@ -127,9 +128,11 @@ games-fps/unreal-tournament
 games-fps/ut2003
 games-fps/ut2003-demo
 games-fps/ut2004-demo
+games-misc/little-inferno
 games-puzzle/drod-bin
 games-puzzle/hoh-bin
 games-roguelike/adom
+games-rpg/dear-esther
 games-rpg/eschalon-book-1-demo
 games-rpg/nwmouse
 games-rpg/nwmovies
