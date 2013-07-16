@@ -1,13 +1,13 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/opendkim/opendkim-2.7.4-r1.ebuild,v 1.3 2013/02/24 11:30:33 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/opendkim/opendkim-2.8.4.ebuild,v 1.2 2013/07/16 05:51:37 eras Exp $
 
-EAPI=4
-inherit eutils db-use autotools user
+EAPI=5
+inherit autotools db-use eutils user
 
 # for betas
 #MY_P=${P/_b/.B}
-#S=${WORKDIR}/${PN}-2.0.0
+#S=${WORKDIR}/${PN}-2.8.0
 #SRC_URI="mirror://sourceforge/opendkim/${MY_P}.tar.gz"
 
 DESCRIPTION="A milter-based application to provide DKIM signing and verification"
@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/opendkim/${P}.tar.gz"
 LICENSE="Sendmail-Open-Source BSD"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE="+berkdb gnutls ldap lua opendbx poll sasl +ssl static-libs unbound"
+IUSE="+berkdb gnutls ldap lua memcached opendbx poll sasl +ssl static-libs unbound"
 
 DEPEND="|| ( mail-filter/libmilter mail-mta/sendmail )
 	dev-libs/libbsd
@@ -26,6 +26,7 @@ DEPEND="|| ( mail-filter/libmilter mail-mta/sendmail )
 	opendbx? ( >=dev-db/opendbx-1.4.0 )
 	lua? ( dev-lang/lua )
 	ldap? ( net-nds/openldap )
+	memcached? ( dev-libs/libmemcached )
 	sasl? ( dev-libs/cyrus-sasl )
 	unbound? ( >=net-dns/unbound-1.4.1 net-dns/dnssec-root )
 	!unbound? ( net-libs/ldns )
@@ -51,18 +52,12 @@ src_prepare() {
 	       -e 's:mailnull:milter:g' \
 	       -e 's:^#[[:space:]]*PidFile.*:PidFile /var/run/opendkim/opendkim.pid:' \
 		   opendkim/opendkim.conf.sample opendkim/opendkim.conf.simple.in \
-		   stats/opendkim-reportstats || die
+		   stats/opendkim-reportstats{,.in} || die
 
 	sed -i -e 's:dist_doc_DATA:dist_html_DATA:' libopendkim/docs/Makefile.am \
 		|| die
 
-	# don't go over the sock length and fail
-	sed -i -e '/^sock/s/t-sign-ss-macro-value-file.sock/t-s-s-m-v-f.sock/' \
-		opendkim/tests/t-sign-ss-macro-value-file.lua || die
-
-	epatch "${FILESDIR}/${P}-bsd.patch"
-	epatch "${FILESDIR}/${PN}-unbreak_upgrade.patch"
-	epatch "${FILESDIR}/${P}-DisableCryptoInit.patch"
+	epatch "${FILESDIR}/${PN}-2.8.0-unbreak_upgrade.patch"
 	eautoreconf
 }
 
@@ -92,11 +87,13 @@ src_configure() {
 		$(use_enable poll) \
 		$(use_enable static-libs static) \
 		$(use_with gnutls) \
+		$(use_with memcached libmemcached) \
 		${myconf} \
 		--docdir=/usr/share/doc/${PF} \
 		--htmldir=/usr/share/doc/${PF}/html \
 		--enable-filter \
 		--enable-adsp_lists \
+		--enable-atps \
 		--enable-dkim_reputation \
 		--enable-identity_header \
 		--enable-rate_limit \
@@ -107,7 +104,9 @@ src_configure() {
 		--enable-sender_macro \
 		--enable-vbr \
 		--disable-rpath \
-		--disable-live-testing
+		--disable-live-testing \
+		--with-libxml2 \
+		--with-test-socket=/tmp/opendkim-$(echo ${RANDOM})-S
 }
 
 src_install() {
@@ -136,15 +135,17 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "If you want to sign your mail messages and need some help"
-	elog "please run:"
-	elog "  emerge --config ${CATEGORY}/${PN}"
-	elog "It will help you create your key and give you hints on how"
-	elog "to configure your DNS and MTA."
+	if [[ -z ${REPLACING_VERSION} ]]; then
+		elog "If you want to sign your mail messages and need some help"
+		elog "please run:"
+		elog "  emerge --config ${CATEGORY}/${PN}"
+		elog "It will help you create your key and give you hints on how"
+		elog "to configure your DNS and MTA."
 
-	ewarn "Make sure your MTA has r/w access to the socket file."
-	ewarn "This can be done either by setting UMask to 002 and adding MTA's user"
-	ewarn "to milter group or you can simply set UMask to 000."
+		ewarn "Make sure your MTA has r/w access to the socket file."
+		ewarn "This can be done either by setting UMask to 002 and adding MTA's user"
+		ewarn "to milter group or you can simply set UMask to 000."
+	fi
 }
 
 pkg_config() {
