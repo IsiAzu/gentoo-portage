@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-firmware/linux-firmware-99999999.ebuild,v 1.28 2013/06/24 13:21:08 zerochaos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-firmware/linux-firmware-99999999.ebuild,v 1.29 2013/07/17 02:25:53 zerochaos Exp $
 
 EAPI=5
 inherit savedconfig
@@ -44,6 +44,7 @@ RDEPEND="!savedconfig? (
 		!net-wireless/rt2860-firmware
 		!net-wireless/rt2870-firmware
 		!sys-block/qla-fc-firmware
+		!sys-firmware/amd-ucode
 		!sys-firmware/iwl1000-ucode
 		!sys-firmware/iwl2000-ucode
 		!sys-firmware/iwl2030-ucode

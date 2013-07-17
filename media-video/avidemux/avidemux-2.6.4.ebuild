@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/avidemux/avidemux-2.6.4.ebuild,v 1.3 2013/07/12 22:58:34 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/avidemux/avidemux-2.6.4.ebuild,v 1.4 2013/07/17 00:31:34 tomwij Exp $
 
 EAPI="5"
 
@@ -61,8 +61,8 @@ src_configure() {
 		$(cmake-utils_use vdpau VDPAU)
 		$(cmake-utils_use xv XVIDEO)
 	"
-	
-	if use debug ; then 
+
+	if use debug ; then
 		mycmakeargs+=" -DVERBOSE=1 -DCMAKE_BUILD_TYPE=Debug"
 	fi
 
