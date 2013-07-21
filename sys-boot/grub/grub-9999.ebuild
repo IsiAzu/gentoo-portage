@@ -1,11 +1,11 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.94 2013/06/30 18:25:01 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.95 2013/07/21 00:37:11 floppym Exp $
 
 EAPI=5
 AUTOTOOLS_AUTO_DEPEND=yes
 
-inherit autotools-utils eutils flag-o-matic multibuild pax-utils toolchain-funcs
+inherit autotools-utils bash-completion-r1 eutils flag-o-matic multibuild pax-utils toolchain-funcs
 
 if [[ ${PV} != 9999 ]]; then
 	MY_P=${P/_/\~}
@@ -29,6 +29,7 @@ if [[ ${PV} != 9999 ]]; then
 		"${FILESDIR}/${P}-20_linux_xen.patch" #463992
 		"${FILESDIR}/${P}-dmraid.patch" #430748
 		"${FILESDIR}/${P}-texinfo.patch"
+		"${FILESDIR}/${P}-os-prober-efi-system.patch" #477314
 	)
 else
 	inherit bzr
@@ -107,6 +108,7 @@ RDEPEND+="
 "
 
 STRIP_MASK="*/grub/*/*.{mod,img}"
+RESTRICT="test"
 
 QA_EXECSTACK="
 	usr/bin/grub*
@@ -141,6 +143,10 @@ pkg_pretend() {
 src_prepare() {
 	[[ ${PATCHES} ]] && epatch "${PATCHES[@]}"
 	sed -i -e /autoreconf/d autogen.sh || die
+	if use multislot; then
+		# fix texinfo file name, bug 416035
+		sed -i -e 's/^\* GRUB:/* GRUB2:/' -e 's/(grub)/(grub2)/' docs/grub.texi || die
+	fi
 	epatch_user
 	bash autogen.sh || die
 	autopoint() { return 0; }
@@ -224,7 +230,7 @@ src_test() {
 
 src_install() {
 	multibuild_foreach_variant autotools-utils_src_install \
-		bashcompletiondir=/usr/share/bash-completion
+		bashcompletiondir="$(get_bashcompdir)"
 
 	use doc && multibuild_for_best_variant run_in_build_dir \
 		emake -C docs DESTDIR="${D}" install-html
