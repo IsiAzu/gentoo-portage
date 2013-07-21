@@ -20,7 +20,7 @@
    always a description without a lang attribute. Also there are no overlapping
    descriptions allowed (multiple description tags with the same language)
 
-   $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/metastructure/herds/herds.xml,v 1.1036 2013/07/08 18:34:29 mrueg Exp $
+   $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/metastructure/herds/herds.xml,v 1.1042 2013/07/21 10:24:16 pacho Exp $
 
 -->
 <herds>
@@ -319,11 +319,6 @@
   </maintainer>
 </herd>
 <herd>
-  <name>gdesklets</name>
-  <email>gdesklets@gentoo.org</email>
-  <description>GDesklets packages</description>
-</herd>
-<herd>
   <name>gpe</name>
   <email>gpe@gentoo.org</email>
   <description>GPE Desktop and related packages</description>
@@ -577,9 +572,6 @@
   <email>ppc64@gentoo.org</email>
   <description>Gentoo/PPC64 Team</description>
   <maintainer>
-    <email>ranger@gentoo.org</email>
-  </maintainer>
-  <maintainer>
     <email>josejx@gentoo.org</email>
   </maintainer>
   <maintainer>
@@ -681,11 +673,6 @@
     <name>George Shapovalov</name>
   </maintainer>
   <maintainer>
-    <email>phosphan@gentoo.org</email>
-    <name>Patrick Kursawe</name>
-    <role>bugzilla scanner with not much time</role>
-  </maintainer>
-  <maintainer>
   <email>je_fro@gentoo.org</email>
   <name>Jeff Gardner</name>
   </maintainer>
@@ -757,11 +744,6 @@
   <maintainer>
     <email>dberkholz@gentoo.org</email>
     <name>Donnie Berkholz</name>
-  </maintainer>
-  <maintainer>
-    <email>phosphan@gentoo.org</email>
-    <name>Patrick Kursawe</name>
-    <role>bugzilla scanner with not much time</role>
   </maintainer>
   <maintainer>
     <email>je_fro@gentoo.org</email>
@@ -1173,11 +1155,6 @@
   <email>media-video@gentoo.org</email>
   <description>Video related programs that don't fit into media-tv</description>
   <maintainer>
-    <email>phosphan@gentoo.org</email>
-    <name>Patrick Kursawe</name>
-    <role>Can test webcam related stuff if needed</role>
-  </maintainer>
-  <maintainer>
     <email>lu_zero@gentoo.org</email>
     <name>Luca Barbato</name>
   </maintainer>
@@ -1278,10 +1255,6 @@
   <maintainer>
     <email>chainsaw@gentoo.org</email>
     <name>Tony Vroon</name>
-  </maintainer>
-  <maintainer>
-    <email>hollow@gentoo.org</email>
-    <name>Benedikt Böhm</name>
   </maintainer>
   <maintainer>
     <email>mpagano@gentoo.org</email>
@@ -1496,10 +1469,6 @@
   <name>net-dialup</name>
   <email>net-dialup@gentoo.org</email>
   <description>Dialup connection tools</description>
-  <maintainer>
-    <email>sbriesen@gentoo.org</email>
-    <name>Stefan Briesenick</name>
-  </maintainer>
   <maintainer>
     <email>pinkbyte@gentoo.org</email>
     <name>Sergey Popov</name>
@@ -2026,11 +1995,6 @@
   <name>vserver</name>
   <email>vserver-devs@gentoo.org</email>
   <description>Linux-VServer related applications</description>
-  <maintainer>
-    <email>hollow@gentoo.org</email>
-    <name>Benedikt Böhm</name>
-    <role>Linux-VServer</role>
-  </maintainer>
 </herd>
 <herd>
   <name>cpp</name>
@@ -2098,11 +2062,6 @@
         <email>radhermit@gentoo.org</email>
         <name>Tim Harder</name>
     </maintainer>
-</herd>
-<herd>
-    <name>sgml</name>
-    <email>sgml@gentoo.org</email>
-    <description>SGML and docbook packages (split of text-markup)</description>
 </herd>
 <herd>
     <name>theology</name>
