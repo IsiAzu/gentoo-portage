@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-204.ebuild,v 1.13 2013/06/30 18:05:43 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-204.ebuild,v 1.14 2013/07/23 05:00:21 ssuominen Exp $
 
 EAPI=5
 
@@ -208,7 +208,6 @@ src_configure() {
 		--with-html-dir=/usr/share/doc/${PF}/html
 		--with-rootprefix=
 		--with-rootlibdir=/$(get_libdir)
-		--with-bashcompletiondir=/usr/share/bash-completion
 		--without-python
 		--disable-audit
 		--disable-coredump
