@@ -1,9 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.96 2013/07/21 19:22:48 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.98 2013/07/28 17:32:59 floppym Exp $
 
 EAPI=5
-AUTOTOOLS_AUTO_DEPEND=yes
+
+if [[ ${PV} == 9999 ]]; then
+	AUTOTOOLS_AUTORECONF=1
+fi
 
 inherit autotools-utils bash-completion-r1 eutils flag-o-matic multibuild pax-utils toolchain-funcs
 
@@ -13,24 +16,12 @@ if [[ ${PV} != 9999 ]]; then
 		SRC_URI="mirror://gnu-alpha/${PN}/${MY_P}.tar.xz"
 	else
 		SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz
-			mirror://gentoo/${MY_P}.tar.xz"
+			mirror://gentoo/${MY_P}.tar.xz
+			http://dev.gentoo.org/~floppym/dist/${MY_P}.tar.xz"
 	fi
 	KEYWORDS="~amd64 ~x86"
 	S=${WORKDIR}/${MY_P}
-	PATCHES=(
-		"${FILESDIR}/${P}-parallel-make.patch" #424231
-		"${FILESDIR}/${P}-no-gets.patch" #424703
-		"${FILESDIR}/${P}-config-quoting.patch" #426364
-		"${FILESDIR}/${P}-tftp-endian.patch" # 438612
-		"${FILESDIR}/${P}-hardcoded-awk.patch" #424137
-		"${FILESDIR}/${P}-freebsd.patch" #442050
-		"${FILESDIR}/${P}-compression.patch" #424527
-		"${FILESDIR}/${P}-zfs-feature-flag-support-r1.patch" #455358
-		"${FILESDIR}/${P}-20_linux_xen.patch" #463992
-		"${FILESDIR}/${P}-dmraid.patch" #430748
-		"${FILESDIR}/${P}-texinfo.patch"
-		"${FILESDIR}/${P}-os-prober-efi-system.patch" #477314
-	)
+	PATCHES=()
 else
 	inherit bzr
 	EBZR_REPO_URI="http://bzr.savannah.gnu.org/r/grub/trunk/grub/"
@@ -86,7 +77,6 @@ DEPEND="${RDEPEND}
 	sys-devel/bison
 	sys-apps/help2man
 	sys-apps/texinfo
-	>=sys-devel/autogen-5.10
 	static? (
 		truetype? (
 			app-arch/bzip2[static-libs(+)]
@@ -106,6 +96,10 @@ RDEPEND+="
 	)
 	!multislot? ( !sys-boot/grub:0 )
 "
+
+if [[ -n ${AUTOTOOLS_AUTORECONF} ]]; then
+	DEPEND+=" >=sys-devel/autogen-5.10"
+fi
 
 STRIP_MASK="*/grub/*/*.{mod,img}"
 RESTRICT="test"
@@ -148,9 +142,11 @@ src_prepare() {
 		sed -i -e 's/^\* GRUB:/* GRUB2:/' -e 's/(grub)/(grub2)/' docs/grub.texi || die
 	fi
 	epatch_user
-	bash autogen.sh || die
-	autopoint() { return 0; }
-	eautoreconf
+	if [[ -n ${AUTOTOOLS_AUTORECONF} ]]; then
+		bash autogen.sh || die
+		autopoint() { return 0; }
+		eautoreconf
+	fi
 }
 
 grub_configure() {
