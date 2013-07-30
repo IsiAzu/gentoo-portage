@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.27.1.ebuild,v 1.4 2013/07/19 16:41:41 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.27.1.ebuild,v 1.6 2013/07/30 13:05:57 ssuominen Exp $
 
 EAPI=5
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://alsaproject/lib/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc debug alisp python"
 
 RDEPEND="python? ( ${PYTHON_DEPS} )"
@@ -28,6 +28,10 @@ pkg_setup() {
 
 src_prepare() {
 	find . -name Makefile.am -exec sed -i -e '/CFLAGS/s:-g -O2::' {} + || die
+	# force use of correct python-config wrt #478802
+	if [[ ${ABI} == ${DEFAULT_ABI} ]]; then
+		use python && { sed -i -e "s:python-config:$EPYTHON-config:" configure.in || die; }
+	fi
 	epatch "${FILESDIR}"/${P}-rewind.patch #477282
 	epatch_user
 	eautoreconf
