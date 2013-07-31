@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-medialibs/emul-linux-x86-medialibs-20130224-r5.ebuild,v 1.1 2013/07/30 12:49:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-medialibs/emul-linux-x86-medialibs-20130224-r7.ebuild,v 1.1 2013/07/31 17:36:04 aballier Exp $
 
 EAPI=5
 inherit emul-linux-x86
@@ -15,7 +15,6 @@ RDEPEND="~app-emulation/emul-linux-x86-baselibs-${PV}
 	~app-emulation/emul-linux-x86-db-${PV}
 	!<=app-emulation/emul-linux-x86-sdl-20081109
 	!<=app-emulation/emul-linux-x86-soundlibs-20110101
-	!>=media-libs/libv4l-0.8.9-r1[abi_x86_32]
 	abi_x86_32? (
 		>=media-libs/libvpx-1.2.0_pre[abi_x86_32(-)]
 		>=media-libs/xvid-1.3.2-r1[abi_x86_32(-)]
@@ -30,6 +29,11 @@ RDEPEND="~app-emulation/emul-linux-x86-baselibs-${PV}
 		>=media-libs/speex-1.2_rc1-r2[abi_x86_32(-)]
 		>=media-libs/libdvdread-4.2.0-r1[abi_x86_32(-)]
 		>=media-libs/libdvdnav-4.2.0-r1[abi_x86_32(-)]
+		>=media-libs/libv4l-0.9.5-r1[abi_x86_32(-)]
+		>=media-libs/libid3tag-0.15.1b-r4[abi_x86_32(-)]
+		>=media-libs/libshout-2.3.1-r1[abi_x86_32(-)]
+		>=media-libs/libsidplay-2.1.1-r3:2[abi_x86_32(-)]
+		>=media-libs/libsidplay-1.36.59-r1:1[abi_x86_32(-)]
 	)
 	"
 PDEPEND="~app-emulation/emul-linux-x86-soundlibs-${PV}"
