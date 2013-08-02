@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-6b-r10.ebuild,v 1.2 2013/08/01 15:47:03 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-6b-r11.ebuild,v 1.1 2013/08/01 20:24:09 ssuominen Exp $
 
 EAPI=5
 
@@ -18,10 +18,13 @@ LICENSE="IJG"
 SLOT="62"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE=""
-RDEPEND="abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r4
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] )"
 
 DOCS=""
+
+RDEPEND="!>=media-libs/libjpeg-turbo-1.3.0-r2:0
+	abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224-r5
+		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] )"
+DEPEND="${RDEPEND}"
 
 src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
