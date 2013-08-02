@@ -1,7 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg-tools/mpeg-tools-1.5b-r3.ebuild,v 1.6 2011/01/19 21:22:55 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg-tools/mpeg-tools-1.5b-r5.ebuild,v 1.1 2013/08/02 06:14:18 ssuominen Exp $
 
+EAPI=5
 inherit eutils toolchain-funcs
 
 MY_PN=mpeg_encode
@@ -11,37 +12,40 @@ SRC_URI="ftp://mm-ftp.cs.berkeley.edu/pub/multimedia/mpeg/encode/${MY_PN}-${PV}-
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 ~ppc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE=""
 
 RDEPEND="x11-libs/libX11
-	virtual/jpeg"
+	virtual/jpeg:0"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
 
-src_unpack () {
-	unpack ${A}
+src_prepare() {
 	cd "${WORKDIR}"
 	epatch "${FILESDIR}"/${P}-build.patch
 	epatch "${FILESDIR}"/${P}-64bit_fixes.patch
 	epatch "${FILESDIR}"/${P}-tempfile-convert.patch
+	epatch "${FILESDIR}"/${P}-as-needed.patch
+	epatch "${FILESDIR}"/${P}-powerpc.patch
 	cd "${S}"
 	rm -r jpeg
-	epatch "${FILESDIR}"/${P}-system-jpeg.patch
-	epatch "${FILESDIR}"/${P}-system-jpeg-7.patch
+	epatch "${FILESDIR}"/${P}-jpeg.patch
 	epatch "${FILESDIR}"/${P}-tempfile-mpeg-encode.patch
 	epatch "${FILESDIR}"/${P}-tempfile-tests.patch
+	# don't include malloc.h, but use stdlib.h instead
+	sed -i -e 's:#include <malloc.h>:#include <stdlib.h>:' \
+		convert/*.c convert/mtv/*.c *.c headers/*.h || die
 }
 
 src_compile() {
-	emake CC="$(tc-getCC)" || die "emake failed"
-	emake -C convert || die "emake convert failed"
-	emake -C convert/mtv || die "emake convert/mtv failed"
+	emake CC="$(tc-getCC)"
+	emake -C convert CC="$(tc-getCC)"
+	emake -C convert/mtv CC="$(tc-getCC)"
 }
 
-src_install () {
-	dobin mpeg_encode || die "dobin mpeg_encode"
+src_install() {
+	dobin mpeg_encode
 	doman docs/*.1
 	dodoc BUGS CHANGES README TODO VERSION
 	dodoc docs/EXTENSIONS docs/INPUT.FORMAT docs/*.param docs/param-summary
@@ -49,13 +53,13 @@ src_install () {
 	dodoc examples/*
 
 	cd ../convert
-	dobin eyuvtojpeg jmovie2jpeg mpeg_demux mtv/movieToVid || die "dobin convert utils"
+	dobin eyuvtojpeg jmovie2jpeg mpeg_demux mtv/movieToVid
 	newdoc README README.convert
 	newdoc mtv/README README.mtv
 }
 
 pkg_postinst() {
-	if [[ -z $(best_version media-libs/netpbm) ]] ; then
+	if [[ -z $(best_version media-libs/netpbm) ]]; then
 		elog "If you are looking for eyuvtoppm or ppmtoeyuv, please"
 		elog "emerge the netpbm package.  It has updated versions."
 	fi
