@@ -1416,6 +1416,7 @@ dev-lang/ruby:readline - Use the sys-libs/readline library to provide the readli
 dev-lang/ruby:rubytests - Install ruby tests that can only be run after ruby is installed
 dev-lang/ruby:yaml - Use the dev-libs/libyaml library to build the psych extension, available since Ruby 1.9.2_rc2, in alternative to the bundled syck-based parser.
 dev-lang/scala:binary - Install from (Gentoo-compiled) binary instead of building from sources. Set this when you run out of memory during build.
+dev-lang/spidermonkey:debug - Enable assertions to allow for easier debugging of programs that link to spidemronkey -- note this will often crash software on regular end-user systems
 dev-lang/spidermonkey:threadsafe - Build a threadsafe version of spidermonkey
 dev-lang/swi-prolog:archive - Use libarchive for extension packs
 dev-lang/swig:ccache - build ccache-swig(a fast compiler cache)
@@ -3557,7 +3558,6 @@ media-tv/mythtv:vaapi - Enables VAAPI (Video Acceleration API) for hardware deco
 media-tv/mythtv:xmltv - Pulls in the media-tv/xmltv TV listing grabbers for users not using Schedules Direct.
 media-tv/tvbrowser:themes - Install extra theme packs
 media-tv/tvheadend:xmltv - Use media-tv/xmltv
-media-tv/tvtime:alsa - Enables an EXPERIMENTAL ALSA patch by the Ubuntu maintainers. Several problems were reported, use with care.
 media-tv/v4l-dvb-saa716x:firmware - Install firmware
 media-tv/xawtv:xext - Enable use of XFree extensions (DGA,VidMode,DPMS)
 media-tv/xawtv:zvbi - Enable VBI Decoding Library for Zapping
@@ -4033,6 +4033,7 @@ net-analyzer/nmap:ncat - Install the ncat utility
 net-analyzer/nmap:ndiff - Install the ndiff utility
 net-analyzer/nmap:nmap-update - Install nmap-update, which uses dev-vcs/subversion to update nmap scripts in your home directory
 net-analyzer/nmap:nping - Install the nping utility
+net-analyzer/nmap:zenmap - Install the GTK+ based zenmap utility
 net-analyzer/nrpe:command-args - Build support for specifying the command-line arguments from the Nagios/Icinga master. Make sure you understand the implications of this flag as it can be a security risk.
 net-analyzer/nrpe:minimal - Only build the check plugins for Nagios/Icinga, and not the daemon.
 net-analyzer/nsca:crypt - Build support for crypted communication with nsca, through dev-libs/mcrypt. It's recommended not to disable this flag unless all the communication will be handled in an absolutely safe environment.
@@ -4999,6 +5000,7 @@ net-misc/quagga:ospfapi - Enable OSPFAPI support for client applications accessi
 net-misc/quagga:pam - Add support for PAM (via sys-libs/pam) to the Quagga Virtual Terminal Interface Shell (vtysh); if the readline USE flag is disabled, this flag is ignored
 net-misc/quagga:readline - Enable support for sys-libs/readline to provide the Quagga Virtual Terminal Interface Shell (vtysh)
 net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are chosen otherwise
+net-misc/rancid-git:git - Enable git (version control system) support
 net-misc/rdesktop:pcsc-lite - Enable smartcard support with sys-apps/pcsc-lite driver
 net-misc/remmina:freerdp - Add support for the net-misc/freerdp application
 net-misc/remmina:ssh - Enable support for SSH/SFTP protocol; see also 'vte'

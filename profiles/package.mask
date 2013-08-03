@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14979 2013/08/02 00:19:09 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14982 2013/08/02 19:20:56 ssuominen Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -46,7 +46,7 @@ dev-perl/gnome2-gconf
 
 # Jeroen Roovers <jer@gentoo.org> (31 Jul 2013)
 # Needs >=dev-lang/lua-5.2
-=net-analyzer/nmap-6.40
+~net-analyzer/nmap-6.40
 
 # Mike Gilbert <floppym@gentoo.org> (28 Jul 2013)
 # Masked for testing, bug 468136.
@@ -452,13 +452,6 @@ net-im/kmess
 net-im/amsn
 x11-themes/amsn-skins
 
-# Markos Chandras <hwoarang@gentoo.org> (22 Mar 2013)
-# Fails with automake-1.12 (#424289)
-# Problems with the alsa patches (#403389)
-# Herd has not interest in it and needs a maintainer
-# Alternatives: media-tv/me-tv, media-tv/mythtv
-media-tv/tvtime
-
 # Richard Freeman <rich0@gentoo.org> (24 Mar 2013)
 # Contains known buffer overflows.  Package generally works
 # but should not be fed untrusted input (eg from strangers).
@@ -677,8 +670,12 @@ dev-ml/ocamlduce
 =net-print/cups-9999
 
 # Ian Stakenvicius <axs@gentoo.org> (19 Jun 2012)
-# Mask new spidermonkey until rdeps can accept it
+# Mask new spidermonkeys until rdeps can accept it
+# 1.8.7 will be masked indefinitely and will be removed
+# from the tree once spidermonkey-17 is unmasked.
+# See tracker bug 463924
 ~dev-lang/spidermonkey-1.8.7
+~dev-lang/spidermonkey-17.0.0
 
 # Michael Weber <xmw@gentoo.org> (13 Jun 2012)
 # Mask beta versions for testing
