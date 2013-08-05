@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-1.10.1-r1.ebuild,v 1.2 2013/08/03 16:17:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/wireshark-1.10.1-r1.ebuild,v 1.4 2013/08/04 13:28:08 jer Exp $
 
 EAPI=5
 inherit autotools eutils fcaps user
@@ -18,12 +18,12 @@ IUSE="
 	+netlink +pcap portaudio qt4 selinux smi ssl zlib
 "
 REQUIRED_USE="
-	^^ ( gtk2 gtk3 qt4 )
+	?? ( gtk2 gtk3 qt4 )
 	ssl? ( crypt )
 "
 
 GTK_COMMON_DEPEND="
-	dev-libs/atk
+	x11-libs/gdk-pixbuf
 	x11-libs/pango
 	x11-misc/xdg-utils
 "
