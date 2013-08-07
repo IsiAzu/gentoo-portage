@@ -1,13 +1,11 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/qbzr/qbzr-0.22.1.ebuild,v 1.6 2013/01/30 19:01:52 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/qbzr/qbzr-0.23.1.ebuild,v 1.1 2013/08/06 19:34:55 fauli Exp $
 
-EAPI="3"
-PYTHON_DEPEND="2"
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.*"
+EAPI="5"
+PYTHON_COMPAT=( python{2_6,2_7} )
 
-inherit distutils versionator
+inherit distutils-r1 versionator
 
 DESCRIPTION="Qt frontend for Bazaar"
 HOMEPAGE="https://launchpad.net/qbzr"
@@ -15,7 +13,7 @@ SRC_URI="https://edge.launchpad.net/qbzr/$(get_version_component_range 1-2)/${PV
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 ppc x86"
+KEYWORDS="~alpha ~amd64 ~ppc ~x86"
 IUSE=""
 
 # bzr version comes from NEWS file. It's lowest version required for some
@@ -26,7 +24,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"
 
-DOCS="AUTHORS.txt NEWS.txt README.txt TODO.txt"
+DOCS=( AUTHORS.txt NEWS.txt README.txt TODO.txt )
 PYTHON_MODNAME="bzrlib/plugins/qbzr"
 
 src_test() {
