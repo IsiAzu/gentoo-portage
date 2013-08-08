@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.242 2013/08/07 18:24:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.245 2013/08/08 12:45:29 ssuominen Exp $
 
 EAPI=5
 
@@ -32,7 +32,7 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl doc +firmware-loader gudev hwdb introspection +kmod +openrc selinux static-libs"
+IUSE="acl doc +firmware-loader gudev +hwdb introspection +kmod +openrc selinux static-libs"
 
 RESTRICT="test"
 
@@ -43,7 +43,11 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.20
 	kmod? ( >=sys-apps/kmod-14-r1 )
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
 	!<sys-libs/glibc-2.11
-	!sys-apps/systemd"
+	!sys-apps/systemd
+	abi_x86_32? (
+		!<=app-emulation/emul-linux-x86-baselibs-20130224-r7
+		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
+	)"
 DEPEND="${COMMON_DEPEND}
 	dev-util/gperf
 	>=sys-devel/make-3.82-r4
@@ -407,7 +411,6 @@ pkg_preinst() {
 				/usr/share/gtk-doc/html/${htmldir}
 		fi
 	done
-	preserve_old_lib /{,usr/}$(get_libdir)/libudev$(get_libname 0)
 }
 
 pkg_postinst() {
@@ -492,15 +495,13 @@ pkg_postinst() {
 	if has_version sys-apps/biosdevname; then
 		ewarn
 		ewarn "You can replace the functionality of sys-apps/biosdevname which has been"
-		ewaen "detected to be installed with the new predictable network interface names."
+		ewarn "detected to be installed with the new predictable network interface names."
 	fi
 
 	ewarn
 	ewarn "You need to restart udev as soon as possible to make the upgrade go"
 	ewarn "into effect."
 	ewarn "The method you use to do this depends on your init system."
-
-	preserve_old_lib_notify /{,usr/}$(get_libdir)/libudev$(get_libname 0)
 
 	elog
 	elog "For more information on udev on Gentoo, upgrading, writing udev rules, and"
