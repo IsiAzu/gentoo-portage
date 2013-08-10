@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.32 2013/08/09 16:28:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.34 2013/08/09 20:10:20 aballier Exp $
 #
 # Diego Pettenò <flameeyes@gentoo.org>
 
@@ -25,6 +25,7 @@ SYS="freebsd-sys-${PV}"
 INCLUDE="freebsd-include-${PV}"
 RESCUE="freebsd-rescue-${PV}"
 CDDL="freebsd-cddl-${PV}"
+SECURE="freebsd-secure-${PV}"
 
 # Release version (5.3, 5.4, 6.0, etc)
 RV="$(get_version_component_range 1-2)"
@@ -97,6 +98,13 @@ freebsd_src_unpack() {
 
 	freebsd_do_patches
 	freebsd_rename_libraries
+
+	# Starting from FreeBSD 9.2, its install command supports the -l option and
+	# they now use it. Emulate it if we are on a system that does not have it.
+	if [[ ${RV} > 9.1 ]] && ! has_version '>=sys-freebsd/freebsd-ubin-9.2_beta1' ; then
+		export INSTALL_LINK="ln -f"
+		export INSTALL_SYMLINK="ln -fs"
+	fi
 }
 
 freebsd_src_compile() {
@@ -107,13 +115,6 @@ freebsd_src_compile() {
 
 	# Make sure to use FreeBSD definitions while crosscompiling
 	[[ -z "${BMAKE}" ]] && BMAKE="$(freebsd_get_bmake)"
-
-	# Starting from FreeBSD 9.2, its install command supports the -l option and
-	# they now use it. Emulate it if we are on a system that does not have it.
-	if [[ ${RV} > 9.1 ]] && ! has_version '>=sys-freebsd/freebsd-ubin-9.2_beta1' ; then
-		export INSTALL_LINK="ln -f"
-		export INSTALL_SYMLINK="ln -fs"
-	fi
 
 	# Create objdir if MAKEOBJDIRPREFIX is defined, so that we can make out of
 	# tree builds easily.
