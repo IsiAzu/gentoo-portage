@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8143 2013/08/10 17:51:14 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8146 2013/08/11 13:08:29 jlec Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  11 Aug 2013; Justin Lecher <jlec@gentoo.org> ChangeLog:
+  Masked sci-libs/mccp4 for removal
+
+  11 Aug 2013; Justin Lecher <jlec@gentoo.org> license_groups:
+  Add nvidia cuda license to EULA group, #466576
+
+  11 Aug 2013; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Mask more ruby18-only packages for removal.
 
   10 Aug 2013; Alexis Ballier <aballier@gentoo.org> package.mask:
   unmask multilib attr, glib and tiff4
