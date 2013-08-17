@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15030 2013/08/16 05:14:22 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15039 2013/08/17 11:30:17 olemarkus Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,9 +31,32 @@
 
 #--- END OF EXAMPLES ---
 
-# Patrick Lauer <patrick@gentoo.org> (16 Aug 2013)
-# Missing dependencies
-=dev-libs/glib-2.36.4
+
+# Manuel Rüger <mrueg@gentoo.org> (16 Aug 2013)
+# Outdated documentation as ruby18 will be removed soon.
+# Masked for removal in 30 days.
+dev-ruby/programming-ruby
+
+
+# Ian Stakenvicius <axs@gentoo.org> (16 Aug 2013)
+# Mask openrc-0.12 and netifrc until packaging can be re-worked
+# so that upgrade paths do not kill existing network setups.
+# There are AT LEAST known multi-NIC issues with it.
+# The mask is triage and will be removed as soon as packaging
+# issues are sorted (probably 48h or less); see bug 481394
+=sys-apps/openrc-0.12*
+net-misc/netifrc
+>=sys-apps/kmod-14-r2
+
+# Doug Goldstein <cardoe@gentoo.org> (16 Aug 2013)
+# Masked for dev
+=app-emulation/qemu-1.6.0
+
+# Michał Górny <mgorny@gentoo.org> (16 Aug 2013)
+# Getting more broken every day. No commit for 5 years. Nothing
+# in the tree uses it. Please consider dev-python/pygpgme instead.
+# Bug #339409. Masked for removal in 30 days.
+dev-python/pyme
 
 # Alexis Ballier <aballier@gentoo.org> (15 Aug 2013)
 # Beta release, breaks some packages
@@ -112,9 +135,9 @@ dev-ruby/ruby-debug-base
 dev-ruby/ruby-debug
 dev-ruby/zoom
 
-# Ole Markus With <olemarkus@olemarkus.org> (10 Aug 2013)
-# About a year since upstream stopped maintaining this package.
-# Masked for removal in 30 days
+# Ole Markus With <olemarkus@gentoo.org> (10 Aug 2013)
+# About a year since upstream stopped maintaining symfony 1.x.
+# Will be removed on the 17th of Sept.
 dev-php/symfony
 
 # Andreas K. Huettel <dilfridge@gentoo.org> (9 Aug 2013)
@@ -148,11 +171,6 @@ dev-vcs/bzr-svn
 # Alexandre Rostovtsev <tetromino@gentoo.org> (04 Aug 2013)
 # API break, reverse dependencies need patching; bug #479458.
 >=sci-geosciences/geocode-glib-0.99.1
-
-# Doug Goldstein <cardoe@gentoo.org> (03 Aug 2013)
-# Masked due to mirgration breakage.
-=app-emulation/qemu-1.5.2
-=app-emulation/qemu-1.4.2-r1
 
 # Ian Delaney <idella4@gentoo.org> (01 Aug 2013)
 # Mask while awaiting bump to dep Djblets-0.7.16
@@ -528,10 +546,6 @@ media-gfx/yablex
 # Depends on blender, which is masked.
 media-gfx/yafaray
 
-# Doug Goldstein <cardoe@gentoo.org> (24 Feb 2013)
-# Working on the next stable patchset
-=app-emulation/qemu-1.2.2-r4
-
 # Eray Aslan <eras@gentoo.org> (13 Feb 2013)
 # Mask experimental software
 =mail-mta/postfix-2.11*
@@ -549,10 +563,6 @@ media-gfx/yafaray
 # Doug Goldstein <cardoe@gentoo.org> (22 Jan 2013)
 # Masked for development
 =sys-block/open-iscsi-2.0.873
-
-# Marien Zwart <marienz@gentoo.org>
-# Patch tarball is broken, meaning this builds 1.2.0 (bug #452918)
-=app-emulation/qemu-1.2.2-r1
 
 # Mike Gilbert <floppym@gentoo.org (18 Jan 2013)
 # Release made by unofficial maintainer. Drops support for Python 3 with

@@ -4292,6 +4292,7 @@ net-ftp/pure-ftpd:paranoidmsg - Display paranoid messages instead of normal ones
 net-ftp/pure-ftpd:resolveids - Resolve UIDs/GIDs
 net-ftp/pure-ftpd:sysquota - Enables system quota support (needs sys-fs/quota)
 net-ftp/pure-ftpd:vchroot - Enable support for virtual chroot (possible security risk)
+net-ftp/yafc:ssh - Build with SFTP support
 net-im/ayttm:irc - Enable Internet Relay Chat support
 net-im/ayttm:lj - Enable livejournal.com support
 net-im/ayttm:smtp - Adds support for sending messages via RFC2821 SMTP
@@ -4661,6 +4662,7 @@ net-libs/neon:libproxy - Add support for net-libs/libproxy
 net-libs/neon:pkcs11 - Add support for PKCS#11 using dev-libs/pakchois
 net-libs/netembryo:sctp - Support for Stream Control Transmission Protocol
 net-libs/nodejs:npm - Enable NPM package manager
+net-libs/nodejs:snapshot - Enable snapshot creation for faster startup
 net-libs/opal:audio - Enable audio support
 net-libs/opal:capi - Enable CAPI support
 net-libs/opal:celt - Enable CELT ultra-low delay audio codec
@@ -6380,6 +6382,10 @@ www-client/uzbl:tabbed - Install the uzbl-tabbed script
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
 www-client/weboob:fast-libs - Enable fast libs
 www-client/weboob:secure-updates - Enable secure updates
+www-misc/litmus:gssapi - Support for GSSAPI through dev-perl/GSSAPI.
+www-misc/litmus:libproxy - Support for automatic proxy configuratino management through net-libs/libproxy.
+www-misc/litmus:openssl - Support for SSL through OpenSSL (dev-libs/openssl).
+www-misc/litmus:pkcs11 - Support for PKCS #11 through PaKChoiS (dev-libs/pakchois).
 www-misc/monitorix:evms - Make use of utilities for the IBM Enterprise Volume Management System with sys-fs/evms.
 www-misc/monitorix:hddtemp - Use SMART to monitor the temperature of hard drives with app-admin/hddtemp.
 www-misc/monitorix:httpd - Enables the CGI webserver with any package that satisfies virtual/httpd-cgi.
@@ -6571,7 +6577,6 @@ x11-misc/lightdm:gtk - Pull in the gtk+ greeter
 x11-misc/lightdm:introspection - Use dev-libs/gobject-introspection for introspection
 x11-misc/lightdm:kde - Pull in the kde greeter
 x11-misc/lightdm:razor - Pull in the razorqt greeter
-x11-misc/obconf:lxde - Add wrapper for LXDE environment
 x11-misc/openbox-menu:icons - Turn on to let icons appear in menus
 x11-misc/rednotebook:libyaml - enable libyaml support
 x11-misc/rednotebook:spell - enable gtk-spell support
@@ -6750,6 +6755,8 @@ x11-wm/windowmaker:xrandr - Enable XRandR window extension support
 x11-wm/xmonad:default-term - Pull terminal specified in default xmonad config to be a bit less hostile by default.
 x11-wm/xpra:client - Build client-side code
 x11-wm/xpra:clipboard - Enable clipboard support
+x11-wm/xpra:csc - Enable csc softscaler support
+x11-wm/xpra:dec_av - Enable dec_avcodec support
 x11-wm/xpra:rencode - Enable rencode support
 x11-wm/xpra:server - Build server-side code
 x11-wm/xpra:vpx - Enable vpx image format support

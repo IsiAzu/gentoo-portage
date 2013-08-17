@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8162 2013/08/16 05:14:21 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8166 2013/08/17 11:34:23 hwoarang Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  17 Aug 2013; Markos Chandras <hwoarang@gentoo.org> profiles.desc:
+  Bump all MIPS profiles to 'dev' status apart from the n64 ones
+
+  16 Aug 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Include new revision of sys-apps/kmod to the sys-apps/openrc 0.12 mask
+  because the kmod-static-nodes init script is incompatible with 0.11.8.
+
+  16 Aug 2013; Alexandre Rostovtsev <tetromino@gentoo.org> package.mask:
+  gdbus-codegen is now in the tree
+
+  16 Aug 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Mask dev-python/pyme for removal.
 
   16 Aug 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
   Mask glib-2.36.4 until dependencies are there
