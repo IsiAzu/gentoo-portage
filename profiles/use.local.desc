@@ -32,6 +32,7 @@ app-admin/collectd:collectd_plugins_apcups - Build the apcups input plugin (UPS 
 app-admin/collectd:collectd_plugins_ascent - Build the ascent input plugin (statistics about a free server for World of Warcraft)
 app-admin/collectd:collectd_plugins_battery - Build the battery input plugin (charge, current and voltage of ACPI and PMU based laptop batteries)
 app-admin/collectd:collectd_plugins_bind - Build the bind input plugin (name server and resolver statistics)
+app-admin/collectd:collectd_plugins_cgroups - Build the cgroups CPU accounting collection plugin
 app-admin/collectd:collectd_plugins_conntrack - Build the conntrack input plugin (number of nf_conntrack entries)
 app-admin/collectd:collectd_plugins_contextswitch - Build the contextswitch input plugin (number of context switches done by the operating system)
 app-admin/collectd:collectd_plugins_cpu - Build the cpu input plugin (time spent in the system, user, nice, idle, and related states)
@@ -60,6 +61,7 @@ app-admin/collectd:collectd_plugins_java - Build the java input plugin (embeds a
 app-admin/collectd:collectd_plugins_libvirt - Build the libvirt input plugin (statistics about virtualized guests on a system)
 app-admin/collectd:collectd_plugins_load - Build the load input plugin (system load)
 app-admin/collectd:collectd_plugins_logfile - Build the logfile output plugin (writes log messages to a text file)
+app-admin/collectd:collectd_plugins_lvm - Build the LVM input plugin
 app-admin/collectd:collectd_plugins_madwifi - Build the madwifi input plugin (information about Atheros wireless LAN chipsets)
 app-admin/collectd:collectd_plugins_match_empty_counter - Build the match_empty_counter filter plugin
 app-admin/collectd:collectd_plugins_match_hashed - Build the match_hashed filter plugin
@@ -99,6 +101,7 @@ app-admin/collectd:collectd_plugins_rrdtool - Build the rrdtool output plugin (w
 app-admin/collectd:collectd_plugins_sensors - Build the sensors input plugin (uses lm-sensors to read hardware sensors)
 app-admin/collectd:collectd_plugins_serial - Build the serial input plugin (collects the traffic on serial interfaces)
 app-admin/collectd:collectd_plugins_snmp - Build the snmp input plugin (read values from network devices using SNMP)
+app-admin/collectd:collectd_plugins_statsd - Build the statsd input plugin (accepts statsd-type metrics from a UDP socket)
 app-admin/collectd:collectd_plugins_swap - Build the swap input plugin (amount of memory currently written to swap)
 app-admin/collectd:collectd_plugins_syslog - Build the syslog output plugin (receives messages from collectd and dispatches them to syslog)
 app-admin/collectd:collectd_plugins_table - Build the table input plugin (parses table-like structured plain text)
@@ -719,6 +722,7 @@ app-leechcraft/lc-poshuku:pcre - Use dev-libs/libpcre for rules matching in Clea
 app-leechcraft/lc-poshuku:wyfv - Build WYFV for replacing Flash-based video players on some sites.
 app-leechcraft/lc-vrooby:udisks - Use sys-fs/udisks:0 for block device access (e.g., automounting)
 app-leechcraft/lc-vrooby:udisks2 - Use sys-fs/udisks:2 for block device access (e.g., automounting)
+app-leechcraft/leechcraft-meta:de - Install components, that allow using Leechcraft as Desktop Environment
 app-leechcraft/leechcraft-meta:unstable - Pull plugins from ~arch
 app-misc/anki:recording - Enable support for audio recording
 app-misc/anki:sound - Enable support for adding sound to cards
@@ -1109,6 +1113,7 @@ dev-db/mariadb:profiling - Add support for statement profiling (requires USE=com
 dev-db/mariadb:sphinx - Add suport for the sphinx full-text search engine
 dev-db/mariadb:systemtap - Build support for profiling and tracing using dev-util/systemtap
 dev-db/mariadb:test - Install upstream testsuites for end use.
+dev-db/mongodb:embedded-v8 - Use embedded version of v8 instead of system v8
 dev-db/mongodb:mms-agent - Install the MongoDB Monitoring Service agent
 dev-db/mongodb:sharedclient - build client shared library libmongoclient.so
 dev-db/mongodb:spidermonkey - Use embedded SpiderMonkey engine (dev-lang/spidermonkey) instead of v8 (dev-lang/v8)
@@ -1667,7 +1672,6 @@ dev-lua/luvit:bundled-libs - Use bundled versions of some libraries.
 dev-lua/luvit:system-libs - Use system version of dev-libs/yajl.
 dev-ml/cairo-ocaml:pango - Enable support for x11-libs/pango
 dev-ml/deriving-ocsigen:type-conv - Enable type-conv for the syntax extention.
-dev-ml/eliom:ocamlduce - Enables ocamlduce XML typechecking.
 dev-ml/js_of_ocaml:deriving-ocsigen - Enable deriving-ocsigen for improving the type safety.
 dev-ml/lablgtk:glade - Enable libglade bindings compilation.
 dev-ml/lablgtk:gnomecanvas - Enable libgnomecanvas bindings compilation.
@@ -2631,6 +2635,7 @@ kde-base/libkdcraw:jasper - Use media-libs/jasper to support RedOne digital movi
 kde-base/libplasmaclock:holidays - Include support for holidays in plasma calendar
 kde-base/marble:designer-plugin - Enable designer plugin
 kde-base/marble:shapefile - Enable support for ESRI shapefiles
+kde-base/marble:zip - Enable support for reading and displaying .kmz files
 kde-base/nepomuk-core:epub - Adds support for reading EPUB ebook metadata
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
 kde-base/okular:ebook - Add E-Book support
@@ -4162,6 +4167,7 @@ net-dns/dnsmasq:dhcp - Enable support for reading ISC DHCPd lease files
 net-dns/dnsmasq:dhcp-tools - Install extra command line tools for manually managing DHCP leases
 net-dns/dnsmasq:script - Enable support for calling scripts when leases change
 net-dns/dnsmasq:tftp - Enables built in TFTP server for netbooting
+net-dns/knot:fastparser - Enables fast DNS zone parser.
 net-dns/ldns-utils:ecdsa - Enable ECDSA support
 net-dns/ldns-utils:gost - Enable GOST support
 net-dns/maradns:authonly - Allows one to build only authoritative DNS server
@@ -4721,6 +4727,7 @@ net-libs/ptlib:tts - Enable Text-To-Speech server support
 net-libs/ptlib:video - Enable video support
 net-libs/ptlib:vxml - Enable VoiceXML support
 net-libs/ptlib:wav - Enable WAVFILE support
+net-libs/qxmpp:vpx - Enable VP8 codec support via media-libs/libvpx
 net-libs/rabbitmq-c:tools - Builds cli tools to interact with brokers
 net-libs/rest:gnome - Extract proxy information using net-libs/libsoup-gnome
 net-libs/telepathy-glib:vala - Enable bindings for dev-lang/vala
@@ -5875,6 +5882,7 @@ sys-apps/v86d:x86emu - Use x86emu for Video BIOS calls
 sys-apps/watchdog:nfs - enable support for checking nfs mounts
 sys-apps/xinetd:rpc - support RPC services
 sys-auth/consolekit:policykit - Use the PolicyKit framework (sys-auth/polkit) to get authorization for suspend/shutdown.
+sys-auth/consolekit:systemd-units - Install systemd unit files despite sys-apps/systemd and systemd-logind. Not recommended.
 sys-auth/fingerprint-gui:upekbsapi - Add UPEK BSAPI drivers for identify functions on some readers
 sys-auth/munge:gcrypt - Use libgcrypt instead of openssl
 sys-auth/nss-mdns:search-domains - Honour search domains from /etc/resolv.conf (see bug #201948 for possible side effects)
@@ -5972,6 +5980,13 @@ sys-cluster/openmpi:mpi-threads - Enable MPI_THREAD_MULTIPLE
 sys-cluster/openmpi:pbs - Add support for the Portable Batch System (PBS)
 sys-cluster/openmpi:romio - Build the ROMIO MPI-IO component
 sys-cluster/openmpi:vt - Enable bundled VampirTrace support
+sys-cluster/openstack-meta:cinder - Installs Openstack Cinder
+sys-cluster/openstack-meta:glance - Installs Openstack Glance
+sys-cluster/openstack-meta:horizon - Installs Openstack Horizon
+sys-cluster/openstack-meta:keystone - Installs Openstack Keystone
+sys-cluster/openstack-meta:neutron - Installs Openstack Neutron
+sys-cluster/openstack-meta:nova - Installs Openstack Nova
+sys-cluster/openstack-meta:swift - Installs Openstack Swift
 sys-cluster/pacemaker:ais - Enable sys-cluster/openais support.
 sys-cluster/pacemaker:cman - Enable sys-cluster/cman support.
 sys-cluster/pacemaker:heartbeat - Enable sys-cluster/heartbeat support.

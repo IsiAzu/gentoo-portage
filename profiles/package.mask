@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15042 2013/08/18 03:40:26 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15050 2013/08/21 16:22:01 chithanh Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,19 @@
 
 #--- END OF EXAMPLES ---
 
+# Doug Goldstein <cardoe@gentoo.org> (19 Aug 2013)
+# Masked for development (not complete, do not use)
+=sys-firmware/seabios-1.7.3
+
+# Manuel Rüger <mrueg@gentoo.org> (19 Aug 2013)
+# Last release in 2005, Homepage dead, unclear license situation
+# Various other issues see bug #481560
+# Masked for removal in 30 days.
+net-im/kf
+
+# Patrick Lauer <patrick@gentoo.org> (19 Aug 2013)
+# Masking live ebuilds
+=www-apps/trac-mercurial-1.0.0.3_pre20130206
 
 # Manuel Rüger <mrueg@gentoo.org> (16 Aug 2013)
 # Outdated documentation as ruby18 will be removed soon.
@@ -38,7 +51,7 @@
 dev-ruby/programming-ruby
 
 # Doug Goldstein <cardoe@gentoo.org> (16 Aug 2013)
-# Masked for dev
+# Masked for development (not complete, do not use)
 =app-emulation/qemu-1.6.0
 
 # Michał Górny <mgorny@gentoo.org> (16 Aug 2013)
@@ -381,11 +394,6 @@ dev-java/sun-jre-bin
 >=games-emulation/sdlmame-0.149
 >=games-emulation/sdlmess-0.149
 
-# Aaron W. Swenson <titanofold@gentoo.org> (26 Jun 2013)
-# PostGIS beta/rc releases are not considered production ready neither
-# here nor upstream. Use at your own risk.
->=dev-db/postgis-2.1.0_beta3
-
 # Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (25 Jun 2013)
 # Mask new ptlib/opal for breakage, tracked in bug #474742
 =net-libs/ptlib-2.12.4
@@ -455,11 +463,6 @@ x11-misc/pcmanfm-qt
 # Patrick Lauer <patrick@gentoo.org> (09 Apr 2013)
 # Masked to get 0.10 tested
 =net-libs/nodejs-0.11*
-
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (05 Apr 2013)
-# Mask new mesa packages due to chromium build failure, bug #475444
-=media-libs/mesa-9.2_pre*
-=virtual/opencl-0-r3
 
 # Ian Stakenvicius <axs@gentoo.org> (05 Apr 2013)
 # <eudev@gentoo.org>

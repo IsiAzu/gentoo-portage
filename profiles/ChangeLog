@@ -1,10 +1,33 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8170 2013/08/18 18:46:33 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8177 2013/08/21 16:22:01 chithanh Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  21 Aug 2013; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.mask:
+  Drop mask on mesa-9.2, bug #475444.
+
+  21 Aug 2013; Justin Lecher <jlec@gentoo.org> package.mask:
+  Fixed version in PDEPEND of aufs-sources
+
+  21 Aug 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Masking aufs-sources version missing dependencies
+
+  20 Aug 2013; Sébastien Fabbro <bicatali@gentoo.org> updates/3Q-2013:
+  Move sci-libs/scikits_statsmodels to dev-python/statsmodels
+
+  20 Aug 2013; Michael Palimaka <kensington@gentoo.org>
+  +targets/desktop/kde/package.use.force, targets/desktop/kde/use.force:
+  Don't force USE="consolekit" on newer KDE versions wrt bug #468500.
+
+  19 Aug 2013; Aaron W. Swenson <titanofold@gentoo.org> package.mask:
+  Remove mask for PostGIS 2.1.0.
+
+  19 Aug 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Masking random live-vcs packages
 
   18 Aug 2013; Hans de Graaff <graaff@gentoo.org> updates/3Q-2013:
   Move minitest 5.x to a separate slot because rails will depend on a specific
