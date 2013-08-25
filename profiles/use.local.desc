@@ -1525,6 +1525,7 @@ dev-libs/libcdio:minimal - Only build the libcdio library and little more, just 
 dev-libs/libcgroup:daemon - Install the configuration tools and init/config files.
 dev-libs/libcgroup:tools - Install the cgroup rules processing daemon and init/config files.
 dev-libs/libdbusmenu:introspection - Use dev-libs/gobject-introspection for introspection
+dev-libs/libdivecomputer:tools - Install tools that can be used to test the library.
 dev-libs/libffi:pax_kernel - Use PaX emulated trampolines, for we can't use PROT_EXEC
 dev-libs/libgdata:vala - Enable bindings for dev-lang/vala
 dev-libs/libgit2:ssh - Enable SSH transport support
@@ -6601,6 +6602,7 @@ x11-misc/lightdm:introspection - Use dev-libs/gobject-introspection for introspe
 x11-misc/lightdm:kde - Pull in the kde greeter
 x11-misc/lightdm:razor - Pull in the razorqt greeter
 x11-misc/openbox-menu:icons - Turn on to let icons appear in menus
+x11-misc/openbox-menu:svg - Support svg icons (needs icons enabled)
 x11-misc/rednotebook:libyaml - enable libyaml support
 x11-misc/rednotebook:spell - enable gtk-spell support
 x11-misc/redshift:geoclue - Control dependency on app-misc/geoclue
@@ -6764,8 +6766,9 @@ x11-wm/muffin:introspection - Use dev-libs/gobject-introspection for introspecti
 x11-wm/musca:apis - Optionally install the experimental `apis' window manager
 x11-wm/musca:xlisten - Optionally install the xlisten utility
 x11-wm/notion:xrandr - Add support for xrandr
-x11-wm/openbox:python - Install the python xdg files for xdg autostart
+x11-wm/openbox:python - Install the python xdg files for xdg autostart(for compatibility with old ebuilds)
 x11-wm/openbox:session - Enables support for session managers
+x11-wm/openbox:xdg - Install the python xdg files for xdg autostart
 x11-wm/ratpoison:history - Use sys-libs/readline for history handling
 x11-wm/stumpwm:clisp - Use CLISP for the runtime
 x11-wm/stumpwm:sbcl - Use SBCL for the runtime
