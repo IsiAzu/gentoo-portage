@@ -1,0 +1,16 @@
+# ChangeLog for games-emulation/dolphin
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/dolphin/ChangeLog,v 1.2 2013/08/26 07:19:36 twitch153 Exp $
+
+  26 Aug 2013; Devan Franchini <twitch153@gentoo.org> dolphin-3.5.ebuild,
+  dolphin-9999.ebuild:
+  Added pkg_pretend() function to check for gcc version instead of src_prepare()
+  in both ebuilds; also fixes keywording issues in 9999 ebuild
+
+*dolphin-9999 (26 Aug 2013)
+*dolphin-3.5 (26 Aug 2013)
+
+  26 Aug 2013; twitch153 +dolphin-3.5.ebuild, +dolphin-9999.ebuild,
+  +files/dolphin-emu-3.5-gcc-4.8.patch, +metadata.xml:
+  New ebuild and live ebuild for dolphin emulator. Written by myself. Fixes bug
+  #281543

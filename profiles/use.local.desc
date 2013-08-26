@@ -1243,6 +1243,8 @@ dev-haskell/citeproc-hs:embed_data_files - Embed locale files into the library (
 dev-haskell/citeproc-hs:hexpat - use dev-haskell/hexpat instead of dev-haskell/xml for XML parsing
 dev-haskell/citeproc-hs:network - use dev-haskell/network and dev-haskell/http to retrieve CSL file from URIs
 dev-haskell/citeproc-hs:small_base - Choose the new smaller, split-up base package.
+dev-haskell/cmdargs:quotation - Build quote module
+dev-haskell/cmdargs:testprog - Build the test program
 dev-haskell/crypto-api:all_cpolys - Build all the CMAC polynomes up to 10000 bits instead of just the usual ones
 dev-haskell/cryptohash:cryptoapi - Defines crypto-api instances
 dev-haskell/filestore:maxcount - Make use of a recent (>= 2.3.0) Darcs feature which vastly improves the performance of 'latest'. You should disable this flag if you plan to use gitit with an older version of Darcs, or 'latest' will raise an error.
@@ -1255,15 +1257,30 @@ dev-haskell/hstringtemplate:syb-with-class - Generic instances for TOSElem
 dev-haskell/json:generic - Add support for generic encoder (dev-haskell/syb)
 dev-haskell/json:parsec - Add support for parsing with Parsec
 dev-haskell/json:pretty - Add support for using pretty printing combinators
+dev-haskell/lens:benchmark-uniplate - Enable benchmarking against Neil Mitchell's uniplate library for comparative performance analysis. Defaults to being turned off to avoid the extra dependency.
+dev-haskell/lens:dump-splices - Build and run the doctests test-suite.
+dev-haskell/lens:inlining - Generate inline pragmas when using template-haskell. This defaults to enabled, but you can to shut it off to benchmark the relative performance impact, or as last ditch effort to address compile errors resulting from the myriad versions of template-haskell that all purport to be 2.8.
+dev-haskell/lens:lib-werror - Turn on ghc-options: -Werror
+dev-haskell/lens:old-inline-pragmas - Some 7.6.1-rc1 users report their TH still uses old style inline pragmas. This lets them turn on inlining.
+dev-haskell/lens:safe - Disallow unsafeCoerce
+dev-haskell/lens:test-doctests - Build and run the doctests test-suite.
+dev-haskell/lens:test-hunit - You can disable the hunit test suite with -f-test-hunit
+dev-haskell/lens:test-properties - Build the properties test if we're building tests
+dev-haskell/lens:trustworthy - Assert that we are trustworthy when we can
 dev-haskell/monad-control:instancest - If enabled this package will export MonadBaseControl instances for the lazy and strict ST monad. If disabled these instances are only exported when base >= 4.4. If enabled it is required that the transformer-base package exports MonadBase instances for ST. It will do this by default.
+dev-haskell/persistent-sqlite:systemlib - Use the system-wide sqlite library
 dev-haskell/quickcheck:template_haskell - Enable additional test modules requiring Template Haskell support.
 dev-haskell/sendfile:portable - Explicitly enable portable sendfile support (implemented in Haskell)
+dev-haskell/skein:big-endian - When manually selecting the endianness, use big-endian (default is little-endian).
+dev-haskell/skein:force-endianness - Use a manually selected endian when compiling (see flag 'big-endian')
 dev-haskell/texmath:cgi - Build texmath-cgi executable.
 dev-haskell/text:developer - operate in developer mode
 dev-haskell/text:integer-simple - Use the simple integer library instead of GMP
+dev-haskell/tls:compat - Accept SSLv2 compatible handshake
 dev-haskell/unix-compat:old-time - build against old-time package
 dev-haskell/void:safe - dissable effective but unsafe coersions
 dev-haskell/x11:screensaver - whether to build XScreenSaver.
+dev-haskell/yaml:system-libyaml - Use system libyaml instead on generic one
 dev-haskell/zip-archive:executable - Build the Zip executable.
 dev-java/ant:antlr - Enable ANTLR Ant tasks
 dev-java/ant:bcel - Enable bcel (bytecode manipulation) Ant tasks
@@ -2162,8 +2179,17 @@ dev-vcs/git:mozsha1 - Makes git use an optimized SHA1 routine from Mozilla that 
 dev-vcs/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
 dev-vcs/git:subversion - Include git-svn for dev-vcs/subversion support
 dev-vcs/git:webdav - Adds support for push'ing to HTTP/HTTPS repositories via DAV
-dev-vcs/git-annex:inotify - Enable inotify support (dev-haskell/hinotify)
-dev-vcs/git-annex:s3 - Enable S3 support (dev-haskell/hs3)
+dev-vcs/git-annex:android - Building for Android
+dev-vcs/git-annex:assistant - Enable git-annex assistant and watch command
+dev-vcs/git-annex:dns - Enable the haskell DNS library for DNS lookup
+dev-vcs/git-annex:feed - Enable podcast feed support
+dev-vcs/git-annex:pairing - Enable pairing
+dev-vcs/git-annex:production - Enable production build (slower build; faster binary)
+dev-vcs/git-annex:s3 - Enable S3 support
+dev-vcs/git-annex:tdfa - Use regex-tdfa for wildcards
+dev-vcs/git-annex:testsuite - Embed the test suite into git-annex
+dev-vcs/git-annex:webapp - Enable git-annex webapp
+dev-vcs/git-annex:webdav - Enable webdav support
 dev-vcs/gitg:glade - Install a glade catalog file
 dev-vcs/gitolite:contrib - Install user-contributed files
 dev-vcs/gitolite:tools - Install tools to e.g. convert a Gitosis config to gitolite or one to check if your setup is gitolite >= 3.x compatible
