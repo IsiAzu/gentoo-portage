@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15061 2013/08/26 14:41:08 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15065 2013/08/27 13:30:23 cardoe Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Sergey Popov <pinkbyte@gentoo.org> (27 Aug 2013)
+# Masked for testing
+~dev-util/boost-build-1.54.0
+~dev-libs/boost-1.54.0
+
 # Ian Stakenvicius <axs@gentoo.org> (26 Aug 2013)
 # on behalf of mozilla@gentoo.org
 # Severely outdated, no interest in maintaining,
@@ -50,10 +55,6 @@ net-p2p/pybitmessage
 >=www-client/chromium-31
 >=dev-lang/v8-3.21
 
-# Doug Goldstein <cardoe@gentoo.org> (19 Aug 2013)
-# Masked for development (not complete, do not use)
-=sys-firmware/seabios-1.7.3
-
 # Manuel Rüger <mrueg@gentoo.org> (19 Aug 2013)
 # Last release in 2005, Homepage dead, unclear license situation
 # Various other issues see bug #481560
@@ -68,10 +69,6 @@ net-im/kf
 # Outdated documentation as ruby18 will be removed soon.
 # Masked for removal in 30 days.
 dev-ruby/programming-ruby
-
-# Doug Goldstein <cardoe@gentoo.org> (16 Aug 2013)
-# Masked for development (not complete, do not use)
-=app-emulation/qemu-1.6.0
 
 # Michał Górny <mgorny@gentoo.org> (16 Aug 2013)
 # Getting more broken every day. No commit for 5 years. Nothing
@@ -319,10 +316,6 @@ net-analyzer/openvas-server
 # Michael Weber <xmw@gentoo.org> (9 Jul 2013)
 # Masked for security bug 450746, CVE-2012-6095
 <net-ftp/proftpd-1.3.4c
-
-# Michael Weber <xmw@gentoo.org> (9 Jul 2013)
-# Masked for security bug 469956, CVE-2013-2094
-<sys-kernel/openvz-sources-2.6.32.76.8
 
 # Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (25 Jun 2013)
 # Prerelease ebuild, mostly untested and held together by duct tape.
@@ -950,7 +943,6 @@ dev-lisp/gcl
 
 # Tiziano Müller <dev-zero@gentoo.org> (08 Apr 2009)
 # pre-releases
-net-libs/libinfinity
 >=app-editors/gobby-0.4.91
 
 # Paul Varner <fuzzyray@gentoo.org> (06 Apr 2009)
