@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-1.0.0.ebuild,v 1.4 2013/08/27 20:00:41 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-1.0.0.ebuild,v 1.8 2013/08/28 08:07:42 xarthisius Exp $
 
 EAPI=5
 
@@ -43,7 +43,12 @@ RDEPEND="${CDEPEND}
 		dev-libs/mathjax
 		dev-python/jinja[${PYTHON_USEDEP}]
 	)
-	nbconvert? ( app-text/pandoc )
+	nbconvert? (
+		app-text/pandoc
+		dev-python/pygments[${PYTHON_USEDEP}]
+		dev-python/sphinx[${PYTHON_USEDEP}]
+		dev-python/jinja[${PYTHON_USEDEP}]
+	)
 	qt4? ( || ( dev-python/PyQt4[${PYTHON_USEDEP}] dev-python/pyside[${PYTHON_USEDEP}] )
 			dev-python/pygments[${PYTHON_USEDEP}]
 			dev-python/pyzmq[${PYTHON_USEDEP}] )"
@@ -170,6 +175,12 @@ python_test() {
 
 	[[ ${DB_PORT} != -1 ]] && mongod --dbpath "${dbpath}" --shutdown
 	[[ ${fail} ]] && die "Tests fail with ${EPYTHON}"
+}
+
+python_install() {
+	distutils-r1_python_install
+	ln -snf "${EPREFIX}"/usr/share/mathjax \
+		"${D}$(python_get_sitedir)"/IPython/html/static/mathjax || die
 }
 
 python_install_all() {
