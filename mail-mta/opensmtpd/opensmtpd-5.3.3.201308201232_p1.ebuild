@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/opensmtpd/opensmtpd-5.3.3.201308201232_p1.ebuild,v 1.1 2013/08/26 12:29:32 zx2c4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/opensmtpd/opensmtpd-5.3.3.201308201232_p1.ebuild,v 1.2 2013/08/30 19:06:18 pacho Exp $
 
 EAPI=5
 
-inherit multilib user flag-o-matic eutils pam toolchain-funcs autotools versionator
+inherit multilib user flag-o-matic eutils pam toolchain-funcs autotools systemd versionator
 
 DESCRIPTION="Lightweight but featured SMTP daemon from OpenBSD"
 HOMEPAGE="http://www.opensmtpd.org/"
@@ -61,6 +61,7 @@ src_configure() {
 src_install() {
 	default
 	newinitd "${FILESDIR}"/smtpd.initd smtpd
+	systemd_dounit "${FILESDIR}"/smtpd.{service,socket}
 	use pam && newpamd "${FILESDIR}"/smtpd.pam smtpd
 	if use mta ; then
 		dodir /usr/sbin
