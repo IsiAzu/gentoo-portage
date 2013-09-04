@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/ploop/ploop-1.7.1.ebuild,v 1.1 2013/06/11 06:15:00 qnikst Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/ploop/ploop-1.9.ebuild,v 1.1 2013/09/04 06:11:18 qnikst Exp $
 
 EAPI=5
 
@@ -16,7 +16,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug static-libs"
 
 DEPEND="dev-libs/libxml2"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	!<sys-cluster/vzctl-4.5
+	sys-block/parted
+	sys-fs/e2fsprogs
+	"
 
 DOCS=( tools/README )
 
@@ -33,8 +37,6 @@ src_prepare() {
 		Makefile.inc || die 'sed on Makefile.inc failed'
 	# Avoid striping of binaries
 	sed -e '/INSTALL/{s: -s::}' -i tools/Makefile || die 'sed on tools/Makefile failed'
-
-	epatch "${FILESDIR}/ploop-1.2-soname.patch"
 
 	# respect AR and RANLIB, bug #452092
 	tc-export AR RANLIB
@@ -53,6 +55,8 @@ src_install() {
 
 pkg_postinst() {
 	elog "Warning - API changes"
-	elog "1. This version requires running vzkernel >= 2.6.32-042stab061.1"
+	elog "1. This version requires running vzkernel >= 2.6.32-042stab79.5 and vzctl-4.5 ot above"
 	elog "2. DiskDescriptor.xml created by older ploop versions are converted to current format"
+	elog "3. If you have eise --diskquota paranetr on gentoo CT, please install sys-fs/quota on CT. "
+	elog "[3] is gentoo specific messages ( due stage3 not contain quta tools) "
 }
