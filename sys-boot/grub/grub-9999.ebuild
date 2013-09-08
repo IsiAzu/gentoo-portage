@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.100 2013/08/14 09:16:56 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.101 2013/09/07 23:01:12 floppym Exp $
 
 EAPI=5
 
@@ -191,10 +191,7 @@ grub_configure() {
 	)
 
 	if use multislot; then
-		myeconfargs+=(
-			--program-transform-name="s,grub,grub2,"
-			--with-grubdir=grub2
-		)
+		myeconfargs+=( --program-transform-name="s,grub,grub2," )
 	fi
 
 	autotools-utils_src_configure
@@ -260,5 +257,14 @@ pkg_postinst() {
 		if ! has_version dev-libs/libisoburn; then
 			elog "Install dev-libs/libisoburn to enable creation of rescue media using grub2-mkrescue."
 		fi
+	else
+		local v
+		for v in ${REPLACING_VERSIONS}; do
+			if use multislot && ! version_is_at_least 2.00_p5107-r1 ${v}; then
+				ewarn "The grub directory has changed from /boot/grub2 to /boot/grub."
+				ewarn "Please run grub2-install and grub2-mkconfig -o /boot/grub/grub.cfg."
+				break
+			fi
+		done
 	fi
 }
