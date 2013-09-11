@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/systemd.eclass,v 1.26 2013/07/27 10:36:55 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/systemd.eclass,v 1.29 2013/09/11 08:53:18 mgorny Exp $
 
 # @ECLASS: systemd.eclass
 # @MAINTAINER:
@@ -12,20 +12,20 @@
 # @EXAMPLE:
 #
 # @CODE
-# inherit autotools-utils systemd
+# inherit systemd
 #
 # src_configure() {
 #	local myeconfargs=(
 #		--enable-foo
 #		--disable-bar
+#		"$(systemd_with_unitdir)"
 #	)
 #
-#	systemd_to_myeconfargs
-#	autotools-utils_src_configure
+#	econf "${myeconfargs[@]}"
 # }
 # @CODE
 
-inherit toolchain-funcs
+inherit eutils toolchain-funcs
 
 case ${EAPI:-0} in
 	0|1|2|3|4|5) ;;
@@ -106,33 +106,35 @@ systemd_get_utildir() {
 }
 
 # @FUNCTION: systemd_dounit
-# @USAGE: unit1 [...]
+# @USAGE: <unit>...
 # @DESCRIPTION:
 # Install systemd unit(s). Uses doins, thus it is fatal in EAPI 4
 # and non-fatal in earlier EAPIs.
 systemd_dounit() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	local INSDESTTREE
-	insinto "$(_systemd_get_unitdir)"
-	doins "${@}"
+	(
+		insinto "$(_systemd_get_unitdir)"
+		doins "${@}"
+	)
 }
 
 # @FUNCTION: systemd_newunit
-# @USAGE: oldname newname
+# @USAGE: <old-name> <new-name>
 # @DESCRIPTION:
 # Install systemd unit with a new name. Uses newins, thus it is fatal
 # in EAPI 4 and non-fatal in earlier EAPIs.
 systemd_newunit() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	local INSDESTTREE
-	insinto "$(_systemd_get_unitdir)"
-	newins "${@}"
+	(
+		insinto "$(_systemd_get_unitdir)"
+		newins "${@}"
+	)
 }
 
 # @FUNCTION: systemd_dotmpfilesd
-# @USAGE: tmpfilesd1 [...]
+# @USAGE: <tmpfilesd>...
 # @DESCRIPTION:
 # Install systemd tmpfiles.d files. Uses doins, thus it is fatal
 # in EAPI 4 and non-fatal in earlier EAPIs.
@@ -144,13 +146,14 @@ systemd_dotmpfilesd() {
 			|| die 'tmpfiles.d files need to have .conf suffix.'
 	done
 
-	local INSDESTTREE
-	insinto /usr/lib/tmpfiles.d/
-	doins "${@}"
+	(
+		insinto /usr/lib/tmpfiles.d/
+		doins "${@}"
+	)
 }
 
 # @FUNCTION: systemd_newtmpfilesd
-# @USAGE: oldname newname.conf
+# @USAGE: <old-name> <new-name>.conf
 # @DESCRIPTION:
 # Install systemd tmpfiles.d file under a new name. Uses newins, thus it
 # is fatal in EAPI 4 and non-fatal in earlier EAPIs.
@@ -160,13 +163,14 @@ systemd_newtmpfilesd() {
 	[[ ${2} == *.conf ]] \
 		|| die 'tmpfiles.d files need to have .conf suffix.'
 
-	local INSDESTTREE
-	insinto /usr/lib/tmpfiles.d/
-	newins "${@}"
+	(
+		insinto /usr/lib/tmpfiles.d/
+		newins "${@}"
+	)
 }
 
 # @FUNCTION: systemd_enable_service
-# @USAGE: target service
+# @USAGE: <target> <service>
 # @DESCRIPTION:
 # Enable service in desired target, e.g. install a symlink for it.
 # Uses dosym, thus it is fatal in EAPI 4 and non-fatal in earlier
@@ -186,7 +190,7 @@ systemd_enable_service() {
 }
 
 # @FUNCTION: systemd_with_unitdir
-# @USAGE: [configure option]
+# @USAGE: [<configure-option-name>]
 # @DESCRIPTION:
 # Output '--with-systemdsystemunitdir' as expected by systemd-aware configure
 # scripts. This function always succeeds. Its output may be quoted in order
@@ -222,6 +226,9 @@ systemd_with_utildir() {
 # quoting automatically.
 systemd_to_myeconfargs() {
 	debug-print-function ${FUNCNAME} "${@}"
+
+	eqawarn 'systemd_to_myeconfargs() is deprecated and will be removed on 2013-10-11.'
+	eqawarn 'Please use $(systemd_with_unitdir) instead.'
 
 	myeconfargs=(
 		"${myeconfargs[@]}"
