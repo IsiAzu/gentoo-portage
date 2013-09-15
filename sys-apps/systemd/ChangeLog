@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/systemd
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/ChangeLog,v 1.172 2013/09/14 08:47:56 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/ChangeLog,v 1.174 2013/09/14 18:44:05 floppym Exp $
+
+  14 Sep 2013; Mike Gilbert <floppym@gentoo.org> systemd-207.ebuild,
+  systemd-9999-r1.ebuild:
+  Replace --without-python with --disable-python-devel for non-native abis, bug
+  484934.
+
+*systemd-207 (14 Sep 2013)
+
+  14 Sep 2013; Michał Górny <mgorny@gentoo.org> +systemd-207.ebuild,
+  systemd-9999-r1.ebuild:
+  Version bump. Update kernel checks. Do not check for HOTPLUG on 3.7+ wrt bug
+  #476464. Run tests for native ABI only.
 
 *systemd-206-r5 (14 Sep 2013)
 

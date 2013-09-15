@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8237 2013/09/14 07:05:26 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8240 2013/09/14 22:54:44 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 Sep 2013; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask ocaml 4.01.0
+
+  14 Sep 2013; Amadeusz Żołnowski <aidecoe@gentoo.org>
+  desc/dracut_modules.desc:
+  Added dash use expand to dracut_modules.
+
+  14 Sep 2013; Tom Wijsman <TomWij@gentoo.org> package.mask:
+  Expand sun-* package.mask reason to explain continuation, alternatives and
+  also mask and explain JCE; as requested in bugs #473830 and bug #484680,
+  reported by Martin Mokrejš.
 
   14 Sep 2013; Hans de Graaff <graaff@gentoo.org> package.mask:
   Remove masked ruby18-only packages.
