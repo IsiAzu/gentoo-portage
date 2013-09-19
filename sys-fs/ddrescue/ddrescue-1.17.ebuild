@@ -1,27 +1,32 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/ddrescue/ddrescue-1.15-r1.ebuild,v 1.1 2012/05/03 12:20:24 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/ddrescue/ddrescue-1.17.ebuild,v 1.2 2013/09/19 12:37:47 jlec Exp $
 
-EAPI=4
+EAPI=5
 
 inherit toolchain-funcs
 
-DESCRIPTION="Copies data from one file or block device to another with read-error recovery"
+DESCRIPTION="Copy data from one file or block device to another with read-error recovery"
 HOMEPAGE="http://www.gnu.org/software/ddrescue/ddrescue.html"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.lz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~sparc ~x86 ~amd64-linux"
+KEYWORDS="~amd64 ~arm ~ppc ~sparc ~x86 ~amd64-linux"
 IUSE=""
 
-DEPEND=""
+DEPEND="app-arch/lzip"
 RDEPEND=""
+
+src_unpack() {
+	# Upstream only provides an lzip compressed tarball for this version
+	tar --lzip -xf "${DISTDIR}"/${P}.tar.lz || die
+}
 
 src_configure() {
 	# not a normal configure script
 	econf \
-		--prefix="${EPREFIX}"//usr \
+		--prefix="${EPREFIX}"/usr \
 		CC="$(tc-getCC)" \
 		CXX="$(tc-getCXX)" \
 		CPPFLAGS="${CPPFLAGS}" \
