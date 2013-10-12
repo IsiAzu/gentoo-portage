@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/digikam
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/ChangeLog,v 1.255 2013/09/20 19:46:11 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/ChangeLog,v 1.257 2013/10/12 18:55:53 dilfridge Exp $
+
+*digikam-3.5.0 (12 Oct 2013)
+
+  12 Oct 2013; Andreas K. Huettel <dilfridge@gentoo.org> -digikam-3.3.0.ebuild,
+  +digikam-3.5.0.ebuild:
+  Version bump; remove old
+
+  12 Oct 2013; Andreas K. Huettel <dilfridge@gentoo.org> digikam-3.4.0.ebuild:
+  Restore semantic-desktop useflag, bug 482742
 
   20 Sep 2013; Andreas K. Huettel <dilfridge@gentoo.org> digikam-3.2.0.ebuild,
   digikam-3.3.0.ebuild, digikam-3.4.0.ebuild:
