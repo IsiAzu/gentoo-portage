@@ -2160,7 +2160,6 @@ dev-util/metro:ccache - Enable support for ccache
 dev-util/metro:git - Enable support for git snapshots
 dev-util/metro:threads - Enable support for pbzip2 tarball packing/unpacking
 dev-util/mingw64-runtime:idl - Install idl files.
-dev-util/mingw64-runtime:tools - Build and install extra tools.
 dev-util/molecule:plugins - Add plugins provided by dev-util/molecule-plugins
 dev-util/monkeystudio:plugins - Build and install additional plugins
 dev-util/nemiver:memoryview - Enable the optional hexadecimal memory inspection with app-editors/ghex.
@@ -4267,6 +4266,7 @@ net-dns/avahi:mdnsresponder-compat - Enable compat libraries for mDNSResponder
 net-dns/avahi:utils - Install the avahi gtk+ utils avahi-discover, bssh, and bvnc
 net-dns/bind:dlz - Enables dynamic loaded zones, 3rd party extension
 net-dns/bind:filter-aaaa - Enable filtering of AAAA records over IPv4
+net-dns/bind:fixed-rrset - Enables fixed rrset-order option
 net-dns/bind:gost - Enables gost OpenSSL engine support
 net-dns/bind:gssapi - Enable gssapi support
 net-dns/bind:rpz - Enable response policy rewriting (rpz)
@@ -5286,8 +5286,6 @@ net-p2p/amule:daemon - Enable amule daemon
 net-p2p/amule:remote - Enable remote controlling of the client
 net-p2p/amule:stats - Enable statistic reporting
 net-p2p/bitcoin-qt:1stclassmsg - Enable first-class Bitcoin message tools
-net-p2p/bitcoin-qt:bip16 - Enable backported support for relaying and mining new BIP16 pay-to-script-hash transactions
-net-p2p/bitcoin-qt:eligius - Enable using lower fees accepted by Eligius
 net-p2p/bitcoin-qt:qrcode - Enable generation of QR Codes for receiving payments
 net-p2p/bitcoind:logrotate - Use app-admin/logrotate for rotating logs
 net-p2p/dbhub:switch_user - Enable support for switching user
@@ -6331,6 +6329,7 @@ sys-kernel/aufs-sources:deblob - Remove binary blobs from kernel sources to prov
 sys-kernel/aufs-sources:experimental - Apply experimental patches; for more information, see "https://wiki.gentoo.org/wiki/Project:Kernel/Experimental".
 sys-kernel/aufs-sources:module - Patch kernel to allow aufs being build as a module.
 sys-kernel/aufs-sources:proc - Support for /proc/maps and lsof(1)
+sys-kernel/aufs-sources:vanilla - Use vanilla kernel sources without applying genpatches. WARNING: This flag will drop all support from the Gentoo Kernel Security team
 sys-kernel/ck-sources:bfsonly - BFS by itslef vs The full ck patchset
 sys-kernel/ck-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/ck-sources:experimental - Allow experimental code. Can break or degrade performances. (UNSUPPORTED)

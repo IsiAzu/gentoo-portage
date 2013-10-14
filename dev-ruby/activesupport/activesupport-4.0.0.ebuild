@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/activesupport-4.0.0.ebuild,v 1.3 2013/10/12 17:10:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/activesupport-4.0.0.ebuild,v 1.5 2013/10/13 22:05:36 maekke Exp $
 
 EAPI=5
 
@@ -22,7 +22,7 @@ SRC_URI="https://github.com/rails/rails/archive/v${PV}.tar.gz -> rails-${PV}.tgz
 
 LICENSE="MIT"
 SLOT="$(get_version_component_range 1-2)"
-KEYWORDS=" ~amd64"
+KEYWORDS=" ~amd64 ~arm"
 IUSE=""
 
 RUBY_S="rails-${PV}/${PN}"
@@ -30,7 +30,7 @@ RUBY_S="rails-${PV}/${PN}"
 ruby_add_rdepend "
 	>=dev-ruby/multi_json-1.3:0
 	>=dev-ruby/i18n-0.6.4:0.6
-	>=dev-ruby/tzinfo-0.3.37
+	>=dev-ruby/tzinfo-0.3.37:0
 	>=dev-ruby/minitest-4.2:0
 	>=dev-ruby/thread_safe-0.1:0
 	!!<dev-ruby/activesupport-3.0.11-r1:3.0"
