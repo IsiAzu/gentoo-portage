@@ -1,9 +1,9 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/selenium-webdriver/selenium-webdriver-2.31.0.ebuild,v 1.1 2013/03/08 05:55:24 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/selenium-webdriver/selenium-webdriver-2.37.0.ebuild,v 1.1 2013/10/20 06:03:25 graaff Exp $
 
 EAPI=5
-USE_RUBY="ruby18 ruby19 ree18"
+USE_RUBY="ruby18 ruby19"
 
 # NOTE: this package contains precompiled code. It appears that all
 # source code can be found at http://code.google.com/p/selenium/ but the
@@ -12,11 +12,12 @@ USE_RUBY="ruby18 ruby19 ree18"
 # objects for now.
 
 RUBY_FAKEGEM_TASK_DOC=""
-RUBY_FAKEGEM_EXTRADOC="CHANGES README"
+RUBY_FAKEGEM_EXTRADOC="CHANGES README.md"
 
 RUBY_FAKEGEM_TASK_TEST=""
 
 RUBY_QA_ALLOWED_LIBS="x_ignore_nofocus.so"
+QA_PREBUILT="*/x_ignore_nofocus.so"
 
 inherit ruby-fakegem
 
@@ -30,7 +31,7 @@ IUSE=""
 
 ruby_add_rdepend ">=dev-ruby/childprocess-0.2.5
 	>=dev-ruby/multi_json-1.0.4
-	dev-ruby/rubyzip"
+	dev-ruby/rubyzip:1"
 
 all_ruby_prepare() {
 	# Make websocket a development dependency since it is only needed
