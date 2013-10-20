@@ -498,7 +498,6 @@ app-emulation/lxc:vanilla - Avoid adding Gentoo Linux-specific modifications, wh
 app-emulation/open-vm-tools:doc - Generate API documentation
 app-emulation/open-vm-tools:fuse - Build vmblock-fuse in favor of FUSE based blocking mechanism for DnD
 app-emulation/open-vm-tools:pic - Force shared libraries to be built as PIC
-app-emulation/open-vm-tools:unity - Enable host unity support
 app-emulation/playonlinux:winbind - Enables support for the winbind auth daemon
 app-emulation/q4wine:gnome - Use the gksu sudo GUI for managing the devices
 app-emulation/q4wine:icoutils - Enable icoutils support
@@ -4773,6 +4772,7 @@ net-libs/libgsasl:ntlm - Add support for Microsoft's NTLM mechanism using net-li
 net-libs/libinfinity:server - Build and install the server binary including init.d/conf.d-scripts. Needed if you want to host an infinote server for gobby.
 net-libs/libkgapi:oldpim - Allow the use of non-akonadi kdepim-4.4
 net-libs/libkolabxml:csharp - Enable C# language bindings
+net-libs/libmicrohttpd:epoll - use epoll() system call
 net-libs/libmicrohttpd:messages - enable error messages
 net-libs/libnids:glib - Use dev-libs/glib for multiprocessing support
 net-libs/libnids:libnet - Include code requiring net-libs/libnet
