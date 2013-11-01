@@ -2607,6 +2607,7 @@ gnome-extra/zeitgeist:telepathy - Enable telepathy framework as data source
 gnome-extra/zeitgeist-datahub:download - Monitor XDG download directory
 gnome-extra/zeitgeist-datahub:telepathy - Telepathy logging support for 1-to-1 chats, calls and file transfers
 gnome-extra/zeitgeist-datasources:bzr - Zeitgeist plugin for dev-vcs/bzr as data source
+gnome-extra/zeitgeist-datasources:chromium - Zeitgeist plugin for www-client/chromium as data source
 gnome-extra/zeitgeist-datasources:emacs - Zeitgeist plugin for emacs as data source
 gnome-extra/zeitgeist-datasources:firefox - Zeitgeist plugin for www-client/firefox as data source
 gnome-extra/zeitgeist-datasources:geany - Zeitgeist plugin for dev-util/geany as data source
@@ -2896,6 +2897,7 @@ mail-mta/exim:dsn - Adds support for Delivery Status Notifications (DSN)
 mail-mta/exim:exiscan-acl - Patch providing support for content scanning
 mail-mta/exim:lmtp - Adds support for lmtp
 mail-mta/exim:mbx - Adds support for UW's mbx format
+mail-mta/exim:pkcs11 - Require pkcs11 support in net-libs/gnutls with USE=gnutls
 mail-mta/exim:spf - Adds support for Sender Policy Framework
 mail-mta/exim:srs - Adds support for Sender Rewriting Scheme
 mail-mta/msmtp:mta - Enable this to install as system-wide MTA
