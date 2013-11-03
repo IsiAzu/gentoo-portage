@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-0.1.6.ebuild,v 1.3 2013/10/19 22:54:39 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpv/mpv-0.2.2.ebuild,v 1.1 2013/11/03 12:55:18 yngwin Exp $
 
 EAPI=5
 
 EGIT_REPO_URI="git://github.com/mpv-player/mpv.git"
 
-inherit toolchain-funcs flag-o-matic multilib base
+inherit toolchain-funcs flag-o-matic multilib base pax-utils
 [[ ${PV} == *9999* ]] && inherit git-2
 
 DESCRIPTION="Video player based on MPlayer/mplayer2"
@@ -14,24 +14,26 @@ HOMEPAGE="http://mpv.io/"
 [[ ${PV} == *9999* ]] || \
 SRC_URI="https://github.com/mpv-player/mpv/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="GPL-3"
+LICENSE="GPL-2"
 SLOT="0"
 [[ ${PV} == *9999* ]] || \
 KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux"
-IUSE="+alsa aqua bluray bs2b +cdio dvb +dvd +enca encode +iconv jack joystick
-jpeg ladspa lcms +libass libcaca libguess lirc mng +mp3 -openal +opengl oss
-portaudio +postproc pulseaudio pvr +quvi radio samba +shm +threads v4l vcd
-vdpau vf-dlopen wayland +X xinerama +xscreensaver +xv"
+IUSE="+alsa bluray bs2b +cdio doc-pdf dvb +dvd +enca encode +iconv jack joystick
+jpeg ladspa lcms +libass libcaca libguess lirc lua luajit mng +mp3 -openal +opengl oss
+portaudio +postproc pulseaudio pvr +quvi radio samba +shm +threads v4l vaapi
+vcd vdpau vf-dlopen wayland +X xinerama +xscreensaver +xv"
 
 REQUIRED_USE="
 	enca? ( iconv )
 	lcms? ( opengl )
 	libguess? ( iconv )
-	opengl? ( || ( aqua wayland X ) )
+	luajit? ( lua )
+	opengl? ( || ( wayland X ) )
 	portaudio? ( threads )
 	pvr? ( v4l )
 	radio? ( v4l || ( alsa oss ) )
 	v4l? ( threads )
+	vaapi? ( X )
 	vdpau? ( X )
 	wayland? ( opengl )
 	xinerama? ( X )
@@ -41,8 +43,8 @@ REQUIRED_USE="
 
 RDEPEND+="
 	|| (
-		>=media-video/libav-9:=[encode?,threads?,vdpau?]
-		>=media-video/ffmpeg-1.2:0=[encode?,threads?,vdpau?]
+		>=media-video/libav-9:=[encode?,threads?,vaapi?,vdpau?]
+		>=media-video/ffmpeg-1.2:0=[encode?,threads?,vaapi?,vdpau?]
 	)
 	sys-libs/ncurses
 	sys-libs/zlib
@@ -51,6 +53,7 @@ RDEPEND+="
 		x11-libs/libXxf86vm
 		opengl? ( virtual/opengl )
 		lcms? ( media-libs/lcms:2 )
+		vaapi? ( x11-libs/libva[X(+)] )
 		vdpau? ( x11-libs/libvdpau )
 		xinerama? ( x11-libs/libXinerama )
 		xscreensaver? ( x11-libs/libXScrnSaver )
@@ -79,6 +82,10 @@ RDEPEND+="
 	libcaca? ( media-libs/libcaca )
 	libguess? ( >=app-i18n/libguess-1.0 )
 	lirc? ( app-misc/lirc )
+	lua? (
+		!luajit? ( >=dev-lang/lua-5.1 )
+		luajit? ( dev-lang/luajit:2 )
+	)
 	mng? ( media-libs/libmng )
 	mp3? ( media-sound/mpg123 )
 	openal? ( >=media-libs/openal-1.13 )
@@ -86,7 +93,7 @@ RDEPEND+="
 	postproc? (
 		|| (
 			media-libs/libpostproc
-			>=media-video/ffmpeg-1.2:0[encode?,threads?,vdpau?]
+			>=media-video/ffmpeg-1.2:0[encode?,threads?,vaapi?,vdpau?]
 		)
 	)
 	pulseaudio? ( media-sound/pulseaudio )
@@ -109,6 +116,12 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	>=dev-lang/perl-5.8
 	dev-python/docutils
+	doc-pdf? (
+		dev-texlive/texlive-latex
+		dev-texlive/texlive-latexrecommended
+		dev-texlive/texlive-latexextra
+		dev-tex/xcolor
+	)
 	X? (
 		x11-proto/videoproto
 		x11-proto/xf86vidmodeproto
@@ -119,7 +132,7 @@ DEPEND="${RDEPEND}
 	x86? ( ${ASM_DEP} )
 	x86-fbsd? ( ${ASM_DEP} )
 "
-DOCS=( AUTHORS Copyright README.md etc/example.conf etc/input.conf etc/encoding-example-profiles.conf )
+DOCS=( Copyright README.md etc/example.conf etc/input.conf etc/encoding-example-profiles.conf )
 
 pkg_setup() {
 	if [[ ${PV} == *9999* ]]; then
@@ -178,6 +191,9 @@ src_configure() {
 	use quvi || myconf+=" --disable-libquvi4 --disable-libquvi9"
 	use samba || myconf+=" --disable-smb"
 	use lirc || myconf+=" --disable-lirc --disable-lircc"
+	use lua || myconf+=" --disable-lua"
+	use luajit && myconf+=" --lua=luajit"
+	use doc-pdf || myconf+=" --disable-pdf"
 
 	########
 	# CDDA #
@@ -258,18 +274,13 @@ src_configure() {
 	# X enabled configuration #
 	###########################
 	use X || myconf+=" --disable-x11"
-	uses="vdpau wayland xinerama xv"
+	uses="vaapi vdpau wayland xinerama xv"
 	for i in ${uses}; do
 		use ${i} || myconf+=" --disable-${i}"
 	done
 	use opengl || myconf+=" --disable-gl"
 	use lcms || myconf+=" --disable-lcms2"
 	use xscreensaver || myconf+=" --disable-xss"
-
-	############################
-	# OSX (aqua) configuration #
-	############################
-	use aqua && myconf+=" --enable-macosx-bundle"
 
 	CFLAGS= LDFLAGS= ./configure \
 		--cc="$(tc-getCC)" \
@@ -280,6 +291,7 @@ src_configure() {
 		--bindir="${EPREFIX}"/usr/bin \
 		--confdir="${EPREFIX}"/etc/${PN} \
 		--mandir="${EPREFIX}"/usr/share/man \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--localedir="${EPREFIX}"/usr/share/locale \
 		${myconf} || die
 
@@ -297,6 +309,10 @@ src_compile() {
 
 src_install() {
 	base_src_install
+
+	if use luajit; then
+		pax-mark -m "${ED}"usr/bin/mpv
+	fi
 
 	if use vf-dlopen; then
 		exeinto /usr/$(get_libdir)/${PN}
