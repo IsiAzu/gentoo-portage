@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/electrum/electrum-1.8.ebuild,v 1.1 2013/06/02 12:56:05 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/electrum/electrum-1.9.2.ebuild,v 1.1 2013/11/06 12:19:06 blueness Exp $
 
 EAPI="5"
 
