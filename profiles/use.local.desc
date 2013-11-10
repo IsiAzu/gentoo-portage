@@ -5959,6 +5959,8 @@ sys-apps/flashrom:rayer_spi - RayeR SPIPGM hardware support
 sys-apps/flashrom:satamv - Enable programmer for Marvell SATA controllers
 sys-apps/flashrom:satasii - Enable programmer for SiI SATA controllers
 sys-apps/flashrom:serprog - Enable Serial Flasher programmer
+sys-apps/flashrom:tools - Install additional tools
+sys-apps/flashrom:usbblaster - Enable support for Altera USB-Blaster dongles
 sys-apps/flashrom:wiki - Enable wiki informations, like supported devices etc.
 sys-apps/gnome-disk-utility:fat - Include FAT16/FAT32 support (sys-fs/dosfstools)
 sys-apps/gnome-disk-utility:nautilus - Enable gnome-base/nautilus extension.
@@ -6424,6 +6426,7 @@ sys-kernel/pf-sources:deblob - Remove binary blobs from kernel sources to provid
 sys-kernel/pf-sources:experimental - Apply patches that are considered experimental. For more information, check out the ChangeLog or the ebuild that interests you.
 sys-kernel/rt-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/spl:debug-log - Enable additional diagnostics
+sys-kernel/tuxonice-sources:experimental - Apply experimental patches; for more information, see "https://wiki.gentoo.org/wiki/Project:Kernel/Experimental".
 sys-kernel/vanilla-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/vserver-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-libs/db:rpc - Enable rpc client/server
