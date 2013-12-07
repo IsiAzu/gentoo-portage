@@ -1,6 +1,19 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1077 2013/12/02 13:14:09 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1081 2013/12/06 03:04:01 jcallen Exp $
+
+  06 Dec 2013; Jonathan Callen <jcallen@gentoo.org> multiprocessing.eclass:
+  Fix multiprocessing.eclass for non-Linux hosts
+
+  05 Dec 2013; Anthony G. Basile <blueness@gentoo.org> libtool.eclass:
+  Remove warning for uclibc if patching fails, bug #492640
+
+  04 Dec 2013; Pawel Hajdan jr <phajdan.jr@gentoo.org> chromium.eclass:
+  Check SECCOMP_FILTER kernel config option for Chromium sandbox, bug #490550
+  by ago.
+
+  03 Dec 2013; Mike Gilbert <floppym@gentoo.org> distutils-r1.eclass:
+  Remove pointless distutils-r1_python_test function.
 
   02 Dec 2013; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
   Override bdist_egg->build_dir via pydistutils.cfg rather than extra command.

@@ -725,6 +725,7 @@ app-leechcraft/lc-blasq:spegnersi - Support Flickr service
 app-leechcraft/lc-blasq:vangog - Support Picasa service
 app-leechcraft/lc-blogique:hestia - Allows one to keep a local blog
 app-leechcraft/lc-blogique:metida - Support for the LiveJournal blogging platform
+app-leechcraft/lc-core:qwt - Support for QML plotting item through x11-libs/qwt
 app-leechcraft/lc-gmailnotifier:notify - Pull in a plugin to show notifications from GMail Notiifer
 app-leechcraft/lc-gmailnotifier:quark - Pull in a plugin to show GMail Notifier's quark
 app-leechcraft/lc-lmp:graffiti - Build media tags editor plugin
@@ -1483,6 +1484,7 @@ dev-lang/mercury:erlang - Support Mercury Erlang grade
 dev-lang/mlton:binary - install a binary version (need to do this once to bootstrap, until smlnj is supported)
 dev-lang/mono:pax_kernel - Enable if the user plans to run the package under a pax enabled hardened kernel
 dev-lang/mono:xen - Make mono generate code that is considerably faster on xen VMs but slightly slower on for normal systems.
+dev-lang/nqp:parrot - Build the parrot backend (default)
 dev-lang/path64:assembler - Build PathAS
 dev-lang/path64:debugger - Build PathDB
 dev-lang/path64:native - Use EKOPath/Path64 for bootstraping
@@ -1515,6 +1517,7 @@ dev-lang/python:threads - Enable threading support. (DON'T DISABLE THIS UNLESS Y
 dev-lang/python:wide-unicode - Enable wide Unicode implementation which uses 4-byte Unicode characters. Switching of this USE flag changes ABI of Python and requires reinstallation of many Python modules. (DON'T DISABLE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
 dev-lang/python:wininst - Install Windows executables required to create an executable installer for MS Windows.
 dev-lang/qu-prolog:pedro - Pedro subscription/notification communications system
+dev-lang/rakudo:parrot - Build the parrot backend (default)
 dev-lang/rubinius:llvm - Build with llvm. Currently the package only builds against old versions of llvm.
 dev-lang/ruby:libedit - Use the dev-libs/libedit library to provide the readline extension, used for instance by the irb tool. This flag will take precedence over the readline USE flag. If neither libedit nor readline USE flags are enabled, the readline extension will not be built (and irb will lose line editing functionality).
 dev-lang/ruby:rdoc - Install dev-ruby/rdoc after installing Ruby.
@@ -1914,6 +1917,7 @@ dev-python/pymongo:mod_wsgi - Disable the C extension to work with mod_wsgi.
 dev-python/pypax:ptpax - Enable PT_PAX_FLAGS support.
 dev-python/pypax:xtpax - Enable XATTR_PAX_FLAGS support.
 dev-python/pyplusplus:indexing - Install indexing_suite_v2 to enhance boost python
+dev-python/pyplusplus:numpy - Generate code for dev-libs/boost-numpy to accelerate arrays
 dev-python/pypy:sandbox - Enable sandboxing functionality
 dev-python/pypy:shadowstack - Use a shadow stack for finding GC roots
 dev-python/pypy-bin:shadowstack - Use a shadow stack for finding GC roots
@@ -2252,7 +2256,6 @@ dev-vcs/git:curl - Support fetching and pushing (requires webdav too) over http:
 dev-vcs/git:gpg - Pull in gnupg for signing -- without gnupg, attempts at signing will fail at runtime!
 dev-vcs/git:gtk - Include the gitview contrib tool
 dev-vcs/git:highlight - GitWeb support for app-text/highlight
-dev-vcs/git:mozsha1 - Makes git use an optimized SHA1 routine from Mozilla that should be fast on non-x86 machines
 dev-vcs/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
 dev-vcs/git:subversion - Include git-svn for dev-vcs/subversion support
 dev-vcs/git:webdav - Adds support for push'ing to HTTP/HTTPS repositories via DAV
@@ -5001,6 +5004,7 @@ net-mail/notmuch:nmbug - Install experimental tag sharing / pseudo-bug-tracking 
 net-mail/notmuch:pick - Experimental threaded message view for the emacs interface
 net-mail/notmuch:vim - Install Vim UI (experimental)
 net-mail/offlineimap:sqlite - Enable runtime support for sqlite mail status backend.
+net-mail/postfix-logwatch:logwatch - Install filters for use with sys-apps/logwatch.
 net-mail/qmailadmin:maildrop - Filter spam using maildrop
 net-mail/qpopper:apop - Enables the pop.auth file in /etc/pop.auth
 net-mail/qpopper:drac - Enables DRAC support
@@ -6271,6 +6275,7 @@ sys-cluster/vzctl:cgroup - Add support to Linux kernel cgroup subsytem
 sys-cluster/vzctl:ploop - Add support for ploop devices via sys-cluster/ploop
 sys-cluster/vzctl:vanilla-kernel - Support unpatched upstream Linux kernel
 sys-cluster/vzctl:vz-kernel - Support OpenVZ patched kernel (sys-kernel/openvz-sources)
+sys-cluster/vzctl:vzmigrate - Add support for container migration
 sys-devel/autoconf:multislot - Allow for multiple versions to be installed at once
 sys-devel/autogen:libopts - install the libopts tarball (a few packages want this for developing)
 sys-devel/binutils:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
@@ -6448,6 +6453,7 @@ sys-kernel/aufs-sources:vanilla - Use vanilla kernel sources without applying ge
 sys-kernel/ck-sources:bfsonly - BFS by itslef vs The full ck patchset
 sys-kernel/ck-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/ck-sources:experimental - Allow experimental code. Can break or degrade performances. (UNSUPPORTED)
+sys-kernel/ck-sources:hibernate - Affine tasks to CPU0 as CPUs go offline. (EXPERIMENTAL)
 sys-kernel/ck-sources:kvm - Enable boot on kvm
 sys-kernel/ck-sources:urwlocks - Use upgradable read/write locks in place of the grq spinlock. (EXPERIMENTAL)
 sys-kernel/dracut:debug - Module installing additional tools like strace, file editor, ssh and more
@@ -6837,6 +6843,7 @@ x11-libs/mx:glade - Build the dev-util/glade catalog files
 x11-libs/mx:introspection - Use dev-libs/gobject-introspection for introspection
 x11-libs/pixman:loongson2f - Enable Loongson2f MMI optimizations.
 x11-libs/pixman:mmxext - Enable MMX2 support.
+x11-libs/pixman:ssse3 - Enable SSSE3 support.
 x11-libs/qwt:mathml - Use the MathML renderer of the Qt solutions package.
 x11-libs/vte:glade - Provide integration with dev-util/glade.
 x11-libs/vte:introspection - Use dev-libs/gobject-introspection for introspection
