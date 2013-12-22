@@ -835,7 +835,6 @@ app-misc/screen:nethack - Express error messages in nethack style
 app-misc/sphinx:id64 - use 64-bit document and word IDs
 app-misc/sphinx:stemmer - Enable language stemming support
 app-misc/strigi:clucene - Enable dev-cpp/clucene backend support.
-app-misc/strigi:hyperestraier - Enable app-text/hyperestraier backend support.
 app-misc/strigi:inotify - Enable support for inotify.
 app-misc/strigi:log - Enables advanced logging through dev-libs/log4cxx.
 app-misc/subsurface:linguas_da_DK - Language support for da_DK.
@@ -1792,6 +1791,7 @@ dev-perl/DBIx-Class:admin_script - Modules required for the CLI DBIx::Class inte
 dev-perl/DBIx-Class:deploy - Modules required for "deploy" in DBIx::Class::Storage::DBI and "deploymen_statements" in DBIx::Class::Storage::DBI
 dev-perl/DBIx-Class:replicated - Modules required for DBIx::Class::Storage::DBI::Replicated
 dev-perl/Eidetic:auth - Enables dev-perl/Apache-AuthTicket based cookie authentication
+dev-perl/File-HomeDir:xdg - Ensure XDG Semantics for returned paths via x11-misc/xdg-user-dirs
 dev-perl/GD:animgif - Enable animated gif support
 dev-perl/Graphics-ColorNames:recommended - Install recommended support modules
 dev-perl/HTML-Mason:modperl - Enable www-apache/mod_perl support
@@ -2825,6 +2825,7 @@ kde-misc/networkmanagement:openconnect - Build support for the OpenConnect VPN c
 kde-misc/plasma-nm:modemmanager - Enable support for mobile broadband devices
 kde-misc/synaptiks:upower - Handle mouse devices correctly across suspend and resume with upower
 kde-misc/tellico:addressbook - Add support for kdepim addressbook (kabc)
+lxde-base/lxdm:consolekit - Enables support for authorization using consolekit
 lxde-base/lxdm:gtk3 - Use GTK+3 instead of 2
 lxde-base/lxsession:upower - Pull in sys-power/upower for hibernate/suspend support
 mail-client/alot:doc - Install user manual and API documentation
@@ -5603,7 +5604,6 @@ net-wireless/wireless-tools:multicall - Build the most commonly used tools as on
 net-wireless/wpa_supplicant:ap - Add support for access point mode
 net-wireless/wpa_supplicant:eap-sim - Add support for EAP-SIM authentication algorithm
 net-wireless/wpa_supplicant:fasteap - Add support for FAST-EAP authentication algorithm
-net-wireless/wpa_supplicant:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/wpa_supplicant:p2p - Add support for Wi-Fi Direct mode
 net-wireless/wpa_supplicant:ps3 - Add support for ps3 hypervisor driven gelic wifi
 net-wireless/wpa_supplicant:smartcard - Add support for smartcards
