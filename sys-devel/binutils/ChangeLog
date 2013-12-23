@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.499 2013/12/22 16:30:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.501 2013/12/23 16:24:02 ago Exp $
+
+  23 Dec 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.2.ebuild:
+  Stable for sparc, wrt bug #494670
+
+  23 Dec 2013; Mike Frysinger <vapier@gentoo.org> binutils-2.23.2.ebuild:
+  Mark ia64 stable #494670.
 
 *binutils-2.24.51.0.2 (22 Dec 2013)
 
