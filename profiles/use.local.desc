@@ -2563,7 +2563,6 @@ gnome-base/gdm:plymouth - Enable support for smooth transition from sys-boot/ply
 gnome-base/gdm:remote - Enables support for secure remote connections
 gnome-base/gnome:classic - Install gnome-extra/gnome-shell-extensions for the Gnome Shell Classic mode
 gnome-base/gnome:extras - Install additional GNOME applications
-gnome-base/gnome:fallback - Install gnome-base/gnome-panel and x11-wm/metacity for the GNOME 3 fallback mode
 gnome-base/gnome:flashback - Install gnome-base/gnome-panel and x11-wm/metacity for the GNOME 3 Flashback mode
 gnome-base/gnome-applets:cpufreq - Build cpu frequency scaling monitor applet
 gnome-base/gnome-control-center:colord - Support color management using x11-misc/colord
@@ -6440,6 +6439,7 @@ sys-fs/mtpfs:mad - Enable handling of MP3's metadata
 sys-fs/ntfs3g:crypt - Add support for encrypted NTFS drives/partitions.
 sys-fs/ntfs3g:external-fuse - Use external FUSE library instead of internal one. Must be disabled for unprivileged mounting to work.
 sys-fs/ntfs3g:extras - Enable extra ntfsprogs utilities.
+sys-fs/ntfs3g:ntfsdecrypt - Build and install the ntfsdecrypt application.
 sys-fs/ntfs3g:ntfsprogs - Include internal version of ntfsprogs. This will block sys-fs/ntfsprogs.
 sys-fs/ntfs3g:udev - Install udev rule to make udisks use ntfs-3g instead of the kernel NTFS driver.
 sys-fs/ocfs2-tools:external - Enable external locking
