@@ -1840,8 +1840,9 @@ dev-php/pecl-redis:igbinary - Enables igbinary serialisation support
 dev-php/smarty-docs:html - Install the documentation in HTML format
 dev-php/smarty-docs:pdf - Install the documentation in PDF format
 dev-python/PyFoam:extras - Enable optional dependencies
-dev-python/PyQt4:X - Build QtGui, QtDesigner and QtScriptTools modules
+dev-python/PyQt4:X - Build QtGui and QtTest modules
 dev-python/PyQt4:declarative - Build QtDeclarative module
+dev-python/PyQt4:designer - Build QtDesigner module
 dev-python/PyQt4:help - Build QtHelp module
 dev-python/PyQt4:kde - Select media-libs/phonon as Phonon variant (needed for KDE)
 dev-python/PyQt4:multimedia - Build QtMultimedia module
@@ -2784,6 +2785,7 @@ kde-base/marble:zip - Enable support for reading and displaying .kmz files
 kde-base/nepomuk-core:epub - Adds support for reading EPUB ebook metadata
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
 kde-base/okular:ebook - Add E-Book support
+kde-base/okular:mobi - Add mobipocket support
 kde-base/oxygen-icons:bindist - Additionally install the svg sources of the bitmap icons (needed for redistribution)
 kde-base/perlkde:akonadi - Compile bindings for Akonadi.
 kde-base/perlkde:attica - Compile bindings for dev-libs/libattica.
@@ -5481,9 +5483,7 @@ net-p2p/tribler:vlc - Enable vlc support.
 net-print/cups:filters - Pull in net-print/foomatic-filters for filtering by default.
 net-print/cups:java - Add support for the Java interpeter in the web server CGIs.
 net-print/cups:lprng-compat - Do not install lp... binaries so cups and lprng can coexist.
-net-print/cups:perl - Add support for the Perl interpeter in the web server CGIs.
 net-print/cups:python - Add support for the Python interpeter in the web server CGIs.
-net-print/cups:systemd - Add support for systemd socket activation.
 net-print/fax4cups:capisuite-fax - Install net-dialup/capisuite backend
 net-print/fax4cups:efax - Install net-misc/efax backend
 net-print/fax4cups:hylafax - Install net-misc/hylafax backend
