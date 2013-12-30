@@ -1,6 +1,27 @@
 # ChangeLog for sys-devel/llvm
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/ChangeLog,v 1.157 2013/12/24 20:07:03 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/ChangeLog,v 1.162 2013/12/28 22:56:42 mgorny Exp $
+
+  28 Dec 2013; Michał Górny <mgorny@gentoo.org> llvm-3.3-r2.ebuild:
+  Fix building R600 target, bug #496308.
+
+  28 Dec 2013; Michał Górny <mgorny@gentoo.org> llvm-3.3-r2.ebuild:
+  Fix clang blocker to match 3.3-r100.
+
+*llvm-3.3-r2 (28 Dec 2013)
+
+  28 Dec 2013; Michał Górny <mgorny@gentoo.org>
+  +files/llvm-3.3-r2-gentoo-install.patch, +llvm-3.3-r2.ebuild:
+  Backport all the fixes and install design changes from -9999 to -3.3. Fixes
+  bugs #425844 (install CMake modules), #462554 (install bfd-plugins symlink),
+  #489586 (multilib portage compat.), #488216, #492554 (RPATH issues).
+
+  28 Dec 2013; Michał Górny <mgorny@gentoo.org> llvm-9999.ebuild:
+  Add bugpoint to built tools. Switch llvm-config wrapping to use $CHOST-llvm-
+  config.
+
+  27 Dec 2013; Michał Górny <mgorny@gentoo.org> llvm-9999.ebuild:
+  Update/fix dependencies.
 
   24 Dec 2013; Michał Górny <mgorny@gentoo.org> llvm-9999.ebuild:
   Fix libLTO linking parallel make issue, bug #494922.

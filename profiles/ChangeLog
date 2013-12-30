@@ -1,10 +1,44 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8456 2013/12/26 17:11:59 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8466 2013/12/29 10:01:59 graaff Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  29 Dec 2013; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Remove masked media-sound/omptagger and dependencies.
+
+  29 Dec 2013; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Mask dev-ruby/mkrf for removal.
+
+  29 Dec 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Mask new multilib readline.
+
+  28 Dec 2013; Robin H. Johnson <robbat2@gentoo.org> thirdpartymirrors:
+  Apache mirrors have been moving old files to the archive tier, this will help
+  pick stuff up better.
+
+  28 Dec 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Lastrite sys-kernel/module-rebuild wrt #410739
+
+  27 Dec 2013; Pacho Ramos <pacho@gentoo.org> arch/ia64/package.use.force,
+  arch/ia64/package.use.mask, +arch/sparc/package.use.force,
+  arch/sparc/package.use.mask:
+  We need openrc-force for ia64 and sparc until they solve #478076 to prevent
+  bugs and security issues like bug #496166
+
+  27 Dec 2013; Ulrich Müller <ulm@gentoo.org> package.mask:
+  Fix invalid atom for x11-libs/libcryptui.
+
+  27 Dec 2013; Chris Reffett <creffett@gentoo.org> hardened/linux/amd64/no-multilib/package.mask:
+  Remove invalid entries as reported by qa-reports
+
+  27 Dec 2013; Justin Lecher <jlec@gentoo.org> package.mask:
+  Mask unreleased version
+
+  27 Dec 2013; Chris Reffett <creffett@gentoo.org> thirdpartymirrors:
+  Remove bad easysw group wrt bug 494684, credit to iamben
 
   26 Dec 2013; Lars Wendler <polynomial-c@gentoo.org> base/package.use.mask:
   package.use.mask-ed polarssl USE flag in media-sound/umurmur for now. Should

@@ -1,6 +1,47 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1088 2013/12/26 07:11:48 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1100 2013/12/29 18:19:48 mgorny Exp $
+
+  29 Dec 2013; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Update doc link to point to the docs on Wiki.
+
+  28 Dec 2013; Michał Górny <mgorny@gentoo.org> eutils.eclass:
+  Fix eclassdoc for einstalldocs.
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Missed one.
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Use version ranges instead of case statements in gcc_do_filter_flags().
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Add tc_version_is_between() helper.
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Reintroduce texinfo patch to unbreak older versions (bug #496224).
+
+  28 Dec 2013; Robin H. Johnson <robbat2@gentoo.org> flag-o-matic.eclass:
+  Spelling fixes.
+
+  27 Dec 2013; Julian Ospald <hasufell@gentoo.org> multilib-minimal.eclass:
+  add debug print function wrt #493214
+
+  27 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Initial EAPI support (bug #474358).
+
+  27 Dec 2013; Robin H. Johnson <robbat2@gentoo.org> flag-o-matic.eclass:
+  Per discussion with Flameeyes, make -l and -L always valid, and only warn
+  about other arguments to append-libs. Also document expected arguments to
+  append-libs.
+
+  27 Dec 2013; Robin H. Johnson <robbat2@gentoo.org> flag-o-matic.eclass:
+  There are usages in the tree of "append-libs $(pkg-config ...)"; if
+  pkg-config returns something other than a library, append-libs can end up
+  inserting -l-L/usr/lib64 or other weirdness. We need to check for these and
+  warn about them.
+
+  27 Dec 2013; Michał Górny <mgorny@gentoo.org> eutils.eclass:
+  Document einstalldocs.
 
   26 Dec 2013; Hans de Graaff <graaff@gentoo.org> ruby-ng.eclass:
   Add support for the ruby21 target.

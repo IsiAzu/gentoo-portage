@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.609 2013/12/23 21:41:19 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.615 2013/12/28 09:12:39 dirtyepic Exp $
 
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -25,7 +25,14 @@ fi
 
 FEATURES=${FEATURES/multilib-strict/}
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
+EXPORTED_FUNCTIONS="pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm"
+case ${EAPI:-0} in
+	0|1)	;;
+	2|3)    EXPORTED_FUNCTIONS+=" src_prepare src_configure" ;;
+	4*|5*)  EXPORTED_FUNCTIONS+=" pkg_pretend src_prepare src_configure" ;;
+	*)      die "I don't speak EAPI ${EAPI}."
+esac
+EXPORT_FUNCTIONS ${EXPORTED_FUNCTIONS}
 
 #---->> globals <<----
 
@@ -44,9 +51,14 @@ is_crosscompile() {
 }
 
 # General purpose version check.  Without a second arg matches up to minor version (x.x.x)
-# (ie. 4.6.0_pre9999 matches 4 or 4.6 or 4.6.0 but not 4.6.1)
 tc_version_is_at_least() { 
 	version_is_at_least "$1" "${2:-${GCC_RELEASE_VER}}"
+}
+
+# General purpose version range check
+# Note that it matches up to but NOT including the second version
+tc_version_is_between() {
+	tc_version_is_at_least "${1}" && ! tc_version_is_at_least "${2}"
 }
 
 GCC_PV=${TOOLCHAIN_GCC_PV:-${PV}}
@@ -113,7 +125,7 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 	[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
 	tc_version_is_at_least 3 && IUSE+=" doc gcj awt hardened multilib objc"
 	tc_version_is_at_least 4.0 && IUSE+=" objc-gc"
-	tc_version_is_at_least 4.0 && ! tc_version_is_at_least 4.9 && IUSE+=" mudflap"
+	tc_version_is_between 4.0 4.9 && IUSE+=" mudflap"
 	tc_version_is_at_least 4.1 && IUSE+=" libssp objc++"
 	tc_version_is_at_least 4.2 && IUSE+=" openmp"
 	tc_version_is_at_least 4.3 && IUSE+=" fixed-point"
@@ -331,21 +343,17 @@ get_gcc_src_uri() {
 
 SRC_URI=$(get_gcc_src_uri)
 
-#---->> pkg_setup <<----
+#---->> pkg_pretend <<----
 
-toolchain_pkg_setup() {
+toolchain_pkg_pretend() {
 	if [[ -n ${PRERELEASE}${SNAPSHOT} || ${PV} == *9999* ]] &&
-	   [[ -z ${I_PROMISE_TO_SUPPLY_PATCHES_WITH_BUGS} ]] ; 	then
+	   [[ -z ${I_PROMISE_TO_SUPPLY_PATCHES_WITH_BUGS} ]] ; then
 		die "Please \`export I_PROMISE_TO_SUPPLY_PATCHES_WITH_BUGS=1\` or define it" \
 			"in your make.conf if you want to use this version."
 	fi
 
 	[[ -z ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] && \
 		die "Sorry, this version does not support uClibc"
-
-	# we dont want to use the installed compiler's specs to build gcc!
-	unset GCC_SPECS
-	unset LANGUAGES #265283
 
 	if ! use_if_iuse cxx ; then
 		use_if_iuse go && ewarn 'Go requires a C++ compiler, disabled due to USE="-cxx"'
@@ -356,7 +364,19 @@ toolchain_pkg_setup() {
 	want_minispecs
 }
 
-#----> src_unpack <----
+#---->> pkg_setup <<----
+
+toolchain_pkg_setup() {
+	case "${EAPI:-0}" in
+		0|1|2|3)    toolchain_pkg_pretend ;;
+	esac
+
+	# we dont want to use the installed compiler's specs to build gcc
+	unset GCC_SPECS
+	unset LANGUAGES #265283
+}
+
+#---->> src_unpack <<----
 
 toolchain_src_unpack() {
 	if [[ ${PV} == *9999* ]]; then
@@ -365,118 +385,9 @@ toolchain_src_unpack() {
 		gcc_quick_unpack
 	fi
 
-	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
-	cd "${S}"
-
-	if ! use vanilla ; then
-		if [[ -n ${PATCH_VER} ]] ; then
-			guess_patch_type_in_dir "${WORKDIR}"/patch
-			EPATCH_MULTI_MSG="Applying Gentoo patches ..." \
-			epatch "${WORKDIR}"/patch
-			BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION} p${PATCH_VER}"
-		fi
-		if [[ -n ${UCLIBC_VER} ]] ; then
-			guess_patch_type_in_dir "${WORKDIR}"/uclibc
-			EPATCH_MULTI_MSG="Applying uClibc patches ..." \
-			epatch "${WORKDIR}"/uclibc
-		fi
-	fi
-	do_gcc_HTB_patches
-	do_gcc_PIE_patches
-	epatch_user
-
-	use hardened && make_gcc_hard
-
-	# install the libstdc++ python into the right location
-	# http://gcc.gnu.org/PR51368
-	if tc_version_is_at_least 4.5 && ! tc_version_is_at_least 4.7 ; then
-		sed -i \
-			'/^pythondir =/s:=.*:= $(datadir)/python:' \
-			"${S}"/libstdc++-v3/python/Makefile.in || die
-	fi
-
-	# make sure the pkg config files install into multilib dirs.
-	# since we configure with just one --libdir, we can't use that
-	# (as gcc itself takes care of building multilibs).  #435728
-	find "${S}" -name Makefile.in \
-		-exec sed -i '/^pkgconfigdir/s:=.*:=$(toolexeclibdir)/pkgconfig:' {} +
-
-	# No idea when this first started being fixed, but let's go with 4.3.x for now
-	if ! tc_version_is_at_least 4.3 ; then
-		fix_files=""
-		for x in contrib/test_summary libstdc++-v3/scripts/check_survey.in ; do
-			[[ -e ${x} ]] && fix_files="${fix_files} ${x}"
-		done
-		ht_fix_file ${fix_files} */configure *.sh */Makefile.in
-	fi
-
-	setup_multilib_osdirnames
-	gcc_version_patch
-
-	if tc_version_is_at_least 4.1 ; then
-		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} ]] ; then
-			# BASE-VER must be a three-digit version number
-			# followed by an optional -pre string
-			#   eg. 4.5.1, 4.6.2-pre20120213, 4.7.0-pre9999
-			# If BASE-VER differs from ${PV/_/-} then libraries get installed in
-			# the wrong directory.
-			echo ${PV/_/-} > "${S}"/gcc/BASE-VER
-		fi
-	fi
-
-	# >= gcc-4.3 doesn't bundle ecj.jar, so copy it
-	if tc_version_is_at_least 4.3 && use gcj ; then
-		if tc_version_is_at_least 4.5 ; then
-			einfo "Copying ecj-4.5.jar"
-			cp -pPR "${DISTDIR}/ecj-4.5.jar" "${S}/ecj.jar" || die
-		else
-			einfo "Copying ecj-4.3.jar"
-			cp -pPR "${DISTDIR}/ecj-4.3.jar" "${S}/ecj.jar" || die
-		fi
-	fi
-
-	# disable --as-needed from being compiled into gcc specs
-	# natively when using a gcc version < 3.4.4
-	# http://gcc.gnu.org/PR14992
-	if ! tc_version_is_at_least 3.4.4 ; then
-		sed -i -e s/HAVE_LD_AS_NEEDED/USE_LD_AS_NEEDED/g "${S}"/gcc/config.in
-	fi
-
-	# In gcc 3.3.x and 3.4.x, rename the java bins to gcc-specific names
-	# in line with gcc-4.
-	if tc_version_is_at_least 3.3 && ! tc_version_is_at_least 4.0 ; then
-		do_gcc_rename_java_bins
-	fi
-
-	# Prevent libffi from being installed
-	if tc_version_is_at_least 3.0 && ! tc_version_is_at_least 4.8 ; then
-		sed -i -e 's/\(install.*:\) install-.*recursive/\1/' "${S}"/libffi/Makefile.in || die
-		sed -i -e 's/\(install-data-am:\).*/\1/' "${S}"/libffi/include/Makefile.in || die
-	fi
-
-	# Fixup libtool to correctly generate .la files with portage
-	elibtoolize --portage --shallow --no-uclibc
-
-	gnuconfig_update
-
-	# update configure files
-	local f
-	einfo "Fixing misc issues in configure files"
-	for f in $(grep -l 'autoconf version 2.13' $(find "${S}" -name configure)) ; do
-		ebegin "  Updating ${f/${S}\/} [LANG]"
-		patch "${f}" "${GCC_FILESDIR}"/gcc-configure-LANG.patch >& "${T}"/configure-patch.log \
-			|| eerror "Please file a bug about this"
-		eend $?
-	done
-	sed -i 's|A-Za-z0-9|[:alnum:]|g' "${S}"/gcc/*.awk #215828
-
-	if [[ -x contrib/gcc_update ]] ; then
-		einfo "Touching generated files"
-		./contrib/gcc_update --touch | \
-			while read f ; do
-				einfo "  ${f%%...}"
-			done
-	fi
+	case ${EAPI:-0} in
+		0|1)   toolchain_src_prepare ;;
+	esac
 }
 
 gcc_quick_unpack() {
@@ -537,6 +448,126 @@ gcc_quick_unpack() {
 	use_if_iuse boundschecking && unpack "bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch.bz2"
 
 	popd > /dev/null
+}
+
+#---->> src_prepare <<----
+
+toolchain_src_prepare() {
+	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
+	cd "${S}"
+
+	if ! use vanilla ; then
+		if [[ -n ${PATCH_VER} ]] ; then
+			guess_patch_type_in_dir "${WORKDIR}"/patch
+			EPATCH_MULTI_MSG="Applying Gentoo patches ..." \
+			epatch "${WORKDIR}"/patch
+			BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION} p${PATCH_VER}"
+		fi
+		if [[ -n ${UCLIBC_VER} ]] ; then
+			guess_patch_type_in_dir "${WORKDIR}"/uclibc
+			EPATCH_MULTI_MSG="Applying uClibc patches ..." \
+			epatch "${WORKDIR}"/uclibc
+		fi
+	fi
+	do_gcc_HTB_patches
+	do_gcc_PIE_patches
+	epatch_user
+
+	use hardened && make_gcc_hard
+
+	# install the libstdc++ python into the right location
+	# http://gcc.gnu.org/PR51368
+	if tc_version_is_between 4.5 4.7 ; then
+		sed -i \
+			'/^pythondir =/s:=.*:= $(datadir)/python:' \
+			"${S}"/libstdc++-v3/python/Makefile.in || die
+	fi
+
+	# make sure the pkg config files install into multilib dirs.
+	# since we configure with just one --libdir, we can't use that
+	# (as gcc itself takes care of building multilibs).  #435728
+	find "${S}" -name Makefile.in \
+		-exec sed -i '/^pkgconfigdir/s:=.*:=$(toolexeclibdir)/pkgconfig:' {} +
+
+	# No idea when this first started being fixed, but let's go with 4.3.x for now
+	if ! tc_version_is_at_least 4.3 ; then
+		fix_files=""
+		for x in contrib/test_summary libstdc++-v3/scripts/check_survey.in ; do
+			[[ -e ${x} ]] && fix_files="${fix_files} ${x}"
+		done
+		ht_fix_file ${fix_files} */configure *.sh */Makefile.in
+	fi
+
+	setup_multilib_osdirnames
+	gcc_version_patch
+
+	if tc_version_is_at_least 4.1 ; then
+		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} ]] ; then
+			# BASE-VER must be a three-digit version number
+			# followed by an optional -pre string
+			#   eg. 4.5.1, 4.6.2-pre20120213, 4.7.0-pre9999
+			# If BASE-VER differs from ${PV/_/-} then libraries get installed in
+			# the wrong directory.
+			echo ${PV/_/-} > "${S}"/gcc/BASE-VER
+		fi
+	fi
+
+	# >= gcc-4.3 doesn't bundle ecj.jar, so copy it
+	if tc_version_is_at_least 4.3 && use gcj ; then
+		if tc_version_is_at_least 4.5 ; then
+			einfo "Copying ecj-4.5.jar"
+			cp -pPR "${DISTDIR}/ecj-4.5.jar" "${S}/ecj.jar" || die
+		else
+			einfo "Copying ecj-4.3.jar"
+			cp -pPR "${DISTDIR}/ecj-4.3.jar" "${S}/ecj.jar" || die
+		fi
+	fi
+
+	# disable --as-needed from being compiled into gcc specs
+	# natively when using a gcc version < 3.4.4
+	# http://gcc.gnu.org/PR14992
+	if ! tc_version_is_at_least 3.4.4 ; then
+		sed -i -e s/HAVE_LD_AS_NEEDED/USE_LD_AS_NEEDED/g "${S}"/gcc/config.in
+	fi
+
+	# In gcc 3.3.x and 3.4.x, rename the java bins to gcc-specific names
+	# in line with gcc-4.
+	if tc_version_is_between 3.3 4.0 ; then
+		do_gcc_rename_java_bins
+	fi
+
+	# Prevent libffi from being installed
+	if tc_version_is_between 3.0 4.8 ; then
+		sed -i -e 's/\(install.*:\) install-.*recursive/\1/' "${S}"/libffi/Makefile.in || die
+		sed -i -e 's/\(install-data-am:\).*/\1/' "${S}"/libffi/include/Makefile.in || die
+	fi
+
+	# Fixup libtool to correctly generate .la files with portage
+	elibtoolize --portage --shallow --no-uclibc
+
+	gnuconfig_update
+
+	# update configure files
+	local f
+	einfo "Fixing misc issues in configure files"
+	for f in $(grep -l 'autoconf version 2.13' $(find "${S}" -name configure)) ; do
+		ebegin "  Updating ${f/${S}\/} [LANG]"
+		patch "${f}" "${GCC_FILESDIR}"/gcc-configure-LANG.patch >& "${T}"/configure-patch.log \
+			|| eerror "Please file a bug about this"
+		eend $?
+	done
+	sed -i 's|A-Za-z0-9|[:alnum:]|g' "${S}"/gcc/*.awk #215828
+
+	# Prevent new texinfo from breaking old versions (see #198182, #464008)
+	tc_version_is_at_least 4.1 && epatch "${GCC_FILESDIR}"/gcc-configure-texinfo.patch
+
+	if [[ -x contrib/gcc_update ]] ; then
+		einfo "Touching generated files"
+		./contrib/gcc_update --touch | \
+			while read f ; do
+				einfo "  ${f%%...}"
+			done
+	fi
 }
 
 guess_patch_type_in_dir() {
@@ -723,95 +754,25 @@ do_gcc_rename_java_bins() {
 	done
 }
 
-gcc_do_filter_flags() {
-	strip-flags
-
-	replace-flags -O? -O2
-
-	# dont want to funk ourselves
-	filter-flags '-mabi*' -m31 -m32 -m64
-
-	filter-flags '-frecord-gcc-switches' # 490738
-
-	case ${GCC_BRANCH_VER} in
-		3.2|3.3)
-			replace-cpu-flags k8 athlon64 opteron x86-64
-			replace-cpu-flags pentium-m pentium3m pentium3
-			replace-cpu-flags G3 750
-			replace-cpu-flags G4 7400
-			replace-cpu-flags G5 7400
-	
-			case $(tc-arch) in
-				amd64)
-					replace-cpu-flags core2 nocona
-					filter-flags '-mtune=*'
-					;;
-				x86)
-					replace-cpu-flags core2 prescott
-					filter-flags '-mtune=*'
-					;;
-			esac
-
-			# XXX: should add a sed or something to query all supported flags
-			#      from the gcc source and trim everything else ...
-			filter-flags -f{no-,}unit-at-a-time -f{no-,}web -mno-tls-direct-seg-refs
-			filter-flags -f{no-,}stack-protector{,-all}
-			filter-flags -fvisibility-inlines-hidden -fvisibility=hidden
-			;;
-		3.4|4.*)
-			case $(tc-arch) in
-				amd64|x86)
-					filter-flags '-mcpu=*'
-					;;
-				alpha)
-					# https://bugs.gentoo.org/454426
-					append-ldflags -Wl,--no-relax
-					;;
-				sparc)
-					# temporary workaround for random ICEs reproduced by multiple users
-					# https://bugs.gentoo.org/457062
-					[[ ${GCC_BRANCH_VER} == 4.6 || ${GCC_BRANCH_VER} == 4.7 ]] && \
-						MAKEOPTS+=" -j1"
-					;;
-				*-macos)
-					# http://gcc.gnu.org/PR25127
-					[[ ${GCC_BRANCH_VER} == 4.0 || ${GCC_BRANCH_VER} == 4.1 ]] && \
-						filter-flags '-mcpu=*' '-march=*' '-mtune=*'
-					;;
-			esac
-			;;
-	esac
-
-	case ${GCC_BRANCH_VER} in
-		4.6)
-			case $(tc-arch) in
-				amd64|x86)
-					# https://bugs.gentoo.org/411333
-					# https://bugs.gentoo.org/466454
-					replace-cpu-flags c3-2 pentium2 pentium3 pentium3m pentium-m i686
-					;;
-			esac
-			;;
-	esac
-
-	strip-unsupported-flags
-	
-	if is_crosscompile ; then
-		# Set this to something sane for both native and target
-		CFLAGS="-O2 -pipe"
-		FFLAGS=${CFLAGS}
-		FCFLAGS=${CFLAGS}
-
-		local VAR="CFLAGS_"${CTARGET//-/_}
-		CXXFLAGS=${!VAR}
-	fi
-
-	export GCJFLAGS=${GCJFLAGS:-${CFLAGS}}
-}
-
 #---->> src_configure <<----
 
-gcc_do_configure() {
+toolchain_src_configure() {
+	gcc_do_filter_flags
+
+	einfo "CFLAGS=\"${CFLAGS}\""
+	einfo "CXXFLAGS=\"${CXXFLAGS}\""
+	einfo "LDFLAGS=\"${LDFLAGS}\""
+
+	# Force internal zip based jar script to avoid random
+	# issues with 3rd party jar implementations.  #384291
+	export JAR=no
+
+	# For hardened gcc 4.3 piepatchset to build the hardened specs
+	# file (build.specs) to use when building gcc.
+	if ! tc_version_is_at_least 4.4 && want_minispecs ; then
+		setup_minispecs_gcc_build_specs
+	fi
+
 	local confgcc=( --host=${CHOST} )
 
 	if is_crosscompile || tc-is-cross-compiler ; then
@@ -919,7 +880,7 @@ gcc_do_configure() {
 
 	# newer gcc versions like to bootstrap themselves with C++,
 	# so we need to manually disable it ourselves
-	if tc_version_is_at_least 4.7 && ! is_cxx ; then
+	if tc_version_is_between 4.7 4.8 && ! is_cxx ; then
 		confgcc+=( --disable-build-with-cxx --disable-build-poststage1-with-cxx )
 	fi
 
@@ -997,8 +958,8 @@ gcc_do_configure() {
 			--disable-__cxa_atexit
 			$(use_enable nptl tls)
 		)
-		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && confgcc+=( --enable-sjlj-exceptions )
-		if tc_version_is_at_least 3.4 && ! tc_version_is_at_least 4.3 ; then
+		tc_version_is_between 3.3 3.4 && confgcc+=( --enable-sjlj-exceptions )
+		if tc_version_is_between 3.4 4.3 ; then
 			confgcc+=( --enable-clocale=uclibc )
 		fi
 		;;
@@ -1232,6 +1193,100 @@ gcc_do_configure() {
 	popd > /dev/null
 }
 
+gcc_do_filter_flags() {
+	strip-flags
+	replace-flags -O? -O2
+
+	# dont want to funk ourselves
+	filter-flags '-mabi*' -m31 -m32 -m64
+
+	filter-flags '-frecord-gcc-switches' # 490738
+
+	if tc_version_is_between 3.2 3.4 ; then
+		# XXX: this is so outdated it's barely useful, but it don't hurt...
+		replace-cpu-flags k8 athlon64 opteron x86-64
+		replace-cpu-flags pentium-m pentium3m pentium3
+		replace-cpu-flags G3 750
+		replace-cpu-flags G4 7400
+		replace-cpu-flags G5 7400
+	
+		case $(tc-arch) in
+			amd64)
+				replace-cpu-flags core2 nocona
+				filter-flags '-mtune=*'
+				;;
+			x86)
+				replace-cpu-flags core2 prescott
+				filter-flags '-mtune=*'
+				;;
+		esac
+
+		# XXX: should add a sed or something to query all supported flags
+		#      from the gcc source and trim everything else ...
+		filter-flags -f{no-,}unit-at-a-time -f{no-,}web -mno-tls-direct-seg-refs
+		filter-flags -f{no-,}stack-protector{,-all}
+		filter-flags -fvisibility-inlines-hidden -fvisibility=hidden
+	fi
+
+	if tc_version_is_at_least 3.4 ; then
+		case $(tc-arch) in
+			amd64|x86)
+				filter-flags '-mcpu=*'
+				if tc_version_is_between 4.6 4.7 ; then
+					# https://bugs.gentoo.org/411333
+					# https://bugs.gentoo.org/466454
+					replace-cpu-flags c3-2 pentium2 pentium3 pentium3m pentium-m i686
+				fi
+				;;
+			alpha)
+				# https://bugs.gentoo.org/454426
+				append-ldflags -Wl,--no-relax
+				;;
+			sparc)
+				# temporary workaround for random ICEs reproduced by multiple users
+				# https://bugs.gentoo.org/457062
+				tc_version_is_between 4.6 4.8 && MAKEOPTS+=" -j1"
+				;;
+			*-macos)
+				# http://gcc.gnu.org/PR25127
+				tc_version_is_between 4.0 4.2 && \
+					filter-flags '-mcpu=*' '-march=*' '-mtune=*'
+				;;
+		esac
+	fi
+
+	strip-unsupported-flags
+
+	# these are set here so we have something sane at configure time
+	if is_crosscompile ; then
+		# Set this to something sane for both native and target
+		CFLAGS="-O2 -pipe"
+		FFLAGS=${CFLAGS}
+		FCFLAGS=${CFLAGS}
+
+		local VAR="CFLAGS_"${CTARGET//-/_}
+		CXXFLAGS=${!VAR}
+	fi
+
+	export GCJFLAGS=${GCJFLAGS:-${CFLAGS}}
+}
+
+setup_minispecs_gcc_build_specs() {
+	# Setup the "build.specs" file for gcc 4.3 to use when building.
+	if hardened_gcc_works pie ; then
+		cat "${WORKDIR}"/specs/pie.specs >> "${WORKDIR}"/build.specs
+	fi
+	if hardened_gcc_works ssp ; then
+		for s in ssp sspall ; do
+			cat "${WORKDIR}"/specs/${s}.specs >> "${WORKDIR}"/build.specs
+		done
+	fi
+	for s in nostrict znow ; do
+		cat "${WORKDIR}"/specs/${s}.specs >> "${WORKDIR}"/build.specs
+	done
+	export GCC_SPECS="${WORKDIR}"/build.specs
+}
+
 gcc-multilib-configure() {
 	if ! is_multilib ; then
 		confgcc+=( --disable-multilib )
@@ -1276,26 +1331,9 @@ gcc-abi-map() {
 #----> src_compile <----
 
 toolchain_src_compile() {
-	gcc_do_filter_flags
-	einfo "CFLAGS=\"${CFLAGS}\""
-	einfo "CXXFLAGS=\"${CXXFLAGS}\""
-	einfo "LDFLAGS=\"${LDFLAGS}\""
-
-	# Force internal zip based jar script to avoid random
-	# issues with 3rd party jar implementations.  #384291
-	export JAR=no
-
-	# For hardened gcc 4.3 piepatchset to build the hardened specs
-	# file (build.specs) to use when building gcc.
-	if ! tc_version_is_at_least 4.4 && want_minispecs ; then
-		setup_minispecs_gcc_build_specs
-	fi
-	# Build in a separate build tree
-	mkdir -p "${WORKDIR}"/build
-	pushd "${WORKDIR}"/build > /dev/null
-
-	einfo "Configuring ${PN} ..."
-	gcc_do_configure
+	case ${EAPI:-0} in
+		0|1)   toolchain_src_configure ;;
+	esac
 
 	touch "${S}"/gcc/c-gperf.h
 
@@ -1305,50 +1343,18 @@ toolchain_src_compile() {
 
 	einfo "Compiling ${PN} ..."
 	gcc_do_make ${GCC_MAKE_TARGET}
-
-	popd > /dev/null
 }
 
-setup_minispecs_gcc_build_specs() {
-	# Setup the "build.specs" file for gcc 4.3 to use when building.
-	if hardened_gcc_works pie ; then
-		cat "${WORKDIR}"/specs/pie.specs >> "${WORKDIR}"/build.specs
-	fi
-	if hardened_gcc_works ssp ; then
-		for s in ssp sspall ; do
-			cat "${WORKDIR}"/specs/${s}.specs >> "${WORKDIR}"/build.specs
-		done
-	fi
-	for s in nostrict znow ; do
-		cat "${WORKDIR}"/specs/${s}.specs >> "${WORKDIR}"/build.specs
-	done
-	export GCC_SPECS="${WORKDIR}"/build.specs
-}
-
-# This function accepts one optional argument, the make target to be used.
-# If ommitted, gcc_do_make will try to guess whether it should use all,
-# profiledbootstrap, or bootstrap-lean depending on CTARGET and arch. An
-# example of how to use this function:
-#
-#	gcc_do_make all-target-libstdc++-v3
-#
-# In addition to the target to be used, the following variables alter the
-# behavior of this function:
-#
-#	LDFLAGS
-#			Flags to pass to ld
-#
-#	STAGE1_CFLAGS
-#			CFLAGS to use during stage1 of a gcc bootstrap
-#
-#	BOOT_CFLAGS
-#			CFLAGS to use during stages 2+3 of a gcc bootstrap.
-#
-# Travis Tilley <lv@gentoo.org> (04 Sep 2004)
-#
 gcc_do_make() {
+	# This function accepts one optional argument, the make target to be used.
+	# If omitted, gcc_do_make will try to guess whether it should use all,
+	# profiledbootstrap, or bootstrap-lean depending on CTARGET and arch. An
+	# example of how to use this function:
+	#
+	#	gcc_do_make all-target-libstdc++-v3
+	#
 	# Set make target to $1 if passed
-	[[ -n $1 ]] && GCC_MAKE_TARGET=$1
+	[[ -n ${1} ]] && GCC_MAKE_TARGET=${1}
 	# default target
 	if is_crosscompile || tc-is-cross-compiler ; then
 		# 3 stage bootstrapping doesnt quite work when you cant run the
