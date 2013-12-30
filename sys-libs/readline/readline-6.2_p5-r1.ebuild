@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.2_p5-r1.ebuild,v 1.2 2013/12/29 18:19:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.2_p5-r1.ebuild,v 1.4 2013/12/30 16:43:12 vapier Exp $
 
 EAPI="4"
 
@@ -40,7 +40,7 @@ IUSE="static-libs"
 RDEPEND=">=sys-libs/ncurses-5.2-r2[${MULTILIB_USEDEP}]
 	abi_x86_32? (
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-		!<=app-emulation/emul-linux-x86-baselibs-20131008-r6
+		!<=app-emulation/emul-linux-x86-baselibs-20131008-r7
 	)"
 DEPEND="${RDEPEND}"
 
@@ -63,7 +63,7 @@ src_prepare() {
 		-e "/^SHLIB_LIBS=/s:=.*:='${ncurses_libs}':" \
 		support/shobj-conf || die
 	sed -i \
-		-e "/^LIBS=.-lncurses/s:-lncurses:${ncurses_libs}:" \
+		-e "/^[[:space:]]*LIBS=.-lncurses/s:-lncurses:${ncurses_libs}:" \
 		examples/rlfe/configure || die
 
 	# fix building under Gentoo/FreeBSD; upstream FreeBSD deprecated

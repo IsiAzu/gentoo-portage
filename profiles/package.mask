@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15287 2013/12/30 07:45:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15289 2013/12/30 10:19:41 johu Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -36,10 +36,6 @@
 # build system that is not used anymore. It has no
 # dependencies in the tree left.
 dev-ruby/mkrf
-
-# Michał Górny <mgorny@gentoo.org> (29 Dec 2013)
-# Mask new multilib packages waiting for emul-linux-x86-baselibs bump.
->=sys-libs/readline-6.2_p5-r1
 
 # Samuli Suominen <ssuominen@gentoo.org> (28 Dec 2013)
 # Replaced by 'emerge @module-rebuild' set in Portage itself.
@@ -294,11 +290,6 @@ app-i18n/rskkserv
 app-office/rabbit
 # Only available for ruby18, no dependencies left
 dev-ruby/postgres
-
-# Johannes Huber <johu@gentoo.org> (24 Nov 2013)
-# Masked for removal in 30 days. Broken functionality.
-# See bug #438790
-kde-misc/polkit-kde-kcmodules
 
 # Matti Bickel <mabi@gentoo.org> (20 Nov 2013)
 # Outdated, beta and abondoned upstream, removal on 20131220
