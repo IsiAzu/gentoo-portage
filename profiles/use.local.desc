@@ -271,7 +271,6 @@ app-backup/deja-dup:nautilus - Build gnome-base/nautilus extension
 app-backup/duplicity:s3 - Support for backing up to the Amazon S3 system
 app-backup/rear:udev - Have ReaR start backup when attaching your USB drive.
 app-backup/spideroak-bin:headless - Build without graphic frontend
-app-backup/spideroak-bin:qt-bundled - Use bundled Qt4 libraries
 app-backup/tsm:hsm - Installs Tivoli Storage Manager for Space Management
 app-backup/tsm:tsm_cit - IBM Tivoli Common Inventory Technology
 app-backup/tsm:tsm_hw - Difference snapshot support for NetApp and N-Series file servers
@@ -1536,13 +1535,23 @@ dev-lang/swig:ccache - build ccache-swig(a fast compiler cache)
 dev-lang/vala:vapigen - Enable vala's library binding generator
 dev-lang/yap:R - Enable support for connecting R to Prolog
 dev-libs/DirectFB:bmp - build BMP image provider
+dev-libs/DirectFB:divine - enable DiVine
+dev-libs/DirectFB:drmkms - build with DRM/KMS support
 dev-libs/DirectFB:dynload - enable dynload support
+dev-libs/DirectFB:egl - build with EGL support
+dev-libs/DirectFB:fusiondale - enable FusionDale
+dev-libs/DirectFB:fusionsound - enable FusionSound
 dev-libs/DirectFB:gles2 - build gles2 gfxdriver
 dev-libs/DirectFB:imlib2 - build Imlib2 image provider
 dev-libs/DirectFB:input_hub - provides an asynchronous interface to the input devices available and those being added/removed
 dev-libs/DirectFB:mpeg2 - build MPEG2 image provider
+dev-libs/DirectFB:mpeg3 - build Libmpeg3 video provider
 dev-libs/DirectFB:multicore - enable multicore support
 dev-libs/DirectFB:pnm - build PNM (PBM/PGM/PPM) image provider
+dev-libs/DirectFB:sawman - enable SaWMan (window manager and application manager)
+dev-libs/DirectFB:swfdec - build Swfdec (Flash decoder) video provider
+dev-libs/DirectFB:tremor - build Ogg/Vorbis music provider using Tremor
+dev-libs/DirectFB:webp - build WebP image provider
 dev-libs/STLport:boost - Enable the usage of dev-libs/boost
 dev-libs/ace:ciao - Include Component Intergraced Ace ORB into the build of ace
 dev-libs/ace:tao - Include the ACE ORB (CORBA stuff) (called tao) into the build of ace
@@ -6151,7 +6160,6 @@ sys-apps/util-linux:cramfs - build mkfs/fsck helpers for cramfs filesystems
 sys-apps/util-linux:cytune - build cytune for Cyclades-Z multiport serial cards
 sys-apps/util-linux:ddate - build ddate helper (Discordian dates)
 sys-apps/util-linux:fdformat - build fdformat (floppy disk format)
-sys-apps/util-linux:loop-aes - include support for Loop AES encryption
 sys-apps/util-linux:pam - build runuser helper
 sys-apps/util-linux:perl - install the chkdupexe helper script
 sys-apps/util-linux:suid - install mount/umount as setuid so non-root users may mount/umount devices, and wall/write as setgid so non-root users can notify other users
