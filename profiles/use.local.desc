@@ -5811,6 +5811,7 @@ sci-libs/ceres-solver:protobuf - Use dev-libs/protobuf to encode structured data
 sci-libs/ceres-solver:schur - Enable fixed-size schur specializations (disable if binary size is an issue)
 sci-libs/ceres-solver:sparse - Enable support for sparse matrix algebra with various packages from SuiteSparse
 sci-libs/cfitsio:tools - Build execs fpack, funpack, imcopy, fitscopy, listhead
+sci-libs/chemkit:applications - Build also applications not only the libraries
 sci-libs/cholmod:cuda - Use nvidia cuda toolkit for speeding up computations
 sci-libs/cholmod:metis - Enable the Partition module to cholmod using sci-libs/metis
 sci-libs/cholmod:supernodal - Enable the Supernodal module (needs virtual/lapack)
@@ -5837,6 +5838,7 @@ sci-libs/grib_api:jasper - Use media-libs/jasper instead of media-libs/openjpeg 
 sci-libs/gsl:cblas-external - Link gsl with external cblas provided by (virtual/cblas) instead of shipped internal version
 sci-libs/hdf5:fortran2003 - enable new features that require Fortran 2003 (http://www.hdfgroup.org/HDF5/doc/fortran/NewFeatures_F2003.pdf)
 sci-libs/indilib:nova - Enable support for nova celestial mechanics calculations
+sci-libs/lemon:tools - Build additional tools
 sci-libs/libghemical:mopac7 - Use sci-chemistry/mopac7 for semi-empirical calculations
 sci-libs/libghemical:mpqc - Use sci-chemistry/mpqc for quantum-mechanical calculations
 sci-libs/libsvm:tools - Install python based tool scripts
