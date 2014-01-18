@@ -1,6 +1,23 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1118 2014/01/16 20:05:12 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1123 2014/01/18 00:43:03 dilfridge Exp $
+
+  18 Jan 2014; Andreas K. Huettel <dilfridge@gentoo.org> kde4-base.eclass:
+  Sync from kde overlay, adds subslot
+
+  17 Jan 2014; Mike Pagano <mpagano@gentoo.org> kernel-2.eclass:
+  Fix QA warning concerning inherit
+
+  17 Jan 2014; Michael Pagano <mpagano@gentoo.org> kernel-2.eclass:
+  Fix kernel-2.eclass to use python.eclass for it's python needs. (deblob
+  script). See bug #497966
+
+  17 Jan 2014; Jeroen Roovers <jer@gentoo.org> mozcoreconf-2.eclass:
+  Revert inadvertent change, as noted by arfrever.
+
+  17 Jan 2014; Jeroen Roovers <jer@gentoo.org> mozcoreconf-2.eclass,
+  python-utils-r1.eclass:
+  Spelling.
 
   16 Jan 2014; Michał Górny <mgorny@gentoo.org> multilib-build.eclass:
   Typo.
