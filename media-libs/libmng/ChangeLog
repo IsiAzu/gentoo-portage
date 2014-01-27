@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/libmng
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/ChangeLog,v 1.83 2014/01/05 19:07:16 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/ChangeLog,v 1.85 2014/01/27 13:09:46 ssuominen Exp $
+
+*libmng-2.0.2 (27 Jan 2014)
+
+  27 Jan 2014; Samuli Suominen <ssuominen@gentoo.org> +libmng-2.0.2.ebuild:
+  Version bump wrt #487724 by Rafał Mużyło and Michael Mair-Keimberger
+
+*libmng-1.0.10-r2 (27 Jan 2014)
+
+  27 Jan 2014; Samuli Suominen <ssuominen@gentoo.org> +libmng-1.0.10-r2.ebuild:
+  Convert to autotools-multilib wrt #496380
 
   05 Jan 2014; Fabian Groffen <grobian@gentoo.org> libmng-1.0.10-r1.ebuild:
   Marked ~m68k-mint, bug #494512
