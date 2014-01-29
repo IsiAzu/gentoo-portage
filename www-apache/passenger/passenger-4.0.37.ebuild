@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apache/passenger/passenger-4.0.23.ebuild,v 1.1 2013/11/04 19:36:52 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apache/passenger/passenger-4.0.37.ebuild,v 1.1 2014/01/29 07:12:58 graaff Exp $
 
 EAPI=5
 USE_RUBY="ruby18 ruby19 ruby20"
@@ -37,7 +37,7 @@ pkg_setup() {
 }
 
 all_ruby_prepare() {
-	epatch "${FILESDIR}"/${PN}-4.0.21-gentoo.patch
+	epatch "${FILESDIR}"/${PN}-4.0.33-gentoo.patch
 
 	# Change these with sed instead of a patch so that we can easily use
 	# the toolchain-funcs methods.
@@ -98,6 +98,8 @@ all_ruby_install() {
 
 each_ruby_install() {
 	DISTDIR="${D}" \
+	RUBYLIBDIR="$(ruby_rbconfig_value vendordir)" \
+	RUBYARCHDIR="$(ruby_rbconfig_value archdir)" \
 	APXS2="${APXS}" \
 	HTTPD="${APACHE_BIN}" \
 	EXTRA_LDFLAGS="${LDFLAGS}" \
