@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-3.2.8.ebuild,v 1.3 2013/12/22 14:40:28 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-3.2.11.ebuild,v 1.1 2014/02/15 03:59:34 radhermit Exp $
 
 EAPI=5
 
@@ -16,7 +16,7 @@ LICENSE="GPL-3 LGPL-3"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE_LINGUAS=" en cs de fi fr it ms nl pl sv uk vi zh_CN"
-IUSE="+cxx dane doc examples guile nls pkcs11 static-libs test zlib ${IUSE_LINGUAS// / linguas_}"
+IUSE="+cxx +crywrap dane doc examples guile nls pkcs11 static-libs test zlib ${IUSE_LINGUAS// / linguas_}"
 # heartbeat support is not disabled until re-licensing happens fullyf
 
 # NOTICE: sys-devel/autogen is required at runtime as we
@@ -25,6 +25,7 @@ RDEPEND=">=dev-libs/libtasn1-2.14
 	>=dev-libs/nettle-2.7[gmp]
 	dev-libs/gmp
 	sys-devel/autogen
+	crywrap? ( net-dns/libidn )
 	dane? ( net-dns/unbound )
 	guile? ( >=dev-scheme/guile-1.8[networking] )
 	nls? ( virtual/libintl )
@@ -59,8 +60,6 @@ src_prepare() {
 		rm src/$(basename ${file} .c).{c,h} || die
 	done
 
-	epatch "${FILESDIR}/${P}-build.patch"
-
 	# support user patches
 	epatch_user
 
@@ -68,6 +67,9 @@ src_prepare() {
 
 	# Use sane .so versioning on FreeBSD.
 	elibtoolize
+
+	# bug 497472
+	use cxx || epunt_cxx
 }
 
 src_configure() {
@@ -86,6 +88,7 @@ src_configure() {
 		$(use_enable doc gtk-doc) \
 		$(use_enable doc gtk-doc-pdf) \
 		$(use_enable guile) \
+		$(use_enable crywrap) \
 		$(use_enable nls) \
 		$(use_enable static-libs static) \
 		$(use_with pkcs11 p11-kit) \
