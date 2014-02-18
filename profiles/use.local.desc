@@ -938,11 +938,9 @@ app-office/lyx:enchant - Add support for enchant spellchecking wrapper (both asp
 app-office/lyx:gnumeric - Add support for importing Gnumeric/OpenOffice/MS Excel spreadsheets into LyX.
 app-office/lyx:html - Add support for HTML import
 app-office/lyx:hunspell - Add support for spellchecking based on hunspell and reuse system-wide OpenOffice dictionaries. This also enable thesaurus dictionaries not accessible via aspell.
-app-office/lyx:luatex - Add support for LuaTeX typesetting
 app-office/lyx:monolithic-build - This should speed up compilation significantly when you have enough RAM (> 600 MB)
 app-office/lyx:rcs - Add support for revision control via dev-vcs/rcs
 app-office/lyx:rtf - Add support for RTF import/export packages
-app-office/lyx:xetex - Add support for XeTeX typesetting
 app-office/scribus:aspell - Enable support for spell checking with app-text/aspell
 app-office/scribus:graphicsmagick - Add support for media-gfx/graphicsmagick
 app-office/scribus:hunspell - Enable support for spell checking with app-text/hunspell
@@ -5052,6 +5050,8 @@ net-mail/dbmail:sieve - Enable sieve filter support
 net-mail/dovecot:cydir - Add cydir storage support
 net-mail/dovecot:imapc - Add imap client storage support
 net-mail/dovecot:lucene - Add lucene full text search (FTS) support using dev-cpp/clucene
+net-mail/dovecot:lz4 - Add support for lz4 (de)compression
+net-mail/dovecot:lzma - Add support for lzma (de)compression
 net-mail/dovecot:managesieve - Add managesieve protocol support
 net-mail/dovecot:mdbox - Add mdbox storage support
 net-mail/dovecot:pop3c - Add pop3 client storage support
