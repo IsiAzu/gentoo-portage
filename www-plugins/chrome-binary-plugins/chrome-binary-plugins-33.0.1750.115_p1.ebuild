@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-plugins/chrome-binary-plugins/chrome-binary-plugins-34.0.1838.2_alpha1.ebuild,v 1.1 2014/02/15 03:15:01 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-plugins/chrome-binary-plugins/chrome-binary-plugins-33.0.1750.115_p1.ebuild,v 1.1 2014/02/19 23:24:44 floppym Exp $
 
 EAPI=4
 
@@ -52,7 +52,7 @@ for x in 0 beta stable unstable; do
 	fi
 done
 
-S="${WORKDIR}/opt/google/chrome-${SLOT}"
+S="${WORKDIR}/opt/google/chrome"
 QA_PREBUILT="*"
 
 src_install() {
