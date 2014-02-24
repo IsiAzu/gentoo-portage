@@ -3482,10 +3482,7 @@ media-plugins/vdr-graphtft:theme_deepblue - graphTFT default theme
 media-plugins/vdr-graphtft:theme_deeppurple - graphTFT Deep Purple theme
 media-plugins/vdr-graphtft:theme_poetter - graphTFT Poetter theme
 media-plugins/vdr-graphtft:touchscreen - Enable Touchscreen support
-media-plugins/vdr-music:4mb-mod - Enables support for modded FF-Card to 4MB ram or softdecoder
-media-plugins/vdr-music:ff-card - Enables scrollmode on FF-Card
 media-plugins/vdr-music:graphtft - Enable support for media-plugins/vdr-graphtft
-media-plugins/vdr-music:hd - Support for HighDefinition OSD on softdecoder( e.g xineliboutput, vdpau, ehd )
 media-plugins/vdr-pvr350:yaepg - Enables full support for the output format of media-plugins/vdr-yaepg
 media-plugins/vdr-streamdev:client - Compile the VDR plugin vdr-streamdev-client that acts like a dvb-budget card
 media-plugins/vdr-streamdev:server - Compile the VDR plugin vdr-streamdev-server that allows remote systems to access the DVB cards used for the local VDR
@@ -5200,12 +5197,18 @@ net-misc/cfengine:tests - Install test files
 net-misc/cfengine:tokyocabinet - Use dev-db/tokyocabinet as database backend
 net-misc/cgminer:adl - Enable support for controlling fans and overclocking on AMD cards with AMD Display Library
 net-misc/cgminer:avalon - Enable support for Avalon ASICs
+net-misc/cgminer:avalon2 - Enable support for Avalon2 ASICs
+net-misc/cgminer:bab - Enable support for BlackArrow Bitfury
 net-misc/cgminer:bflsc - Enable support for BFL ASICs
 net-misc/cgminer:bitforce - Enable support for mining with ButterFly Labs BitFORCE FPGAs
 net-misc/cgminer:bitfury - Enable support for mining with BitFury ASICs
+net-misc/cgminer:bitmine_A1 - Enable support for mining with Bitmine.ch A1 ASICs
+net-misc/cgminer:cointerra - Enable support for mining with Cointerra ASICs
 net-misc/cgminer:drillbit - Enable support for mining with Drillbit BitFury ASICs
+net-misc/cgminer:hashfast - Enable support for mining with Hashfast
 net-misc/cgminer:icarus - Enable support for mining with Icarus FPGAs
 net-misc/cgminer:klondike - Enable support for mining with Klondik ASICs
+net-misc/cgminer:knc - Enable support for mining with KnC miners
 net-misc/cgminer:minion - Enable support for mining with BlackArrow Bitfury
 net-misc/cgminer:modminer - Enable support for mining with ModMiner FPGAs
 net-misc/cgminer:opencl - Enable support for mining with OpenCL-capable devices (GPUs)
