@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15426 2014/02/28 05:52:46 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15430 2014/02/28 19:52:01 mgorny Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,15 @@
 
 #--- END OF EXAMPLES ---
 
+# Michał Górny <mgorny@gentoo.org> (28 Feb 2014)
+# New multilib conversions waiting for emul-linux update and some
+# testing. Note: yngwin requested cairo being masked for 30 days
+# and at least one version bump.
+>=dev-libs/libgcrypt-1.6.1-r1
+dev-libs/libgcrypt:11
+>=dev-libs/lzo-2.06-r1
+>=x11-libs/cairo-1.12.16-r1
+
 # Pawel Hajdan jr <phajdan.jr@gentoo.org> (27 Feb 2014)
 # Dev channel releases are only for people who are developers or want more
 # experimental features and accept a more unstable release.
@@ -51,16 +60,47 @@ media-gfx/kgraphviewer
 app-emacs/tnt
 
 # Tom Wijsman <TomWij@gentoo.org> (21 Feb 2014)
-# MATE introduction mask
+# MATE Desktop Environment 1.6 introduction mask:
+#
+# MATE is in the progress of being brought to the Portage tree; if you see this 
+# mask message when you install it from the Portage tree, we suggest you to 
+# wait a few days until MATE has been fully brought to the Portage tree.
+#
+# New ebuild request bug:
+#
+#     https://bugs.gentoo.org/show_bug.cgi?id=387487
+#
+# MATE overlay users that see this message can use the following package.unmask:
+#
+#     https://gist.github.com/TomWij/cf9cdd0fe90ac08b8ded
+#
+# If you use another overlay, replace the ::mate-overlay suffix by that overlay.
+app-text/mate-doc-utils
+dev-libs/libmateweather
+mate-base/libmatekbd
 mate-base/mate-common
+mate-base/mate-desktop
 mate-base/mate-menus
 mate-base/mate-session-manager
+mate-extra/mate-dialogs
+mate-extra/mate-polkit
+x11-libs/libmatewnck
 
 # Tom Wijsman <TomWij@gentoo.org> (21 Feb 2014)
-# MATE 1.7 mask
+# MATE Desktop Environment >=1.7 introduction mask:
+#
+# Given that MATE Desktop Environment 1.8 will release soon, this mask is 
+# placed in advance to allow to bump to it as soon as it hits.
+>=app-text/mate-doc-utils-1.7
+>=dev-libs/libmateweather-1.7
+>=mate-base/libmatekbd-1.7
 >=mate-base/mate-common-1.7
+>=mate-base/mate-desktop-1.7
 >=mate-base/mate-menus-1.7
 >=mate-base/mate-session-manager-1.7
+>=mate-extra/mate-dialogs-1.7
+>=mate-extra/mate-polkit-1.7
+>=x11-libs/libmatewnck-1.7
 
 # Ulrich Müller <ulm@gentoo.org> (21 Feb 2014)
 # Included with Emacs since version 23.
