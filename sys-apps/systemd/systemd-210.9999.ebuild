@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-210.9999.ebuild,v 1.3 2014/03/02 16:51:29 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-210.9999.ebuild,v 1.5 2014/03/04 23:13:20 mgorny Exp $
 
 EAPI=5
 
@@ -21,7 +21,7 @@ inherit autotools-utils bash-completion-r1 fcaps linux-info multilib \
 
 DESCRIPTION="System and service manager for Linux"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
-SRC_URI="http://www.freedesktop.org/software/systemd/${P}.tar.xz"
+SRC_URI="http://dev.gentoo.org/~mgorny/dist/${P}.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1 MIT public-domain"
 SLOT="0/2"
@@ -219,6 +219,14 @@ multilib_src_configure() {
 	if use firmware-loader; then
 		myeconfargs+=(
 			--with-firmware-path="/lib/firmware/updates:/lib/firmware"
+		)
+	fi
+
+	# Added for testing; this is UNSUPPORTED by the Gentoo systemd team!
+	if [[ -n ${ROOTPREFIX+set} ]]; then
+		myeconfargs+=(
+			--with-rootprefix="${ROOTPREFIX}"
+			--with-rootlibdir="${ROOTPREFIX}/$(get_libdir)"
 		)
 	fi
 
