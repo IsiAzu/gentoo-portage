@@ -2225,6 +2225,7 @@ dev-util/cwdiff:a2ps - install app-text/a2ps for postscript output
 dev-util/cwdiff:mercurial - install hg wdiff alias for dev-vcs/mercurial
 dev-util/devhelp:gedit - Install plugin for app-editors/gedit
 dev-util/dialog:minimal - Disable library, install command-line program only
+dev-util/emilpro:system-binutils - Use the gentoo binutils instead of building against an unpatched vanilla version
 dev-util/fatrace:powertop - Add powetop integration
 dev-util/geany:vte - Enable Terminal support (x11-libs/vte)
 dev-util/geany-plugins:commander - Enable the commander plugin which provides a command panel for rapid access to any action.
@@ -3722,7 +3723,9 @@ media-sound/picard:acoustid - Use media-libs/chromaprint for acoustic fingerprin
 media-sound/pms:regex - Enable regular expression searches using dev-libs/boost
 media-sound/podcatcher:bittorrent - Enable support for bittorrent downloads
 media-sound/pragha:glyr - Enable music metadata searchengine support using media-libs/glyr
+media-sound/pragha:keybinder - Enable shortcut support using dev-libs/keybinder
 media-sound/pragha:lastfm - Enable last.fm support using media-libs/libclastfm
+media-sound/pragha:peas - Enable various plugins that will pull in dev-libs/libpeas as a dependency
 media-sound/pragha:playlist - Enable enhanced playlist support using dev-libs/totem-pl-parser
 media-sound/puddletag:acoustid - Use media-libs/chromaprint for acoustic fingerprinting
 media-sound/puddletag:cover - Enables editing of FLAC cover art
