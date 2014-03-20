@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/dracut/dracut-036-r3.ebuild,v 1.4 2014/02/27 13:02:33 aidecoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/dracut/dracut-037.ebuild,v 1.1 2014/03/20 08:51:44 aidecoe Exp $
 
 EAPI=4
 
@@ -17,8 +17,6 @@ IUSE="debug selinux systemd"
 RESTRICT="test"
 
 CDEPEND="virtual/udev
-	!>=sys-fs/udev-210
-	!>=sys-apps/systemd-210
 	systemd? ( >=sys-apps/systemd-199 )
 	selinux? ( sec-policy/selinux-dracut )
 	"
@@ -44,13 +42,10 @@ DOCS=( AUTHORS HACKING NEWS README README.generic README.kernel README.modules
 	README.testsuite TODO )
 MY_LIBDIR=/usr/lib
 PATCHES=(
-	"${FILESDIR}/${PV}-0001-NEWS-update-for-version-036.patch"
-	"${FILESDIR}/${PV}-0002-dracut-functions.sh-support-for-altern.patch"
-	"${FILESDIR}/${PV}-0003-gentoo.conf-let-udevdir-be-handled-by-.patch"
-	"${FILESDIR}/${PV}-0004-Use-the-same-paths-in-dracut.sh-as-tho.patch"
-	"${FILESDIR}/${PV}-0005-Install-dracut-install-into-libexec-di.patch"
-	"${FILESDIR}/${PV}-0006-dracut.sh-Fix-variable-name-typo.patch"
-	"${FILESDIR}/${PV}-0007-Added-missing-quotes.patch"
+	"${FILESDIR}/${PV}-0001-dracut-functions.sh-support-for-altern.patch"
+	"${FILESDIR}/${PV}-0002-gentoo.conf-let-udevdir-be-handled-by-.patch"
+	"${FILESDIR}/${PV}-0003-Use-the-same-paths-in-dracut.sh-as-tho.patch"
+	"${FILESDIR}/${PV}-0004-Install-dracut-install-into-libexec-di.patch"
 	)
 
 #
@@ -121,6 +116,12 @@ src_prepare() {
 		einfo "Setting systemdsystemconfdir to ${systemdsystemconfdir}..."
 		sed -e "7asystemdsystemconfdir=\"${systemdsystemconfdir}\"" \
 			-i "${S}/dracut.conf.d/gentoo.conf.example" || die
+	else
+		local systemdutildir="/lib/systemd"
+		einfo "Setting systemdutildir for standalone udev to" \
+			"${systemdutildir}..."
+		sed -e "5asystemdutildir=\"${systemdutildir}\"" \
+			-i "${S}/dracut.conf.d/gentoo.conf.example" || die
 	fi
 
 	epatch_user
@@ -173,6 +174,7 @@ src_install() {
 		# With systemd following modules do not make sense
 		rm_module 96securityfs 97masterkey 98integrity
 	else
+		rm_module 98systemd
 		# Without systemd following modules do not make sense
 		rm_module 00systemd-bootchart
 	fi
