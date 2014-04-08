@@ -1,10 +1,185 @@
 # ChangeLog for profile directory
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8744 2014/03/25 17:24:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8791 2014/04/06 15:57:54 hwoarang Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  06 Apr 2014; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Mask openocd-0.8.0_rc* releases for testing
+
+  06 Apr 2014; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add mask for old and broken pitivi releases.
+
+  06 Apr 2014; Julian Ospald <hasufell@gentoo.org> base/package.use.mask:
+  mask <net-misc/openvpn-9999[polarssl] wrt #501582
+
+  06 Apr 2014; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Mask new emul set until their ebuilds are tested/updated for native multilib
+  setups
+
+  06 Apr 2014; Pacho Ramos <pacho@gentoo.org> ChangeLog:
+  Mask some packages for removal
+
+  06 Apr 2014; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove now unrequired mask for libopensync-plugin-evolution2 wrt #352506
+
+  05 Apr 2014; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Removing glpk mask
+
+  05 Apr 2014; Andreas K. Huettel <dilfridge@gentoo.org>
+  -eapi-5-files/ChangeLog, -eapi-5-files/eapi,
+  -eapi-5-files/package.use.stable.mask:
+  Remove obsolete directory
+
+  05 Apr 2014; Andreas K. Huettel <dilfridge@gentoo.org> releases/13.0/parent:
+  Remove empty directory eapi-5-files from parents
+
+  05 Apr 2014; Julian Ospald <hasufell@gentoo.org> package.mask:
+  mask >=dev-libs/DirectFB-1.7.1 wrt #499740 and #497124
+
+  05 Apr 2014; Manuel Rüger <mrueg@gentoo.org> package.mask:
+  Cleanup package.mask.
+
+  05 Apr 2014; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask broken libnatpmp release for transmission wrt #506832 by Hans Nieser
+
+  05 Apr 2014; Pacho Ramos <pacho@gentoo.org>
+  eapi-5-files/package.use.stable.mask, base/package.use.stable.mask:
+  Migrate and drop obsolete use.stable.mask entries
+
+  02 Apr 2014; Julian Ospald <hasufell@gentoo.org> package.mask:
+  mask =sys-devel/llvm-3.4 to prevent breakage
+
+  02 Apr 2014; Ulrich Müller <ulm@gentoo.org> package.mask:
+  Drop app-emacs/mell mask, package removed.
+
+  02 Apr 2014; Samuli Suominen <ssuominen@gentoo.org> thirdpartymirrors:
+  Update mirrors from upstream ImageMagick site, but drop two unworking ones
+  from it, wrt #494846 by Ben Kohler
+
+  02 Apr 2014; Naohiro Aota <naota@gentoo.org> package.mask:
+  Drop prime masking
+
+  02 Apr 2014; Mikle Kolyada <zlogene@gentoo.org>
+  features/selinux/package.mask:
+  Remove obsolete grub mask
+
+  02 Apr 2014; Patrick Lauer <patrick@gentoo.org> package.mask,
+  thirdpartymirrors:
+  Mask broken sip release #506452
+
+  01 Apr 2014; Tom Wijsman <TomWij@gentoo.org>
+  arch/amd64/package.use.stable.mask:
+  [QA] Remove obsolete abi_x86_32 libusbx mask from amd64 p.u.s.m. as libusbx
+  was pkgmoved to libusb.
+
+  01 Apr 2014; Tom Wijsman <TomWij@gentoo.org>
+  features/64bit-native/package.mask:
+  [QA] Remove obsolete googleearth mask from 64bit-native feature.
+
+  01 Apr 2014; Tom Wijsman <TomWij@gentoo.org>
+  arch/amd64/no-multilib/package.mask:
+  [QA] Remove obsolete googleearth mask from amd64 no-multilib.
+
+  01 Apr 2014; Tom Wijsman <TomWij@gentoo.org>
+  hardened/linux/amd64/no-multilib/package.mask:
+  [QA] Remove obsolete googleearth mask from hardened amd64 no-multilib.
+
+  01 Apr 2014; Tom Wijsman <TomWij@gentoo.org> package.mask:
+  [QA] Remove obsolete grep-2.13 mask.
+
+  01 Apr 2014; Michael Palimaka <kensington@gentoo.org> package.mask:
+  Unmask media-gfx/kgraphviewer wrt bug #491760.
+
+  31 Mar 2014; Tom Wijsman <TomWij@gentoo.org> hardened/linux/package.mask:
+  [QA] Remove obsolete hardened gcc-4.4.2 mask.
+
+  31 Mar 2014; Tom Wijsman <TomWij@gentoo.org>
+  -targets/desktop/kde/package.mask:
+  [QA] Remove obsolete KDE broken NVIDIA drivers sigprocmask mask.
+
+  31 Mar 2014; Tom Wijsman <TomWij@gentoo.org> uclibc/ppc/package.use.mask:
+  [QA] Cleaned up uclibc/ppc/package.use.mask and removed obsolete
+  ibm-jdk-bin-1.5 mask.
+
+  31 Mar 2014; Tom Wijsman <TomWij@gentoo.org> package.mask:
+  Prevent users from switching JDK / JRE implementation.
+
+  30 Mar 2014; Tom Wijsman <TomWij@gentoo.org>
+  arch/amd64/package.use.stable.mask, arch/x86/package.use.stable.mask,
+  -default/linux/amd64/13.0/package.use.stable.mask,
+  -default/linux/x86/13.0/package.use.stable.mask:
+  Move p.u.s.m masks from default/linux/{amd64,x86}/13.0/ to arch/{amd64,x86}/.
+
+  30 Mar 2014; Mike Gilbert <floppym@gentoo.org> package.mask:
+  Drop mask on dev-lang/python:3.4.
+
+  30 Mar 2014; Pacho Ramos <pacho@gentoo.org> targets/systemd/make.defaults:
+  We want udev USE to be enabled too
+
+  29 Mar 2014; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Update mask for gdk-pixbuf
+
+  29 Mar 2014; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Update mask for pango
+
+  29 Mar 2014; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Release the working udev virtuals to ~arch as no policy has been violated and
+  there has been no consensus for masking them among the QA team or council.
+  This is a maintainer commit which can be reverted only by the maintainers, or
+  majority vote in the respective authorities.
+
+  29 Mar 2014; Rick Farina <zerochaos@gentoo.org> package.mask:
+  Restore QA mask incorrectly reverted without permission.
+  sys-power/upower was fixed BEFORE the initial mask, please learn
+  to cvs up before complaining about 'breakage'
+
+  29 Mar 2014; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Drop wrong mask of working udev virtuals.
+
+  28 Mar 2014; Rick Farina <zerochaos@gentoo.org> package.mask:
+  missed virtual/udev-208-r2 in previous mask
+
+  28 Mar 2014; Rick Farina <zerochaos@gentoo.org> package.mask:
+  Mask virtual/lib[g]udev pending discussion on -dev, bug #506114
+
+  28 Mar 2014; Michał Górny <mgorny@gentoo.org> package.mask:
+  Add a note to update wiki page when unmasking multilib packages.
+
+  27 Mar 2014; Michał Górny <mgorny@gentoo.org> targets/desktop/package.use:
+  Copy the USE defaults to virtual/libgudev.
+
+  27 Mar 2014; Andreas K. Huettel <dilfridge@gentoo.org> releases/13.0/eapi,
+  +uclibc/amd64/eapi, +releases/freebsd-8.2/eapi, +uclibc/arm/2.4/eapi,
+  +releases/freebsd-9.1/eapi, +uclibc/arm/armeb/2.4/eapi,
+  +releases/freebsd-9.2/eapi, +releases/eapi, +targets/desktop/eapi,
+  +targets/desktop/gnome/eapi, +targets/desktop/kde/eapi,
+  +targets/developer/eapi, +targets/systemd/eapi, +uclibc/arm/armeb/eapi,
+  +uclibc/arm/eapi, +uclibc/eapi, +uclibc/mips/eapi,
+  +uclibc/mips/hardened/eapi, +uclibc/mips/mipsel/eapi,
+  +uclibc/mips/mipsel/hardened/eapi, +uclibc/ppc/2.4/eapi, +uclibc/ppc/eapi,
+  +uclibc/ppc/hardened/2.4/eapi, +uclibc/ppc/hardened/eapi,
+  +uclibc/sh/2.4/eapi, +uclibc/sh/eapi, +uclibc/x86/2.4/eapi,
+  +uclibc/x86/2005.1/2.4/eapi, +uclibc/x86/2005.1/eapi, +uclibc/x86/eapi,
+  +uclibc/x86/hardened/2.4/eapi, +uclibc/x86/hardened/eapi,
+  +uclibc/x86/linux24/eapi, +uclibc/x86/linux26/eapi:
+  Increase EAPI to 5
+
+  27 Mar 2014; Mike Gilbert <floppym@gentoo.org> package.mask:
+  Remove mask on >=sys-apps/systemd-210.
+
+  27 Mar 2014; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask -r22 of emul-linux-x86-baselibs with removed libmagic.so* together with
+  >=sys-apps/file-5.18-r1 wrt #505936
+
+  26 Mar 2014; Ulrich Müller <ulm@gentoo.org> profiles.desc:
+  Drop m68k, s390, sh profiles to exp per 20140225 council decision.
+
+  26 Mar 2014; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.mask:
+  Mask <mesa-9.1.4 for security bugs #445916, #471098 and #472280.
 
   25 Mar 2014; Ulrich Müller <ulm@gentoo.org> package.mask:
   Remove app-emacs/{tnt,gnuserv-programs} masks, packages have been removed.

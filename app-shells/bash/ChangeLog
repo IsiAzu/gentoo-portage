@@ -1,6 +1,35 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.357 2014/03/20 19:45:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.362 2014/04/02 11:38:52 tomwij Exp $
+
+  02 Apr 2014; Tom Wijsman <TomWij@gentoo.org> bash-4.2_p46-r1.ebuild:
+  Downgrade 4.2_p46-r1 to EAPI 4 per Poly-C's request, as this is an essential
+  base-system package.
+
+*bash-4.2_p46-r1 (02 Apr 2014)
+
+  02 Apr 2014; Tom Wijsman <TomWij@gentoo.org> +bash-4.2_p46-r1.ebuild,
+  -bash-4.2_p46.ebuild:
+  [QA] Revision bump to 4.2_p46-r1 for EAPI 5 and Prefix support.
+
+*bash-4.2_p46 (01 Apr 2014)
+
+  01 Apr 2014; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p46.ebuild:
+  Version bump.
+
+*bash-4.3_p8 (31 Mar 2014)
+
+  31 Mar 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3-r3.ebuild,
+  +bash-4.3_p8.ebuild, -files/bash-4.3-compound-array-empty-value.patch,
+  -files/bash-4.3-debug-trap.patch, -files/bash-4.3-extglob-skipname.patch,
+  -files/bash-4.3-jobs-exit.patch, -files/bash-4.3-parse-ansi-expand.patch:
+  Bump to latest official patch release.
+
+*bash-4.3-r3 (28 Mar 2014)
+
+  28 Mar 2014; Mike Frysinger <vapier@gentoo.org> +bash-4.3-r3.ebuild,
+  +files/bash-4.3-input-line-realloc.patch, -bash-4.3-r2.ebuild:
+  Fix from upstream for crash when exiting the shell.
 
 *bash-4.3-r2 (20 Mar 2014)
 

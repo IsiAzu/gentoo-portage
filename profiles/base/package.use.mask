@@ -1,10 +1,18 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.552 2014/03/21 07:43:12 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.556 2014/04/06 16:56:41 mgorny Exp $
 
 # This file requires >=portage-2.1.1
 # New entries go on top.
 #
+
+# Julian Ospald <hasufell@gentoo.org> (06 Apr 2014)
+# broken wrt #501582
+<net-misc/openvpn-9999 polarssl
+
+# Mike Gilbert <floppym@gentoo.org> (27 Mar 2014)
+# sys-libs/libseccomp is not keyworded on many archs.
+sys-apps/systemd seccomp
 
 # Ben de Groot <yngwin@gentoo.org> (21 Mar 2014)
 # harfbuzz multilib ebuild is still masked
@@ -191,11 +199,6 @@ app-leechcraft/leechcraft-meta unstable
 >=dev-db/percona-server-5.5 pbxt
 >=dev-db/google-mysql-5.5 pbxt
 
-# XFCE <xfce@gentoo.org> (01 Jun 2013)
-# Masked temporarily while waiting for >=net-libs/webkit-gtk-2 unmasking from
-# profiles/package.mask
->=www-client/midori-0.5.2 webkit2
-
 # Kacper Kowalik <xarthisius@gentoo.org> (19 May 2013)
 # Fails to build, haven't had time to debug
 app-doc/doxygen sqlite
@@ -281,8 +284,8 @@ app-misc/tracker eds
 sci-chemistry/gromacs cuda mkl openmm
 
 # Zac Medico <zmedico@gentoo.org> (13 Jun 2012)
-# Mask USE=pypy2_0 for sys-apps/portage, since pypy has limited KEYWORDS.
-sys-apps/portage pypy2_0
+# Mask USE=pypy* for sys-apps/portage, since pypy has limited KEYWORDS.
+sys-apps/portage pypy pypy2_0
 
 # Jory A. Pratt <anarchy@gentoo.org> (15 Dec 2012)
 # PGO is known to be busted with most configurations

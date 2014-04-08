@@ -1,6 +1,32 @@
 # ChangeLog for sys-apps/systemd
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/ChangeLog,v 1.240 2014/03/24 19:33:02 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/ChangeLog,v 1.246 2014/04/07 14:48:58 floppym Exp $
+
+*systemd-212-r1 (07 Apr 2014)
+
+  07 Apr 2014; Mike Gilbert <floppym@gentoo.org>
+  +files/212-0001-sd-rtnl-fix-off-by-one.patch, +systemd-212-r1.ebuild:
+  Backport crashfix in networkd, bug 507044 by Alexander Tsoy.
+
+  06 Apr 2014; Pacho Ramos <pacho@gentoo.org> -systemd-204-r1.ebuild,
+  -systemd-211.ebuild, metadata.xml:
+  Drop old
+
+  31 Mar 2014; Mike Gilbert <floppym@gentoo.org> systemd-212.ebuild,
+  systemd-9999.ebuild:
+  Check for CONFIG_NET_NS, bug 506244 by Alexander Bartha.
+
+  29 Mar 2014; Michał Górny <mgorny@gentoo.org> systemd-212.ebuild:
+  Require kernel 3.7 temporarily due to unconditional use of newer defines.
+
+  28 Mar 2014; Michał Górny <mgorny@gentoo.org> systemd-212.ebuild,
+  systemd-9999.ebuild:
+  Fix gnutls dep wrt bug #506060.
+
+*systemd-212 (27 Mar 2014)
+
+  27 Mar 2014; Michał Górny <mgorny@gentoo.org> +systemd-212.ebuild:
+  Version bump.
 
   24 Mar 2014; Michał Górny <mgorny@gentoo.org> systemd-9999.ebuild:
   Update following upstream changes. GnuTLS support has been added, and tcp-

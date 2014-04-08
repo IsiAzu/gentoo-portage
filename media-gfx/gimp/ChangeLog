@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.425 2014/03/15 15:28:26 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.428 2014/04/05 11:40:27 ago Exp $
+
+  05 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gimp-2.8.10-r1.ebuild:
+  Stable for x86, wrt bug #504212
+
+  04 Apr 2014; Chema Alonso <nimiux@gentoo.org> gimp-2.8.10-r1.ebuild:
+  Stable for amd64 wrt bug #504212
+
+  28 Mar 2014; Jeroen Roovers <jer@gentoo.org> gimp-2.8.10-r1.ebuild:
+  Stable for HPPA (bug #504212).
 
   15 Mar 2014; Sebastian Pipping <sping@gentoo.org> gimp-9999.ebuild:
   Update live ebuild dependencies (bug #490636)
