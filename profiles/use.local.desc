@@ -1931,6 +1931,7 @@ dev-python/amqplib:extras - Install extra tools to generate initial Python mod f
 dev-python/anyvc:bazaar - Add support for Bazaar
 dev-python/anyvc:mercurial - Add support for Mercurial
 dev-python/bpython:urwid - Backend based on dev-python/urwid
+dev-python/celery:redis - Enables redis support
 dev-python/celery:sql - Adds SQL support
 dev-python/cgkit:3ds - Enable support for importing 3D Studio models
 dev-python/cvxopt:dsdp - Use interior point library sci-libs/dsdp
@@ -2323,6 +2324,7 @@ dev-vcs/git-annex:android - Building for Android
 dev-vcs/git-annex:androidsplice - Get TH splices for Android.
 dev-vcs/git-annex:assistant - Enable git-annex assistant and watch command
 dev-vcs/git-annex:cryptohash - Enable use of cryptohash for checksumming
+dev-vcs/git-annex:desktop-notify - Enable desktop environment notifications
 dev-vcs/git-annex:dns - Enable the haskell DNS library for DNS lookup
 dev-vcs/git-annex:ekg - Enable use of EKG to monitor git-annex as it runs.
 dev-vcs/git-annex:feed - Enable podcast feed support
@@ -2334,6 +2336,7 @@ dev-vcs/git-annex:tahoe - Enable the tahoe special remote
 dev-vcs/git-annex:tdfa - Use regex-tdfa for wildcards
 dev-vcs/git-annex:testsuite - Embed the test suite into git-annex
 dev-vcs/git-annex:webapp - Enable git-annex webapp
+dev-vcs/git-annex:webapp-secure - Secure webapp
 dev-vcs/git-annex:webdav - Enable webdav remote
 dev-vcs/gitg:glade - Install a glade catalog file
 dev-vcs/gitg:python - Install Python bindings for those plugins requiring it.
