@@ -704,6 +704,7 @@ app-laptop/prey:userpriv - Create a prey user group so regular users can access 
 app-laptop/prey:webcam - Use computer's webcam to take screenshots of the thief
 app-laptop/thinkfan:atasmart - include libatasmart support to get disc temperature
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
+app-leechcraft/lc-aggregator:webaccess - Enables web interface submodule for Aggregator
 app-leechcraft/lc-azoth:acetamide - Build Acetamide, the IRC protocol support
 app-leechcraft/lc-azoth:adiumstyles - Build support for Adium styles
 app-leechcraft/lc-azoth:astrality - Build Astrality, support for protocols provided by Telepathy
@@ -1948,6 +1949,7 @@ dev-python/django-tastypie:oauth - Adds OAuth authentication support
 dev-python/django-tastypie:yaml - An optional serialiser dev-python/yaml
 dev-python/docutils:glep - Install support for GLEPs
 dev-python/falcon:cython - Build cython-based python modules
+dev-python/geopy:yahoo - Enables use of YahooPlaceFinder
 dev-python/gmpy:mpir - Use sci-libs/mpir as gmp implementation
 dev-python/icalendar:doc - Generate examples and other extra documentation
 dev-python/ipython:matplotlib - Add support for dev-python/matplotlib
@@ -3041,6 +3043,8 @@ mail-mta/qmail-ldap:rfc2307 - Add support for RFC2307 compliant uid/gid attribut
 mail-mta/qmail-ldap:rfc822 - Add support for RFC822 compliant mail attributes
 mail-mta/qpsmtpd:postfix - create user with permissions for proper postfix interaction
 mail-mta/ssmtp:mta - Install symlinks for sendmail-compatible MTA.
+mate-base/caja:mate - Install x11-themes/mate-icon-theme which is needed when this package is used in the MATE desktop environment.
+mate-base/caja:unique - Enable single instance support using dev-libs/libunique.
 mate-base/mate:extras - Install additional MATE applications
 mate-base/mate-file-manager:mate - Install x11-themes/mate-icon-theme which is needed when this package is used in the MATE desktop environment.
 mate-base/mate-file-manager:unique - Enable single instance support using dev-libs/libunique.
@@ -4513,10 +4517,11 @@ net-dns/ddclient:hardened - Use iproute2 instead of ifconfig to grab an IP addre
 net-dns/ddclient:ssl - Connect to the server utilizing SSL
 net-dns/dnsmasq:auth-dns - Add support for acting as an authorative DNS server.
 net-dns/dnsmasq:conntrack - Add support for Linux conntrack connection marking.
-net-dns/dnsmasq:dhcp - Enable support for reading ISC DHCPd lease files
-net-dns/dnsmasq:dhcp-tools - Install extra command line tools for manually managing DHCP leases
-net-dns/dnsmasq:script - Enable support for calling scripts when leases change
-net-dns/dnsmasq:tftp - Enables built in TFTP server for netbooting
+net-dns/dnsmasq:dhcp - Enable support for acting as a DHCP server.
+net-dns/dnsmasq:dhcp-tools - Install extra command line tools for manually managing DHCP leases.
+net-dns/dnsmasq:dnssec - Enable support DNSSEC validation and caching.
+net-dns/dnsmasq:script - Enable support for calling scripts when leases change.
+net-dns/dnsmasq:tftp - Enables built in TFTP server for netbooting.
 net-dns/knot:fastparser - Enables fast DNS zone parser.
 net-dns/ldns-utils:ecdsa - Enable ECDSA support
 net-dns/ldns-utils:gost - Enable GOST support
