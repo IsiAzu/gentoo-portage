@@ -2943,9 +2943,6 @@ mail-client/evolution:map - Enable support for displaying contacts on a map insi
 mail-client/evolution:networkmanager - Allows Evolution to automagically toggle online/offline mode by talking to net-misc/networkmanager and getting the current network state
 mail-client/evolution:spamassassin - Build mail-filter/spamassassin plugin
 mail-client/evolution:weather - Enable optional weather calendar support
-mail-client/mail-notification:gmail - Enable Gmail mailbox checking
-mail-client/mail-notification:mh - Enable MH mailbox checking
-mail-client/mail-notification:pop - Enable support for pop
 mail-client/mail-notification:sylpheed - Enable support for MH mailboxes used by mail-client/sylpheed
 mail-client/mutt:gpg - Enable support for app-crypt/gpgme
 mail-client/mutt:pop - Enable support for pop
@@ -4967,6 +4964,7 @@ net-libs/cyassl:errorstrings - Enable error strings table
 net-libs/cyassl:extra - Enable extra OpenSSL API
 net-libs/cyassl:fortress - Enable fortress SSL build (requires extra and SHA512)
 net-libs/cyassl:hc128 - Enable HC-128 support
+net-libs/cyassl:hkdf - Enable HKDF (HMAC-KDF) support
 net-libs/cyassl:httpd - Enable features for yaSSL web server
 net-libs/cyassl:huge - Choose big cache size (excludes small or big)
 net-libs/cyassl:leanpsk - Enable lean PSK support (requires psk)
@@ -4979,6 +4977,7 @@ net-libs/cyassl:memory - Enable memory callbacks
 net-libs/cyassl:nullcipher - Enable nullcipher support
 net-libs/cyassl:ocsp - Enable Online Certificate Status Protocol
 net-libs/cyassl:pkcallbacks - Enable Public Key Callbacks
+net-libs/cyassl:pkcs7 - Enable PKCS7 standard
 net-libs/cyassl:psk - Enable Pre-Shared Key support
 net-libs/cyassl:pwdbased - Enable PWDBASED (requires extra)
 net-libs/cyassl:rabbit - Enable RABBIT cipher support
@@ -4986,6 +4985,7 @@ net-libs/cyassl:ripemd - Enable RIPEMD-160 support
 net-libs/cyassl:rsa - Enable RSA cihper support
 net-libs/cyassl:savecert - Support certificate saving
 net-libs/cyassl:savesession - Support session saving
+net-libs/cyassl:scep - Enable wolfSCEP
 net-libs/cyassl:sep - Enable sep extensions
 net-libs/cyassl:sessioncerts - Store session certificates
 net-libs/cyassl:sha - Enable SHA cipher support
@@ -4993,6 +4993,7 @@ net-libs/cyassl:sha512 - Enable SHA-160 support
 net-libs/cyassl:small - Choose small cache size (excludes big or huge)
 net-libs/cyassl:sni - Enable server name indication
 net-libs/cyassl:sniffer - Allow collection/decryption of SSL traffic
+net-libs/cyassl:supportedcurves - Enable Supported Elliptic Curves
 net-libs/cyassl:testcert - Enable certificate testing
 net-libs/cyassl:tlsx - Enable all TLS Extensions
 net-libs/cyassl:truncatedhmac - Enable Truncated HMAC
@@ -6994,6 +6995,9 @@ www-misc/monitorix:lm_sensors - Additional hardware mnitoring sensors with sys-a
 www-misc/monitorix:postfix - Analyze postfix logs with net-mail/pflogsumm.
 www-misc/vdradmin-am:vdr - Support for media-video/vdr. Disable this if the VDR you want to control runs at a remote machine.
 www-misc/xxv:themes - Enable more themes via x11-themes/xxv-skins
+www-misc/zoneminder:gcrypt - ...
+www-misc/zoneminder:openssl - ...
+www-misc/zoneminder:vlc - ...
 www-plugins/adobe-flash:kde - Enables a KCM plugin for configuring flash player preferences
 www-plugins/chrome-binary-plugins:flash - Install Chrome's native Pepper Flash.
 www-plugins/chrome-binary-plugins:pdf - Install Chrome's native PDF reader plugin.
