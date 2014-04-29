@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/timidity++/timidity++-2.14.0-r1.ebuild,v 1.5 2014/04/29 02:45:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/timidity++/timidity++-2.14.0-r2.ebuild,v 1.1 2014/04/29 03:09:40 vapier Exp $
 
 EAPI=5
 inherit autotools eutils elisp-common user systemd toolchain-funcs
@@ -51,7 +51,8 @@ src_prepare() {
 		"${FILESDIR}"/${P}-revert-for-required-ctl_speana_data-function.patch \
 		"${FILESDIR}"/${P}-tcltk86.patch \
 		"${FILESDIR}"/${P}-ar.patch \
-		"${FILESDIR}"/${P}-configure-flags.patch
+		"${FILESDIR}"/${P}-configure-flags.patch \
+		"${FILESDIR}"/${P}-pkg-config.patch
 
 	eautoreconf
 }
@@ -88,6 +89,7 @@ src_configure() {
 
 	econf \
 		--localstatedir=/var/state/timidity++ \
+		--with-module-dir="${EPREFIX}/usr/share/timidity" \
 		--with-lispdir="${SITELISP}/${PN}" \
 		--with-elf \
 		--enable-audio=${audios} \
