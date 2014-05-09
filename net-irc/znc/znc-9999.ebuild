@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/znc/znc-9999.ebuild,v 1.8 2014/05/08 03:28:36 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/znc/znc-9999.ebuild,v 1.9 2014/05/09 05:17:38 wired Exp $
 
 EAPI=5
 
@@ -94,7 +94,6 @@ pkg_postinst() {
 		elog
 		elog "Run 'znc --makeconf' as the user you want to run ZNC as"
 		elog "to make a configuration file"
-		elog "If you are using SSL you should also run 'znc --makepem'"
 		elog
 	else
 		elog
@@ -105,7 +104,7 @@ pkg_postinst() {
 			elog "Run 'emerge --config znc' to configure ZNC"
 			elog "as a system-wide daemon."
 			elog
-			elog "If you are using SSL you should also run:"
+			elog "To generate a new SSL certificate, run:"
 			elog "  znc --system-wide-config-as znc --makepem -d ${CONFDIR}"
 			elog "as root"
 			elog
