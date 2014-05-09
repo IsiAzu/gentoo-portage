@@ -1,11 +1,11 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-soundlibs/emul-linux-x86-soundlibs-20140508.ebuild,v 1.1 2014/05/08 21:49:00 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-soundlibs/emul-linux-x86-soundlibs-20140508.ebuild,v 1.3 2014/05/09 19:03:35 ulm Exp $
 
 EAPI=5
 inherit emul-linux-x86
 
-LICENSE="BSD FDL-1.2 GPL-2 LGPL-2.1 LGPL-2 MIT gsm public-domain"
+LICENSE="!abi_x86_32? ( BSD FDL-1.2 GPL-2 LGPL-2.1 LGPL-2 MIT gsm public-domain ) abi_x86_32? ( metapackage )"
 KEYWORDS="-* ~amd64"
 IUSE="abi_x86_32 alsa +pulseaudio"
 
@@ -38,6 +38,9 @@ RDEPEND="~app-emulation/emul-linux-x86-baselibs-${PV}[abi_x86_32=]
 		>=media-libs/portaudio-19_pre20111121-r1[abi_x86_32(-)]
 		>=media-sound/mpg123-1.15.4-r1[abi_x86_32(-)]
 		>=media-libs/libao-1.1.0-r1[abi_x86_32(-)]
+		>=media-libs/alsa-oss-1.0.25-r1[abi_x86_32(-)]
+		>=media-plugins/alsa-plugins-1.0.27-r2[abi_x86_32(-)]
+		>=net-wireless/bluez-5.18-r1[abi_x86_32(-)]
 		pulseaudio? ( >=media-sound/pulseaudio-4.0-r1[abi_x86_32(-)] )
 	)"
 
@@ -50,16 +53,9 @@ pkg_pretend() {
 }
 
 src_prepare() {
-	_ALLOWED="${S}/etc/env.d"
-	use alsa && _ALLOWED="${_ALLOWED}|${S}/usr/bin/aoss"
-	ALLOWED="(${_ALLOWED})"
+	use abi_x86_32 || emul-linux-x86_src_prepare
+}
 
-	emul-linux-x86_src_prepare
-
-	if use alsa; then
-		mv -f "${S}"/usr/bin/aoss{,32} || die
-	fi
-
-	# Remove migrated stuff.
-	use abi_x86_32 && rm -f $(sed "${FILESDIR}/remove-native-${PVR}" -e '/^#/d')
+src_install() {
+	use abi_x86_32 || emul-linux-x86_src_install
 }
