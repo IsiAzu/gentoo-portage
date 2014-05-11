@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/pypolicyd-spf/pypolicyd-spf-1.2-r1.ebuild,v 1.2 2014/05/11 01:54:46 mjo Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/pypolicyd-spf/pypolicyd-spf-1.3.ebuild,v 1.1 2014/05/11 02:11:13 mjo Exp $
 
 EAPI=5
 
@@ -33,10 +33,13 @@ IUSE=""
 #
 #   https://bugs.launchpad.net/pypolicyd-spf/+bug/1229862
 #
+# The lower bound on pyspf is not strictly necessary, but some features
+# are silently disabled with older versions of pyspf.
+#
 DEPEND="$(python_gen_cond_dep \
 			'>=dev-python/ipaddr-2.1.10[${PYTHON_USEDEP}]' \
 			'python2*')
-	dev-python/pyspf[${PYTHON_USEDEP}]"
+	>=dev-python/pyspf-2.0.9[${PYTHON_USEDEP}]"
 
 RDEPEND="${DEPEND}
 	dev-python/authres[${PYTHON_USEDEP}]"
