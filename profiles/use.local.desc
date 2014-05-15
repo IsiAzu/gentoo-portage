@@ -575,6 +575,7 @@ app-emulation/virt-manager:spice - Support connecting to SPICE-enabled virtual m
 app-emulation/virt-manager:vnc - Support connecting to VNC-enabled virtual machines.
 app-emulation/virt-viewer:spice - Support connecting to SPICE-enabled virtual machines.
 app-emulation/virt-viewer:vnc - Support connecting to VNC-enabled virtual machines.
+app-emulation/virt-what:dmi - Use sys-apps/dmidecode to read firmware data
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
 app-emulation/virtualbox:extensions - Install extension module packages
 app-emulation/virtualbox:headless - Build without any graphic frontend
@@ -3412,11 +3413,11 @@ media-libs/libsdl:joystick - Control joystick support (disable at your own risk)
 media-libs/libsdl:ps3 - Build the PS3 video driver
 media-libs/libsdl:tslib - Build with tslib support for touchscreen devices
 media-libs/libsdl:video - Control video support (disable at your own risk)
-media-libs/libsdl2:audio - Control audio support (disable at your own risk)
 media-libs/libsdl2:fusionsound - use FusionSound audio driver
 media-libs/libsdl2:gles - include OpenGL ES support
 media-libs/libsdl2:haptic - Enable the haptic (force feedback) subsystem
 media-libs/libsdl2:joystick - Control joystick support (disable at your own risk)
+media-libs/libsdl2:sound - Control audio support (disable at your own risk)
 media-libs/libsdl2:tslib - Build with tslib support for touchscreen devices
 media-libs/libsdl2:video - Control video support (disable at your own risk)
 media-libs/libvpx:postproc - Enable additional post processing filters
@@ -5080,7 +5081,7 @@ net-libs/gtk-vnc:introspection - Use dev-libs/gobject-introspection for introspe
 net-libs/gtk-vnc:vala - Enable bindings for dev-lang/vala
 net-libs/gupnp-igd:introspection - Use dev-libs/gobject-introspection for introspection
 net-libs/h323plus:aec - Enable acoustic echo cancellation
-net-libs/h323plus:audio - Enable audio codecs
+net-libs/h323plus:sound - Enable audio codecs
 net-libs/h323plus:video - Enable video codecs
 net-libs/iax:snomhack - Use slower memset for SNOM phoneem
 net-libs/ldns:ecdsa - Enable ECDSA support
@@ -5135,7 +5136,6 @@ net-libs/neon:pkcs11 - Add support for PKCS#11 using dev-libs/pakchois
 net-libs/netembryo:sctp - Support for Stream Control Transmission Protocol
 net-libs/nodejs:npm - Enable NPM package manager
 net-libs/nodejs:snapshot - Enable snapshot creation for faster startup
-net-libs/opal:audio - Enable audio support
 net-libs/opal:capi - Enable CAPI support
 net-libs/opal:celt - Enable CELT ultra-low delay audio codec
 net-libs/opal:dtmf - Enable DTMF encoding/decoding support
@@ -5173,7 +5173,6 @@ net-libs/pjsip:l16 - Builds the L16 codec
 net-libs/polarssl:havege - Enable the HAVEGE random generator. Warning: the HAVEGE random generator is not suitable for virtualized environments
 net-libs/polarssl:programs - Build PolarSSL programs
 net-libs/ptlib:asn - Enable ASN decoding/encoding support
-net-libs/ptlib:audio - Enable audio support
 net-libs/ptlib:dtmf - Enable DTMF encoding/decoding support
 net-libs/ptlib:http - Enable HTTP support
 net-libs/ptlib:mail - Enable mail protocols (POP3/SMTP)
@@ -5768,7 +5767,6 @@ net-proxy/dansguardian:trickledm - Enable support for the trickle download manag
 net-proxy/haproxy:tools - Install additional tools (halog, iprange).
 net-proxy/rejik:banlists - Install upstream provided simple banlists
 net-proxy/squid:ecap - Adds support for loadable content adaptation modules (http://www.e-cap.org)
-net-proxy/squid:epoll - Enables Linux epoll() support
 net-proxy/squid:esi - Enable ESI for accelerators, will cause squid reverse proxies to be capable of the Edge Acceleration Specification (www.esi.org)
 net-proxy/squid:htcp - Enable HTCP protocol
 net-proxy/squid:icap-client - Adds ICAP client support
@@ -5781,7 +5779,6 @@ net-proxy/squid:ssl-crtd - Adds support for dynamic SSL certificate generation i
 net-proxy/squid:tproxy - Enables real Transparent Proxy support for Linux Netfilter TPROXY
 net-proxy/squid:wccp - Enable Web Cache Coordination Protocol
 net-proxy/squid:wccpv2 - Enable Web Cache Coordination V2 Protocol
-net-proxy/squid:zero-penalty-hit - Add Zero Penalty Hit patch (http://zph.bratcheda.org)
 net-proxy/sshproxy:client-only - Install only the client wrappers
 net-proxy/tinyproxy:filter-proxy - Enable filtering of domains/URLS
 net-proxy/tinyproxy:reverse-proxy - Enable reverse proxying
