@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15727 2014/05/26 11:32:20 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15730 2014/05/26 18:11:33 hwoarang Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,9 +30,15 @@
 
 #--- END OF EXAMPLES ---
 
+# Jauhien Piatlicki <jauhien@gentoo.org> (26 May 2014)
+# Masked for testing as there are issues with powermanagement
+# (not working reboot/halt)
+lxqt-base/lxqt-panel
+
 # Lars Wendler <polynomial-c@gentoo.org> (26 May 2014)
 # Masked until sys-auth/sssd got subslot support (bug #511528 and bug #511530).
 >=sys-libs/ldb-1.1.17-r1
+>=sys-auth/sssd-1.9.6-r3
 
 # Joerg Bornkessel <hd_brummy@gentoo.org (24 May 2014)
 # masked for removal old, plz. upgrade to vdr-2
@@ -795,10 +801,6 @@ dev-java/sun-jce-bin
 # Patrick Lauer <patrick@gentoo.org> (21 May 2013)
 # broken dependencies -> uninstallable #470712
 app-portage/g-ctan
-
-# Markos Chandras <hwoarang@gentoo.org> (28 Apr 2013)
-# Early release of pcmanfm Qt4 port
-x11-misc/pcmanfm-qt
 
 # Michael Weber <xmw@gentoo.org> (18 Apr 2013)
 # Masked due test failures
