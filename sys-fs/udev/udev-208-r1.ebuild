@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-208.ebuild,v 1.18 2014/04/28 17:54:55 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-208-r1.ebuild,v 1.1 2014/06/02 13:32:26 ssuominen Exp $
 
 EAPI=5
 
@@ -17,7 +17,7 @@ else
 					http://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
 					http://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
 			fi
-	KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
+	KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86"
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
@@ -25,13 +25,13 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl doc +firmware-loader gudev introspection +kmod +openrc selinux static-libs"
+IUSE="acl doc +firmware-loader gudev introspection +kmod selinux static-libs"
 
 RESTRICT="test"
 
 COMMON_DEPEND=">=sys-apps/util-linux-2.20
 	acl? ( sys-apps/acl )
-	gudev? ( >=dev-libs/glib-2 )
+	gudev? ( >=dev-libs/glib-2.22[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.31.1 )
 	kmod? ( >=sys-apps/kmod-14 )
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
@@ -57,7 +57,6 @@ if [[ ${PV} = 9999* ]]; then
 		>=dev-util/intltool-0.50"
 fi
 RDEPEND="${COMMON_DEPEND}
-	openrc? ( !<sys-apps/openrc-0.9.9 )
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.97-r1
 	!sys-fs/device-mapper
@@ -66,7 +65,7 @@ RDEPEND="${COMMON_DEPEND}
 	!<sys-kernel/genkernel-3.4.25
 	!<sec-policy/selinux-base-2.20120725-r10"
 PDEPEND=">=sys-apps/hwids-20130717-r1[udev]
-	openrc? ( >=sys-fs/udev-init-scripts-25 )"
+	>=sys-fs/udev-init-scripts-25"
 
 S=${WORKDIR}/systemd-${PV}
 
@@ -206,6 +205,7 @@ multilib_src_configure() {
 		--disable-pam
 		--disable-quotacheck
 		--disable-readahead
+		$(use_enable gudev)
 		--enable-split-usr
 		--disable-tcpwrap
 		--disable-timedated
@@ -226,7 +226,6 @@ multilib_src_configure() {
 			--with-rootlibdir=/$(get_libdir)
 			$(use_enable acl)
 			$(use_enable doc gtk-doc)
-			$(use_enable gudev)
 			$(use_enable kmod)
 			$(use_enable selinux)
 			$(use_enable static-libs static)
@@ -237,7 +236,6 @@ multilib_src_configure() {
 			--with-rootlibdir=/usr/$(get_libdir)
 			--disable-acl
 			--disable-gtk-doc
-			--disable-gudev
 			--disable-kmod
 			--disable-selinux
 			--disable-static
@@ -295,6 +293,7 @@ multilib_src_compile() {
 		fi
 	else
 		local lib_targets=( libudev.la )
+		use gudev && lib_targets+=( libgudev-1.0.la )
 		emake "${lib_targets[@]}"
 	fi
 }
@@ -368,6 +367,11 @@ multilib_src_install() {
 			install-includeHEADERS
 			install-pkgconfiglibDATA
 		)
+
+		if use gudev; then
+			lib_LTLIBRARIES+=" libgudev-1.0.la"
+			pkgconfiglib_DATA+=" src/gudev/gudev-1.0.pc"
+		fi
 
 		targets+=(
 			lib_LTLIBRARIES="${lib_LTLIBRARIES}"
@@ -468,7 +472,7 @@ pkg_postinst() {
 	done
 
 	elog
-	elog "Starting from version >= 200 the new predictable network interface names are"
+	elog "Starting from version >= 197 the new predictable network interface names are"
 	elog "used by default, see:"
 	elog "http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames"
 	elog "http://cgit.freedesktop.org/systemd/systemd/tree/src/udev/udev-builtin-net_id.c"
@@ -481,7 +485,7 @@ pkg_postinst() {
 	elog "file /etc/udev/rules.d/80-net-name-slot.rules, or symlink it to /dev/null"
 	elog "to disable the feature."
 
-	if has_version sys-apps/biosdevname; then
+	if has_version 'sys-apps/biosdevname'; then
 		ewarn
 		ewarn "You can replace the functionality of sys-apps/biosdevname which has been"
 		ewarn "detected to be installed with the new predictable network interface names."
