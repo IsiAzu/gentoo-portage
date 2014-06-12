@@ -1,9 +1,12 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.10.ebuild,v 1.2 2014/01/20 07:07:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.13.ebuild,v 1.2 2014/06/12 06:05:39 binki Exp $
 
-EAPI=4
-inherit autotools autotools-utils eutils
+EAPI=5
+
+AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
+
+inherit autotools autotools-multilib eutils
 
 DESCRIPTION="A unit test framework for C"
 HOMEPAGE="http://sourceforge.net/projects/check/"
@@ -17,10 +20,13 @@ IUSE="static-libs subunit"
 DEPEND="subunit? ( dev-python/subunit )"
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-	epatch \
-		"${FILESDIR}"/${PN}-0.9.10-AM_PATH_CHECK.patch
+pkg_setup() {
+	# See multilib_src_test(), disable sleep()-based tests because they
+	# just take a long time doing pretty much nothing.
+	export CPPFLAGS="-DTIMEOUT_TESTS_ENABLED=0 ${CPPFLAGS}"
+}
 
+src_prepare() {
 	sed -i -e '/^docdir =/d' {.,doc}/Makefile.am || die
 
 	# fix out-of-sourcedir build having inconsistent check.h files, for
@@ -39,13 +45,19 @@ src_configure() {
 		$(use_enable subunit)
 		--docdir="${EPREFIX}"/usr/share/doc/${PF}
 	)
-	autotools-utils_src_configure
+	autotools-multilib_src_configure
+}
+
+multilib_src_test() {
+	elog "-DTIMEOUT_TESTS_ENABLED=0 has been prepended to CPPFLAGS. To run the"
+	elog "entire testsuite for dev-libs/check, ensure that"
+	elog "-DTIMEOUT_TESTS_ENABLED=1 is in your CPPFLAGS."
+	default_src_test
 }
 
 src_install() {
-	autotools-utils_src_install
+	autotools-multilib_src_install
 	dodoc AUTHORS *ChangeLog* NEWS README THANKS TODO
 
 	rm -f "${ED}"/usr/share/doc/${PF}/COPYING* || die
-	prune_libtool_files --all
 }
