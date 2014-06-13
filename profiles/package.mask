@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15791 2014/06/13 10:01:05 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15794 2014/06/13 19:15:54 hanno Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,7 +30,12 @@
 
 #--- END OF EXAMPLES ---
 
-# Mike Gilbert <floppym@gentoo.org> (13 Jun 2013)
+# Ian Stakenvicius <axs@gentoo.org> (13 Jun 2014)
+# New multilib conversions. Will unmask after some testing and appropriate
+# de-integration from emul-linux-x86 packages
+=dev-libs/nspr-4.10.6-r1
+
+# Mike Gilbert <floppym@gentoo.org> (13 Jun 2014)
 # Masked due to security bug 499870.
 # Please migrate to net-misc/libreswan.
 # If you are a Gentoo developer, feel free to pick up maintenence of openswan
@@ -40,7 +45,7 @@ net-misc/openswan
 # Mike Gilbert <floppym@gentoo.org> (10 Jun 2014)
 # Masked due to pending dev-python/imaging removal, bug 471488.
 media-sound/decibel-audio-player
-net-im/pymsn-t
+=net-im/pymsn-t-0.11.3-r3
 sci-physics/camfr
 
 # Tom Wijsman <TomWij@gentoo.org> (8 Jun 2014)
