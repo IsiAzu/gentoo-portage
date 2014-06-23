@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/pyopenssl-0.14.ebuild,v 1.10 2014/06/23 04:24:05 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/pyopenssl-0.14.ebuild,v 1.12 2014/06/23 15:26:18 idella4 Exp $
 
 EAPI=5
 PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4} pypy )
@@ -19,9 +19,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~ia64 ~mips ~x86 ~x86-fbsd"
 IUSE="doc examples"
 
-RDEPEND="<dev-libs/openssl-1.0.1h
+RDEPEND="
 	>=dev-python/six-1.5.2[${PYTHON_USEDEP}]
-	>=dev-python/cryptography-0.2.1[${PYTHON_USEDEP}]"
+	>=dev-python/cryptography-0.2.1-r2[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
 
