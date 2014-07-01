@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea-bin/icedtea-bin-6.1.13.3-r3.ebuild,v 1.1 2014/06/27 14:34:25 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea-bin/icedtea-bin-6.1.13.3-r3.ebuild,v 1.4 2014/07/01 05:36:52 ago Exp $
 
 EAPI="5"
 
@@ -23,7 +23,7 @@ SRC_URI="
 
 LICENSE="GPL-2-with-linking-exception"
 SLOT="6"
-KEYWORDS="-* ~amd64 ~x86"
+KEYWORDS="-* amd64 x86"
 
 IUSE="+X +alsa cjk +cups doc examples nsplugin selinux source webstart"
 REQUIRED_USE="nsplugin? ( X )"
@@ -70,7 +70,7 @@ RDEPEND="${COMMON_DEP}
 	cups? ( ${CUPS_COMMON_DEP} )"
 
 PDEPEND="webstart? ( dev-java/icedtea-web:0 )
-	nsplugin? ( dev-java/icedtea-web:0[icedtea7] )"
+	nsplugin? ( dev-java/icedtea-web:0[nsplugin] )"
 
 src_install() {
 	local dest="/opt/${P}"
