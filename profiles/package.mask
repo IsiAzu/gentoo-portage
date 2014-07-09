@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15864 2014/07/08 15:47:11 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15867 2014/07/09 05:58:07 grozin Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -223,21 +223,14 @@ dev-java/ibm-jdk-bin:1.5
 =virtual/perl-Filter-Simple-0.910.0
 =virtual/perl-HTTP-Tiny-0.43.0
 =virtual/perl-IO-1.310.0
+=virtual/perl-IPC-Cmd-0.920.0
+=virtual/perl-JSON-PP-2.272.30
 =perl-core/B-Debug-1.190.0
 
 # Pawel Hajdan jr <phajdan.jr@gentoo.org> (24 May 2014)
 # Dev channel releases are only for people who are developers or want more
 # experimental features and accept a more unstable release.
 >=www-client/chromium-37
-
-# Andrey Grozin <grozin@gentoo.org> (23 May 2014)
-# Google closed free usage of the translate api
-# Masked for removal in 30 days
-app-text/qgoogletranslator
-# openmcl has been renamed to clozurecl
-# Masked for removal in 30 days
-dev-lisp/openmcl
-dev-lisp/openmcl-build-tools
 
 # Ryan Hill <rhill@gentoo.org> (22 May 2014)
 # Big API break.  Masked until something needs it.
