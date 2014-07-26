@@ -3026,6 +3026,7 @@ kde-misc/networkmanagement:openconnect - Build support for the OpenConnect VPN c
 kde-misc/plasma-nm:modemmanager - Enable support for mobile broadband devices
 kde-misc/plasma-nm:openconnect - Build support for the OpenConnect VPN client
 kde-misc/tellico:addressbook - Add support for kdepim addressbook (kabc)
+kde-misc/tellico:nepomuk - Enable Nepomuk based semantic desktop support (deprecated)
 lxde-base/lxdm:consolekit - Enables support for authorization using consolekit
 lxde-base/lxdm:gtk3 - Use GTK+3 instead of 2
 lxqt-base/lxqt-meta:icons - Install lxde-base/lxde-icon-theme icon theme
@@ -7020,7 +7021,6 @@ virtual/ffmpeg:vaapi - Enables VAAPI (Video Acceleration API) for hardware decod
 virtual/linux-sources:firmware - Install linux kernel firmware
 virtual/mpi:romio - Enable romio, a high-performance portable MPI-IO
 virtual/mysql:embedded - Build embedded server (libmysqld)
-virtual/udev:gudev - Build the gobject interface library
 www-apache/mod_extract_forwarded:mod_proxy - Enable support for Apache's internal proxy
 www-apache/mod_musicindex:archive - Add archive support
 www-apache/mod_musicindex:cache - Add File cache support
