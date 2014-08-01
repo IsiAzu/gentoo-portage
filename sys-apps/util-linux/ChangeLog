@@ -1,6 +1,25 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.473 2014/07/09 18:56:58 zlogene Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.478 2014/08/01 06:55:12 polynomial-c Exp $
+
+  01 Aug 2014; Lars Wendler <polynomial-c@gentoo.org> util-linux-9999.ebuild:
+  Fixed live ebuild as well.
+
+  01 Aug 2014; Lars Wendler <polynomial-c@gentoo.org> util-linux-2.25.ebuild:
+  Fixed installation aborting with header checksum error. Added some more
+  changes from 9999 ebuild.
+
+  01 Aug 2014; Lars Wendler <polynomial-c@gentoo.org> util-linux-2.25.ebuild:
+  Removed cytune support.
+
+*util-linux-2.25 (01 Aug 2014)
+
+  01 Aug 2014; Lars Wendler <polynomial-c@gentoo.org>
+  -util-linux-2.23.2-r2.ebuild, +util-linux-2.25.ebuild:
+  Version bump (bug #518702). Removed old.
+
+  31 Jul 2014; Christoph Junghans <ottxor@gentoo.org> util-linux-2.24.2.ebuild:
+  fixed prefix install
 
   09 Jul 2014; Mikle Kolyada <zlogene@gentoo.org> util-linux-2.24.1-r3.ebuild:
   ppc stable wrt bug #513378
