@@ -1,8 +1,11 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.10-r3.ebuild,v 1.2 2014/06/12 07:30:13 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.10-r4.ebuild,v 1.2 2014/08/14 15:04:37 zlogene Exp $
+
+EAPI=5
 
 inherit perl-module eutils prefix
+
 DESCRIPTION="Portage abstraction layer for perl"
 HOMEPAGE="http://download.mpsna.de/opensource/PortageXS/"
 SRC_URI="http://download.mpsna.de/opensource/PortageXS/${P}.tar.gz"
@@ -17,13 +20,12 @@ DEPEND="dev-lang/perl
 	virtual/perl-Term-ANSIColor
 	dev-perl/Shell-EnvImporter
 	!minimal? ( dev-perl/IO-Socket-SSL
-				virtual/perl-Sys-Syslog )"
+		    virtual/perl-Sys-Syslog )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.02.10-portage_path_fix.patch
 	epatch "${FILESDIR}"/${PN}-0.02.10-prefix.patch
+
 	eprefixify \
 		lib/PortageXS/Core.pm \
 		lib/PortageXS.pm \
@@ -31,19 +33,19 @@ src_unpack() {
 		usr/sbin/portagexsd
 
 	if use minimal ; then
-		rm -r "${S}"/usr
-		rm -r "${S}"/etc/init.d
-		rm -r "${S}"/etc/pxs/certs
-		rm "${S}"/etc/pxs/portagexsd.conf
-		rm -r "${S}"/lib/PortageXS/examples
+		rm -r "${S}"/usr || die
+		rm -r "${S}"/etc/init.d || die
+		rm -r "${S}"/etc/pxs/certs || die
+		rm "${S}"/etc/pxs/portagexsd.conf || die
+		rm -r "${S}"/lib/PortageXS/examples || die
 	fi
 }
 
 pkg_preinst() {
 	if use !minimal ; then
-		cp -r "${S}"/usr "${D}${EPREFIX}"
+		cp -r "${S}"/usr "${D}${EPREFIX}" || die
 	fi
-	cp -r "${S}"/etc "${D}${EPREFIX}"
+	cp -r "${S}"/etc "${D}${EPREFIX}" || die
 }
 
 pkg_postinst() {
