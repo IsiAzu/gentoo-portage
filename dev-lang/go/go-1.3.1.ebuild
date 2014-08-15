@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/go/go-1.2.ebuild,v 1.7 2014/03/28 14:08:40 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/go/go-1.3.1.ebuild,v 1.1 2014/08/15 00:26:17 williamh Exp $
 
 EAPI=5
 
@@ -12,9 +12,9 @@ if [[ ${PV} = 9999 ]]; then
 	EHG_REPO_URI="https://go.googlecode.com/hg"
 	inherit mercurial
 else
-	SRC_URI="http://go.googlecode.com/files/go${PV}.src.tar.gz"
+	SRC_URI="https://storage.googleapis.com/golang/go${PV}.src.tar.gz"
 	# Upstream only supports go on amd64, arm and x86 architectures.
-	KEYWORDS="-* amd64 arm x86 ~amd64-fbsd ~x86-fbsd ~x64-macos"
+	KEYWORDS="-* ~amd64 ~arm ~x86 ~amd64-fbsd ~x86-fbsd ~x64-macos ~x86-macos"
 fi
 
 DESCRIPTION="A concurrent garbage collected and typesafe programming language"
@@ -44,7 +44,7 @@ fi
 src_prepare()
 {
 	if [[ ${PV} != 9999 ]]; then
-		epatch "${FILESDIR}"/${P}-no-Werror.patch
+		epatch "${FILESDIR}"/${PN}-1.2-no-Werror.patch
 	fi
 	epatch_user
 }
