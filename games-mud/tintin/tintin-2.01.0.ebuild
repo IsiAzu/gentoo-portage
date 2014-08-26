@@ -1,7 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-mud/tintin/tintin-2.00.8.ebuild,v 1.4 2012/03/06 20:43:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-mud/tintin/tintin-2.01.0.ebuild,v 1.1 2014/08/25 21:54:13 mr_bones_ Exp $
 
+EAPI=5
 inherit games
 
 DESCRIPTION="(T)he k(I)cki(N) (T)ickin d(I)kumud clie(N)t"
@@ -10,20 +11,19 @@ SRC_URI="mirror://sourceforge/tintin/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 DEPEND="sys-libs/zlib
 	dev-libs/libpcre
 	sys-libs/readline
 	sys-libs/ncurses"
+RDEPEND=${DEPEND}
 
 S=${WORKDIR}/tt/src
 
-PATCHES=( "${FILESDIR}"/${P}-ldpermission.patch )
-
 src_install () {
-	dogamesbin tt++ || die "dogamesbin failed"
+	dogamesbin tt++
 	dodoc ../{CREDITS,FAQ,README,SCRIPTS,TODO,docs/*}
 	prepgamesdirs
 }
