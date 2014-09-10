@@ -1,13 +1,11 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999-r1.ebuild,v 1.18 2014/09/09 22:03:39 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-2.02_beta2-r1.ebuild,v 1.1 2014/09/09 21:59:41 floppym Exp $
 
 EAPI=5
 
-if [[ ${PV} == 9999 ]]; then
-	AUTOTOOLS_AUTORECONF=1
-	GRUB_AUTOGEN=1
-fi
+AUTOTOOLS_AUTORECONF=1
+GRUB_AUTOGEN=1
 
 if [[ -n ${GRUB_AUTOGEN} ]]; then
 	PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3,3_4} )
@@ -155,6 +153,11 @@ src_unpack() {
 }
 
 src_prepare() {
+	EPATCH_SOURCE="${FILESDIR}/${PV}" \
+	EPATCH_SUFFIX="patch" \
+	EPATCH_FORCE="yes" \
+	epatch
+
 	[[ ${PATCHES} ]] && epatch "${PATCHES[@]}"
 
 	sed -i -e /autoreconf/d autogen.sh || die
