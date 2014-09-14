@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-bin/libreoffice-bin-4.2.5.2.ebuild,v 1.8 2014/09/13 09:16:34 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-bin/libreoffice-bin-4.2.5.2.ebuild,v 1.11 2014/09/13 21:42:48 dilfridge Exp $
 
 EAPI=5
 
@@ -89,11 +89,11 @@ COMMON_DEPEND="
 	=app-text/libetonyek-0.0*
 	app-text/liblangtag
 	=app-text/libmspub-0.0*
-	>=app-text/libmwaw-0.2
-	>=app-text/libodfgen-0.0.3
+	=app-text/libmwaw-0.2*
+	=app-text/libodfgen-0.0*
 	app-text/libwpd:0.9[tools]
 	app-text/libwpg:0.2
-	>=app-text/libwps-0.2.2
+	=app-text/libwps-0.2*
 	>=app-text/poppler-0.16:=[xpdf-headers(+),cxx]
 	>=dev-cpp/clucene-2.3.3.4-r2
 	dev-cpp/libcmis:0.4
