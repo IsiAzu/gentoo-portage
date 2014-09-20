@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/geary/geary-0.6.1.ebuild,v 1.3 2014/09/06 16:41:05 nimiux Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/geary/geary-0.8.0.ebuild,v 1.1 2014/09/20 14:17:15 hasufell Exp $
 
 EAPI=5
 
@@ -15,10 +15,11 @@ SRC_URI="ftp://ftp.gnome.org/pub/GNOME/sources/geary/${PV:0:3}/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="nls"
 
 DEPEND="
+	app-crypt/gcr[gtk,introspection,vala]
 	app-crypt/libsecret
 	dev-db/sqlite:3
 	dev-libs/glib:2
@@ -27,7 +28,7 @@ DEPEND="
 	dev-libs/gmime:2.6
 	media-libs/libcanberra
 	>=net-libs/webkit-gtk-1.10.0:3[introspection]
-	>=x11-libs/gtk+-3.6.0:3[introspection]
+	>=x11-libs/gtk+-3.10.0:3[introspection]
 	x11-libs/libnotify"
 RDEPEND="${DEPEND}
 	gnome-base/gsettings-desktop-schemas
@@ -44,7 +45,8 @@ DOCS=( AUTHORS MAINTAINERS README NEWS THANKS )
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.5.3-{unity,cflags,vapigen}.patch \
+	epatch "${FILESDIR}"/${PN}-0.7.2-cflags.patch \
+		"${FILESDIR}"/${PN}-0.5.3-vapigen.patch \
 		"${FILESDIR}"/${PN}-0.6.0-desktopfile.patch
 
 	local i
