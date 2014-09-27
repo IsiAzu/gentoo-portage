@@ -1,53 +1,53 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.7-r1.ebuild,v 1.2 2009/01/01 20:39:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.8-r1.ebuild,v 1.1 2014/09/26 20:11:29 radhermit Exp $
+
+EAPI="5"
 
 inherit eutils
 
 DESCRIPTION="Exuberant Ctags creates tags files for code browsing in editors"
 HOMEPAGE="http://ctags.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
-	ada? ( mirror://sourceforge/gnuada/ctags-ada-mode-4.3.3.tar.bz2 )"
+	ada? ( mirror://sourceforge/gnuada/ctags-ada-mode-4.3.11.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~sparc-fbsd ~x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
 IUSE="ada"
 
-DEPEND="app-admin/eselect-ctags"
+RDEPEND="app-admin/eselect-ctags"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}/${PN}-5.6-ebuilds.patch"
 	# Upstream fix for python variables starting with def
 	epatch "${FILESDIR}/${P}-python-vars-starting-with-def.patch"
 
+	# Bug #273697
+	epatch "${FILESDIR}/${P}-f95-pointers.patch"
+
 	# enabling Ada support
-	if use ada; then
-		cp "${WORKDIR}/${PN}-ada-mode-4.3.3/ada.c" "${S}"
-		epatch "${FILESDIR}/${PN}-ada.patch"
+	if use ada ; then
+		cp "${WORKDIR}/${PN}-ada-mode-4.3.11/ada.c" "${S}" || die
+		epatch "${FILESDIR}/${P}-ada.patch"
 	fi
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--with-posix-regex \
 		--without-readlib \
 		--disable-etags \
-		--enable-tmpdir=/tmp \
-		|| die "econf failed"
-	emake || die "emake failed"
+		--enable-tmpdir=/tmp
 }
 
 src_install() {
-	einstall || die "einstall failed"
+	emake prefix="${D}"/usr mandir="${D}"/usr/share/man install
 
 	# namepace collision with X/Emacs-provided /usr/bin/ctags -- we
 	# rename ctags to exuberant-ctags (Mandrake does this also).
-	mv "${D}"/usr/bin/{ctags,exuberant-ctags}
-	mv "${D}"/usr/share/man/man1/{ctags,exuberant-ctags}.1
+	mv "${D}"/usr/bin/{ctags,exuberant-ctags} || die
+	mv "${D}"/usr/share/man/man1/{ctags,exuberant-ctags}.1 || die
 
 	dodoc FAQ NEWS README
 	dohtml EXTENDING.html ctags.html
