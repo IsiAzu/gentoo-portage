@@ -1,13 +1,13 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-2.1.0-r3.ebuild,v 1.2 2014/09/28 20:45:51 twitch153 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-2.2.0.ebuild,v 1.1 2014/09/28 22:30:43 twitch153 Exp $
 
 EAPI="5"
 
 PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy )
 PYTHON_REQ_USE="xml(+)"
 
-inherit eutils distutils-r1 prefix
+inherit eutils distutils-r1 linux-info prefix
 
 DESCRIPTION="Tool to manage Gentoo overlays"
 HOMEPAGE="http://layman.sourceforge.net"
@@ -15,8 +15,8 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~s390 ~sh ~x86 ~ppc-aix ~ppc ~ppc64 ~x86-fbsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~sparc"
-IUSE="bazaar cvs darcs +git mercurial subversion test"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~x86-fbsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+IUSE="bazaar cvs darcs +git g-sorcery mercurial squashfs subversion test"
 
 DEPEND="test? ( dev-vcs/subversion )"
 
@@ -26,6 +26,7 @@ RDEPEND="
 	darcs? ( dev-vcs/darcs )
 	git? ( dev-vcs/git )
 	mercurial? ( dev-vcs/mercurial )
+	g-sorcery? ( app-portage/g-sorcery )
 	subversion? (
 		|| (
 			>=dev-vcs/subversion-1.5.4[http]
@@ -37,10 +38,12 @@ RDEPEND="
 	>=dev-python/ssl-fetch-0.2[${PYTHON_USEDEP}]
 	"
 
+pkg_pretend() {
+	use squashfs && local CONFIG_CHECK="BLK_DEV_LOOP SQUASHFS"
+}
+
 python_prepare_all()  {
 	distutils-r1_python_prepare_all
-	epatch "${FILESDIR}"/${P}-local_overlay.patch
-	epatch "${FILESDIR}"/${P}-incorrect-import-make-conf-fix.patch
 	eprefixify etc/layman.cfg layman/config.py
 }
 
