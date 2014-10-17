@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/torque/torque-4.2.9.ebuild,v 1.1 2014/09/19 06:46:17 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/torque/torque-4.2.9-r1.ebuild,v 1.2 2014/10/17 03:59:14 jsbronder Exp $
 
 EAPI=5
 
@@ -32,7 +32,13 @@ DEPEND="${DEPEND_COMMON}
 
 RDEPEND="${DEPEND_COMMON}
 	crypt? ( net-misc/openssh )
-	!crypt? ( net-misc/netkit-rsh )"
+	!crypt? ( net-misc/netkit-rsh )
+	!dev-libs/uthash"
+
+# Torque should depend on dev-libs/uthash but that's pretty much impossible
+# to patch in as they ship with a broken configure such that files referenced
+# by the configure.ac and Makefile.am are missing.
+# http://www.supercluster.org/pipermail/torquedev/2014-October/004773.html
 
 pkg_setup() {
 	PBS_SERVER_HOME="${PBS_SERVER_HOME:-/var/spool/${PN}}"
@@ -77,6 +83,9 @@ src_prepare() {
 	sed -i '/mk_default_ld_lib_file || return 1/d' buildutils/pbs_mkdirs.in || die
 
 	epatch "${FILESDIR}"/${P}-tcl8.6.patch
+
+	# 524362
+	epatch "${FILESDIR}"/TRQ-2885-limit-tm_adopt-to-only-adopt-a-session-id-t.patch
 }
 
 src_configure() {
@@ -136,7 +145,7 @@ pkg_preinst() {
 		cp "${ROOT}etc/pbs_environment" "${ED}"/etc/pbs_environment || die
 	fi
 
-	if [[ -f "${ROOT}${PBS_SERVER_HOME}/server_priv/nodes" ]]; then
+	if use server && [[ -f "${ROOT}${PBS_SERVER_HOME}/server_priv/nodes" ]]; then
 		cp \
 			"${EROOT}${PBS_SERVER_HOME}/server_priv/nodes" \
 			"${ED}/${PBS_SERVER_HOME}/server_priv/nodes" || die
