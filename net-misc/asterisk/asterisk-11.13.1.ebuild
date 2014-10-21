@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/asterisk/asterisk-12.6.0.ebuild,v 1.1 2014/09/29 10:54:49 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/asterisk/asterisk-11.13.1.ebuild,v 1.3 2014/10/21 12:44:11 ago Exp $
 
 EAPI=5
 inherit autotools base eutils linux-info multilib user
@@ -13,7 +13,7 @@ SRC_URI="http://downloads.asterisk.org/pub/telephony/asterisk/releases/${MY_P}.t
 	 mirror://gentoo/gentoo-asterisk-patchset-3.13.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 
 IUSE_VOICEMAIL_STORAGE="
 	+voicemail_storage_file
@@ -32,7 +32,6 @@ PATCHES=( "${WORKDIR}/asterisk-patchset" )
 
 RDEPEND="dev-db/sqlite:3
 	dev-libs/popt
-	dev-libs/jansson
 	dev-libs/libxml2
 	dev-libs/openssl
 	sys-libs/ncurses
@@ -291,8 +290,8 @@ pkg_postinst() {
 	elog "#gentoo-voip @ irc.freenode.net"
 	echo
 	echo
-	elog "Please read the Asterisk 12 upgrade document:"
-	elog "https://wiki.asterisk.org/wiki/display/AST/Upgrading+to+Asterisk+12"
+	elog "Please read the Asterisk 11 upgrade document:"
+	elog "https://wiki.asterisk.org/wiki/display/AST/Upgrading+to+Asterisk+11"
 }
 
 pkg_config() {
