@@ -2040,13 +2040,6 @@ dev-php/ZendFramework:cli - Enables the CLI
 dev-php/ZendFramework:doc - Installs the documentation
 dev-php/ZendFramework:examples - Installs the examples
 dev-php/ZendFramework:minimal - Installs the minimal version without Dojo toolkit, tests and demos
-dev-php/eaccelerator:disassembler - Enable the eA disassembler
-dev-php/eaccelerator:doccommentinclusion - If you want eAccelerator to retain doc-comments in internal php structures.
-dev-php/eaccelerator:inode - Use inode-based caching
-dev-php/pecl-apc:lock_pthreadmutex - Enable pthread mutex locking
-dev-php/pecl-apc:lock_pthreadrw - Enable pthread read/write locking
-dev-php/pecl-apc:lock_semaphore - Enable semaphore locks instead of fcntl
-dev-php/pecl-apc:lock_spinlock - Enable spin locks (EXPERIMENTAL)
 dev-php/pecl-apcu:lock_pthreadmutex - Enable pthread mutex locking
 dev-php/pecl-apcu:lock_pthreadrw - Enable pthread read/write locking
 dev-php/pecl-apcu:lock_semaphore - Enable semaphore locks instead of fcntl
@@ -6573,9 +6566,7 @@ sec-policy/selinux-base:peer_perms - Enable the labeled networking peer permissi
 sec-policy/selinux-base:ubac - Enable User Based Access Control (UBAC) in the SELinux policy
 sec-policy/selinux-base:unconfined - Enable support for the unconfined SELinux module
 sec-policy/selinux-base-policy:unconfined - Enable support for the unconfined SELinux policy module
-sys-apps/accountsservice:introspection - Use dev-libs/gobject-introspection for introspection
 sys-apps/accountsservice:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for session tracking
-sys-apps/accountsservice:vala - Enable bindings for dev-lang/vala
 sys-apps/acl:nfs - add support for NFS acls
 sys-apps/baselayout-prefix:prefix-chaining - install in a chained Prefix environment
 sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and /sbin.
