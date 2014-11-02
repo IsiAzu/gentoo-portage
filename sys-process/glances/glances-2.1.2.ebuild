@@ -1,10 +1,10 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/glances/glances-2.0.1.ebuild,v 1.1 2014/07/07 14:49:56 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/glances/glances-2.1.2.ebuild,v 1.1 2014/11/02 03:59:20 idella4 Exp $
 
 EAPI=5
 
-PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 PYTHON_REQ_USE="ncurses"
 
 inherit distutils-r1 linux-info
@@ -19,7 +19,7 @@ SRC_URI="mirror://pypi/${MYPN:0:1}/${MYPN}/${MYP}.tar.gz"
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc hddtemp snmp web"
+IUSE="chart doc hddtemp snmp web"
 
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
 # There is another optional extra batinfo, absent from portage
@@ -27,7 +27,8 @@ RDEPEND="${DEPEND}
 	>=dev-python/psutil-2.0.0[${PYTHON_USEDEP}]
 	hddtemp? ( app-admin/hddtemp )
 	snmp? ( dev-python/pysnmp[${PYTHON_USEDEP}] )
-	web? ( dev-python/bottle[${PYTHON_USEDEP}] )"
+	web? ( dev-python/bottle[${PYTHON_USEDEP}] )
+	chart? ( dev-python/matplotlib[${PYTHON_USEDEP}] )"
 
 CONFIG_CHECK="~TASK_IO_ACCOUNTING ~TASK_DELAY_ACCT ~TASKSTATS"
 
@@ -42,10 +43,12 @@ python_prepare_all() {
 		-e "s/'COPYING',//" \
 		-e "s:/etc:${EPREFIX}/etc:" \
 		-i setup.py || die
+
 	distutils-r1_python_prepare_all
 }
 
 python_install_all() {
+	# Abnormal setup for pre-built html docs in setup.py
 	distutils-r1_python_install_all
 	if use doc; then
 		mkdir "${D}"usr/share/doc/${P}/html || die
