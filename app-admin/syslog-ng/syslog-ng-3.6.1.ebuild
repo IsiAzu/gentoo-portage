@@ -1,9 +1,9 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/syslog-ng/syslog-ng-3.5.6.ebuild,v 1.1 2014/09/06 06:47:22 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/syslog-ng/syslog-ng-3.6.1.ebuild,v 1.1 2014/11/09 08:10:43 mr_bones_ Exp $
 
 EAPI=5
-inherit eutils multilib systemd versionator
+inherit autotools eutils multilib systemd versionator
 
 MY_PV=${PV/_/}
 MY_PV_MM=$(get_version_component_range 1-2)
@@ -14,22 +14,23 @@ SRC_URI="http://www.balabit.com/downloads/files/syslog-ng/sources/${MY_PV}/sourc
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
-IUSE="amqp caps dbi geoip ipv6 json mongodb pacct +pcre smtp spoof-source ssl systemd tcpd"
+IUSE="amqp caps dbi geoip ipv6 json mongodb pacct redis smtp spoof-source ssl systemd tcpd"
 RESTRICT="test"
 
 RDEPEND="
-	pcre? ( dev-libs/libpcre )
+	caps? ( sys-libs/libcap )
+	dbi? ( >=dev-db/libdbi-0.8.3 )
+	geoip? ( >=dev-libs/geoip-1.5.0 )
+	json? ( >=dev-libs/json-c-0.9 )
+	redis? ( dev-libs/hiredis )
+	smtp? ( net-libs/libesmtp )
 	spoof-source? ( net-libs/libnet:1.1 )
 	ssl? ( dev-libs/openssl:= )
-	smtp? ( net-libs/libesmtp )
+	systemd? ( sys-apps/systemd )
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
+	dev-libs/libpcre
 	>=dev-libs/eventlog-0.2.12
-	>=dev-libs/glib-2.10.1:2
-	json? ( >=dev-libs/json-c-0.9 )
-	caps? ( sys-libs/libcap )
-	geoip? ( >=dev-libs/geoip-1.5.0 )
-	dbi? ( >=dev-db/libdbi-0.8.3 )
-	systemd? ( sys-apps/systemd )"
+	>=dev-libs/glib-2.10.1:2"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	sys-devel/flex"
@@ -37,6 +38,8 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${PN}-${MY_PV}
 
 src_prepare() {
+	epatch "${FILESDIR}/${MY_PV_MM}"/${P}-link-smtp.patch
+	eautoreconf
 	cp "${FILESDIR}"/*logrotate*.in "${TMPDIR}" || die
 	cd "${TMPDIR}" || die
 
@@ -54,6 +57,7 @@ src_prepare() {
 }
 
 src_configure() {
+	#adddeny $(echo /usr/$(get_libdir)/libsyslog* | sed 's/ /:/g')
 	econf \
 		--disable-docs \
 		--with-ivykis=internal \
@@ -70,7 +74,7 @@ src_configure() {
 		$(use_enable json) \
 		$(use_enable mongodb) \
 		$(use_enable pacct) \
-		$(use_enable pcre) \
+		$(use_enable redis) \
 		$(use_enable smtp) \
 		$(use_enable amqp) \
 		$(usex amqp --with-librabbitmq-client=internal --without-librabbitmq-client) \
@@ -84,10 +88,9 @@ src_install() {
 	# -j1 for bug #484470
 	emake -j1 DESTDIR="${D}" install
 
-	dodoc AUTHORS NEWS contrib/syslog-ng.conf* contrib/syslog2ng \
-		"${FILESDIR}/${MY_PV_MM}/syslog-ng.conf.gentoo.hardened" \
-		"${TMPDIR}/syslog-ng.logrotate.hardened" \
-		"${FILESDIR}/README.hardened"
+	dodoc AUTHORS NEWS.md CONTRIBUTING.md contrib/syslog-ng.conf*
+		contrib/syslog2ng "${FILESDIR}/${MY_PV_MM}/syslog-ng.conf.gentoo.hardened" \
+		"${TMPDIR}/syslog-ng.logrotate.hardened" "${FILESDIR}/README.hardened"
 
 	# Install default configuration
 	insinto /etc/syslog-ng
