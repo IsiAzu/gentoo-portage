@@ -216,13 +216,19 @@ app-admin/sagan:pcap - Add support for network packet capture via net-libs/libpc
 app-admin/sagan:smtp - Build witch SMTP (E-Mail) support
 app-admin/sagan:snort - Add support to interact with Snort IDE using net-analyzer/snortsam'
 app-admin/sagan-rules:lognorm - Install normalize rules support with dev-libs/liblognorm
+app-admin/salt:cherrypy - Enable support for cherrypy.
+app-admin/salt:gnupg - Enable support for gnupg via python-gnupg.
+app-admin/salt:keyring - Enable support for keyrings via python-keyring.
 app-admin/salt:libcloud - Enable salt-cloud support via libcloud.
 app-admin/salt:libvirt - Support managing virtual machines with app-emulation/libvirt.
 app-admin/salt:mako - Add support for using the mako template engine for parsing salt states.
 app-admin/salt:mongodb - Support returning data to a mongodb server.
+app-admin/salt:nova - Enable support for the OpenStack Nova API
 app-admin/salt:openssl - Add support for using TLS via OpenSSL.
+app-admin/salt:raet - Add support for the new RAET transport.
 app-admin/salt:redis - Support returning data to a redis database.
 app-admin/salt:timelib - Use timelib to parse english textual date descriptions.
+app-admin/salt:zeromq - Add support for the zeromq transport.
 app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
 app-admin/sudo:offensive - Let sudo print insults when the user types the wrong password.
 app-admin/sudo:sendmail - Allow sudo to send emails with sendmail.
@@ -2182,8 +2188,6 @@ dev-python/pypy-bin:shadowstack - Use a shadow stack for finding GC roots
 dev-python/pypy3:low-memory - Build using PyPy with the engine configured towards low memory footprint. This makes it possible to build PyPy using ~3.5G of RAM on amd64 and ~half of that on x86, at the cost of lengthened build time. Please note that you will need an extra ~1G of extra RAM or swap since the translation memory (unused at the time) is not freed when the C compiler is spawned.
 dev-python/pypy3:sandbox - Enable sandboxing functionality
 dev-python/pypy3:shadowstack - Use a shadow stack for finding GC roots
-dev-python/pypy3-bin:low-memory - Build using PyPy with the engine configured towards low memory footprint. This makes it possible to build PyPy using ~3.5G of RAM on amd64 and ~half of that on x86, at the cost of lengthened build time. Please note that you will need an extra ~1G of extra RAM or swap since the translation memory (unused at the time) is not freed when the C compiler is spawned.
-dev-python/pypy3-bin:sandbox - Enable sandboxing functionality
 dev-python/pypy3-bin:shadowstack - Use a shadow stack for finding GC roots
 dev-python/pyquery:beautifulsoup3 - Support BeautifulSoup 3
 dev-python/pyrax:keyring - adds support for the keyring auth backend
