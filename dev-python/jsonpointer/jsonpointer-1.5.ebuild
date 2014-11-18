@@ -1,15 +1,14 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/jsonpatch/jsonpatch-1.7.ebuild,v 1.1 2014/07/14 07:44:03 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jsonpointer/jsonpointer-1.5.ebuild,v 1.1 2014/11/18 06:51:15 idella4 Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3,3_4} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy )
 
 inherit distutils-r1
 
-DESCRIPTION="Apply JSON-Patches according to
-	http://tools.ietf.org/html/draft-pbryan-json-patch-04"
-HOMEPAGE="https://github.com/stefankoegl/python-json-patch"
+DESCRIPTION="Identify specific nodes in a JSON document (according to draft 08)"
+HOMEPAGE="https://github.com/stefankoegl/python-json-pointer https://pypi.python.org/pypi/jsonpointer/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="BSD"
@@ -18,7 +17,7 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
-RDEPEND=">=dev-python/jsonpointer-1.3[${PYTHON_USEDEP}]"
+RDEPEND=""
 
 python_test() {
 	"${PYTHON}" tests.py || die "Tests fail with ${EPYTHON}"
