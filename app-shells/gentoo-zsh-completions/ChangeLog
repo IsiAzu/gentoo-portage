@@ -1,6 +1,52 @@
-# ChangeLog for app-shells/zsh-completion
+# ChangeLog for app-shells/gentoo-zsh-completions
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.55 2014/10/15 13:50:00 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-zsh-completions/ChangeLog,v 1.8 2014/11/21 14:08:11 radhermit Exp $
+
+  21 Nov 2014; Tim Harder <radhermit@gentoo.org>
+  gentoo-zsh-completions-99999999.ebuild:
+  Update to match new location of completion scripts in upstream repo.
+
+  21 Nov 2014; Tim Harder <radhermit@gentoo.org>
+  gentoo-zsh-completions-20141115.ebuild,
+  gentoo-zsh-completions-99999999.ebuild:
+  Make github the canonical repo so development is more readily visible and
+  pullreqs/issues can be easily opened.
+
+  21 Nov 2014; Tim Harder <radhermit@gentoo.org>
+  gentoo-zsh-completions-20141115.ebuild:
+  Reword log message for updated pkg name.
+
+  21 Nov 2014; Tim Harder <radhermit@gentoo.org>
+  -gentoo-zsh-completions-20091203-r1.ebuild,
+  -files/zsh-completion-eix-20091203.patch:
+  Remove old.
+
+  21 Nov 2014; Tim Harder <radhermit@gentoo.org>
+  gentoo-zsh-completions-20141115.ebuild:
+  Stabilize for all.
+
+  21 Nov 2014; Tim Harder <radhermit@gentoo.org>
+  -files/zsh-completion-20130808-eselect.patch:
+  Remove old patch.
+
+*gentoo-zsh-completions-20141115 (21 Nov 2014)
+
+  21 Nov 2014; Tim Harder <radhermit@gentoo.org>
+  +gentoo-zsh-completions-20141115.ebuild,
+  -gentoo-zsh-completions-20130808-r1.ebuild,
+  gentoo-zsh-completions-99999999.ebuild:
+  Version bump to stable to fix bug #491430.
+
+  21 Nov 2014; Sergey Popov <pinkbyte@gentoo.org>
+  -zsh-completion-20130808.ebuild, zsh-completion-20130808-r1.ebuild:
+  QA commit: transfer stable keywords from old revision and drop that revision
+
+*zsh-completion-20130808-r1 (21 Nov 2014)
+
+  21 Nov 2014; Sergey Popov <pinkbyte@gentoo.org>
+  +zsh-completion-20130808-r1.ebuild, zsh-completion-99999999.ebuild,
+  +files/zsh-completion-20130808-eselect.patch:
+  QA commit: revision bump, fix bug #491430, add epatch_user
 
   15 Oct 2014; Tobias Klausmann <klausman@gentoo.org>
   zsh-completion-20130808.ebuild:
