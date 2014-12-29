@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apache/passenger/passenger-4.0.49.ebuild,v 1.1 2014/08/23 06:45:00 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apache/passenger/passenger-4.0.56.ebuild,v 1.1 2014/12/29 07:30:40 graaff Exp $
 
 EAPI=5
 USE_RUBY="ruby19 ruby20 ruby21"
@@ -46,6 +46,9 @@ all_ruby_prepare() {
 	sed -i -e "s/gcc/$(tc-getCC)/" \
 		-e "s/g++/$(tc-getCXX)/" \
 		-e 's/PlatformInfo.debugging_cflags//' build/basics.rb || die
+
+	# Avoid fixed debugging CFLAGs.
+	sed -e '/debugging_cflags/areturn ""' -i lib/phusion_passenger/platform_info/compiler.rb || die
 
 	# Use sed here so that we can dynamically set the documentation directory.
 	sed -i -e "s:/usr/share/doc/passenger:/usr/share/doc/${P}:" \
@@ -96,6 +99,8 @@ all_ruby_install() {
 
 	# Patch in the correct libdir
 	sed -i -e 's:/usr/lib/:/usr/'$(get_libdir)'/:' "${D}${APACHE_MODULES_CONFDIR}/30_mod_${PN}.conf" || die
+
+	dodoc CHANGELOG README.md
 }
 
 each_ruby_install() {
