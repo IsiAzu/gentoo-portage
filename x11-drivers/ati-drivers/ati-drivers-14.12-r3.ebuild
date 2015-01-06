@@ -1,30 +1,31 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-14.6_beta1.ebuild,v 1.2 2014/06/18 20:58:25 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-14.12-r3.ebuild,v 1.1 2015/01/06 19:26:12 mrueg Exp $
 
 EAPI=5
 
-inherit eutils multilib linux-info linux-mod toolchain-funcs versionator pax-utils
+MULTILIB_COMPAT=( abi_x86_{32,64} )
+inherit eutils multilib-build linux-info linux-mod toolchain-funcs versionator pax-utils
 
 DESCRIPTION="Ati precompiled drivers for Radeon Evergreen (HD5000 Series) and newer chipsets"
 HOMEPAGE="http://www.amd.com"
-RUN="${WORKDIR}/fglrx-14.20/amd-driver-installer-14.20-x86.x86_64.run"
+RUN="${WORKDIR}/fglrx-14.501.1003/amd-driver-installer-14.501.1003-x86.x86_64.run"
 SLOT="1"
 # Uses javascript for download YESSSS
 #DRIVERS_URI="http://www2.ati.com/drivers/linux/amd-catalyst-13.12-linux-x86.x86_64.zip"
-DRIVERS_URI="mirror://gentoo/linux-amd-catalyst-14.6-beta-v1.0-may23.zip"
+DRIVERS_URI="mirror://gentoo/amd-catalyst-omega-14.12-linux-run-installers.zip"
 XVBA_SDK_URI="http://developer.amd.com/wordpress/media/2012/10/xvba-sdk-0.74-404001.tar.gz"
 SRC_URI="${DRIVERS_URI} ${XVBA_SDK_URI}"
 FOLDER_PREFIX="common/"
-IUSE="debug +modules multilib qt4 static-libs pax_kernel"
+IUSE="debug +modules qt4 static-libs pax_kernel"
 
 LICENSE="AMD GPL-2 QPL-1.0"
 KEYWORDS="-* ~amd64 ~x86"
 
-RESTRICT="bindist test"
+RESTRICT="bindist test fetch"
 
 RDEPEND="
-	<=x11-base/xorg-server-1.15.49[-minimal]
+	<=x11-base/xorg-server-1.16.49[-minimal]
 	>=app-admin/eselect-opengl-1.0.7
 	app-admin/eselect-opencl
 	sys-power/acpid
@@ -35,18 +36,19 @@ RDEPEND="
 	x11-libs/libXrandr
 	x11-libs/libXrender
 	virtual/glu
-	multilib? (
+	!x11-libs/xvba-video
+	abi_x86_32? (
 			|| (
-				>=virtual/glu-9.0-r1[abi_x86_32]
+				virtual/glu[abi_x86_32]
 				app-emulation/emul-linux-x86-opengl
 			)
 			|| (
 				(
-					>=x11-libs/libX11-1.6.2[abi_x86_32]
-					>=x11-libs/libXext-1.3.2[abi_x86_32]
-					>=x11-libs/libXinerama-1.1.3[abi_x86_32]
-					>=x11-libs/libXrandr-1.4.2[abi_x86_32]
-					>=x11-libs/libXrender-0.9.8[abi_x86_32]
+					x11-libs/libX11[abi_x86_32]
+					x11-libs/libXext[abi_x86_32]
+					x11-libs/libXinerama[abi_x86_32]
+					x11-libs/libXrandr[abi_x86_32]
+					x11-libs/libXrender[abi_x86_32]
 				)
 				app-emulation/emul-linux-x86-xlibs
 			)
@@ -123,6 +125,7 @@ QA_SONAME="
 	usr/lib\(32\|64\)\?/libaticaldd.so
 	usr/lib\(32\|64\)\?/libaticalrt.so
 	usr/lib\(32\|64\)\?/libamdocl\(32\|64\)\?.so
+	usr/lib\(32\|64\)\?/libamdhsasc\(32\|64\)\?.so
 "
 
 QA_DT_HASH="
@@ -204,7 +207,7 @@ pkg_setup() {
 		MODULE_NAMES="fglrx(video:${S}/${FOLDER_PREFIX}/lib/modules/fglrx/build_mod/2.6.x)"
 		BUILD_TARGETS="kmod_build"
 		linux-mod_pkg_setup
-		BUILD_PARAMS="GCC_VER_MAJ=$(gcc-major-version) KVER=${KV_FULL} KDIR=${KV_DIR}"
+		BUILD_PARAMS="GCC_VER_MAJ=$(gcc-major-version) KVER=${KV_FULL} KDIR=${KV_OUT_DIR}"
 		BUILD_PARAMS="${BUILD_PARAMS} CFLAGS_MODULE+=\"-DMODULE -DATI -DFGL\""
 		if grep -q arch_compat_alloc_user_space ${KV_DIR}/arch/x86/include/asm/compat.h ; then
 			BUILD_PARAMS="${BUILD_PARAMS} CFLAGS_MODULE+=-DCOMPAT_ALLOC_USER_SPACE=arch_compat_alloc_user_space"
@@ -307,16 +310,19 @@ src_prepare() {
 	# compile fix for AGP-less kernel, bug #435322
 	epatch "${FILESDIR}"/ati-drivers-12.9-KCL_AGP_FindCapsRegisters-stub.patch
 
-	# Compile fix for kernel typesafe uid types #469160
-	epatch "${FILESDIR}/typesafe-kuid.diff"
-
 	epatch "${FILESDIR}/ati-drivers-13.8-beta-include-seq_file.patch"
 
 	# Fix #483400
 	epatch "${FILESDIR}/fgl_glxgears-do-not-include-glATI.patch"
 
+	# Fix #524658
+	epatch "${FILESDIR}/fix-the-linux-3.17-no_hotplug-error.patch"
+
 	# Compile fix, https://bugs.gentoo.org/show_bug.cgi?id=454870
 	use pax_kernel && epatch "${FILESDIR}/const-notifier-block.patch"
+
+	# Compile fix, #526602
+	epatch "${FILESDIR}/use-kernel_fpu_begin.patch"
 
 	cd "${MODULE_DIR}"
 
@@ -385,21 +391,7 @@ src_install() {
 	# amd64 are installed in src_install-libs. Everything else
 	# (including libraries only available in native 64bit on amd64)
 	# goes in here.
-
-	# There used to be some code here that tried to detect running
-	# under a "native multilib" portage ((precursor of)
-	# http://dev.gentoo.org/~kanaka/auto-multilib/). I removed that, it
-	# should just work (only doing some duplicate work). --marienz
-	if has_multilib_profile; then
-		local OABI=${ABI}
-		for ABI in $(get_install_abis); do
-			src_install-libs
-		done
-		ABI=${OABI}
-		unset OABI
-	else
-		src_install-libs
-	fi
+	multilib_foreach_abi src_install-libs
 
 	# This is sorted by the order the files occur in the source tree.
 
@@ -504,9 +496,11 @@ src_install-libs() {
 	dosym libGL.so.${libver} ${ATI_ROOT}/lib/libGL.so.${libmajor}
 	dosym libGL.so.${libver} ${ATI_ROOT}/lib/libGL.so
 
-	exeinto ${ATI_ROOT}/extensions
-	doexe "${EX_BASE_DIR}"/usr/X11R6/${pkglibdir}/modules/extensions/fglrx/fglrx-libglx.so
-	mv "${D}"/${ATI_ROOT}/extensions/{fglrx-,}libglx.so
+	if multilib_is_native_abi; then
+		exeinto ${ATI_ROOT}/extensions
+		doexe "${EX_BASE_DIR}"/usr/X11R6/${pkglibdir}/modules/extensions/fglrx/fglrx-libglx.so
+		mv "${D}"/${ATI_ROOT}/extensions/{fglrx-,}libglx.so
+	fi
 
 	# other libs
 	exeinto /usr/$(get_libdir)
@@ -528,6 +522,7 @@ src_install-libs() {
 	dosym libOpenCL.so.${libmajor} /usr/$(get_libdir)/OpenCL/vendors/amd/libOpenCL.so
 	exeinto /usr/$(get_libdir)
 	doexe "${MY_ARCH_DIR}"/usr/${pkglibdir}/libati*.so*
+	doexe "${MY_ARCH_DIR}"/usr/${pkglibdir}/libamdhsasc*.so
 
 	# OpenCL vendor files
 	insinto /etc/OpenCL/vendors/
@@ -562,6 +557,9 @@ src_install-libs() {
 
 	#install xvba sdk headers
 	doheader xvba_sdk/include/amdxvba.h
+
+	# VA-API internal wrapper
+	dosym /usr/$(get_libdir)/libXvBAW.so.1.0 /usr/$(get_libdir)/va/drivers/fglrx_drv_video.so
 
 	if use pax_kernel; then
 		pax-mark m "${D}"/usr/lib*/opengl/ati/lib/libGL.so.1.2 || die "pax-mark failed"
