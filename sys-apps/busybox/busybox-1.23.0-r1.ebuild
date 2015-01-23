@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.23.0.ebuild,v 1.6 2015/01/19 14:04:02 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.23.0-r1.ebuild,v 1.1 2015/01/22 22:57:14 williamh Exp $
 
 # See `man savedconfig.eclass` for info on how to use USE=savedconfig.
 
@@ -102,7 +102,7 @@ src_configure() {
 	fi
 
 	# setup the config file
-	emake -j1 -s defconfig >/dev/null
+	emake -j1 -s allyesconfig >/dev/null
 	# nommu forces a bunch of things off which we want on #387555
 	busybox_config_option n NOMMU
 	sed -i '/^#/d' .config
