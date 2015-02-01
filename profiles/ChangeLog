@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.9734 2015/02/01 14:20:53 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.9741 2015/02/01 20:02:56 mgorny Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  01 Feb 2015; Michał Górny <mgorny@gentoo.org> use.desc:
+  Describe USE=libav.
+
+  01 Feb 2015; Michał Górny <mgorny@gentoo.org> use.desc:
+  Remove global flags for x86 CPU instruction sets since they are no longer
+  used in the repo.
+
+  01 Feb 2015; Michael Palimaka <kensington@gentoo.org>
+  +targets/desktop/plasma/eapi, +targets/desktop/plasma/make.defaults,
+  +targets/desktop/plasma/package.use, +targets/desktop/plasma/parent,
+  +targets/desktop/plasma/use.force:
+  Add initial profile for KDE Plasma 5.
+
+  01 Feb 2015; Ben de Groot <yngwin@gentoo.org> base/use.stable.mask:
+  Keep qt5 in use.stable.mask until Qt5 goes stable
+
+  01 Feb 2015; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Unmask lxqt-0.8.0 now that Qt5 is unmasked
+
+  01 Feb 2015; Michael Palimaka <kensington@gentoo.org> package.mask:
+  Umask Qt 5 consumers now that Qt 5 is unmasked.
+
+  01 Feb 2015; Michael Palimaka <kensington@gentoo.org> package.mask:
+  Remove old mask for versions no longer in the tree.
 
   01 Feb 2015; Ben de Groot <yngwin@gentoo.org> arch/alpha/ChangeLog,
   arch/alpha/package.mask, arch/alpha/use.mask, arch/arm/ChangeLog,
