@@ -1,39 +1,37 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/openvas-scanner/openvas-scanner-5.0_beta3.ebuild,v 1.1 2014/10/22 07:55:55 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/greenbone-security-assistant/greenbone-security-assistant-6.0_beta6.ebuild,v 1.1 2015/02/14 18:33:30 jlec Exp $
 
 EAPI=5
 
 inherit cmake-utils systemd
 
-MY_PN=openvassd
+MY_PN=gsad
 
-DL_ID=1767
+DL_ID=1934
 
-DESCRIPTION="A remote security scanner for Linux (OpenVAS-scanner)"
+DESCRIPTION="Greenbone Security Assistant for openvas"
 HOMEPAGE="http://www.openvas.org/"
 SRC_URI="http://wald.intevation.org/frs/download.php/${DL_ID}/${P/_beta/+beta}.tar.gz"
 
 SLOT="0"
-LICENSE="GPL-2"
+LICENSE="GPL-2+ BSD MIT"
 KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	>=net-analyzer/openvas-libraries-8_beta3
-	!net-analyzer/openvas-plugins
-	!net-analyzer/openvas-server"
+	dev-libs/libgcrypt
+	dev-libs/libxslt
+	>=net-analyzer/openvas-libraries-8.0_beta6
+	net-libs/libmicrohttpd[messages]"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
-S="${WORKDIR}"/${P/_beta/+beta}
-
 PATCHES=(
-	"${FILESDIR}"/${PN}-4.0.3-bsdsource.patch
-	"${FILESDIR}"/${PN}-4.0.3-mkcertclient.patch
-	"${FILESDIR}"/${PN}-4.0.3-rulesdir.patch
-	"${FILESDIR}"/${PN}-4.0.3-run.patch
+	"${FILESDIR}"/${PN}-5.0.3-run.patch
 	)
+
+S="${WORKDIR}"/${P/_beta/+beta}
 
 src_prepare() {
 	sed \
@@ -44,25 +42,22 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		"-DLOCALSTATEDIR=${EPREFIX}/var"
-		"-DSYSCONFDIR=${EPREFIX}/etc"
+		-DLOCALSTATEDIR="${EPREFIX}/var"
+		-DSYSCONFDIR="${EPREFIX}/etc"
 	)
 	cmake-utils_src_configure
 }
 
 src_install() {
 	cmake-utils_src_install
-
 	newinitd "${FILESDIR}"/${MY_PN}.init ${MY_PN}
 
 	insinto /etc/openvas
-	doins "${FILESDIR}"/${MY_PN}.conf "${FILESDIR}"/${MY_PN}-daemon.conf
+	doins "${FILESDIR}"/${MY_PN}-daemon.conf
 	dosym ../openvas/${MY_PN}-daemon.conf /etc/conf.d/${PN}
 
 	insinto /etc/logrotate.d
 	doins "${FILESDIR}"/${MY_PN}.logrotate
-
-	dodoc "${FILESDIR}"/openvas-nvt-sync-cron
 
 	systemd_newtmpfilesd "${FILESDIR}"/${MY_PN}.tmpfiles.d ${MY_PN}.conf
 	systemd_dounit "${FILESDIR}"/${MY_PN}.service
