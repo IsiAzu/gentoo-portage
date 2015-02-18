@@ -2383,8 +2383,8 @@ dev-qt/qthelp:exceptions - Add support for exceptions - like catching them insid
 dev-qt/qtmultimedia:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtmultimedia:qml - Build QML/QtQuick bindings and imports
 dev-qt/qtmultimedia:widgets - Build the QtMultimediaWidgets module
-dev-qt/qtnetwork:connman - Enable ConnMan-based bearer plugin
-dev-qt/qtnetwork:networkmanager - Enable NetworkManager-based bearer plugin
+dev-qt/qtnetwork:connman - Enable net-misc/connman-based bearer plugin
+dev-qt/qtnetwork:networkmanager - Enable net-misc/networkmanager-based bearer plugin
 dev-qt/qtopengl:egl - Use EGL instead of default GLX to manage OpenGL contexts on the desktop
 dev-qt/qtopengl:exceptions - Add support for exceptions - like catching them inside the event loop (recommended by upstream)
 dev-qt/qtopengl:gles2 - Use OpenGL ES 2.0 instead of desktop OpenGL
@@ -6996,7 +6996,6 @@ sys-devel/kgcc64:regression-test - Run the testsuite and install the results (re
 sys-devel/llvm:clang - Build the clang C/C++ compiler
 sys-devel/llvm:cmake - Enable cmake support (experimental)
 sys-devel/llvm:doc - Build and install the HTML documentation and regenerate the man pages
-sys-devel/llvm:go - Build the dev-lang/go bindings
 sys-devel/llvm:gold - Build the gold linker plugin
 sys-devel/llvm:llvm-gcc - Build LLVM with sys-devel/llvm-gcc
 sys-devel/llvm:multitarget - Build all host targets (default: host only)
