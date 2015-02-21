@@ -2431,6 +2431,7 @@ dev-ruby/facter:virt - Use app-emulation/virt-what for virtual machine detection
 dev-ruby/maruku:highlight - Enable source code highlighting via dev-ruby/syntax
 dev-ruby/rails:asset-pipeline - Also install the default components for the asset pipeline. These are not required but they are activated automatically in new Rails projects by default.
 dev-ruby/rrdtool-bindings:graph - Enable support for graphing functions
+dev-ruby/rspec-core:highlight - Enable source code highlighting via dev-ruby/coderay
 dev-ruby/ruby-sdl:image - Enable media-libs/sdl-image support
 dev-ruby/ruby-sdl:mixer - Enable media-libs/sdl-mixer support
 dev-ruby/ruby-sdl:sge - Enable sdl-sge support
@@ -3869,7 +3870,6 @@ media-plugins/kipi-plugins:linguas_mi - Maori translation
 media-plugins/kipi-plugins:linguas_tt - ?? translation
 media-plugins/kipi-plugins:linguas_ven - Venda translation
 media-plugins/kipi-plugins:mediawiki - Build the mediawiki export plugin
-media-plugins/kipi-plugins:mjpeg - Add mjpeg support
 media-plugins/kipi-plugins:panorama - Pull in dependencies needed by panorama plugin
 media-plugins/kipi-plugins:redeyes - Add redeyes removal support
 media-plugins/kipi-plugins:videoslideshow - Build videoslideshow plugin
@@ -6727,6 +6727,7 @@ sys-apps/qingy:consolekit - Enable native consolekit support
 sys-apps/qingy:opensslcrypt - Encrypt communications between qingy and its GUI using dev-libs/openssl
 sys-apps/razercfg:pm-utils - Installs the pm-utils hooks for suspend/resume and requires sys-power/pm-utils
 sys-apps/razercfg:qt4 - Installs a qt UI. Requires dev-python/pyside
+sys-apps/roccat-tools:lua - Build support for Lua scripting for RyosMKPro ripple effects
 sys-apps/rsbac-admin:rklogd - Enabled deprecated RSBAC kernel logger
 sys-apps/s390-tools:fuse - build cmsfs-fuse to read files stored on a z/VM CMS disk
 sys-apps/s390-tools:zfcpdump - build the kernel disk dumping utility
