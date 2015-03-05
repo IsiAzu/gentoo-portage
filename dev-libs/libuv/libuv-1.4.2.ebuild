@@ -1,12 +1,12 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libuv/libuv-1.2.1-r1.ebuild,v 1.1 2015/01/16 15:47:31 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libuv/libuv-1.4.2.ebuild,v 1.1 2015/03/05 02:18:42 hasufell Exp $
 
 EAPI=5
 
 inherit eutils autotools multilib-minimal
 
-DESCRIPTION="A new platform layer for Node"
+DESCRIPTION="Cross-platform asychronous I/O"
 HOMEPAGE="https://github.com/libuv/libuv"
 SRC_URI="https://github.com/libuv/libuv/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
