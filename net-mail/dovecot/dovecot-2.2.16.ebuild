@@ -1,13 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/dovecot/dovecot-2.2.14-r1.ebuild,v 1.4 2014/12/28 16:33:27 titanofold Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/dovecot/dovecot-2.2.16.ebuild,v 1.1 2015/03/23 15:54:38 eras Exp $
 
 EAPI=5
 inherit eutils multilib ssl-cert systemd user versionator
 
 MY_P="${P/_/.}"
 major_minor="$(get_version_component_range 1-2)"
-sieve_version="0.4.4"
+sieve_version="0.4.7"
 if [[ ${PV} == *_rc* ]] ; then
 	rc_dir="rc/"
 else
@@ -43,11 +43,11 @@ DEPEND="bzip2? ( app-arch/bzip2 )
 	lz4? ( app-arch/lz4 )
 	mysql? ( virtual/mysql )
 	pam? ( virtual/pam )
-	postgres? ( dev-db/postgresql !dev-db/postgresql[ldap,threads] )
+	postgres? ( dev-db/postgresql:* !dev-db/postgresql[ldap,threads] )
 	selinux? ( sec-policy/selinux-dovecot )
 	solr? ( net-misc/curl dev-libs/expat )
-	sqlite? ( dev-db/sqlite )
-	ssl? ( dev-libs/openssl )
+	sqlite? ( dev-db/sqlite:* )
+	ssl? ( dev-libs/openssl:* )
 	tcpd? ( sys-apps/tcp-wrappers )
 	vpopmail? ( net-mail/vpopmail )
 	zlib? ( sys-libs/zlib )
@@ -76,6 +76,8 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-10-ssl.patch"
+
+	epatch_user
 }
 
 src_configure() {
@@ -104,6 +106,8 @@ src_configure() {
 		$( use_with kerberos gssapi ) \
 		$( use_with ldap ) \
 		$( use_with lucene ) \
+		$( use_with lz4 ) \
+		$( use_with lzma ) \
 		$( use_with mysql ) \
 		$( use_with pam ) \
 		$( use_with postgres pgsql ) \

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-physics/lammps/lammps-20150130.ebuild,v 1.1 2015/02/03 17:21:39 nicolasbock Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-physics/lammps/lammps-20150314.ebuild,v 1.1 2015/03/23 17:30:45 nicolasbock Exp $
 
 EAPI=5
 
@@ -46,7 +46,7 @@ SRC_URI="http://lammps.sandia.gov/tars/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc examples gzip lammps-memalign mpi static-libs"
+IUSE="doc examples gzip lammps-memalign mpi static static-libs"
 
 DEPEND="
 	mpi? (
@@ -75,9 +75,9 @@ lmp_emake() {
 		F90FLAGS="${FCFLAGS}" \
 		LINKFLAGS="${LDFLAGS}" \
 		LMP_INC="${LAMMPS_INCLUDEFLAGS}" \
-		MPI_INC=$(usex mpi '' "-I../STUBS") \
-		MPI_PATH=$(usex mpi '' '-L../STUBS') \
-		MPI_LIB=$(usex mpi '' '-lmpi_stubs') \
+		MPI_INC=$(usex mpi "" "-I../STUBS") \
+		MPI_PATH=$(usex mpi "" "-L../STUBS") \
+		MPI_LIB=$(usex mpi "" "-lmpi_stubs") \
 		user-atc_SYSLIB="$(usex mpi "$($(tc-getPKG_CONFIG) --libs blas) $($(tc-getPKG_CONFIG) --libs lapack)" '')"\
 		"$@"
 }
@@ -108,13 +108,14 @@ src_compile() {
 	append-fflags -fPIC
 
 	# Compile stubs for serial version.
-	use mpi || lmp_emake -C src stubs
+	use mpi || lmp_emake -C src mpi-stubs
 
 	# Build packages
 	emake -C src yes-asphere
 	emake -C src yes-body
 	emake -C src yes-class2
 	emake -C src yes-colloid
+	emake -C src yes-coreshell
 	emake -C src yes-dipole
 	emake -C src yes-fld
 	#emake -C src yes-gpu
@@ -135,6 +136,7 @@ src_compile() {
 	emake -C src yes-peri
 	emake -C src yes-poems
 	lmp_emake -C lib/poems -f Makefile.g++
+	emake -C src yes-qeq
 	emake -C src yes-reax
 	lmp_emake -j1 -C lib/reax -f Makefile.gfortran
 	emake -C src yes-replica
@@ -145,32 +147,33 @@ src_compile() {
 	emake -C src yes-voronoi
 	emake -C src yes-xtc
 
+	if use mpi; then
+		emake -C src yes-user-atc
+		lmp_emake -C lib/atc -f Makefile.g++
+	fi
 	emake -C src yes-user-eff
 	emake -C src yes-user-fep
 	use mpi && emake -C src yes-user-lb
 	emake -C src yes-user-phonon
 	emake -C src yes-user-sph
 
-	if use mpi; then
-		emake -C src yes-user-atc
-		lmp_emake -C lib/atc -f Makefile.g++
-	fi
-
 	if use static-libs; then
 		# Build static library.
-		lmp_emake -C src makelib
-		lmp_emake -C src -f Makefile.lib serial
+		lmp_emake -C src mode=lib serial
 	fi
 
 	# Build shared library.
-	lmp_emake -C src makeshlib
-	lmp_emake -C src -f Makefile.shlib serial
+	lmp_emake -C src mode=shlib serial
 
 	# Compile main executable.
-	lmp_emake -C src serial
+	if use static; then
+		lmp_emake -C src serial
+	else
+		lmp_emake -C src mode=shexe serial
+	fi
 
 	# Compile tools.
-	emake -C tools binary2txt chain micelle2d data2xmovie
+	emake -C tools binary2txt chain data2xmovie micelle2d
 }
 
 src_install() {
@@ -180,6 +183,9 @@ src_install() {
 	dosym liblammps.so.0.0.0 /usr/$(get_libdir)/liblammps.so.0
 	newbin src/lmp_serial lmp
 	dobin tools/binary2txt
+	dobin tools/chain
+	dobin tools/data2xmovie
+	dobin tools/micelle2d
 	# Don't forget to add header files of optional packages as they are added
 	# to this ebuild. There may also be .mod files from Fortran based
 	# packages.
