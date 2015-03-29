@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.16441 2015/03/28 12:38:00 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.16445 2015/03/29 05:06:16 mgorny Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,38 @@
 
 #--- END OF EXAMPLES ---
 
+# Ben de Groot <yngwin@gentoo.org> (29 Mar 2015)
+# Merged with qtcurve-qt4 into x11-themes/qtcurve (with gtk useflag)
+# Removal in 30 days. See also bug #544406.
+x11-themes/gtk-engines-qtcurve
+
+# Michał Górny <mgorny@gentoo.org> (28 Mar 2015)
+# on behalf of gx86-multilib project <multilib@gentoo.org>
+# Mask emul-linux-x86 packages along with unported old versions
+# of reverse dependencies for removal in 60 days, bug #544876.
+# Please use multilib ebuilds with abi_x86_32 instead.
+app-emulation/emul-linux-x86-baselibs
+app-emulation/emul-linux-x86-cpplibs
+app-emulation/emul-linux-x86-db
+app-emulation/emul-linux-x86-gstplugins
+app-emulation/emul-linux-x86-gtklibs
+app-emulation/emul-linux-x86-gtkmmlibs
+app-emulation/emul-linux-x86-medialibs
+app-emulation/emul-linux-x86-motif
+app-emulation/emul-linux-x86-opengl
+app-emulation/emul-linux-x86-qtlibs
+app-emulation/emul-linux-x86-sdl
+app-emulation/emul-linux-x86-soundlibs
+app-emulation/emul-linux-x86-xlibs
+<app-emulation/emul-linux-x86-jna-20140508-r1
+<app-emulation/wine-1.6.1
+<x11-drivers/ati-drivers-14
+
+# James Le Cuirot <chewi@gentoo.org> (28 Mar 2015)
+# Formerly required by NetBeans. Upstream has been dead for
+# years. Removal in 30 days.
+dev-java/jna-posix
+
 # Ian Delaney <idella4@gentoo.org> (28 Mar 2015)
 # old package with no active maintainers
 # No evidence of support or use.
@@ -37,7 +69,7 @@
 sci-geosciences/LatLongUTMconversion
 
 # Bernard Cafarelli <voyageur@gentoo.org> (26 Mar 2015)
-# Dead upstreams, not working in some use cases, 
+# Dead upstreams, not working in some use cases,
 # compatibility with current net-misc/nx not guaranteed,
 # some bundle old binary Xorg code that may be vulnerable,
 # modern alternative exist:
@@ -257,7 +289,7 @@ net-misc/geekcredit
 
 # Pacho Ramos <pacho@gentoo.org> (19 Mar 2015)
 # Removal in a month, bug #346791
-# Justin Lecher <jlec@gentoo.org> (27 Jun 2011)  
+# Justin Lecher <jlec@gentoo.org> (27 Jun 2011)
 # Only avalable version isn't in the tree.
 # Mask until it is bumped
 sci-chemistry/webmo
