@@ -1,6 +1,17 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1596 2015/04/28 14:14:29 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1598 2015/04/29 00:07:30 mpagano Exp $
+
+  29 Apr 2015; Mike Pagano <mpagano@gentoo.org> kernel-2.eclass:
+  Add kernel-2 env var K_BASE_VER as different versions of git sources use
+  different base versions.
+
+  28 Apr 2015; James Le Cuirot <chewi@gentoo.org> java-pkg-2.eclass,
+  java-utils-2.eclass, ant-tasks.eclass:
+  Skip java-dep-check for ant tasks wrt bug #298955. Fix missing ant-core
+  dependency SLOT. Fix recording of BUILD_DEPEND. Fix java-pkg_ensure-dep
+  matching and adjust the error message. Fix automatic loading of ant-junit and
+  junit wrt bug #513522 among others.
 
   28 Apr 2015; Michael Palimaka <kensington@gentoo.org> kde4-base.eclass:
   Update SRC_URI.
