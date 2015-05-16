@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.672 2015/05/07 21:22:48 perfinion Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.674 2015/05/16 07:20:14 floppym Exp $
 
 # This file requires >=portage-2.1.1
 # New entries go on top.
