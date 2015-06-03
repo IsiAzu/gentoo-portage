@@ -1,40 +1,36 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-7.0.57.ebuild,v 1.4 2015/06/03 16:31:07 monsieurp Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.44.ebuild,v 1.1 2015/06/03 14:41:12 monsieurp Exp $
 
 EAPI=5
 
-JAVA_PKG_IUSE="doc source test"
+JAVA_PKG_IUSE="source test"
 
 inherit eutils java-pkg-2 java-ant-2 prefix user
 
 MY_P="apache-${P}-src"
 
-DESCRIPTION="Tomcat Servlet-3.0/JSP-2.2 Container"
+DESCRIPTION="Tomcat Servlet-2.5/JSP-2.1 Container"
 HOMEPAGE="http://tomcat.apache.org/"
-SRC_URI="mirror://apache/${PN}/tomcat-7/v${PV}/src/${MY_P}.tar.gz"
+SRC_URI="mirror://apache/${PN}/tomcat-6/v${PV}/src/${MY_P}.tar.gz"
 
 LICENSE="Apache-2.0"
-SLOT="7"
-KEYWORDS="~amd64 x86 ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="extra-webapps websockets"
+SLOT="6"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd"
+IUSE="extra-webapps"
 
-RESTRICT="test" # can we run them on a production system?
+RESTRICT="test"
 
-ECJ_SLOT="4.4"
-SAPI_SLOT="3.0"
+ECJ_SLOT="3.7"
+SAPI_SLOT="2.5"
 
-COMMON_DEP="
-	dev-java/eclipse-ecj:${ECJ_SLOT}
-	~dev-java/tomcat-servlet-api-${PV}
-	extra-webapps? ( dev-java/jakarta-jstl:0 )"
-RDEPEND="${COMMON_DEP}
-	websockets? ( >=virtual/jre-1.7 )
-	!websockets? ( >=virtual/jre-1.6 )
-	!<dev-java/tomcat-native-1.1.24"
-DEPEND="${COMMON_DEP}
-	websockets? ( >=virtual/jdk-1.7 )
-	!websockets? ( >=virtual/jdk-1.6 )
+CDEPEND="dev-java/eclipse-ecj:${ECJ_SLOT}
+	dev-java/tomcat-servlet-api:2.5"
+RDEPEND="${CDEPEND}
+	>=virtual/jre-1.6
+	!<dev-java/tomcat-native-1.1.20"
+DEPEND="${CDEPEND}
+	>=virtual/jdk-1.6
 	>=dev-java/ant-core-1.8.1:0
 	test? (
 		dev-java/ant-junit:0
@@ -50,7 +46,7 @@ pkg_setup() {
 }
 
 java_prepare() {
-	find -type f -name '*.jar' -exec rm -frv {} + || die
+	find -name '*.jar' -exec rm -v {} + || die
 	epatch "${FILESDIR}/${P}-build.xml.patch"
 
 	# For use of catalina.sh in netbeans
@@ -62,6 +58,7 @@ java_prepare() {
 JAVA_ANT_REWRITE_CLASSPATH="true"
 
 EANT_BUILD_TARGET="deploy"
+EANT_DOC_TARGET=""
 EANT_GENTOO_CLASSPATH="tomcat-servlet-api-${SAPI_SLOT},eclipse-ecj-${ECJ_SLOT}"
 EANT_GENTOO_CLASSPATH_EXTRA="${S}/output/classes"
 EANT_NEEDS_TOOLS="true"
@@ -71,7 +68,6 @@ EANT_EXTRA_ARGS="-Dversion=${PV}-gentoo -Dversion.number=${PV} -Dcompile.debug=f
 IM_REV="-r1"
 
 src_compile() {
-	use websockets && EANT_EXTRA_ARGS="-Djava.7.home=${JAVA_HOME}"
 	EANT_GENTOO_CLASSPATH_EXTRA+=":$(java-pkg_getjar --build-only ant-core ant.jar)"
 	java-pkg-2_src_compile
 }
@@ -94,11 +90,10 @@ src_install() {
 	java-pkg_dojar output/build/lib/*.jar
 
 	# so we don't have to call java-config with --with-dependencies, which might
-	# bring in more jars then actually desired.
+	# bring in more jars than actually desired.
 	java-pkg_addcp "$(java-pkg_getjars eclipse-ecj-${ECJ_SLOT},tomcat-servlet-api-${SAPI_SLOT})"
 
 	dodoc RELEASE-NOTES RUNNING.txt
-	use doc && java-pkg_dojavadoc output/dist/webapps/docs/api
 	use source && java-pkg_dosrc java/*
 
 	### Webapps ###
@@ -131,7 +126,7 @@ src_install() {
 
 pkg_postinst() {
 	elog "New ebuilds of Tomcat support running multiple instances. If you used prior version"
-	elog "of Tomcat (<7.0.32), you have to migrate your existing instance to work with new Tomcat."
+	elog "of Tomcat (<6.0.36), you have to migrate your existing instance to work with new Tomcat."
 	elog "You can find more information at https://wiki.gentoo.org/wiki/Apache_Tomcat"
 
 	elog "To manage Tomcat instances, run:"
